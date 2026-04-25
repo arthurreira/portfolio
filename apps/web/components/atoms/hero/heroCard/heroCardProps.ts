@@ -1,6 +1,6 @@
 export interface HeroCardProps {
   title: string
   description: string
-  icon: React.ReactNode
+  icon: "mapPin" | "briefcase" | "rocket"
 
 }

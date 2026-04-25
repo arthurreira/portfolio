@@ -1,7 +1,26 @@
 {
   "hero": {
-    "title": "Opa, meu nome é Arthur",
-    "subtitle": "Sou engenheiro de software e intérprete, e também apaixonado por futebol.",
-    "cta": "Conta um pouco mais sobre mim"
+    "heading": "Uaisô, prazer! Eu sou Arthur!",
+    "subtitle": "Desenvolvedor de Software Júnior | Nordcloud Oy",
+    "descriptionFirst": "Transformo problemas em soluções digitais que fazem sentido — tanto para o negócio quanto para as pessoas.",
+    "descriptionSecond": "Brasileiro vivendo na Finlândia há mais de 10 anos. Atualmente atuando como Junior Software Engineer na Nordcloud e sempre aprendendo algo novo na prática. Sou movido por curiosidade e pela vontade de transformar problemas em soluções bem pensadas. No meu tempo livre, construo nutrineuvo.com como laboratório de ideias e novas tecnologias. Estou aberto a projetos desafiadores e oportunidades onde eu possa gerar valor e continuar evoluindo.  ",
+    "buttons": {
+      "contact": "Contato",
+      "projects": "Projetos",
+      "about": "Sobre mim"
+    },
+    "stats": {
+      "finland": "anos na Finlândia",
+      "coding": "anos de programação",
+      "languages": "idiomas falados"
+    },
+    "cards": {
+      "fromTitle": "De onde eu sou",
+      "fromDesc": "Sou do interioir de Minas Gerais, vivendo na Finlândia há mais de 10 anos. Atualmente em Kuopio, Norte de Savo.",
+      "roleTitle": "Função atual",
+      "roleDesc": "Engenheiro de Software Júnior na Nordcloud Oy.",
+      "projectTitle": "Projeto atual",
+      "projectDesc": "Construindo nutrineuvo.com — uma plataforma de nutrição para profissionais de saúde."
+    }
   }
 }

@@ -1,4 +1,6 @@
 import { Geist, Geist_Mono, JetBrains_Mono } from "next/font/google"
+import { NextIntlClientProvider } from 'next-intl'
+import { getMessages } from 'next-intl/server'
 
 import "@arthurreira/ui/globals.css"
 import { ThemeProvider } from "@/components/theme-provider"
@@ -11,19 +13,24 @@ const fontSans = Geist({
 
 const jetbrainsMono = JetBrains_Mono({subsets:['latin'],variable:'--font-mono'})
 
-export default function RootLayout({
+export default async function RootLayout({
   children,
-}: Readonly<{
+  params
+}: {
   children: React.ReactNode
-}>) {
+  params: Promise<{ locale: string }>
+}) {
+  const { locale } = await params
+  const messages = await getMessages({ locale })
+  
   return (
-    <html
-      lang="en"
-      suppressHydrationWarning
+    <html lang={locale} suppressHydrationWarning
       className={cn("antialiased", fontSans.variable, "font-mono", jetbrainsMono.variable)}
     >
       <body>
-        <ThemeProvider>{children}</ThemeProvider>
+        <NextIntlClientProvider messages={messages}>
+          <ThemeProvider>{children}</ThemeProvider>
+        </NextIntlClientProvider>
       </body>
     </html>
   )

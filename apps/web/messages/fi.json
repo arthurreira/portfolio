@@ -1,7 +1,26 @@
 {
   "hero": {
-    "title": "Morjens, mä oon Arthuri",
-    "subtitle": "Ohjelmistokehittäjä ja tulkki — ja myös futiksen fani.",
-    "cta": "Tutustu paremmin"
+    "heading": "Morjens, mäoon Arthuri",
+    "subtitle": "Junior Software Developer Kuopiosta.",
+    "descriptionFirst": "Rakennan ratkaisuja, joissa liiketoiminta ja teknologia kulkevat käsi kädessä. Keskityn moderneihin web-sovelluksiin ja arkkitehtuuriin, joka tuottaa oikeaa arvoa — en vain toimivaa koodia.",
+    "descriptionSecond": "Olen Brasiliasta kotoisin ja asunut Suomessa yli 10 vuotta. Olen utelias ja hands-on-tekijä, joka arvostaa selkeää koodia, hyvää käyttökokemusta ja jatkuvaa kehittymistä.",
+    "buttons": {
+      "contact": "Ota yhteyttä",
+      "projects": "Projektit",
+      "about": "Tietoa minusta"
+    },
+    "stats": {
+      "finland": "vuotta Suomessa",
+      "coding": "vuotta koodausta",
+      "languages": "kieltä"
+    },
+    "cards": {
+      "fromTitle": "Mistä olen kotoisin",
+      "fromDesc": "Brasilialainen joka on asunut Suomessa yli 10 vuotta, tällä hetkellä Kuopiossa asustelen.",
+      "roleTitle": "Nykyinen rooli",
+      "roleDesc": "Junior Software Engineer Nordcloud Oy:llä.",
+      "projectTitle": "Nykyinen projekti",
+      "projectDesc": "Rakennan nutrineuvo.com — ravitsemuspalvelua terveydenhuollon ammattilaisille."
+    }
   }
 }
