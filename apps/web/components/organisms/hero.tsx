@@ -6,7 +6,7 @@ export default async function Hero() {
   const t = await getTranslations("hero")
 
   return (
-    <section className="py-8 lg:pt-16">
+    <section className="">
       <div className="mx-auto lg:max-w-7xl w-full px-5 sm:px-10 md:px-12 lg:px-5">
 
         <div className="mt-8 grid md:grid-cols-2 lg:grid-cols-3 gap-x-6 md:items-center gap-y-4 ">

@@ -4,6 +4,7 @@ import { getMessages } from 'next-intl/server'
 
 import "@arthurreira/ui/globals.css"
 import { ThemeProvider } from "@/components/theme-provider"
+import { TopBar } from "@/components/organisms"
 import { cn } from "@arthurreira/ui/lib/utils";
 
 const fontSans = Geist({
@@ -29,7 +30,13 @@ export default async function RootLayout({
     >
       <body>
         <NextIntlClientProvider messages={messages}>
-          <ThemeProvider>{children}</ThemeProvider>
+          <ThemeProvider>
+            <TopBar locale={locale} />
+            {children}
+            
+            
+            
+            </ThemeProvider>
         </NextIntlClientProvider>
       </body>
     </html>
