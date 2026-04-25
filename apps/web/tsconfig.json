@@ -1,10 +1,11 @@
 {
-  "extends": "@workspace/typescript-config/nextjs.json",
+  "extends": "@arthurreira/typescript-config/nextjs.json",
   "compilerOptions": {
-    "baseUrl": ".",
+    "allowArbitraryExtensions": true,
     "paths": {
       "@/*": ["./*"],
-      "@workspace/ui/*": ["../../packages/ui/src/*"]
+      "@arthurreira/ui/globals.css": ["../../packages/ui/src/styles/globals.css"],
+      "@arthurreira/ui/*": ["../../packages/ui/src/*"]
     },
     "plugins": [
       {
