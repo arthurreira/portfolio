@@ -10,13 +10,22 @@ const icons = {
 }
 export default function HeroCard({ title, description, icon }: HeroCardProps) {
     const IconComponent = icons[icon]
-    return <Card className="flex items-start gap-x-2 p-2 md:p-3 lg:p-4   hover:translate-3.5    transition-transform duration-200 ">
-        <span className="min-w-max text-muted-foreground p-2 md:p-3  bg-muted border border-border hover:bg-muted/80">
-            {IconComponent && <IconComponent size={14} weight="fill" className="text-primary transition-transform duration-200 hover:scale-200" />}
+    return <Card className="flex items-start gap-x-2 p-2 md:p-3 lg:p-4 
+  bg-card text-card-foreground 
+  dark:bg-zinc-900 dark:border-zinc-800
+  hover:translate-y-[-4px] transition-transform duration-200 
+  shadow-md hover:shadow-lg border border-border">
+    <span className="min-w-max p-2 md:p-3 bg-secondary dark:bg-zinc-800 text-secondary-foreground rounded-md flex items-center justify-center">
+        {IconComponent && <IconComponent size={32} color="#fdc800" weight="duotone" className="hover:" />}
+    </span>
+    <div>
+        <span className="font-semibold text-lg">
+            {title}
         </span>
-        <div>
-            <span className="font-semibold text-foreground text-lg">{title}</span>
-            <p className="text-muted-foreground">{description}</p>
-        </div>
-    </Card>
+        <p className="text-muted-foreground">
+            {description}
+        </p>
+    </div>
+</Card>
+
 }

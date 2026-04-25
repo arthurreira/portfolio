@@ -9,10 +9,10 @@ export default async function Hero() {
     <section className="py-8 lg:pt-16">
       <div className="mx-auto lg:max-w-7xl w-full px-5 sm:px-10 md:px-12 lg:px-5">
 
-        <div className="mt-8 grid md:grid-cols-2 lg:grid-cols-3 gap-x-6  gap-y-4 md:items-end">
+        <div className="mt-8 grid md:grid-cols-2 lg:grid-cols-3 gap-x-6 md:items-center gap-y-4 ">
 
           {/* Column 1 — text, buttons, stats */}
-          <div className="space-y-4 md:space-y-6 md:col-span-2 lg:col-span-1 w-full lg:max-w-none mx-auto lg:mx-0">
+          <div className="space-y-4 md:space-y-6 md:col-span-2 lg:col-span-1 w-full  lg:max-w-none mx-auto lg:mx-0">
             <HeroText
               heading={t("heading")}
               subtitle={t("subtitle")}
@@ -36,7 +36,7 @@ export default async function Hero() {
           </div>
 
           {/* Column 2 — image */}
-          <div className="flex justify-center">
+          <div className="flex justify-center  md:justify-end sm:items-center p-0">
             <HeroImage src="/images/minavr.png" alt={t("imageAlt")} />
           </div>
 
