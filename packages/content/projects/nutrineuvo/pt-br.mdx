@@ -1,0 +1,58 @@
+---
+title: "Nutrineuvo"
+description: "Uma plataforma moderna de microsserviços com Docker, API Node.js/Express, frontend React e PostgreSQL, implantada no UpCloud com Terraform e GitHub Actions."
+createdAt: "2025-05-01"
+featured: false
+techStack:
+  - "Docker"
+  - "Node.js"
+  - "Express"
+  - "React"
+  - "PostgreSQL"
+  - "Terraform"
+  - "GitHub Actions"
+  - "Nginx"
+githubRepo: "https://github.com/arthurreira/nutrineuvo"
+url: "https://nutrineuvo.com"
+status: "done"
+highlight: ""
+coverImage: "./cover.png"
+---
+
+[![](/images/projects/nutrineuvo/nutrineuvo.png)](https://nutrineuvo.com)
+
+**Nutrineuvo** é uma **plataforma profissional de nutrição e bem-estar** com uma arquitetura moderna de microsserviços, com site de marketing, aplicação frontend e serviços de API separados.
+
+## Arquitetura e infraestrutura
+
+O projeto usa uma **arquitetura de microsserviços conteinerizada** implantada no **UpCloud** com **Docker Compose**.
+
+**Stack de infraestrutura:**
+- Servidor cloud **UpCloud** (provisionado via **Terraform**)
+- **Docker Compose** para orquestração de containers
+- **Nginx** como reverse proxy com terminação SSL
+- **Let's Encrypt** (Certbot) para certificados SSL automáticos
+- **PostgreSQL** em container Docker
+- **GitHub Actions** para automação CI/CD
+
+**Serviços da aplicação:**
+- **Serviço de API** — Node.js/Express REST API (porta 3000)
+- **Aplicação frontend** — React SPA com React Router (`oma.nutrineuvo.fi`)
+- **Site de marketing** — Site React de marketing (`nutrineuvo.fi`)
+- **Nginx** — Reverse proxy gerenciando roteamento e SSL
+- **PostgreSQL** — Banco de dados de produção
+
+**Arquitetura de domínios:**
+- `nutrineuvo.fi` → Site de marketing
+- `oma.nutrineuvo.fi` → Aplicação frontend + proxy de API
+- `api.nutrineuvo.fi` → Acesso direto à API
+
+## Deploy e DevOps
+
+- **Terraform** para provisionamento do servidor
+- **Docker Compose** para orquestração dos serviços
+- **GitHub Actions** para deploys automatizados
+- Deploys sem downtime com health checks
+- **PostgreSQL** com migrações automatizadas e scripts de backup
+- Certificados **Let's Encrypt** com renovação automática
+- **TLS 1.2 e 1.3** com cipher suites modernas

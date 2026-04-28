@@ -1,0 +1,65 @@
+---
+title: "Infrastructure as Code"
+description: "Terraform automation for creating GitHub Pages repositories with custom subdomains."
+createdAt: "2024-01-15"
+featured: false
+techStack:
+  - "Terraform"
+  - "GitHub Actions"
+githubRepo: "https://github.com/arthurreira/infra"
+url: "https://github.com/arthurreira/infra"
+status: "done"
+highlight: ""
+---
+
+**infra** is a **Terraform automation system** for creating and managing multiple GitHub Pages repositories with custom subdomains.
+
+It automates the entire infrastructure setup process, from repository creation to Pages configuration and deployment workflow generation.
+
+## Key Features
+
+1. **Automated Repository Creation:** Creates GitHub repositories with specified visibility (public/private) and naming conventions.
+2. **GitHub Pages Configuration:** Automatically enables GitHub Pages via Terraform using Personal Access Token with admin permissions.
+3. **Custom Domain Setup:** Generates CNAME files for custom subdomains (e.g., `register.arthurreira.dev`, `schedule.arthurreira.dev`).
+4. **Deployment Workflows:** Auto-generates GitHub Actions workflows for each repository that build and deploy static content to Pages.
+5. **Idempotent Operations:** Includes automatic repository import to prevent recreation errors on re-runs.
+
+## Architecture
+
+The system consists of two main components:
+
+1. **Terraform Infrastructure (infra repo):**
+   - Creates GitHub repositories
+   - Enables GitHub Pages
+   - Sets custom domains via CNAME files
+   - Generates deploy workflows
+   - Imports existing repos to avoid recreation
+
+2. **Deploy Workflows (app repos):**
+   - Auto-trigger on push to main branch
+   - Build static content
+   - Upload and deploy to Pages
+   - Run with default GitHub Actions permissions
+
+## Tech Stack
+
+- **Infrastructure:** Terraform >= 1.5
+- **Provider:** `integrations/github` ~> 6.0
+- **Automation:** GitHub Actions
+- **Deployment:** GitHub Pages
+
+## Usage
+
+**Local:**
+```bash
+export TF_VAR_github_owner="arthurreira"
+export TF_VAR_github_token="ghp_yourClassicPAT"
+
+terraform -chdir=infra init
+terraform -chdir=infra apply
+```
+
+**GitHub Actions:**
+- Configure `GH_PAT` secret with Classic PAT (repo + delete_repo scopes)
+- Run workflow from Actions tab
+- Toggle `apply` to execute changes

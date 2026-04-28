@@ -1,24 +1,21 @@
 "use client"
 
-import { useRouter, usePathname } from "next/navigation"
-import { routing, Locale } from "@/i18n/routing"
-
+import { useRouter, usePathname, Locale,routing } from "@/i18n/routing"
+import { useLocale } from 'next-intl'
 const labels: Record<Locale, string> = {
   en: "EN",
   fi: "FI",
   "pt-br": "PT",
 }
 
-export default function LanguageSwitcher({ currentLocale }: { currentLocale: Locale }) {
+export default function LanguageSwitcher() {
   const router = useRouter()
   const pathname = usePathname()
+  const currentLocale = useLocale() // ← always fresh, client-side
 
   function switchLocale(locale: Locale) {
-    // Replace the locale prefix in the pathname
-    const segments = pathname.split("/")
-    segments[1] = locale
-    router.push(segments.join("/"))
-  }
+  router.push(pathname, { locale })
+}
 
   return (
     <div className="flex items-center gap-1">

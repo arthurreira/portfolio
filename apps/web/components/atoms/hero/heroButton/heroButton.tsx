@@ -6,7 +6,7 @@ export default function HeroButton({ href, label }: HeroButtonProps) {
   return (
     <Link
       href={href}
-      className={`${buttonVariants({ variant: "secondary", size: "lg" })} 
+      className={`${buttonVariants({ variant: "default", size: "lg" })} 
         hover:translate-y-[-4px] transition-transform duration-200 
         `}
     >

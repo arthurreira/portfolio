@@ -1,0 +1,58 @@
+---
+title: "br-state-flags (Library)"
+description: "A production-ready, fully typed collection of high-fidelity SVG flags for all 27 Brazilian states. Lightweight, dependency-free, and engineered for modern React workflows."
+createdAt: "2025-12-22"
+featured: false
+techStack:
+  - "React"
+  - "TypeScript"
+githubRepo: "https://github.com/arthurreira/br-state-flags"
+url: "https://www.npmjs.com/package/br-state-flags"
+status: "done"
+highlight: ""
+coverImage: "./cover.png"
+---
+
+[![](/images/projects/br-state-flags/br-state-flags-demo.arthurreira.dev.png)](https://www.npmjs.com/package/br-state-flags)
+
+**br-state-flags** is the core library providing high-fidelity, production-ready React components for all 27 Brazilian state flags. It is designed to be lightweight, dependency-free, and includes enriched geographical and demographic metadata for each state. For an interactive showcase, check the [demo project](/projects/br-state-flags-demo).
+
+## Key Features
+
+1. **Full State Coverage:** Includes official flags for all 26 states plus the Federal District, with accurate colors and aspect ratios.
+2. **Dependency-Free Architecture:** Extremely lightweight with no external dependencies. Optimized SVGs ensure minimal bundle impact.
+3. **First-Class TypeScript Support:** Built with TypeScript for an exceptional developer experience. Full type definitions included.
+4. **Effortless Integration:** Import the flags you need and use them as standard React components. Fully compatible with all SVG props and styling systems.
+
+## Tech Stack
+
+- **Core:** React, TypeScript
+- **Visuals:** SVG (High-fidelity, optimized for web)
+- **Framework compatibility:** Supports Next.js (App and Pages router) and Vite
+
+## Usage Example
+
+```bash
+npm install br-state-flags
+```
+
+```tsx
+import { AC, SP } from 'br-state-flags';
+
+const MyComponent = () => (
+  <div className="flex gap-4">
+    <AC width={120} title="Acre" />
+    <SP width={120} title="São Paulo" />
+  </div>
+);
+```
+
+The library also provides metadata for each state:
+
+```tsx
+import { statesData } from 'br-state-flags';
+
+const spData = statesData.SP;
+console.log(spData.capital); // "São Paulo"
+console.log(spData.population); // 45919049
+```

@@ -1,4 +1,4 @@
-import { HeroCardProps } from "@/components/atoms/hero/heroCard"
+import { HeroCardProps } from "@/components/atoms/hero"
 
 export interface HeroCardsProps {
   cards: HeroCardProps[]

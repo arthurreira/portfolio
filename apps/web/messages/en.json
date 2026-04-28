@@ -1,10 +1,10 @@
 {
   "hero": {
-    "heading": "Hi, I'm Arthur Ferreira",
+    "heading": "Hi,I'm Arthur!",
     "imageAlt": "Arthur Ferreira — Junior Software Developer",
     "subtitle": "Junior Software Developer from Kuopio.",
     "descriptionFirst": "I build digital solutions where business and technology move together. Focused on modern web applications, clean architecture, and creating real impact — not just shipping code.",
-    "descriptionSecond": "Brazilian Junior Software Engineer based in Finland for 10+ years, currently part of the Nordcloud Training Program. Curious by nature and hands-on by mindset, I enjoy turning complex problems into clear, scalable solutions. Outside of work, I’m building nutrineuvo.com as a playground for new ideas and technologies.",
+    "descriptionSecond": "Curious by nature and hands-on by mindset, I enjoy turning complex problems into clear, scalable solutions. ",
     "buttons": {
       "contact": "Contact",
       "projects": "Projects",

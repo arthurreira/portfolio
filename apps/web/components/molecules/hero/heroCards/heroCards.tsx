@@ -1,5 +1,5 @@
 import { HeroCardsProps } from "./heroCardsProps"
-import HeroCard from "@/components/atoms/hero/heroCard"
+import { HeroCard } from "@/components/atoms/hero"
 
 export default function HeroCards({ cards }: HeroCardsProps) {
   return (

@@ -1,0 +1,58 @@
+---
+title: "br-state-flags (Kirjasto)"
+description: "Kevyt, riippuvuudeton ja täysin tyypitetty SVG‑lippukokoelma kaikille 27 Brasilian osavaltiolle. Suunniteltu tuotantokäyttöön ja moderneihin React‑projekteihin."
+createdAt: "2025-12-22"
+featured: false
+techStack:
+  - "React"
+  - "TypeScript"
+githubRepo: "https://github.com/arthurreira/br-state-flags"
+url: "https://www.npmjs.com/package/br-state-flags"
+status: "done"
+highlight: ""
+coverImage: "./cover.png"
+---
+
+[![](/images/projects/br-state-flags/br-state-flags-demo.arthurreira.dev.png)](https://www.npmjs.com/package/br-state-flags)
+
+**br-state-flags** on ydinkirjasto, joka tarjoaa korkealaatuiset, tuotantovalmiit React-komponentit kaikille 27 Brasilian osavaltiolipulle. Se on suunniteltu kevyeksi, riippuvuudettomaksi ja sisältää rikastetut maantieteelliset ja demografiset metatiedot jokaiselle osavaltiolle. Interaktiivisen esittelyn löydät [demoprojektista](/projects/br-state-flags-demo).
+
+## Tärkeimmät ominaisuudet
+
+1. **Kattava osavaltiokirjasto:** Sisältää viralliset liput kaikille 26 osavaltiolle sekä liittodistrikti, tarkoilla väreillä ja kuvasuhteilla.
+2. **Riippuvuudeton arkkitehtuuri:** Erittäin kevyt ilman ulkoisia riippuvuuksia. Optimoidut SVG:t minimoivat bundle-koon.
+3. **TypeScript-tuki:** Rakennettu TypeScriptillä erinomaista kehittäjäkokemusta varten. Täydet tyyppimäärittelyt mukana.
+4. **Helppo integrointi:** Tuo tarvitsemasi liput ja käytä niitä tavallisina React-komponentteina. Täysin yhteensopiva kaikkien SVG-ominaisuuksien ja tyylitysjärjestelmien kanssa.
+
+## Teknologiat
+
+- **Ydin:** React, TypeScript
+- **Visuaalit:** SVG (korkealaatuinen, verkko-optimoitu)
+- **Framework-yhteensopivuus:** Tukee Next.js:ää (App ja Pages router) sekä Viteä
+
+## Käyttöesimerkki
+
+```bash
+npm install br-state-flags
+```
+
+```tsx
+import { AC, SP } from 'br-state-flags';
+
+const MyComponent = () => (
+  <div className="flex gap-4">
+    <AC width={120} title="Acre" />
+    <SP width={120} title="São Paulo" />
+  </div>
+);
+```
+
+Kirjasto tarjoaa myös metatiedot jokaiselle osavaltiolle:
+
+```tsx
+import { statesData } from 'br-state-flags';
+
+const spData = statesData.SP;
+console.log(spData.capital); // "São Paulo"
+console.log(spData.population); // 45919049
+```

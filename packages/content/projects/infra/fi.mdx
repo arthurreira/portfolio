@@ -1,0 +1,65 @@
+---
+title: "Infrastruktuuri koodina"
+description: "Terraform-automaatio GitHub Pages -säilöjen luomiseen mukautetuilla alidomaineilla."
+createdAt: "2024-01-15"
+featured: false
+techStack:
+  - "Terraform"
+  - "GitHub Actions"
+githubRepo: "https://github.com/arthurreira/infra"
+url: "https://github.com/arthurreira/infra"
+status: "done"
+highlight: ""
+---
+
+**infra** on **Terraform-automaatiojärjestelmä** useiden GitHub Pages -repositorioiden luomiseen ja hallintaan mukautetuilla alidomaineilla.
+
+Se automatisoi koko infrastruktuurin asennusprosessin repositorion luomisesta Pages-konfiguraatioon ja julkaisutyönkulun generointiin.
+
+## Tärkeimmät ominaisuudet
+
+1. **Automaattinen repositorion luonti:** Luo GitHub-repositoriot määritetyllä näkyvyydellä (julkinen/yksityinen) ja nimeämiskäytännöillä.
+2. **GitHub Pages -konfiguraatio:** Ottaa GitHub Pages käyttöön automaattisesti Terraformilla henkilökohtaista käyttöoikeustunnusta käyttäen.
+3. **Mukautettu domain:** Generoi CNAME-tiedostot mukautetuille alidomaineille (esim. `register.arthurreira.dev`, `schedule.arthurreira.dev`).
+4. **Julkaisutyönkulut:** Generoi automaattisesti GitHub Actions -työnkulut jokaiselle repositoriolle staattisen sisällön rakentamiseksi ja julkaisemiseksi.
+5. **Idempotentti toiminta:** Sisältää automaattisen repositorion tuonnin uudelleenluontivirheiden estämiseksi.
+
+## Arkkitehtuuri
+
+Järjestelmä koostuu kahdesta pääkomponentista:
+
+1. **Terraform-infrastruktuuri (infra-repo):**
+   - Luo GitHub-repositoriot
+   - Ottaa GitHub Pages käyttöön
+   - Asettaa mukautetut domainit CNAME-tiedostojen kautta
+   - Generoi julkaisutyönkulut
+   - Tuo olemassa olevat repot uudelleenluonnin estämiseksi
+
+2. **Julkaisutyönkulut (sovellus-repot):**
+   - Käynnistyvät automaattisesti push-tapahtumasta päähaaran
+   - Rakentavat staattisen sisällön
+   - Lataavat ja julkaisevat Pagesiin
+   - Toimivat oletusarvoisilla GitHub Actions -oikeuksilla
+
+## Teknologiat
+
+- **Infrastruktuuri:** Terraform >= 1.5
+- **Provider:** `integrations/github` ~> 6.0
+- **Automaatio:** GitHub Actions
+- **Julkaisu:** GitHub Pages
+
+## Käyttö
+
+**Paikallinen:**
+```bash
+export TF_VAR_github_owner="arthurreira"
+export TF_VAR_github_token="ghp_yourClassicPAT"
+
+terraform -chdir=infra init
+terraform -chdir=infra apply
+```
+
+**GitHub Actions:**
+- Konfiguroi `GH_PAT`-salaisuus Classic PAT:lla (repo + delete_repo -laajuudet)
+- Suorita työnkulku Actions-välilehdeltä
+- Aseta `apply` käyttöön muutosten toteuttamiseksi

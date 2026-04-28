@@ -1,0 +1,73 @@
+---
+title: "ChefBoksi"
+description: "A weekly meal-planning platform built with PHP and MySQL, designed to simplify meal selection, delivery, and nutrition tracking."
+createdAt: "2023-10-15"
+featured: false
+techStack:
+  - "PHP"
+  - "MySQL"
+  - "HTML"
+  - "CSS"
+  - "JavaScript"
+  - "Bootstrap"
+githubRepo: "https://github.com/arthurreira/chefboksi-fi"
+url: "https://chefboksi.fi"
+status: "done"
+highlight: ""
+---
+
+[![](https://github.com/arthurreira/chefboksi-fi/blob/main/public/screenshot.png)](https://chefboksi.fi)
+
+**ChefBoksi** is a meal kit service platform (similar to HelloFresh) built with **PHP and MySQL** using an MVC architecture pattern.  
+It helps users select meals, customize weekly plans, track nutrition, and manage deliveries. The platform includes an admin dashboard for managing products, categories, users, and orders, with support for multiple dietary preferences (Gluten-free, Keto, Vegan, Vegetarian, etc.).
+
+## About
+
+ChefBoksi.fi was intended to be a meal kit delivery service platform for the Finnish market. The platform allows users to select meals from various dietary options, plan weekly meals, order pre-portioned ingredients with recipes, and manage delivery addresses and track orders.
+
+**Mission Statement:** "Tarjota paras tapa valmistaa herkullista, terveellistä ja ympäristöystävällistä ruokaa kotona" (Provide the best way to prepare delicious, healthy, and environmentally friendly food at home).
+
+This was a learning project focused on understanding full-stack web development, building a complete web application from frontend to backend, working with databases and user authentication, implementing MVC architecture patterns, and gaining experience with PHP, MySQL, JavaScript, and modern web frameworks.
+
+## Project Structure
+
+The project follows an MVC architecture with a modular component-based structure:
+
+```
+ChefBoksi.Fi/
+├── includes/              # Backend logic and components
+│   ├── dashboardcomponents/  # Admin panel components
+│   ├── front-end-components/ # Customer-facing components
+│   ├── *_controller.inc.php  # Controllers
+│   ├── *_model.inc.php       # Models
+│   └── *_view.inc.php        # Views
+├── css/                  # Stylesheets
+├── js/                   # JavaScript files
+├── Kuvat/                # Image assets
+├── Members/              # Member area
+└── index.php             # Main entry point
+```
+
+## Features Implemented
+
+- User authentication (signup/login)
+- Meal planning system with dietary filters
+- Product catalog with categories
+- Shopping cart functionality
+- Checkout form
+- Admin dashboard for managing products, categories, users, and orders
+- Order tracking system (tilausseuranta)
+- Delivery address management
+- Chat support interface
+- Weekly menu selection
+- Multiple dietary options support (Gluten-free, Keto, Fast & Fit, Mediterranean, Vegan, Vegetarian, High-protein)
+
+## Database
+
+The project uses a MySQL database (`chefboksi`) with tables for meals (`ateria`), categories (`kategoria`), diet types (`ruokavaliot`), users, orders, ingredients (`ainekset`), and relationships between meals and categories.
+
+## Project Status
+
+**This project is incomplete and was discontinued.**
+
+This project was developed as a school period final project to gain deeper understanding of full-stack web development. The project was not completed because the project owner was uncertain about the next steps and the direction they wanted to take the project.

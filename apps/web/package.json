@@ -12,8 +12,9 @@
     "typecheck": "tsc --noEmit"
   },
   "dependencies": {
-    "@phosphor-icons/react": "^2.1.10",
+    "@arthurreira/content": "workspace:*",
     "@arthurreira/ui": "workspace:*",
+    "@phosphor-icons/react": "^2.1.10",
     "next": "16.1.6",
     "next-intl": "^4.9.1",
     "next-themes": "^0.4.6",
@@ -21,12 +22,13 @@
     "react-dom": "^19.2.4"
   },
   "devDependencies": {
+    "@arthurreira/eslint-config": "workspace:*",
+    "@arthurreira/typescript-config": "workspace:*",
     "@tailwindcss/postcss": "^4.1.18",
+    "@types/minimatch": "^6.0.0",
     "@types/node": "^25.1.0",
     "@types/react": "^19.2.10",
     "@types/react-dom": "^19.2.3",
-    "@arthurreira/eslint-config": "workspace:*",
-    "@arthurreira/typescript-config": "workspace:*",
     "eslint": "^9.39.2",
     "typescript": "^5.9.3"
   }

@@ -1,0 +1,17 @@
+{
+  "name": "@arthurreira/content",
+  "type": "module",
+  "version": "0.0.0",
+  "private": true,
+  "devDependencies": {
+    "velite": "^0.3.1"
+  },
+  "scripts": {
+  "build": "velite build",
+  "dev": "velite dev"
+    },   
+    "exports": {
+      ".": "./.velite/index.js",
+      "./types": "./src/types/project.ts"
+    }
+}

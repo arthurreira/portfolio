@@ -1,6 +1,7 @@
 import { Geist, Geist_Mono, JetBrains_Mono } from "next/font/google"
 import { NextIntlClientProvider } from 'next-intl'
 import { getMessages } from 'next-intl/server'
+import type { Locale } from '@/i18n/routing'
 
 import "@arthurreira/ui/globals.css"
 import { ThemeProvider } from "@/components/theme-provider"
@@ -31,7 +32,7 @@ export default async function RootLayout({
       <body>
         <NextIntlClientProvider messages={messages}>
           <ThemeProvider>
-            <TopBar locale={locale} />
+            <TopBar locale={locale as Locale} />
             {children}
             
             

@@ -1,0 +1,58 @@
+---
+title: "Nutrineuvo"
+description: "Moderni mikropalvelualusta Dockerilla, Node.js/Express API:lla, React-frontendilla ja PostgreSQL:llä, käyttöönotettu UpCloudissa Terraformin ja GitHub Actionsin avulla."
+createdAt: "2025-05-01"
+featured: false
+techStack:
+  - "Docker"
+  - "Node.js"
+  - "Express"
+  - "React"
+  - "PostgreSQL"
+  - "Terraform"
+  - "GitHub Actions"
+  - "Nginx"
+githubRepo: "https://github.com/arthurreira/nutrineuvo"
+url: "https://nutrineuvo.com"
+status: "done"
+highlight: ""
+coverImage: "./cover.png"
+---
+
+[![](/images/projects/nutrineuvo/nutrineuvo.png)](https://nutrineuvo.com)
+
+**Nutrineuvo** on ammattimainen **ravitsemus- ja hyvinvointialusta** modernilla mikropalveluarkkitehtuurilla, jossa on erilliset markkinointisivusto, frontend-sovellus ja API-palvelut.
+
+## Arkkitehtuuri ja infrastruktuuri
+
+Projekti käyttää **konteineripohjaista mikropalveluarkkitehtuuria**, joka on otettu käyttöön **UpCloudissa** **Docker Composella**.
+
+**Infrastruktuuripino:**
+- **UpCloud**-pilvipalvelin (provisioitu **Terraformilla**)
+- **Docker Compose** konttien orkestrointiin
+- **Nginx** käänteinen välityspalvelin SSL-päättelyllä
+- **Let's Encrypt** (Certbot) automaattisille SSL-sertifikaateille
+- **PostgreSQL**-tietokanta Docker-kontissa
+- **GitHub Actions** CI/CD-automaatioon
+
+**Sovelluspalvelut:**
+- **API-palvelu** — Node.js/Express REST API (portti 3000)
+- **Frontend-sovellus** — React SPA React Routerilla (`oma.nutrineuvo.fi`)
+- **Markkinointisivusto** — React-markkinointisivusto (`nutrineuvo.fi`)
+- **Nginx** — käänteinen välityspalvelin reititystä ja SSL:ää varten
+- **PostgreSQL** — tuotantotietokanta
+
+**Domain-arkkitehtuuri:**
+- `nutrineuvo.fi` → Markkinointisivusto
+- `oma.nutrineuvo.fi` → Frontend-sovellus + API-välitys
+- `api.nutrineuvo.fi` → Suora API-yhteys
+
+## Käyttöönotto ja DevOps
+
+- **Terraform** palvelimen provisiointiin
+- **Docker Compose** palvelujen orkestrointiin
+- **GitHub Actions** automaattisiin käyttöönottoihin
+- Zero-downtime käyttöönotot terveystarkistuksilla
+- **PostgreSQL** automaattisilla migraatioilla ja varmuuskopioskripteillä
+- **Let's Encrypt** -sertifikaatit automaattisella uusimisella
+- **TLS 1.2 ja 1.3** modernilla salauspakkauksella

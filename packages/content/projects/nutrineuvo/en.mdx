@@ -1,0 +1,67 @@
+---
+title: "Nutrineuvo"
+description: "A modern microservices platform with Docker, Node.js/Express API, React frontend, and PostgreSQL, deployed on UpCloud with Terraform and GitHub Actions."
+createdAt: "2025-05-01"
+featured: false
+techStack:
+  - "Docker"
+  - "Node.js"
+  - "Express"
+  - "React"
+  - "PostgreSQL"
+  - "Terraform"
+  - "GitHub Actions"
+  - "Nginx"
+githubRepo: "https://github.com/arthurreira/nutrineuvo"
+url: "https://nutrineuvo.com"
+status: "done"
+highlight: ""
+coverImage: "./cover.png"
+---
+
+[![](/images/projects/nutrineuvo/nutrineuvo.png)](https://nutrineuvo.com)
+
+**Nutrineuvo** is a professional **nutrition and wellness platform** with a modern microservices architecture, featuring separate marketing site, frontend application, and API services.
+
+## Architecture & Infrastructure
+
+The project uses a **containerized microservices architecture** deployed on **UpCloud** with **Docker Compose**, providing scalable and maintainable infrastructure.
+
+**Infrastructure Stack:**
+- **UpCloud** cloud server (provisioned via **Terraform**)
+- **Docker Compose** for container orchestration
+- **Nginx** reverse proxy with SSL termination
+- **Let's Encrypt** (Certbot) for automated SSL certificates
+- **PostgreSQL** database in Docker container
+- **GitHub Actions** for CI/CD automation
+
+**Application Services:**
+- **API Service** - Node.js/Express REST API (port 3000)
+- **Frontend Application** - React SPA with React Router (`oma.nutrineuvo.fi`)
+- **Marketing Site** - React marketing website (`nutrineuvo.fi`)
+- **Nginx** - Reverse proxy handling routing and SSL (ports 80, 443)
+- **PostgreSQL** - Production database (port 5432)
+
+**Domain Architecture:**
+- `nutrineuvo.fi` → Marketing site
+- `oma.nutrineuvo.fi` → Frontend application + API proxy
+- `api.nutrineuvo.fi` → Direct API access
+
+## Deployment & DevOps
+
+**Infrastructure as Code:**
+- **Terraform** for server provisioning and configuration
+- **Docker Compose** for service orchestration
+- **GitHub Actions** for automated deployments
+- Zero-downtime deployments with health checks
+
+**Database Management:**
+- **PostgreSQL** with automated migrations
+- Automated backup scripts with cron scheduling
+- Database restore capabilities for disaster recovery
+
+**SSL & Security:**
+- **Let's Encrypt** certificates with automatic renewal
+- **TLS 1.2 and 1.3** with modern cipher suites
+- **HSTS** and **OCSP stapling** for enhanced security
+- **Nginx** security headers and hardening

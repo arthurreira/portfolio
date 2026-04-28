@@ -1,0 +1,58 @@
+---
+title: "br-state-flags (Biblioteca)"
+description: "Coleção tipada, leve e sem dependências de bandeiras SVG de alta fidelidade para os 27 estados brasileiros. Ideal para aplicações modernas e pronta para produção."
+createdAt: "2025-12-22"
+featured: false
+techStack:
+  - "React"
+  - "TypeScript"
+githubRepo: "https://github.com/arthurreira/br-state-flags"
+url: "https://www.npmjs.com/package/br-state-flags"
+status: "done"
+highlight: ""
+coverImage: "./cover.png"
+---
+
+[![](/images/projects/br-state-flags/br-state-flags-demo.arthurreira.dev.png)](https://www.npmjs.com/package/br-state-flags)
+
+**br-state-flags** é a biblioteca principal que fornece componentes React de alta fidelidade, prontos para produção, para todas as 27 bandeiras dos estados brasileiros. Foi projetada para ser leve, sem dependências externas, e inclui metadados geográficos e demográficos enriquecidos para cada estado. Para uma vitrine interativa, veja o [projeto demo](/projects/br-state-flags-demo).
+
+## Funcionalidades principais
+
+1. **Cobertura completa dos estados:** Inclui bandeiras oficiais dos 26 estados mais o Distrito Federal, com cores e proporções fiéis.
+2. **Sem dependências:** Extremamente leve, sem dependências externas. SVGs otimizados garantem impacto mínimo no bundle.
+3. **TypeScript nativo:** Construído com TypeScript para uma experiência de desenvolvimento excepcional. Definições de tipos completas incluídas.
+4. **Integração simples:** Importe as bandeiras que precisar e use-as como componentes React padrão. Totalmente compatível com todas as props SVG e sistemas de estilização.
+
+## Tecnologias
+
+- **Core:** React, TypeScript
+- **Visuais:** SVG (alta fidelidade, otimizado para web)
+- **Compatibilidade:** Suporta Next.js (App e Pages router) e Vite
+
+## Exemplo de uso
+
+```bash
+npm install br-state-flags
+```
+
+```tsx
+import { AC, SP } from 'br-state-flags';
+
+const MyComponent = () => (
+  <div className="flex gap-4">
+    <AC width={120} title="Acre" />
+    <SP width={120} title="São Paulo" />
+  </div>
+);
+```
+
+A biblioteca também fornece metadados de cada estado:
+
+```tsx
+import { statesData } from 'br-state-flags';
+
+const spData = statesData.SP;
+console.log(spData.capital); // "São Paulo"
+console.log(spData.population); // 45919049
+```
