@@ -1,7 +1,10 @@
-import type { VariantProps } from "class-variance-authority"
 import type { buttonVariants } from "@arthurreira/ui/components/button"
+
+type ButtonVariantProps = NonNullable<Parameters<typeof buttonVariants>[0]>
 
 export type HeroButtonProps = {
   href: string
   label: string
-} & VariantProps<typeof buttonVariants>
+  variant?: ButtonVariantProps['variant']
+  size?: ButtonVariantProps['size']
+}
