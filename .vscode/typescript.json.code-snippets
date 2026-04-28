@@ -1,0 +1,28 @@
+{
+"Arthur Atom Component": {
+  "prefix": "aatom",
+  "body": [
+    "export function ${1:ComponentName}({ ${2:props} }: ${1:ComponentName}Props) {",
+    "  return (",
+    "    <div className=\"${3}\">",
+    "      ${4}",
+    "    </div>",
+    "  )",
+    "}"
+  ]
+},
+"Arthur Props": {
+  "prefix": "aprops",
+  "body": [
+    "export type ${1:ComponentName}Props = {",
+    "  ${2:prop}: ${3:type}",
+    "}"
+  ]
+},
+"Arthur Index": {
+  "prefix": "aidx",
+  "body": [
+    "export { ${1:ComponentName} } from './${2:fileName}'"
+  ]
+}
+}

@@ -23,5 +23,10 @@
       "projectTitle": "Projeto atual",
       "projectDesc": "Construindo nutrineuvo.com — uma plataforma de nutrição para profissionais de saúde."
     }
-  }
+  },
+  "projects": {
+  "title": "Projetos"
+},
+"about": { "title": "Sobre mim" },
+"topBar": { "darkModeHint": "Pressione d para alternar o modo escuro" }
 }
