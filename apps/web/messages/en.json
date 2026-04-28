@@ -23,5 +23,12 @@
       "projectTitle": "Current project",
       "projectDesc": "Building nutrineuvo.com — a nutrition platform for healthcare professionals."
     }
-  }
+  },
+"projects": {
+  "title": "Projects"
+},
+"about": {
+   "title": "About" 
+},
+"topBar": { "darkModeHint": "Press d to toggle dark mode" }
 }

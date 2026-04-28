@@ -23,5 +23,13 @@
       "projectTitle": "Nykyinen projekti",
       "projectDesc": "Rakennan nutrineuvo.com — ravitsemuspalvelua terveydenhuollon ammattilaisille."
     }
-  }
+  },
+  "projects": {
+  "title": "Projektit"
+},
+  "about": {
+    "title": "Tietoa minusta" 
+  },
+  "topBar": { "darkModeHint": "Paina d vaihtaaksesi tumman tilan" }
+
 }

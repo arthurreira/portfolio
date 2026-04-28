@@ -1,5 +1,4 @@
 import { Hero } from "@/components/organisms"
-import { projects } from '@arthurreira/content'
 
 export default function Page() {
 
