@@ -2,7 +2,7 @@
   "name": "@arthurreira/ui",
   "version": "0.0.0",
   "type": "module",
-  "private": true,
+  "private": false,
   "scripts": {
     "lint": "eslint",
     "format": "prettier --write \"**/*.{ts,tsx}\"",
