@@ -19,22 +19,22 @@ export default async function Hero() {
               descriptionFirst={t("descriptionFirst")}
               descriptionSecond={t("descriptionSecond")}
             />
-        <div className="flex flex-row gap-2 sm:gap-6 sm:flex-row sm:justify-between lg:flex-col w-full lg:w-fit">
-            <HeroButtons
-                buttons={[
-                { href: "/contact", label: t("buttons.contact") },
-                { href: "/projects", label: t("buttons.projects") },
-                { href: "/about", label: t("buttons.about") },
-                ]}
-            />
-            <HeroStats
-                stats={[
-                { number: "10+", label: t("stats.finland"), icon: "clock" },
-                { number: "2+", label: t("stats.coding"), icon: "code" },
-                { number: "4", label: t("stats.languages"), icon: "translate" },
-                ]}
-            />
-        </div>
+              <div className="flex flex-col gap-4 w-fit">
+                  <HeroButtons
+                    buttons={[
+                    { href: "/contact", label: t("buttons.contact"), variant: "default" },
+                    { href: "/projects", label: t("buttons.projects"), variant: "outline" },
+                    { href: "/about", label: t("buttons.about"), variant: "link" },
+                  ]}
+                  />
+                  <HeroStats
+                      stats={[
+                      { number: "10+", label: t("stats.finland"), icon: "clock" },
+                      { number: "2+", label: t("stats.coding"), icon: "code" },
+                      { number: "4", label: t("stats.languages"), icon: "translate" },
+                      ]}
+                  />
+              </div>
           </div>
 
           {/* Column 2 — image */}
