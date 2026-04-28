@@ -22,7 +22,7 @@ export default function HeroStats({ stats }: HeroStatsProps) {
     }, []);
 
     return (
-        <div className="grid grid-cols-3 w-fit  gap-2 ">
+        <div className="grid grid-cols-3 w-full  gap-2">
             {stats.map((stat, index) => (
                 <HeroStat key={index} {...stat} visible={activeIndex === index} />
             ))}
