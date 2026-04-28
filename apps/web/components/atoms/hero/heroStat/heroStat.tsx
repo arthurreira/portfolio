@@ -15,7 +15,7 @@ export default function HeroStat({ number, label, icon, visible }: HeroStatProps
     return (
         <div className="flex items-center gap-1 sm:gap-4">
             <div className="relative">
-                {IconComponent && <IconComponent size={32} weight="fill" className="text-primary" />}
+                {IconComponent && <IconComponent size={32} className="text-primary" />}
                 <Badge className={`absolute top-10 left-1/2 -translate-x-1/2 whitespace-nowrap transition-all duration-300 ${visible ? "opacity-100 translate-y-0" : "opacity-0 -translate-y-1 pointer-events-none"}`}>
                     {label}
                 </Badge>
