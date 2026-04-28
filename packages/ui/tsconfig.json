@@ -1,6 +1,8 @@
 {
   "extends": "@arthurreira/typescript-config/react-library.json",
   "compilerOptions": {
+    "module": "ESNext",
+    "moduleResolution": "bundler",
     "paths": {
       "@arthurreira/ui/*": ["./src/*"]
     }
