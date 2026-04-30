@@ -1,36 +1,38 @@
 "use client"
 
-import { useRouter, usePathname, Locale,routing } from "@/i18n/routing"
+import { useRouter, usePathname, Locale, routing } from "@/i18n/routing"
 import { useLocale } from 'next-intl'
+import { Button } from "@arthurreira/ui/components/button"
+import { cn } from "@arthurreira/ui/lib/utils"
+
 const labels: Record<Locale, string> = {
   en: "EN",
   fi: "FI",
   "pt-br": "PT",
 }
 
-export default function LanguageSwitcher() {
+export function LanguageSwitcher() {
   const router = useRouter()
   const pathname = usePathname()
-  const currentLocale = useLocale() // ← always fresh, client-side
+  const currentLocale = useLocale()
 
   function switchLocale(locale: Locale) {
-  router.push(pathname, { locale })
-}
+    router.push(pathname, { locale })
+  }
 
   return (
     <div className="flex items-center gap-1">
       {routing.locales.map((locale) => (
-        <button
+        <Button
           key={locale}
+          variant="ghost"
+          size="xs"
           onClick={() => switchLocale(locale)}
-          className={`text-xs font-medium px-1.5 py-0.5 rounded transition-colors ${
-            locale === currentLocale
-              ? "text-foreground"
-              : "text-muted-foreground hover:text-foreground"
-          }`}
+          aria-pressed={locale === currentLocale}
+          className={cn(locale !== currentLocale && "text-muted-foreground")}
         >
           {labels[locale]}
-        </button>
+        </Button>
       ))}
     </div>
   )

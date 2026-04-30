@@ -4,16 +4,15 @@ import { Badge } from "@arthurreira/ui/components/badge"
 import Image from "next/image"
 import Link from 'next/link'
 
-import { Skeleton } from "@arthurreira/ui/components/skeleton"
 export function ProjectCard({ title, description, status, techStack, url, githubRepo, slug, coverImage }: ProjectCardProps) {
   return (
     <Card className="w-full h-full flex flex-col hover:shadow-lg transition-shadow duration-300 p-0 ">
-      <Link href={`/projects/${slug}`} className="flex flex-col flex-1">
+      <Link href={`/projects/${slug}`} className="flex flex-col flex-1 ">
         {coverImage?.src
           ? <div className="w-full h-40 relative overflow-hidden ">
             <Image src={coverImage.src} alt={title} fill className="object-cover" />
           </div>
-          : <div className="w-full h-40 rounded-t-lg bg-gradient-to-r from-[--sidebar-primary] via-primary to-muted-foreground" />
+          : <div className="w-full h-40 border bg-linear-to-r from-sidebar-primary via-primary to-muted-foreground " />
 
         }
         <CardHeader className="p-4">

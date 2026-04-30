@@ -1,8 +1,9 @@
+import { cn } from "@arthurreira/ui/lib/utils"
 import type { MdxLiProps } from './mdxLiProps'
 
-export function MdxLi({ children, ...props }: MdxLiProps) {
+export function MdxLi({ className, children, ...props }: MdxLiProps) {
   return (
-    <li className="text-muted-foreground" {...props}>
+    <li className={cn("text-muted-foreground", className)} {...props}>
       {children}
     </li>
   )

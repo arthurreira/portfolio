@@ -1,2 +1,2 @@
-export { default } from "./heroCard"
+export { HeroCard } from "./heroCard"
 export type { HeroCardProps } from "./heroCardProps"
