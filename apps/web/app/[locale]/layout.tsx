@@ -3,7 +3,7 @@ import { NextIntlClientProvider } from 'next-intl'
 import { getMessages } from 'next-intl/server'
 import type { Locale } from '@/i18n/routing'
 
-import "@arthurreira/ui/globals.css"
+import "../globals.css"
 import { ThemeProvider } from "@/components/theme-provider"
 import { TopBar } from "@/components/organisms"
 import { cn } from "@arthurreira/ui/lib/utils";

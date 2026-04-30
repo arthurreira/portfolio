@@ -1,8 +1,9 @@
+import { cn } from "@arthurreira/ui/lib/utils"
 import type { MdxUlProps } from './mdxUlProps'
 
-export function MdxUl({ children, ...props }: MdxUlProps) {
+export function MdxUl({ className, children, ...props }: MdxUlProps) {
   return (
-    <ul className="list-disc pl-6 mb-4 space-y-2 " {...props}>
+    <ul className={cn("list-disc pl-6 mb-4 space-y-2", className)} {...props}>
       {children}
     </ul>
   )

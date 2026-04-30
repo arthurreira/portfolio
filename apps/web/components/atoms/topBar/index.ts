@@ -1,2 +1,2 @@
-export { default as LanguageSwitcher } from "./languageSwitcher"
-export { default as ThemeToggle } from "./themeToggle"
+export { LanguageSwitcher } from "./languageSwitcher"
+export { ThemeToggle } from "./themeToggle"

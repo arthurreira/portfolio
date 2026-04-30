@@ -2,7 +2,7 @@ import { getTranslations } from "next-intl/server"
 import { HeroButtons, HeroCards, HeroStats } from "@/components/molecules"
 import { HeroImage, HeroText } from "@/components/atoms"
 
-export default async function Hero() {
+export async function Hero() {
   const t = await getTranslations("hero")
 
   return (

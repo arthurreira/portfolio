@@ -13,7 +13,11 @@ const components = {
 }
 
 export function MDXContent({ code }: { code: string }) {
-  const fn = new Function(code)
-  const { default: Component } = fn(runtime)
-  return <Component components={components} />
+  try {
+    const fn = new Function(code)
+    const { default: Component } = fn(runtime)
+    return <Component components={components} />
+  } catch {
+    return null
+  }
 }

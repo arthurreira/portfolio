@@ -1,4 +1,4 @@
-import type { FeaturedProjectCardProps } from './featuredProjectCardProps.ts'
+import type { FeaturedProjectCardProps } from './featuredProjectCardProps'
 import { Card } from "@arthurreira/ui/components/card"
 import { Badge } from "@arthurreira/ui/components/badge"
 import Image from "next/image"
