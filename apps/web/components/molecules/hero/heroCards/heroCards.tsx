@@ -1,12 +1,13 @@
+import { cn } from "@arthurreira/ui/lib/utils"
 import { HeroCardsProps } from "./heroCardsProps"
 import { HeroCard } from "@/components/atoms/hero"
 
-export default function HeroCards({ cards }: HeroCardsProps) {
+export function HeroCards({ cards, className }: HeroCardsProps & { className?: string }) {
   return (
-    <div className="grid grid-cols-1 gap-3">
-  {cards.map((card, index) => (
-    <HeroCard key={index} {...card} />
-  ))}
-</div>
+    <div className={cn("grid grid-cols-1 gap-3", className)}>
+      {cards.map((card, index) => (
+        <HeroCard key={index} {...card} />
+      ))}
+    </div>
   )
 }

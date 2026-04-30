@@ -1,1 +1,1 @@
-export { default as TopBar } from "./topBar"
+export { TopBar } from "./topBar"

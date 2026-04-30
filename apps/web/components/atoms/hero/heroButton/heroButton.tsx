@@ -5,13 +5,14 @@ import { buttonVariants } from "@arthurreira/ui/components/button"
 import { cn } from "@arthurreira/ui/lib/utils"
 import { ArrowRightIcon } from "@phosphor-icons/react"
 
-export default function HeroButton({ href, label, variant }: HeroButtonProps) {
+export function HeroButton({ href, label, variant, className }: HeroButtonProps & { className?: string }) {
   return (
-    <Link href={href} className={cn(
+    <Link href={href} data-slot="hero-button" className={cn(
       buttonVariants({ variant, size: "lg" }),
-      "shadow-sm uppercase tracking-wider group"
+      "shadow-sm uppercase tracking-wider group",
+      className
     )}>
-      {label} 
+      {label}
       <ArrowRightIcon className="group-hover:translate-x-1 transition-transform" />
     </Link>
   )
