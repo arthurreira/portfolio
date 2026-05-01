@@ -1,0 +1,47 @@
+---
+title: "AF Next.js Component Architecture"
+description: "Harjoitusprojekti atomisen suunnittelun periaatteiden soveltamiseen Next.js-ympäristössä pnpm-työtiloja ja TypeScriptiä hyödyntäen."
+createdAt: "2024-08-12"
+featured: false
+techStack:
+  - "Next.js"
+  - "TypeScript"
+  - "pnpm"
+  - "Tailwind CSS"
+githubRepo: "https://github.com/arthurreira/af-nextjs-component-architecture-practice"
+url: ""
+status: "done"
+highlight: ""
+---
+
+**AF Next.js Component Architecture** on harjoitusprojekti **atomisen suunnittelun** periaatteiden tutkimiseen ja soveltamiseen Next.js-monorepossa. Tavoitteena oli rakentaa organisoitu, skaalautuva komponenttijärjestelmä alusta asti modernilla työkaluketjulla.
+
+## Tavoitteet
+
+- Harjoitella **atomit → molekyylit → organismit → mallipohjat → sivut** -hierarkiaa
+- Ymmärtää, kuinka komponenttikirjasto rakennetaan pnpm-työtilaan
+- Soveltaa TypeScriptiä tiukasti kaikkiin komponenttien propseihin ja apufunktioihin
+- Pitää komponentit eristettyinä, yhdistelyyn soveltuvina ja helposti testattavina
+
+## Rakenne
+
+```
+packages/
+  ui/           # Jaettu komponenttikirjasto (atomit, molekyylit, organismit)
+apps/
+  playground/   # Next.js-sovellus komponenttien esittelyyn ja testaukseen
+```
+
+## Harjoitellut käsitteet
+
+- **Atominen suunnittelu** — komponentit ryhmiteltynä monimutkaisuuden ja vastuun mukaan
+- **pnpm workspaces** — monorepomäärittely jaettujen pakettien kanssa
+- **TypeScript** — tiukka propsien tyypitys ja uudelleenkäytettävät rajapintamäärittelyt
+- **Tailwind CSS** — utility-luokat komponenttitasolla
+
+## Teknologiat
+
+- **Next.js** — playground-sovelluskehys
+- **TypeScript** — kattava tyyppiturvallisuus
+- **pnpm** — nopea pakettienhallinta työtila-tuella
+- **Tailwind CSS** — utility-first-tyylittely

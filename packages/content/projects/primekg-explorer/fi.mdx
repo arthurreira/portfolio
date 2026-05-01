@@ -1,0 +1,38 @@
+---
+title: "PrimeKG Explorer"
+description: "Interaktiivinen 3D-biomedikaaliset tietoverkon selain, joka perustuu PrimeKG-datasetiin. Käyttää Neo4j-graafitietokantaa ja react-force-graph-3d-visualisointia."
+createdAt: "2025-03-05"
+featured: false
+techStack:
+  - "TypeScript"
+  - "Neo4j"
+  - "react-force-graph-3d"
+  - "Next.js"
+githubRepo: "https://github.com/arthurreira/primekg-explorer"
+url: ""
+status: "done"
+highlight: ""
+---
+
+**PrimeKG Explorer** on interaktiivinen työkalu [PrimeKG](https://zitniklab.hms.harvard.edu/projects/PrimeKG/)-biomedikaaliverkon tutkimiseen — datasetin, joka yhdistää sairauksia, lääkkeitä, geenejä, proteiineja ja biologisia signalointireittejä.
+
+## Mitä se tekee
+
+- Lataa PrimeKG:n solmut ja reunat **Neo4j**-graafitietokantaan
+- Esittää verkon reaaliaikaisena interaktiivisena 3D-visualisointina **react-force-graph-3d**:llä
+- Mahdollistaa sairauksien, lääkkeiden, geenien ja proteiinien välisten suhteiden tutkimisen
+- Tukee hakua ja suodatusta solmutyypin tai nimen perusteella
+
+## Tekniset kohokohdat
+
+- Cypher-kyselyt Neo4j JavaScript -ajurin kautta
+- Graafidata välitetään Next.js API-reittien kautta
+- 3D-voimaohjattu asettelu WebGL-renderöinnillä
+- Solmujen värikoodaus entiteettityypin mukaan (sairaus, lääke, geeni jne.)
+
+## Teknologiat
+
+- **TypeScript** — tyyppiturvallisuus koko sovelluksessa
+- **Neo4j** — graafitietokanta biomedikaalisille entiteeteille
+- **react-force-graph-3d** — Three.js-pohjainen graafivisualisointi
+- **Next.js** — API- ja frontend-sovelluskehys
