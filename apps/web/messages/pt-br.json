@@ -27,6 +27,13 @@
   "projects": {
   "title": "Projetos"
 },
-"about": { "title": "Sobre mim" },
+  "about": {
+    "title": "Sobre mim",
+    "weather": {
+  "from": "De onde eu sou",
+  "live": "Onde moro",
+  "wind": "Vento"
+} 
+  },
 "topBar": { "darkModeHint": "Pressione d para alternar o modo escuro" }
 }

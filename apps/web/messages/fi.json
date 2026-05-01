@@ -28,7 +28,12 @@
   "title": "Projektit"
 },
   "about": {
-    "title": "Tietoa minusta" 
+    "title": "Tietoa minusta",
+    "weather": {
+  "from": "Kotoisin",
+  "live": "Asun täällä",
+  "wind": "Tuuli"
+} 
   },
   "topBar": { "darkModeHint": "Paina d vaihtaaksesi tumman tilan" }
 

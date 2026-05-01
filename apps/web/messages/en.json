@@ -28,7 +28,13 @@
   "title": "Projects"
 },
 "about": {
-   "title": "About" 
+   "title": "About",
+    "weather": {
+    "from": "Where I'm from",
+    "live": "Where I live",
+    "humidity": "Humidity",
+    "wind": "Wind"
+  }
 },
 "topBar": { "darkModeHint": "Press d to toggle dark mode" }
 }
