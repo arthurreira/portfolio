@@ -2,7 +2,6 @@
 import Link from "next/link"
 import { HeroCardProps } from "./heroCardProps"
 import { Card } from "@arthurreira/ui/components/card"
-import { cn } from "@arthurreira/ui/lib/utils"
 import { BriefcaseMetalIcon, MapPinSimpleIcon, RocketLaunchIcon } from "@phosphor-icons/react"
 import { useEffect, useState } from "react"
 import { Popover, PopoverContent, PopoverTrigger } from "@arthurreira/ui/components/popover"
@@ -43,7 +42,6 @@ export function HeroCard({ title, description, icon, href, weather }: HeroCardPr
         }
     }, [weather])
 
-    // in the return, replace the card variable with:
     const cardEl = (
         <Popover open={open} onOpenChange={setOpen}>
             <PopoverTrigger asChild onMouseEnter={() => setOpen(true)} onMouseLeave={() => setOpen(false)}>
