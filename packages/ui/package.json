@@ -1,12 +1,13 @@
 {
   "name": "@arthurreira/ui",
-  "version": "0.0.0",
+  "version": "0.0.2",
   "type": "module",
-  "private": true,
+  "private": false,
   "scripts": {
     "lint": "eslint",
     "format": "prettier --write \"**/*.{ts,tsx}\"",
-    "typecheck": "tsc --noEmit"
+    "typecheck": "tsc --noEmit",
+    "build": "tsup"
   },
   "dependencies": {
     "@phosphor-icons/react": "^2.1.10",
@@ -22,22 +23,26 @@
     "zod": "^3.25.76"
   },
   "devDependencies": {
+    "@arthurreira/eslint-config": "workspace:*",
+    "@arthurreira/typescript-config": "workspace:*",
     "@tailwindcss/postcss": "^4.1.18",
     "@turbo/gen": "^2.8.1",
     "@types/node": "^25.1.0",
     "@types/react": "^19.2.10",
     "@types/react-dom": "^19.2.3",
-    "@arthurreira/eslint-config": "workspace:*",
-    "@arthurreira/typescript-config": "workspace:*",
     "eslint": "^9.39.2",
     "tailwindcss": "^4.1.18",
+    "tsup": "^8.5.1",
     "typescript": "^5.9.3"
   },
   "exports": {
     "./globals.css": "./src/styles/globals.css",
     "./postcss.config": "./postcss.config.mjs",
-    "./lib/*": "./src/lib/*.ts",
-    "./components/*": "./src/components/*.tsx",
-    "./hooks/*": "./src/hooks/*.ts"
+    "./lib/utils": "./dist/lib/utils.js",
+    "./components/button": "./dist/components/button.js",
+    "./components/card": "./dist/components/card.js",
+    "./components/badge": "./dist/components/badge.js",
+    "./components/skeleton": "./dist/components/skeleton.js",
+    "./components/popover": "./dist/components/popover.js"
   }
 }

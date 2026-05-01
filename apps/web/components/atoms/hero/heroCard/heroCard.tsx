@@ -2,6 +2,7 @@
 import Link from "next/link"
 import { HeroCardProps } from "./heroCardProps"
 import { Card } from "@arthurreira/ui/components/card"
+import { cn } from "@arthurreira/ui/lib/utils"
 import { BriefcaseMetalIcon, MapPinSimpleIcon, RocketLaunchIcon } from "@phosphor-icons/react"
 import { useEffect, useState } from "react"
 import { Popover, PopoverContent, PopoverTrigger } from "@arthurreira/ui/components/popover"
