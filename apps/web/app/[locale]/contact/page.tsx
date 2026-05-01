@@ -20,8 +20,8 @@ export default async function ContactPage() {
         <div className="min-h-screen flex flex-col justify-center max-w-7xl mx-auto px-4 sm:px-8 md:px-10 lg:px-4 py-16">
             <div className='max-w-2xl space-y-3'>
                 <PageHeader title={t("title")} />
-                <Badge variant="outline"> {t("availability")}</Badge>
-                <p className="text-muted-foreground">{t("subtitle")}</p>
+                <Badge variant="outline" className="p-0"> {t("availability")}</Badge>
+                <p className="text-shadow-muted-foreground text-xs ">{t("subtitle")}</p>
                 <ContactInfo email="arthur.ferreiramiran@gmail.com" location={t("location")} />
                 <p className="text-sm text-muted-foreground">{t("responseTime")}</p>
                 
