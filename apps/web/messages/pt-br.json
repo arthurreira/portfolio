@@ -25,15 +25,27 @@
     }
   },
   "projects": {
-  "title": "Projetos"
-},
+    "title": "Projetos"
+  },
   "about": {
     "title": "Sobre mim",
     "weather": {
-  "from": "De onde eu sou",
-  "live": "Onde moro",
-  "wind": "Vento"
-} 
+      "from": "De onde eu sou",
+      "live": "Onde moro",
+      "wind": "Vento"
+    }
   },
-"topBar": { "darkModeHint": "Pressione d para alternar o modo escuro" }
+  "topBar": {
+    "darkModeHint": "Pressione d para alternar o modo escuro"
+  },
+  "contact": {
+    "title": "Contato",
+    "subtitle": "Estou sempre aberto a novas oportunidades, colaborações ou apenas uma conversa. Encontre-me aqui:",
+    "github": "GitHub",
+    "linkedin": "LinkedIn",
+    "email": "Email",
+    "availability": "Aberto a oportunidades",
+    "location": "Baseado em Kuopio, Finlândia 🇫🇮",
+    "responseTime": "Normalmente responde dentro de 24 horas"
+  }
 }

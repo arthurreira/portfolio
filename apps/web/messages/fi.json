@@ -25,16 +25,27 @@
     }
   },
   "projects": {
-  "title": "Projektit"
-},
+    "title": "Projektit"
+  },
   "about": {
     "title": "Tietoa minusta",
     "weather": {
-  "from": "Kotoisin",
-  "live": "Asun täällä",
-  "wind": "Tuuli"
-} 
+      "from": "Kotoisin",
+      "live": "Asun täällä",
+      "wind": "Tuuli"
+    }
   },
-  "topBar": { "darkModeHint": "Paina d vaihtaaksesi tumman tilan" }
-
+  "topBar": {
+    "darkModeHint": "Paina d vaihtaaksesi tumman tilan"
+  },
+  "contact": {
+    "title": "Ota yhteyttä",
+    "subtitle": "Olen aina avoin uusille mahdollisuuksille, yhteistyölle tai vain jutulle. Löydät minut täältä:",
+    "github": "GitHub",
+    "linkedin": "LinkedIn",
+    "email": "Sähköposti",
+    "availability": "Rakennan uraani Pilvipalveuiden parissa",
+    "location": "Kuopiossa, Suomi 🇫🇮",
+    "responseTime": "Vastaa yleensä 24 tunnin kuluessa"
+  }
 }
