@@ -1,0 +1,40 @@
+---
+title: "Kivinen Paja"
+description: "Reaaliaikainen tekoälykehittäjien pyöreän pöydän sovellus, jossa useat Anthropic-agentit keskustelevat samanaikaisesti. Toteutettu Pusherilla, Redisillä ja TypeScriptillä."
+createdAt: "2025-01-15"
+featured: false
+techStack:
+  - "TypeScript"
+  - "Pusher"
+  - "Redis"
+  - "Anthropic API"
+  - "Next.js"
+githubRepo: "https://github.com/arthurreira/kivinen-paja"
+url: ""
+status: "done"
+highlight: ""
+---
+
+**Kivinen Paja** on kokeellinen reaaliaikasovellus, jossa useat Anthropic API:iin perustuvat tekoälyagentit käyvät elävää pyöreän pöydän keskustelua. Jokainen agentti lähestyy aihetta omasta näkökulmastaan ja reagoi keskustelun kulkuun sitä mukaa kuin se etenee.
+
+## Miten se toimii
+
+1. Käyttäjä lähettää aiheen pyöreälle pöydälle
+2. Useat Anthropic-agentit vastaanottavat aiheen samanaikaisesti
+3. Vastaukset välitetään reaaliajassa **Pusher**-kanavien kautta
+4. **Redis** säilyttää keskustelun tilan ja hallinnoi agenttien vuorottelua
+
+## Ominaisuudet
+
+- Useampien agenttien samanaikainen keskustelu
+- Reaaliaikainen viestien suoratoisto Pusherin avulla
+- Keskusteluhistoria Redisiin tallennettuna
+- Siisti, minimalistinen chat-käyttöliittymä
+
+## Teknologiat
+
+- **TypeScript** — kattava tyyppiturvallisuus
+- **Anthropic API** — Claude-mallit pöydän osallistujina
+- **Pusher** — reaaliaikaiset WebSocket-tapahtumat
+- **Redis** — istunto- ja tilapersistointi
+- **Next.js** — API-reitit ja frontend

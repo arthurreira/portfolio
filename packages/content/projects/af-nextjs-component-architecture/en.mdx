@@ -1,0 +1,47 @@
+---
+title: "AF Next.js Component Architecture"
+description: "A practice project exploring atomic design principles in Next.js, using pnpm workspaces and TypeScript to build a scalable, well-structured component library."
+createdAt: "2024-08-12"
+featured: false
+techStack:
+  - "Next.js"
+  - "TypeScript"
+  - "pnpm"
+  - "Tailwind CSS"
+githubRepo: "https://github.com/arthurreira/af-nextjs-component-architecture-practice"
+url: ""
+status: "done"
+highlight: ""
+---
+
+**AF Next.js Component Architecture** is a dedicated practice project for exploring and applying **atomic design** principles in a Next.js monorepo. The goal was to build a well-organised, scalable component system from scratch using modern tooling.
+
+## Goals
+
+- Practice the **atoms → molecules → organisms → templates → pages** hierarchy
+- Understand how to structure a component library inside a pnpm workspace
+- Apply TypeScript strictly to all component props and utilities
+- Keep components isolated, composable, and easy to test
+
+## Structure
+
+```
+packages/
+  ui/           # Shared component library (atoms, molecules, organisms)
+apps/
+  playground/   # Next.js app for showcasing and testing components
+```
+
+## Key Concepts Practiced
+
+- **Atomic design** — components grouped by complexity and responsibility
+- **pnpm workspaces** — monorepo setup with shared packages
+- **TypeScript** — strict prop typing and reusable interface definitions
+- **Tailwind CSS** — utility classes applied at the component level
+
+## Tech Stack
+
+- **Next.js** — playground application framework
+- **TypeScript** — end-to-end type safety
+- **pnpm** — fast, disk-efficient package manager with workspace support
+- **Tailwind CSS** — utility-first styling

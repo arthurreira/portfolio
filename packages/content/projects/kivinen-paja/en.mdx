@@ -1,0 +1,40 @@
+---
+title: "Kivinen Paja"
+description: "A real-time AI developer roundtable where multiple Anthropic agents discuss topics simultaneously, powered by Pusher for live messaging and Redis for state management."
+createdAt: "2025-01-15"
+featured: false
+techStack:
+  - "TypeScript"
+  - "Pusher"
+  - "Redis"
+  - "Anthropic API"
+  - "Next.js"
+githubRepo: "https://github.com/arthurreira/kivinen-paja"
+url: ""
+status: "done"
+highlight: ""
+---
+
+**Kivinen Paja** ("Stone Forge" in Finnish) is an experimental real-time application where multiple AI agents powered by the Anthropic API hold a live roundtable discussion. Each agent takes a different perspective and responds to the conversation as it unfolds.
+
+## How It Works
+
+1. A topic is submitted to the roundtable
+2. Multiple Anthropic-backed agents receive the topic simultaneously
+3. Responses are streamed in real time via **Pusher** channels
+4. **Redis** persists the conversation state and manages agent turn-taking
+
+## Features
+
+- Multi-agent concurrent discussion
+- Real-time message streaming with Pusher
+- Conversation history stored in Redis
+- Clean, minimal chat-style UI
+
+## Tech Stack
+
+- **TypeScript** — full-stack type safety
+- **Anthropic API** — Claude models as roundtable participants
+- **Pusher** — real-time WebSocket events
+- **Redis** — session and state persistence
+- **Next.js** — API routes and frontend

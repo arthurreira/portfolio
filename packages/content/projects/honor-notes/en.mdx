@@ -1,0 +1,37 @@
+---
+title: "Honor Notes"
+description: "A full-stack notes application with a Next.js frontend and a Dockerized REST API backend, featuring rich text editing, tags, and persistent storage."
+createdAt: "2024-11-20"
+featured: false
+techStack:
+  - "TypeScript"
+  - "Next.js"
+  - "Docker"
+  - "REST API"
+githubRepo: "https://github.com/arthurreira/honor-notes-frontend"
+url: ""
+status: "done"
+highlight: ""
+---
+
+**Honor Notes** is a full-stack notes application split into a **Next.js frontend** and a separate **Dockerized API backend**. The project was built to practice decoupled architecture, containerization, and end-to-end TypeScript across a multi-service setup.
+
+## Architecture
+
+- **Frontend** — Next.js app consuming the REST API, with a clean notes UI
+- **Backend** — Containerized REST API (Docker) handling CRUD operations for notes
+- Both services communicate via HTTP; the backend is independently deployable
+
+## Features
+
+- Create, read, update, and delete notes
+- Tag-based organization
+- Persistent storage via the backend API
+- Fully typed API contract shared between frontend and backend
+
+## Tech Stack
+
+- **TypeScript** — shared types across frontend and API
+- **Next.js** — frontend framework
+- **Docker** — containerized API service
+- **REST API** — standard HTTP interface for note management
