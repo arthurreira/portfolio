@@ -1,0 +1,38 @@
+---
+title: "PrimeKG Explorer"
+description: "Explorador interativo de grafos biomédicos em 3D baseado no dataset PrimeKG, utilizando Neo4j para armazenamento e react-force-graph-3d para visualização."
+createdAt: "2025-03-05"
+featured: false
+techStack:
+  - "TypeScript"
+  - "Neo4j"
+  - "react-force-graph-3d"
+  - "Next.js"
+githubRepo: "https://github.com/arthurreira/primekg-explorer"
+url: "https://github.com/arthurreira/primekg-explorer"
+status: "done"
+highlight: ""
+---
+
+**PrimeKG Explorer** é uma ferramenta interativa para navegar pelo grafo de conhecimento biomédico [PrimeKG](https://zitniklab.hms.harvard.edu/projects/PrimeKG/) — um dataset que conecta doenças, medicamentos, genes, proteínas e vias biológicas.
+
+## O que faz
+
+- Carrega os nós e arestas do PrimeKG em um banco de dados de grafos **Neo4j**
+- Renderiza o grafo como uma visualização 3D interativa em tempo real com **react-force-graph-3d**
+- Permite explorar relações entre doenças, medicamentos, genes e proteínas
+- Suporta busca e filtragem por tipo de entidade ou nome
+
+## Destaques técnicos
+
+- Consultas Cypher via driver JavaScript do Neo4j
+- Dados do grafo servidos por rotas de API do Next.js
+- Layout force-directed 3D com renderização WebGL
+- Codificação de cores por tipo de entidade (doença, medicamento, gene etc.)
+
+## Stack
+
+- **TypeScript** — tipagem em toda a aplicação
+- **Neo4j** — banco de dados de grafos para entidades biomédicas
+- **react-force-graph-3d** — visualização de grafos baseada em Three.js
+- **Next.js** — framework de API e frontend

@@ -1,0 +1,40 @@
+---
+title: "Kivinen Paja"
+description: "Mesa redonda de IA em tempo real onde múltiplos agentes Anthropic debatem tópicos simultaneamente, com Pusher para mensagens ao vivo e Redis para gerenciamento de estado."
+createdAt: "2025-01-15"
+featured: false
+techStack:
+  - "TypeScript"
+  - "Pusher"
+  - "Redis"
+  - "Anthropic API"
+  - "Next.js"
+githubRepo: "https://github.com/arthurreira/kivinen-paja"
+url: "https://github.com/arthurreira/kivinen-paja"
+status: "done"
+highlight: ""
+---
+
+**Kivinen Paja** ("Forja de Pedra" em finlandês) é uma aplicação experimental em tempo real onde múltiplos agentes de IA baseados na API Anthropic participam de uma mesa redonda ao vivo. Cada agente adota uma perspectiva diferente e responde à conversa conforme ela se desenvolve.
+
+## Como funciona
+
+1. Um tópico é submetido à mesa redonda
+2. Vários agentes baseados no Claude recebem o tópico simultaneamente
+3. As respostas são transmitidas em tempo real via canais **Pusher**
+4. O **Redis** persiste o estado da conversa e gerencia a ordem de fala dos agentes
+
+## Funcionalidades
+
+- Discussão simultânea com múltiplos agentes
+- Streaming de mensagens em tempo real com Pusher
+- Histórico de conversa armazenado no Redis
+- Interface de chat limpa e minimalista
+
+## Stack
+
+- **TypeScript** — tipagem completa no front e back
+- **Anthropic API** — modelos Claude como participantes
+- **Pusher** — eventos WebSocket em tempo real
+- **Redis** — persistência de sessão e estado
+- **Next.js** — rotas de API e frontend

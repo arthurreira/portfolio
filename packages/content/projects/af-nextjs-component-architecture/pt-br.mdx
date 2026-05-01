@@ -1,0 +1,47 @@
+---
+title: "AF Next.js Component Architecture"
+description: "Projeto de prática para explorar os princípios de atomic design no Next.js, usando pnpm workspaces e TypeScript para construir um sistema de componentes escalável e bem organizado."
+createdAt: "2024-08-12"
+featured: false
+techStack:
+  - "Next.js"
+  - "TypeScript"
+  - "pnpm"
+  - "Tailwind CSS"
+githubRepo: "https://github.com/arthurreira/af-nextjs-component-architecture-practice"
+url: "https://github.com/arthurreira/af-nextjs-component-architecture-practice"
+status: "done"
+highlight: ""
+---
+
+**AF Next.js Component Architecture** é um projeto de prática focado em explorar e aplicar os princípios de **atomic design** em um monorepo Next.js. O objetivo foi construir um sistema de componentes organizado e escalável do zero, com ferramentas modernas.
+
+## Objetivos
+
+- Praticar a hierarquia **átomos → moléculas → organismos → templates → páginas**
+- Entender como estruturar uma biblioteca de componentes dentro de um workspace pnpm
+- Aplicar TypeScript de forma estrita em todos os props e utilitários
+- Manter os componentes isolados, combináveis e fáceis de testar
+
+## Estrutura
+
+```
+packages/
+  ui/           # Biblioteca de componentes compartilhada (átomos, moléculas, organismos)
+apps/
+  playground/   # App Next.js para demonstrar e testar os componentes
+```
+
+## Conceitos Praticados
+
+- **Atomic design** — componentes agrupados por complexidade e responsabilidade
+- **pnpm workspaces** — configuração de monorepo com pacotes compartilhados
+- **TypeScript** — tipagem estrita de props e definições de interfaces reutilizáveis
+- **Tailwind CSS** — classes utilitárias aplicadas no nível do componente
+
+## Stack
+
+- **Next.js** — framework da aplicação playground
+- **TypeScript** — tipagem de ponta a ponta
+- **pnpm** — gerenciador de pacotes rápido com suporte a workspaces
+- **Tailwind CSS** — estilização utilitária
