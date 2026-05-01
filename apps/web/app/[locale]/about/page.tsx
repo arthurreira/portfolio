@@ -2,7 +2,7 @@ import { about } from '@arthurreira/content'
 import { MDXContent } from '@/components/organisms'
 import { PageHeader } from "@/components/atoms/pageHeader"
 import { getTranslations } from 'next-intl/server'
-
+import { WeatherWidget } from '@/components/molecules/weather/weatherWidget'
 export default async function AboutPage({ params }: { params: Promise<{ locale: string }> }) {
     const { locale } = await params
     const t = await getTranslations("about")
@@ -19,8 +19,9 @@ export default async function AboutPage({ params }: { params: Promise<{ locale: 
                 <div className=" mt-2">
                     <MDXContent code={aboutContent.content} />
                 </div>
-            </div>
+                <WeatherWidget labelFrom={t("weather.from")} labelLive={t("weather.live")} />
 
+            </div>
 
         </div>
     )

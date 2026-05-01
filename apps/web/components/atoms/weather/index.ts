@@ -1,0 +1,1 @@
+export { WeatherMiniCard } from "./weatherMiniCard"
