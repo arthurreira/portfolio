@@ -24,17 +24,29 @@
       "projectDesc": "Building nutrineuvo.com — a nutrition platform for healthcare professionals."
     }
   },
-"projects": {
-  "title": "Projects"
-},
-"about": {
-   "title": "About",
+  "projects": {
+    "title": "Projects"
+  },
+  "about": {
+    "title": "About",
     "weather": {
-    "from": "Where I'm from",
-    "live": "Where I live",
-    "humidity": "Humidity",
-    "wind": "Wind"
+      "from": "Where I'm from",
+      "live": "Where I live",
+      "humidity": "Humidity",
+      "wind": "Wind"
+    }
+  },
+  "topBar": {
+    "darkModeHint": "Press d to toggle dark mode"
+  },
+  "contact": {
+    "title": "Contact",
+    "subtitle": "I'm always open to new opportunities, collaborations or just a chat. Find me here:",
+    "github": "GitHub",
+    "linkedin": "LinkedIn",
+    "email": "Email",
+    "availability": "Building cool stuff as cloud developer",
+    "location": "Based in Kuopio, Finland 🇫🇮",
+    "responseTime": "Usually responds within 24 hours"
   }
-},
-"topBar": { "darkModeHint": "Press d to toggle dark mode" }
 }
