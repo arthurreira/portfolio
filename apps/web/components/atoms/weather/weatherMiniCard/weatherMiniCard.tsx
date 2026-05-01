@@ -9,7 +9,7 @@ export function WeatherMiniCard({ city, temperature, windSpeed, emoji, descripti
             <CardHeader className="p-0 mb-3">
                 <div className='flex flex-row justify-between gap-6'>
                     <p className="text-xs text-muted-foreground uppercase tracking-wider">{label}</p>
-                   <CardTitle className="text-xs font-extrabold truncate max-w-[120px]">{city}</CardTitle>
+                   <CardTitle className="text-xs font-extrabold truncate max-w-[120px] ">{city}</CardTitle>
 
                 </div>
             </CardHeader>
