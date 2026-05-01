@@ -16,10 +16,7 @@ export default async function AboutPage({ params }: { params: Promise<{ locale: 
         <div className="min-h-screen flex flex-col justify-center max-w-7xl mx-auto px-4 sm:px-8 md:px-10 lg:px-4 py-16">
             <div className=' max-w-2xl '>
                 <PageHeader title={t("title")} />
-                
-                <div className=" mt-2">
-                    <MDXContent code={aboutContent.content} />
-                </div>
+                <MDXContent code={aboutContent.content} />
                 <WeatherWidget labelFrom={t("weather.from")} labelLive={t("weather.live")} />
 
             </div>
