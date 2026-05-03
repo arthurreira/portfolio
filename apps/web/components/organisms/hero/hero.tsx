@@ -63,7 +63,7 @@ export async function Hero() {
                 }
               },
               { title: t("cards.roleTitle"), description: t("cards.roleDesc"), icon: "briefcase", href: `https://www.linkedin.com/in/arthur-ferreira-miranda-66815524a/?locale=${linkedInLocale}` },
-              { title: t("cards.projectTitle"), description: t("cards.projectDesc"), icon: "rocket", href: "https://nutrineuvo.com" },
+              { title: t("cards.projectTitle"), description: t("cards.projectDesc"), icon: "rocket", href: "#" },
             ]}
           />
 
