@@ -21,7 +21,7 @@
       "roleTitle": "Current role",
       "roleDesc": "Junior Software Engineer at Nordcloud Oy.",
       "projectTitle": "Current project",
-      "projectDesc": "Building nutrineuvo.com — a nutrition platform for healthcare professionals."
+      "projectDesc": "Building cool stuff as cloud engineer at Nordcloud Oy."
     }
   },
   "projects": {
@@ -45,7 +45,7 @@
     "github": "GitHub",
     "linkedin": "LinkedIn",
     "email": "Email",
-    "availability": "Building cool stuff as cloud developer",
+    "availability": "Building cool stuff as cloud engineer",
     "location": "Based in Kuopio, Finland 🇫🇮",
     "responseTime": "Usually responds within 24 hours"
   }
