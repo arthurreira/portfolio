@@ -14,7 +14,7 @@ const fontSans = Geist({
   variable: "--font-sans",
 })
 
-const jetbrainsMono = JetBrains_Mono({subsets:['latin'],variable:'--font-mono'})
+const jetbrainsMono = JetBrains_Mono({ subsets: ['latin'], variable: '--font-mono' })
 
 export default async function RootLayout({
   children,
@@ -25,7 +25,7 @@ export default async function RootLayout({
 }) {
   const { locale } = await params
   const messages = await getMessages({ locale })
-  
+
   return (
     <html lang={locale} suppressHydrationWarning
       className={cn("antialiased", fontSans.variable, "font-mono", jetbrainsMono.variable)}
@@ -35,9 +35,9 @@ export default async function RootLayout({
           <ThemeProvider>
             <TopBar locale={locale as Locale} />
             {children}
-      <Footer />
-    
-            </ThemeProvider>
+            <Footer />
+
+          </ThemeProvider>
         </NextIntlClientProvider>
       </body>
     </html>

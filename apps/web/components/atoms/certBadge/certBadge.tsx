@@ -8,36 +8,42 @@ export const TONES: Record<BadgeTone, {
   fill: string;
   glow: string;
   accent: string;
+  sub: string;
 }> = {
   primary: {
     ring: 'var(--primary)',
     fill: 'color-mix(in oklch, var(--primary) 12%, transparent)',
     glow: 'color-mix(in oklch, var(--primary) 35%, transparent)',
     accent: 'var(--primary)',
+    sub: 'color-mix(in oklch, var(--primary) 55%, var(--muted-foreground))',
   },
   secondary: {
     ring: 'var(--secondary)',
     fill: 'color-mix(in oklch, var(--secondary) 12%, transparent)',
     glow: 'color-mix(in oklch, var(--secondary) 25%, transparent)',
     accent: 'var(--secondary)',
+    sub: 'color-mix(in oklch, var(--secondary) 55%, var(--muted-foreground))',
   },
   accent: {
     ring: 'var(--accent)',
     fill: 'color-mix(in oklch, var(--accent) 12%, transparent)',
     glow: 'color-mix(in oklch, var(--accent) 30%, transparent)',
     accent: 'var(--accent)',
+    sub: 'color-mix(in oklch, var(--accent) 55%, var(--muted-foreground))',
   },
   muted: {
     ring: 'var(--muted-foreground)',
     fill: 'color-mix(in oklch, var(--muted) 40%, transparent)',
     glow: 'transparent',
     accent: 'var(--muted-foreground)',
+    sub: 'var(--muted-foreground)',
   },
   success: {
     ring: 'oklch(0.72 0.18 145)',
     fill: 'color-mix(in oklch, oklch(0.72 0.18 145) 12%, transparent)',
     glow: 'color-mix(in oklch, oklch(0.72 0.18 145) 35%, transparent)',
     accent: 'oklch(0.72 0.18 145)',
+    sub: 'color-mix(in oklch, oklch(0.72 0.18 145) 55%, var(--muted-foreground))',
   },
 };
 
@@ -121,7 +127,7 @@ export function CertBadge({ tone, label, sub, glyph, imgSrc, onActivate, size }:
         }}>{label}</div>
         <div style={{
           fontSize: s.sub,
-          color: hot ? 'rgba(230,240,255,.8)' : 'rgba(230,240,255,.6)',
+          color: c.sub,
           letterSpacing: '0.02em',
           marginTop: 1,
         }}>{sub}</div>
