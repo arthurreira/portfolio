@@ -14,10 +14,9 @@ export async function Hero() {
   const weatherRes = await fetch('https://weather.arthurreira.dev/api/weather?city=vila%20xurupita%20(vila%20nova%20mg)')
   const weather = await weatherRes.json()
   return (
-    <section className="min-h-[calc(100vh-3.5rem)] flex items-center">
-      <div className="mx-auto lg:max-w-7xl w-full px-4 sm:px-8 md:px-10 lg:px-4">
+      <div className="mx-auto lg:max-w-7xl w-full mt-6 px-4 sm:px-8 md:px-10 lg:px-4">
 
-        <div className="mt-8 grid md:grid-cols-2 lg:grid-cols-3 gap-x-6 md:items-end gap-y-4 ">
+        <div className=" grid md:grid-cols-2 lg:grid-cols-3 gap-x-6 md:items-end gap-y-4 ">
 
           {/* Column 1 — text, buttons, stats */}
           <div className="space-y-4 md:space-y-6 md:col-span-2 lg:col-span-1 w-full  lg:max-w-none mx-auto lg:mx-0">
@@ -69,6 +68,5 @@ export async function Hero() {
 
         </div>
       </div>
-    </section>
   )
 }
