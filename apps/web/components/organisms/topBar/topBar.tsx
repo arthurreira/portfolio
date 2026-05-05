@@ -12,9 +12,7 @@ export async function TopBar({ locale }: TopBarProps) {
         <Link href="/" className="scroll-m-20 font-extrabold tracking-tight text-balance">
           arthurreira.dev
         </Link>
-        <div className="hidden md:block font-mono text-xs text-muted-foreground">
-          ({t("darkModeHint")})
-        </div>
+       
         <div className="flex items-center gap-3">
           <LanguageSwitcher />
           <ThemeToggle />

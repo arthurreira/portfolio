@@ -2,6 +2,7 @@
 import { useState } from 'react';
 import type { CertBadgeProps, BadgeTone } from './certBadgeProps';
 import { SIZES } from './certBadgeProps';
+
 export const TONES: Record<BadgeTone, {
   ring: string;
   fill: string;
@@ -14,28 +15,24 @@ export const TONES: Record<BadgeTone, {
     glow: 'color-mix(in oklch, var(--primary) 35%, transparent)',
     accent: 'var(--primary)',
   },
-
   secondary: {
     ring: 'var(--secondary)',
     fill: 'color-mix(in oklch, var(--secondary) 12%, transparent)',
     glow: 'color-mix(in oklch, var(--secondary) 25%, transparent)',
     accent: 'var(--secondary)',
   },
-
   accent: {
     ring: 'var(--accent)',
     fill: 'color-mix(in oklch, var(--accent) 12%, transparent)',
     glow: 'color-mix(in oklch, var(--accent) 30%, transparent)',
     accent: 'var(--accent)',
   },
-
   muted: {
     ring: 'var(--muted-foreground)',
     fill: 'color-mix(in oklch, var(--muted) 40%, transparent)',
     glow: 'transparent',
     accent: 'var(--muted-foreground)',
   },
-
   success: {
     ring: 'oklch(0.72 0.18 145)',
     fill: 'color-mix(in oklch, oklch(0.72 0.18 145) 12%, transparent)',
@@ -43,31 +40,65 @@ export const TONES: Record<BadgeTone, {
     accent: 'oklch(0.72 0.18 145)',
   },
 };
+
 export function CertBadge({ tone, label, sub, glyph, imgSrc, onActivate, size }: CertBadgeProps) {
   const [hot, setHot] = useState(false);
   const [pop, setPop] = useState(false);
+  const [pressed, setPressed] = useState(false);
   const c = TONES[tone];
   const s = SIZES[size ?? 'lg'];
 
   const activate = () => {
-    setPop(true); setTimeout(() => setPop(false), 600);
+    setPop(true);
+    setTimeout(() => setPop(false), 600);
     onActivate?.();
   };
-console.log('tone:', tone, 'mapped:', TONES[tone]);
+
+  const transform = pressed
+    ? 'scale(0.96)'
+    : hot
+    ? 'translateY(-4px)'
+    : 'translateY(0)';
+
   return (
-    <button onClick={activate}
-      onMouseEnter={() => setHot(true)} onMouseLeave={() => setHot(false)}
+    <button
+      type="button"
+      aria-label={`${label} – ${sub}`}
+      onClick={activate}
+      onMouseEnter={() => setHot(true)}
+      onMouseLeave={() => setHot(false)}
+      onFocus={() => setHot(true)}
+      onBlur={() => setHot(false)}
+      onMouseDown={() => setPressed(true)}
+      onMouseUp={() => setPressed(false)}
+      onTouchStart={() => setPressed(true)}
+      onTouchEnd={() => setPressed(false)}
       style={{
-        background: 'transparent', border: 0, padding: 0, cursor: 'pointer',
-        display: 'flex', flexDirection: 'column', alignItems: 'center', gap: s.gap,
-        transform: hot ? 'translateY(-3px)' : 'translateY(0)',
-        transition: 'transform .25s cubic-bezier(.2,.7,.3,1)',
+        background: 'transparent',
+        border: 0,
+        padding: 0,
+        cursor: 'pointer',
+        display: 'flex',
+        flexDirection: 'column',
+        alignItems: 'center',
+        gap: s.gap,
+        minWidth: s.svg + 20,
+        outline: hot ? `2px solid ${c.accent}` : 'none',
+        outlineOffset: '4px',
+        transform,
+        transition: 'all .2s ease',
         fontFamily: 'var(--font-mono, ui-monospace, monospace)',
-      }}>
-      <div style={{ filter: `drop-shadow(0 0 ${hot || pop ? 14 : 6}px ${c.glow})`, transition: 'filter .2s' }}>
-        <svg viewBox="0 0 100 100" width={s.svg} height={s.svg}>
-          <polygon points="50,4 92,28 92,72 50,96 8,72 8,28"
-            fill={c.fill} stroke={c.ring} strokeWidth="2" />
+      }}
+    >
+      <div style={{ filter: `drop-shadow(0 0 ${hot || pop ? 16 : 4}px ${c.glow})`, transition: 'filter .2s ease' }}>
+        <svg role="img" aria-label={label} viewBox="0 0 100 100" width={s.svg} height={s.svg}>
+          <title>{label}</title>
+          <polygon
+            points="50,4 92,28 92,72 50,96 8,72 8,28"
+            fill={c.fill}
+            stroke={c.ring}
+            strokeWidth={hot ? 3 : 2}
+          />
           {imgSrc
             ? <image href={imgSrc} x="22" y="22" width="56" height="56" preserveAspectRatio="xMidYMid meet" />
             : <text x="50" y="58" textAnchor="middle" fill={c.accent}
@@ -81,10 +112,19 @@ console.log('tone:', tone, 'mapped:', TONES[tone]);
         </svg>
       </div>
       <div style={{ textAlign: 'center', lineHeight: 1.15 }}>
-        <div style={{ fontSize: s.label, fontWeight: 600, letterSpacing: '0.12em',
-          color: c.accent, textTransform: 'uppercase' }}>{label}</div>
-        <div style={{ fontSize: s.sub, color: 'rgba(230,240,255,.55)',
-          letterSpacing: '0.08em', textTransform: 'uppercase', marginTop: 1 }}>{sub}</div>
+        <div style={{
+          fontSize: s.label,
+          fontWeight: 600,
+          letterSpacing: '0.12em',
+          color: c.accent,
+          textTransform: 'uppercase',
+        }}>{label}</div>
+        <div style={{
+          fontSize: s.sub,
+          color: hot ? 'rgba(230,240,255,.8)' : 'rgba(230,240,255,.6)',
+          letterSpacing: '0.02em',
+          marginTop: 1,
+        }}>{sub}</div>
       </div>
     </button>
   );

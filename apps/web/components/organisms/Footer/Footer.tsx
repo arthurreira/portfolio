@@ -3,6 +3,7 @@ import Link from "next/link"
 import { GithubLogoIcon } from "@phosphor-icons/react"
 
 export function Footer() {
+    
     return (
         <footer className="border-t border-border mt-16 py-6 fixed bottom-0 w-full bg-background/80 backdrop-blur-sm">
             <div className="mx-auto max-w-7xl px-4 sm:px-8 md:px-10 lg:px-4">
@@ -22,7 +23,7 @@ export function Footer() {
 
                     
 
-                    <span>Currently learning Kubernetes</span>
+                    <span className="hidden md:inline">(Press d to toggle dark mode)</span>
                 </div>
             </div>
         </footer>

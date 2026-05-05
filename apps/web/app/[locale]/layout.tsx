@@ -7,6 +7,7 @@ import "@arthurreira/ui/styles/globals.css"
 import { ThemeProvider } from "@/components/theme-provider"
 import { TopBar } from "@/components/organisms"
 import { cn } from "@arthurreira/ui/lib/utils";
+import { Footer } from "@/components/organisms/Footer/Footer"
 
 const fontSans = Geist({
   subsets: ["latin"],
@@ -34,6 +35,8 @@ export default async function RootLayout({
           <ThemeProvider>
             <TopBar locale={locale as Locale} />
             {children}
+      <Footer />
+    
             </ThemeProvider>
         </NextIntlClientProvider>
       </body>
