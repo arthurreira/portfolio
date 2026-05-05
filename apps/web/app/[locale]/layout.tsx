@@ -3,7 +3,7 @@ import { NextIntlClientProvider } from 'next-intl'
 import { getMessages } from 'next-intl/server'
 import type { Locale } from '@/i18n/routing'
 
-import "../globals.css"
+import "@arthurreira/ui/styles/globals.css"
 import { ThemeProvider } from "@/components/theme-provider"
 import { TopBar } from "@/components/organisms"
 import { cn } from "@arthurreira/ui/lib/utils";
@@ -34,9 +34,6 @@ export default async function RootLayout({
           <ThemeProvider>
             <TopBar locale={locale as Locale} />
             {children}
-            
-            
-            
             </ThemeProvider>
         </NextIntlClientProvider>
       </body>
