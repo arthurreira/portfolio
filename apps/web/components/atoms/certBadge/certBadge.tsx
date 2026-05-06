@@ -89,7 +89,6 @@ export function CertBadge({ tone, label, sub, glyph, imgSrc, onActivate, size }:
         alignItems: 'center',
         gap: s.gap,
         minWidth: s.svg + 20,
-        outline: hot ? `2px solid ${c.accent}` : 'none',
         outlineOffset: '4px',
         transform,
         transition: 'all .2s ease',
@@ -119,6 +118,7 @@ export function CertBadge({ tone, label, sub, glyph, imgSrc, onActivate, size }:
       </div>
       <div style={{ textAlign: 'center', lineHeight: 1.15 }}>
         <div style={{
+          
           fontSize: s.label,
           fontWeight: 600,
           letterSpacing: '0.12em',

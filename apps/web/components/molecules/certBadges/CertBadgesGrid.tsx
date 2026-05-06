@@ -8,10 +8,9 @@ export function CertBadgeGrid({
   columns = 4,
   className = ''
 }: CertBadgeGridProps) {
-  console.log('badges:', badges);
   return (
     <div
-      className={`grid gap-6 justify-items-center mx-auto   ${className}`}
+      className={`grid gap-6 justify-items-center mx-auto mb-6  ${className}`}
       style={{
         gridTemplateColumns: `repeat(${columns}, minmax(0, 1fr))`,
       }}
