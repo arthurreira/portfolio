@@ -16,7 +16,7 @@ export function HeroStat({ number, label, icon, visible, className }: HeroStatPr
   return (
     <div data-slot="hero-stat" className={cn("flex items-center gap-1 sm:gap-4", className)}>
       <div className="relative">
-        {IconComponent && <IconComponent size={32} className="text-primary" />}
+        {IconComponent && <IconComponent  size={22} weight="duotone" className="text-primary" />}
         <Badge className={cn(
           "absolute top-10 left-1/2 -translate-x-1/2 whitespace-nowrap transition-all duration-300",
           visible ? "opacity-100 translate-y-0" : "opacity-0 -translate-y-1 pointer-events-none"
