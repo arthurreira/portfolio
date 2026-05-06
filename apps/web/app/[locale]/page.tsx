@@ -12,7 +12,7 @@ export default function Page() {
     },
     {
       tone: 'muted',
-      label: 'Azure Fundamendtals',
+      label: 'Azure Fundamentals',
       sub: 'AZ-900',
       glyph: 'AZ',
       imgSrc: '/images/microsoft-certified-fundamentals.svg',
@@ -21,7 +21,7 @@ export default function Page() {
   ];
   return (
 
-    <div className="min-h-screen flex flex-col items-center justify-start gap-8 md:gap-12 lg:gap-16 py-8 md:py-12 lg:py-16 ">
+    <div className="min-h-screen flex flex-col items-center justify-center gap-8 md:gap-12 lg:gap-8 py-8 md:py-6 lg:py-6 ">
       <Hero />
       <CertBadgeGrid columns={2} badges={badges} />
     </div>

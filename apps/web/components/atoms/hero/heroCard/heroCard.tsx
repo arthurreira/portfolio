@@ -48,7 +48,7 @@ export function HeroCard({ title, description, icon, href, weather }: HeroCardPr
                 <Card className="flex p-2 md:p-3 lg:p-4 hover:-translate-y-1 transition-transform duration-200 hover:shadow-lg">
                     <div>
                         <span className="min-w-max p-2 md:p-3 bg-accent dark:bg-accent text-secondary-foreground rounded-md flex items-start justify-start">
-                            {IconComponent && <IconComponent size={32} weight="duotone" className="text-yellow-400" />}
+                            {IconComponent && <IconComponent size={22} weight="duotone" className="text-primary" />}
                             <span className="font-semibold text-lg ms-3">{title}</span>
                         </span>
                         <p className="text-muted-foreground text-sm mt-2">{description}</p>
