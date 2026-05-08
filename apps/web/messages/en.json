@@ -37,7 +37,11 @@
     }
   },
   "topBar": {
-    "darkModeHint": "Press d to toggle dark mode"
+    "darkModeHint": "Press d to toggle dark mode",
+    "lightModeHint": "Press d to toggle light mode",
+    "languageSwitcherHint": "Press l to switch language",
+    "home": "Home",
+    "about": "About"
   },
   "contact": {
     "title": "Contact",

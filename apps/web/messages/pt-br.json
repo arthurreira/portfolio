@@ -36,7 +36,11 @@
     }
   },
   "topBar": {
-    "darkModeHint": "Pressione d para alternar o modo escuro"
+    "darkModeHint": "Pressione d para alternar o modo escuro",
+    "lightModeHint": "Pressione d para alternar o modo claro",
+    "languageSwitcherHint": "Pressione l para alternar o idioma",
+    "home": "Início",
+    "about": "Sobre"
   },
   "contact": {
     "title": "Contato",

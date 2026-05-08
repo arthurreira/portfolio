@@ -4,7 +4,8 @@ import { getMessages } from 'next-intl/server'
 import type { Locale } from '@/i18n/routing'
 
 import "@arthurreira/ui/styles/globals.css"
-import { ThemeProvider } from "@/components/theme-provider"
+import { ThemeProvider } from "@arthurreira/ui/lib/theme-provider"
+
 import { TopBar } from "@/components/organisms"
 import { cn } from "@arthurreira/ui/lib/utils";
 import { Footer } from "@/components/organisms/Footer/Footer"

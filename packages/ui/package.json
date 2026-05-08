@@ -36,13 +36,21 @@
     "typescript": "^5.9.3"
   },
   "exports": {
-    "./globals.css": "./src/styles/globals.css",
+    "./globals.css": {
+      "types": "./src/styles/globals.css.d.ts",
+      "default": "./src/styles/globals.css"
+    },
     "./postcss.config": "./postcss.config.mjs",
     "./lib/utils": "./dist/lib/utils.js",
     "./components/button": "./dist/components/button.js",
     "./components/card": "./dist/components/card.js",
     "./components/badge": "./dist/components/badge.js",
     "./components/skeleton": "./dist/components/skeleton.js",
-    "./components/popover": "./dist/components/popover.js"
+    "./components/avatar": "./dist/components/avatar.js",
+    "./components/dialog": "./dist/components/dialog.js",
+    "./components/popover": "./dist/components/popover.js",
+    "./components/navbar": "./dist/components/navbar.js",
+    "./lib/theme-provider": "./dist/lib/theme-provider.js",
+    "./components/themeToggle": "./dist/components/themeToggle.js"
   }
 }

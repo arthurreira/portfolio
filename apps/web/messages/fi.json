@@ -36,7 +36,11 @@
     }
   },
   "topBar": {
-    "darkModeHint": "Paina d vaihtaaksesi tumman tilan"
+    "darkModeHint": "Paina d vaihtaaksesi tumman tilan",
+    "lightModeHint": "Paina d vaihtaaksesi vaalean tilan",
+    "languageSwitcherHint": "Paina l vaihtaaksesi kielen",
+    "home": "Koti",
+    "about": "Tietoa"
   },
   "contact": {
     "title": "Ota yhteyttä",
