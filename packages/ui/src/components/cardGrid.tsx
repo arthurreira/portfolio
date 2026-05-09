@@ -35,7 +35,6 @@ export function CardGrid({ cards, linkLabel = "View", secondaryLinkLabel = "Sour
             transition={{ type: "spring", stiffness: 300, damping: 30 ,delay: index * 0.1}}
             whileHover={{ scale: 1.03, y: -4, rotate: 1 }}
             layout
-            drag
             dragSnapToOrigin
             onClick={() => setOpenCard(card)}
             className={cn(
