@@ -28,8 +28,9 @@ export default async function ProjectsPage({ params }: { params: Promise<{ local
             image:  project.coverImage?.src,
             size: getCardSize(project.description),
             url: `/${locale}/projects/${project.slug}`,
-            tags: project.techStack
-
+            tags: project.techStack,
+            secondaryUrl: project.githubRepo,
+            highlight: project.highlight,
             
         }))
 

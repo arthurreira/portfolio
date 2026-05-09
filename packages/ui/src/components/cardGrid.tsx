@@ -16,7 +16,7 @@ import { cardSizes } from "../lib/cards"
 import { Badge } from "./badge";
 const MotionCard = motion.create(Card);
 
-export function CardGrid({ cards, linkLabel = "View" }: { cards: CardItem[], linkLabel?: string }) {
+export function CardGrid({ cards, linkLabel = "View", secondaryLinkLabel = "Source" }: { cards: CardItem[], linkLabel?: string, secondaryLinkLabel?: string }) {
   const [openCard, setOpenCard] = useState<CardItem | null>(null);
 
 
@@ -31,12 +31,13 @@ export function CardGrid({ cards, linkLabel = "View" }: { cards: CardItem[], lin
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ type: "spring", stiffness: 300, damping: 30 }}
+            whileHover={{ scale: 1.03, y: -4, rotate: 1 }}
             layout
             drag
             dragSnapToOrigin
             onClick={() => setOpenCard(card)}
             className={cn(
-              "cursor-pointer overflow-hidden rounded-br-3xl shadow-md bg-muted backdrop-opacity-65",
+              "cursor-pointer overflow-hidden rounded-br-3xl  bg-muted/90  border shadow-lg",
               card.image ? "text-white" : "text-card-foreground",
 
               cardSizes[card.size].cols, cardSizes[card.size].rows,
@@ -114,6 +115,7 @@ export function CardGrid({ cards, linkLabel = "View" }: { cards: CardItem[], lin
                       <motion.span >
                         {openCard.title}
                       </motion.span>
+                   
                     </CardTitle>
 
                     {openCard.url && (
@@ -125,9 +127,23 @@ export function CardGrid({ cards, linkLabel = "View" }: { cards: CardItem[], lin
                         {linkLabel}
                       </a>
                     )}
+                    {openCard.secondaryUrl && (
+                      <a href={openCard.secondaryUrl}
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        className="text-card-foreground/70 hover:text-card-foreground hover:underline text-sm transition-colors ml-4"
+                      >
+                       {secondaryLinkLabel}
+                      </a>
+                    )}
                   </div>
                 </CardHeader>
+
+                
                 <CardContent className="px-4 pb-4">
+                  {openCard.highlight && (
+                  <Badge variant="default" className="mb-2">{openCard.highlight} </Badge>
+                )}
                   {openCard.description && (
                     <CardDescription className="text-inherit opacity-80">
                       {openCard.description}

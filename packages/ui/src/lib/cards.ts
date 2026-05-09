@@ -7,6 +7,8 @@ export interface CardItem {
   size: "small" | "wide" | "tall" | "large"
   url?: string
   tags?: string[]
+  secondaryUrl?: string
+  highlight?: string
 }
 
 
