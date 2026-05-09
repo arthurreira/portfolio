@@ -14,32 +14,35 @@ import { cn } from "@arthurreira/ui/lib/utils"
 import { cardSizes } from "../lib/cards"
 const MotionCard = motion.create(Card);
 
-export function CardGrid({ cards }: { cards: CardItem[] }) {
+export function CardGrid({ cards, linkLabel = "View" }: { cards: CardItem[], linkLabel?: string }) {
   const [openCard, setOpenCard] = useState<CardItem | null>(null);
+
 
   return (
     <>
-      <div className=" grid grid-cols-2  lg:grid-cols-4 gap-2  grid-flow-dense auto-rows-[100px]">
+      <div className=" grid grid-cols-2  lg:grid-cols-4 gap-2  grid-flow-dense auto-rows-[minmax(100px,auto)]
+">
         {cards.map((card, index) => (
           <MotionCard
             key={card.id}
             layoutId={`card-${card.id}`}
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
-            transition={{ delay: index * 0.1 }}
+            transition={{ delay: index * 0.1, duration: 0.3 }}
             layout
             onClick={() => setOpenCard(card)}
+            
             className={cn(
-              "cursor-pointer overflow-hidden rounded-br-3xl shadow-md",
-
+              "cursor-pointer overflow-hidden rounded-br-3xl shadow-md bg-muted",
+              
               cardSizes[card.size].cols, cardSizes[card.size].rows
             )}
-            style={{ backgroundImage: `linear-gradient(to bottom, rgba(0,0,0,0.5), rgba(0,0,0,0.5)), url(${card.image})`, backgroundSize: "cover", backgroundPosition: "center", }}
+             style={card.image ? { backgroundImage: `linear-gradient(to bottom, rgba(0,0,0,0.3), rgba(0,0,0,0.5)), url(${card.image})`, backgroundSize: "cover", backgroundPosition: "center" } : undefined}
 
           >
             <CardHeader className="flex  ">
               <div className="flex flex-row justify-between relative w-full items-center">
-                <CardTitle className="text-white  font-extrabold">
+                <CardTitle className="text-card-foreground font-extrabold">
                   <motion.span layoutId={`title-${card.id}`}>
                     {card.title}
                   </motion.span>
@@ -48,7 +51,7 @@ export function CardGrid({ cards }: { cards: CardItem[] }) {
               </div>
             </CardHeader>
             <CardContent className="">
-              <CardDescription className="line-clamp-3 text-white ">
+              <CardDescription className="line-clamp-3 text-card-foreground/80">
                 {card.description}
               </CardDescription>
             </CardContent>
@@ -62,32 +65,46 @@ export function CardGrid({ cards }: { cards: CardItem[] }) {
               initial={{ opacity: 0 }}
               animate={{ opacity: 1 }}
               exit={{ opacity: 0 }}
-
-              className="fixed inset-0 bg-black/80 backdrop-blur-sm z-40"
+              className="fixed inset-0  backdrop-blur-sm z-40"
             />
             <div className="fixed inset-0 flex items-center justify-center z-50" onClick={() => setOpenCard(null)}>
               <MotionCard
                 layoutId={`card-${openCard.id}`}
+                onClick={(e) => e.stopPropagation()}
+
                 className={cn(
-                  "cursor-pointer overflow-hidden rounded-br-3xl border shadow-lg w-full max-w-lg"
-                
+                  "cursor-pointer overflow-hidden rounded-br-3xl border shadow-lg w-full max-w-lg bg-muted",
+                  
                 )}
-                style={{ backgroundImage: `linear-gradient(to bottom, rgba(0,0,0,0.5), rgba(0,0,0,0.5)), url(${openCard.image})`, backgroundSize: "cover", backgroundPosition: "center", }}
+                
+                style={openCard.image ? { backgroundImage: `linear-gradient(to bottom, rgba(0,0,0,0.3), rgba(0,0,0,0.5)), url(${openCard.image})`, backgroundSize: "cover", backgroundPosition: "center" } : undefined}
+                
               >
-                <CardHeader className="flex items-center h-[60px]    ">
+                <CardHeader className="h-[60px]">
                   <div className="flex flex-row justify-between relative w-full items-center">
-                    <CardTitle className="text-accent font-extrabold font-heading">
+                 <CardTitle className="text-card-foreground font-extrabold font-heading">
                       <motion.span >
                         {openCard.title}
                       </motion.span>
                     </CardTitle>
-                  
+
+                     {openCard.url && (
+                          <a href={openCard.url}
+                          target="_blank"
+                          rel="noopener noreferrer"
+                          className="text-card-foreground/70 hover:text-card-foreground hover:underline text-sm transition-colors"
+                        >
+                          {linkLabel}
+                        </a>
+                      )}
                   </div>
                 </CardHeader>
-                <CardContent className="">
-                  <CardDescription className="line-clamp-3 text-accent font-mono">
-                    {openCard.description && <CardDescription className="line-clamp-3 text-accent font-mono">{openCard.description}</CardDescription>}
-                  </CardDescription>
+                <CardContent className="px-4 pb-4">
+                  {openCard.description && (
+                    <CardDescription className="line-clamp-3 text-card-foreground/80 font-mono">
+                      {openCard.description}
+                    </CardDescription>
+                  )}
                 </CardContent>
               </MotionCard>
             </div>

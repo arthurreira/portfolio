@@ -5,7 +5,7 @@ export interface CardItem {
   description?: string
   image?: string
   size: "small" | "wide" | "tall" | "large"
-  
+  url?: string
 }
 
 

@@ -25,7 +25,8 @@
     }
   },
   "projects": {
-    "title": "Projektit"
+    "title": "Projektit",
+    "viewProject": "Katso Projekti"
   },
   "about": {
     "title": "Tietoa minusta",

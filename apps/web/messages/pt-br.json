@@ -25,7 +25,8 @@
     }
   },
   "projects": {
-    "title": "Projetos"
+    "title": "Projetos",
+    "viewProject": "Ver Projeto"
   },
   "about": {
     "title": "Sobre mim",

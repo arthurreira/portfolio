@@ -25,8 +25,9 @@
     }
   },
   "projects": {
-    "title": "Projects"
-  },
+  "title": "Projects",
+  "viewProject": "View project"
+},
   "about": {
     "title": "About",
     "weather": {
@@ -53,4 +54,5 @@
     "location": "Based in Kuopio, Finland 🇫🇮",
     "responseTime": "Usually responds within 24 hours"
   }
+  
 }
