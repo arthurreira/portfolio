@@ -1,0 +1,148 @@
+{
+  "cards": [
+    {
+      "id": 1,
+      "title": "Dark Mode",
+      "description": "A fully implemented dark theme using CSS variables that respects system preferences and persists your choice across sessions.",
+      "image": "https://picsum.photos/seed/darkmode/600/400",
+      "size": "wide",
+      "category": "features",
+      "url": "https://example.com/features/dark-mode",
+      "tags": ["ui", "theme", "accessibility"],
+      "highlight": "System-aware, persistent, and beautifully implemented.",
+      "secondaryUrl": "https://example.com/features/dark-mode/preview"
+    },
+    {
+      "id": 2,
+      "title": "Analytics Dashboard",
+      "description": "Real-time charts, funnel analysis, retention curves, and exportable reports — all in one place without a third-party tool.",
+      "image": "https://picsum.photos/seed/analytics/600/400",
+      "size": "tall",
+      "category": "features",
+      "url": "https://example.com/features/analytics",
+      "tags": ["analytics", "data", "reporting"],
+      "highlight": "Every metric that matters, zero external dependencies.",
+      "secondaryUrl": "https://example.com/features/analytics/demo"
+    },
+    {
+      "id": 3,
+      "title": "Cloud Sync",
+      "description": "Instant sync across all your devices with conflict resolution, offline queue, and end-to-end encryption built in.",
+      "image": "https://picsum.photos/seed/cloudsync/600/400",
+      "size": "small",
+      "category": "features",
+      "url": "https://example.com/features/cloud-sync",
+      "tags": ["sync", "cloud", "offline"],
+      "highlight": "Your data everywhere, always consistent.",
+      "secondaryUrl": "https://example.com/features/cloud-sync/security"
+    },
+    {
+      "id": 4,
+      "title": "Smart Notifications",
+      "description": "Configurable real-time alerts with digest mode, snooze, priority filtering, and native push on mobile and desktop.",
+      "image": "https://picsum.photos/seed/notifications/600/400",
+      "size": "small",
+      "category": "features",
+      "url": "https://example.com/features/notifications",
+      "tags": ["notifications", "real-time", "mobile"],
+      "highlight": "Only the alerts that actually need your attention.",
+      "secondaryUrl": "https://example.com/features/notifications/settings"
+    },
+    {
+      "id": 5,
+      "title": "Offline Support",
+      "description": "Full read and write access when you lose connection. Changes queue locally and sync automatically when you come back online.",
+      "image": "https://picsum.photos/seed/offline/600/400",
+      "size": "wide",
+      "category": "features",
+      "url": "https://example.com/features/offline",
+      "tags": ["offline", "pwa", "reliability"],
+      "highlight": "No internet? No problem.",
+      "secondaryUrl": "https://example.com/features/offline/technical-overview"
+    },
+    {
+      "id": 6,
+      "title": "AI Recommendations",
+      "description": "A personalization engine that learns your habits and surfaces the most relevant content, tasks, and insights automatically.",
+      "image": "https://picsum.photos/seed/ai/600/400",
+      "size": "large",
+      "category": "features",
+      "url": "https://example.com/features/ai-recommendations",
+      "tags": ["ai", "personalization", "ml"],
+      "highlight": "Gets smarter every time you use it.",
+      "secondaryUrl": "https://example.com/features/ai-recommendations/how-it-works"
+    },
+    {
+      "id": 7,
+      "title": "Live Collaboration",
+      "description": "See cursors, edits, and comments from teammates in real time with presence indicators and conflict-free merging.",
+      "image": "https://picsum.photos/seed/collaboration/600/400",
+      "size": "tall",
+      "category": "features",
+      "url": "https://example.com/features/live-collaboration",
+      "tags": ["collaboration", "real-time", "team"],
+      "highlight": "Work together like you are in the same room.",
+      "secondaryUrl": "https://example.com/features/live-collaboration/demo"
+    },
+    {
+      "id": 8,
+      "title": "Custom Themes",
+      "description": "Full control over colors, typography, spacing, and border radius with a live visual editor and exportable theme tokens.",
+      "image": "https://picsum.photos/seed/themes/600/400",
+      "size": "small",
+      "category": "features",
+      "url": "https://example.com/features/custom-themes",
+      "tags": ["theming", "branding", "design"],
+      "highlight": "Make it look exactly like your brand.",
+      "secondaryUrl": "https://example.com/features/custom-themes/editor"
+    },
+    {
+      "id": 9,
+      "title": "Role-Based Permissions",
+      "description": "Granular access control down to individual fields. Define custom roles, inherit permissions, and audit every change.",
+      "image": "https://picsum.photos/seed/permissions/600/400",
+      "size": "wide",
+      "category": "features",
+      "url": "https://example.com/features/permissions",
+      "tags": ["security", "rbac", "access-control"],
+      "highlight": "The right people see exactly the right things.",
+      "secondaryUrl": "https://example.com/features/permissions/role-builder"
+    },
+    {
+      "id": 10,
+      "title": "Instant Search",
+      "description": "Full-text search across every record, file, and comment with fuzzy matching, filters, and results in under 50ms.",
+      "image": "https://picsum.photos/seed/search/600/400",
+      "size": "small",
+      "category": "features",
+      "url": "https://example.com/features/search",
+      "tags": ["search", "performance", "ux"],
+      "highlight": "Find anything in under 50ms.",
+      "secondaryUrl": "https://example.com/features/search/advanced"
+    },
+    {
+      "id": 11,
+      "title": "Version History",
+      "description": "Every change is recorded. Browse the full history of any document, compare diffs, and restore any previous state instantly.",
+      "image": "https://picsum.photos/seed/versioning/600/400",
+      "size": "tall",
+      "category": "features",
+      "url": "https://example.com/features/version-history",
+      "tags": ["versioning", "history", "recovery"],
+      "highlight": "Nothing is ever permanently lost.",
+      "secondaryUrl": "https://example.com/features/version-history/demo"
+    },
+    {
+      "id": 12,
+      "title": "API & Webhooks",
+      "description": "A fully documented REST and GraphQL API with webhook support, SDKs in five languages, and a built-in request sandbox.",
+      "image": "https://picsum.photos/seed/apiwebhooks/600/400",
+      "size": "large",
+      "category": "features",
+      "url": "https://example.com/features/api",
+      "tags": ["api", "webhooks", "integrations"],
+      "highlight": "Build anything on top of our platform.",
+      "secondaryUrl": "https://example.com/features/api/docs"
+    }
+  ]
+}

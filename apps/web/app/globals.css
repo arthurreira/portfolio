@@ -1,4 +1,0 @@
-@import "@arthurreira/ui/globals.css";
-
-@source "../components/**/*.{ts,tsx}";
-@source "./**/*.{ts,tsx}";

@@ -3,10 +3,13 @@ import { useEffect, useState } from "react"
 import { cn } from "@arthurreira/ui/lib/utils"
 import { HeroStatsProps } from "./heroStatsProps"
 import { HeroStat } from "@/components/atoms/hero"
+import { useMountedAfter } from "@arthurreira/ui/hooks/useMountedAfter"
+
 
 export function HeroStats({ stats, className }: HeroStatsProps & { className?: string }) {
   const [activeIndex, setActiveIndex] = useState<number | null>(null)
-
+  const mounted = useMountedAfter(100)  // ← use custom hook for mounting state
+  // badge cycling — unchanged
   useEffect(() => {
     let outerTimer: ReturnType<typeof setTimeout>
     let innerTimer: ReturnType<typeof setTimeout>
@@ -34,7 +37,12 @@ export function HeroStats({ stats, className }: HeroStatsProps & { className?: s
   return (
     <div className={cn("grid grid-cols-3 w-full gap-2", className)}>
       {stats.map((stat, index) => (
-        <HeroStat key={index} {...stat} visible={activeIndex === index} />
+        <HeroStat
+          key={index}
+          {...stat}
+          visible={activeIndex === index}
+          mounted={mounted}  // ← pass down
+        />
       ))}
     </div>
   )

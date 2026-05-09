@@ -1,0 +1,148 @@
+{
+  "cards": [
+    {
+      "id": 1,
+      "title": "Creative Workspace",
+      "description": "A modern workspace setup inspiration for designers and developers.",
+      "image": "https://picsum.photos/seed/workspace/600/400",
+      "size": "wide",
+      "category": "anything",
+      "url": "https://example.com/creative-workspace",
+      "tags": ["design", "productivity", "setup"],
+      "highlight": "The ultimate desk setup for deep work.",
+      "secondaryUrl": "https://example.com/creative-workspace/gallery"
+    },
+    {
+      "id": 2,
+      "title": "Minimal Lifestyle",
+      "description": "Simple and clean everyday living with less clutter and more intention.",
+      "image": "https://picsum.photos/seed/minimal/600/400",
+      "size": "small",
+      "category": "anything",
+      "url": "https://example.com/minimal-lifestyle",
+      "tags": ["minimalism", "lifestyle", "wellness"],
+      "highlight": "Less stuff, more life.",
+      "secondaryUrl": "https://example.com/minimal-lifestyle/tips"
+    },
+    {
+      "id": 3,
+      "title": "Travel Moments",
+      "description": "Capturing raw, unfiltered memories from journeys around the world.",
+      "image": "https://picsum.photos/seed/travel/600/400",
+      "size": "tall",
+      "category": "anything",
+      "url": "https://example.com/travel-moments",
+      "tags": ["travel", "photography", "adventure"],
+      "highlight": "Every photo tells a story from a different timezone.",
+      "secondaryUrl": "https://example.com/travel-moments/map"
+    },
+    {
+      "id": 4,
+      "title": "Startup Culture",
+      "description": "Inside stories, rituals, and lessons from modern high-growth startups.",
+      "image": "https://picsum.photos/seed/startup/600/400",
+      "size": "small",
+      "category": "anything",
+      "url": "https://example.com/startup-culture",
+      "tags": ["startup", "business", "culture"],
+      "highlight": "What actually happens behind the pitch deck.",
+      "secondaryUrl": "https://example.com/startup-culture/interviews"
+    },
+    {
+      "id": 5,
+      "title": "Creative Coding",
+      "description": "Experimental interactive web projects pushing the boundaries of the browser.",
+      "image": "https://picsum.photos/seed/coding/600/400",
+      "size": "wide",
+      "category": "anything",
+      "url": "https://example.com/creative-coding",
+      "tags": ["coding", "generative", "web"],
+      "highlight": "Code as a creative medium, not just a tool.",
+      "secondaryUrl": "https://example.com/creative-coding/demos"
+    },
+    {
+      "id": 6,
+      "title": "Photography Showcase",
+      "description": "A curated gallery of inspiring photography from emerging and established artists.",
+      "image": "https://picsum.photos/seed/photography/600/400",
+      "size": "large",
+      "category": "anything",
+      "url": "https://example.com/photography-showcase",
+      "tags": ["photography", "art", "gallery"],
+      "highlight": "Light, composition, and the perfect moment.",
+      "secondaryUrl": "https://example.com/photography-showcase/artists"
+    },
+    {
+      "id": 7,
+      "title": "Remote Work",
+      "description": "Tools, habits, and honest tips for thriving as part of a distributed team.",
+      "image": "https://picsum.photos/seed/remote/600/400",
+      "size": "tall",
+      "category": "anything",
+      "url": "https://example.com/remote-work",
+      "tags": ["remote", "work", "productivity"],
+      "highlight": "Your best office might not have an address.",
+      "secondaryUrl": "https://example.com/remote-work/toolkit"
+    },
+    {
+      "id": 8,
+      "title": "Coffee Break",
+      "description": "Slowing down with coffee culture, roasters, and the ritual of the perfect brew.",
+      "image": "https://picsum.photos/seed/coffee/600/400",
+      "size": "small",
+      "category": "anything",
+      "url": "https://example.com/coffee-break",
+      "tags": ["coffee", "lifestyle", "ritual"],
+      "highlight": "The best ideas start with a good cup.",
+      "secondaryUrl": "https://example.com/coffee-break/roasters"
+    },
+    {
+      "id": 9,
+      "title": "Nature Escape",
+      "description": "Beautiful outdoor adventures, hiking trails, and breathtaking natural scenery.",
+      "image": "https://picsum.photos/seed/nature/600/400",
+      "size": "wide",
+      "category": "anything",
+      "url": "https://example.com/nature-escape",
+      "tags": ["nature", "outdoors", "hiking"],
+      "highlight": "The wilderness has no notifications.",
+      "secondaryUrl": "https://example.com/nature-escape/trails"
+    },
+    {
+      "id": 10,
+      "title": "Innovation Ideas",
+      "description": "Exploring futuristic technology concepts that are closer to reality than you think.",
+      "image": "https://picsum.photos/seed/innovation/600/400",
+      "size": "small",
+      "category": "anything",
+      "url": "https://example.com/innovation-ideas",
+      "tags": ["tech", "future", "innovation"],
+      "highlight": "Tomorrow's tools, explained today.",
+      "secondaryUrl": "https://example.com/innovation-ideas/research"
+    },
+    {
+      "id": 11,
+      "title": "Urban Photography",
+      "description": "Street scenes, architecture, and the quiet poetry of city life captured on film.",
+      "image": "https://picsum.photos/seed/urban/600/400",
+      "size": "tall",
+      "category": "anything",
+      "url": "https://example.com/urban-photography",
+      "tags": ["urban", "street", "photography"],
+      "highlight": "Cities are galleries without walls.",
+      "secondaryUrl": "https://example.com/urban-photography/series"
+    },
+    {
+      "id": 12,
+      "title": "Mindful Mornings",
+      "description": "Intentional morning routines for a calmer, more focused start to your day.",
+      "image": "https://picsum.photos/seed/morning/600/400",
+      "size": "large",
+      "category": "anything",
+      "url": "https://example.com/mindful-mornings",
+      "tags": ["wellness", "routine", "mindfulness"],
+      "highlight": "Win the morning, win the day.",
+      "secondaryUrl": "https://example.com/mindful-mornings/journal"
+    }
+  ]
+}

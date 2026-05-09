@@ -1,0 +1,148 @@
+{
+  "cards": [
+    {
+      "id": 1,
+      "title": "Emma Johnson",
+      "description": "Frontend developer with eight years building design systems and component libraries. Obsessed with animation performance and zero-layout-shift experiences.",
+      "image": "https://picsum.photos/seed/emmajohnson/600/400",
+      "size": "tall",
+      "category": "team-members",
+      "url": "https://example.com/team/emma-johnson",
+      "tags": ["frontend", "react", "design-systems"],
+      "highlight": "The person who makes every interface feel alive.",
+      "secondaryUrl": "https://github.com/emmajohnson"
+    },
+    {
+      "id": 2,
+      "title": "Michael Chen",
+      "description": "Backend engineer specialising in distributed systems and cloud-native architecture. Has kept five-nines uptime across three consecutive product launches.",
+      "image": "https://picsum.photos/seed/michaelchen/600/400",
+      "size": "small",
+      "category": "team-members",
+      "url": "https://example.com/team/michael-chen",
+      "tags": ["backend", "cloud", "distributed-systems"],
+      "highlight": "The engineer who sleeps well because the system never goes down.",
+      "secondaryUrl": "https://github.com/michaelchen"
+    },
+    {
+      "id": 3,
+      "title": "Sophia Martinez",
+      "description": "UI/UX designer who bridges research and production. Every decision she makes is backed by user data and challenged by aesthetic intuition.",
+      "image": "https://picsum.photos/seed/sophiamartinez/600/400",
+      "size": "wide",
+      "category": "team-members",
+      "url": "https://example.com/team/sophia-martinez",
+      "tags": ["design", "ux", "research"],
+      "highlight": "Turns user pain into interfaces people actually enjoy.",
+      "secondaryUrl": "https://dribbble.com/sophiamartinez"
+    },
+    {
+      "id": 4,
+      "title": "Liam Brown",
+      "description": "DevOps engineer who automated himself out of weekend on-call rotations. Infrastructure as code evangelist with a deep love for Terraform and quiet Sundays.",
+      "image": "https://picsum.photos/seed/liambrown/600/400",
+      "size": "small",
+      "category": "team-members",
+      "url": "https://example.com/team/liam-brown",
+      "tags": ["devops", "terraform", "automation"],
+      "highlight": "Automated the job so well he had to find a harder one.",
+      "secondaryUrl": "https://github.com/liambrown"
+    },
+    {
+      "id": 5,
+      "title": "Olivia Davis",
+      "description": "Product manager who has taken two products from zero to a million users. Sharp on prioritisation, ruthless about scope, and deeply trusted by every engineer she works with.",
+      "image": "https://picsum.photos/seed/oliviadavis/600/400",
+      "size": "tall",
+      "category": "team-members",
+      "url": "https://example.com/team/olivia-davis",
+      "tags": ["product", "strategy", "agile"],
+      "highlight": "Ships products engineers are proud to have built.",
+      "secondaryUrl": "https://example.com/team/olivia-davis/writing"
+    },
+    {
+      "id": 6,
+      "title": "Noah Wilson",
+      "description": "Mobile developer with a catalogue of twelve shipped iOS apps and a reputation for buttery smooth gesture-driven interfaces.",
+      "image": "https://picsum.photos/seed/noahwilson/600/400",
+      "size": "small",
+      "category": "team-members",
+      "url": "https://example.com/team/noah-wilson",
+      "tags": ["ios", "swift", "mobile"],
+      "highlight": "Twelve apps shipped. Zero one-star reviews.",
+      "secondaryUrl": "https://apps.apple.com/developer/noahwilson"
+    },
+    {
+      "id": 7,
+      "title": "Ava Taylor",
+      "description": "QA engineer who built the team's entire testing infrastructure from scratch. Found 47 critical bugs before the last major release shipped.",
+      "image": "https://picsum.photos/seed/avataylor/600/400",
+      "size": "wide",
+      "category": "team-members",
+      "url": "https://example.com/team/ava-taylor",
+      "tags": ["qa", "testing", "automation"],
+      "highlight": "The bugs stop here.",
+      "secondaryUrl": "https://github.com/avataylor"
+    },
+    {
+      "id": 8,
+      "title": "James Anderson",
+      "description": "Security specialist who has conducted penetration tests across fourteen enterprise clients and never left without finding something the team missed.",
+      "image": "https://picsum.photos/seed/jamesanderson/600/400",
+      "size": "small",
+      "category": "team-members",
+      "url": "https://example.com/team/james-anderson",
+      "tags": ["security", "pentest", "infrastructure"],
+      "highlight": "Finds the hole before the attacker does.",
+      "secondaryUrl": "https://example.com/team/james-anderson/research"
+    },
+    {
+      "id": 9,
+      "title": "Mia Thomas",
+      "description": "Marketing strategist who grew organic traffic from 4K to 180K monthly visitors in fourteen months without a single paid campaign.",
+      "image": "https://picsum.photos/seed/miathomas/600/400",
+      "size": "tall",
+      "category": "team-members",
+      "url": "https://example.com/team/mia-thomas",
+      "tags": ["marketing", "growth", "content"],
+      "highlight": "4K to 180K monthly visitors. All organic.",
+      "secondaryUrl": "https://example.com/team/mia-thomas/case-studies"
+    },
+    {
+      "id": 10,
+      "title": "Ethan White",
+      "description": "Data analyst who built the company's entire analytics stack and turned raw event data into the dashboards leadership actually uses every morning.",
+      "image": "https://picsum.photos/seed/ethanwhite/600/400",
+      "size": "small",
+      "category": "team-members",
+      "url": "https://example.com/team/ethan-white",
+      "tags": ["data", "analytics", "sql"],
+      "highlight": "Turns noise into the three numbers that actually matter.",
+      "secondaryUrl": "https://example.com/team/ethan-white/dashboards"
+    },
+    {
+      "id": 11,
+      "title": "Isabella Harris",
+      "description": "Full-stack developer who owns the entire codebase of the company's core product solo and still ships faster than most two-person teams.",
+      "image": "https://picsum.photos/seed/isabellaharris/600/400",
+      "size": "tall",
+      "category": "team-members",
+      "url": "https://example.com/team/isabella-harris",
+      "tags": ["fullstack", "node", "react"],
+      "highlight": "One person. One codebase. Faster than your whole team.",
+      "secondaryUrl": "https://github.com/isabellaharris"
+    },
+    {
+      "id": 12,
+      "title": "Lucas Garcia",
+      "description": "Machine learning engineer who built the recommendation engine that increased user retention by 34% in its first quarter of deployment.",
+      "image": "https://picsum.photos/seed/lucasgarcia/600/400",
+      "size": "large",
+      "category": "team-members",
+      "url": "https://example.com/team/lucas-garcia",
+      "tags": ["ml", "ai", "python"],
+      "highlight": "The model that made 34% more users stay.",
+      "secondaryUrl": "https://example.com/team/lucas-garcia/papers"
+    }
+  ]
+}

@@ -11,7 +11,7 @@ export default function Page() {
       imgSrc: '/images/aws-certified-cloud-practitioner.png',
     },
     {
-      tone: 'muted',
+      tone: 'secondary',
       label: 'Azure Fundamentals',
       sub: 'AZ-900',
       glyph: 'AZ',
