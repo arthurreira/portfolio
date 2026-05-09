@@ -8,10 +8,12 @@ import {
   CardTitle,
   CardDescription,
   CardContent,
+  CardFooter,
 } from "@arthurreira/ui/components/card";
 import { cn } from "@arthurreira/ui/lib/utils"
 
 import { cardSizes } from "../lib/cards"
+import { Badge } from "./badge";
 const MotionCard = motion.create(Card);
 
 export function CardGrid({ cards, linkLabel = "View" }: { cards: CardItem[], linkLabel?: string }) {
@@ -28,33 +30,55 @@ export function CardGrid({ cards, linkLabel = "View" }: { cards: CardItem[], lin
             layoutId={`card-${card.id}`}
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
-            transition={{ delay: index * 0.1, duration: 0.3 }}
+            transition={{ type: "spring", stiffness: 300, damping: 30 }}
             layout
             onClick={() => setOpenCard(card)}
-            
             className={cn(
-              "cursor-pointer overflow-hidden rounded-br-3xl shadow-md bg-muted",
-              
-              cardSizes[card.size].cols, cardSizes[card.size].rows
+              "cursor-pointer overflow-hidden rounded-br-3xl shadow-md bg-muted backdrop-opacity-65",
+              card.image ? "text-white" : "text-card-foreground",
+
+              cardSizes[card.size].cols, cardSizes[card.size].rows,
+
             )}
-             style={card.image ? { backgroundImage: `linear-gradient(to bottom, rgba(0,0,0,0.3), rgba(0,0,0,0.5)), url(${card.image})`, backgroundSize: "cover", backgroundPosition: "center" } : undefined}
+            style={card.image ? { backgroundImage: `linear-gradient(to bottom, rgba(0,0,0,0.6), rgba(0,0,0,0.2)), url(${card.image})`, backgroundSize: "cover", backgroundPosition: "center" } : { color: "var(--card-foreground)" }}
+
+
 
           >
             <CardHeader className="flex  ">
               <div className="flex flex-row justify-between relative w-full items-center">
-                <CardTitle className="text-card-foreground font-extrabold">
+                <CardTitle className="font-extrabold"  >
                   <motion.span layoutId={`title-${card.id}`}>
                     {card.title}
                   </motion.span>
                 </CardTitle>
-               
+
               </div>
             </CardHeader>
             <CardContent className="">
-              <CardDescription className="line-clamp-3 text-card-foreground/80">
+              <CardDescription className="text-inherit opacity-80">
                 {card.description}
               </CardDescription>
             </CardContent>
+            {(card.size === "tall" || card.size === "large") && card.tags && (
+              <CardFooter className="flex border-0">
+
+                {card.tags && (
+                  <div className="flex flex-wrap gap-1">
+                    {card.tags.map((tag, idx) => (
+                      <Badge
+                        variant="default"
+                        key={idx}
+                      >
+                        {tag}
+                      </Badge>
+                    ))}
+                  </div>
+                )}
+              </CardFooter>
+            )}
+
+
           </MotionCard>
         ))}
       </div>
@@ -72,40 +96,55 @@ export function CardGrid({ cards, linkLabel = "View" }: { cards: CardItem[], lin
                 layoutId={`card-${openCard.id}`}
                 onClick={(e) => e.stopPropagation()}
 
+
                 className={cn(
                   "cursor-pointer overflow-hidden rounded-br-3xl border shadow-lg w-full max-w-lg bg-muted",
-                  
+                  openCard.image ? "text-white" : "text-card-foreground",
                 )}
-                
+
                 style={openCard.image ? { backgroundImage: `linear-gradient(to bottom, rgba(0,0,0,0.3), rgba(0,0,0,0.5)), url(${openCard.image})`, backgroundSize: "cover", backgroundPosition: "center" } : undefined}
-                
+
               >
                 <CardHeader className="h-[60px]">
                   <div className="flex flex-row justify-between relative w-full items-center">
-                 <CardTitle className="text-card-foreground font-extrabold font-heading">
+                    <CardTitle className="font-extrabold"  >
                       <motion.span >
                         {openCard.title}
                       </motion.span>
                     </CardTitle>
 
-                     {openCard.url && (
-                          <a href={openCard.url}
-                          target="_blank"
-                          rel="noopener noreferrer"
-                          className="text-card-foreground/70 hover:text-card-foreground hover:underline text-sm transition-colors"
-                        >
-                          {linkLabel}
-                        </a>
-                      )}
+                    {openCard.url && (
+                      <a href={openCard.url}
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        className="text-card-foreground/70 hover:text-card-foreground hover:underline text-sm transition-colors"
+                      >
+                        {linkLabel}
+                      </a>
+                    )}
                   </div>
                 </CardHeader>
                 <CardContent className="px-4 pb-4">
                   {openCard.description && (
-                    <CardDescription className="line-clamp-3 text-card-foreground/80 font-mono">
+                    <CardDescription className="text-inherit opacity-80">
                       {openCard.description}
                     </CardDescription>
                   )}
                 </CardContent>
+                <CardFooter className="flex border-0">
+                  {openCard.tags && (
+                    <div className="flex flex-wrap gap-1">
+                      {openCard.tags.map((tag, idx) => (
+                        <Badge
+                          variant="default"
+                          key={idx}
+                        >
+                          {tag}
+                        </Badge>
+                      ))}
+                    </div>
+                  )}
+                </CardFooter>
               </MotionCard>
             </div>
           </>

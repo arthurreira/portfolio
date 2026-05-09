@@ -6,6 +6,7 @@ export interface CardItem {
   image?: string
   size: "small" | "wide" | "tall" | "large"
   url?: string
+  tags?: string[]
 }
 
 
