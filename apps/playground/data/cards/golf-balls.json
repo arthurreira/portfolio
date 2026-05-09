@@ -1,0 +1,84 @@
+{
+  "cards": [
+    {
+      "id": 1,
+      "title": "Pro V1 Golf Balls",
+      "description": "Premium golf balls designed for distance and spin control.",
+      "image": "https://picsum.photos/seed/golf1/600/400",
+      "size": "small",
+      "category": "golf balls"
+    },
+    {
+      "id": 2,
+      "title": "Tour Soft Balls",
+      "description": "Soft feel golf balls for precision shots.",
+      "image": "https://picsum.photos/seed/golf2/600/400",
+      "size": "wide",
+      "category": "golf balls"
+    },
+    {
+      "id": 3,
+      "title": "Velocity Balls",
+      "description": "Engineered for maximum speed and carry.",
+      "image": "https://picsum.photos/seed/golf3/600/400",
+      "size": "tall",
+      "category": "golf balls"
+    },
+    {
+      "id": 4,
+      "title": "Practice Pack",
+      "description": "Affordable practice golf balls for training.",
+      "image": "https://picsum.photos/seed/golf4/600/400",
+      "size": "small",
+      "category": "golf balls"
+    },
+    {
+      "id": 5,
+      "title": "Spin Master",
+      "description": "Enhanced spin for advanced players.",
+      "image": "https://picsum.photos/seed/golf5/600/400",
+      "size": "wide",
+      "category": "golf balls"
+    },
+    {
+      "id": 6,
+      "title": "Distance Pro",
+      "description": "Long-distance golf balls for power hitters.",
+      "image": "https://picsum.photos/seed/golf6/600/400",
+      "size": "small",
+      "category": "golf balls"
+    },
+    {
+      "id": 7,
+      "title": "Control Elite",
+      "description": "Optimized for greenside control.",
+      "image": "https://picsum.photos/seed/golf7/600/400",
+      "size": "tall",
+      "category": "golf balls"
+    },
+    {
+      "id": 8,
+      "title": "Soft Strike",
+      "description": "Ultra-soft compression core technology.",
+      "image": "https://picsum.photos/seed/golf8/600/400",
+      "size": "small",
+      "category": "golf balls"
+    },
+    {
+      "id": 9,
+      "title": "Champion Series",
+      "description": "Tournament-grade golf balls.",
+      "image": "https://picsum.photos/seed/golf9/600/400",
+      "size": "wide",
+      "category": "golf balls"
+    },
+    {
+      "id": 10,
+      "title": "Weekend Golfer Pack",
+      "description": "Reliable balls for casual rounds.",
+      "image": "https://picsum.photos/seed/golf10/600/400",
+      "size": "small",
+      "category": "golf balls"
+    }
+  ]
+}

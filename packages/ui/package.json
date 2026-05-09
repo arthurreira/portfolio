@@ -51,6 +51,10 @@
     "./components/popover": "./dist/components/popover.js",
     "./components/navbar": "./dist/components/navbar.js",
     "./lib/theme-provider": "./dist/lib/theme-provider.js",
-    "./components/themeToggle": "./dist/components/themeToggle.js"
+    "./components/cardGrid": "./dist/components/cardGrid.js",
+    "./components/select": "./dist/components/select.js",
+    "./lib/cards": "./dist/lib/cards.js",
+    "./components/themeToggle": "./dist/components/themeToggle.js",
+    "./components/pageHeader": "./dist/components/pageHeader.js"
   }
 }

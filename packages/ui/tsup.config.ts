@@ -12,12 +12,16 @@ export default defineConfig({
     'src/components/navbar.tsx',
     'src/components/themeToggle.tsx',
     'src/lib/theme-provider.tsx',
+    'src/components/pageHeader.tsx',
+    'src/components/cardGrid.tsx',
+    'src/components/select.tsx',
+    'src/lib/cards.ts',
     'src/lib/utils.ts',
   ],
   format: ['esm', 'cjs'],
   dts: true,
   splitting: false,
-  external: ['react', 'react-dom'],
+  external: ['react', 'react-dom','motion'],
   outDir: 'dist',
   esbuildOptions(options) {
     options.conditions = ['require', 'default']

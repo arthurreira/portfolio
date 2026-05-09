@@ -1,0 +1,404 @@
+{
+  "cards": [
+    {
+      "id": 401,
+      "title": "Modern React Patterns",
+      "description": "Best practices for scalable React apps.",
+      "image": "https://picsum.photos/seed/blog1/600/400",
+      "size": "wide",
+      "category": "blog posts"
+    },
+    {
+      "id": 402,
+      "title": "TypeScript Tips",
+      "description": "Improve safety and developer experience.",
+      "image": "https://picsum.photos/seed/blog2/600/400",
+      "size": "small",
+      "category": "blog posts"
+    },
+    {
+      "id": 403,
+      "title": "CSS Grid Layouts",
+      "description": "Create responsive modern interfaces.",
+      "image": "https://picsum.photos/seed/blog3/600/400",
+      "size": "tall",
+      "category": "blog posts"
+    },
+    {
+      "id": 404,
+      "title": "Next.js Performance",
+      "description": "Optimize rendering and loading speeds.",
+      "image": "https://picsum.photos/seed/blog4/600/400",
+      "size": "small",
+      "category": "blog posts"
+    },
+    {
+      "id": 405,
+      "title": "API Security",
+      "description": "Protect your backend services.",
+      "image": "https://picsum.photos/seed/blog5/600/400",
+      "size": "wide",
+      "category": "blog posts"
+    },
+    {
+      "id": 406,
+      "title": "State Management",
+      "description": "Choosing the right state library.",
+      "image": "https://picsum.photos/seed/blog6/600/400",
+      "size": "small",
+      "category": "blog posts"
+    },
+    {
+      "id": 407,
+      "title": "Design Systems",
+      "description": "Building reusable UI components.",
+      "image": "https://picsum.photos/seed/blog7/600/400",
+      "size": "tall",
+      "category": "blog posts"
+    },
+    {
+      "id": 408,
+      "title": "Accessibility Basics",
+      "description": "Make apps usable for everyone.",
+      "image": "https://picsum.photos/seed/blog8/600/400",
+      "size": "small",
+      "category": "blog posts"
+    },
+    {
+      "id": 409,
+      "title": "Testing React Apps",
+      "description": "Tools and techniques for testing.",
+      "image": "https://picsum.photos/seed/blog9/600/400",
+      "size": "wide",
+      "category": "blog posts"
+    },
+    {
+      "id": 410,
+      "title": "Deploying to Vercel",
+      "description": "Simple deployment workflows.",
+      "image": "https://picsum.photos/seed/blog10/600/400",
+      "size": "small",
+      "category": "blog posts"
+    },
+    {
+      "id": 411,
+      "title": "Mastering Tailwind CSS",
+      "description": "Utility-first styling done right.",
+      "image": "https://picsum.photos/seed/blog11/600/400",
+      "size": "tall",
+      "category": "blog posts"
+    },
+    {
+      "id": 412,
+      "title": "GraphQL vs REST",
+      "description": "When to use which API paradigm.",
+      "image": "https://picsum.photos/seed/blog12/600/400",
+      "size": "small",
+      "category": "blog posts"
+    },
+    {
+      "id": 413,
+      "title": "Docker for Developers",
+      "description": "Containerize your dev environment.",
+      "image": "https://picsum.photos/seed/blog13/600/400",
+      "size": "wide",
+      "category": "blog posts"
+    },
+    {
+      "id": 414,
+      "title": "Web Animations",
+      "description": "Smooth motion with CSS and JS.",
+      "image": "https://picsum.photos/seed/blog14/600/400",
+      "size": "small",
+      "category": "blog posts"
+    },
+    {
+      "id": 415,
+      "title": "Node.js Streams",
+      "description": "Efficient data processing at scale.",
+      "image": "https://picsum.photos/seed/blog15/600/400",
+      "size": "tall",
+      "category": "blog posts"
+    },
+    {
+      "id": 416,
+      "title": "React Server Components",
+      "description": "The future of server-driven UI.",
+      "image": "https://picsum.photos/seed/blog16/600/400",
+      "size": "small",
+      "category": "blog posts"
+    },
+    {
+      "id": 417,
+      "title": "GitHub Actions CI/CD",
+      "description": "Automate your deployment pipeline.",
+      "image": "https://picsum.photos/seed/blog17/600/400",
+      "size": "wide",
+      "category": "blog posts"
+    },
+    {
+      "id": 418,
+      "title": "Prisma ORM Guide",
+      "description": "Type-safe database access in Node.",
+      "image": "https://picsum.photos/seed/blog18/600/400",
+      "size": "small",
+      "category": "blog posts"
+    },
+    {
+      "id": 419,
+      "title": "Monorepo with Turborepo",
+      "description": "Manage multiple packages efficiently.",
+      "image": "https://picsum.photos/seed/blog19/600/400",
+      "size": "small",
+      "category": "blog posts"
+    },
+    {
+      "id": 420,
+      "title": "Web Performance Metrics",
+      "description": "Core Web Vitals explained clearly.",
+      "image": "https://picsum.photos/seed/blog20/600/400",
+      "size": "tall",
+      "category": "blog posts"
+    },
+    {
+      "id": 421,
+      "title": "Zustand State Management",
+      "description": "Lightweight global state for React.",
+      "image": "https://picsum.photos/seed/blog21/600/400",
+      "size": "wide",
+      "category": "blog posts"
+    },
+    {
+      "id": 422,
+      "title": "tRPC End-to-End Types",
+      "description": "Typesafe APIs without the schema.",
+      "image": "https://picsum.photos/seed/blog22/600/400",
+      "size": "small",
+      "category": "blog posts"
+    },
+    {
+      "id": 423,
+      "title": "Vite vs Webpack",
+      "description": "Choosing your bundler in 2024.",
+      "image": "https://picsum.photos/seed/blog23/600/400",
+      "size": "tall",
+      "category": "blog posts"
+    },
+    {
+      "id": 424,
+      "title": "React Query Deep Dive",
+      "description": "Server state made simple and fast.",
+      "image": "https://picsum.photos/seed/blog24/600/400",
+      "size": "small",
+      "category": "blog posts"
+    },
+    {
+      "id": 425,
+      "title": "Authentication with NextAuth",
+      "description": "Add auth to Next.js in minutes.",
+      "image": "https://picsum.photos/seed/blog25/600/400",
+      "size": "wide",
+      "category": "blog posts"
+    },
+    {
+      "id": 426,
+      "title": "Radix UI Primitives",
+      "description": "Accessible headless UI components.",
+      "image": "https://picsum.photos/seed/blog26/600/400",
+      "size": "small",
+      "category": "blog posts"
+    },
+    {
+      "id": 427,
+      "title": "Framer Motion Basics",
+      "description": "Declarative animations for React.",
+      "image": "https://picsum.photos/seed/blog27/600/400",
+      "size": "tall",
+      "category": "blog posts"
+    },
+    {
+      "id": 428,
+      "title": "PostgreSQL Indexing",
+      "description": "Speed up your queries with indexes.",
+      "image": "https://picsum.photos/seed/blog28/600/400",
+      "size": "small",
+      "category": "blog posts"
+    },
+    {
+      "id": 429,
+      "title": "Redis Caching Strategies",
+      "description": "Reduce latency with smart caching.",
+      "image": "https://picsum.photos/seed/blog29/600/400",
+      "size": "wide",
+      "category": "blog posts"
+    },
+    {
+      "id": 430,
+      "title": "Serverless Functions",
+      "description": "Build backends without managing servers.",
+      "image": "https://picsum.photos/seed/blog30/600/400",
+      "size": "small",
+      "category": "blog posts"
+    },
+    {
+      "id": 431,
+      "title": "OpenAI API Integration",
+      "description": "Add AI features to your web app.",
+      "image": "https://picsum.photos/seed/blog31/600/400",
+      "size": "tall",
+      "category": "blog posts"
+    },
+    {
+      "id": 432,
+      "title": "Stripe Payments Setup",
+      "description": "Accept payments with Stripe and React.",
+      "image": "https://picsum.photos/seed/blog32/600/400",
+      "size": "small",
+      "category": "blog posts"
+    },
+    {
+      "id": 433,
+      "title": "Supabase vs Firebase",
+      "description": "Pick the right BaaS for your project.",
+      "image": "https://picsum.photos/seed/blog33/600/400",
+      "size": "wide",
+      "category": "blog posts"
+    },
+    {
+      "id": 434,
+      "title": "Vitest Unit Testing",
+      "description": "Fast unit tests for Vite projects.",
+      "image": "https://picsum.photos/seed/blog34/600/400",
+      "size": "small",
+      "category": "blog posts"
+    },
+    {
+      "id": 435,
+      "title": "Playwright E2E Testing",
+      "description": "Reliable browser automation for apps.",
+      "image": "https://picsum.photos/seed/blog35/600/400",
+      "size": "small",
+      "category": "blog posts"
+    },
+    {
+      "id": 436,
+      "title": "Storybook Component Dev",
+      "description": "Build and document UI in isolation.",
+      "image": "https://picsum.photos/seed/blog36/600/400",
+      "size": "tall",
+      "category": "blog posts"
+    },
+    {
+      "id": 437,
+      "title": "i18n with next-intl",
+      "description": "Internationalize your Next.js app.",
+      "image": "https://picsum.photos/seed/blog37/600/400",
+      "size": "wide",
+      "category": "blog posts"
+    },
+    {
+      "id": 438,
+      "title": "Dark Mode Implementation",
+      "description": "Theme switching with CSS variables.",
+      "image": "https://picsum.photos/seed/blog38/600/400",
+      "size": "small",
+      "category": "blog posts"
+    },
+    {
+      "id": 439,
+      "title": "Zod Schema Validation",
+      "description": "Runtime type validation made easy.",
+      "image": "https://picsum.photos/seed/blog39/600/400",
+      "size": "tall",
+      "category": "blog posts"
+    },
+    {
+      "id": 440,
+      "title": "SWR Data Fetching",
+      "description": "Stale-while-revalidate hooks for React.",
+      "image": "https://picsum.photos/seed/blog40/600/400",
+      "size": "small",
+      "category": "blog posts"
+    },
+    {
+      "id": 441,
+      "title": "Recharts Data Viz",
+      "description": "Build charts with composable components.",
+      "image": "https://picsum.photos/seed/blog41/600/400",
+      "size": "wide",
+      "category": "blog posts"
+    },
+    {
+      "id": 442,
+      "title": "React Hook Form",
+      "description": "Performant forms with minimal re-renders.",
+      "image": "https://picsum.photos/seed/blog42/600/400",
+      "size": "small",
+      "category": "blog posts"
+    },
+    {
+      "id": 443,
+      "title": "Kubernetes Basics",
+      "description": "Container orchestration for beginners.",
+      "image": "https://picsum.photos/seed/blog43/600/400",
+      "size": "tall",
+      "category": "blog posts"
+    },
+    {
+      "id": 444,
+      "title": "AWS S3 File Uploads",
+      "description": "Upload and serve files from S3.",
+      "image": "https://picsum.photos/seed/blog44/600/400",
+      "size": "small",
+      "category": "blog posts"
+    },
+    {
+      "id": 445,
+      "title": "WebSockets with Socket.io",
+      "description": "Real-time features for modern apps.",
+      "image": "https://picsum.photos/seed/blog45/600/400",
+      "size": "wide",
+      "category": "blog posts"
+    },
+    {
+      "id": 446,
+      "title": "Astro for Content Sites",
+      "description": "Ship less JS with island architecture.",
+      "image": "https://picsum.photos/seed/blog46/600/400",
+      "size": "small",
+      "category": "blog posts"
+    },
+    {
+      "id": 447,
+      "title": "Drizzle ORM Intro",
+      "description": "Lightweight TypeScript-first database ORM.",
+      "image": "https://picsum.photos/seed/blog47/600/400",
+      "size": "tall",
+      "category": "blog posts"
+    },
+    {
+      "id": 448,
+      "title": "Feature Flags with Unleash",
+      "description": "Ship safely with runtime toggles.",
+      "image": "https://picsum.photos/seed/blog48/600/400",
+      "size": "small",
+      "category": "blog posts"
+    },
+    {
+      "id": 449,
+      "title": "Micro Frontends",
+      "description": "Scale frontend teams independently.",
+      "image": "https://picsum.photos/seed/blog49/600/400",
+      "size": "wide",
+      "category": "blog posts"
+    },
+    {
+      "id": 450,
+      "title": "Web Components Deep Dive",
+      "description": "Framework-agnostic reusable elements.",
+      "image": "https://picsum.photos/seed/blog50/600/400",
+      "size": "small",
+      "category": "blog posts"
+    }
+  ]
+}

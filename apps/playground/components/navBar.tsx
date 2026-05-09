@@ -13,10 +13,10 @@ export function TopBar() {
   const navItems: NavItem[] = [
     { label: "Home", href: "/" },
     { label: "About", href: "/about" },
-    { label: "Team", href: "/team" },
+    { label: "Cards", href: "/cards" },
   ]
   return (
-    <NavBar href="/" label="arthurreira.dev">
+    <NavBar href="/" label="arthurreira.dev - Playground">
 
 
       <div className="flex flex-row justify-center items-center gap-4 ">
