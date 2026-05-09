@@ -38,7 +38,7 @@ export function CardGrid({ cards, linkLabel = "View", secondaryLinkLabel = "Sour
             dragSnapToOrigin
             onClick={() => setOpenCard(card)}
             className={cn(
-              "cursor-pointer overflow-hidden rounded-br-3xl   p-0 space-y-10 ring-0 bg-transparentd hover:ring-2 hover:ring-primary/50 hover:shadow-lg transition-shadow duration-300",
+              "cursor-pointer overflow-hidden rounded-br-3xl  shadow shadow-primary/20 p-0 space-y-10 ring-0 bg-transparentd hover:ring-2 hover:ring-primary/50 hover:shadow-lg transition-shadow duration-300",
               card.image ? "text-white" : "text-card-foreground",
 
               cardSizes[card.size].cols, cardSizes[card.size].rows,
