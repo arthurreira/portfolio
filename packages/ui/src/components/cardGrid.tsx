@@ -32,6 +32,8 @@ export function CardGrid({ cards, linkLabel = "View" }: { cards: CardItem[], lin
             animate={{ opacity: 1, y: 0 }}
             transition={{ type: "spring", stiffness: 300, damping: 30 }}
             layout
+            drag
+            dragSnapToOrigin
             onClick={() => setOpenCard(card)}
             className={cn(
               "cursor-pointer overflow-hidden rounded-br-3xl shadow-md bg-muted backdrop-opacity-65",
@@ -95,7 +97,8 @@ export function CardGrid({ cards, linkLabel = "View" }: { cards: CardItem[], lin
               <MotionCard
                 layoutId={`card-${openCard.id}`}
                 onClick={(e) => e.stopPropagation()}
-
+                drag
+                dragSnapToOrigin
 
                 className={cn(
                   "cursor-pointer overflow-hidden rounded-br-3xl border shadow-lg w-full max-w-lg bg-muted",
