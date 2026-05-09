@@ -98,7 +98,7 @@ export function CardGrid({ cards, linkLabel = "View", secondaryLinkLabel = "Sour
             <div className="fixed inset-0 flex items-center justify-center z-50" onClick={() => setOpenCard(null)}>
               <MotionCard
                 layoutId={`card-${openCard.id}`}
-                onClick={(e) => e.stopPropagation()}
+                onClick={(e: React.MouseEvent) => e.stopPropagation()}
                 drag
                 dragSnapToOrigin
 
