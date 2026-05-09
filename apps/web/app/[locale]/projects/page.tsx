@@ -39,7 +39,7 @@ export default async function ProjectsPage({ params }: { params: Promise<{ local
                 <PageHeader title={t("title")} />
                
 
-                <CardGrid cards={cards} linkLabel={t("viewProject")}/>
+                <CardGrid cards={cards} linkLabel={t("viewProject")} secondaryLinkLabel={t("viewGithub")}/>
         </div>
     )
 

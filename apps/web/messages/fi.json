@@ -16,17 +16,32 @@
       "languages": "kieltä"
     },
     "cards": {
-      "fromTitle": "Mistä olen kotoisin",
-      "fromDesc": "Brasilialainen joka on asunut Suomessa yli 10 vuotta, tällä hetkellä Kuopiossa asustelen.",
-      "roleTitle": "Nykyinen rooli",
-      "roleDesc": "Junior Software Engineer Nordcloud Oy:llä.",
-      "projectTitle": "Nykyinen projekti",
-      "projectDesc": "Rakennan mukavia juttuja cloud engineerina Nordcloud Oy:llä."
-    }
+    "fromTitle": "Mistä olen",
+    "fromDesc": "Brasialainen, joka on asunut Suomessa yli 10 vuotta. Tällä hetkellä Kuopiossa, Pohjois-Savossa.",
+
+    "roleTitle": "Nykyinen rooli",
+    "roleDesc": "Junior Software Engineer Nordcloud Oy:llä.",
+
+    "projectTitle": "Nykyinen projekti",
+    "projectDesc": "Rakentamassa siistejä juttuja cloud engineerina Nordcloud Oy:llä.",
+
+    "learningTitle": "Oppiminen",
+    "learningDesc": "Opiskelen pilvikonsepteja, suoritan sertifikaatteja ja kehitän ohjelmointitaitojani päivittäin.",
+
+    "footballTitle": "Jalkapallo",
+    "footballDesc": "Jalkapallo on yksi lempiharrastuksistani teknologian ulkopuolella.",
+
+    "devsecopsTitle": "DevSecOps",
+    "devsecopsDesc": "DevSecOps on kulttuuri.",
+
+    "gpuTitle": "Unelmasetup",
+    "gpuDesc": "Jonain päivänä haluaisin rakentaa setupin RTX 5090:llä 😄"
+  }
   },
   "projects": {
     "title": "Projektit",
-    "viewProject": "Katso Projekti"
+    "viewProject": "Katso Projekti",
+    "viewGithub": "GitHubista"
   },
   "about": {
     "title": "Tietoa minusta",

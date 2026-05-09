@@ -22,22 +22,24 @@ export function CardGrid({ cards, linkLabel = "View", secondaryLinkLabel = "Sour
 
   return (
     <>
-      <div className=" grid grid-cols-2  lg:grid-cols-4 gap-2  grid-flow-dense auto-rows-[minmax(100px,auto)]
-">
+      <div className=" grid grid-cols-2  lg:grid-cols-4 gap-2   grid-flow-dense auto-rows-[minmax(100px,auto)]">
+      <AnimatePresence>
+
         {cards.map((card, index) => (
           <MotionCard
             key={card.id}
             layoutId={`card-${card.id}`}
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
-            transition={{ type: "spring", stiffness: 300, damping: 30 }}
+            exit={{ opacity: 0 }}
+            transition={{ type: "spring", stiffness: 300, damping: 30 ,delay: index * 0.1}}
             whileHover={{ scale: 1.03, y: -4, rotate: 1 }}
             layout
             drag
             dragSnapToOrigin
             onClick={() => setOpenCard(card)}
             className={cn(
-              "cursor-pointer overflow-hidden rounded-br-3xl  bg-muted/90  border shadow-lg",
+              "cursor-pointer overflow-hidden rounded-br-3xl   p-0 space-y-10 ring-0 bg-transparentd hover:ring-2 hover:ring-primary/50 hover:shadow-lg transition-shadow duration-300",
               card.image ? "text-white" : "text-card-foreground",
 
               cardSizes[card.size].cols, cardSizes[card.size].rows,
@@ -48,17 +50,14 @@ export function CardGrid({ cards, linkLabel = "View", secondaryLinkLabel = "Sour
 
 
           >
-            <CardHeader className="flex  ">
-              <div className="flex flex-row justify-between relative w-full items-center">
-                <CardTitle className="font-extrabold"  >
+            <CardHeader className="flex   p-2 ">
+                <CardTitle  >
                   <motion.span layoutId={`title-${card.id}`}>
                     {card.title}
                   </motion.span>
                 </CardTitle>
-
-              </div>
             </CardHeader>
-            <CardContent className="">
+            <CardContent className="p-2 ">
               <CardDescription className="text-inherit opacity-80">
                 {card.description}
               </CardDescription>
@@ -84,6 +83,8 @@ export function CardGrid({ cards, linkLabel = "View", secondaryLinkLabel = "Sour
 
           </MotionCard>
         ))}
+      </AnimatePresence>
+
       </div>
       <AnimatePresence>
         {openCard && (
@@ -122,7 +123,7 @@ export function CardGrid({ cards, linkLabel = "View", secondaryLinkLabel = "Sour
                       <a href={openCard.url}
                         target="_blank"
                         rel="noopener noreferrer"
-                        className="text-card-foreground/70 hover:text-card-foreground hover:underline text-sm transition-colors"
+                        className="text-card-foreground hover:text-card-foreground hover:underline text-sm transition-colors"
                       >
                         {linkLabel}
                       </a>

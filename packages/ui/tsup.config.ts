@@ -17,6 +17,7 @@ export default defineConfig({
     'src/components/select.tsx',
     'src/lib/cards.ts',
     'src/lib/utils.ts',
+    'src/hooks/useMountedAfter.ts',
   ],
   format: ['esm', 'cjs'],
   dts: true,

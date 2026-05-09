@@ -18,15 +18,30 @@
     "cards": {
       "fromTitle": "Where I'm from",
       "fromDesc": "Brazilian living in Finland for 10+ years. Currently in Kuopio, North Savo.",
+
       "roleTitle": "Current role",
       "roleDesc": "Junior Software Engineer at Nordcloud Oy.",
+
       "projectTitle": "Current project",
-      "projectDesc": "Building cool stuff as cloud engineer at Nordcloud Oy."
+      "projectDesc": "Building cool stuff as a cloud engineer at Nordcloud Oy.",
+
+      "learningTitle": "Learning",
+      "learningDesc": "Learning cloud concepts, earning certifications, and improving programming skills daily.",
+
+      "footballTitle": "Football",
+      "footballDesc": "Football/soccer is one of my favorite hobbies outside of tech.",
+
+      "devsecopsTitle": "DevSecOps",
+      "devsecopsDesc": "DevSecOps is a culture.",
+
+      "gpuTitle": "Dream setup",
+      "gpuDesc": "One day I’d love to build a setup powered by an RTX 5090 😄"
     }
   },
   "projects": {
   "title": "Projects",
-  "viewProject": "View project"
+  "viewProject": "View project",
+  "viewGithub": "GitHub"
 },
   "about": {
     "title": "About",

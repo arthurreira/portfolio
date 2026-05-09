@@ -34,7 +34,8 @@ export default function Page() {
   return (
     <div className="min-h-screen flex flex-col max-w-7xl mx-auto px-4 sm:px-8 md:px-10 lg:px-4 py-2 ">
 
-      <div className="flex flex-row gap-0 justify-between items-center">
+      <div className="flex flex-row gap-0 justify-between items-center ">
+        
         <PageHeader title="Sortable Cards" />
         <Select value={selectedCategory} onValueChange={(value) => setSelectedCategory(value)}>
           <SelectTrigger className="w-[180px]">
@@ -54,7 +55,7 @@ export default function Page() {
 
       </div>
 
-      <SortableCardGrid cards={cards} />
+      <SortableCardGrid key={selectedCategory} cards={cards} />
     </div>
   )
 }

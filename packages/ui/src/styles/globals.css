@@ -82,6 +82,8 @@
     --sidebar-accent-foreground: oklch(0.218 0.008 223.9);
     --sidebar-border: oklch(0.925 0.005 214.3);
     --sidebar-ring: oklch(0.723 0.014 214.4);
+    --spring: ${springTransition};
+
 }
 
 .dark {
@@ -126,4 +128,48 @@
     @apply bg-background text-foreground;
     }
   
+}
+
+.hero-h1, .hero-subtitle, .hero-desc-1, .hero-desc-2,
+.hero-button, .hero-card, .hero-stat, .hero-image, .cert-badge {
+  transform: translateY(30px);
+  opacity: 0;
+  transition: transform var(--spring), opacity 0.4s ease;
+}
+
+.hero-h1[data-loaded="true"], .hero-subtitle[data-loaded="true"],
+.hero-desc-1[data-loaded="true"], .hero-desc-2[data-loaded="true"],
+.hero-button[data-mounted="true"], .hero-card[data-loaded="true"],
+.hero-stat[data-loaded="true"], .hero-image[data-loaded="true"],
+.cert-badge[data-loaded="true"] {
+  transform: translateY(0);
+  opacity: 1;
+}
+
+.hero-image { transform: translateY(15px); }
+
+.hero-subtitle[data-loaded="true"] { transition-delay: 0.15s; }
+.hero-desc-1[data-loaded="true"]   { transition-delay: 0.25s; }
+.hero-desc-2[data-loaded="true"]   { transition-delay: 0.35s; }
+
+.navbar {
+  transform: translateY(-100%);
+  transition: transform var(--spring);
+}
+.navbar[data-loaded="true"] {
+  transform: translateY(0);
+}
+
+html {
+  scrollbar-gutter: stable;
+}
+
+.nav-logo {
+  opacity: 0;
+  transform: translateX(-10px);
+  transition: transform var(--spring), opacity 0.4s ease;
+}
+.nav-logo[data-loaded="true"] {
+  opacity: 1;
+  transform: translateX(0);
 }

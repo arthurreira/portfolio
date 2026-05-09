@@ -1,404 +1,148 @@
 {
   "cards": [
     {
-      "id": 501,
+      "id": 1,
       "title": "Amazing Experience",
-      "description": "The platform is fast and easy to use.",
+      "description": "Switched from three different tools to just this one. The workflow is seamless and the team onboarded in a single afternoon.",
       "image": "https://picsum.photos/seed/comment1/600/400",
-      "size": "small",
-      "category": "comments"
-    },
-    {
-      "id": 502,
-      "title": "Highly Recommended",
-      "description": "Customer support solved my issue quickly.",
-      "image": "https://picsum.photos/seed/comment2/600/400",
       "size": "wide",
-      "category": "comments"
+      "category": "comments",
+      "url": "https://example.com/reviews/amazing-experience",
+      "tags": ["onboarding", "workflow", "team"],
+      "highlight": "Replaced three tools in one afternoon.",
+      "secondaryUrl": "https://example.com/reviews/amazing-experience/full"
     },
     {
-      "id": 503,
+      "id": 2,
+      "title": "Highly Recommended",
+      "description": "Customer support responded in under five minutes and solved a critical production issue before it affected our users.",
+      "image": "https://picsum.photos/seed/comment2/600/400",
+      "size": "small",
+      "category": "comments",
+      "url": "https://example.com/reviews/highly-recommended",
+      "tags": ["support", "reliability", "production"],
+      "highlight": "Five-minute support response on a Sunday night.",
+      "secondaryUrl": "https://example.com/reviews/highly-recommended/full"
+    },
+    {
+      "id": 3,
       "title": "Very Intuitive",
-      "description": "Navigation feels smooth and modern.",
+      "description": "I handed it to a non-technical founder with zero explanation. She had her first project set up within twenty minutes.",
       "image": "https://picsum.photos/seed/comment3/600/400",
       "size": "tall",
-      "category": "comments"
+      "category": "comments",
+      "url": "https://example.com/reviews/very-intuitive",
+      "tags": ["ux", "ease-of-use", "non-technical"],
+      "highlight": "Zero learning curve for non-technical users.",
+      "secondaryUrl": "https://example.com/reviews/very-intuitive/full"
     },
     {
-      "id": 504,
-      "title": "Fast Performance",
-      "description": "Pages load instantly even on mobile.",
+      "id": 4,
+      "title": "Fast on Every Device",
+      "description": "I manage everything from my phone during commutes. Pages snap open instantly even on a slow 4G connection.",
       "image": "https://picsum.photos/seed/comment4/600/400",
       "size": "small",
-      "category": "comments"
+      "category": "comments",
+      "url": "https://example.com/reviews/fast-every-device",
+      "tags": ["mobile", "performance", "speed"],
+      "highlight": "Genuinely usable on a slow mobile connection.",
+      "secondaryUrl": "https://example.com/reviews/fast-every-device/full"
     },
     {
-      "id": 505,
-      "title": "Excellent UI",
-      "description": "The design system looks professional.",
+      "id": 5,
+      "title": "Looks Truly Professional",
+      "description": "Clients have complimented the interface thinking it was custom-built. The design system is just that polished.",
       "image": "https://picsum.photos/seed/comment5/600/400",
       "size": "wide",
-      "category": "comments"
+      "category": "comments",
+      "url": "https://example.com/reviews/looks-professional",
+      "tags": ["design", "clients", "polish"],
+      "highlight": "Clients thought we built it ourselves.",
+      "secondaryUrl": "https://example.com/reviews/looks-professional/full"
     },
     {
-      "id": 506,
-      "title": "Simple Setup",
-      "description": "Getting started took only a few minutes.",
+      "id": 6,
+      "title": "Up and Running in Minutes",
+      "description": "From account creation to first live project took me eleven minutes. The setup wizard is genuinely the best I have seen.",
       "image": "https://picsum.photos/seed/comment6/600/400",
       "size": "small",
-      "category": "comments"
+      "category": "comments",
+      "url": "https://example.com/reviews/up-and-running",
+      "tags": ["setup", "onboarding", "speed"],
+      "highlight": "Eleven minutes from signup to live.",
+      "secondaryUrl": "https://example.com/reviews/up-and-running/full"
     },
     {
-      "id": 507,
-      "title": "Great Features",
-      "description": "Love the real-time collaboration tools.",
+      "id": 7,
+      "title": "Collaboration Changed Everything",
+      "description": "Our remote team across four time zones finally feels in sync. Real-time updates mean nobody is ever working on stale data.",
       "image": "https://picsum.photos/seed/comment7/600/400",
       "size": "tall",
-      "category": "comments"
+      "category": "comments",
+      "url": "https://example.com/reviews/collaboration",
+      "tags": ["collaboration", "remote", "real-time"],
+      "highlight": "Four time zones, one source of truth.",
+      "secondaryUrl": "https://example.com/reviews/collaboration/full"
     },
     {
-      "id": 508,
-      "title": "Clean Layout",
-      "description": "Everything feels organized and accessible.",
+      "id": 8,
+      "title": "Cleanest Interface I Have Used",
+      "description": "Every action is exactly where you expect it. After two years of use I have never needed to search the docs for navigation.",
       "image": "https://picsum.photos/seed/comment8/600/400",
       "size": "small",
-      "category": "comments"
+      "category": "comments",
+      "url": "https://example.com/reviews/cleanest-interface",
+      "tags": ["ui", "ux", "navigation"],
+      "highlight": "Two years in, never opened the docs once.",
+      "secondaryUrl": "https://example.com/reviews/cleanest-interface/full"
     },
     {
-      "id": 509,
-      "title": "Helpful Documentation",
-      "description": "The guides are clear and easy to follow.",
+      "id": 9,
+      "title": "Docs That Actually Help",
+      "description": "Every page has a working code example, a video walkthrough, and a troubleshooting section. This is how documentation should be done.",
       "image": "https://picsum.photos/seed/comment9/600/400",
       "size": "wide",
-      "category": "comments"
+      "category": "comments",
+      "url": "https://example.com/reviews/helpful-docs",
+      "tags": ["documentation", "dx", "learning"],
+      "highlight": "Documentation that respects your time.",
+      "secondaryUrl": "https://example.com/reviews/helpful-docs/full"
     },
     {
-      "id": 510,
-      "title": "Reliable Platform",
-      "description": "No downtime during our production launch.",
+      "id": 10,
+      "title": "Rock Solid in Production",
+      "description": "We launched a campaign that spiked traffic by 40x overnight. Zero downtime, zero errors. The infrastructure just held.",
       "image": "https://picsum.photos/seed/comment10/600/400",
       "size": "small",
-      "category": "comments"
+      "category": "comments",
+      "url": "https://example.com/reviews/rock-solid",
+      "tags": ["reliability", "uptime", "scale"],
+      "highlight": "40x traffic spike and not a single error.",
+      "secondaryUrl": "https://example.com/reviews/rock-solid/full"
     },
     {
-      "id": 511,
-      "title": "Saves So Much Time",
-      "description": "Automated workflows cut our process in half.",
+      "id": 11,
+      "title": "Worth Every Cent",
+      "description": "We calculated the time saved across the team each month. The ROI pays for an entire year's subscription in the first week.",
       "image": "https://picsum.photos/seed/comment11/600/400",
       "size": "tall",
-      "category": "comments"
+      "category": "comments",
+      "url": "https://example.com/reviews/worth-every-cent",
+      "tags": ["value", "roi", "pricing"],
+      "highlight": "Pays for itself in the first week.",
+      "secondaryUrl": "https://example.com/reviews/worth-every-cent/full"
     },
     {
-      "id": 512,
-      "title": "Worth Every Penny",
-      "description": "The value for the price is unbeatable.",
+      "id": 12,
+      "title": "Keeps Getting Better",
+      "description": "Every update ships something meaningful. The team listens to feedback and you can see your suggestions appear in the changelog.",
       "image": "https://picsum.photos/seed/comment12/600/400",
-      "size": "small",
-      "category": "comments"
-    },
-    {
-      "id": 513,
-      "title": "Smooth Onboarding",
-      "description": "New team members got up to speed fast.",
-      "image": "https://picsum.photos/seed/comment13/600/400",
-      "size": "wide",
-      "category": "comments"
-    },
-    {
-      "id": 514,
-      "title": "Powerful Integrations",
-      "description": "Connects seamlessly with our existing tools.",
-      "image": "https://picsum.photos/seed/comment14/600/400",
-      "size": "small",
-      "category": "comments"
-    },
-    {
-      "id": 515,
-      "title": "Top-Notch Security",
-      "description": "Two-factor auth and audit logs give us peace of mind.",
-      "image": "https://picsum.photos/seed/comment15/600/400",
-      "size": "tall",
-      "category": "comments"
-    },
-    {
-      "id": 516,
-      "title": "Outstanding Support",
-      "description": "Response time was under five minutes.",
-      "image": "https://picsum.photos/seed/comment16/600/400",
-      "size": "small",
-      "category": "comments"
-    },
-    {
-      "id": 517,
-      "title": "Scales With Us",
-      "description": "Handles our growing team without a hitch.",
-      "image": "https://picsum.photos/seed/comment17/600/400",
-      "size": "wide",
-      "category": "comments"
-    },
-    {
-      "id": 518,
-      "title": "Mobile Friendly",
-      "description": "Works perfectly on my phone and tablet.",
-      "image": "https://picsum.photos/seed/comment18/600/400",
-      "size": "small",
-      "category": "comments"
-    },
-    {
-      "id": 519,
-      "title": "Love the Dark Mode",
-      "description": "Easy on the eyes during late-night sessions.",
-      "image": "https://picsum.photos/seed/comment19/600/400",
-      "size": "small",
-      "category": "comments"
-    },
-    {
-      "id": 520,
-      "title": "Keyboard Shortcuts",
-      "description": "Power users will feel right at home.",
-      "image": "https://picsum.photos/seed/comment20/600/400",
-      "size": "tall",
-      "category": "comments"
-    },
-    {
-      "id": 521,
-      "title": "Real-Time Updates",
-      "description": "Changes sync instantly across all devices.",
-      "image": "https://picsum.photos/seed/comment21/600/400",
-      "size": "wide",
-      "category": "comments"
-    },
-    {
-      "id": 522,
-      "title": "Transparent Pricing",
-      "description": "No hidden fees or surprise charges.",
-      "image": "https://picsum.photos/seed/comment22/600/400",
-      "size": "small",
-      "category": "comments"
-    },
-    {
-      "id": 523,
-      "title": "Frequent Updates",
-      "description": "New features ship every couple of weeks.",
-      "image": "https://picsum.photos/seed/comment23/600/400",
-      "size": "tall",
-      "category": "comments"
-    },
-    {
-      "id": 524,
-      "title": "Incredible Speed",
-      "description": "Dashboard loads in under a second every time.",
-      "image": "https://picsum.photos/seed/comment24/600/400",
-      "size": "small",
-      "category": "comments"
-    },
-    {
-      "id": 525,
-      "title": "Easy Permissions",
-      "description": "Role-based access is simple to configure.",
-      "image": "https://picsum.photos/seed/comment25/600/400",
-      "size": "wide",
-      "category": "comments"
-    },
-    {
-      "id": 526,
-      "title": "Great Changelog",
-      "description": "Always know exactly what was updated.",
-      "image": "https://picsum.photos/seed/comment26/600/400",
-      "size": "small",
-      "category": "comments"
-    },
-    {
-      "id": 527,
-      "title": "Impressive Uptime",
-      "description": "99.9% uptime over the past twelve months.",
-      "image": "https://picsum.photos/seed/comment27/600/400",
-      "size": "tall",
-      "category": "comments"
-    },
-    {
-      "id": 528,
-      "title": "Beautiful Notifications",
-      "description": "Alerts are clear and never overwhelming.",
-      "image": "https://picsum.photos/seed/comment28/600/400",
-      "size": "small",
-      "category": "comments"
-    },
-    {
-      "id": 529,
-      "title": "Solid Free Tier",
-      "description": "Generous limits before you ever pay a cent.",
-      "image": "https://picsum.photos/seed/comment29/600/400",
-      "size": "wide",
-      "category": "comments"
-    },
-    {
-      "id": 530,
-      "title": "Quick CSV Export",
-      "description": "Downloaded all my data in seconds.",
-      "image": "https://picsum.photos/seed/comment30/600/400",
-      "size": "small",
-      "category": "comments"
-    },
-    {
-      "id": 531,
-      "title": "Thoughtful Defaults",
-      "description": "Out-of-the-box settings just work.",
-      "image": "https://picsum.photos/seed/comment31/600/400",
-      "size": "tall",
-      "category": "comments"
-    },
-    {
-      "id": 532,
-      "title": "Active Community",
-      "description": "Forum answers questions before support even replies.",
-      "image": "https://picsum.photos/seed/comment32/600/400",
-      "size": "small",
-      "category": "comments"
-    },
-    {
-      "id": 533,
-      "title": "Zero Learning Curve",
-      "description": "My non-technical team adopted it instantly.",
-      "image": "https://picsum.photos/seed/comment33/600/400",
-      "size": "wide",
-      "category": "comments"
-    },
-    {
-      "id": 534,
-      "title": "Audit Logs Rock",
-      "description": "Every action is tracked and searchable.",
-      "image": "https://picsum.photos/seed/comment34/600/400",
-      "size": "small",
-      "category": "comments"
-    },
-    {
-      "id": 535,
-      "title": "Drag and Drop",
-      "description": "Rearranging items feels completely natural.",
-      "image": "https://picsum.photos/seed/comment35/600/400",
-      "size": "small",
-      "category": "comments"
-    },
-    {
-      "id": 536,
-      "title": "Smart Search",
-      "description": "Finds anything across the whole workspace instantly.",
-      "image": "https://picsum.photos/seed/comment36/600/400",
-      "size": "tall",
-      "category": "comments"
-    },
-    {
-      "id": 537,
-      "title": "Webhooks Made Easy",
-      "description": "Set up event triggers without any code.",
-      "image": "https://picsum.photos/seed/comment37/600/400",
-      "size": "wide",
-      "category": "comments"
-    },
-    {
-      "id": 538,
-      "title": "SSO Support",
-      "description": "SAML login works flawlessly with Okta.",
-      "image": "https://picsum.photos/seed/comment38/600/400",
-      "size": "small",
-      "category": "comments"
-    },
-    {
-      "id": 539,
-      "title": "Offline Mode",
-      "description": "Keep working even when the internet drops.",
-      "image": "https://picsum.photos/seed/comment39/600/400",
-      "size": "tall",
-      "category": "comments"
-    },
-    {
-      "id": 540,
-      "title": "Custom Branding",
-      "description": "White-label option made our clients happy.",
-      "image": "https://picsum.photos/seed/comment40/600/400",
-      "size": "small",
-      "category": "comments"
-    },
-    {
-      "id": 541,
-      "title": "Instant Previews",
-      "description": "See changes live before publishing anything.",
-      "image": "https://picsum.photos/seed/comment41/600/400",
-      "size": "wide",
-      "category": "comments"
-    },
-    {
-      "id": 542,
-      "title": "Granular Analytics",
-      "description": "Dashboards show exactly what matters.",
-      "image": "https://picsum.photos/seed/comment42/600/400",
-      "size": "small",
-      "category": "comments"
-    },
-    {
-      "id": 543,
-      "title": "Bulk Actions",
-      "description": "Updated hundreds of records in one click.",
-      "image": "https://picsum.photos/seed/comment43/600/400",
-      "size": "tall",
-      "category": "comments"
-    },
-    {
-      "id": 544,
-      "title": "Zapier Integration",
-      "description": "Automates our entire marketing workflow.",
-      "image": "https://picsum.photos/seed/comment44/600/400",
-      "size": "small",
-      "category": "comments"
-    },
-    {
-      "id": 545,
-      "title": "Version History",
-      "description": "Rolled back a mistake from three days ago easily.",
-      "image": "https://picsum.photos/seed/comment45/600/400",
-      "size": "wide",
-      "category": "comments"
-    },
-    {
-      "id": 546,
-      "title": "Multi-Language",
-      "description": "Full support for our global team.",
-      "image": "https://picsum.photos/seed/comment46/600/400",
-      "size": "small",
-      "category": "comments"
-    },
-    {
-      "id": 547,
-      "title": "Accessible by Default",
-      "description": "Screen readers work perfectly throughout.",
-      "image": "https://picsum.photos/seed/comment47/600/400",
-      "size": "tall",
-      "category": "comments"
-    },
-    {
-      "id": 548,
-      "title": "Fast Billing Portal",
-      "description": "Updated our plan and invoice in under a minute.",
-      "image": "https://picsum.photos/seed/comment48/600/400",
-      "size": "small",
-      "category": "comments"
-    },
-    {
-      "id": 549,
-      "title": "Great API Docs",
-      "description": "Every endpoint has working code examples.",
-      "image": "https://picsum.photos/seed/comment49/600/400",
-      "size": "wide",
-      "category": "comments"
-    },
-    {
-      "id": 550,
-      "title": "Genuinely Enjoyable",
-      "description": "First tool I actually look forward to opening.",
-      "image": "https://picsum.photos/seed/comment50/600/400",
-      "size": "small",
-      "category": "comments"
+      "size": "large",
+      "category": "comments",
+      "url": "https://example.com/reviews/keeps-getting-better",
+      "tags": ["updates", "feedback", "roadmap"],
+      "highlight": "You can see your feedback ship in the next release.",
+      "secondaryUrl": "https://example.com/reviews/keeps-getting-better/changelog"
     }
   ]
 }

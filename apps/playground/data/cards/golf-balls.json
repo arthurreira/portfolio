@@ -2,83 +2,147 @@
   "cards": [
     {
       "id": 1,
-      "title": "Pro V1 Golf Balls",
-      "description": "Premium golf balls designed for distance and spin control.",
-      "image": "https://picsum.photos/seed/golf1/600/400",
-      "size": "small",
-      "category": "golf balls"
+      "title": "Ship Weekly",
+      "description": "Build the habit of releasing something every single week, no matter how small. Consistency compounds faster than perfection.",
+      "image": "https://picsum.photos/seed/shipweekly/600/400",
+      "size": "wide",
+      "category": "goals",
+      "url": "https://example.com/goals/ship-weekly",
+      "tags": ["shipping", "consistency", "habits"],
+      "highlight": "Small releases every week beat big launches once a year.",
+      "secondaryUrl": "https://example.com/goals/ship-weekly/tracker"
     },
     {
       "id": 2,
-      "title": "Tour Soft Balls",
-      "description": "Soft feel golf balls for precision shots.",
-      "image": "https://picsum.photos/seed/golf2/600/400",
-      "size": "wide",
-      "category": "golf balls"
+      "title": "Read 24 Books",
+      "description": "Two books a month across technical, biography, and fiction categories. Tracking every title, rating, and key takeaway.",
+      "image": "https://picsum.photos/seed/readbooks/600/400",
+      "size": "small",
+      "category": "goals",
+      "url": "https://example.com/goals/read-24-books",
+      "tags": ["reading", "learning", "growth"],
+      "highlight": "Two books a month changes how you think.",
+      "secondaryUrl": "https://example.com/goals/read-24-books/list"
     },
     {
       "id": 3,
-      "title": "Velocity Balls",
-      "description": "Engineered for maximum speed and carry.",
-      "image": "https://picsum.photos/seed/golf3/600/400",
+      "title": "Launch a SaaS",
+      "description": "Go from idea to paying customers before the year ends. Documenting every step from validation to first revenue milestone.",
+      "image": "https://picsum.photos/seed/saaslaunch/600/400",
       "size": "tall",
-      "category": "golf balls"
+      "category": "goals",
+      "url": "https://example.com/goals/launch-saas",
+      "tags": ["saas", "startup", "revenue"],
+      "highlight": "First dollar is the hardest. Everything after is a system.",
+      "secondaryUrl": "https://example.com/goals/launch-saas/progress"
     },
     {
       "id": 4,
-      "title": "Practice Pack",
-      "description": "Affordable practice golf balls for training.",
-      "image": "https://picsum.photos/seed/golf4/600/400",
+      "title": "Run a Half Marathon",
+      "description": "Twelve weeks of structured training, three runs per week, building from 5K to 21K. Week-by-week progress logged.",
+      "image": "https://picsum.photos/seed/halfmarathon/600/400",
       "size": "small",
-      "category": "golf balls"
+      "category": "goals",
+      "url": "https://example.com/goals/half-marathon",
+      "tags": ["fitness", "running", "endurance"],
+      "highlight": "The finish line starts at week one.",
+      "secondaryUrl": "https://example.com/goals/half-marathon/training-plan"
     },
     {
       "id": 5,
-      "title": "Spin Master",
-      "description": "Enhanced spin for advanced players.",
-      "image": "https://picsum.photos/seed/golf5/600/400",
+      "title": "Master TypeScript",
+      "description": "Go beyond basic types — generics, conditional types, mapped types, and building a fully typed SDK from scratch.",
+      "image": "https://picsum.photos/seed/mastertyescript/600/400",
       "size": "wide",
-      "category": "golf balls"
+      "category": "goals",
+      "url": "https://example.com/goals/master-typescript",
+      "tags": ["typescript", "learning", "engineering"],
+      "highlight": "Real TypeScript mastery lives in the advanced types.",
+      "secondaryUrl": "https://example.com/goals/master-typescript/curriculum"
     },
     {
       "id": 6,
-      "title": "Distance Pro",
-      "description": "Long-distance golf balls for power hitters.",
-      "image": "https://picsum.photos/seed/golf6/600/400",
-      "size": "small",
-      "category": "golf balls"
+      "title": "Save Six Months Emergency Fund",
+      "description": "Building a financial buffer with automated transfers, expense audits, and a clear monthly milestone dashboard.",
+      "image": "https://picsum.photos/seed/emergencyfund/600/400",
+      "size": "large",
+      "category": "goals",
+      "url": "https://example.com/goals/emergency-fund",
+      "tags": ["finance", "savings", "security"],
+      "highlight": "Financial freedom starts with six months of runway.",
+      "secondaryUrl": "https://example.com/goals/emergency-fund/calculator"
     },
     {
       "id": 7,
-      "title": "Control Elite",
-      "description": "Optimized for greenside control.",
-      "image": "https://picsum.photos/seed/golf7/600/400",
+      "title": "Write in Public",
+      "description": "Publish one article per week for a full year. Raw drafts, half-formed ideas, and finished essays — all out in the open.",
+      "image": "https://picsum.photos/seed/writepublic/600/400",
       "size": "tall",
-      "category": "golf balls"
+      "category": "goals",
+      "url": "https://example.com/goals/write-in-public",
+      "tags": ["writing", "content", "consistency"],
+      "highlight": "Fifty-two articles. One year. No excuses.",
+      "secondaryUrl": "https://example.com/goals/write-in-public/archive"
     },
     {
       "id": 8,
-      "title": "Soft Strike",
-      "description": "Ultra-soft compression core technology.",
-      "image": "https://picsum.photos/seed/golf8/600/400",
+      "title": "Learn Spanish to B2",
+      "description": "Daily thirty-minute sessions combining Anki, italki tutors, and immersion content targeting conversational fluency.",
+      "image": "https://picsum.photos/seed/learnspanish/600/400",
       "size": "small",
-      "category": "golf balls"
+      "category": "goals",
+      "url": "https://example.com/goals/learn-spanish",
+      "tags": ["language", "learning", "fluency"],
+      "highlight": "Thirty minutes a day is enough to become fluent.",
+      "secondaryUrl": "https://example.com/goals/learn-spanish/resources"
     },
     {
       "id": 9,
-      "title": "Champion Series",
-      "description": "Tournament-grade golf balls.",
-      "image": "https://picsum.photos/seed/golf9/600/400",
+      "title": "Reach 10K Followers",
+      "description": "Growing an audience by sharing genuine work, behind-the-scenes process, and hard-won lessons without chasing algorithms.",
+      "image": "https://picsum.photos/seed/growaudience/600/400",
       "size": "wide",
-      "category": "golf balls"
+      "category": "goals",
+      "url": "https://example.com/goals/10k-followers",
+      "tags": ["audience", "growth", "content"],
+      "highlight": "Build an audience by being genuinely useful.",
+      "secondaryUrl": "https://example.com/goals/10k-followers/strategy"
     },
     {
       "id": 10,
-      "title": "Weekend Golfer Pack",
-      "description": "Reliable balls for casual rounds.",
-      "image": "https://picsum.photos/seed/golf10/600/400",
+      "title": "Sleep Eight Hours",
+      "description": "Fixing sleep as the foundation for everything else — tracking, wind-down routines, light exposure, and cutting caffeine after noon.",
+      "image": "https://picsum.photos/seed/bettersleep/600/400",
       "size": "small",
-      "category": "golf balls"
+      "category": "goals",
+      "url": "https://example.com/goals/sleep-eight-hours",
+      "tags": ["sleep", "health", "recovery"],
+      "highlight": "Everything gets easier when you stop being tired.",
+      "secondaryUrl": "https://example.com/goals/sleep-eight-hours/routine"
+    },
+    {
+      "id": 11,
+      "title": "Build in Public",
+      "description": "Document every decision, mistake, and milestone of a real product build — revenue numbers, churn, pivots, and all.",
+      "image": "https://picsum.photos/seed/buildinpublic/600/400",
+      "size": "tall",
+      "category": "goals",
+      "url": "https://example.com/goals/build-in-public",
+      "tags": ["transparency", "building", "community"],
+      "highlight": "Radical transparency builds faster than stealth.",
+      "secondaryUrl": "https://example.com/goals/build-in-public/updates"
+    },
+    {
+      "id": 12,
+      "title": "Zero Inbox by Friday",
+      "description": "A sustainable email system using filters, templates, and a strict processing routine that keeps the inbox at zero every week.",
+      "image": "https://picsum.photos/seed/zeroinbox/600/400",
+      "size": "large",
+      "category": "goals",
+      "url": "https://example.com/goals/zero-inbox",
+      "tags": ["productivity", "email", "systems"],
+      "highlight": "An empty inbox is a clear mind.",
+      "secondaryUrl": "https://example.com/goals/zero-inbox/system"
     }
   ]
 }

@@ -12,7 +12,7 @@ export function TopBar() {
 
   const navItems: NavItem[] = [
     { label: "Home", href: "/" },
-    { label: "About", href: "/about" },
+    { label: "Sortable", href: "/sortable" },
     { label: "Cards", href: "/cards" },
   ]
   return (

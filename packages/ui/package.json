@@ -54,6 +54,7 @@
     "./components/cardGrid": "./dist/components/cardGrid.js",
     "./components/select": "./dist/components/select.js",
     "./lib/cards": "./dist/lib/cards.js",
+    "./hooks/useMountedAfter": "./dist/hooks/useMountedAfter.js",
     "./components/themeToggle": "./dist/components/themeToggle.js",
     "./components/pageHeader": "./dist/components/pageHeader.js"
   }
