@@ -1,0 +1,148 @@
+{
+  "cards": [
+    {
+      "id": 1,
+      "title": "Amazing Experience",
+      "description": "Switched from three different tools to just this one. The workflow is seamless and the team onboarded in a single afternoon.",
+      "image": "https://picsum.photos/seed/comment1/600/400",
+      "size": "wide",
+      "category": "comments",
+      "url": "https://example.com/reviews/amazing-experience",
+      "tags": ["onboarding", "workflow", "team"],
+      "highlight": "Replaced three tools in one afternoon.",
+      "secondaryUrl": "https://example.com/reviews/amazing-experience/full"
+    },
+    {
+      "id": 2,
+      "title": "Highly Recommended",
+      "description": "Customer support responded in under five minutes and solved a critical production issue before it affected our users.",
+      "image": "https://picsum.photos/seed/comment2/600/400",
+      "size": "small",
+      "category": "comments",
+      "url": "https://example.com/reviews/highly-recommended",
+      "tags": ["support", "reliability", "production"],
+      "highlight": "Five-minute support response on a Sunday night.",
+      "secondaryUrl": "https://example.com/reviews/highly-recommended/full"
+    },
+    {
+      "id": 3,
+      "title": "Very Intuitive",
+      "description": "I handed it to a non-technical founder with zero explanation. She had her first project set up within twenty minutes.",
+      "image": "https://picsum.photos/seed/comment3/600/400",
+      "size": "tall",
+      "category": "comments",
+      "url": "https://example.com/reviews/very-intuitive",
+      "tags": ["ux", "ease-of-use", "non-technical"],
+      "highlight": "Zero learning curve for non-technical users.",
+      "secondaryUrl": "https://example.com/reviews/very-intuitive/full"
+    },
+    {
+      "id": 4,
+      "title": "Fast on Every Device",
+      "description": "I manage everything from my phone during commutes. Pages snap open instantly even on a slow 4G connection.",
+      "image": "https://picsum.photos/seed/comment4/600/400",
+      "size": "small",
+      "category": "comments",
+      "url": "https://example.com/reviews/fast-every-device",
+      "tags": ["mobile", "performance", "speed"],
+      "highlight": "Genuinely usable on a slow mobile connection.",
+      "secondaryUrl": "https://example.com/reviews/fast-every-device/full"
+    },
+    {
+      "id": 5,
+      "title": "Looks Truly Professional",
+      "description": "Clients have complimented the interface thinking it was custom-built. The design system is just that polished.",
+      "image": "https://picsum.photos/seed/comment5/600/400",
+      "size": "wide",
+      "category": "comments",
+      "url": "https://example.com/reviews/looks-professional",
+      "tags": ["design", "clients", "polish"],
+      "highlight": "Clients thought we built it ourselves.",
+      "secondaryUrl": "https://example.com/reviews/looks-professional/full"
+    },
+    {
+      "id": 6,
+      "title": "Up and Running in Minutes",
+      "description": "From account creation to first live project took me eleven minutes. The setup wizard is genuinely the best I have seen.",
+      "image": "https://picsum.photos/seed/comment6/600/400",
+      "size": "small",
+      "category": "comments",
+      "url": "https://example.com/reviews/up-and-running",
+      "tags": ["setup", "onboarding", "speed"],
+      "highlight": "Eleven minutes from signup to live.",
+      "secondaryUrl": "https://example.com/reviews/up-and-running/full"
+    },
+    {
+      "id": 7,
+      "title": "Collaboration Changed Everything",
+      "description": "Our remote team across four time zones finally feels in sync. Real-time updates mean nobody is ever working on stale data.",
+      "image": "https://picsum.photos/seed/comment7/600/400",
+      "size": "tall",
+      "category": "comments",
+      "url": "https://example.com/reviews/collaboration",
+      "tags": ["collaboration", "remote", "real-time"],
+      "highlight": "Four time zones, one source of truth.",
+      "secondaryUrl": "https://example.com/reviews/collaboration/full"
+    },
+    {
+      "id": 8,
+      "title": "Cleanest Interface I Have Used",
+      "description": "Every action is exactly where you expect it. After two years of use I have never needed to search the docs for navigation.",
+      "image": "https://picsum.photos/seed/comment8/600/400",
+      "size": "small",
+      "category": "comments",
+      "url": "https://example.com/reviews/cleanest-interface",
+      "tags": ["ui", "ux", "navigation"],
+      "highlight": "Two years in, never opened the docs once.",
+      "secondaryUrl": "https://example.com/reviews/cleanest-interface/full"
+    },
+    {
+      "id": 9,
+      "title": "Docs That Actually Help",
+      "description": "Every page has a working code example, a video walkthrough, and a troubleshooting section. This is how documentation should be done.",
+      "image": "https://picsum.photos/seed/comment9/600/400",
+      "size": "wide",
+      "category": "comments",
+      "url": "https://example.com/reviews/helpful-docs",
+      "tags": ["documentation", "dx", "learning"],
+      "highlight": "Documentation that respects your time.",
+      "secondaryUrl": "https://example.com/reviews/helpful-docs/full"
+    },
+    {
+      "id": 10,
+      "title": "Rock Solid in Production",
+      "description": "We launched a campaign that spiked traffic by 40x overnight. Zero downtime, zero errors. The infrastructure just held.",
+      "image": "https://picsum.photos/seed/comment10/600/400",
+      "size": "small",
+      "category": "comments",
+      "url": "https://example.com/reviews/rock-solid",
+      "tags": ["reliability", "uptime", "scale"],
+      "highlight": "40x traffic spike and not a single error.",
+      "secondaryUrl": "https://example.com/reviews/rock-solid/full"
+    },
+    {
+      "id": 11,
+      "title": "Worth Every Cent",
+      "description": "We calculated the time saved across the team each month. The ROI pays for an entire year's subscription in the first week.",
+      "image": "https://picsum.photos/seed/comment11/600/400",
+      "size": "tall",
+      "category": "comments",
+      "url": "https://example.com/reviews/worth-every-cent",
+      "tags": ["value", "roi", "pricing"],
+      "highlight": "Pays for itself in the first week.",
+      "secondaryUrl": "https://example.com/reviews/worth-every-cent/full"
+    },
+    {
+      "id": 12,
+      "title": "Keeps Getting Better",
+      "description": "Every update ships something meaningful. The team listens to feedback and you can see your suggestions appear in the changelog.",
+      "image": "https://picsum.photos/seed/comment12/600/400",
+      "size": "large",
+      "category": "comments",
+      "url": "https://example.com/reviews/keeps-getting-better",
+      "tags": ["updates", "feedback", "roadmap"],
+      "highlight": "You can see your feedback ship in the next release.",
+      "secondaryUrl": "https://example.com/reviews/keeps-getting-better/changelog"
+    }
+  ]
+}

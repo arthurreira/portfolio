@@ -1,0 +1,148 @@
+{
+  "cards": [
+    {
+      "id": 1,
+      "title": "Acoustic Chill",
+      "description": "Fingerpicked acoustic guitar loops layered with soft room reverb. Built for long focus sessions where silence feels too empty.",
+      "image": "https://picsum.photos/seed/acousticchill/600/400",
+      "size": "wide",
+      "category": "music",
+      "url": "https://example.com/music/acoustic-chill",
+      "tags": ["acoustic", "focus", "ambient"],
+      "highlight": "The perfect background for three hours of deep work.",
+      "secondaryUrl": "https://example.com/music/acoustic-chill/playlist"
+    },
+    {
+      "id": 2,
+      "title": "Electronic Energy",
+      "description": "Hard-hitting electronic production with driving basslines and layered synths. The kind of music that makes you feel unstoppable.",
+      "image": "https://picsum.photos/seed/electronicenergy/600/400",
+      "size": "small",
+      "category": "music",
+      "url": "https://example.com/music/electronic-energy",
+      "tags": ["electronic", "energy", "synth"],
+      "highlight": "Turns any task into something worth attacking.",
+      "secondaryUrl": "https://example.com/music/electronic-energy/tracklist"
+    },
+    {
+      "id": 3,
+      "title": "Jazz Essentials",
+      "description": "A curated walk through essential jazz — from Miles Davis cool to Coltrane sheets of sound to modern neo-soul crossovers.",
+      "image": "https://picsum.photos/seed/jazzessentials/600/400",
+      "size": "tall",
+      "category": "music",
+      "url": "https://example.com/music/jazz-essentials",
+      "tags": ["jazz", "classic", "evening"],
+      "highlight": "Sixty years of jazz distilled into one essential listen.",
+      "secondaryUrl": "https://example.com/music/jazz-essentials/history"
+    },
+    {
+      "id": 4,
+      "title": "Lo-Fi Coding",
+      "description": "Dusty drum samples, muted chords, and tape-saturated textures. The sound of productive late nights and clean git commits.",
+      "image": "https://picsum.photos/seed/lofi/600/400",
+      "size": "small",
+      "category": "music",
+      "url": "https://example.com/music/lofi-coding",
+      "tags": ["lofi", "coding", "beats"],
+      "highlight": "Ship more code per hour. Scientifically unverified but widely believed.",
+      "secondaryUrl": "https://example.com/music/lofi-coding/radio"
+    },
+    {
+      "id": 5,
+      "title": "Morning Motivation",
+      "description": "Upbeat, bright, and impossible to feel sluggish to. Carefully sequenced to build energy from the first track to the last.",
+      "image": "https://picsum.photos/seed/morningmotivation/600/400",
+      "size": "wide",
+      "category": "music",
+      "url": "https://example.com/music/morning-motivation",
+      "tags": ["morning", "upbeat", "energy"],
+      "highlight": "Your alarm should feel this good.",
+      "secondaryUrl": "https://example.com/music/morning-motivation/routine"
+    },
+    {
+      "id": 6,
+      "title": "Deep Focus",
+      "description": "Generative ambient textures that shift slowly over long durations. Designed to mask distraction without ever demanding attention.",
+      "image": "https://picsum.photos/seed/deepfocus/600/400",
+      "size": "large",
+      "category": "music",
+      "url": "https://example.com/music/deep-focus",
+      "tags": ["ambient", "focus", "generative"],
+      "highlight": "Two hours in and you forget it's even playing.",
+      "secondaryUrl": "https://example.com/music/deep-focus/science"
+    },
+    {
+      "id": 7,
+      "title": "Synthwave Nights",
+      "description": "Neon-soaked 80s-inspired production with lush pads, gated reverb, and that unmistakable feeling of driving at midnight.",
+      "image": "https://picsum.photos/seed/synthwave/600/400",
+      "size": "tall",
+      "category": "music",
+      "url": "https://example.com/music/synthwave-nights",
+      "tags": ["synthwave", "retro", "80s"],
+      "highlight": "Sounds like a movie you wish they had made.",
+      "secondaryUrl": "https://example.com/music/synthwave-nights/artists"
+    },
+    {
+      "id": 8,
+      "title": "Piano Reflections",
+      "description": "Solo piano recordings captured in a single room with natural acoustics. Intimate, unhurried, and deeply human.",
+      "image": "https://picsum.photos/seed/pianoreflections/600/400",
+      "size": "small",
+      "category": "music",
+      "url": "https://example.com/music/piano-reflections",
+      "tags": ["piano", "classical", "intimate"],
+      "highlight": "Every note feels like it was played just for you.",
+      "secondaryUrl": "https://example.com/music/piano-reflections/recordings"
+    },
+    {
+      "id": 9,
+      "title": "Workout Beats",
+      "description": "High BPM, relentless energy, and drops timed perfectly for peak effort moments. Built to make you push past the wall.",
+      "image": "https://picsum.photos/seed/workoutbeats/600/400",
+      "size": "wide",
+      "category": "music",
+      "url": "https://example.com/music/workout-beats",
+      "tags": ["workout", "high-bpm", "training"],
+      "highlight": "Your last rep always finds another gear with this on.",
+      "secondaryUrl": "https://example.com/music/workout-beats/programs"
+    },
+    {
+      "id": 10,
+      "title": "Late Night Vibes",
+      "description": "Slow, smoky, and cinematic. The kind of music that makes a quiet apartment at 2am feel like the best place on earth.",
+      "image": "https://picsum.photos/seed/latenightvibe/600/400",
+      "size": "small",
+      "category": "music",
+      "url": "https://example.com/music/late-night-vibes",
+      "tags": ["late-night", "smooth", "cinematic"],
+      "highlight": "2am never sounded this good.",
+      "secondaryUrl": "https://example.com/music/late-night-vibes/mix"
+    },
+    {
+      "id": 11,
+      "title": "Afrobeats Now",
+      "description": "The freshest Afrobeats and Amapiano tracks dominating charts across Lagos, London, and everywhere in between right now.",
+      "image": "https://picsum.photos/seed/afrobeats/600/400",
+      "size": "tall",
+      "category": "music",
+      "url": "https://example.com/music/afrobeats-now",
+      "tags": ["afrobeats", "amapiano", "global"],
+      "highlight": "The sound the whole world is catching up to.",
+      "secondaryUrl": "https://example.com/music/afrobeats-now/artists"
+    },
+    {
+      "id": 12,
+      "title": "Sunset Sessions",
+      "description": "Warm, melodic house and downtempo tracks sequenced to match the exact feeling of watching the sky change colour at dusk.",
+      "image": "https://picsum.photos/seed/sunsetsessions/600/400",
+      "size": "large",
+      "category": "music",
+      "url": "https://example.com/music/sunset-sessions",
+      "tags": ["house", "downtempo", "sunset"],
+      "highlight": "Matches the sky colour for colour as it fades.",
+      "secondaryUrl": "https://example.com/music/sunset-sessions/mix"
+    }
+  ]
+}

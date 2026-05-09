@@ -4,10 +4,11 @@ import { getMessages } from 'next-intl/server'
 import type { Locale } from '@/i18n/routing'
 
 import "@arthurreira/ui/styles/globals.css"
-import { ThemeProvider } from "@/components/theme-provider"
+import { ThemeProvider } from "@arthurreira/ui/lib/theme-provider"
 import { TopBar } from "@/components/organisms"
 import { cn } from "@arthurreira/ui/lib/utils";
 import { Footer } from "@/components/organisms/Footer/Footer"
+import { spring } from "motion"
 
 const fontSans = Geist({
   subsets: ["latin"],
@@ -15,6 +16,7 @@ const fontSans = Geist({
 })
 
 const jetbrainsMono = JetBrains_Mono({ subsets: ['latin'], variable: '--font-mono' })
+const springTransition = spring(0.6, 0.3)
 
 export default async function RootLayout({
   children,
@@ -30,10 +32,13 @@ export default async function RootLayout({
     <html lang={locale} suppressHydrationWarning
       className={cn("antialiased", fontSans.variable, "font-mono", jetbrainsMono.variable)}
     >
+      <head>
+         <style>{`:root { --spring: ${springTransition}; }`}</style>
+      </head>
       <body>
         <NextIntlClientProvider messages={messages}>
           <ThemeProvider>
-            <TopBar locale={locale as Locale} />
+            <TopBar  />
             {children}
             <Footer />
 

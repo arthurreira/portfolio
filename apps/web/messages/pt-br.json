@@ -16,16 +16,32 @@
       "languages": "idiomas falados"
     },
     "cards": {
-      "fromTitle": "De onde eu sou",
-      "fromDesc": "Sou do interioir de Minas Gerais, vivendo na Finlândia há mais de 10 anos. Atualmente em Kuopio, Norte de Savo.",
-      "roleTitle": "Função atual",
-      "roleDesc": "Engenheiro de Software Júnior na Nordcloud Oy.",
-      "projectTitle": "Projeto atual",
-      "projectDesc": "Construindo coisas legais como engenheiro de nuvem na Nordcloud Oy."
-    }
+        "fromTitle": "De onde sou",
+        "fromDesc": "Brasileiro vivendo na Finlândia há mais de 10 anos. Atualmente em Kuopio, North Savo.",
+
+        "roleTitle": "Cargo atual",
+        "roleDesc": "Junior Software Engineer na Nordcloud Oy.",
+
+        "projectTitle": "Projeto atual",
+        "projectDesc": "Construindo coisas legais como cloud engineer na Nordcloud Oy.",
+
+        "learningTitle": "Aprendizado",
+        "learningDesc": "Estudando conceitos de cloud, conquistando certificações e evoluindo na programação diariamente.",
+
+        "footballTitle": "Futebol",
+        "footballDesc": "Futebol é um dos meus hobbies favoritos fora da tecnologia.",
+
+        "devsecopsTitle": "DevSecOps",
+        "devsecopsDesc": "DevSecOps é uma cultura.",
+
+        "gpuTitle": "Setup dos sonhos",
+        "gpuDesc": "Um dia ainda quero montar um setup com uma RTX 5090 😄"
+      }
   },
   "projects": {
-    "title": "Projetos"
+    "title": "Projetos",
+    "viewProject": "Ver Projeto",
+    "viewGithub": "GitHub"
   },
   "about": {
     "title": "Sobre mim",
@@ -36,7 +52,11 @@
     }
   },
   "topBar": {
-    "darkModeHint": "Pressione d para alternar o modo escuro"
+    "darkModeHint": "Pressione d para alternar o modo escuro",
+    "lightModeHint": "Pressione d para alternar o modo claro",
+    "languageSwitcherHint": "Pressione l para alternar o idioma",
+    "home": "Início",
+    "about": "Sobre"
   },
   "contact": {
     "title": "Contato",

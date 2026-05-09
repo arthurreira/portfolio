@@ -1,0 +1,148 @@
+{
+  "cards": [
+    {
+      "id": 1,
+      "title": "10K Likes Milestone",
+      "description": "This post crossed 10,000 likes organically in under 48 hours — no promotion, no ads, just a genuine idea that resonated.",
+      "image": "https://picsum.photos/seed/10klikes/600/400",
+      "size": "wide",
+      "category": "likes",
+      "url": "https://example.com/likes/10k-milestone",
+      "tags": ["viral", "milestone", "organic"],
+      "highlight": "10K likes in 48 hours with zero ad spend.",
+      "secondaryUrl": "https://example.com/likes/10k-milestone/stats"
+    },
+    {
+      "id": 2,
+      "title": "Trending Today",
+      "description": "Sitting at the top of the explore page for six hours straight. Real engagement from real people who found it worth sharing.",
+      "image": "https://picsum.photos/seed/trending/600/400",
+      "size": "small",
+      "category": "likes",
+      "url": "https://example.com/likes/trending-today",
+      "tags": ["trending", "explore", "reach"],
+      "highlight": "Six hours on the explore page and still climbing.",
+      "secondaryUrl": "https://example.com/likes/trending-today/breakdown"
+    },
+    {
+      "id": 3,
+      "title": "Community Favorite",
+      "description": "Voted the most helpful post of the month by the community. Saved by over 8,000 people and referenced in dozens of threads.",
+      "image": "https://picsum.photos/seed/communityfav/600/400",
+      "size": "tall",
+      "category": "likes",
+      "url": "https://example.com/likes/community-favorite",
+      "tags": ["community", "helpful", "saved"],
+      "highlight": "8,000 saves and counting — still referenced weekly.",
+      "secondaryUrl": "https://example.com/likes/community-favorite/comments"
+    },
+    {
+      "id": 4,
+      "title": "Viral in 3 Hours",
+      "description": "Posted at 8am, viral by 11am. The combination of timing, hook, and genuine value created a sharing loop nobody planned for.",
+      "image": "https://picsum.photos/seed/viral3hours/600/400",
+      "size": "small",
+      "category": "likes",
+      "url": "https://example.com/likes/viral-3-hours",
+      "tags": ["viral", "timing", "growth"],
+      "highlight": "From zero to viral before lunch.",
+      "secondaryUrl": "https://example.com/likes/viral-3-hours/analysis"
+    },
+    {
+      "id": 5,
+      "title": "Top Weekly Pick",
+      "description": "The highest-liked piece of content across the entire platform this week, beating out posts from accounts ten times the size.",
+      "image": "https://picsum.photos/seed/weeklytop/600/400",
+      "size": "wide",
+      "category": "likes",
+      "url": "https://example.com/likes/top-weekly-pick",
+      "tags": ["weekly", "top", "platform"],
+      "highlight": "Beat accounts ten times bigger this week.",
+      "secondaryUrl": "https://example.com/likes/top-weekly-pick/leaderboard"
+    },
+    {
+      "id": 6,
+      "title": "500 Comments",
+      "description": "A post that started a real conversation. Over 500 thoughtful comments, genuine debate, and follow-up threads still active.",
+      "image": "https://picsum.photos/seed/500comments/600/400",
+      "size": "large",
+      "category": "likes",
+      "url": "https://example.com/likes/500-comments",
+      "tags": ["engagement", "discussion", "comments"],
+      "highlight": "Comments still coming in three weeks later.",
+      "secondaryUrl": "https://example.com/likes/500-comments/thread"
+    },
+    {
+      "id": 7,
+      "title": "Editor's Choice",
+      "description": "Hand-picked by the editorial team as an example of what great content on this platform looks and feels like.",
+      "image": "https://picsum.photos/seed/editorschoice/600/400",
+      "size": "tall",
+      "category": "likes",
+      "url": "https://example.com/likes/editors-choice",
+      "tags": ["editorial", "featured", "quality"],
+      "highlight": "Held up by the editorial team as the gold standard.",
+      "secondaryUrl": "https://example.com/likes/editors-choice/featured"
+    },
+    {
+      "id": 8,
+      "title": "Most Bookmarked",
+      "description": "Bookmarked more than any other post this quarter. People keep coming back to it as a reference long after the initial spike.",
+      "image": "https://picsum.photos/seed/bookmarked/600/400",
+      "size": "small",
+      "category": "likes",
+      "url": "https://example.com/likes/most-bookmarked",
+      "tags": ["bookmarks", "reference", "evergreen"],
+      "highlight": "The post people keep returning to months later.",
+      "secondaryUrl": "https://example.com/likes/most-bookmarked/stats"
+    },
+    {
+      "id": 9,
+      "title": "Cross-Platform Hit",
+      "description": "Started on one platform and spread to five others within 24 hours. Screenshots, quote posts, and reposts across every major network.",
+      "image": "https://picsum.photos/seed/crossplatform/600/400",
+      "size": "wide",
+      "category": "likes",
+      "url": "https://example.com/likes/cross-platform-hit",
+      "tags": ["cross-platform", "reach", "viral"],
+      "highlight": "Five platforms, one idea, 24 hours.",
+      "secondaryUrl": "https://example.com/likes/cross-platform-hit/breakdown"
+    },
+    {
+      "id": 10,
+      "title": "Record Engagement Rate",
+      "description": "A 34% engagement rate on a post with over 50K impressions — far beyond any benchmark and driven entirely by word of mouth.",
+      "image": "https://picsum.photos/seed/engagementrecord/600/400",
+      "size": "small",
+      "category": "likes",
+      "url": "https://example.com/likes/record-engagement",
+      "tags": ["engagement", "metrics", "record"],
+      "highlight": "34% engagement rate. The benchmark is 2%.",
+      "secondaryUrl": "https://example.com/likes/record-engagement/metrics"
+    },
+    {
+      "id": 11,
+      "title": "Influencer Reshared",
+      "description": "Picked up and reshared by three major creators with a combined following of over two million — none of them asked to.",
+      "image": "https://picsum.photos/seed/influencershare/600/400",
+      "size": "tall",
+      "category": "likes",
+      "url": "https://example.com/likes/influencer-reshared",
+      "tags": ["influencer", "reshare", "amplification"],
+      "highlight": "Two million eyes, zero outreach required.",
+      "secondaryUrl": "https://example.com/likes/influencer-reshared/impact"
+    },
+    {
+      "id": 12,
+      "title": "Evergreen Classic",
+      "description": "Published over a year ago and still pulling in hundreds of likes every week. The kind of content that never stops being relevant.",
+      "image": "https://picsum.photos/seed/evergreenlike/600/400",
+      "size": "large",
+      "category": "likes",
+      "url": "https://example.com/likes/evergreen-classic",
+      "tags": ["evergreen", "longevity", "value"],
+      "highlight": "A year old and still getting likes every single day.",
+      "secondaryUrl": "https://example.com/likes/evergreen-classic/history"
+    }
+  ]
+}

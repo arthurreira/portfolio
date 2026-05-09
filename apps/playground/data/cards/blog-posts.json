@@ -1,0 +1,148 @@
+{
+  "cards": [
+    {
+      "id": 1,
+      "title": "Modern React Patterns",
+      "description": "A deep dive into compound components, render props, and custom hooks for scalable React architecture.",
+      "image": "https://picsum.photos/seed/react/600/400",
+      "size": "wide",
+      "category": "blog-posts",
+      "url": "https://example.com/blog/modern-react-patterns",
+      "tags": ["react", "patterns", "frontend"],
+      "highlight": "The patterns senior engineers actually use in production.",
+      "secondaryUrl": "https://example.com/blog/modern-react-patterns/code"
+    },
+    {
+      "id": 2,
+      "title": "TypeScript Strict Mode",
+      "description": "Why enabling strict mode will catch bugs before they reach production and how to migrate an existing codebase.",
+      "image": "https://picsum.photos/seed/typescript/600/400",
+      "size": "small",
+      "category": "blog-posts",
+      "url": "https://example.com/blog/typescript-strict-mode",
+      "tags": ["typescript", "dx", "safety"],
+      "highlight": "Strict mode is not optional if you care about quality.",
+      "secondaryUrl": "https://example.com/blog/typescript-strict-mode/checklist"
+    },
+    {
+      "id": 3,
+      "title": "CSS Grid Mastery",
+      "description": "From basic layouts to complex magazine-style grids — everything you need to stop reaching for a framework.",
+      "image": "https://picsum.photos/seed/cssgrid/600/400",
+      "size": "tall",
+      "category": "blog-posts",
+      "url": "https://example.com/blog/css-grid-mastery",
+      "tags": ["css", "layout", "frontend"],
+      "highlight": "Native CSS is more powerful than you remember.",
+      "secondaryUrl": "https://example.com/blog/css-grid-mastery/playground"
+    },
+    {
+      "id": 4,
+      "title": "Next.js App Router Deep Dive",
+      "description": "Server components, streaming, and the mental model shift required to build well with the App Router.",
+      "image": "https://picsum.photos/seed/nextjs/600/400",
+      "size": "small",
+      "category": "blog-posts",
+      "url": "https://example.com/blog/nextjs-app-router",
+      "tags": ["nextjs", "react", "performance"],
+      "highlight": "The App Router demands a new way of thinking.",
+      "secondaryUrl": "https://example.com/blog/nextjs-app-router/examples"
+    },
+    {
+      "id": 5,
+      "title": "Securing Your API",
+      "description": "Rate limiting, JWT hardening, CORS misconfiguration, and the ten mistakes most teams make with backend security.",
+      "image": "https://picsum.photos/seed/apisecurity/600/400",
+      "size": "wide",
+      "category": "blog-posts",
+      "url": "https://example.com/blog/securing-your-api",
+      "tags": ["security", "api", "backend"],
+      "highlight": "Your API is a door — make sure it locks.",
+      "secondaryUrl": "https://example.com/blog/securing-your-api/checklist"
+    },
+    {
+      "id": 6,
+      "title": "Zustand vs Redux in 2025",
+      "description": "A practical side-by-side comparison of global state solutions with real bundle size and DX tradeoffs.",
+      "image": "https://picsum.photos/seed/statemanagement/600/400",
+      "size": "large",
+      "category": "blog-posts",
+      "url": "https://example.com/blog/zustand-vs-redux",
+      "tags": ["state", "react", "architecture"],
+      "highlight": "Pick the right tool, not the popular one.",
+      "secondaryUrl": "https://example.com/blog/zustand-vs-redux/benchmarks"
+    },
+    {
+      "id": 7,
+      "title": "Building a Design System",
+      "description": "Tokens, component APIs, documentation, and the governance model that keeps a design system alive long-term.",
+      "image": "https://picsum.photos/seed/designsystem/600/400",
+      "size": "tall",
+      "category": "blog-posts",
+      "url": "https://example.com/blog/building-design-system",
+      "tags": ["design-system", "ui", "tokens"],
+      "highlight": "A design system is a product, not a project.",
+      "secondaryUrl": "https://example.com/blog/building-design-system/storybook"
+    },
+    {
+      "id": 8,
+      "title": "Web Accessibility in Practice",
+      "description": "Beyond ARIA labels — how to audit, fix, and maintain accessibility across a production application.",
+      "image": "https://picsum.photos/seed/accessibility/600/400",
+      "size": "small",
+      "category": "blog-posts",
+      "url": "https://example.com/blog/web-accessibility",
+      "tags": ["a11y", "ux", "inclusive"],
+      "highlight": "Accessible design is just good design.",
+      "secondaryUrl": "https://example.com/blog/web-accessibility/audit-guide"
+    },
+    {
+      "id": 9,
+      "title": "Testing Without Tears",
+      "description": "A pragmatic testing strategy using Vitest, Testing Library, and Playwright that your team will actually maintain.",
+      "image": "https://picsum.photos/seed/testing/600/400",
+      "size": "wide",
+      "category": "blog-posts",
+      "url": "https://example.com/blog/testing-without-tears",
+      "tags": ["testing", "vitest", "playwright"],
+      "highlight": "Tests you trust are better than tests you tolerate.",
+      "secondaryUrl": "https://example.com/blog/testing-without-tears/template"
+    },
+    {
+      "id": 10,
+      "title": "Deploying on the Edge",
+      "description": "How edge runtimes, CDN caching, and regional deployments can cut your TTFB to under 50ms globally.",
+      "image": "https://picsum.photos/seed/edgedeploy/600/400",
+      "size": "small",
+      "category": "blog-posts",
+      "url": "https://example.com/blog/deploying-on-the-edge",
+      "tags": ["deployment", "edge", "performance"],
+      "highlight": "Speed is a feature your users feel immediately.",
+      "secondaryUrl": "https://example.com/blog/deploying-on-the-edge/benchmarks"
+    },
+    {
+      "id": 11,
+      "title": "Mastering Tailwind CSS",
+      "description": "Utility-first isn't just a styling approach — it's a workflow shift. Here's how to get the most out of Tailwind v4.",
+      "image": "https://picsum.photos/seed/tailwind/600/400",
+      "size": "tall",
+      "category": "blog-posts",
+      "url": "https://example.com/blog/mastering-tailwind",
+      "tags": ["tailwind", "css", "dx"],
+      "highlight": "Stop writing CSS files, start shipping faster.",
+      "secondaryUrl": "https://example.com/blog/mastering-tailwind/snippets"
+    },
+    {
+      "id": 12,
+      "title": "Monorepo with Turborepo",
+      "description": "Structuring a scalable monorepo with shared packages, incremental builds, and a sane CI pipeline using Turborepo.",
+      "image": "https://picsum.photos/seed/monorepo/600/400",
+      "size": "large",
+      "category": "blog-posts",
+      "url": "https://example.com/blog/monorepo-turborepo",
+      "tags": ["monorepo", "turborepo", "architecture"],
+      "highlight": "One repo to rule your entire stack.",
+      "secondaryUrl": "https://example.com/blog/monorepo-turborepo/starter"
+    }
+  ]
+}
