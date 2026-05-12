@@ -1,12 +1,11 @@
 import { Geist, Geist_Mono, JetBrains_Mono } from "next/font/google"
 import { NextIntlClientProvider } from 'next-intl'
 import { getMessages } from 'next-intl/server'
-import type { Locale } from '@/i18n/routing'
 
-import "@arthurreira/ui/styles/globals.css"
-import { ThemeProvider } from "@arthurreira/ui/lib/theme-provider"
+import "@arthurreira/ui/globals.css"
+import { cn } from "@arthurreira/ui"
+import { ThemeProvider } from "@arthurreira/ui/client"
 import { TopBar } from "@/components/organisms"
-import { cn } from "@arthurreira/ui/lib/utils";
 import { Footer } from "@/components/organisms/Footer/Footer"
 import { spring } from "motion"
 

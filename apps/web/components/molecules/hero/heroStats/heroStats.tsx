@@ -1,9 +1,9 @@
 "use client"
 import { useEffect, useState } from "react"
-import { cn } from "@arthurreira/ui/lib/utils"
+import { cn } from "@arthurreira/ui"
+import { useMountedAfter } from "@arthurreira/ui/client"
 import { HeroStatsProps } from "./heroStatsProps"
 import { HeroStat } from "@/components/atoms/hero"
-import { useMountedAfter } from "@arthurreira/ui/hooks/useMountedAfter"
 
 
 export function HeroStats({ stats, className }: HeroStatsProps & { className?: string }) {

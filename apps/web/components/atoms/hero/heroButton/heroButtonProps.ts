@@ -1,4 +1,4 @@
-import type { buttonVariants } from "@arthurreira/ui/components/button"
+import type { buttonVariants } from "@arthurreira/ui"
 
 type ButtonVariantProps = NonNullable<Parameters<typeof buttonVariants>[0]>
 

@@ -1,9 +1,7 @@
 import { PageHeader } from "@/components/atoms/pageHeader"
 import { getTranslations, getLocale } from "next-intl/server"
 import Link from "next/link"
-import { buttonVariants } from "@arthurreira/ui/components/button"
-import { cn } from "@arthurreira/ui/lib/utils"
-import { Badge } from "@arthurreira/ui/components/badge"
+import { Badge, buttonVariants, cn } from "@arthurreira/ui"
 import { ContactInfo } from "@/components/atoms"
 
 export default async function ContactPage() {

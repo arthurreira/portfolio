@@ -2,8 +2,7 @@
 
 import { useRouter, usePathname, Locale, routing } from "@/i18n/routing"
 import { useLocale } from 'next-intl'
-import { Button } from "@arthurreira/ui/components/button"
-import { cn } from "@arthurreira/ui/lib/utils"
+import { Button, cn } from "@arthurreira/ui"
 
 const labels: Record<Locale, string> = {
   en: "EN",

@@ -1,13 +1,14 @@
 {
   "name": "@arthurreira/ui",
-  "version": "0.0.2",
+  "version": "0.1.2",
   "type": "module",
   "private": false,
   "scripts": {
     "lint": "eslint",
     "format": "prettier --write \"**/*.{ts,tsx}\"",
     "typecheck": "tsc --noEmit",
-    "build": "tsup"
+    "build": "tsup && cp src/styles/globals.css dist/globals.css",
+    "prepublishOnly": "pnpm build"
   },
   "dependencies": {
     "@phosphor-icons/react": "^2.1.10",
@@ -15,49 +16,44 @@
     "clsx": "^2.1.1",
     "next-themes": "^0.4.6",
     "radix-ui": "^1.4.3",
-    "react": "^19.2.4",
-    "react-dom": "^19.2.4",
-    "shadcn": "^4.5.0",
     "tailwind-merge": "^3.5.0",
     "tw-animate-css": "^1.4.0",
-    "zod": "^3.25.76",
-    "motion": "^12.38.0"
-
+    "zod": "^3.25.76"
+  },
+  "peerDependencies": {
+    "react": ">=18",
+    "react-dom": ">=18",
+    "motion": ">=12"
   },
   "devDependencies": {
-    "@arthurreira/eslint-config": "workspace:*",
-    "@arthurreira/typescript-config": "workspace:*",
     "@tailwindcss/postcss": "^4.1.18",
     "@turbo/gen": "^2.8.1",
     "@types/node": "^25.1.0",
     "@types/react": "^19.2.10",
     "@types/react-dom": "^19.2.3",
     "eslint": "^9.39.2",
+    "motion": "^12.38.0",
+    "react": "^19.2.4",
+    "react-dom": "^19.2.4",
     "tailwindcss": "^4.1.18",
     "tsup": "^8.5.1",
     "typescript": "^5.9.3"
   },
   "exports": {
-    "./globals.css": {
-      "types": "./src/styles/globals.css.d.ts",
-      "default": "./src/styles/globals.css"
+    ".": {
+      "types": "./dist/index.d.ts",
+      "import": "./dist/index.js",
+      "require": "./dist/index.cjs"
     },
-    "./postcss.config": "./postcss.config.mjs",
-    "./lib/utils": "./dist/lib/utils.js",
-    "./components/button": "./dist/components/button.js",
-    "./components/card": "./dist/components/card.js",
-    "./components/badge": "./dist/components/badge.js",
-    "./components/skeleton": "./dist/components/skeleton.js",
-    "./components/avatar": "./dist/components/avatar.js",
-    "./components/dialog": "./dist/components/dialog.js",
-    "./components/popover": "./dist/components/popover.js",
-    "./components/navbar": "./dist/components/navbar.js",
-    "./lib/theme-provider": "./dist/lib/theme-provider.js",
-    "./components/cardGrid": "./dist/components/cardGrid.js",
-    "./components/select": "./dist/components/select.js",
-    "./lib/cards": "./dist/lib/cards.js",
-    "./hooks/useMountedAfter": "./dist/hooks/useMountedAfter.js",
-    "./components/themeToggle": "./dist/components/themeToggle.js",
-    "./components/pageHeader": "./dist/components/pageHeader.js"
-  }
+    "./client": {
+      "types": "./dist/client.d.ts",
+      "import": "./dist/client.js",
+      "require": "./dist/client.cjs"
+    },
+    "./globals.css": "./dist/globals.css"
+  },
+  "files": [
+    "dist"
+  ],
+  "sideEffects": false
 }

@@ -1,7 +1,7 @@
 "use client"
 import Image from "next/image"
-import { useMountedAfter } from "@arthurreira/ui/hooks/useMountedAfter"
-import { cn } from "@arthurreira/ui/lib/utils"
+import { cn } from "@arthurreira/ui"
+import { useMountedAfter } from "@arthurreira/ui/client"
 import { HeroImageProps } from "./heroImageProps"
 
 export function HeroImage({ src, alt, className }: HeroImageProps & { className?: string }) {
