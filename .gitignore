@@ -38,4 +38,5 @@ npm-debug.log*
 # velite
 .velite/
 
-*.tgz.vscode/
+*.tgz
+.vscode/
