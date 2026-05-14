@@ -1,4 +1,4 @@
-import { cn } from "@arthurreira/ui/lib/utils"
+import { cn } from "@arthurreira/ui"
 import type { MdxPreProps } from './mdxPreProps'
 
 export function MdxPre({ className, children, ...props }: MdxPreProps) {

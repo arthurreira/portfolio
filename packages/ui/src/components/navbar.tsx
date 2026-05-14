@@ -1,7 +1,7 @@
 "use client"
 import * as React from "react"
 import { useEffect, useState } from "react"
-import { useMountedAfter } from "@arthurreira/ui/hooks/useMountedAfter"
+import { useMountedAfter } from "../hooks/useMountedAfter"
 import { cn } from "../lib/utils"
 
 interface NavBarProps {

@@ -3,8 +3,8 @@ import { MDXContent } from '@/components/organisms'
 import { PageHeader } from "@/components/atoms/pageHeader"
 import { getTranslations } from 'next-intl/server'
 import { WeatherWidget } from '@/components/molecules/weather/weatherWidget'
-import { CardGrid } from "@arthurreira/ui/components/cardGrid";
-import {type CardItem } from "@arthurreira/ui/lib/cards"
+import { type CardItem } from "@arthurreira/ui"
+import { CardGrid } from "@arthurreira/ui/client"
 export default async function AboutPage({ params }: { params: Promise<{ locale: string }> }) {
     const { locale } = await params
     const t = await getTranslations("about")

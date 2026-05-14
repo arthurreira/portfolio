@@ -1,5 +1,5 @@
 'use client';
-import { useMountedAfter } from "@arthurreira/ui/hooks/useMountedAfter"
+import { useMountedAfter } from "@arthurreira/ui/client"
 
 import type { CertBadgeGridProps } from './certBadgesProps';
 import { CertBadge } from '../../atoms/certBadge/certBadge';

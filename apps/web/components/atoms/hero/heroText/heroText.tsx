@@ -1,6 +1,6 @@
 "use client"
 
-import { cn } from "@arthurreira/ui/lib/utils"
+import { cn } from "@arthurreira/ui"
 import { HeroTextProps } from "./heroTextProps"
 import { spring } from "motion"
 import { useState, useEffect } from "react"

@@ -1,8 +1,8 @@
 "use client"
-import { cn } from "@arthurreira/ui/lib/utils"
+import { cn } from "@arthurreira/ui"
+import { useMountedAfter } from "@arthurreira/ui/client"
 import { HeroButtonsProps } from "./heroButtonsProps"
 import { HeroButton } from "@/components/atoms/hero"
-import { useMountedAfter } from "@arthurreira/ui/hooks/useMountedAfter"
 
 export function HeroButtons({ buttons, className }: HeroButtonsProps & { className?: string }) {
     const mounted = useMountedAfter()

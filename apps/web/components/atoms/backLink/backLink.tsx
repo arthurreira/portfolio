@@ -1,8 +1,7 @@
 "use client"
 import Link from "next/link"
 import { ArrowLeftIcon } from "@phosphor-icons/react"
-import { buttonVariants } from "@arthurreira/ui/components/button"
-import { cn } from "@arthurreira/ui/lib/utils"
+import { buttonVariants, cn } from "@arthurreira/ui"
 import type { BackLinkProps } from "./backLinkProps"
 
 export function BackLink({ href = "/", label = "Back", className }: BackLinkProps) {

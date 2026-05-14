@@ -1,6 +1,5 @@
 import Link from "next/link"
-import { ThemeToggle } from "@arthurreira/ui/components/themeToggle"
-import { NavBar } from "@arthurreira/ui/components/navbar"
+import { NavBar, ThemeToggle } from "@arthurreira/ui/client"
 type NavItem = {
   label: string
   href: string

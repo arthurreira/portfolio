@@ -1,7 +1,7 @@
 import { projects } from '@arthurreira/content'
 import { PageHeader } from "@/components/atoms/pageHeader"
 import { getTranslations } from 'next-intl/server'
-import { CardGrid } from '@arthurreira/ui/components/cardGrid'
+import { CardGrid } from "@arthurreira/ui/client"
 
 
 function getCardSize(description: string): "small" | "tall" | "wide" | "large" {

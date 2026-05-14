@@ -1,8 +1,7 @@
 "use client"
 import { HeroStatProps } from "./heroStatProps"
 import { ClockIcon, CodeIcon, TranslateIcon } from "@phosphor-icons/react"
-import { Badge } from "@arthurreira/ui/components/badge"
-import { cn } from "@arthurreira/ui/lib/utils"
+import { Badge, cn } from "@arthurreira/ui"
 import { useState, useEffect, useRef } from "react"
 
 const icons = {

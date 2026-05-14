@@ -1,22 +1,10 @@
 "use client"
 import { DragDropProvider } from '@dnd-kit/react';
 import { useState } from "react";
-import { CardItem } from "@arthurreira/ui/lib/cards";
+import { CardItem, Card, CardHeader, CardTitle, CardDescription, CardContent, CardFooter, cn, cardSizes, Badge } from "@arthurreira/ui"
 import { useSortable } from '@dnd-kit/react/sortable'
 import { move } from "@dnd-kit/helpers"
 import { motion} from "motion/react";
-import {
-  Card,
-  CardHeader,
-  CardTitle,
-  CardDescription,
-  CardContent,
-  CardFooter,
-} from "@arthurreira/ui/components/card";
-import { cn } from "@arthurreira/ui/lib/utils"
-import { cardSizes } from "@arthurreira/ui/lib/cards"
-
-import { Badge } from "@arthurreira/ui/components/badge";
 const MotionCard = motion.create(Card);
 export function SortableCardGrid({ cards: initialCards }: { cards: CardItem[] }) {
     const [cards, setCards] = useState(initialCards)

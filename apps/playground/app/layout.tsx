@@ -1,8 +1,8 @@
 import { Geist, Geist_Mono, JetBrains_Mono } from "next/font/google"
 
 import "@arthurreira/ui/globals.css"
-import { ThemeProvider } from "@arthurreira/ui/lib/theme-provider"
-import { cn } from "@arthurreira/ui/lib/utils";
+import { cn } from "@arthurreira/ui"
+import { ThemeProvider } from "@arthurreira/ui/client"
 import { TopBar } from "@/components/navBar";
 
 const fontSans = Geist({
