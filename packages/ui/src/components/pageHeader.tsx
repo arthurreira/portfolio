@@ -1,5 +1,5 @@
 "use client"
-import { cn } from "@arthurreira/ui/lib/utils"
+import { cn } from "../lib/utils"
 
 type PageHeaderProps = {
   title: string
