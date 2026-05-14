@@ -17,7 +17,7 @@
     "lib": "@arthurreira/ui/lib",
     "ui": "@arthurreira/ui/components"
   },
-  "rtl": false,
-  "menuColor": "default",
-  "menuAccent": "subtle"
+  "registries": {
+  "@arthurreira": "https://ui.arthurreira.dev/r/{name}.json"
+}
 }

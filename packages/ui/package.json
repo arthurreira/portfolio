@@ -2,16 +2,14 @@
   "name": "@arthurreira/ui",
   "version": "0.1.4",
   "type": "module",
-  "private": false,
+  "private": true,
   "scripts": {
     "lint": "eslint",
     "format": "prettier --write \"**/*.{ts,tsx}\"",
-    "typecheck": "tsc --noEmit",
-    "build": "tsup && cp src/styles/globals.css dist/globals.css && cp src/styles/tokens.css dist/tokens.css",
-    "postinstall": "node ./scripts/postinstall.js",
-    "prepublishOnly": "pnpm build"
+    "typecheck": "tsc --noEmit"
   },
   "dependencies": {
+    "@base-ui/react": "^1.4.1",
     "@phosphor-icons/react": "^2.1.10",
     "class-variance-authority": "^0.7.1",
     "clsx": "^2.1.1",
@@ -22,9 +20,9 @@
     "zod": "^3.25.76"
   },
   "peerDependencies": {
+    "motion": ">=12",
     "react": ">=18",
-    "react-dom": ">=18",
-    "motion": ">=12"
+    "react-dom": ">=18"
   },
   "devDependencies": {
     "@tailwindcss/postcss": "^4.1.18",
@@ -37,26 +35,13 @@
     "react": "^19.2.4",
     "react-dom": "^19.2.4",
     "tailwindcss": "^4.1.18",
-    "tsup": "^8.5.1",
     "typescript": "^5.9.3"
   },
   "exports": {
-    ".": {
-      "types": "./dist/index.d.ts",
-      "import": "./dist/index.js",
-      "require": "./dist/index.cjs"
-    },
-    "./client": {
-      "types": "./dist/client.d.ts",
-      "import": "./dist/client.js",
-      "require": "./dist/client.cjs"
-    },
-    "./globals.css": "./dist/globals.css",
-    "./tokens.css": "./dist/tokens.css"
-  },
-  "files": [
-    "dist",
-    "scripts"
-  ],
+     ".": "./src/index.ts",
+    "./client": "./src/client.ts",
+    "./globals.css": "./src/styles/globals.css",
+    "./tokens.css": "./src/styles/tokens.css"
+},
   "sideEffects": false
 }
