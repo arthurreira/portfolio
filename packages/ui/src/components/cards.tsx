@@ -6,7 +6,7 @@ import { useState } from "react"
 import {
   Example,
   ExampleWrapper,
-} from "@arthurreira/ui/components/example"
+} from "./example"
 import {
   AlertDialog,
   AlertDialogAction,
@@ -18,16 +18,16 @@ import {
   AlertDialogMedia,
   AlertDialogTitle,
   AlertDialogTrigger,
-} from "@arthurreira/ui/components/alert-dialog"
+} from "./alert-dialog"
 import {
   Avatar,
   AvatarFallback,
   AvatarGroup,
   AvatarImage,
-} from "@arthurreira/ui/components/avatar"
-import { Badge } from "@arthurreira/ui/components/badge"
-import { Button } from "@arthurreira/ui/components/button"
-import { ButtonGroup } from "@arthurreira/ui/components/button-group"
+} from "./avatar"
+import { Badge } from "./badge"
+import { Button } from "./button"
+import { ButtonGroup } from "./button-group"
 import {
   Card,
   CardAction,
@@ -36,8 +36,8 @@ import {
   CardFooter,
   CardHeader,
   CardTitle,
-} from "@arthurreira/ui/components/card"
-import { Checkbox } from "@arthurreira/ui/components/checkbox"
+} from "./card"
+import { Checkbox } from "./checkbox"
 import {
   Combobox,
   ComboboxContent,
@@ -45,7 +45,7 @@ import {
   ComboboxInput,
   ComboboxItem,
   ComboboxList,
-} from "@arthurreira/ui/components/combobox"
+} from "./combobox"
 import {
   DropdownMenu,
   DropdownMenuCheckboxItem,
@@ -62,7 +62,7 @@ import {
   DropdownMenuSubContent,
   DropdownMenuSubTrigger,
   DropdownMenuTrigger,
-} from "@arthurreira/ui/components/dropdown-menu"
+} from "./dropdown-menu"
 import {
   Empty,
   EmptyContent,
@@ -70,7 +70,7 @@ import {
   EmptyHeader,
   EmptyMedia,
   EmptyTitle,
-} from "@arthurreira/ui/components/empty"
+} from "./empty"
 import {
   Field,
   FieldContent,
@@ -81,8 +81,8 @@ import {
   FieldSeparator,
   FieldSet,
   FieldTitle,
-} from "@arthurreira/ui/components/field"
-import { Input } from "@arthurreira/ui/components/input"
+} from "./field"
+import { Input } from "./input"
 import {
   InputGroup,
   InputGroupAddon,
@@ -90,7 +90,7 @@ import {
   InputGroupInput,
   InputGroupText,
   InputGroupTextarea,
-} from "@arthurreira/ui/components/input-group"
+} from "./input-group"
 import {
   Item,
   ItemActions,
@@ -98,8 +98,8 @@ import {
   ItemDescription,
   ItemMedia,
   ItemTitle,
-} from "@arthurreira/ui/components/item"
-import { Label } from "@arthurreira/ui/components/label"
+} from "./item"
+import { Label } from "./label"
 import {
   Popover,
   PopoverContent,
@@ -107,11 +107,11 @@ import {
   PopoverHeader,
   PopoverTitle,
   PopoverTrigger,
-} from "@arthurreira/ui/components/popover"
+} from "./popover"
 import {
   RadioGroup,
   RadioGroupItem,
-} from "@arthurreira/ui/components/radio-group"
+} from "./radio-group"
 import {
   Select,
   SelectContent,
@@ -119,8 +119,8 @@ import {
   SelectItem,
   SelectTrigger,
   SelectValue,
-} from "@arthurreira/ui/components/select"
-import { Separator } from "@arthurreira/ui/components/separator"
+} from "./select"
+import { Separator } from "./separator"
 import {
   Sheet,
   SheetClose,
@@ -130,16 +130,16 @@ import {
   SheetHeader,
   SheetTitle,
   SheetTrigger,
-} from "@arthurreira/ui/components/sheet"
-import { Slider } from "@arthurreira/ui/components/slider"
-import { Spinner } from "@arthurreira/ui/components/spinner"
-import { Switch } from "@arthurreira/ui/components/switch"
-import { Textarea } from "@arthurreira/ui/components/textarea"
+} from "./sheet"
+import { Slider } from "./slider"
+import { Spinner } from "./spinner"
+import { Switch } from "./switch"
+import { Textarea } from "./textarea"
 import {
   Tooltip,
   TooltipContent,
   TooltipTrigger,
-} from "@arthurreira/ui/components/tooltip"
+} from "./tooltip"
 import { MinusIcon, PlusIcon, ArrowLeftIcon, CaretDownIcon, EnvelopeIcon, ArchiveIcon, ClockIcon, CalendarPlusIcon, ListPlusIcon, TagIcon, TrashIcon, ArrowRightIcon, SpeakerSlashIcon, CheckIcon, UserMinusIcon, ShareIcon, CopyIcon, WarningIcon, RobotIcon, MagnifyingGlassIcon, InfoIcon, StarIcon, MicrophoneIcon, ArrowUpIcon, BluetoothIcon, DotsThreeVerticalIcon, FileIcon, FolderIcon, FolderOpenIcon, CodeIcon, DotsThreeOutlineIcon, FloppyDiskIcon, DownloadIcon, EyeIcon, LayoutIcon, PaletteIcon, SunIcon, MoonIcon, MonitorIcon, QuestionIcon, FileTextIcon, SignOutIcon, BagIcon } from "@phosphor-icons/react"
 
 export default function CoverExample() {

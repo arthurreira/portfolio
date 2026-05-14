@@ -1,4 +1,4 @@
-import { cn } from "@arthurreira/ui/lib/utils"
+import { cn } from "../lib/utils"
 import { SpinnerIcon } from "@phosphor-icons/react"
 
 function Spinner({ className, ...props }: React.ComponentProps<"svg">) {
