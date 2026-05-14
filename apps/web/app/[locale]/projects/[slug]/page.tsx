@@ -1,6 +1,6 @@
 import { projects } from '@arthurreira/content'
 import { MDXContent } from '@/components/organisms'
-import { Badge } from '@arthurreira/ui/components/badge'
+import { Badge } from "@arthurreira/ui"
 
 export default async function ProjectDetailPage({ params }: { params: Promise<{ locale: string; slug: string }> }) {
     const { locale, slug } = await params

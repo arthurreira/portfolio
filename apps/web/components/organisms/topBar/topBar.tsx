@@ -2,8 +2,7 @@
 import Link from "next/link"
 import { GithubLogoIcon } from "@phosphor-icons/react"
 import { LanguageSwitcher } from "@/components/atoms/topBar"
-import { ThemeToggle } from "@arthurreira/ui/components/themeToggle"
-import { NavBar } from "@arthurreira/ui/components/navbar"
+import { NavBar, ThemeToggle } from "@arthurreira/ui/client"
 
 
 export function TopBar() {

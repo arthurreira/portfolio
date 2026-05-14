@@ -1,8 +1,8 @@
 "use client"
 
 import { useState } from "react";
-import { type CardItem } from "@arthurreira/ui/lib/cards"
-import { PageHeader } from "@arthurreira/ui/components/pageHeader"
+import { type CardItem } from "@arthurreira/ui"
+import { PageHeader, Select, SelectContent, SelectGroup, SelectItem, SelectLabel, SelectTrigger, SelectValue } from "@arthurreira/ui/client"
 import golfBalls from "@/data/cards/golf-balls.json";
 import teamMembers from "@/data/cards/team-members.json";
 import features from "@/data/cards/features.json";
@@ -11,7 +11,6 @@ import comments from "@/data/cards/comments.json";
 import likes from "@/data/cards/likes.json";
 import music from "@/data/cards/music.json";
 import anything from "@/data/cards/anything.json";
-import { Select, SelectContent, SelectGroup, SelectItem, SelectLabel, SelectTrigger, SelectValue } from "@arthurreira/ui/components/select";
 import { SortableCardGrid } from "@/components/SortableCardGrid";
 const categories = {
   "golf-balls": golfBalls.cards,

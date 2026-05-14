@@ -2,7 +2,7 @@
 
 import { useTheme } from "next-themes"
 import { SunIcon, MoonIcon } from "@phosphor-icons/react"
-import { Button } from "@arthurreira/ui/components/button"
+import { Button } from "@arthurreira/ui"
 
 export function ThemeToggle() {
   const { theme, setTheme } = useTheme()

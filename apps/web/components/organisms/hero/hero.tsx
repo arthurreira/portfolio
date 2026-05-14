@@ -1,7 +1,7 @@
 import { HeroButtons, HeroCards, HeroStats } from "@/components/molecules"
 import { HeroImage, HeroText } from "@/components/atoms"
 import { getTranslations, getLocale } from "next-intl/server"
-import { CardGrid } from "@arthurreira/ui/components/cardGrid"
+import { CardGrid } from "@arthurreira/ui/client"
 export async function Hero() {
   const t = await getTranslations("hero")
   const locale = await getLocale()

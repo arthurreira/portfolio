@@ -1,6 +1,5 @@
 import type { FeaturedProjectCardProps } from './featuredProjectCardProps'
-import { Card } from "@arthurreira/ui/components/card"
-import { Badge } from "@arthurreira/ui/components/badge"
+import { Badge, Card } from "@arthurreira/ui"
 import Image from "next/image"
 import Link from 'next/link'
 

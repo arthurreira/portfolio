@@ -1,4 +1,4 @@
-import { cn } from "@arthurreira/ui/lib/utils"
+import { cn } from "@arthurreira/ui"
 import type { MdxUlProps } from './mdxUlProps'
 
 export function MdxUl({ className, children, ...props }: MdxUlProps) {

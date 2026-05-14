@@ -1,4 +1,4 @@
-import { Card, CardContent, CardFooter, CardHeader, CardTitle } from '@arthurreira/ui/components/card'
+import { Card, CardContent, CardFooter, CardHeader, CardTitle } from "@arthurreira/ui"
 import { WeatherMiniCardProps } from './weatherMiniCardProps'
 
 

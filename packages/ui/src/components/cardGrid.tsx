@@ -9,8 +9,8 @@ import {
   CardDescription,
   CardContent,
   CardFooter,
-} from "@arthurreira/ui/components/card";
-import { cn } from "@arthurreira/ui/lib/utils"
+} from "./card";
+import { cn } from "../lib/utils"
 
 import { cardSizes } from "../lib/cards"
 import { Badge } from "./badge";

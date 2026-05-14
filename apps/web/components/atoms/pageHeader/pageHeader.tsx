@@ -1,5 +1,5 @@
 "use client"
-import { cn } from "@arthurreira/ui/lib/utils"
+import { cn } from "@arthurreira/ui"
 import { PageHeaderProps } from './pageHeaderProps'
 import { BackLink } from "@/components/atoms/backLink"
 

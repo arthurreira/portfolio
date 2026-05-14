@@ -1,4 +1,4 @@
-import { cn } from "@arthurreira/ui/lib/utils"
+import { cn } from "@arthurreira/ui"
 import type { MdxPProps } from './mdxPProps'
 
 export function MdxP({ className, children, ...props }: MdxPProps) {

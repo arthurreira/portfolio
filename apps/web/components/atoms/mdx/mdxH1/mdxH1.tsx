@@ -1,4 +1,4 @@
-import { cn } from "@arthurreira/ui/lib/utils"
+import { cn } from "@arthurreira/ui"
 import type { MdxH1Props } from './mdxH1Props'
 
 export function MdxH1({ className, children, ...props }: MdxH1Props) {
