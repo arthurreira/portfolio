@@ -8,11 +8,11 @@ import {
   CardDescription,
   CardContent,
   CardFooter,
-} from "@arthurreira/ui/components/card"
-import { cn } from "@arthurreira/ui/lib/utils"
-import { type CardItem, cardSizes } from "@arthurreira/ui/components/cards"
+} from "../card"
+import { cn } from "../../lib/utils"
+import { type CardItem, cardSizes } from "../cards"
 
-import { Badge } from "@arthurreira/ui/components/badge";
+import { Badge } from "../badge";
 const MotionCard = motion.create(Card);
 
 export function CardGrid({ cards, linkLabel = "View", secondaryLinkLabel = "Source" }: { cards: CardItem[], linkLabel?: string, secondaryLinkLabel?: string }) {
