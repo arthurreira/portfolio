@@ -19,8 +19,11 @@
         "name": "next"
       }
     ],
+    "allowArbitraryExtensions": true,
     "paths": {
-      "@/*": ["./*"]
+      "@/*": ["./*"],
+      "@arthurreira/ui/globals.css": ["../../packages/ui/src/styles/globals.css"],
+      "@arthurreira/ui/*": ["../../packages/ui/src/*"]
     }
   },
   "include": [
