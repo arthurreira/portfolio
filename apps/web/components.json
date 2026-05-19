@@ -16,5 +16,8 @@
     "lib": "@/lib",
     "utils": "@arthurreira/ui/lib/utils",
     "ui": "@arthurreira/ui/components"
+  },
+  "registries": {
+    "@arthurreira": "https://ui.arthurreira.dev/r/{name}.json"
   }
 }

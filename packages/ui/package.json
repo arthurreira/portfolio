@@ -38,10 +38,19 @@
     "typescript": "^5.9.3"
   },
   "exports": {
-     ".": "./src/index.ts",
+    ".": "./src/index.ts",
     "./client": "./src/client.ts",
-    "./globals.css": "./src/styles/globals.css",
-    "./tokens.css": "./src/styles/tokens.css"
-},
-  "sideEffects": false
+    "./globals.css": {
+      "types": "./src/styles/globals.css.d.ts",
+      "default": "./src/styles/globals.css"
+    },
+    "./tokens.css": {
+      "types": "./src/styles/tokens.css.d.ts",
+      "default": "./src/styles/tokens.css"
+    },
+    "./components/*": "./src/components/*.tsx",
+    "./lib/*": "./src/lib/*.ts",
+    "./hooks/*": "./src/hooks/*.ts"
+  },
+  "sideEffects": ["**/*.css"]
 }

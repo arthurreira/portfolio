@@ -4,11 +4,11 @@ import { getMessages } from 'next-intl/server'
 
 import "@arthurreira/ui/globals.css"
 import { cn } from "@arthurreira/ui"
-import { ThemeProvider } from "@arthurreira/ui/client"
 import { TopBar } from "@/components/organisms"
 import { Footer } from "@/components/organisms/Footer/Footer"
 import { spring } from "motion"
-
+import { Analytics } from '@arthurreira/analytics/client'
+import { ThemeProvider } from "@arthurreira/ui/client"
 const fontSans = Geist({
   subsets: ["latin"],
   variable: "--font-sans",
@@ -38,7 +38,12 @@ export default async function RootLayout({
         <NextIntlClientProvider messages={messages}>
           <ThemeProvider>
             <TopBar  />
+             <Analytics 
+                apiKey={process.env.NEXT_PUBLIC_ANALYTICS_KEY!}
+                apiUrl={process.env.NEXT_PUBLIC_ANALYTICS_URL!}
+              />
             {children}
+            
             <Footer />
 
           </ThemeProvider>

@@ -4,6 +4,7 @@ import "@arthurreira/ui/globals.css"
 import { cn } from "@arthurreira/ui"
 import { ThemeProvider } from "@arthurreira/ui/client"
 import { TopBar } from "@/components/navBar";
+import { Analytics } from '@af/analytics/client'
 
 const fontSans = Geist({
   subsets: ["latin"],
@@ -28,6 +29,10 @@ export default function RootLayout({
         <ThemeProvider>
 
           <TopBar />
+                 <Analytics 
+                apiKey={process.env.NEXT_PUBLIC_ANALYTICS_KEY!}
+                apiUrl={process.env.NEXT_PUBLIC_ANALYTICS_URL!}
+              />
           {children}
 
         </ThemeProvider>
