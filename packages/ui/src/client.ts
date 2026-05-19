@@ -10,3 +10,4 @@ export * from './components/pageHeader'
 export * from './components/popover'
 export * from './components/select'
 export * from './components/themeToggle'
+export { ThemeProvider } from "./lib/theme-provider"
