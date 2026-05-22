@@ -12,7 +12,7 @@
     "typecheck": "tsc --noEmit"
   },
   "dependencies": {
-    "@arthurreira/analytics": "^0.3.0",
+    "@arthurreira/analytics": "^0.4.0",
     "@arthurreira/content": "workspace:*",
     "@arthurreira/ui": "workspace:*",
     "@phosphor-icons/react": "^2.1.10",
