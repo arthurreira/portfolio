@@ -30,8 +30,8 @@ importers:
   apps/playground:
     dependencies:
       '@arthurreira/analytics':
-        specifier: ^0.6.0
-        version: 0.6.0(next@16.1.7(@babel/core@7.29.0)(react-dom@19.2.4(react@19.2.4))(react@19.2.4))(react@19.2.4)
+        specifier: ^0.7.0
+        version: 0.7.0(next@16.1.7(@babel/core@7.29.0)(react-dom@19.2.4(react@19.2.4))(react@19.2.4))(react@19.2.4)
       '@arthurreira/ui':
         specifier: workspace:*
         version: link:../../packages/ui
@@ -130,8 +130,8 @@ importers:
   apps/web:
     dependencies:
       '@arthurreira/analytics':
-        specifier: ^0.6.0
-        version: 0.6.0(next@16.1.6(react-dom@19.2.4(react@19.2.4))(react@19.2.4))(react@19.2.4)
+        specifier: ^0.7.0
+        version: 0.7.0(next@16.1.6(react-dom@19.2.4(react@19.2.4))(react@19.2.4))(react@19.2.4)
       '@arthurreira/content':
         specifier: workspace:*
         version: link:../../packages/content
@@ -311,8 +311,8 @@ packages:
     resolution: {integrity: sha512-UrcABB+4bUrFABwbluTIBErXwvbsU/V7TZWfmbgJfbkwiBuziS9gxdODUyuiecfdGQ85jglMW6juS3+z5TsKLw==}
     engines: {node: '>=10'}
 
-  '@arthurreira/analytics@0.6.0':
-    resolution: {integrity: sha512-tB5+Khpo8x73dFuXGJDeN5o+LrLysa61vy6MG8LKX9ro+uQ06avdflzz+NeebU1lvAw/fxuGDdkV82EuW0lDrA==}
+  '@arthurreira/analytics@0.7.0':
+    resolution: {integrity: sha512-XMbqXtBKKS0cJNcU4C8dhZ4tQyi/9bvafVVTs1A4LRJIu3es10h7bUq+HiADZFd8BJOvAnv1IO9O9cMp/czYJw==}
     peerDependencies:
       next: ^14.0.0 || ^15.0.0 || ^16.0.0
       react: ^18.0.0 || ^19.0.0
@@ -5948,12 +5948,12 @@ snapshots:
 
   '@alloc/quick-lru@5.2.0': {}
 
-  '@arthurreira/analytics@0.6.0(next@16.1.6(react-dom@19.2.4(react@19.2.4))(react@19.2.4))(react@19.2.4)':
+  '@arthurreira/analytics@0.7.0(next@16.1.6(react-dom@19.2.4(react@19.2.4))(react@19.2.4))(react@19.2.4)':
     dependencies:
       next: 16.1.6(react-dom@19.2.4(react@19.2.4))(react@19.2.4)
       react: 19.2.4
 
-  '@arthurreira/analytics@0.6.0(next@16.1.7(@babel/core@7.29.0)(react-dom@19.2.4(react@19.2.4))(react@19.2.4))(react@19.2.4)':
+  '@arthurreira/analytics@0.7.0(next@16.1.7(@babel/core@7.29.0)(react-dom@19.2.4(react@19.2.4))(react@19.2.4))(react@19.2.4)':
     dependencies:
       next: 16.1.7(@babel/core@7.29.0)(react-dom@19.2.4(react@19.2.4))(react@19.2.4)
       react: 19.2.4
