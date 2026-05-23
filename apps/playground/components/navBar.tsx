@@ -13,6 +13,7 @@ export function TopBar() {
     { label: "Home", href: "/" },
     { label: "Sortable", href: "/sortable" },
     { label: "Cards", href: "/cards" },
+    { label: "Number Reveal", href: "/number-reveal" },
   ]
   return (
     <NavBar href="/" label="arthurreira.dev - Playground">
@@ -33,4 +34,3 @@ export function TopBar() {
     </NavBar>
   )
 }
-
