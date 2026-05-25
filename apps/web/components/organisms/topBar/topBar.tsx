@@ -3,6 +3,7 @@ import Link from "next/link"
 import { GithubLogoIcon } from "@phosphor-icons/react"
 import { LanguageSwitcher } from "@/components/atoms/topBar"
 import { NavBar, ThemeToggle } from "@arthurreira/ui/client"
+import { ViewerCount } from "@/components/atoms/viewerCount/viewerCount"
 
 
 export function TopBar() {
@@ -11,6 +12,7 @@ export function TopBar() {
 
   return (
     <NavBar href="/" label="arthurreira.dev">
+      <ViewerCount />
 
       <LanguageSwitcher />
       <ThemeToggle />
