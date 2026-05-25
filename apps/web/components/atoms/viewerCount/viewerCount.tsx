@@ -22,6 +22,7 @@ export function ViewerCount({ className }: ViewerCountProps) {
         if (++attempts < 20) setTimeout(connect, 300)
         return
       }
+      if (!WS_URL || !API_KEY) return
       ws = new WebSocket(`${WS_URL}?api_key=${API_KEY}&session_id=${sessionId}`)
       ws.onmessage = (e) => {
         try {
