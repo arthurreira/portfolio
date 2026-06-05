@@ -7,6 +7,7 @@ import { useRouter, usePathname as useIntlPathname, routing } from "@/i18n/routi
 import { useLocale, useTranslations } from "next-intl"
 import { NavLink } from "@/components/atoms/nav-link"
 import { PillGroup } from "@/components/molecules/pill-group"
+import { Hairline } from "../atoms/hairline"
 
 const NAV_HREFS = ["/projects", "/about", "/contact"] as const
 
@@ -98,7 +99,7 @@ export function SiteNav() {
   }
 
   return (
-    <header className="w-full bg-background font-ui" style={{ position: "relative", zIndex: 10 }}>
+    <header className="w-full bg-background font-ui border-b border-hairline " style={{ position: "relative", zIndex: 10 }}>
       <div className="t-nav">
         {/* Left — logo */}
         <NavLink href="/" className="font-bold tracking-[-0.01em] shrink-0">
@@ -124,8 +125,6 @@ export function SiteNav() {
         </div>
       </div>
 
-      {/* Hairline — starts after ticker strip */}
-      <div className="t-hairline" />
     </header>
   )
 }
