@@ -29,3 +29,23 @@ Internationalisation runs through `next-intl` with three locales (EN, PT-BR, FI)
 ## What I learned
 
 Building your own design system — even a small one — forces every decision to be explicit. There's no hiding behind framework defaults. I learned how Tailwind's `@theme` and CSS custom properties interact, how to publish a package inside a monorepo without a registry, and how far you can push a content-as-code approach before it becomes friction. The biggest lesson: structure the monorepo for change, not for the current use case.
+
+
+## Architecture
+
+```
+arthurreira-dev/
+  apps/
+    web/           # Next.js 15 portfolio site
+  packages/
+    content/       # Velite MDX — projects, about pages
+    ui/            # @arthurreira/ui — design tokens, shared components
+```
+
+## Tech Stack
+
+- **Framework:** Next.js 15 (App Router)
+- **Content:** Velite (type-safe MDX)
+- **i18n:** next-intl (EN / PT-BR / FI)
+- **Monorepo:** Turborepo + pnpm workspaces
+- **Design system:** @arthurreira/ui (Tailwind v4 + shadcn/ui)

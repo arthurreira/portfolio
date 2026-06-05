@@ -27,3 +27,18 @@ Dark mode toggles with the `d` hotkey, consistent with the rest of the ecosystem
 ## What I learned
 
 The main insight was about monorepo design token sharing: the pattern works well until you need one app to diverge from the system. AF Weather has slightly different spacing needs than the portfolio, and working out how to override tokens without breaking the shared package taught me where the boundaries of a shared system should live. API design also came up — structuring the weather endpoint so it could serve both the static pages and any future client without rewriting it.
+
+
+## Cities
+
+**Finland:** Helsinki · Tampere · Oulu
+
+**Brazil:** São Paulo · Fortaleza · Curitiba
+
+## Tech Stack
+
+- **Framework:** Next.js 15 (App Router, Server Components)
+- **Data:** Open-Meteo API (free, no API key)
+- **Monorepo:** Turborepo + pnpm workspaces
+- **Shared package:** @arthurreira/ui design tokens
+- **Deployment:** [weather.arthurreira.dev](https://weather.arthurreira.dev)

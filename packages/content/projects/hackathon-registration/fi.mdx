@@ -24,3 +24,27 @@ This is not really a hackathon registration tool — it's an infrastructure demo
 ## What I learned
 
 The GitHub Terraform provider has a steeper learning curve than the AWS or Azure providers because GitHub's API is less predictable — rate limits, repository creation delays, and Pages configuration timing all require careful `depends_on` chains to work reliably. Writing Terraform that provisions other CI/CD pipelines taught me how infrastructure-as-code can manage not just servers but the entire deployment process.
+
+
+## What Gets Provisioned
+
+One `terraform apply` creates:
+1. GitHub repository (public, named)
+2. GitHub Pages enabled via API
+3. CNAME file for custom subdomain (e.g. `register.arthurreira.dev`)
+4. GitHub Actions workflow for automated deployment on every push
+
+## The Three Sites
+
+| Site | URL | Purpose |
+|---|---|---|
+| hackathon-registration | register.arthurreira.dev | This site |
+| hackathon-schedule | schedule.arthurreira.dev | Event schedule |
+| hackathon-projects | projects.arthurreira.dev | Project showcase |
+
+## Tech Stack
+
+- **IaC:** Terraform (GitHub provider)
+- **CI/CD:** GitHub Actions (auto-generated)
+- **Hosting:** GitHub Pages
+- **DNS:** Custom subdomains

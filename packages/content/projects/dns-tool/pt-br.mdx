@@ -30,3 +30,18 @@ The DNS resolution runs on an AWS Lambda function rather than the Next.js server
 ## What I learned
 
 The main engineering challenge was latency — DNS resolution involves unpredictable network round-trips and Lambda cold-start penalties. Reducing that required understanding Lambda provisioned concurrency, the trade-off between keeping functions warm and cost, and how to structure the API route to return a loading state immediately while resolution completes.
+
+
+## Features
+
+- Query A, AAAA, MX, TXT, CNAME, NS records for any domain
+- Query history panel — compare results across domains without re-typing
+- Structured JSON-style result display
+- Error states per failure type (NXDOMAIN, SERVFAIL, timeout)
+- Deployed at [dns.arthurreira.dev](https://dns.arthurreira.dev)
+
+## Tech Stack
+
+- **Frontend:** Next.js, TypeScript, shadcn/ui, Tailwind CSS
+- **Backend:** AWS Lambda (serverless DNS resolution)
+- **Deployment:** Vercel (frontend) + AWS (Lambda)

@@ -25,3 +25,18 @@ The project lives inside the same Turborepo monorepo as the portfolio, consuming
 ## What I learned
 
 The main insight was about monorepo design token sharing: the pattern works well until you need one app to diverge from the system. Working out how to override tokens without breaking the shared package taught me where the boundaries of a shared system should live.
+
+
+## Cities
+
+**Finland:** Helsinki · Tampere · Oulu
+
+**Brazil:** São Paulo · Fortaleza · Curitiba
+
+## Tech Stack
+
+- **Framework:** Next.js 15 (App Router, Server Components)
+- **Data:** Open-Meteo API (free, no API key)
+- **Monorepo:** Turborepo + pnpm workspaces
+- **Shared package:** @arthurreira/ui design tokens
+- **Deployment:** [weather.arthurreira.dev](https://weather.arthurreira.dev)

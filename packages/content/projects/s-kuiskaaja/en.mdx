@@ -29,3 +29,19 @@ The backend is a PHP script running on a local WampServer instance. It receives 
 ## What I learned
 
 This project was the first time I had to think about three completely separate layers at once: hardware (wiring, sensor protocols, firmware), a backend data pipeline (HTTP POST, PHP, MySQL), and a frontend display — all working together. Debugging was harder than any pure software project because a bug could live in the circuit, the firmware, the PHP, or the SQL. It built real respect for IoT development and the importance of logging raw sensor values before doing anything with them.
+
+
+## Hardware & Pipeline
+
+1. **ESP32** reads BME280 (temp/humidity/pressure) + DHT11 (temp/humidity) every 30s
+2. Firmware (Arduino IDE / C++) POSTs JSON to PHP endpoint
+3. **PHP** validates and writes to **MySQL** table
+4. **Dashboard** auto-refreshes every 30s, queries MySQL, renders charts
+5. Local development via **WampServer**
+
+## Tech Stack
+
+- **Microcontroller:** ESP32 + BME280 + DHT11 sensors
+- **Firmware:** Arduino IDE (C++)
+- **Backend:** PHP + MySQL (WampServer)
+- **Frontend:** JavaScript + MDB Bootstrap
