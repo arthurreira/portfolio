@@ -68,6 +68,11 @@
       "wind": "Wind"
     }
   },
+  "nav": {
+    "projects": "Projects",
+    "about":    "About",
+    "contact":  "Contact"
+  },
   "topBar": {
     "darkModeHint": "Press d to toggle dark mode",
     "lightModeHint": "Press d to toggle light mode",

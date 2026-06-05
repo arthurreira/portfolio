@@ -67,6 +67,11 @@
       "wind": "Tuuli"
     }
   },
+  "nav": {
+    "projects": "Projektit",
+    "about":    "Tietoa",
+    "contact":  "Ota yhteyttä"
+  },
   "topBar": {
     "darkModeHint": "Paina d vaihtaaksesi tumman tilan",
     "lightModeHint": "Paina d vaihtaaksesi vaalean tilan",

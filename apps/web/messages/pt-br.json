@@ -67,6 +67,11 @@
       "wind": "Vento"
     }
   },
+  "nav": {
+    "projects": "Projetos",
+    "about":    "Sobre",
+    "contact":  "Contato"
+  },
   "topBar": {
     "darkModeHint": "Pressione d para alternar o modo escuro",
     "lightModeHint": "Pressione d para alternar o modo claro",

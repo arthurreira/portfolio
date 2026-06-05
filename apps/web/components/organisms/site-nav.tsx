@@ -4,15 +4,11 @@ import { useState, useEffect } from "react"
 import { flushSync } from "react-dom"
 import { usePathname } from "next/navigation"
 import { useRouter, usePathname as useIntlPathname, routing } from "@/i18n/routing"
-import { useLocale } from "next-intl"
+import { useLocale, useTranslations } from "next-intl"
 import { NavLink } from "@/components/atoms/nav-link"
 import { PillGroup } from "@/components/molecules/pill-group"
 
-const NAV_LINKS = [
-  { href: "/projects", label: "Projects" },
-  { href: "/about",    label: "About"    },
-  { href: "/contact",  label: "Contact"  },
-]
+const NAV_HREFS = ["/projects", "/about", "/contact"] as const
 
 const FLAGS = [
   { key: "brasil", label: "Brasil" },
@@ -48,10 +44,17 @@ function LangSwitcher({
 }
 
 export function SiteNav() {
-  const pathname        = usePathname()
+  const pathname        = usePathname()   // full path incl. locale prefix e.g. /fi/projects
   const router          = useRouter()
-  const intlPathname    = useIntlPathname()
+  const intlPathname    = useIntlPathname() // path without locale e.g. /projects
   const currentLocale   = useLocale()
+  const t               = useTranslations("nav")
+
+  const NAV_LINKS = [
+    { href: "/projects", label: t("projects") },
+    { href: "/about",    label: t("about")    },
+    { href: "/contact",  label: t("contact")  },
+  ]
 
   const [flag, setFlag] = useState("brasil")
   const [mode, setMode] = useState("dark")
@@ -103,7 +106,7 @@ export function SiteNav() {
         {/* Right — page links */}
         <nav className="t-links">
           {NAV_LINKS.map(({ href, label }) => (
-            <NavLink key={href} href={href} active={pathname.includes(href)}>
+            <NavLink key={href} href={href} active={intlPathname.startsWith(href)}>
               {label}
             </NavLink>
           ))}
