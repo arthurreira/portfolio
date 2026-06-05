@@ -1,21 +1,28 @@
 ---
 title: "Muistipeli"
-description: "Klassinen muistipeli, joka on toteutettu HTML:llä, CSS:llä, JavaScriptillä ja MDB Bootstrapilla."
-createdAt: "2024-02-12"
+description: "Klassinen muistipeli — HTML, CSS, JavaScript ja MDB Bootstrap, kouluprojektina linuxedu-palvelimelle."
+createdAt: "2023-02-12"
 featured: false
+role: "solo"
+highlight: "School card-matching game with timer, hosted on a Linux educational server"
 techStack:
   - "HTML"
   - "CSS"
   - "JavaScript"
-  - "Bootstrap"
+  - "MDB Bootstrap"
 githubRepo: "https://github.com/arthurreira/muistipeli"
 url: "https://github.com/arthurreira/muistipeli"
-status: "done"
-highlight: ""
-coverImage: "./cover.png"
+status: "school"
 ---
 
 [![](/images/Projects/Muistipeli/Muistipelietusivu.png)](https://github.com/arthurreira/muistipeli)
 
-**Muistipeli** on korttien yhdistämispeli, joka on rakennettu **HTML:llä, CSS:llä ja JavaScriptillä**.
-Se sisältää sulavat animaatiot, ajastimen ja täysin responsiivisen käyttöliittymän **MDB Bootstrapin** ansiosta.
+## What I built
+
+A browser-based memory card game built as a school assignment. The player flips cards two at a time looking for matching pairs. A live timer tracks how long each game takes and a move counter records efficiency — both reset on restart. The layout is fully responsive using MDB Bootstrap's grid.
+
+The game was hosted on `linuxedu.koulutus.kynet.fi`, the school's Linux server, which meant learning basic server file structure and deployment over SSH rather than just running it locally.
+
+## What I learned
+
+This was one of the first projects where I had to manage game state in vanilla JavaScript without a framework. Tracking which cards were flipped, preventing a third card from being selected before the first pair resolved, and resetting state cleanly between games all required careful thinking about execution order. Clear state management matters even in small projects.

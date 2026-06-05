@@ -1,19 +1,31 @@
 ---
 title: "arthurreira.dev"
-description: "The website you're looking at"
-createdAt: "2024-03-28"
+description: "Personal portfolio built in a Turborepo monorepo — Next.js 15, Velite for MDX content, next-intl for three languages, and a custom @arthurreira/ui design token package shared across apps."
+createdAt: "2026-03-28"
 featured: false
+role: "solo"
+highlight: "Multilingual portfolio (EN/PT/FI) in a Turborepo monorepo with Velite MDX content and a shared design system"
 techStack:
-  - "Next.js"
-  - "React"
+  - "Next.js 15"
   - "TypeScript"
+  - "Turborepo"
+  - "Velite"
+  - "next-intl"
   - "Tailwind CSS"
+  - "shadcn/ui"
 githubRepo: "https://github.com/arthurreira/arthurreira.dev"
 url: "https://arthurreira.dev"
-status: "done"
-highlight: ""
+status: "ongoing"
 ---
 
-**arthurreira.dev** is my personal **portfolio website**, built with **Next.js, Tailwind, and Contentlayer**.  
+## What I built
 
-It showcases my projects, work experience, and skills, with multilingual support (**EN, PT, FI**) and modern UI/UX design.
+The site lives inside a Turborepo monorepo with three workspaces: `apps/web` (the Next.js 15 site), `packages/content` (Velite-powered MDX), and `packages/ui` (a shared design token package called `@arthurreira/ui`). The design system exports Tailwind config, global CSS, and reusable components — any app in the monorepo can install the package and inherit the entire token set.
+
+Content is managed through Velite, which transforms MDX frontmatter and body into typed TypeScript at build time. Switching from Contentlayer was a deliberate choice: Velite handles custom schema transforms natively, is actively maintained, and gives full type-safety on every field without hacks. Projects, about pages, and translations all live as MDX files under `packages/content` — the web app reads them but never owns them.
+
+Internationalisation runs through `next-intl` with three locales (EN, PT-BR, FI). Route segments use `[locale]` prefixes, and the translation JSON files live alongside the content package. A `postinstall` script in `packages/ui` auto-syncs design tokens whenever the package rebuilds, so the web app never drifts out of sync with the system.
+
+## What I learned
+
+Building your own design system — even a small one — forces every decision to be explicit. There's no hiding behind framework defaults. I learned how Tailwind's `@theme` and CSS custom properties interact, how to publish a package inside a monorepo without a registry, and how far you can push a content-as-code approach before it becomes friction. The biggest lesson: structure the monorepo for change, not for the current use case.

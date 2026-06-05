@@ -1,35 +1,28 @@
 ---
 title: "hackathon-registration"
-description: "Registration form application for hackathon participants, deployed via GitHub Pages."
-createdAt: "2024-01-15"
+description: "Static registration form deployed to register.arthurreira.dev, created to demonstrate Terraform automation for managing multiple GitHub Pages repos under custom subdomains."
+createdAt: "2026-01-15"
 featured: false
+role: "solo"
+highlight: "Part of a 3-app Terraform-managed GitHub Pages demo — each app auto-provisioned to its own subdomain"
 techStack:
   - "HTML"
   - "CSS"
   - "JavaScript"
-  - "GitHub Pages"
+  - "Terraform"
   - "GitHub Actions"
+  - "GitHub Pages"
 githubRepo: "https://github.com/arthurreira/hackathon-registration"
 url: "https://register.arthurreira.dev"
-status: "done"
-highlight: ""
+status: "fun"
 ---
 
-**hackathon-registration** is a **static web application** for hackathon participant registration, deployed via GitHub Pages.
+## What I built
 
-It provides a simple, accessible registration form that allows participants to sign up for hackathon events without requiring complex backend infrastructure.
+This is not really a hackathon registration tool — it's an infrastructure demonstration. The real project is the Terraform automation that provisions it. Together with `hackathon-schedule` and `hackathon-projects`, these three static sites form a single showcase: one Terraform run creates three separate GitHub repositories, configures GitHub Pages on each, sets up custom subdomain DNS, and generates the GitHub Actions CD workflow — all without touching the GitHub UI.
 
-## Key Features
+The registration form itself is intentionally simple: name, email, project idea. The point is the infrastructure around it. Each repo goes from zero to a live custom-domain site through a single `terraform apply`.
 
-1. **Registration Form:** Simple, user-friendly form for participants to register for hackathon events.
-2. **Automatic Deployment:** GitHub Actions workflow automatically builds and deploys the site on every commit to the main branch.
-3. **Custom Domain:** Deployed at `register.arthurreira.dev` via custom subdomain configuration.
-4. **Easy Maintenance:** Registration form can be updated by editing files and committing changes - no manual deployment needed.
-5. **Infrastructure Automation:** Created and configured automatically via Terraform infrastructure automation.
+## What I learned
 
-## Tech Stack
-
-- **Deployment:** GitHub Pages
-- **Automation:** GitHub Actions
-- **Infrastructure:** Provisioned via Terraform
-- **Domain:** Custom subdomain (register.arthurreira.dev)
+The GitHub Terraform provider has a steeper learning curve than the AWS or Azure providers because GitHub's API is less predictable — rate limits, repository creation delays, and Pages configuration timing all require careful `depends_on` chains to work reliably. Writing Terraform that provisions other CI/CD pipelines (GitHub Actions workflows) taught me how infrastructure-as-code can manage not just servers but the entire deployment process.

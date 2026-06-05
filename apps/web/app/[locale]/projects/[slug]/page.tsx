@@ -1,45 +1,38 @@
-import { projects } from '@arthurreira/content'
-import { MDXContent } from '@/components/organisms'
-import { Badge } from "@arthurreira/ui"
+import { projects } from "@arthurreira/content"
+import { notFound } from "next/navigation"
+import { SiteProjectDetail } from "@/components/organisms/site-project-detail"
 
-export default async function ProjectDetailPage({ params }: { params: Promise<{ locale: string; slug: string }> }) {
-    const { locale, slug } = await params
-    // find the project
+export default async function ProjectDetailPage({
+  params,
+}: {
+  params: Promise<{ locale: string; slug: string }>
+}) {
+  const { locale, slug } = await params
 
-    const project = projects.find(p => p.slug === slug && p.locale === locale)
+  const sorted = projects
+    .filter((p) => p.locale === locale)
+    .sort((a, b) => Number(b.featured) - Number(a.featured))
 
-    if (!project) {
-        return <div>Project not found</div>
-    }
+  const index = sorted.findIndex((p) => p.slug === slug)
+  const project = sorted[index]
 
-    return (
-        <div className="max-w-7xl mx-auto px-4 sm:px-8 md:px-10 lg:px-4 py-16">
-            <div className="max-w-full mx-auto flex flex-col gap-6">
-                {/* header section */}
+  if (!project) notFound()
 
-                <div className="flex flex-col justify-start sm:w-1/1 w-full">
-
-                    <div className="flex items-center justify-between mb-2">
-                        <h1 className="font-medium text-base font-heading">
-                            {project.title}
-                        </h1>
-                        <Badge variant="outline">{project.status}</Badge>
-                    </div>
-
-                    <p className="text-sm text-muted-foreground mt-2">
-                        {project.description}
-                    </p>
-
-                </div>
-                {/* add description, status, techStack, links here */}
-                <hr className="my-2" />
-                <p className="text-xs font-medium tracking-wide text-primary mb-3 font-heading ">
-                    {project.techStack?.join(" / ")}
-                </p>
-
-                <MDXContent code={project.content} />
-
-            </div>
-        </div>
-    )
+  return (
+    <SiteProjectDetail
+      index={index + 1}
+      title={project.title}
+      description={project.description}
+      techStack={project.techStack}
+      year={new Date(project.createdAt).getFullYear().toString()}
+      status={project.status}
+      role={project.role}
+      highlight={project.highlight}
+      url={project.url}
+      githubRepo={project.githubRepo}
+      coverImage={project.coverImage?.src}
+      content={project.content}
+      locale={locale}
+    />
+  )
 }

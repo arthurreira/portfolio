@@ -1,5 +1,5 @@
 import { defineConfig, s } from 'velite'
-import { PROJECT_STATUSES } from './src/types/project'
+import { PROJECT_STATUSES, PROJECT_ROLES } from './src/types/project'
 // `s` is extended from Zod with some custom schemas,
 // you can also import re-exported `z` from `velite` if you don't need these extension schemas.
 
@@ -28,6 +28,7 @@ export default defineConfig({
           githubRepo: s.string().optional(), // validate URL format, optional field
           locale: s.path().transform(path => path.split('/')[2]), // enum with default value
           status: s.enum(PROJECT_STATUSES).default('done'), // enum with default value
+          role: s.enum(PROJECT_ROLES).optional(),           // your role: solo | lead | contributor | engineer
           highlight: s.string().optional(), // optional string field for project highlight or key takeaway
 
         })

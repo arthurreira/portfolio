@@ -47,6 +47,8 @@
     --radius-3xl: calc(var(--radius) * 2.2);
     --radius-4xl: calc(var(--radius) * 2.6);
     --font-mono: var(--font-mono);
+    --font-ui:   var(--font-ui);
+    --color-hairline: var(--hairline);
 }
 
 :root {
@@ -123,11 +125,38 @@
 @layer base {
   * {
     @apply border-border outline-ring/50;
-    }
+  }
   body {
     @apply bg-background text-foreground;
-    }
-  
+  }
+  /* Display headings — weight/tracking/leading shared across all h1s */
+  h1 {
+    @apply font-black leading-[0.92] tracking-[-0.045em];
+  }
+  /* Section labels — tighter headings */
+  h2 {
+    @apply font-bold leading-tight tracking-tight;
+  }
+}
+
+@layer components {
+  /* Amber uppercase label — PROJECT [01], CERTIFICATIONS, etc. */
+  .label-caps {
+    @apply font-ui text-[11px] tracking-[0.22em] uppercase text-primary;
+  }
+  /* 1px hairline row divider */
+  .row-divider {
+    @apply border-t border-border;
+  }
+  /* Vertical ticker track — writing-mode can't be a Tailwind class */
+  .ticker-track {
+    writing-mode: vertical-rl;
+    animation: vertTicker 120s linear infinite;
+    @apply text-xs tracking-[0.15em] uppercase whitespace-nowrap font-ui;
+  }
+  .ticker-wrapper {
+    @apply rotate-180;
+  }
 }
 
 .hero-h1, .hero-subtitle, .hero-desc-1, .hero-desc-2,
@@ -172,4 +201,242 @@ html {
 .nav-logo[data-loaded="true"] {
   opacity: 1;
   transform: translateX(0);
+}
+
+/* ─── 2×2 Theme Matrix ───────────────────────────────────────────────────────
+   Two axes: data-flag (brasil|suomi) × data-mode (light|dark)
+   Bare :root = Brasil Dark fallback (boots before JS runs / if attrs missing).
+   Three compound selectors override the other 3 combos at specificity 0,3,0
+   which always beats .dark (0,1,0) and bare :root (0,1,0).
+   No Tailwind default colors ever show — this block owns everything.
+──────────────────────────────────────────────────────────────────────────── */
+
+/* Font + layout tokens — change here, applies everywhere */
+:root {
+  --font-ui:    'Helvetica Neue', Inter, Helvetica, Arial, sans-serif;
+  --sidebar-w:  clamp(44px, 5vw, 72px);                        /* ticker strip width            */
+  --ticker-gap: 88px;                                           /* air between strip + text      */
+  --shell-pl:   calc(var(--sidebar-w) + var(--ticker-gap));    /* ← shared left edge for all    */
+  --gutter:     clamp(24px, 4vw, 56px);                        /* right-edge padding            */
+}
+
+/* Shell: margin-left pushes past the strip, padding-left adds the gap */
+.t-shell {
+  padding-left:  calc(var(--sidebar-w) + var(--ticker-gap));
+  padding-right: var(--gutter);
+}
+
+/* ── Fallback = Brasil · Dark (no ThemeProvider — data-flag+data-mode owns all) */
+:root {
+  --background:        #022619;
+  --foreground:        #F2F5EE;
+  --muted-foreground:  #7A9A88;
+  --primary:           #FFCC02;
+  --primary-foreground:#022619;
+  --muted:             rgba(242,245,238,0.05);
+  --border:            rgba(242,245,238,0.14);
+  --hairline:          rgba(242,245,238,0.82);
+  --stripe:            rgba(242,245,238,0.03);
+  --card:              #022619;
+  --card-foreground:   #F2F5EE;
+  --input:             rgba(242,245,238,0.14);
+  --accent:            rgba(242,245,238,0.05);
+  --accent-foreground: #F2F5EE;
+}
+
+/* Brasil · Dark  — flag green bg #059642 (darkened) + flag yellow #FFCC02 */
+:root[data-flag="brasil"][data-mode="dark"] {
+  --background:        #022619;
+  --foreground:        #F2F5EE;
+  --muted-foreground:  #7A9A88;
+  --primary:           #FFCC02;
+  --primary-foreground:#022619;
+  --muted:             rgba(242,245,238,0.05);
+  --border:            rgba(242,245,238,0.14);
+  --hairline:          rgba(242,245,238,0.82);
+  --stripe:            rgba(242,245,238,0.03);
+  --card:              #022619;
+  --card-foreground:   #F2F5EE;
+  --input:             rgba(242,245,238,0.14);
+  --accent:            rgba(242,245,238,0.05);
+  --accent-foreground: #F2F5EE;
+}
+
+/* Brasil · Light  — warm paper + flag green #059642 (yellow invisible on cream) */
+:root[data-flag="brasil"][data-mode="light"] {
+  --background:        #F4F3EE;
+  --foreground:        #0A200F;
+  --muted-foreground:  #4D7A5A;
+  --primary:           #059642;
+  --primary-foreground:#F4F3EE;
+  --muted:             rgba(10,32,15,0.05);
+  --border:            rgba(10,32,15,0.12);
+  --hairline:          rgba(10,32,15,0.82);
+  --stripe:            rgba(10,32,15,0.03);
+  --card:              #F4F3EE;
+  --card-foreground:   #0A200F;
+  --input:             rgba(10,32,15,0.12);
+  --accent:            rgba(10,32,15,0.05);
+  --accent-foreground: #0A200F;
+}
+
+/* Suomi · Dark  — deep navy bg + brightened flag blue accent */
+/* Flag blue #002F6C darkened → bg; brightened for readability → accent  */
+:root[data-flag="suomi"][data-mode="dark"] {
+  --background:        #001B40;
+  --foreground:        #EEF3FF;
+  --muted-foreground:  #7A90B5;
+  --primary:           #8ABEF5;
+  --primary-foreground:#001B40;
+  --muted:             rgba(238,243,255,0.05);
+  --border:            rgba(238,243,255,0.13);
+  --hairline:          rgba(238,243,255,0.82);
+  --stripe:            rgba(238,243,255,0.03);
+  --card:              #001B40;
+  --card-foreground:   #EEF3FF;
+  --input:             rgba(238,243,255,0.13);
+  --accent:            rgba(238,243,255,0.05);
+  --accent-foreground: #EEF3FF;
+}
+
+/* Suomi · Light  — cool near-white bg + exact flag navy #002F6C accent */
+:root[data-flag="suomi"][data-mode="light"] {
+  --background:        #F8FAFF;
+  --foreground:        #001B40;
+  --muted-foreground:  #4A6080;
+  --primary:           #002F6C;
+  --primary-foreground:#F8FAFF;
+  --muted:             rgba(0,27,64,0.05);
+  --border:            rgba(0,27,64,0.12);
+  --hairline:          rgba(0,27,64,0.82);
+  --stripe:            rgba(0,27,64,0.03);
+  --card:              #F8FAFF;
+  --card-foreground:   #001B40;
+  --input:             rgba(0,27,64,0.12);
+  --accent:            rgba(0,27,64,0.05);
+  --accent-foreground: #001B40;
+}
+
+/* ─── Test layout helpers ────────────────────────────────────────────────────
+   Class names used by the test components. Base = desktop.
+   Media query handles all responsive overrides in one place.
+──────────────────────────────────────────────────────────────────────────── */
+
+/* Hairline — starts at the right edge of the ticker strip, not x=0 */
+.t-hairline {
+  height: 1px;
+  background: var(--hairline);
+  margin-left: var(--sidebar-w);
+}
+
+/* Nav — flex-wrap, left edge aligned with page content via --shell-pl */
+.t-nav {
+  display: flex;
+  align-items: center;
+  flex-wrap: wrap;
+  padding-top:    1.25rem;
+  padding-bottom: 1.25rem;
+  padding-left:   var(--shell-pl);
+  padding-right:  var(--gutter);
+  gap: 0.75rem 1.5rem;
+}
+
+/* Row 1: logo + page links */
+.t-links {
+  display: flex;
+  align-items: center;
+  gap: 1.5rem;
+  flex: 1;
+  justify-content: flex-end;
+  flex-wrap: wrap;
+}
+
+/* Row 2: theme switcher + language (stays on same row desktop, drops on mobile) */
+.t-controls {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+}
+
+/* About — two-column layout */
+.t-about-grid {
+  display: grid;
+  grid-template-columns: 1fr 280px;
+  gap: 6rem;
+}
+
+/* About cert rows — 4 columns */
+.t-cert-row {
+  display: grid;
+  grid-template-columns: 1fr auto auto auto;
+  gap: 1.5rem;
+  align-items: baseline;
+  border-top: 1px solid var(--border);
+  padding: 1.25rem 0;
+}
+
+/* Project detail — two-column body
+   Medium: left capped at 42rem so sidebar sits flush to content
+   Large (>1100px): left goes full 1fr — more screen, more content room  */
+.t-detail-body {
+  display: grid;
+  grid-template-columns: minmax(0, 42rem) 240px;
+  gap: 3rem;
+}
+
+@media (min-width: 1100px) {
+  .t-detail-body {
+    grid-template-columns: 1fr 240px;
+  }
+}
+
+/* ── Below large ≤ 900 px ────────────────────────────────────────────────
+   Nav wraps to 2 rows AND ticker hides. Shell resets to gutter-only padding.
+   This matches picture 2: content flush-left, no strip stealing width.
+──────────────────────────────────────────────────────────────────────── */
+@media (max-width: 900px) {
+  body { overflow-x: hidden; }
+
+  /* Hide the vertical ticker strip */
+  .t-sidebar { display: none !important; }
+
+  /* Hairline goes full width when ticker is hidden */
+  .t-hairline { margin-left: 0; }
+
+  /* Reset shell padding — no more ticker offset, just the gutter on both sides */
+  .t-shell {
+    padding-left:  var(--gutter) !important;
+    padding-right: var(--gutter) !important;
+  }
+
+  /* Nav: row 1 = brand + links, row 2 = controls */
+  .t-nav     { padding: 0.875rem var(--gutter); gap: 0.5rem 1rem; }
+  .t-links   { gap: 0.75rem 1rem !important; }
+  .t-controls {
+    order: 3;
+    flex-basis: 100%;
+    padding-top: 0.5rem;
+    justify-content: flex-end;
+    gap: 0.75rem;
+  }
+  /* Keep the thin | separators visible between groups */
+  .t-controls > span { display: inline-block; }
+
+  /* Drop trailing → on project rows */
+  .t-arrow { display: none !important; }
+}
+
+/* ── Tablet ≤ 860 px — stack multi-column pages ──────────────────────── */
+@media (max-width: 860px) {
+  /* About: sidebar drops below bio */
+  .t-about-grid { grid-template-columns: 1fr !important; gap: 3rem; }
+
+  /* Project detail: metadata drops below content */
+  .t-detail-body { grid-template-columns: 1fr !important; gap: 3rem; }
+}
+
+/* ── Small ≤ 600 px — cert row wraps name to own line ────────────────── */
+@media (max-width: 600px) {
+  .t-cert-row { grid-template-columns: 1fr auto; }
+  .t-cert-row .t-cert-name { grid-column: 1 / -1; }
 }

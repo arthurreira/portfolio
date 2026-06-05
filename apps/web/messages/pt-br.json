@@ -1,6 +1,10 @@
 {
   "hero": {
     "heading": "Opa, eu sou Arthur!",
+    "greeting": "Opa, eu sou",
+    "firstName": "Arthur",
+    "lastName": "Ferreira.",
+    "heroSubtitle": "Desenvolvedor de Software Júnior · Kuopio, Finlândia · Cloud & Web",
     "imageAlt": "Arthur Ferreira — Desenvolvedor de Software Júnior",
     "subtitle": "Desenvolvedor de Software Júnior de Kuopio.",
     "descriptionFirst": "Transformo problemas em soluções digitais que fazem sentido — tanto para o negócio quanto para as pessoas.",
@@ -40,11 +44,23 @@
   },
   "projects": {
     "title": "Projetos",
+    "heading": "Projetos.",
+    "countSuffix": "projetos",
     "viewProject": "Ver Projeto",
     "viewGithub": "GitHub"
   },
   "about": {
     "title": "Sobre mim",
+"originLabel": "Origem",
+    "originValue": "Brasil → Finlândia",
+    "yearsLabel": "Anos",
+    "yearsValue": "10+ anos na Finlândia",
+    "roleLabel": "Função",
+    "roleValue": "Junior @ Nordcloud",
+    "offClockLabel": "Fora do trabalho",
+    "offClockValue": "Goleiro, Miesten Kolmonen",
+    "certsLabel": "Certificações",
+    "verified": "Verificado →",
     "weather": {
       "from": "De onde eu sou",
       "live": "Onde moro",
@@ -60,6 +76,9 @@
   },
   "contact": {
     "title": "Contato",
+    "heading1": "Vamos",
+    "heading2": "Conversar.",
+    "openTo": "Aberto a trabalho, freelance e um café.",
     "subtitle": "Estou sempre aberto a novas oportunidades, colaborações ou apenas uma conversa. Encontre-me aqui:",
     "github": "GitHub",
     "linkedin": "LinkedIn",

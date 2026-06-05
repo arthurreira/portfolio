@@ -1,38 +1,36 @@
 ---
 title: "NC Academy"
-description: "Kokoelma käytännön harjoitustöitä Nordcloud Academy -koulutusohjelmasta. Kattaa pilvi-infrastruktuurin Bicepillä ja Terraformilla, backendin Pythonilla ja C#:lla sekä React-frontendin."
-createdAt: "2024-06-01"
+description: "Nordcloud Academy -ohjelman käytännön harjoitusmoduulit: Azure Bicep, Terraform, Python, C#, React, auth-arkkitehtuuri ja Northwind-projekti."
+createdAt: "2026-06-01"
 featured: false
+role: "engineer"
+highlight: "8-module Nordcloud Academy cloud program covering Azure Bicep, Terraform, Python, C#, React, auth architecture, and Northwind business metrics"
 techStack:
-  - "Bicep"
+  - "Azure Bicep"
   - "Terraform"
   - "Python"
   - "C#"
+  - ".NET"
   - "React"
   - "TypeScript"
 githubRepo: "https://github.com/arthurreira/NC-Academy-Bicep-for-IT-Administrators"
 url: "https://github.com/arthurreira/NC-Academy-Bicep-for-IT-Administrators"
-status: "done"
-highlight: ""
+status: "learning"
 ---
 
-**NC Academy** on kokoelma projekteja, jotka on suoritettu **Nordcloud Academy** -koulutusohjelman aikana. Jokainen moduuli keskittyi eri pilvikehityksen osa-alueeseen yhdistäen teorian käytännön harjoituksiin.
+## What I built
 
-## Käydyt moduulit
+Eight practical modules completed during the Nordcloud Academy for IT Administrators — a structured cloud engineering programme run internally at Nordcloud. Each module had its own repository:
 
-### Pilvi-infrastruktuuri
-- **Bicep** — Azure Resource Manager -mallit Bicepillä Azure-resurssien käyttöönottoon ja hallintaan
-- **Terraform** — Infrastructure-as-Code Terraformilla pilvympäristöjen provisiointiin
+- **Azure Bicep** — deployed live Azure resources using Bicep templates
+- **Terraform** — provisioned cloud environments using HCL; covered state management, modules, and Azure provider specifics
+- **Python** — scripting, automation tasks, and data processing exercises against cloud APIs
+- **C# REST API** — .NET backend exposing the Northwind database as a REST API with full CRUD endpoints
+- **React dashboard** — frontend consuming the Northwind API, displaying business metrics (orders, customers, revenue)
+- **Authentication architecture** — designed and implemented auth flows covering OAuth 2.0, JWT, and role-based access
+- **Auth implementation** — practical implementation of the auth architecture from the previous module
+- **Integration** — connected all the pieces: React frontend → C# API → Northwind database, with auth securing the full stack
 
-### Backend-kehitys
-- **Python** — skriptaus, automaatiotehtävät ja API-kehitysharjoitukset
-- **C#** — .NET-pohjaiset backend-palvelut ja REST API -toteutukset
+## What I learned
 
-### Frontend-kehitys
-- **React** — komponenttipohjaisia käyttöliittymäprojekteja, tilanhallintaa ja API-integraatioita
-
-## Opitut asiat
-
-- Käytännön kokemus koko pilviohjelmoinnin pinosta
-- Reaalimaailman IaC-mallit Azure-ympäristöihin
-- Tutustuminen sekä dynaamisiin (Python) että staattisesti tyypitettyihin (C#, TypeScript) backend-paradigmoihin
+The programme's structure made it clear how much the full stack is actually interconnected. Writing the Bicep to provision the infrastructure that runs the .NET API that serves the React dashboard that the auth module secures: that chain makes every decision visible. Cloud infrastructure and application code are not separate concerns — the IaC shapes what's possible in the application layer.

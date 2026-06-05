@@ -1,6 +1,10 @@
 {
   "hero": {
     "heading": "Morjens, mä on Arthuri",
+    "greeting": "Morjens, mä on",
+    "firstName": "Arthur",
+    "lastName": "Ferreira.",
+    "heroSubtitle": "Junior Software Developer · Kuopio, Suomi · Infra & Cloud",
     "imageAlt": "Arthur Ferreira — Junior Software Developer",
     "subtitle": "Junior Software Developer Kuopiosta.",
     "descriptionFirst": "Rakennan ratkaisuja, joissa liiketoiminta ja teknologia kulkevat käsi kädessä. Keskityn moderneihin web-sovelluksiin ja arkkitehtuuriin, joka tuottaa oikeaa arvoa — en vain toimivaa koodia.",
@@ -40,11 +44,23 @@
   },
   "projects": {
     "title": "Projektit",
+    "heading": "Projektit.",
+    "countSuffix": "projektia",
     "viewProject": "Katso Projekti",
     "viewGithub": "GitHubista"
   },
   "about": {
     "title": "Tietoa minusta",
+"originLabel": "Alkuperä",
+    "originValue": "Brasilia → Suomi",
+    "yearsLabel": "Vuodet",
+    "yearsValue": "10+ vuotta Suomessa",
+    "roleLabel": "Rooli",
+    "roleValue": "Junior @ Nordcloud",
+    "offClockLabel": "Vapaa-aika",
+    "offClockValue": "Maalivahti, Miesten Kolmonen",
+    "certsLabel": "Sertifikaatit",
+    "verified": "Vahvistettu →",
     "weather": {
       "from": "Kotoisin",
       "live": "Asun täällä",
@@ -60,6 +76,9 @@
   },
   "contact": {
     "title": "Ota yhteyttä",
+    "heading1": "Otahan",
+    "heading2": "Yhteyttä? :)",
+    "openTo": "Avoin avoimen lähdekoodin mahdollisuuksille, freelance-projekteille ja kahvikeskusteluille.",
     "subtitle": "Olen aina avoin uusille mahdollisuuksille, yhteistyölle tai vain jutulle. Löydät minut täältä:",
     "github": "GitHub",
     "linkedin": "LinkedIn",

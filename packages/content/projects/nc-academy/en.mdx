@@ -1,38 +1,36 @@
 ---
 title: "NC Academy"
-description: "A collection of hands-on training projects from the Nordcloud Academy program, covering cloud infrastructure with Bicep and Terraform, backend development in Python and C#, and frontend work in React."
-createdAt: "2024-06-01"
+description: "Hands-on training modules from the Nordcloud Academy IT program, spanning Azure Bicep IaC, Terraform, Python scripting, C# REST APIs, React dashboards, and auth architecture."
+createdAt: "2026-06-01"
 featured: false
+role: "engineer"
+highlight: "8-module Nordcloud Academy cloud program covering Azure Bicep, Terraform, Python, C#, React, auth architecture, and Northwind business metrics"
 techStack:
-  - "Bicep"
+  - "Azure Bicep"
   - "Terraform"
   - "Python"
   - "C#"
+  - ".NET"
   - "React"
   - "TypeScript"
 githubRepo: "https://github.com/arthurreira/NC-Academy-Bicep-for-IT-Administrators"
 url: "https://github.com/arthurreira/NC-Academy-Bicep-for-IT-Administrators"
-status: "done"
-highlight: ""
+status: "learning"
 ---
 
-**NC Academy** is a set of projects completed during the **Nordcloud Academy** training program. Each module focused on a different area of cloud and software development, combining theory with practical, hands-on assignments.
+## What I built
 
-## Modules Covered
+Eight practical modules completed during the Nordcloud Academy for IT Administrators — a structured cloud engineering programme run internally at Nordcloud. Each module had its own repository and focused on a specific part of the stack:
 
-### Cloud Infrastructure
-- **Bicep** — Azure Resource Manager templates written in Bicep for deploying and managing Azure resources
-- **Terraform** — Infrastructure-as-Code with Terraform for provisioning cloud environments
+- **Azure Bicep** — deployed live Azure resources (storage, App Service, static sites) using Bicep templates
+- **Terraform** — provisioned cloud environments using HCL; covered state management, modules, and Azure provider specifics
+- **Python** — scripting, automation tasks, and data processing exercises against cloud APIs
+- **C# REST API** — .NET backend exposing the Northwind database as a REST API with full CRUD endpoints
+- **React dashboard** — frontend consuming the Northwind API, displaying business metrics (orders, customers, revenue)
+- **Authentication architecture** — designed and implemented auth flows covering OAuth 2.0, JWT, and role-based access
+- **Auth implementation** — practical implementation of the auth architecture from the previous module
+- **Integration** — connected all the pieces: React frontend → C# API → Northwind database, with auth securing the full stack
 
-### Backend Development
-- **Python** — scripting, automation tasks, and API development exercises
-- **C#** — .NET-based backend services and REST API implementations
+## What I learned
 
-### Frontend Development
-- **React** — component-based UI projects, state management, and API integration
-
-## Key Takeaways
-
-- Hands-on experience across the full cloud development stack
-- Real-world IaC patterns for Azure environments
-- Exposure to both dynamic (Python) and statically-typed (C#, TypeScript) backend paradigms
+The programme's structure — one module per discipline, each building on the previous — made it clear how much the full stack is actually interconnected. Writing the Bicep to provision the infrastructure that runs the .NET API that serves the React dashboard that the auth module secures: that chain makes every decision visible. The biggest single lesson was that cloud infrastructure and application code are not separate concerns — the IaC shapes what's possible in the application layer.

@@ -1,20 +1,29 @@
 ---
 title: "Sisu Cursos"
-description: "Plataforma online que ajuda brasileiros a aprender finlandês com LMS moderno e ferramentas de e-commerce."
+description: "Plataforma de aprendizado online de finlandês para estudantes brasileiros — WordPress com TutorLMS para cursos e WooCommerce para pagamentos. Disponível em português e finlandês."
 createdAt: "2025-01-01"
 featured: false
+role: "solo"
+highlight: "Built a Finnish language e-learning business for the Brazilian diaspora — WordPress LMS + WooCommerce + bilingual content"
 techStack:
   - "WordPress"
+  - "TutorLMS"
+  - "WooCommerce"
+  - "PHP"
 githubRepo: "https://github.com/arthurreira/sisu-cursos"
 url: "https://sisucursos.com"
 status: "done"
-highlight: ""
 coverImage: "./cover.png"
 ---
 
 [![](/images/projects/sisu-cursos/sisucursos-home.png)](https://sisucursos.com)
 
-**Sisu Cursos** é uma plataforma de aprendizado online criada para ajudar estudantes brasileiros a aprender finlandês.
-Foi construída com **WordPress**, usando **Tutor LMS** para entrega dos cursos e **WooCommerce** para pagamentos seguros.
+## What I built
 
-Disponível em **português** e **finlandês**, une e-learning com e-commerce, tornando o ensino de finlandês acessível e asequível.
+Sisu Cursos is a Finnish language learning platform built for Brazilians living in Finland — a community that often struggles to find affordable, culturally relevant language education. The platform runs on WordPress with TutorLMS handling course structure (lessons, quizzes, progress tracking) and WooCommerce managing enrolment payments and digital product delivery.
+
+All content is available in both Portuguese and Finnish. The bilingual approach is intentional: students read course instructions in their native Portuguese while the actual Finnish lessons use Finnish throughout, avoiding the translation crutch that slows language acquisition.
+
+## What I learned
+
+Building an LMS from scratch inside WordPress exposed the full complexity of combining e-learning and e-commerce in a single installation. TutorLMS and WooCommerce each make strong assumptions about the checkout flow — making them work together cleanly required careful plugin configuration and some custom hooks.

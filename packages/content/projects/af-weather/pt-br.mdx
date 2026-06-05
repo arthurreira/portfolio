@@ -1,32 +1,27 @@
 ---
 title: "AF Weather"
-description: "Aplicativo de clima com previsões em tempo real para cidades finlandesas e brasileiras, usando a API Open-Meteo, desenvolvido com Next.js 15 e TypeScript."
-createdAt: "2024-09-10"
+description: "App de clima minimalista para cidades finlandesas e brasileiras — Open-Meteo, monorepo Turborepo, design tokens compartilhados."
+createdAt: "2026-09-10"
 featured: false
+role: "solo"
+highlight: "Live weather app for Finnish + Brazilian cities — pnpm/Turborepo monorepo, Open-Meteo, dark mode, shared design tokens"
 techStack:
-  - "Next.js"
+  - "Next.js 15"
   - "TypeScript"
   - "Tailwind CSS"
   - "Open-Meteo API"
+  - "Turborepo"
 githubRepo: ""
 url: "https://weather.arthurreira.dev"
 status: "done"
-highlight: "Live at weather.arthurreira.dev"
 ---
 
-**AF Weather** é um aplicativo de clima minimalista que exibe condições atuais e previsões para um conjunto de cidades finlandesas e brasileiras. Utiliza a [Open-Meteo API](https://open-meteo.com/) — gratuita e sem necessidade de chave de API.
+## What I built
 
-## Funcionalidades
+A weather app showing current conditions and short-range forecasts for six cities: Helsinki, Tampere, and Oulu in Finland, and São Paulo, Fortaleza, and Curitiba in Brazil. The app uses the Open-Meteo API which is completely free and requires no API key.
 
-- Temperatura atual, velocidade do vento e condição climática
-- Previsões por hora e por dia
-- Cidades na Finlândia (Helsinki, Tampere, Oulu) e no Brasil (São Paulo, Fortaleza, Curitiba)
-- Layout totalmente responsivo com Tailwind CSS
-- Publicado em domínio próprio
+The project lives inside the same Turborepo monorepo as the portfolio, consuming the `@arthurreira/ui` design token package. That means the weather app's colours, typography, and spacing stay in sync with the portfolio automatically. The route architecture splits static city pages from a dynamic `/api/weather` endpoint that fetches fresh data on each request.
 
-## Stack
+## What I learned
 
-- **Next.js 15** — App Router, Server Components
-- **TypeScript** — tipagem de ponta a ponta
-- **Tailwind CSS** — estilização utilitária
-- **Open-Meteo API** — dados climáticos gratuitos
+The main insight was about monorepo design token sharing: the pattern works well until you need one app to diverge from the system. Working out how to override tokens without breaking the shared package taught me where the boundaries of a shared system should live.

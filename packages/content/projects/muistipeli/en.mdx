@@ -1,21 +1,28 @@
 ---
 title: "Memory Game"
-description: "A classic memory card matching game built with HTML, CSS, JavaScript, and MDB Bootstrap."
-createdAt: "2024-02-12"
+description: "Classic flip-and-match card game built with HTML, CSS, JavaScript, and MDB Bootstrap as a school assignment. Hosted on a university Linux server."
+createdAt: "2023-02-12"
 featured: false
+role: "solo"
+highlight: "School card-matching game with timer, hosted on a Linux educational server"
 techStack:
   - "HTML"
   - "CSS"
   - "JavaScript"
-  - "Bootstrap"
+  - "MDB Bootstrap"
 githubRepo: "https://github.com/arthurreira/muistipeli"
 url: "https://github.com/arthurreira/muistipeli"
-status: "done"
-highlight: ""
-coverImage: "./cover.png"
+status: "school"
 ---
 
 [![](/images/Projects/Muistipeli/Muistipelietusivu.png)](https://github.com/arthurreira/muistipeli)
 
-The **Memory Game** is a card-matching game built with **HTML, CSS, and JavaScript**.  
-It features smooth animations, a timer, and a fully responsive interface thanks to **MDB Bootstrap**.
+## What I built
+
+A browser-based memory card game built as a school assignment. The player flips cards two at a time looking for matching pairs. A live timer tracks how long each game takes and a move counter records efficiency — both reset on restart. The layout is fully responsive using MDB Bootstrap's grid so it works across phone, tablet, and desktop without media query gymnastics.
+
+The game was hosted on `linuxedu.koulutus.kynet.fi`, the school's Linux server, which meant learning basic server file structure and deployment over SSH rather than just running it locally.
+
+## What I learned
+
+This was one of the first projects where I had to manage game state in vanilla JavaScript without a framework. Tracking which cards were flipped, preventing a third card from being selected before the first pair resolved, and resetting state cleanly between games all required careful thinking about execution order. It taught me that clear state management matters even in small projects — and that deploying to a real server, even a simple one, adds a layer of accountability that running on localhost doesn't.

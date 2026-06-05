@@ -1,45 +1,34 @@
 ---
 title: "Dns-tool"
-description: "This is a short description of my dns-tools project built with modern tools."
+description: "Full-stack DNS lookup tool built with Next.js and AWS Lambda. Query any domain for A, AAAA, MX, TXT, CNAME, and NS records through a clean shadcn/ui interface with query history."
 createdAt: "2026-04-25"
 featured: true
-url: "https://example.com"
+role: "solo"
+highlight: "Full-stack DNS lookup tool — 6 record types (A, AAAA, MX, TXT, CNAME, NS), serverless AWS Lambda backend, live at dns.arthurreira.dev"
 techStack:
-  - "React"
+  - "Next.js"
   - "TypeScript"
+  - "AWS Lambda"
   - "Tailwind CSS"
-githubRepo: "af-dns-lookup"
-status: "ongoing"
-highlight: "Used in production · 3 AWS regions"
+  - "shadcn/ui"
+githubRepo: "https://github.com/arthurreira/af-dns-lookup"
+url: "https://dns.arthurreira.dev"
+status: "done"
 coverImage: "./cover.png"
 ---
 
 ![dns-tool screenshot](./homePageClean.png)
 
-![dns-tool screenshot 2](./homePageInUsage.png)
+![dns-tool screenshot in use](./homePageInUsage.png)
 
-![dns-tool screenshot 3](./dns-tool-history.png)
+![dns-tool history panel](./dns-tool-history.png)
 
-## Overview
+## What I built
 
-This project is a modern web application built to demonstrate how to use **Velite with MDX**.
+A DNS lookup tool that lets you query any domain for six record types: A, AAAA, MX, TXT, CNAME, and NS. The interface is built with Next.js and shadcn/ui — enter a domain, pick a record type, get structured results immediately. A query history panel on the right tracks previous lookups so you can compare results across domains or record types without re-typing.
 
-It supports rich content like:
+The DNS resolution itself runs on an AWS Lambda function rather than the Next.js server. The frontend calls an API route that proxies to the Lambda, which performs the actual DNS queries. This split keeps the Next.js deployment lightweight and makes the resolution logic independently scalable and testable. The whole stack deploys to `dns.arthurreira.dev`.
 
-- Markdown formatting
-- Embedded components
-- Code blocks
+## What I learned
 
-## Features
-
-- Fast performance
-- Clean UI
--  Easy customization
-
-## Example Code
-
-````ts
-export function greet(name: string) {
-  return `Hello, ${name}!`
-}
-````
+The interesting engineering problem here was latency. DNS resolution involves network round-trips that are inherently unpredictable, and the Lambda cold-start penalty made the first query after idle noticeably slow. Reducing that required understanding Lambda provisioned concurrency, the trade-off between keeping functions warm and cost, and how to structure the API route to return a loading state immediately while the resolution completes. It also pushed me to think seriously about error states — DNS queries can fail for many reasons (NXDOMAIN, SERVFAIL, timeout), and each failure mode needs a different user message.

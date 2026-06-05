@@ -1,20 +1,31 @@
 ---
 title: "ESP32 Weather Station"
-description: "An IoT project using the ESP32 microcontroller to collect environmental data and display it in real time on the web."
+description: "IoT weather station on an ESP32 microcontroller reading temperature, humidity, and air pressure via BME280 and DHT11 sensors, storing to MySQL, and displaying live on a PHP dashboard."
 createdAt: "2023-10-15"
 featured: false
+role: "solo"
+highlight: "Physical IoT build — BME280 + DHT11 sensors on ESP32, live data logged to MySQL, PHP web dashboard"
 techStack:
   - "ESP32"
+  - "Arduino IDE"
   - "PHP"
   - "MySQL"
+  - "MDB Bootstrap"
+  - "JavaScript"
 githubRepo: "https://github.com/arthurreira/esp32-sääasema"
 url: "https://github.com/arthurreira/esp32-sääasema"
-status: "done"
-highlight: ""
+status: "school"
 coverImage: "./cover.png"
 ---
 
 [![](/images/projects/s-kuiskaaja/verkkosivu.png)](https://github.com/arthurreira/esp32-sääasema)
 
-The **ESP32 Weather Station** is an IoT project that gathers environmental data with sensors like **BME280** and **DHT11**.  
-It stores the results in a database and displays **temperature, humidity, and pressure** on a responsive web dashboard in real time.
+## What I built
+
+A complete IoT pipeline from physical hardware to a live web dashboard. The ESP32 microcontroller reads environmental data continuously via two sensors: the BME280 for temperature, humidity, and barometric pressure, and the DHT11 as a secondary temperature/humidity reference. Firmware was written in Arduino IDE (C++) and configured to POST sensor readings to a PHP endpoint (`receive_data.php`) at a set interval.
+
+The backend is a PHP script running on a local WampServer instance. It receives the POST, validates the payload, and writes to a MySQL database. The frontend dashboard reads from the same database and auto-refreshes every 30 seconds to show the latest readings — temperature graph, humidity percentage, and pressure trend — styled with MDB Bootstrap for a clean, responsive layout.
+
+## What I learned
+
+This project was the first time I had to think about three completely separate layers at once: hardware (wiring, sensor protocols, firmware), a backend data pipeline (HTTP POST, PHP, MySQL), and a frontend display — all working together. Debugging was harder than any pure software project because a bug could live in the circuit, the firmware, the PHP, or the SQL. It built real respect for IoT development and the importance of logging raw sensor values before doing anything with them.

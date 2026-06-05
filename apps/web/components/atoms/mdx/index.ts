@@ -1,7 +1,0 @@
-export * from "./mdxH1"
-export * from "./mdxH2"
-export * from "./mdxP"
-export * from "./mdxUl"
-export * from "./mdxLi"
-export * from "./mdxCode"
-export * from "./mdxPre"

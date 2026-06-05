@@ -1,19 +1,31 @@
 ---
 title: "arthurreira.dev"
-description: "Tämä on sivusto, jota juuri katsot"
-createdAt: "2024-03-28"
+description: "Henkilökohtainen portfolio Turborepo-monoreposssa — Next.js 15, Velite MDX-sisällölle, next-intl kolmelle kielelle ja jaettu @arthurreira/ui design token -paketti."
+createdAt: "2026-03-28"
 featured: false
+role: "solo"
+highlight: "Multilingual portfolio (EN/PT/FI) in a Turborepo monorepo with Velite MDX content and a shared design system"
 techStack:
-  - "Next.js"
-  - "React"
+  - "Next.js 15"
   - "TypeScript"
+  - "Turborepo"
+  - "Velite"
+  - "next-intl"
   - "Tailwind CSS"
+  - "shadcn/ui"
 githubRepo: "https://github.com/arthurreira/arthurreira.dev"
 url: "https://arthurreira.dev"
-status: "done"
-highlight: ""
+status: "ongoing"
 ---
 
-**arthurreira.dev** on henkilökohtainen **portfoliosivustoni**, rakennettu **Next.js:llä, Tailwindillä ja Contentlayerillä**.
+## What I built
 
-Se esittelee projektejani, työkokemustani ja taitojani, monikielisellä tuella (**EN, PT, FI**) ja modernilla UI/UX-suunnittelulla.
+The site lives inside a Turborepo monorepo with three workspaces: `apps/web` (the Next.js 15 site), `packages/content` (Velite-powered MDX), and `packages/ui` (a shared design token package called `@arthurreira/ui`). The design system exports Tailwind config, global CSS, and reusable components — any app in the monorepo can install the package and inherit the entire token set.
+
+Content is managed through Velite, which transforms MDX frontmatter and body into typed TypeScript at build time. Switching from Contentlayer was a deliberate choice: Velite handles custom schema transforms natively, is actively maintained, and gives full type-safety on every field without hacks.
+
+Internationalisation runs through `next-intl` with three locales (EN, PT-BR, FI). A `postinstall` script in `packages/ui` auto-syncs design tokens whenever the package rebuilds, so the web app never drifts out of sync with the system.
+
+## What I learned
+
+Building your own design system forces every decision to be explicit. I learned how Tailwind's `@theme` and CSS custom properties interact, how to publish a package inside a monorepo without a registry, and how far you can push a content-as-code approach before it becomes friction. The biggest lesson: structure the monorepo for change, not for the current use case.

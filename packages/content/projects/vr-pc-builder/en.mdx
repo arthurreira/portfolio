@@ -1,27 +1,28 @@
 ---
 title: "VR | PC Builder"
-description: "A collaborative VR game built with Unity URP where players build custom PCs in virtual reality."
-createdAt: "2024-06-01"
+description: "Collaborative Unity VR game where players build custom PCs in virtual reality. Contributed 3D PC part modeling in Blender, Unity URP performance tuning, and UI assistance."
+createdAt: "2023-06-01"
 featured: false
+role: "contributor"
+highlight: "Blender-modeled PC components and Unity performance optimization for a classmate's VR assembly game"
 techStack:
   - "Unity"
+  - "C#"
   - "Blender"
+  - "Unity URP"
 githubRepo: "https://github.com/SakkyTT/VRGame3URP"
 url: "https://github.com/SakkyTT/VRGame3URP"
-status: "done"
-highlight: ""
+status: "school"
 ---
 
 [![](/images/projects/sakky/sakkytt.png)](https://github.com/SakkyTT/VRGame3URP)
 
-**PC Builder VR** is a collaborative VR game developed with **Unity** and the **Universal Render Pipeline (URP)**.  
+## What I built
 
-Players can explore and assemble computer parts in virtual reality, creating custom PCs in an interactive environment.  
+PC Builder VR is a school project by a classmate (SakkyTT) where players assemble a full desktop PC in virtual reality — picking up components, slotting them into the right positions, and connecting cables. I joined as a contributor focused on two areas: 3D asset creation and performance.
 
-I contributed as a developer:  
-- Optimizing gameplay performance and adding 3D objects  
-- Modeling PC components with **Blender**  
-- Assisting with UI and Unity setup  
+On the asset side, I modeled several PC components in Blender — CPU, RAM sticks, GPU — and exported them into Unity via the URP pipeline. Getting the poly count right for VR (low enough to maintain 90fps, high enough to look like the real part) required multiple export iterations. On the performance side, I profiled the Unity scene and identified draw call bottlenecks from unoptimized materials, resolving them through texture atlasing and static batching. I also made minor UI adjustments to the component selection menu.
 
-Full project: [GitHub Repository](https://github.com/SakkyTT/VRGame3URP)  
-Listed as a contributor on GitHub.
+## What I learned
+
+Contributing to someone else's codebase — even a school project — is a different skill from building your own. You have to understand decisions you didn't make, work within an architecture you didn't design, and communicate clearly about what you're changing and why. The Blender-to-Unity pipeline also taught me that 3D modeling and game engine integration are two separate disciplines that have to be planned together from the start — the poly count and UV mapping decisions you make in Blender directly determine what's possible in Unity.

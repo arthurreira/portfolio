@@ -1,20 +1,29 @@
 ---
 title: "Sisu Cursos"
-description: "Online learning platform helping Brazilian students master Finnish with modern LMS and e-commerce tools."
+description: "Finnish language e-learning platform for Brazilian students, built on WordPress with TutorLMS for course management and WooCommerce for payments. Available in Portuguese and Finnish."
 createdAt: "2025-01-01"
 featured: false
+role: "solo"
+highlight: "Built a Finnish language e-learning business for the Brazilian diaspora — WordPress LMS + WooCommerce + bilingual content"
 techStack:
   - "WordPress"
+  - "TutorLMS"
+  - "WooCommerce"
+  - "PHP"
 githubRepo: "https://github.com/arthurreira/sisu-cursos"
 url: "https://sisucursos.com"
 status: "done"
-highlight: ""
 coverImage: "./cover.png"
 ---
 
 [![](/images/projects/sisu-cursos/sisucursos-home.png)](https://sisucursos.com)
 
-**Sisu Cursos** is an online learning platform created to help Brazilian students learn Finnish.  
-It is built on **WordPress**, with **Tutor LMS** for course delivery and **WooCommerce** for secure payments.  
+## What I built
 
-Available in **Portuguese** and **Finnish**, it combines e-learning with e-commerce, making Finnish education accessible and affordable.
+Sisu Cursos is a Finnish language learning platform built for Brazilians living in Finland — a community that often struggles to find affordable, culturally relevant language education. The platform runs on WordPress with TutorLMS handling course structure (lessons, quizzes, progress tracking) and WooCommerce managing enrolment payments and digital product delivery.
+
+All content is available in both Portuguese and Finnish. The bilingual approach is intentional: students read course instructions in their native Portuguese while the actual Finnish lessons use Finnish throughout, avoiding the translation crutch that slows language acquisition. Pricing was kept accessible, targeting the Brazilian diaspora community rather than the premium language school market.
+
+## What I learned
+
+Building an LMS from scratch inside WordPress exposed the full complexity of combining e-learning and e-commerce in a single installation. TutorLMS and WooCommerce each make strong assumptions about the checkout flow — making them work together cleanly required careful plugin configuration and some custom hooks. The bigger lesson was product: the technical stack was straightforward, but understanding the actual user (a Brazilian newcomer to Finland, probably anxious about their language level and price-sensitive) shaped every content and UX decision.
