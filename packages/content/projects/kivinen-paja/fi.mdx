@@ -1,40 +1,34 @@
 ---
 title: "Kivinen Paja"
-description: "Reaaliaikainen tekoälykehittäjien pyöreän pöydän sovellus, jossa useat Anthropic-agentit keskustelevat samanaikaisesti. Toteutettu Pusherilla, Redisillä ja TypeScriptillä."
+description: "A real-time AI developer roundtable where multiple Anthropic Claude agents discuss topics simultaneously, powered by Pusher for live streaming and Redis for state management."
 createdAt: "2026-01-15"
 featured: false
+role: "solo"
+highlight: "Multi-agent AI roundtable — Claude agents debate in real-time via Pusher WebSockets + Redis state"
 techStack:
   - "TypeScript"
+  - "Next.js"
+  - "Anthropic API"
   - "Pusher"
   - "Redis"
-  - "Anthropic API"
-  - "Next.js"
 githubRepo: "https://github.com/arthurreira/kivinen-paja"
 url: "https://github.com/arthurreira/kivinen-paja"
 status: "done"
-highlight: ""
 ---
 
-**Kivinen Paja** on kokeellinen reaaliaikasovellus, jossa useat Anthropic API:iin perustuvat tekoälyagentit käyvät elävää pyöreän pöydän keskustelua. Jokainen agentti lähestyy aihetta omasta näkökulmastaan ja reagoi keskustelun kulkuun sitä mukaa kuin se etenee.
+## What I built
 
-## Miten se toimii
+An experimental real-time app where multiple Claude agents hold a live roundtable discussion on a submitted topic. Each agent has a distinct perspective and responds as the conversation unfolds — responses stream in via Pusher WebSocket channels so you watch the discussion develop in real time. Redis persists the conversation state and manages agent turn-taking so the discussion stays coherent across reconnects.
 
-1. Käyttäjä lähettää aiheen pyöreälle pöydälle
-2. Useat Anthropic-agentit vastaanottavat aiheen samanaikaisesti
-3. Vastaukset välitetään reaaliajassa **Pusher**-kanavien kautta
-4. **Redis** säilyttää keskustelun tilan ja hallinnoi agenttien vuorottelua
+"Kivinen Paja" means "Stone Forge" in Finnish — the name reflects the idea of raw ideas being shaped through heated discussion.
 
-## Ominaisuudet
+## What I learned
 
-- Useampien agenttien samanaikainen keskustelu
-- Reaaliaikainen viestien suoratoisto Pusherin avulla
-- Keskusteluhistoria Redisiin tallennettuna
-- Siisti, minimalistinen chat-käyttöliittymä
+Coordinating multiple concurrent LLM calls is harder than it looks. Each agent needs context of what the others have said, but sending the full conversation history on every turn becomes expensive and slow. Managing turn-taking logic in Redis (who speaks next, what's the current state) was the core engineering challenge. I also learned about Pusher channel architecture for real-time streaming — the difference between presence channels (who's connected) and private channels (secured streams) became important for managing which agent "speaks" when.
 
-## Teknologiat
+## Architecture
 
-- **TypeScript** — kattava tyyppiturvallisuus
-- **Anthropic API** — Claude-mallit pöydän osallistujina
-- **Pusher** — reaaliaikaiset WebSocket-tapahtumat
-- **Redis** — istunto- ja tilapersistointi
-- **Next.js** — API-reitit ja frontend
+1. Topic submitted → dispatched to all agents simultaneously
+2. Each agent calls Anthropic API with its own system prompt + shared conversation history
+3. Responses stream via Pusher to the frontend in real time
+4. Redis persists conversation state and agent coordination

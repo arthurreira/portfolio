@@ -1,46 +1,36 @@
 ---
 title: "ChefBoksi"
-description: "Plataforma semanal de planejamento de refeições construída em PHP e MySQL, projetada para simplificar escolhas, entregas e controle nutricional."
+description: "A weekly meal-planning platform built with PHP and MySQL, designed to simplify meal selection, delivery, and nutrition tracking. School project using MVC architecture."
 createdAt: "2024-10-15"
 featured: false
+role: "solo"
+highlight: "Full-stack MVC meal kit platform — PHP, MySQL, admin dashboard, dietary filters, school period project"
 techStack:
   - "PHP"
   - "MySQL"
-  - "HTML"
-  - "CSS"
   - "JavaScript"
   - "Bootstrap"
 githubRepo: "https://github.com/arthurreira/chefboksi-fi"
 url: "https://chefboksi.fi"
-status: "done"
-highlight: ""
+status: "school"
 ---
 
-[![](https://github.com/arthurreira/chefboksi-fi/blob/main/public/screenshot.png)](https://chefboksi.fi)
+## What I built
 
-**ChefBoksi** é uma plataforma de kit de refeições (similar ao HelloFresh) construída com **PHP e MySQL** seguindo o padrão de arquitetura MVC.
-Ajuda os usuários a selecionar refeições, personalizar planos semanais, acompanhar a nutrição e gerenciar entregas. A plataforma inclui um painel administrativo para gerenciar produtos, categorias, usuários e pedidos, com suporte a múltiplas preferências dietéticas (sem glúten, keto, vegano, vegetariano, etc.).
+A meal kit service platform for the Finnish market — think HelloFresh but built from scratch in PHP and MySQL. Users can browse meals by dietary preference (Gluten-free, Keto, Vegan, Vegetarian, High-protein), build weekly plans, and place orders. An admin dashboard lets the operator manage products, categories, users, and orders. Full MVC architecture: separate controllers, models, and views for every feature area.
 
-## Sobre o projeto
+This was a school period final project with the goal of understanding how full-stack web applications work end-to-end without framework magic.
 
-ChefBoksi.fi foi pensada para ser uma plataforma de entrega de kits de refeições para o mercado finlandês. A plataforma permite que os usuários selecionem refeições de diversas opções dietéticas, planejem refeições semanais, peçam ingredientes pré-porcionados com receitas e gerenciem endereços de entrega e rastreamento de pedidos.
+## What I learned
 
-Este foi um projeto de aprendizado focado em entender o desenvolvimento web full-stack, construir uma aplicação completa do frontend ao backend, trabalhar com bancos de dados e autenticação de usuários, implementar padrões de arquitetura MVC e ganhar experiência com PHP, MySQL, JavaScript e frameworks web modernos.
+Building MVC from scratch in plain PHP is humbling. Without a framework enforcing patterns, you have to be deliberate about every routing decision, every SQL query, every session check. I learned why frameworks exist — not because the patterns are hard to understand, but because maintaining consistency across a large codebase without them requires real discipline. Database design was the other major lesson: normalising the relationships between meals, categories, dietary types, and orders before writing any code saved enormous refactoring later.
 
-## Funcionalidades implementadas
+## Project Status
 
-- Autenticação de usuários (cadastro/login)
-- Sistema de planejamento de refeições com filtros dietéticos
-- Catálogo de produtos com categorias
-- Funcionalidade de carrinho de compras
-- Formulário de checkout
-- Painel administrativo para gerenciar produtos, categorias, usuários e pedidos
-- Sistema de rastreamento de pedidos
-- Gerenciamento de endereço de entrega
-- Suporte a múltiplas opções dietéticas (sem glúten, keto, vegetariano, vegano, alto teor proteico, etc.)
+This project was developed as a school assignment and was not completed. The foundation — auth, catalog, admin dashboard, cart — works. Final delivery, payment integration, and production deployment were not reached within the school period.
 
-## Status do projeto
+## Architecture
 
-**Este projeto está incompleto e foi descontinuado.**
+MVC structure with separate controllers, models, and views. MySQL database with tables for meals, categories, dietary types, users, orders, and ingredients.
 
-O projeto foi desenvolvido como trabalho final de um período escolar para obter uma compreensão mais profunda do desenvolvimento web full-stack. O projeto não foi concluído porque o desenvolvedor estava incerto sobre os próximos passos e a direção que queria dar ao projeto.
+**Test access:** The site at chefboksi.fi may be in maintenance mode.

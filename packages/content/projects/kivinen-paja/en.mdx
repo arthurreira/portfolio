@@ -1,40 +1,34 @@
 ---
 title: "Kivinen Paja"
-description: "A real-time AI developer roundtable where multiple Anthropic agents discuss topics simultaneously, powered by Pusher for live messaging and Redis for state management."
+description: "A real-time AI developer roundtable where multiple Anthropic Claude agents discuss topics simultaneously, powered by Pusher for live streaming and Redis for state management."
 createdAt: "2026-01-15"
 featured: false
+role: "solo"
+highlight: "Multi-agent AI roundtable — Claude agents debate in real-time via Pusher WebSockets + Redis state"
 techStack:
   - "TypeScript"
+  - "Next.js"
+  - "Anthropic API"
   - "Pusher"
   - "Redis"
-  - "Anthropic API"
-  - "Next.js"
 githubRepo: "https://github.com/arthurreira/kivinen-paja"
 url: "https://github.com/arthurreira/kivinen-paja"
 status: "done"
-highlight: ""
 ---
 
-**Kivinen Paja** ("Stone Forge" in Finnish) is an experimental real-time application where multiple AI agents powered by the Anthropic API hold a live roundtable discussion. Each agent takes a different perspective and responds to the conversation as it unfolds.
+## What I built
 
-## How It Works
+An experimental real-time app where multiple Claude agents hold a live roundtable discussion on a submitted topic. Each agent has a distinct perspective and responds as the conversation unfolds — responses stream in via Pusher WebSocket channels so you watch the discussion develop in real time. Redis persists the conversation state and manages agent turn-taking so the discussion stays coherent across reconnects.
 
-1. A topic is submitted to the roundtable
-2. Multiple Anthropic-backed agents receive the topic simultaneously
-3. Responses are streamed in real time via **Pusher** channels
-4. **Redis** persists the conversation state and manages agent turn-taking
+"Kivinen Paja" means "Stone Forge" in Finnish — the name reflects the idea of raw ideas being shaped through heated discussion.
 
-## Features
+## What I learned
 
-- Multi-agent concurrent discussion
-- Real-time message streaming with Pusher
-- Conversation history stored in Redis
-- Clean, minimal chat-style UI
+Coordinating multiple concurrent LLM calls is harder than it looks. Each agent needs context of what the others have said, but sending the full conversation history on every turn becomes expensive and slow. Managing turn-taking logic in Redis (who speaks next, what's the current state) was the core engineering challenge. I also learned about Pusher channel architecture for real-time streaming — the difference between presence channels (who's connected) and private channels (secured streams) became important for managing which agent "speaks" when.
 
-## Tech Stack
+## Architecture
 
-- **TypeScript** — full-stack type safety
-- **Anthropic API** — Claude models as roundtable participants
-- **Pusher** — real-time WebSocket events
-- **Redis** — session and state persistence
-- **Next.js** — API routes and frontend
+1. Topic submitted → dispatched to all agents simultaneously
+2. Each agent calls Anthropic API with its own system prompt + shared conversation history
+3. Responses stream via Pusher to the frontend in real time
+4. Redis persists conversation state and agent coordination

@@ -1,38 +1,34 @@
 ---
 title: "PrimeKG Explorer"
-description: "Explorador interativo de grafos biomédicos em 3D baseado no dataset PrimeKG, utilizando Neo4j para armazenamento e react-force-graph-3d para visualização."
+description: "An interactive 3D biomedical knowledge graph explorer built on top of the PrimeKG dataset, using Neo4j for graph storage and react-force-graph-3d for WebGL visualization."
 createdAt: "2026-03-05"
 featured: false
+role: "solo"
+highlight: "Interactive 3D biomedical graph — 4M+ PrimeKG nodes in Neo4j, WebGL force-directed visualization, disease-drug-gene relationships"
 techStack:
   - "TypeScript"
+  - "Next.js"
   - "Neo4j"
   - "react-force-graph-3d"
-  - "Next.js"
 githubRepo: "https://github.com/arthurreira/primekg-explorer"
 url: "https://github.com/arthurreira/primekg-explorer"
 status: "done"
-highlight: ""
 ---
 
-**PrimeKG Explorer** é uma ferramenta interativa para navegar pelo grafo de conhecimento biomédico [PrimeKG](https://zitniklab.hms.harvard.edu/projects/PrimeKG/) — um dataset que conecta doenças, medicamentos, genes, proteínas e vias biológicas.
+## What I built
 
-## O que faz
+A tool for navigating PrimeKG — a Harvard biomedical dataset linking diseases, drugs, genes, proteins, and biological pathways across 4 million+ nodes and relationships. The pipeline loads PrimeKG into a Neo4j graph database, serves it through Next.js API routes, and renders it as an interactive 3D force-directed graph using WebGL via react-force-graph-3d.
 
-- Carrega os nós e arestas do PrimeKG em um banco de dados de grafos **Neo4j**
-- Renderiza o grafo como uma visualização 3D interativa em tempo real com **react-force-graph-3d**
-- Permite explorar relações entre doenças, medicamentos, genes e proteínas
-- Suporta busca e filtragem por tipo de entidade ou nome
+You can search by disease, drug, or gene name, filter by entity type, and click nodes to explore their relationships. Node colours are coded by entity type; edge thickness represents relationship weight.
 
-## Destaques técnicos
+## What I learned
 
-- Consultas Cypher via driver JavaScript do Neo4j
-- Dados do grafo servidos por rotas de API do Next.js
-- Layout force-directed 3D com renderização WebGL
-- Codificação de cores por tipo de entidade (doença, medicamento, gene etc.)
+Graph databases think differently from relational ones. A query that would require five JOINs in SQL is a two-hop traversal in Cypher. The mental model shift — "find all neighbours two hops away from this node" vs "JOIN three tables on these columns" — took time but is genuinely more natural for connected data. 3D WebGL rendering also introduced performance constraints I hadn't encountered before: a graph that looks fine at 1,000 nodes becomes unresponsive at 50,000. The solution was LOD (level-of-detail) filtering — showing only high-degree nodes at the global view and expanding detail on zoom.
 
-## Stack
+## Technical Highlights
 
-- **TypeScript** — tipagem em toda a aplicação
-- **Neo4j** — banco de dados de grafos para entidades biomédicas
-- **react-force-graph-3d** — visualização de grafos baseada em Three.js
-- **Next.js** — framework de API e frontend
+- Cypher queries via the Neo4j JavaScript driver
+- Graph data served through Next.js API routes
+- 3D force-directed layout with WebGL rendering
+- Node colour-coding by entity type (disease, drug, gene, protein, pathway)
+- Search and filter by name or entity type

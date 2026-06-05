@@ -3,6 +3,8 @@ title: "Nutrineuvo"
 description: "A modern microservices platform with Docker, Node.js/Express API, React frontend, and PostgreSQL, deployed on UpCloud with Terraform and GitHub Actions."
 createdAt: "2025-05-01"
 featured: false
+role: "solo"
+highlight: "Full microservices stack on UpCloud — Docker Compose, Nginx SSL, Terraform IaC, GitHub Actions CI/CD, zero-downtime deploys"
 techStack:
   - "Docker"
   - "Node.js"
@@ -15,53 +17,24 @@ techStack:
 githubRepo: "https://github.com/arthurreira/nutrineuvo"
 url: "https://nutrineuvo.com"
 status: "done"
-highlight: ""
 coverImage: "./cover.png"
 ---
 
 [![](/images/projects/nutrineuvo/nutrineuvo.png)](https://nutrineuvo.com)
 
-**Nutrineuvo** is a professional **nutrition and wellness platform** with a modern microservices architecture, featuring separate marketing site, frontend application, and API services.
+## What I built
 
-## Architecture & Infrastructure
+A nutrition and wellness platform with a proper production microservices architecture. Three services run in Docker Compose on an UpCloud server: a React marketing site (`nutrineuvo.fi`), a React application (`oma.nutrineuvo.fi`), and a Node.js/Express REST API. Nginx sits in front of everything as a reverse proxy, terminating SSL from Let's Encrypt and routing traffic to the right container. Terraform provisions the UpCloud server; GitHub Actions handles every deployment automatically on push to main.
 
-The project uses a **containerized microservices architecture** deployed on **UpCloud** with **Docker Compose**, providing scalable and maintainable infrastructure.
+## What I learned
 
-**Infrastructure Stack:**
-- **UpCloud** cloud server (provisioned via **Terraform**)
-- **Docker Compose** for container orchestration
-- **Nginx** reverse proxy with SSL termination
-- **Let's Encrypt** (Certbot) for automated SSL certificates
-- **PostgreSQL** database in Docker container
-- **GitHub Actions** for CI/CD automation
+Running microservices in production — not in a tutorial — requires solving a class of problems that local development hides. SSL certificate renewal, database backup scheduling, zero-downtime deployments, and environment variable management across multiple services all need explicit solutions. Nginx configuration also clicked differently once it was handling real traffic rather than being a dev proxy. The biggest lesson: infrastructure decisions made early (how you name containers, how you structure health checks) propagate through everything and are painful to change later.
 
-**Application Services:**
-- **API Service** - Node.js/Express REST API (port 3000)
-- **Frontend Application** - React SPA with React Router (`oma.nutrineuvo.fi`)
-- **Marketing Site** - React marketing website (`nutrineuvo.fi`)
-- **Nginx** - Reverse proxy handling routing and SSL (ports 80, 443)
-- **PostgreSQL** - Production database (port 5432)
+## Architecture
 
-**Domain Architecture:**
-- `nutrineuvo.fi` → Marketing site
-- `oma.nutrineuvo.fi` → Frontend application + API proxy
-- `api.nutrineuvo.fi` → Direct API access
-
-## Deployment & DevOps
-
-**Infrastructure as Code:**
-- **Terraform** for server provisioning and configuration
-- **Docker Compose** for service orchestration
-- **GitHub Actions** for automated deployments
-- Zero-downtime deployments with health checks
-
-**Database Management:**
-- **PostgreSQL** with automated migrations
-- Automated backup scripts with cron scheduling
-- Database restore capabilities for disaster recovery
-
-**SSL & Security:**
-- **Let's Encrypt** certificates with automatic renewal
-- **TLS 1.2 and 1.3** with modern cipher suites
-- **HSTS** and **OCSP stapling** for enhanced security
-- **Nginx** security headers and hardening
+- `nutrineuvo.fi` → React marketing site
+- `oma.nutrineuvo.fi` → React app + API proxy
+- Node.js/Express API with PostgreSQL
+- Nginx reverse proxy with SSL termination
+- Terraform for server provisioning, Docker Compose for orchestration
+- GitHub Actions for automated CI/CD with health checks

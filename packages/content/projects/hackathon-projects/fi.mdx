@@ -1,44 +1,22 @@
 ---
 title: "hackathon-projects"
-description: "Projektiesittelysovellus hackathon-projektien esittelyyn, otettu käyttöön GitHub Pagesin kautta."
+description: "Project showcase site deployed to projects.arthurreira.dev — third app in the same Terraform-managed GitHub Pages infrastructure demonstration."
 createdAt: "2026-01-15"
 featured: false
+role: "solo"
+highlight: "Third app in the 3-app Terraform infra demo — project gallery at projects.arthurreira.dev"
 techStack:
   - "HTML"
   - "CSS"
   - "JavaScript"
-  - "GitHub Pages"
+  - "Terraform"
   - "GitHub Actions"
+  - "GitHub Pages"
 githubRepo: "https://github.com/arthurreira/hackathon-projects"
 url: "https://projects.arthurreira.dev"
-status: "done"
-highlight: ""
+status: "fun"
 ---
 
-**hackathon-projects** on **staattinen verkkosovellus** hackathon-projektilähetysten esittelyyn, julkaistu GitHub Pagesin kautta.
+Part of the same 3-app Terraform infrastructure demo as `hackathon-registration` and `hackathon-schedule`. Deployed to `projects.arthurreira.dev`.
 
-Se tarjoaa keskitetyn alustan, jossa osallistujat ja tuomarit voivat selata ja katsoa kaikki lähetetyt hackathon-projektit organisoidussa, helposti saatavilla olevassa muodossa.
-
-## Tärkeimmät ominaisuudet
-
-1. **Projektiesittely:** Näyttää kaikki hackathon-projektilähetykset tiedoin, kuvauksin ja linkkeineen.
-2. **Automaattinen julkaisu:** GitHub Actions -työnkulku rakentaa ja julkaisee sivuston automaattisesti jokaisella commitilla päähaaran.
-3. **Mukautettu domain:** Julkaistu osoitteessa `projects.arthurreira.dev` mukautetun alidomainin kautta.
-4. **Helpot päivitykset:** Järjestäjät voivat lisätä tai päivittää projektilistauksia muokkaamalla tiedostoja ja tekemällä commitin — ei manuaalista julkaisua tarvita.
-5. **Infrastruktuuriautomaatio:** Luotu ja konfiguroitu automaattisesti Terraform-infrastruktuuriautomaation kautta.
-
-## Teknologiat
-
-- **Julkaisu:** GitHub Pages
-- **Automaatio:** GitHub Actions
-- **Infrastruktuuri:** Terraform
-- **Domain:** Mukautettu alidomaini (projects.arthurreira.dev)
-
-## Arkkitehtuuri
-
-Sovellus on osa automatisoitua infrastruktuurijärjestelmää:
-
-1. **Infrastruktuurin provisiointi:** Luotu automaattisesti `infra` Terraform-projektin toimesta
-2. **Repon asetus:** GitHub-repo, jossa Pages on käytössä ja mukautettu domain konfiguroitu
-3. **Julkaisutyönkulku:** Automaattisesti generoitu GitHub Actions -työnkulku hallitsee rakennuksia ja julkaisuja
-4. **Sisällönhallinta:** Staattiset tiedostot, joita voidaan helposti päivittää Git-commiteilla
+See [hackathon-registration](/projects/hackathon-registration) for the full technical write-up on the Terraform automation behind all three sites — the architecture, what was learned, and why the infra is the real project here.

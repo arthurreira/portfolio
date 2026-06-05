@@ -1,44 +1,22 @@
 ---
 title: "hackathon-projects"
-description: "Aplicação de vitrine de projetos para exibir submissões de projetos de hackathons, implantada via GitHub Pages."
+description: "Project showcase site deployed to projects.arthurreira.dev — third app in the same Terraform-managed GitHub Pages infrastructure demonstration."
 createdAt: "2026-01-15"
 featured: false
+role: "solo"
+highlight: "Third app in the 3-app Terraform infra demo — project gallery at projects.arthurreira.dev"
 techStack:
   - "HTML"
   - "CSS"
   - "JavaScript"
-  - "GitHub Pages"
+  - "Terraform"
   - "GitHub Actions"
+  - "GitHub Pages"
 githubRepo: "https://github.com/arthurreira/hackathon-projects"
 url: "https://projects.arthurreira.dev"
-status: "done"
-highlight: ""
+status: "fun"
 ---
 
-**hackathon-projects** é uma **aplicação web estática** para exibir submissões de projetos de hackathons, implantada via GitHub Pages.
+Part of the same 3-app Terraform infrastructure demo as `hackathon-registration` and `hackathon-schedule`. Deployed to `projects.arthurreira.dev`.
 
-Fornece uma plataforma centralizada onde participantes e juízes podem navegar e visualizar todos os projetos submetidos no hackathon em um formato organizado e acessível.
-
-## Funcionalidades principais
-
-1. **Vitrine de projetos:** Exibe todas as submissões com detalhes, descrições e links.
-2. **Deploy automático:** O workflow do GitHub Actions constrói e implanta o site automaticamente a cada commit na branch principal.
-3. **Domínio personalizado:** Implantado em `projects.arthurreira.dev` via configuração de subdomínio personalizado.
-4. **Atualizações fáceis:** Os organizadores podem adicionar ou atualizar projetos editando arquivos e fazendo commit — sem deploy manual.
-5. **Automação de infraestrutura:** Criado e configurado automaticamente pelo projeto Terraform de infraestrutura.
-
-## Tecnologias
-
-- **Deploy:** GitHub Pages
-- **Automação:** GitHub Actions
-- **Infraestrutura:** Terraform
-- **Domínio:** Subdomínio personalizado (projects.arthurreira.dev)
-
-## Arquitetura
-
-A aplicação faz parte de um sistema de infraestrutura automatizada:
-
-1. **Provisionamento de infraestrutura:** Criado automaticamente pelo projeto Terraform `infra`
-2. **Configuração do repositório:** Repositório GitHub com Pages habilitado e domínio personalizado configurado
-3. **Workflow de deploy:** Workflow do GitHub Actions gerado automaticamente gerencia builds e deploys
-4. **Gerenciamento de conteúdo:** Arquivos estáticos que podem ser facilmente atualizados via commits Git
+See [hackathon-registration](/projects/hackathon-registration) for the full technical write-up on the Terraform automation behind all three sites — the architecture, what was learned, and why the infra is the real project here.

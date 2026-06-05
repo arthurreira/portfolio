@@ -1,8 +1,10 @@
 ---
 title: "Honor Notes"
-description: "Aplicação full-stack de notas com frontend em Next.js e uma API REST em Docker, desenvolvida para praticar arquitetura desacoplada e TypeScript de ponta a ponta."
+description: "A full-stack notes application with a Next.js frontend and a Dockerized REST API backend, featuring rich text editing, tags, and persistent storage."
 createdAt: "2026-11-20"
 featured: false
+role: "solo"
+highlight: "Decoupled full-stack notes app — Next.js frontend + Dockerized REST API, shared TypeScript types across services"
 techStack:
   - "TypeScript"
   - "Next.js"
@@ -11,27 +13,21 @@ techStack:
 githubRepo: "https://github.com/arthurreira/honor-notes-frontend"
 url: "https://github.com/arthurreira/honor-notes-frontend"
 status: "done"
-highlight: ""
 ---
 
-**Honor Notes** é uma aplicação full-stack de notas dividida em um **frontend Next.js** e uma **API REST em container Docker**. O projeto foi criado para praticar arquitetura desacoplada, containerização e TypeScript de ponta a ponta em um ambiente com múltiplos serviços.
+## What I built
 
-## Arquitetura
+A notes app split into two independent services: a Next.js frontend and a separate Dockerized REST API backend. The separation is deliberate — the two repos share a TypeScript interface package so the API contract is type-safe on both ends. The frontend consumes the API over HTTP; the API handles all CRUD and persistence. Either service can be replaced or redeployed independently.
 
-- **Frontend** — aplicação Next.js que consome a REST API, com uma UI de notas limpa e funcional
-- **Backend** — API REST containerizada (Docker) que gerencia operações CRUD das notas
-- Os serviços se comunicam via HTTP; o backend pode ser implantado independentemente
+Features: create/read/update/delete notes, tag-based organisation, persistent storage via the API.
 
-## Funcionalidades
+## What I learned
 
-- Criar, ler, editar e excluir notas
-- Organização por tags
-- Armazenamento persistente via API
-- Contrato de API totalmente tipado e compartilhado entre frontend e backend
+The main lesson was about the cost of service boundaries. With a monolith, sharing types is trivial. With two separate repos communicating over HTTP, you need to be intentional about the API contract — what shape do requests and responses have, and how do you keep both sides in sync when it changes? Managing a shared types package taught me why API versioning and clear contracts matter more than they seem in small projects.
 
-## Stack
+## Architecture
 
-- **TypeScript** — tipos compartilhados entre frontend e API
-- **Next.js** — framework de frontend
-- **Docker** — serviço de API containerizado
-- **REST API** — interface HTTP para gerenciamento de notas
+- **Frontend** — Next.js app consuming the REST API, with a clean notes UI
+- **Backend** — Containerized REST API (Docker) handling CRUD operations for notes
+- Both services communicate via HTTP; the backend is independently deployable
+- Fully typed API contract shared between frontend and backend

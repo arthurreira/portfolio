@@ -1,31 +1,33 @@
 ---
 title: "br-state-flags Demo"
-description: "Interaktiivinen demoprojekti, joka esittelee Brasilian osavaltiolippuja, tietoja ja ominaisuuksia Reactin ja br-state-flags npm-paketin avulla."
+description: "An interactive showcase for the br-state-flags library — browse all 27 Brazilian state flags, inspect metadata, and copy ready-to-use code snippets."
 createdAt: "2026-12-23"
 featured: false
+role: "solo"
+highlight: "Live demo site for br-state-flags — searchable gallery, state metadata, instant code snippets"
 techStack:
   - "Next.js"
   - "Tailwind CSS"
+  - "br-state-flags"
 githubRepo: "https://github.com/arthurreira/br-state-flags-demo"
 url: "https://br-state-flags-demo.arthurreira.dev"
 status: "done"
-highlight: ""
 ---
 
 [![](/images/projects/br-state-flags/br-state-flags-demo.arthurreira.dev.png)](https://br-state-flags-demo.arthurreira.dev)
 
-**br-state-flags Demo** on verkkosivu, joka esittelee [br-state-flags-kirjaston](/projects/br-state-flags) toimintaa. Se mahdollistaa kaikkien 27 Brasilian osavaltiolipun selaamisen, niiden metatietojen tarkastelun (pääkaupunki, väestö, alue) ja lopputuloksen näkemisen tuotantoympäristössä.
+## What I built
 
-## Ominaisuudet
+The demo site for `br-state-flags`. A developer landing page that does three things: shows every flag in a browsable grid, displays the geographic and demographic metadata for each state on click, and generates ready-to-copy import snippets for whichever flag you're looking at. The site is the library's primary documentation.
 
-1. **Interaktiivinen lippugalleria:** Katso kaikki liput responsiivisessa ruudukossa.
-2. **Osavaltion tiedot:** Klikkaa mitä tahansa lippua nähdäksesi yksityiskohtaiset demografiset ja maantieteelliset tiedot kirjaston metadatasta.
-3. **Koodiesimerkit:** Tarjoaa välittömät käyttöesimerkit jokaiselle osavaltion lippukomponentille.
-4. **Tumma tila:** Täysin teemoitettu sekä vaalealle että tummalle ympäristölle.
+## What I learned
 
-## Teknologiat
+A demo site is part of the product. A library that's hard to evaluate doesn't get adopted. The design challenge was making it feel like a reference tool (fast, functional, skimmable) rather than a portfolio piece. I also learned that demos need to stay in sync with the library — broken examples are worse than no examples.
 
-- **Framework:** Next.js (App Router)
-- **Tyyli:** Tailwind CSS
-- **Kirjasto:** br-state-flags
-- **Julkaisu:** GitHub Pages
+## Features
+
+- Responsive flag gallery for all 27 states
+- Click any flag for capital, population, region data
+- Instant code snippet generation per component
+- Dark mode support
+- Deployed to GitHub Pages via the same Terraform infra module as `hackathon-registration`

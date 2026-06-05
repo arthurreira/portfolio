@@ -1,8 +1,10 @@
 ---
 title: "Nutrineuvo"
-description: "Uma plataforma moderna de microsserviços com Docker, API Node.js/Express, frontend React e PostgreSQL, implantada no UpCloud com Terraform e GitHub Actions."
+description: "A modern microservices platform with Docker, Node.js/Express API, React frontend, and PostgreSQL, deployed on UpCloud with Terraform and GitHub Actions."
 createdAt: "2025-05-01"
 featured: false
+role: "solo"
+highlight: "Full microservices stack on UpCloud — Docker Compose, Nginx SSL, Terraform IaC, GitHub Actions CI/CD, zero-downtime deploys"
 techStack:
   - "Docker"
   - "Node.js"
@@ -15,44 +17,24 @@ techStack:
 githubRepo: "https://github.com/arthurreira/nutrineuvo"
 url: "https://nutrineuvo.com"
 status: "done"
-highlight: ""
 coverImage: "./cover.png"
 ---
 
 [![](/images/projects/nutrineuvo/nutrineuvo.png)](https://nutrineuvo.com)
 
-**Nutrineuvo** é uma **plataforma profissional de nutrição e bem-estar** com uma arquitetura moderna de microsserviços, com site de marketing, aplicação frontend e serviços de API separados.
+## What I built
 
-## Arquitetura e infraestrutura
+A nutrition and wellness platform with a proper production microservices architecture. Three services run in Docker Compose on an UpCloud server: a React marketing site (`nutrineuvo.fi`), a React application (`oma.nutrineuvo.fi`), and a Node.js/Express REST API. Nginx sits in front of everything as a reverse proxy, terminating SSL from Let's Encrypt and routing traffic to the right container. Terraform provisions the UpCloud server; GitHub Actions handles every deployment automatically on push to main.
 
-O projeto usa uma **arquitetura de microsserviços conteinerizada** implantada no **UpCloud** com **Docker Compose**.
+## What I learned
 
-**Stack de infraestrutura:**
-- Servidor cloud **UpCloud** (provisionado via **Terraform**)
-- **Docker Compose** para orquestração de containers
-- **Nginx** como reverse proxy com terminação SSL
-- **Let's Encrypt** (Certbot) para certificados SSL automáticos
-- **PostgreSQL** em container Docker
-- **GitHub Actions** para automação CI/CD
+Running microservices in production — not in a tutorial — requires solving a class of problems that local development hides. SSL certificate renewal, database backup scheduling, zero-downtime deployments, and environment variable management across multiple services all need explicit solutions. Nginx configuration also clicked differently once it was handling real traffic rather than being a dev proxy. The biggest lesson: infrastructure decisions made early (how you name containers, how you structure health checks) propagate through everything and are painful to change later.
 
-**Serviços da aplicação:**
-- **Serviço de API** — Node.js/Express REST API (porta 3000)
-- **Aplicação frontend** — React SPA com React Router (`oma.nutrineuvo.fi`)
-- **Site de marketing** — Site React de marketing (`nutrineuvo.fi`)
-- **Nginx** — Reverse proxy gerenciando roteamento e SSL
-- **PostgreSQL** — Banco de dados de produção
+## Architecture
 
-**Arquitetura de domínios:**
-- `nutrineuvo.fi` → Site de marketing
-- `oma.nutrineuvo.fi` → Aplicação frontend + proxy de API
-- `api.nutrineuvo.fi` → Acesso direto à API
-
-## Deploy e DevOps
-
-- **Terraform** para provisionamento do servidor
-- **Docker Compose** para orquestração dos serviços
-- **GitHub Actions** para deploys automatizados
-- Deploys sem downtime com health checks
-- **PostgreSQL** com migrações automatizadas e scripts de backup
-- Certificados **Let's Encrypt** com renovação automática
-- **TLS 1.2 e 1.3** com cipher suites modernas
+- `nutrineuvo.fi` → React marketing site
+- `oma.nutrineuvo.fi` → React app + API proxy
+- Node.js/Express API with PostgreSQL
+- Nginx reverse proxy with SSL termination
+- Terraform for server provisioning, Docker Compose for orchestration
+- GitHub Actions for automated CI/CD with health checks

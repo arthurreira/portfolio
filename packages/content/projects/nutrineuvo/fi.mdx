@@ -1,8 +1,10 @@
 ---
 title: "Nutrineuvo"
-description: "Moderni mikropalvelualusta Dockerilla, Node.js/Express API:lla, React-frontendilla ja PostgreSQL:llä, käyttöönotettu UpCloudissa Terraformin ja GitHub Actionsin avulla."
+description: "A modern microservices platform with Docker, Node.js/Express API, React frontend, and PostgreSQL, deployed on UpCloud with Terraform and GitHub Actions."
 createdAt: "2025-05-01"
 featured: false
+role: "solo"
+highlight: "Full microservices stack on UpCloud — Docker Compose, Nginx SSL, Terraform IaC, GitHub Actions CI/CD, zero-downtime deploys"
 techStack:
   - "Docker"
   - "Node.js"
@@ -15,44 +17,24 @@ techStack:
 githubRepo: "https://github.com/arthurreira/nutrineuvo"
 url: "https://nutrineuvo.com"
 status: "done"
-highlight: ""
 coverImage: "./cover.png"
 ---
 
 [![](/images/projects/nutrineuvo/nutrineuvo.png)](https://nutrineuvo.com)
 
-**Nutrineuvo** on ammattimainen **ravitsemus- ja hyvinvointialusta** modernilla mikropalveluarkkitehtuurilla, jossa on erilliset markkinointisivusto, frontend-sovellus ja API-palvelut.
+## What I built
 
-## Arkkitehtuuri ja infrastruktuuri
+A nutrition and wellness platform with a proper production microservices architecture. Three services run in Docker Compose on an UpCloud server: a React marketing site (`nutrineuvo.fi`), a React application (`oma.nutrineuvo.fi`), and a Node.js/Express REST API. Nginx sits in front of everything as a reverse proxy, terminating SSL from Let's Encrypt and routing traffic to the right container. Terraform provisions the UpCloud server; GitHub Actions handles every deployment automatically on push to main.
 
-Projekti käyttää **konteineripohjaista mikropalveluarkkitehtuuria**, joka on otettu käyttöön **UpCloudissa** **Docker Composella**.
+## What I learned
 
-**Infrastruktuuripino:**
-- **UpCloud**-pilvipalvelin (provisioitu **Terraformilla**)
-- **Docker Compose** konttien orkestrointiin
-- **Nginx** käänteinen välityspalvelin SSL-päättelyllä
-- **Let's Encrypt** (Certbot) automaattisille SSL-sertifikaateille
-- **PostgreSQL**-tietokanta Docker-kontissa
-- **GitHub Actions** CI/CD-automaatioon
+Running microservices in production — not in a tutorial — requires solving a class of problems that local development hides. SSL certificate renewal, database backup scheduling, zero-downtime deployments, and environment variable management across multiple services all need explicit solutions. Nginx configuration also clicked differently once it was handling real traffic rather than being a dev proxy. The biggest lesson: infrastructure decisions made early (how you name containers, how you structure health checks) propagate through everything and are painful to change later.
 
-**Sovelluspalvelut:**
-- **API-palvelu** — Node.js/Express REST API (portti 3000)
-- **Frontend-sovellus** — React SPA React Routerilla (`oma.nutrineuvo.fi`)
-- **Markkinointisivusto** — React-markkinointisivusto (`nutrineuvo.fi`)
-- **Nginx** — käänteinen välityspalvelin reititystä ja SSL:ää varten
-- **PostgreSQL** — tuotantotietokanta
+## Architecture
 
-**Domain-arkkitehtuuri:**
-- `nutrineuvo.fi` → Markkinointisivusto
-- `oma.nutrineuvo.fi` → Frontend-sovellus + API-välitys
-- `api.nutrineuvo.fi` → Suora API-yhteys
-
-## Käyttöönotto ja DevOps
-
-- **Terraform** palvelimen provisiointiin
-- **Docker Compose** palvelujen orkestrointiin
-- **GitHub Actions** automaattisiin käyttöönottoihin
-- Zero-downtime käyttöönotot terveystarkistuksilla
-- **PostgreSQL** automaattisilla migraatioilla ja varmuuskopioskripteillä
-- **Let's Encrypt** -sertifikaatit automaattisella uusimisella
-- **TLS 1.2 ja 1.3** modernilla salauspakkauksella
+- `nutrineuvo.fi` → React marketing site
+- `oma.nutrineuvo.fi` → React app + API proxy
+- Node.js/Express API with PostgreSQL
+- Nginx reverse proxy with SSL termination
+- Terraform for server provisioning, Docker Compose for orchestration
+- GitHub Actions for automated CI/CD with health checks
