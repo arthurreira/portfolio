@@ -50,7 +50,7 @@ export function SiteProjects({
             const isFirst = i === 0
 
             return (
-              <Link key={project.id} href={`/${project.locale}/test/projects/${project.slug}`} style={{ textDecoration: "none", display: "block" }}>
+              <Link key={project.id} href={`/${project.locale}/projects/${project.slug}`} style={{ textDecoration: "none", display: "block" }}>
                 <div
                   style={{
                     borderTop: "1px solid var(--border)",

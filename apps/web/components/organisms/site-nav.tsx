@@ -9,9 +9,9 @@ import { NavLink } from "@/components/atoms/nav-link"
 import { PillGroup } from "@/components/molecules/pill-group"
 
 const NAV_LINKS = [
-  { href: "/test/projects", label: "Projects" },
-  { href: "/test/about",    label: "About"    },
-  { href: "/test/contact",  label: "Contact"  },
+  { href: "/projects", label: "Projects" },
+  { href: "/about",    label: "About"    },
+  { href: "/contact",  label: "Contact"  },
 ]
 
 const FLAGS = [
