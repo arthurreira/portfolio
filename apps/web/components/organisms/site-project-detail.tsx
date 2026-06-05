@@ -3,6 +3,7 @@
 import Link from "next/link"
 import Image from "next/image"
 import { useTranslations } from "next-intl"
+import type { ProjectStatus, ProjectRole } from "@arthurreira/content/types"
 import { TestMDXContent } from "@/components/molecules/mdx-content"
 
 const FONT = "var(--font-ui)"
@@ -24,8 +25,8 @@ export interface SiteProjectDetailProps {
   description: string
   techStack?: string[]
   year: string
-  status: string
-  role?: string
+  status: ProjectStatus
+  role?: ProjectRole
   highlight?: string
   url?: string
   githubRepo?: string
@@ -42,12 +43,15 @@ export function SiteProjectDetail({
   const num = String(index).padStart(2, "0")
 
   function resolveRole(): string {
+    // Professional projects with an explicit role → show the role
     if ((status === "done" || status === "ongoing") && role) {
-      return t(`roles.${role}` as any)
+      return t(`roles.${role}`)
     }
-    const ctx: Record<string, string> = { school:"school", fun:"fun", learning:"learning", someday:"someday" }
-    if (ctx[status]) return t(`statuses.${ctx[status]}` as any)
-    return role ? t(`roles.${role}` as any) : t("defaultRole")
+    // Context projects → the status describes the work
+    if (status === "school" || status === "fun" || status === "learning" || status === "someday") {
+      return t(`statuses.${status}`)
+    }
+    return role ? t(`roles.${role}`) : t("defaultRole")
   }
 
   return (
@@ -134,7 +138,7 @@ export function SiteProjectDetail({
               <p style={{ fontWeight: 700, color: "var(--foreground)", fontSize: "1rem", margin: 0 }}>{year}</p>
             </MetaRow>
             <MetaRow label={t("status")}>
-              <p style={{ fontWeight: 700, color: "var(--foreground)", fontSize: "1rem", margin: 0 }}>{t(`statuses.${status}` as any)}</p>
+              <p style={{ fontWeight: 700, color: "var(--foreground)", fontSize: "1rem", margin: 0 }}>{t(`statuses.${status}`)}</p>
             </MetaRow>
             {url && (
               <MetaRow label={t("live")}>

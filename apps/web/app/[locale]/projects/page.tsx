@@ -18,7 +18,7 @@ export default async function ProjectsPage({
       title: p.title,
       description: p.description,
       year: new Date(p.createdAt).getFullYear().toString(),
-      slug: p.slug,
+      slug: p.slug ?? "",
       locale,
     }))
 

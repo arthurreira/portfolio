@@ -9,7 +9,7 @@ export interface SiteProject {
   title: string
   description?: string
   year: string
-  slug: string | undefined
+  slug: string
   locale: string
 }
 
