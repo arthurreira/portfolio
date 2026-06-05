@@ -1,26 +1,19 @@
-"use client"
+import { Button } from "@arthurreira/ui"
 
-import { ButtonHTMLAttributes } from "react"
-import { cn } from "@arthurreira/ui"
-
-interface PillButtonProps extends ButtonHTMLAttributes<HTMLButtonElement> {
+interface PillButtonProps extends React.ComponentProps<typeof Button> {
   active?: boolean
 }
 
-export function PillButton({ active, className, children, ...props }: PillButtonProps) {
+// Thin wrapper over the shadcn Button using the `pill` variant + size.
+// Active state is driven by aria-pressed (handled in buttonVariants).
+export function PillButton({ active, ...props }: PillButtonProps) {
   return (
-    <button
-      className={cn(
-        "font-ui text-[10px] tracking-[0.15em] uppercase px-2 py-[3px]",
-        "border transition-all duration-150 cursor-pointer",
-        active
-          ? "bg-primary text-primary-foreground border-primary"
-          : "bg-transparent text-muted-foreground border-border hover:border-primary hover:text-foreground",
-        className
-      )}
+    <Button
+      type="button"
+      variant="pill"
+      size="pill"
+      aria-pressed={active}
       {...props}
-    >
-      {children}
-    </button>
+    />
   )
 }
