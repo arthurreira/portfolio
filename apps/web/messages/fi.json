@@ -20,27 +20,21 @@
       "languages": "kieltä"
     },
     "cards": {
-    "fromTitle": "Mistä olen",
-    "fromDesc": "Brasialainen, joka on asunut Suomessa yli 10 vuotta. Tällä hetkellä Kuopiossa, Pohjois-Savossa.",
-
-    "roleTitle": "Nykyinen rooli",
-    "roleDesc": "Junior Software Engineer Nordcloud Oy:llä.",
-
-    "projectTitle": "Nykyinen projekti",
-    "projectDesc": "Rakentamassa siistejä juttuja cloud engineerina Nordcloud Oy:llä.",
-
-    "learningTitle": "Oppiminen",
-    "learningDesc": "Opiskelen pilvikonsepteja, suoritan sertifikaatteja ja kehitän ohjelmointitaitojani päivittäin.",
-
-    "footballTitle": "Jalkapallo",
-    "footballDesc": "Jalkapallo on yksi lempiharrastuksistani teknologian ulkopuolella.",
-
-    "devsecopsTitle": "DevSecOps",
-    "devsecopsDesc": "DevSecOps on kulttuuri.",
-
-    "gpuTitle": "Unelmasetup",
-    "gpuDesc": "Jonain päivänä haluaisin rakentaa setupin RTX 5090:llä 😄"
-  }
+      "fromTitle": "Mistä olen",
+      "fromDesc": "Brasialainen, joka on asunut Suomessa yli 10 vuotta. Tällä hetkellä Kuopiossa, Pohjois-Savossa.",
+      "roleTitle": "Nykyinen rooli",
+      "roleDesc": "Junior Software Engineer Nordcloud Oy:llä.",
+      "projectTitle": "Nykyinen projekti",
+      "projectDesc": "Rakentamassa siistejä juttuja cloud engineerina Nordcloud Oy:llä.",
+      "learningTitle": "Oppiminen",
+      "learningDesc": "Opiskelen pilvikonsepteja, suoritan sertifikaatteja ja kehitän ohjelmointitaitojani päivittäin.",
+      "footballTitle": "Jalkapallo",
+      "footballDesc": "Jalkapallo on yksi lempiharrastuksistani teknologian ulkopuolella.",
+      "devsecopsTitle": "DevSecOps",
+      "devsecopsDesc": "DevSecOps on kulttuuri.",
+      "gpuTitle": "Unelmasetup",
+      "gpuDesc": "Jonain päivänä haluaisin rakentaa setupin RTX 5090:llä 😄"
+    }
   },
   "projects": {
     "title": "Projektit",
@@ -51,7 +45,7 @@
   },
   "about": {
     "title": "Tietoa minusta",
-"originLabel": "Alkuperä",
+    "originLabel": "Alkuperä",
     "originValue": "Brasilia → Suomi",
     "yearsLabel": "Vuodet",
     "yearsValue": "10+ vuotta Suomessa",
@@ -69,8 +63,8 @@
   },
   "nav": {
     "projects": "Projektit",
-    "about":    "Tietoa",
-    "contact":  "Ota yhteyttä"
+    "about": "Tietoa",
+    "contact": "Ota yhteyttä"
   },
   "topBar": {
     "darkModeHint": "Paina d vaihtaaksesi tumman tilan",
@@ -91,5 +85,36 @@
     "availability": "Rakennan uraani Pilvipalveuiden parissa",
     "location": "Kuopiossa, Suomi 🇫🇮",
     "responseTime": "Vastaa yleensä 24 tunnin kuluessa"
+  },
+  "theme": {
+    "dark": "Tumma",
+    "light": "Vaalea"
+  },
+  "project": {
+    "label": "Projekti",
+    "role": "Rooli",
+    "year": "Vuosi",
+    "status": "Tila",
+    "live": "Live",
+    "source": "Lähdekoodi",
+    "defaultRole": "Suunnittelu & Toteutus",
+    "back": "← Takaisin projekteihin",
+    "viewSite": "Näytä sivusto →",
+    "github": "GitHub →",
+    "screenshotPlaceholder": "Projektin kuvakaappaus",
+    "statuses": {
+      "done": "Valmis",
+      "ongoing": "Kesken",
+      "someday": "Suunniteltu",
+      "fun": "Henkilökohtainen",
+      "learning": "Itseopiskelu",
+      "school": "Kouluprojekti"
+    },
+    "roles": {
+      "solo": "Yksintoteutettu",
+      "lead": "Pääkehittäjä",
+      "contributor": "Osallistuja",
+      "engineer": "Insinööri"
+    }
   }
 }

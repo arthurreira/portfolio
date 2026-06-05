@@ -20,27 +20,21 @@
       "languages": "idiomas falados"
     },
     "cards": {
-        "fromTitle": "De onde sou",
-        "fromDesc": "Brasileiro vivendo na Finlândia há mais de 10 anos. Atualmente em Kuopio, North Savo.",
-
-        "roleTitle": "Cargo atual",
-        "roleDesc": "Junior Software Engineer na Nordcloud Oy.",
-
-        "projectTitle": "Projeto atual",
-        "projectDesc": "Construindo coisas legais como cloud engineer na Nordcloud Oy.",
-
-        "learningTitle": "Aprendizado",
-        "learningDesc": "Estudando conceitos de cloud, conquistando certificações e evoluindo na programação diariamente.",
-
-        "footballTitle": "Futebol",
-        "footballDesc": "Futebol é um dos meus hobbies favoritos fora da tecnologia.",
-
-        "devsecopsTitle": "DevSecOps",
-        "devsecopsDesc": "DevSecOps é uma cultura.",
-
-        "gpuTitle": "Setup dos sonhos",
-        "gpuDesc": "Um dia ainda quero montar um setup com uma RTX 5090 😄"
-      }
+      "fromTitle": "De onde sou",
+      "fromDesc": "Brasileiro vivendo na Finlândia há mais de 10 anos. Atualmente em Kuopio, North Savo.",
+      "roleTitle": "Cargo atual",
+      "roleDesc": "Junior Software Engineer na Nordcloud Oy.",
+      "projectTitle": "Projeto atual",
+      "projectDesc": "Construindo coisas legais como cloud engineer na Nordcloud Oy.",
+      "learningTitle": "Aprendizado",
+      "learningDesc": "Estudando conceitos de cloud, conquistando certificações e evoluindo na programação diariamente.",
+      "footballTitle": "Futebol",
+      "footballDesc": "Futebol é um dos meus hobbies favoritos fora da tecnologia.",
+      "devsecopsTitle": "DevSecOps",
+      "devsecopsDesc": "DevSecOps é uma cultura.",
+      "gpuTitle": "Setup dos sonhos",
+      "gpuDesc": "Um dia ainda quero montar um setup com uma RTX 5090 😄"
+    }
   },
   "projects": {
     "title": "Projetos",
@@ -51,7 +45,7 @@
   },
   "about": {
     "title": "Sobre mim",
-"originLabel": "Origem",
+    "originLabel": "Origem",
     "originValue": "Brasil → Finlândia",
     "yearsLabel": "Anos",
     "yearsValue": "10+ anos na Finlândia",
@@ -69,8 +63,8 @@
   },
   "nav": {
     "projects": "Projetos",
-    "about":    "Sobre",
-    "contact":  "Contato"
+    "about": "Sobre",
+    "contact": "Contato"
   },
   "topBar": {
     "darkModeHint": "Pressione d para alternar o modo escuro",
@@ -91,5 +85,36 @@
     "availability": "Aberto a oportunidades",
     "location": "Baseado em Kuopio, Finlândia 🇫🇮",
     "responseTime": "Normalmente responde dentro de 24 horas"
+  },
+  "theme": {
+    "dark": "Escuro",
+    "light": "Claro"
+  },
+  "project": {
+    "label": "Projeto",
+    "role": "Função",
+    "year": "Ano",
+    "status": "Status",
+    "live": "Live",
+    "source": "Código",
+    "defaultRole": "Design & Desenvolvimento",
+    "back": "← Voltar aos projetos",
+    "viewSite": "Ver site →",
+    "github": "GitHub →",
+    "screenshotPlaceholder": "Captura de tela do projeto",
+    "statuses": {
+      "done": "Publicado",
+      "ongoing": "Em andamento",
+      "someday": "Planejado",
+      "fun": "Projeto pessoal",
+      "learning": "Autodidata",
+      "school": "Projeto escolar"
+    },
+    "roles": {
+      "solo": "Projeto solo",
+      "lead": "Desenvolvedor líder",
+      "contributor": "Contribuidor",
+      "engineer": "Engenheiro"
+    }
   }
 }

@@ -14,10 +14,6 @@ const FLAGS = [
   { key: "brasil", label: "Brasil" },
   { key: "suomi",  label: "Suomi"  },
 ]
-const MODES = [
-  { key: "dark",  label: "Dark"  },
-  { key: "light", label: "Light" },
-]
 const LANGS = [
   { key: "en",    label: "EN" },
   { key: "fi",    label: "FI" },
@@ -49,6 +45,12 @@ export function SiteNav() {
   const intlPathname    = useIntlPathname() // path without locale e.g. /projects
   const currentLocale   = useLocale()
   const t               = useTranslations("nav")
+  const tTheme          = useTranslations("theme")
+
+  const MODES = [
+    { key: "dark",  label: tTheme("dark")  },
+    { key: "light", label: tTheme("light") },
+  ]
 
   const NAV_LINKS = [
     { href: "/projects", label: t("projects") },

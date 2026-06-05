@@ -2,45 +2,10 @@
 
 import Link from "next/link"
 import Image from "next/image"
+import { useTranslations } from "next-intl"
 import { TestMDXContent } from "@/components/molecules/mdx-content"
 
 const FONT = "var(--font-ui)"
-
-// For done/ongoing: show the role field (solo/lead/contributor/engineer)
-const ROLE_LABEL: Record<string, string> = {
-  solo:        "Solo Project",
-  lead:        "Lead Developer",
-  contributor: "Contributor",
-  engineer:    "Engineer",
-}
-
-// For school/fun/learning/someday: status IS the context
-const STATUS_CONTEXT: Record<string, string> = {
-  school:  "School Project",
-  fun:     "Personal Project",
-  learning:"Self-learning",
-  someday: "Planned",
-}
-
-const STATUS_LABEL: Record<string, string> = {
-  done:     "Shipped",
-  ongoing:  "In Progress",
-  someday:  "Planned",
-  fun:      "Personal",
-  learning: "Learning",
-  school:   "School",
-}
-
-function resolveRole(status: string, role?: string): string {
-  // Professional projects: use role field if set
-  if ((status === "done" || status === "ongoing") && role) {
-    return ROLE_LABEL[role] ?? role
-  }
-  // Context projects: status tells the story
-  if (STATUS_CONTEXT[status]) return STATUS_CONTEXT[status]!
-  // Fallback
-  return role ? (ROLE_LABEL[role] ?? role) : "Design & Build"
-}
 
 function MetaRow({ label, children }: { label: string; children: React.ReactNode }) {
   return (
@@ -73,7 +38,17 @@ export function SiteProjectDetail({
   index, title, description, techStack, year, status, role, highlight,
   url, githubRepo, coverImage, content, locale,
 }: SiteProjectDetailProps) {
+  const t   = useTranslations("project")
   const num = String(index).padStart(2, "0")
+
+  function resolveRole(): string {
+    if ((status === "done" || status === "ongoing") && role) {
+      return t(`roles.${role}` as any)
+    }
+    const ctx: Record<string, string> = { school:"school", fun:"fun", learning:"learning", someday:"someday" }
+    if (ctx[status]) return t(`statuses.${ctx[status]}` as any)
+    return role ? t(`roles.${role}` as any) : t("defaultRole")
+  }
 
   return (
     <div style={{ background: "var(--background)", minHeight: "100vh", fontFamily: FONT }}>
@@ -81,7 +56,7 @@ export function SiteProjectDetail({
       {/* Header */}
       <div className="t-shell" style={{ paddingLeft: "calc(var(--sidebar-w) + var(--ticker-gap))", paddingRight: "var(--gutter)", paddingTop: "2.5rem", paddingBottom: 0 }}>
         <p style={{ fontFamily: FONT, fontSize: 11, letterSpacing: "0.22em", textTransform: "uppercase", color: "var(--primary)", margin: 0, marginBottom: "1.5rem" }}>
-          Project [{num}]
+          {t("label")} [{num}]
         </p>
 
         <h1 style={{
@@ -127,7 +102,7 @@ export function SiteProjectDetail({
               }} />
               <div style={{ position: "absolute", inset: 0, display: "flex", alignItems: "center", justifyContent: "center" }}>
                 <span style={{ fontFamily: FONT, fontSize: 11, letterSpacing: "0.3em", textTransform: "uppercase", color: "var(--muted-foreground)", opacity: 0.5 }}>
-                  Project Screenshot — Full Bleed
+                  {t("screenshotPlaceholder")}
                 </span>
               </div>
             </>
@@ -145,36 +120,36 @@ export function SiteProjectDetail({
 
             <div style={{ marginTop: "4rem", paddingTop: "2rem", borderTop: "1px solid var(--border)" }}>
               <Link href={`/${locale}/projects`} style={{ color: "var(--foreground)", fontSize: "0.875rem", textDecoration: "none", display: "inline-flex", alignItems: "center", gap: "0.5rem" }}>
-                ← Back to Projects
+                {t("back")}
               </Link>
             </div>
           </div>
 
           {/* Right — sidebar */}
           <div>
-            <MetaRow label="Role">
-              <p style={{ fontWeight: 700, color: "var(--foreground)", fontSize: "1rem", margin: 0 }}>{resolveRole(status, role)}</p>
+            <MetaRow label={t("role")}>
+              <p style={{ fontWeight: 700, color: "var(--foreground)", fontSize: "1rem", margin: 0 }}>{resolveRole()}</p>
             </MetaRow>
-            <MetaRow label="Year">
+            <MetaRow label={t("year")}>
               <p style={{ fontWeight: 700, color: "var(--foreground)", fontSize: "1rem", margin: 0 }}>{year}</p>
             </MetaRow>
-            <MetaRow label="Status">
-              <p style={{ fontWeight: 700, color: "var(--foreground)", fontSize: "1rem", margin: 0 }}>{STATUS_LABEL[status] ?? status}</p>
+            <MetaRow label={t("status")}>
+              <p style={{ fontWeight: 700, color: "var(--foreground)", fontSize: "1rem", margin: 0 }}>{t(`statuses.${status}` as any)}</p>
             </MetaRow>
             {url && (
-              <MetaRow label="Live">
+              <MetaRow label={t("live")}>
                 <a href={url} target="_blank" rel="noopener noreferrer"
                   style={{ color: "var(--primary)", fontWeight: 500, textDecoration: "none", display: "inline-flex", alignItems: "center", gap: "0.375rem" }}>
-                  View site →
+                  {t("viewSite")}
                 </a>
               </MetaRow>
             )}
             {githubRepo && (
-              <MetaRow label="Source">
+              <MetaRow label={t("source")}>
                 <a href={githubRepo.startsWith("http") ? githubRepo : `https://github.com/${githubRepo}`}
                   target="_blank" rel="noopener noreferrer"
                   style={{ color: "var(--muted-foreground)", fontSize: "0.875rem", textDecoration: "none" }}>
-                  GitHub →
+                  {t("github")}
                 </a>
               </MetaRow>
             )}
