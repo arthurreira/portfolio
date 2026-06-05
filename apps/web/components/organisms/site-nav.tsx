@@ -30,7 +30,11 @@ const LANGS = [
 
 function setAxis(attr: string, storageKey: string, value: string) {
   document.documentElement.setAttribute(`data-${attr}`, value)
-  try { localStorage.setItem(storageKey, value) } catch {}
+  try {
+    localStorage.setItem(storageKey, value)
+    // Also set a cookie so the server can read it on next navigation (no flash)
+    document.cookie = `${storageKey}=${value};path=/;max-age=31536000;SameSite=Lax`
+  } catch {}
 }
 
 function LangSwitcher({
