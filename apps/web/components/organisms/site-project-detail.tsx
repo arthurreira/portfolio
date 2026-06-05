@@ -139,11 +139,8 @@ export function SiteProjectDetail({
       <div className="t-shell" style={{ paddingLeft: "calc(var(--sidebar-w) + var(--ticker-gap))", paddingRight: "var(--gutter)", paddingTop: "3rem", paddingBottom: "6rem" }}>
         <div className="t-detail-body">
 
-          {/* Left — column width capped by grid, no maxWidth needed */}
+          {/* Left — body starts with ## What I built, no redundant description paragraph */}
           <div>
-            <p style={{ color: "var(--muted-foreground)", fontSize: "0.875rem", lineHeight: 1.75, marginBottom: "2rem" }}>
-              {description}
-            </p>
             <TestMDXContent code={content} />
 
             <div style={{ marginTop: "4rem", paddingTop: "2rem", borderTop: "1px solid var(--border)" }}>
