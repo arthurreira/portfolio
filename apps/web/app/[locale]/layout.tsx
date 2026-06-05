@@ -42,36 +42,36 @@ export default async function RootLayout({
         <style>{`:root { --spring: ${springTransition}; }`}</style>
         {/* No-flash boot: attributes already set by server; keyboard shortcuts wired before React */}
         <script dangerouslySetInnerHTML={{ __html: `(function(){
-  try{
-    // Server already set data-flag/data-mode from cookies — only sync localStorage
-    var r=document.documentElement;
-    var flag=r.getAttribute('data-flag')||localStorage.getItem('arthur-flag')||'brasil';
-    var mode=r.getAttribute('data-mode')||localStorage.getItem('arthur-mode')||'dark';
-    r.setAttribute('data-flag',flag);
-    r.setAttribute('data-mode',mode);
-    localStorage.setItem('arthur-flag',flag);
-    localStorage.setItem('arthur-mode',mode);
-  }catch(e){}
-  // d = toggle mode, f = toggle flag — works immediately, before React hydrates
-  document.addEventListener('keydown',function(e){
-    if(e.defaultPrevented||e.repeat||e.metaKey||e.ctrlKey||e.altKey) return;
-    var t=e.target;
-    if(t&&(t.tagName==='INPUT'||t.tagName==='TEXTAREA'||t.isContentEditable)) return;
-    var r=document.documentElement;
-    if(e.key==='d'){
-      var next=r.getAttribute('data-mode')==='dark'?'light':'dark';
-      r.setAttribute('data-mode',next);
-      try{localStorage.setItem('arthur-mode',next);}catch(err){}
-      window.dispatchEvent(new CustomEvent('arthur-theme',{detail:{mode:next}}));
-    }
-    if(e.key==='f'){
-      var next=r.getAttribute('data-flag')==='brasil'?'suomi':'brasil';
-      r.setAttribute('data-flag',next);
-      try{localStorage.setItem('arthur-flag',next);}catch(err){}
-      window.dispatchEvent(new CustomEvent('arthur-theme',{detail:{flag:next}}));
-    }
-  });
-})();` }} />
+            try{
+              // Server already set data-flag/data-mode from cookies — only sync localStorage
+              var r=document.documentElement;
+              var flag=r.getAttribute('data-flag')||localStorage.getItem('arthur-flag')||'brasil';
+              var mode=r.getAttribute('data-mode')||localStorage.getItem('arthur-mode')||'dark';
+              r.setAttribute('data-flag',flag);
+              r.setAttribute('data-mode',mode);
+              localStorage.setItem('arthur-flag',flag);
+              localStorage.setItem('arthur-mode',mode);
+            }catch(e){}
+            // d = toggle mode, f = toggle flag — works immediately, before React hydrates
+            document.addEventListener('keydown',function(e){
+              if(e.defaultPrevented||e.repeat||e.metaKey||e.ctrlKey||e.altKey) return;
+              var t=e.target;
+              if(t&&(t.tagName==='INPUT'||t.tagName==='TEXTAREA'||t.isContentEditable)) return;
+              var r=document.documentElement;
+              if(e.key==='d'){
+                var next=r.getAttribute('data-mode')==='dark'?'light':'dark';
+                r.setAttribute('data-mode',next);
+                try{localStorage.setItem('arthur-mode',next);}catch(err){}
+                window.dispatchEvent(new CustomEvent('arthur-theme',{detail:{mode:next}}));
+              }
+              if(e.key==='f'){
+                var next=r.getAttribute('data-flag')==='brasil'?'suomi':'brasil';
+                r.setAttribute('data-flag',next);
+                try{localStorage.setItem('arthur-flag',next);}catch(err){}
+                window.dispatchEvent(new CustomEvent('arthur-theme',{detail:{flag:next}}));
+              }
+            });
+          })();` }} />
       </head>
       <body>
         <NextIntlClientProvider messages={messages}>

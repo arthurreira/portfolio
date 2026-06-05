@@ -3,17 +3,14 @@
 import Link from "next/link"
 import Image from "next/image"
 import { useTranslations } from "next-intl"
+import { cn } from "@arthurreira/ui"
 import type { ProjectStatus, ProjectRole } from "@arthurreira/content/types"
 import { TestMDXContent } from "@/components/molecules/mdx-content"
 
-const FONT = "var(--font-ui)"
-
 function MetaRow({ label, children }: { label: string; children: React.ReactNode }) {
   return (
-    <div style={{ padding: "1.25rem 0", borderBottom: "1px solid var(--border)" }}>
-      <p style={{ fontFamily: FONT, fontSize: 11, letterSpacing: "0.22em", textTransform: "uppercase" as const, color: "var(--primary)", margin: 0, marginBottom: "0.375rem" }}>
-        {label}
-      </p>
+    <div className="border-b border-border py-5">
+      <p className="label-caps mb-1.5">{label}</p>
       {children}
     </div>
   )
@@ -55,57 +52,57 @@ export function SiteProjectDetail({
   }
 
   return (
-    <div style={{ background: "var(--background)", minHeight: "100vh", fontFamily: FONT }}>
+    <div className="min-h-screen bg-background font-ui">
 
       {/* Header */}
-      <div className="t-shell" style={{ paddingLeft: "calc(var(--sidebar-w) + var(--ticker-gap))", paddingRight: "var(--gutter)", paddingTop: "2.5rem", paddingBottom: 0 }}>
-        <p style={{ fontFamily: FONT, fontSize: 11, letterSpacing: "0.22em", textTransform: "uppercase", color: "var(--primary)", margin: 0, marginBottom: "1.5rem" }}>
+      <div className="t-shell pt-10">
+        <p className="label-caps mb-6">
           {t("label")} [{num}]
         </p>
 
-        <h1 style={{
-          fontWeight: 900, fontSize: "clamp(2.5rem, 8vw, 7rem)",
-          lineHeight: 0.92, letterSpacing: "-0.045em",
-          color: "var(--foreground)", margin: 0, marginBottom: "1.5rem",
-        }}>
+        {/* font-black / leading / tracking from @layer base h1 */}
+        <h1 className="mb-6 text-[clamp(2.5rem,8vw,7rem)] text-foreground">
           {title}
         </h1>
 
         {techStack && techStack.length > 0 && (
-          <p style={{ color: "var(--muted-foreground)", fontSize: "0.875rem", margin: 0, marginBottom: "0.25rem" }}>
+          <p className="mb-1 text-sm text-muted-foreground">
             {techStack.map((tech, i) => (
               <span key={tech}>
                 {tech}
                 {i < techStack.length - 1 && (
-                  <span style={{ color: "var(--muted-foreground)", opacity: 0.4, margin: "0 0.5rem" }}>·</span>
+                  <span className="mx-2 text-muted-foreground opacity-40">·</span>
                 )}
               </span>
             ))}
           </p>
         )}
 
-        <p style={{ color: "var(--muted-foreground)", fontSize: "0.875rem", margin: 0, marginBottom: highlight ? "1rem" : "2rem" }}>{year}</p>
+        <p className={cn("text-sm text-muted-foreground", highlight ? "mb-4" : "mb-8")}>{year}</p>
 
         {highlight && (
-          <p style={{ color: "var(--primary)", fontSize: "0.875rem", fontWeight: 500, margin: 0, marginBottom: "2rem", letterSpacing: "0.01em" }}>
+          <p className="mb-8 text-sm font-medium tracking-[0.01em] text-primary">
             {highlight}
           </p>
         )}
 
-        <div style={{ height: 1, background: "var(--border)" }} />
+        <div className="h-px bg-border" />
 
-        {/* Cover image — uses --stripe token so it flips in light mode */}
-        <div style={{ marginTop: "2rem", position: "relative", width: "100%", aspectRatio: "16/7", overflow: "hidden", background: "var(--muted)" }}>
+        {/* Cover image — striped placeholder uses --stripe token (flips in light mode) */}
+        <div className="relative mt-8 aspect-[16/7] w-full overflow-hidden bg-muted">
           {coverImage ? (
-            <Image src={coverImage} alt={title} fill style={{ objectFit: "cover" }} priority />
+            <Image src={coverImage} alt={title} fill className="object-cover" priority />
           ) : (
             <>
-              <div style={{
-                position: "absolute", inset: 0,
-                backgroundImage: "repeating-linear-gradient(-45deg, transparent, transparent 12px, var(--stripe) 12px, var(--stripe) 24px)",
-              }} />
-              <div style={{ position: "absolute", inset: 0, display: "flex", alignItems: "center", justifyContent: "center" }}>
-                <span style={{ fontFamily: FONT, fontSize: 11, letterSpacing: "0.3em", textTransform: "uppercase", color: "var(--muted-foreground)", opacity: 0.5 }}>
+              <div
+                className="absolute inset-0"
+                style={{
+                  backgroundImage:
+                    "repeating-linear-gradient(-45deg, transparent, transparent 12px, var(--stripe) 12px, var(--stripe) 24px)",
+                }}
+              />
+              <div className="absolute inset-0 flex items-center justify-center">
+                <span className="font-ui text-[11px] uppercase tracking-[0.3em] text-muted-foreground opacity-50">
                   {t("screenshotPlaceholder")}
                 </span>
               </div>
@@ -115,15 +112,18 @@ export function SiteProjectDetail({
       </div>
 
       {/* Body */}
-      <div className="t-shell" style={{ paddingLeft: "calc(var(--sidebar-w) + var(--ticker-gap))", paddingRight: "var(--gutter)", paddingTop: "3rem", paddingBottom: "6rem" }}>
+      <div className="t-shell pt-12 pb-24">
         <div className="t-detail-body">
 
           {/* Left — body starts with ## What I built, no redundant description paragraph */}
           <div>
             <TestMDXContent code={content} />
 
-            <div style={{ marginTop: "4rem", paddingTop: "2rem", borderTop: "1px solid var(--border)" }}>
-              <Link href={`/${locale}/projects`} style={{ color: "var(--foreground)", fontSize: "0.875rem", textDecoration: "none", display: "inline-flex", alignItems: "center", gap: "0.5rem" }}>
+            <div className="mt-16 border-t border-border pt-8">
+              <Link
+                href={`/${locale}/projects`}
+                className="inline-flex items-center gap-2 text-sm text-foreground no-underline"
+              >
                 {t("back")}
               </Link>
             </div>
@@ -132,27 +132,34 @@ export function SiteProjectDetail({
           {/* Right — sidebar */}
           <div>
             <MetaRow label={t("role")}>
-              <p style={{ fontWeight: 700, color: "var(--foreground)", fontSize: "1rem", margin: 0 }}>{resolveRole()}</p>
+              <p className="text-base font-bold text-foreground">{resolveRole()}</p>
             </MetaRow>
             <MetaRow label={t("year")}>
-              <p style={{ fontWeight: 700, color: "var(--foreground)", fontSize: "1rem", margin: 0 }}>{year}</p>
+              <p className="text-base font-bold text-foreground">{year}</p>
             </MetaRow>
             <MetaRow label={t("status")}>
-              <p style={{ fontWeight: 700, color: "var(--foreground)", fontSize: "1rem", margin: 0 }}>{t(`statuses.${status}`)}</p>
+              <p className="text-base font-bold text-foreground">{t(`statuses.${status}`)}</p>
             </MetaRow>
             {url && (
               <MetaRow label={t("live")}>
-                <a href={url} target="_blank" rel="noopener noreferrer"
-                  style={{ color: "var(--primary)", fontWeight: 500, textDecoration: "none", display: "inline-flex", alignItems: "center", gap: "0.375rem" }}>
+                <a
+                  href={url}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="inline-flex items-center gap-1.5 font-medium text-primary no-underline"
+                >
                   {t("viewSite")}
                 </a>
               </MetaRow>
             )}
             {githubRepo && (
               <MetaRow label={t("source")}>
-                <a href={githubRepo.startsWith("http") ? githubRepo : `https://github.com/${githubRepo}`}
-                  target="_blank" rel="noopener noreferrer"
-                  style={{ color: "var(--muted-foreground)", fontSize: "0.875rem", textDecoration: "none" }}>
+                <a
+                  href={githubRepo.startsWith("http") ? githubRepo : `https://github.com/${githubRepo}`}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="text-sm text-muted-foreground no-underline"
+                >
                   {t("github")}
                 </a>
               </MetaRow>

@@ -1,8 +1,7 @@
 "use client"
 
 import { useTranslations } from "next-intl"
-
-const FONT = "var(--font-ui)"
+import { ContactLink } from "@/components/atoms/contact-link"
 
 const LINKS = [
   { label: "arthur.ferreiramiran@gmail.com", href: "mailto:arthur.ferreiramiran@gmail.com" },
@@ -14,53 +13,26 @@ export function SiteContact() {
   const t = useTranslations("contact")
 
   return (
-    <div className="t-shell" style={{
-      background: "var(--background)", minHeight: "100vh", fontFamily: FONT,
-      paddingLeft: "calc(var(--sidebar-w) + var(--ticker-gap))", paddingRight: "var(--gutter)",
-      paddingTop: "3rem", paddingBottom: 0,
-      display: "flex", flexDirection: "column", justifyContent: "space-between",
-    }}>
+    <div className="t-shell flex min-h-screen flex-col justify-between bg-background pt-12 font-ui">
       <div>
-        <h1 style={{
-          fontWeight: 900, fontSize: "clamp(3rem, 11.5vw, 11.5rem)",
-          lineHeight: 0.92, letterSpacing: "-0.045em", margin: 0, marginBottom: "1.5rem",
-        }}>
-          <span style={{ color: "var(--foreground)" }}>{t("heading1")} </span>
-          <span style={{ color: "var(--primary)" }}>{t("heading2")}</span>
+        {/* font-black / leading / tracking come from @layer base h1 */}
+        <h1 className="mb-6 text-[clamp(3rem,11.5vw,11.5rem)]">
+          <span className="text-foreground">{t("heading1")} </span>
+          <span className="text-primary">{t("heading2")}</span>
         </h1>
 
-        <p style={{ color: "var(--muted-foreground)", fontSize: "0.875rem", margin: 0, marginBottom: "4rem" }}>
-          {t("openTo")}
-        </p>
+        <p className="mb-16 text-sm text-muted-foreground">{t("openTo")}</p>
 
-        <div style={{ display: "flex", flexDirection: "column", gap: "0.25rem" }}>
+        <div className="flex flex-col gap-1">
           {LINKS.map(({ label, href }) => (
-            <a
-              key={href}
-              href={href}
-              target={href.startsWith("mailto") ? undefined : "_blank"}
-              rel={href.startsWith("mailto") ? undefined : "noopener noreferrer"}
-              style={{
-                color: "var(--foreground)", fontWeight: 700,
-                fontSize: "clamp(1.25rem, 3vw, 2rem)", textDecoration: "none",
-                display: "inline-flex", alignItems: "center", gap: "1rem",
-                padding: "0.5rem 0", transition: "color 0.15s",
-              }}
-              onMouseEnter={e => { (e.currentTarget as HTMLAnchorElement).style.color = "var(--primary)" }}
-              onMouseLeave={e => { (e.currentTarget as HTMLAnchorElement).style.color = "var(--foreground)" }}
-            >
-              {label}
-              <span style={{ color: "var(--muted-foreground)", fontWeight: 400 }}>→</span>
-            </a>
+            <ContactLink key={href} label={label} href={href} />
           ))}
         </div>
       </div>
 
-      <div style={{ paddingBottom: "3rem" }}>
-        <p style={{ color: "var(--muted-foreground)", fontSize: "0.75rem", marginBottom: "1.5rem" }}>
-          {t("responseTime")}
-        </p>
-        <div style={{ height: 1, background: "var(--border)" }} />
+      <div className="pb-12">
+        <p className="mb-6 text-xs text-muted-foreground">{t("responseTime")}</p>
+        <div className="h-px bg-border" />
       </div>
     </div>
   )
