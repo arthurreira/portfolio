@@ -17,6 +17,7 @@ status: "done"
 coverImage: "./cover.png"
 ---
 
+
 ![dns-tool screenshot](./homePageClean.png)
 
 ![dns-tool screenshot in use](./homePageInUsage.png)
@@ -33,17 +34,16 @@ The DNS resolution itself runs on an AWS Lambda function rather than the Next.js
 
 The interesting engineering problem here was latency. DNS resolution involves network round-trips that are inherently unpredictable, and the Lambda cold-start penalty made the first query after idle noticeably slow. Reducing that required understanding Lambda provisioned concurrency, the trade-off between keeping functions warm and cost, and how to structure the API route to return a loading state immediately while the resolution completes. It also pushed me to think seriously about error states — DNS queries can fail for many reasons (NXDOMAIN, SERVFAIL, timeout), and each failure mode needs a different user message.
 
-
-## Features
+## Highlights
 
 - Query A, AAAA, MX, TXT, CNAME, NS records for any domain
-- Query history panel — compare results across domains without re-typing
-- Structured JSON-style result display
-- Error states per failure type (NXDOMAIN, SERVFAIL, timeout)
-- Deployed at [dns.arthurreira.dev](https://dns.arthurreira.dev)
+- Query history panel — compare results without re-typing
+- Serverless DNS resolution on AWS Lambda
+- Per-failure error states (NXDOMAIN, SERVFAIL, timeout)
+- Live at [dns.arthurreira.dev](https://dns.arthurreira.dev)
 
 ## Tech Stack
 
 - **Frontend:** Next.js, TypeScript, shadcn/ui, Tailwind CSS
-- **Backend:** AWS Lambda (serverless DNS resolution)
-- **Deployment:** Vercel (frontend) + AWS (Lambda)
+- **Backend:** AWS Lambda
+- **Deployment:** Vercel + AWS

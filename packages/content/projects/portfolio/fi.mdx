@@ -18,6 +18,7 @@ url: "https://arthurreira.dev"
 status: "ongoing"
 ---
 
+
 ## What I built
 
 The site lives inside a Turborepo monorepo with three workspaces: `apps/web` (the Next.js 15 site), `packages/content` (Velite-powered MDX), and `packages/ui` (a shared design token package called `@arthurreira/ui`). The design system exports Tailwind config, global CSS, and reusable components — any app in the monorepo can install the package and inherit the entire token set.
@@ -30,22 +31,18 @@ Internationalisation runs through `next-intl` with three locales (EN, PT-BR, FI)
 
 Building your own design system forces every decision to be explicit. I learned how Tailwind's `@theme` and CSS custom properties interact, how to publish a package inside a monorepo without a registry, and how far you can push a content-as-code approach before it becomes friction. The biggest lesson: structure the monorepo for change, not for the current use case.
 
+## Highlights
 
-## Architecture
-
-```
-arthurreira-dev/
-  apps/
-    web/           # Next.js 15 portfolio site
-  packages/
-    content/       # Velite MDX — projects, about pages
-    ui/            # @arthurreira/ui — design tokens, shared components
-```
+- Turborepo monorepo: web app + content + design-system packages
+- Velite for type-safe MDX content
+- 3 languages via next-intl (EN / PT-BR / FI)
+- @arthurreira/ui shared design token package
+- Built-in 2×2 theme matrix (Brasil/Suomi × dark/light)
 
 ## Tech Stack
 
 - **Framework:** Next.js 15 (App Router)
 - **Content:** Velite (type-safe MDX)
-- **i18n:** next-intl (EN / PT-BR / FI)
-- **Monorepo:** Turborepo + pnpm workspaces
+- **i18n:** next-intl
+- **Monorepo:** Turborepo + pnpm
 - **Design system:** @arthurreira/ui (Tailwind v4 + shadcn/ui)

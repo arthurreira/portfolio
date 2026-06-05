@@ -17,6 +17,7 @@ url: "https://nextjs-dashboard.arthurreira.dev"
 status: "done"
 ---
 
+
 [![](https://github.com/arthurreira/acme-financial-dashboard/blob/main/public/opengraph-image.png)](https://github.com/arthurreira/acme-financial-dashboard)
 
 ## What I built
@@ -29,35 +30,19 @@ The stack covers the full Next.js App Router architecture: Server Components for
 
 The biggest insight was understanding WHEN to use Server vs Client Components — and that the default should always be Server. Data fetching without useEffect, server actions replacing API routes for forms, and streaming with Suspense were the patterns that clicked through building this. Authentication with NextAuth.js v5 (beta) was rough — the beta API changed during development and required careful reading of changelogs. Real deployment also surfaced things that local dev hides: environment variables, database seeding, and the difference between preview and production Vercel environments.
 
-## Project Status
+## Highlights
 
-**Status: Production Ready & Fully Operational**
-
-- Fully deployed and working on Vercel
-- Database initialized and seeded (Neon PostgreSQL)
-- Authentication working correctly (NextAuth.js v5)
-- All security patches applied
-- Analytics integrated (Vercel Analytics)
-- Custom domain configured
-
-**Test Credentials:**
-- **Email:** `user@nextmail.com`
-- **Password:** `123456`
-
-## Features Implemented
-
-**Customer Management** — Add, update, and view customer details with search and pagination
-
-**Invoice Management** — Create, view, and update invoices with status tracking
-
-**Financial Overview** — Dashboard with revenue statistics, interactive charts, and pending/collected amounts tracking
+- Full CRUD for customers and invoices with search + pagination
+- Dashboard with revenue stats and interactive charts
+- NextAuth.js v5 authentication with PostgreSQL session store
+- Deployed to production on Vercel with a custom domain
+- Test login: `user@nextmail.com` / `123456`
 
 ## Tech Stack
 
-- **Framework:** Next.js 16.1.1 (App Router)
+- **Framework:** Next.js 16 (App Router, Server Components)
 - **Language:** TypeScript
 - **Styling:** Tailwind CSS v4
 - **Database:** PostgreSQL (Neon)
-- **Authentication:** NextAuth.js v5
-- **Analytics:** Vercel Analytics
-- **Form Validation:** Zod
+- **Auth:** NextAuth.js v5
+- **Deployment:** Vercel

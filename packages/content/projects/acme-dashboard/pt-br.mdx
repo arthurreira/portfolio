@@ -17,6 +17,7 @@ url: "https://nextjs-dashboard.arthurreira.dev"
 status: "done"
 ---
 
+
 [![](https://github.com/arthurreira/acme-financial-dashboard/blob/main/public/opengraph-image.png)](https://github.com/arthurreira/acme-financial-dashboard)
 
 ## What I built
@@ -29,35 +30,19 @@ The stack covers the full Next.js App Router architecture: Server Components for
 
 The biggest insight was understanding WHEN to use Server vs Client Components — and that the default should always be Server. Data fetching without useEffect, server actions replacing API routes for forms, and streaming with Suspense were the patterns that clicked through building this. Authentication with NextAuth.js v5 (beta) was rough — the beta API changed during development and required careful reading of changelogs. Real deployment also surfaced things that local dev hides: environment variables, database seeding, and the difference between preview and production Vercel environments.
 
-## Status do Projeto
+## Highlights
 
-**Status: Pronto para Produção e Totalmente Funcional**
+- Full CRUD for customers and invoices with search + pagination
+- Dashboard with revenue stats and interactive charts
+- NextAuth.js v5 authentication with PostgreSQL session store
+- Deployed to production on Vercel with a custom domain
+- Test login: `user@nextmail.com` / `123456`
 
-- Totalmente implantado e funcionando na Vercel
-- Banco de dados inicializado e populado (Neon PostgreSQL)
-- Autenticação funcionando corretamente (NextAuth.js v5)
-- Todos os patches de segurança aplicados
-- Analytics integrado (Vercel Analytics)
-- Domínio customizado configurado
+## Tech Stack
 
-**Credenciais de Teste:**
-- **E-mail:** `user@nextmail.com`
-- **Senha:** `123456`
-
-## Funcionalidades Implementadas
-
-**Gestão de Clientes** — Adicionar, atualizar e visualizar detalhes de clientes com busca e paginação
-
-**Gestão de Faturas** — Criar, visualizar e atualizar faturas com controle de status
-
-**Visão Financeira** — Dashboard com estatísticas de receita, gráficos interativos e acompanhamento de valores recebidos/pendentes
-
-## Tecnologias
-
-- **Framework:** Next.js 16.1.1 (App Router)
-- **Linguagem:** TypeScript
-- **Estilo:** Tailwind CSS v4
-- **Banco de Dados:** PostgreSQL (Neon)
-- **Autenticação:** NextAuth.js v5
-- **Analytics:** Vercel Analytics
-- **Validação:** Zod
+- **Framework:** Next.js 16 (App Router, Server Components)
+- **Language:** TypeScript
+- **Styling:** Tailwind CSS v4
+- **Database:** PostgreSQL (Neon)
+- **Auth:** NextAuth.js v5
+- **Deployment:** Vercel

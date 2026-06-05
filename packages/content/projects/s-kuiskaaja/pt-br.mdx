@@ -18,6 +18,7 @@ status: "school"
 coverImage: "./cover.png"
 ---
 
+
 [![](/images/projects/s-kuiskaaja/verkkosivu.png)](https://github.com/arthurreira/esp32-sääasema)
 
 ## What I built
@@ -30,18 +31,17 @@ The backend is a PHP script running on a local WampServer instance. It receives 
 
 This project was the first time I had to think about three completely separate layers at once: hardware (wiring, sensor protocols, firmware), a backend data pipeline (HTTP POST, PHP, MySQL), and a frontend display — all working together. Debugging was harder than any pure software project because a bug could live in the circuit, the firmware, the PHP, or the SQL.
 
+## Highlights
 
-## Hardware & Pipeline
-
-1. **ESP32** reads BME280 (temp/humidity/pressure) + DHT11 (temp/humidity) every 30s
-2. Firmware (Arduino IDE / C++) POSTs JSON to PHP endpoint
-3. **PHP** validates and writes to **MySQL** table
-4. **Dashboard** auto-refreshes every 30s, queries MySQL, renders charts
-5. Local development via **WampServer**
+- ESP32 reads BME280 + DHT11 sensors every 30s
+- Firmware POSTs JSON to a PHP endpoint
+- PHP validates and writes to MySQL
+- Dashboard auto-refreshes with live temp / humidity / pressure
+- Full hardware → backend → frontend pipeline
 
 ## Tech Stack
 
-- **Microcontroller:** ESP32 + BME280 + DHT11 sensors
+- **Hardware:** ESP32 + BME280 + DHT11
 - **Firmware:** Arduino IDE (C++)
 - **Backend:** PHP + MySQL (WampServer)
 - **Frontend:** JavaScript + MDB Bootstrap

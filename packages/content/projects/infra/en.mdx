@@ -14,6 +14,7 @@ url: "https://github.com/arthurreira/infra"
 status: "done"
 ---
 
+
 ## What I built
 
 A Terraform module that provisions the complete lifecycle of a GitHub Pages static site — from zero to a live custom-domain URL — in a single `terraform apply`. It creates the repository, enables Pages, writes the CNAME file for the custom subdomain, and generates a GitHub Actions workflow that handles all future deployments. The three hackathon sites (`register.arthurreira.dev`, `schedule.arthurreira.dev`, `projects.arthurreira.dev`) were all provisioned this way.
@@ -22,18 +23,16 @@ A Terraform module that provisions the complete lifecycle of a GitHub Pages stat
 
 The GitHub Terraform provider has subtleties that cloud providers don't. GitHub's API is eventually consistent — repository creation and Pages enablement can't always be chained immediately, which required careful `depends_on` and `time_sleep` blocks. The deeper lesson was about what IaC is really for: not just provisioning servers, but encoding the entire setup process so it's repeatable, reviewable, and destroyable. A Terraform plan is a diff of intended vs actual infrastructure — that model fundamentally changes how you think about setup.
 
-## How It Works
+## Highlights
 
-1. Define repo names and custom domains in `variables.tf`
-2. Run `terraform apply`
-3. Terraform creates the GitHub repo, enables Pages, sets the CNAME, and generates a GitHub Actions workflow
-4. Any future push to the repo triggers automatic deployment
+- One `terraform apply` provisions a full GitHub Pages site
+- Creates repo + enables Pages + sets CNAME + generates CD workflow
+- Powers the 3 hackathon subdomains
+- Idempotent — safe to re-run
 
-## Usage
+## Tech Stack
 
-```bash
-export TF_VAR_github_owner="arthurreira"
-export TF_VAR_github_token="ghp_yourPAT"
-terraform -chdir=infra init
-terraform -chdir=infra apply
-```
+- **IaC:** Terraform ≥ 1.5
+- **Provider:** integrations/github ~> 6.0
+- **CI/CD:** GitHub Actions
+- **Hosting:** GitHub Pages

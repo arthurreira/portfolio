@@ -16,6 +16,7 @@ url: "https://weather.arthurreira.dev"
 status: "done"
 ---
 
+
 ## What I built
 
 A weather app showing current conditions and short-range forecasts for six cities: Helsinki, Tampere, and Oulu in Finland, and São Paulo, Fortaleza, and Curitiba in Brazil. The app uses the Open-Meteo API which is completely free and requires no API key.
@@ -26,17 +27,18 @@ The project lives inside the same Turborepo monorepo as the portfolio, consuming
 
 The main insight was about monorepo design token sharing: the pattern works well until you need one app to diverge from the system. Working out how to override tokens without breaking the shared package taught me where the boundaries of a shared system should live.
 
+## Highlights
 
-## Cities
-
-**Finland:** Helsinki · Tampere · Oulu
-
-**Brazil:** São Paulo · Fortaleza · Curitiba
+- Live forecasts for 6 cities — Helsinki, Tampere, Oulu, São Paulo, Fortaleza, Curitiba
+- Open-Meteo API (free, no API key required)
+- Shares the @arthurreira/ui design token package with the portfolio
+- Static city pages + dynamic /api/weather endpoint
+- Dark mode toggle, live at [weather.arthurreira.dev](https://weather.arthurreira.dev)
 
 ## Tech Stack
 
-- **Framework:** Next.js 15 (App Router, Server Components)
-- **Data:** Open-Meteo API (free, no API key)
+- **Framework:** Next.js 15 (App Router)
+- **Language:** TypeScript
+- **Data:** Open-Meteo API
 - **Monorepo:** Turborepo + pnpm workspaces
-- **Shared package:** @arthurreira/ui design tokens
-- **Deployment:** [weather.arthurreira.dev](https://weather.arthurreira.dev)
+- **Styling:** Tailwind CSS + @arthurreira/ui tokens

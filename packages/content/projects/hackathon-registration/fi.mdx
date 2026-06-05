@@ -17,6 +17,7 @@ url: "https://register.arthurreira.dev"
 status: "fun"
 ---
 
+
 ## What I built
 
 This is not really a hackathon registration tool — it's an infrastructure demonstration. The real project is the Terraform automation that provisions it. Together with `hackathon-schedule` and `hackathon-projects`, these three static sites form a single showcase: one Terraform run creates three separate GitHub repositories, configures GitHub Pages on each, sets up custom subdomain DNS, and generates the GitHub Actions CD workflow — all without touching the GitHub UI.
@@ -25,26 +26,16 @@ This is not really a hackathon registration tool — it's an infrastructure demo
 
 The GitHub Terraform provider has a steeper learning curve than the AWS or Azure providers because GitHub's API is less predictable — rate limits, repository creation delays, and Pages configuration timing all require careful `depends_on` chains to work reliably. Writing Terraform that provisions other CI/CD pipelines taught me how infrastructure-as-code can manage not just servers but the entire deployment process.
 
+## Highlights
 
-## What Gets Provisioned
-
-One `terraform apply` creates:
-1. GitHub repository (public, named)
-2. GitHub Pages enabled via API
-3. CNAME file for custom subdomain (e.g. `register.arthurreira.dev`)
-4. GitHub Actions workflow for automated deployment on every push
-
-## The Three Sites
-
-| Site | URL | Purpose |
-|---|---|---|
-| hackathon-registration | register.arthurreira.dev | This site |
-| hackathon-schedule | schedule.arthurreira.dev | Event schedule |
-| hackathon-projects | projects.arthurreira.dev | Project showcase |
+- Part of a 3-app Terraform-managed GitHub Pages demo
+- One `terraform apply` provisions repo + Pages + DNS + CD workflow
+- Companion sites: schedule.arthurreira.dev, projects.arthurreira.dev
+- Live at [register.arthurreira.dev](https://register.arthurreira.dev)
 
 ## Tech Stack
 
 - **IaC:** Terraform (GitHub provider)
 - **CI/CD:** GitHub Actions (auto-generated)
 - **Hosting:** GitHub Pages
-- **DNS:** Custom subdomains
+- **Frontend:** HTML, CSS, JavaScript

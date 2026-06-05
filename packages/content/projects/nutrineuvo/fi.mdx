@@ -20,6 +20,7 @@ status: "done"
 coverImage: "./cover.png"
 ---
 
+
 [![](/images/projects/nutrineuvo/nutrineuvo.png)](https://nutrineuvo.com)
 
 ## What I built
@@ -30,11 +31,19 @@ A nutrition and wellness platform with a proper production microservices archite
 
 Running microservices in production — not in a tutorial — requires solving a class of problems that local development hides. SSL certificate renewal, database backup scheduling, zero-downtime deployments, and environment variable management across multiple services all need explicit solutions. Nginx configuration also clicked differently once it was handling real traffic rather than being a dev proxy. The biggest lesson: infrastructure decisions made early (how you name containers, how you structure health checks) propagate through everything and are painful to change later.
 
-## Architecture
+## Highlights
 
-- `nutrineuvo.fi` → React marketing site
-- `oma.nutrineuvo.fi` → React app + API proxy
-- Node.js/Express API with PostgreSQL
-- Nginx reverse proxy with SSL termination
-- Terraform for server provisioning, Docker Compose for orchestration
-- GitHub Actions for automated CI/CD with health checks
+- 3 services in Docker Compose: marketing site, app, REST API
+- Nginx reverse proxy with Let's Encrypt SSL termination
+- Terraform-provisioned UpCloud server
+- GitHub Actions CI/CD with zero-downtime health checks
+- Live at [nutrineuvo.com](https://nutrineuvo.com)
+
+## Tech Stack
+
+- **Infra:** UpCloud, Terraform, Docker Compose
+- **Proxy:** Nginx + Let's Encrypt SSL
+- **API:** Node.js / Express
+- **Frontend:** React
+- **Database:** PostgreSQL
+- **CI/CD:** GitHub Actions

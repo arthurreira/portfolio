@@ -15,6 +15,7 @@ url: "https://github.com/arthurreira/af-nextjs-component-architecture-practice"
 status: "done"
 ---
 
+
 ## What I built
 
 A monorepo component library built to practice the atomic design methodology from first principles. Two workspaces: a `packages/ui` shared library where every component lives, and an `apps/playground` Next.js app used to render and test them. The hierarchy runs atoms → molecules → organisms, each layer only composing from the layer below. All component props are strictly typed with TypeScript interfaces — no implicit `any`.
@@ -23,18 +24,16 @@ A monorepo component library built to practice the atomic design methodology fro
 
 The main insight was that atomic design is a communication tool as much as a technical pattern. The discipline of asking "is this an atom or a molecule?" forced clearer thinking about component responsibility. The pnpm workspace setup also taught me how shared packages are resolved differently from npm packages — and why monorepos require explicit dependency declarations between workspaces rather than relying on hoisting.
 
-## Structure
+## Highlights
 
-```
-packages/
-  ui/           # Shared component library (atoms, molecules, organisms)
-apps/
-  playground/   # Next.js app for showcasing and testing components
-```
+- Atomic design hierarchy: atoms → molecules → organisms
+- Shared component library in a pnpm workspace package
+- Strict TypeScript prop typing across every component
+- Playground app for isolated component testing
 
-## Key Concepts Practiced
+## Tech Stack
 
-- **Atomic design** — components grouped by complexity and responsibility
-- **pnpm workspaces** — monorepo setup with shared packages
-- **TypeScript** — strict prop typing and reusable interface definitions
-- **Tailwind CSS** — utility classes applied at the component level
+- **Framework:** Next.js
+- **Language:** TypeScript
+- **Monorepo:** pnpm workspaces
+- **Styling:** Tailwind CSS

@@ -16,6 +16,7 @@ status: "done"
 coverImage: "./cover.png"
 ---
 
+
 [![](/images/projects/br-state-flags/br-state-flags-demo.arthurreira.dev.png)](https://www.npmjs.com/package/br-state-flags)
 
 ## What I built
@@ -35,10 +36,17 @@ import { SP, RJ } from 'br-state-flags'
 
 Publishing a library to npm is a different discipline from building an app. The API surface has to be stable — once you ship `import { SP }`, you can't rename it. I learned about bundle formats (ESM vs CJS), `exports` field in package.json, and how to write TypeScript declarations so consumers get autocomplete. SVG optimisation was also new: SVGO strips metadata and reduces file sizes by 40-60% without visual change.
 
-## Key Features
+## Highlights
 
-- All 26 states + Federal District
-- Dependency-free — no runtime overhead
+- All 27 Brazilian state flags as individual React SVG components
+- Zero runtime dependencies
 - Full TypeScript support with prop inference
-- State metadata: capital, population, region
-- Compatible with App Router and Pages Router
+- Enriched metadata per state: capital, population, region
+- Published on npm: `npm install br-state-flags`
+
+## Tech Stack
+
+- **Core:** React, TypeScript
+- **Visuals:** Optimised SVG
+- **Distribution:** npm package (ESM + CJS)
+- **Compatibility:** Next.js, Vite, any React project

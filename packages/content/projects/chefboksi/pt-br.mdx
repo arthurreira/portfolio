@@ -15,6 +15,7 @@ url: "https://chefboksi.fi"
 status: "school"
 ---
 
+
 ## What I built
 
 A meal kit service platform for the Finnish market — think HelloFresh but built from scratch in PHP and MySQL. Users can browse meals by dietary preference (Gluten-free, Keto, Vegan, Vegetarian, High-protein), build weekly plans, and place orders. An admin dashboard lets the operator manage products, categories, users, and orders. Full MVC architecture: separate controllers, models, and views for every feature area.
@@ -25,12 +26,17 @@ This was a school period final project with the goal of understanding how full-s
 
 Building MVC from scratch in plain PHP is humbling. Without a framework enforcing patterns, you have to be deliberate about every routing decision, every SQL query, every session check. I learned why frameworks exist — not because the patterns are hard to understand, but because maintaining consistency across a large codebase without them requires real discipline. Database design was the other major lesson: normalising the relationships between meals, categories, dietary types, and orders before writing any code saved enormous refactoring later.
 
-## Project Status
+## Highlights
 
-This project was developed as a school assignment and was not completed. The foundation — auth, catalog, admin dashboard, cart — works. Final delivery, payment integration, and production deployment were not reached within the school period.
+- Meal browsing by dietary preference (Gluten-free, Keto, Vegan, Vegetarian, High-protein)
+- Weekly meal planning and ordering
+- Admin dashboard for products, categories, users, orders
+- Full MVC architecture in plain PHP
+- School period final project (incomplete — foundation works)
 
-## Architecture
+## Tech Stack
 
-MVC structure with separate controllers, models, and views. MySQL database with tables for meals, categories, dietary types, users, orders, and ingredients.
-
-**Test access:** The site at chefboksi.fi may be in maintenance mode.
+- **Backend:** PHP (custom MVC)
+- **Database:** MySQL
+- **Frontend:** JavaScript, Bootstrap
+- **Architecture:** Model-View-Controller

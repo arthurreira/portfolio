@@ -15,6 +15,7 @@ url: "https://github.com/arthurreira/honor-notes-frontend"
 status: "done"
 ---
 
+
 ## What I built
 
 A notes app split into two independent services: a Next.js frontend and a separate Dockerized REST API backend. The separation is deliberate — the two repos share a TypeScript interface package so the API contract is type-safe on both ends. The frontend consumes the API over HTTP; the API handles all CRUD and persistence. Either service can be replaced or redeployed independently.
@@ -25,9 +26,17 @@ Features: create/read/update/delete notes, tag-based organisation, persistent st
 
 The main lesson was about the cost of service boundaries. With a monolith, sharing types is trivial. With two separate repos communicating over HTTP, you need to be intentional about the API contract — what shape do requests and responses have, and how do you keep both sides in sync when it changes? Managing a shared types package taught me why API versioning and clear contracts matter more than they seem in small projects.
 
-## Architecture
+## Highlights
 
-- **Frontend** — Next.js app consuming the REST API, with a clean notes UI
-- **Backend** — Containerized REST API (Docker) handling CRUD operations for notes
-- Both services communicate via HTTP; the backend is independently deployable
-- Fully typed API contract shared between frontend and backend
+- Create, read, update, delete notes
+- Tag-based organisation
+- Decoupled Next.js frontend + Dockerized REST API backend
+- Shared TypeScript types across both services
+- Each service independently deployable
+
+## Tech Stack
+
+- **Language:** TypeScript (shared types)
+- **Frontend:** Next.js
+- **Backend:** Dockerized REST API
+- **Transport:** HTTP

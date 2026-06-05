@@ -16,6 +16,7 @@ url: "https://github.com/arthurreira/kivinen-paja"
 status: "done"
 ---
 
+
 ## What I built
 
 An experimental real-time app where multiple Claude agents hold a live roundtable discussion on a submitted topic. Each agent has a distinct perspective and responds as the conversation unfolds — responses stream in via Pusher WebSocket channels so you watch the discussion develop in real time. Redis persists the conversation state and manages agent turn-taking so the discussion stays coherent across reconnects.
@@ -26,9 +27,18 @@ An experimental real-time app where multiple Claude agents hold a live roundtabl
 
 Coordinating multiple concurrent LLM calls is harder than it looks. Each agent needs context of what the others have said, but sending the full conversation history on every turn becomes expensive and slow. Managing turn-taking logic in Redis (who speaks next, what's the current state) was the core engineering challenge. I also learned about Pusher channel architecture for real-time streaming — the difference between presence channels (who's connected) and private channels (secured streams) became important for managing which agent "speaks" when.
 
-## Architecture
+## Highlights
 
-1. Topic submitted → dispatched to all agents simultaneously
-2. Each agent calls Anthropic API with its own system prompt + shared conversation history
-3. Responses stream via Pusher to the frontend in real time
-4. Redis persists conversation state and agent coordination
+- Multiple Claude agents debate a topic in real time
+- Each agent holds a distinct perspective
+- Responses stream live via Pusher WebSocket channels
+- Redis manages conversation state and turn-taking
+- "Stone Forge" — ideas shaped through heated discussion
+
+## Tech Stack
+
+- **Language:** TypeScript
+- **Framework:** Next.js
+- **AI:** Anthropic API (Claude)
+- **Realtime:** Pusher
+- **State:** Redis
