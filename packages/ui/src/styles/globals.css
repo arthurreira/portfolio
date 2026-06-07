@@ -150,7 +150,9 @@
   .ticker-track {
     writing-mode: vertical-rl;
     animation: vertTicker 120s linear infinite;
-    @apply text-xs tracking-[0.15em] uppercase whitespace-nowrap font-ui;
+    /* Stroke guarantees extra weight even when the font caps at 700. */
+    -webkit-text-stroke: 0.4px currentColor;
+    @apply text-[1.35rem] leading-tight font-black tracking-[0.14em] uppercase whitespace-nowrap font-ui;
   }
   .ticker-wrapper {
     @apply rotate-180;
@@ -296,6 +298,7 @@ html {
 
 /* Nav — flex-wrap, left edge aligned with page content via --shell-pl */
 .t-nav {
+  position: relative;
   display: flex;
   align-items: center;
   flex-wrap: wrap;
@@ -304,6 +307,17 @@ html {
   padding-left:   var(--shell-pl);
   padding-right:  var(--gutter);
   gap: 0.75rem 1.5rem;
+}
+
+/* Hairline under the nav — spans the content width only (inset from edges),
+   matching the nav's own horizontal padding. */
+.t-nav::after {
+  content: "";
+  position: absolute;
+  bottom: 0;
+  left:  var(--shell-pl);
+  right: var(--gutter);
+  border-bottom: 1px solid var(--hairline);
 }
 
 /* Row 1: logo + page links */
@@ -376,6 +390,8 @@ html {
 
   /* Nav: row 1 = brand + links, row 2 = controls */
   .t-nav     { padding: 0.875rem var(--gutter); gap: 0.5rem 1rem; }
+  /* Inset hairline tracks the gutter-only padding on mobile */
+  .t-nav::after { left: var(--gutter); right: var(--gutter); }
   .t-links   { gap: 0.75rem 1rem !important; }
   .t-controls {
     order: 3;

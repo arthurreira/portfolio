@@ -1,0 +1,48 @@
+---
+title: "Kernel Monitor"
+description: "Reaaliaikainen Linux-ytimen tiedostojärjestelmän tarkkailija eBPF:n avulla. Kaappaa jokaisen syscallin Linux-koneella, tallentaa tapahtumat SQLiteen ja mahdollistaa ytimen tutkimisen luonnollisella kielellä paikallisen tekoälyn kautta. Ei pilveä, ei kuluja."
+createdAt: "2026-06-07"
+featured: true
+role: "solo"
+highlight: "eBPF-ytimentarkkailija — yli 1,6 miljoonaa kaapattua syscallia, paikallinen phi3:mini-tekoäly, live-kojelauta Macilta Linuxille WiFin yli"
+techStack:
+  - "eBPF / BCC"
+  - "Python"
+  - "FastAPI"
+  - "SQLite"
+  - "Ollama"
+  - "Next.js"
+  - "TypeScript"
+  - "Tailwind CSS"
+githubRepo: "https://github.com/arthurreira/kernel-monitor-backend"
+url: "https://github.com/arthurreira/kernel-monitor-ui"
+status: "done"
+coverImage: "./cover.png"
+---
+
+## Mitä rakensin
+
+Linux-ytimen tarkkailujärjestelmä, joka koukuttaa `openat`-syscalliin eBPF:n kautta ja kaappaa jokaisen tiedostonavauspyynnön koneella — prosessin nimi, PID, tiedostonimi, aikaleima. Tapahtumat virtaavat SQLiteen yli 200 kappaleen sekuntivauhdilla. FastAPI-backend tarjoaa datan kolmen endpointin kautta. Next.js-kojelauta, joka pyörii erillisellä koneella, hakee dataa paikallisen WiFin kautta kolmen sekunnin välein ja näyttää live-tapahtumavirran epäilyttävien polkujen tunnistuksella sekä paikallisen tekoälyn chat-käyttöliittymän phi3:minin ja Ollaman kautta.
+
+Tekoäly saa oikean ytimen datan kontekstiksi jokaiseen kysymykseen — ei hallusinointia, ei arvailua. Kysy "mitä Docker tekee?" ja se hakee SQLitestä, rakentaa kontekstin ja vastaa oikeaan syscall-dataan perustuen.
+
+## Mitä opin
+
+eBPF on petollisen monimutkainen moderneilla ytimillä. Tracepoint-kenttien nimet, muistinlukuapurit ja kiinnitysmenetelmät ovat kaikki muuttuneet ytimen versioiden välillä — mikä toimii 5.x:llä, epäonnistuu äänettömästi 6.17:lla. Debuggaus vaati ytimen tracepoint-muotitiedostojen lukemista suoraan `/sys/kernel/debug/tracing`-kansiosta ja Pythoniin upotetun C-koodin iterointia kunnes verifier hyväksyi sen. Verifier itsessään oli kiinnostavin konsepti — staattinen analyysimootori, joka todistaa että ytimen koodi ei voi kaataa järjestelmää ennen sen suorittamisen sallimista.
+
+Paikallinen tekoälyarkkitehtuuri oli tietoinen valinta. eBPF näkee arkaluonteista dataa — SSH-avainten lukuja, salasanatiedostojen käyttöjä, yksityisiä tiedostopolkuja. Tämän lähettäminen mihinkään pilvi-API:lle olisi yksityisyydensuojaloukkaus. Paikallinen inferenssi Ollaman kautta tarkoittaa, että ytimen data ei koskaan poistu koneelta.
+
+## Kohokohdat
+
+- eBPF-tracepoint-koukku `sys_enter_openat`-kohdassa — ydin 6.17
+- Yli 1,6 miljoonaa kaapattua syscall-tapahtumaa yhden päivän aikana
+- Epäilyttävien polkujen tunnistus — `/etc/passwd`, `/etc/shadow`, `/etc/gshadow`
+- Klikkaa mitä tahansa tapahtumariviä → tekoäly tutkii prosessin automaattisesti
+- Paikallinen phi3:mini-inferenssi — ei API-kuluja, ei dataa poistumassa koneelta
+- Live-kojelauta saavutettavissa Macilta paikallisen WiFin kautta
+
+## Teknologiat
+- **Ydinkerros:** eBPF BCC Python -sidosten kautta
+- **Backend:** FastAPI, SQLite, Ollama, psutil
+- **Frontend:** Next.js, TypeScript, Tailwind CSS, shadcn/ui
+- **Infrastruktuuri:** Linux Ubuntu, ydin 6.17, ASUS ROG GL502VML

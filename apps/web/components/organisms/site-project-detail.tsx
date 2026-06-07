@@ -7,6 +7,7 @@ import { ArrowRight, ArrowLeft } from "@phosphor-icons/react/ssr"
 import { cn } from "@arthurreira/ui"
 import type { ProjectStatus, ProjectRole } from "@arthurreira/content/types"
 import { MdxContent } from "@/components/molecules/mdx-content"
+import { Reveal } from "@/components/molecules/reveal"
 
 function MetaRow({ label, children }: { label: string; children: React.ReactNode }) {
   return (
@@ -90,7 +91,7 @@ export function SiteProjectDetail({
         <div className="h-px bg-border" />
 
         {/* Cover image — striped placeholder uses --stripe token (flips in light mode) */}
-        <div className="relative mt-8 aspect-[16/7] w-full overflow-hidden bg-muted">
+        <Reveal className="relative mt-8 aspect-[16/7] w-full overflow-hidden bg-muted">
           {coverImage ? (
             <Image src={coverImage} alt={title} fill className="object-cover" priority />
           ) : (
@@ -109,12 +110,12 @@ export function SiteProjectDetail({
               </div>
             </>
           )}
-        </div>
+        </Reveal>
       </div>
 
       {/* Body */}
       <div className="t-shell pt-12 pb-24">
-        <div className="t-detail-body">
+        <Reveal className="t-detail-body">
 
           {/* Left — body starts with ## What I built, no redundant description paragraph */}
           <div>
@@ -169,7 +170,7 @@ export function SiteProjectDetail({
               </MetaRow>
             )}
           </div>
-        </div>
+        </Reveal>
       </div>
     </div>
   )

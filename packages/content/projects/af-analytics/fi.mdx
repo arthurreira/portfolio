@@ -1,0 +1,55 @@
+---
+
+title: "AF Analytics"
+description: "Tietosuojaa kunnioittava tekoälypohjainen verkkoanalytiikka-alusta. Moniasiakas-SaaS, jossa on RAG-putki, pgvector-pohjainen semanttinen haku ja tekoälychat, joka vastaa sivuston liikennettä koskeviin kysymyksiin selkeällä luonnollisella kielellä."
+createdAt: "2026-01-01"
+featured: true
+role: "solo"
+highlight: "Täyden pinon analytiikka-SaaS – moniasiakkuus, pgvector-RAG-putki, Claude AI -chat, saatavilla osoitteessa analytics.arthurreira.dev"
+techStack:
+  - "Next.js"
+  - "TypeScript"
+  - "FastAPI"
+  - "PostgreSQL"
+  - "pgvector"
+  - "Cloudflare Workers"
+  - "BetterAuth"
+  - "Turborepo"
+githubRepo: "https://github.com/arthurreira/af-analytics"
+url: "https://analytics.arthurreira.dev"
+status: "ongoing"
+
+---
+
+## Mitä rakensin
+
+Tietosuojaa painottavan verkkoanalytiikka-alustan moniasiakkaisena SaaS-palveluna. Sivuston omistajat lisäävät kevyen JavaScript-SDK:n, joka kerää sivulataukset, istunnot ja mukautetut tapahtumat ilman evästeitä tai selaimen sormenjälkitunnistusta. Data kulkee Cloudflare Workers -reunapalveluiden kautta FastAPI-taustajärjestelmään, jonka tietokantana toimii Neon PostgreSQL yhdessä pgvectorin kanssa semanttista hakua varten.
+
+Tekoälykerros hyödyntää RAG-arkkitehtuuria (Retrieval-Augmented Generation). Jokainen sivuston liikennettä koskeva kysymys vastataan hakemalla tietokannasta olennaiset tapahtuma-aggregaatit, täydentämällä niitä julkaisuympäristön sekä laite- ja maajakaumien tiedoilla ja välittämällä tulokset Claude Sonnet -mallille. Vastaukset perustuvat todelliseen dataan eivätkä mallin arvailuihin.
+
+Alusta on moniasiakasjärjestelmä tietokantatasolta lähtien. Organisaatiot, jäsenet ja kutsut ovat osa skeemaa, eivät sovellustason kiertoratkaisuja. BetterAuth hoitaa tunnistautumisen sähköpostilla/salasanalla sekä Google OAuthilla.
+
+## Mitä opin
+
+Moniasiakkuuden suunnittelu oikein alusta asti on huomattavasti vaikeampaa kuin sen lisääminen jälkikäteen, mutta vaihtoehto on vielä huonompi. Jokainen tietokantakysely, API-päätepiste ja RAG-haku täytyy rajata `organization_id`:n perusteella. Yksi puuttuva rajaus voi johtaa tietovuotoon.
+
+RAG-putki vaati myös enemmän iterointia kuin odotin. Upgreidaus mallista `bge-small-en-v1.5` (384 ulottuvuutta) malliin `bge-base-en-v1.5` (768 ulottuvuutta) paransi hakutulosten laatua selvästi. Etäisyyskynnyksen (< 0.4) käyttö oli välttämätöntä, jotta tekoäly ei vastaisi epäolennaisen kontekstin perusteella.
+
+## Kohokohdat
+
+* SDK julkaistu npm-pakettina `@af/analytics`
+* RAG-putki pgvectorilla, 768-ulotteiset embeddingit ja etäisyyskynnyksen suodatus
+* Moniasiakasskeema organisaatioille, jäsenille ja kutsuille
+* BetterAuth sähköposti/salasana- ja Google OAuth -kirjautumisella
+* Cloudflare Workers mahdollistaa matalan viiveen tapahtumien vastaanoton
+* Turborepo-monorepo yhdistää FastAPI:n, Next.js:n ja Cloudflare Workersin
+
+## Teknologiapino
+
+* **Frontend:** Next.js, TypeScript, Tailwind CSS, shadcn/ui
+* **Backend:** FastAPI, Python, Neon PostgreSQL, pgvector
+* **Edge:** Cloudflare Workers
+* **AI:** Claude Sonnet, RAG-putki, bge-base-en-v1.5-embeddingit
+* **Auth:** BetterAuth
+* **Monorepo:** Turborepo, pnpm
+* **Deployment:** Vercel, Fly.io, Cloudflare

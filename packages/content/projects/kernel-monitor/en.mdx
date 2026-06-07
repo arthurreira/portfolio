@@ -1,0 +1,48 @@
+---
+title: "Kernel Monitor"
+description: "Real-time Linux kernel filesystem monitor using eBPF. Intercepts every syscall on a Linux machine, stores events in SQLite, and lets you investigate your kernel in plain English via a local AI model. Zero cloud, zero cost."
+createdAt: "2026-06-07"
+featured: true
+role: "solo"
+highlight: "eBPF kernel monitor — 1.6M+ syscalls captured, local phi3:mini AI, live dashboard from Mac to Linux over WiFi"
+techStack:
+  - "eBPF / BCC"
+  - "Python"
+  - "FastAPI"
+  - "SQLite"
+  - "Ollama"
+  - "Next.js"
+  - "TypeScript"
+  - "Tailwind CSS"
+githubRepo: "https://github.com/arthurreira/kernel-monitor-backend"
+url: "https://github.com/arthurreira/kernel-monitor-ui"
+status: "done"
+coverImage: "./cover.png"
+---
+
+## What I built
+
+A Linux kernel monitoring system that hooks into the `openat` syscall via eBPF, capturing every file open event on the machine — process name, PID, filename, timestamp. Events stream into SQLite at over 200/second. A FastAPI backend exposes the data through three endpoints. A Next.js dashboard running on a separate machine queries it over local WiFi every 3 seconds, showing a live event feed with suspicious path detection and a local AI chat interface powered by phi3:mini via Ollama.
+
+The AI receives real kernel data as context on every question — no hallucination, no guessing. Ask "what is Docker doing?" and it queries SQLite, builds context, and answers from actual syscall evidence.
+
+## What I learned
+
+eBPF is deceptively complex on modern kernels. The tracepoint field names, memory read helpers, and attach methods all changed between kernel versions — what works on 5.x fails silently on 6.17. Debugging required reading kernel tracepoint format files directly from `/sys/kernel/debug/tracing` and iterating on the C embedded in Python until the verifier accepted it. The verifier itself was the most interesting concept — a static analysis engine that proves your kernel code cannot crash the system before allowing it to run.
+
+The local AI architecture was a deliberate choice. eBPF sees sensitive data — SSH key reads, password file access, private file paths. Sending that to any cloud API would be a privacy violation. Keeping inference local with Ollama meant the kernel data never leaves the machine.
+
+## Highlights
+
+- eBPF tracepoint hook on `sys_enter_openat` — kernel 6.17
+- 1.6M+ real syscall events captured in one day
+- Suspicious path detection — `/etc/passwd`, `/etc/shadow`, `/etc/gshadow`
+- Click any event row → AI auto-investigates that process
+- Local phi3:mini inference — no API costs, no data leaving the machine
+- Live dashboard accessible from Mac over local WiFi
+
+## Tech Stack
+- **Kernel layer:** eBPF via BCC Python bindings
+- **Backend:** FastAPI, SQLite, Ollama, psutil
+- **Frontend:** Next.js, TypeScript, Tailwind CSS, shadcn/ui
+- **Infrastructure:** Linux Ubuntu, kernel 6.17, ASUS ROG GL502VML

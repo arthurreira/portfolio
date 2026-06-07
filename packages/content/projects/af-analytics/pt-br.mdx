@@ -1,0 +1,55 @@
+---
+
+title: "AF Analytics"
+description: "Plataforma de analytics web com IA e foco em privacidade. SaaS multi-tenant com pipeline RAG, busca semântica com pgvector e interface de chat com IA que responde perguntas sobre o tráfego do seu site em linguagem natural."
+createdAt: "2026-01-01"
+featured: true
+role: "solo"
+highlight: "SaaS completo de analytics — multi-tenancy, pipeline RAG com pgvector, chat com Claude AI, disponível em analytics.arthurreira.dev"
+techStack:
+  - "Next.js"
+  - "TypeScript"
+  - "FastAPI"
+  - "PostgreSQL"
+  - "pgvector"
+  - "Cloudflare Workers"
+  - "BetterAuth"
+  - "Turborepo"
+githubRepo: "https://github.com/arthurreira/af-analytics"
+url: "https://analytics.arthurreira.dev"
+status: "ongoing"
+
+---
+
+## O que eu construí
+
+Uma plataforma de analytics web com foco em privacidade desenvolvida como um SaaS multi-tenant. Os proprietários dos sites incorporam um SDK JavaScript leve que registra visualizações de páginas, sessões e eventos personalizados sem utilizar cookies ou fingerprinting. Os dados passam pelo Cloudflare Workers na borda e chegam a um backend FastAPI utilizando Neon PostgreSQL com pgvector para busca semântica.
+
+A camada de IA utiliza RAG (Retrieval-Augmented Generation). Cada pergunta sobre o tráfego do site é respondida recuperando agregações relevantes do banco de dados, enriquecendo-as com contexto de implantação e informações sobre dispositivos e países e enviando o resultado ao Claude Sonnet. As respostas são baseadas em dados reais, e não em suposições do modelo.
+
+A plataforma é multi-tenant desde a camada do banco de dados. Organizações, membros e convites são conceitos do próprio esquema do banco, e não soluções improvisadas na aplicação. O BetterAuth fornece autenticação com e-mail/senha e Google OAuth.
+
+## O que aprendi
+
+Projetar multi-tenancy corretamente desde o início é muito mais difícil do que adicioná-lo depois, mas a alternativa é pior. Cada consulta ao banco, endpoint da API e recuperação do pipeline RAG precisa ser limitada por `organization_id`. Esquecer isso uma única vez pode causar vazamento de dados.
+
+O pipeline RAG exigiu muito mais iterações do que eu esperava. A escolha do modelo de embeddings faz diferença. Migrar de `bge-small-en-v1.5` (384 dimensões) para `bge-base-en-v1.5` (768 dimensões) melhorou significativamente a qualidade da recuperação semântica. O uso de um limite de distância (< 0.4) foi necessário para impedir que a IA respondesse usando contexto irrelevante.
+
+## Destaques
+
+* SDK publicado no npm como `@af/analytics`
+* Pipeline RAG com pgvector, embeddings de 768 dimensões e filtro por distância
+* Esquema multi-tenant para organizações, membros e convites
+* BetterAuth com autenticação por e-mail/senha e Google OAuth
+* Camada de borda com Cloudflare Workers para ingestão de eventos de baixa latência
+* Monorepo com Turborepo integrando FastAPI, Next.js e Cloudflare Workers
+
+## Stack Tecnológica
+
+* **Frontend:** Next.js, TypeScript, Tailwind CSS, shadcn/ui
+* **Backend:** FastAPI, Python, Neon PostgreSQL, pgvector
+* **Edge:** Cloudflare Workers
+* **IA:** Claude Sonnet, pipeline RAG, embeddings bge-base-en-v1.5
+* **Autenticação:** BetterAuth
+* **Monorepo:** Turborepo, pnpm
+* **Deploy:** Vercel, Fly.io, Cloudflare

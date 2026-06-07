@@ -4,12 +4,22 @@ import { useState, useEffect, useRef } from "react"
 import { flushSync } from "react-dom"
 import { useRouter, usePathname as useIntlPathname, routing } from "@/i18n/routing"
 import { useLocale, useTranslations } from "next-intl"
+import { Sun, Moon } from "@phosphor-icons/react/ssr"
 import { NavLink } from "@/components/atoms/nav-link"
+import {
+  Tooltip,
+  TooltipContent,
+  TooltipProvider,
+  TooltipTrigger,
+} from "@arthurreira/ui/components/tooltip"
 import { PillGroup } from "@/components/molecules/pill-group"
+import { useCircleReveal } from "@/components/molecules/circle-reveal"
+import { FlagFill, FlagChip } from "@/components/atoms/flag-icons"
+import { THEME_TRANSITION } from "@/lib/theme-transition"
 
 const FLAGS = [
-  { key: "brasil", label: "Brasil" },
-  { key: "suomi",  label: "Suomi"  },
+  { key: "brasil", label: <FlagChip flag="brasil" />, ariaLabel: "Brasil" },
+  { key: "suomi",  label: <FlagChip flag="suomi"  />, ariaLabel: "Suomi"  },
 ]
 const LANGS = [
   { key: "en",    label: "EN" },
@@ -38,10 +48,11 @@ export function SiteNav() {
   const currentLocale = useLocale()
   const t             = useTranslations("nav")
   const tTheme        = useTranslations("theme")
+  const tTip          = useTranslations("tooltips")
 
   const MODES = [
-    { key: "dark",  label: tTheme("dark")  },
-    { key: "light", label: tTheme("light") },
+    { key: "dark",  label: <Moon weight="fill" />, ariaLabel: tTheme("dark")  },
+    { key: "light", label: <Sun weight="fill" />,  ariaLabel: tTheme("light") },
   ]
 
   const NAV_LINKS = [
@@ -53,6 +64,14 @@ export function SiteNav() {
   const [flag, setFlag] = useState("brasil")
   const [mode, setMode] = useState("dark")
   const pointer = useRef<{ x: number; y: number } | null>(null)
+  const { overlay: revealOverlay, run: runReveal } = useCircleReveal()
+
+  function originFromPointer() {
+    return pointer.current ?? {
+      x: window.innerWidth / 2,
+      y: window.innerHeight / 2,
+    }
+  }
 
   // Sync from DOM on mount + tab visibility change
   useEffect(() => {
@@ -78,9 +97,14 @@ export function SiteNav() {
     return () => window.removeEventListener("arthur-theme", onTheme)
   }, [])
 
-  function pickFlag(val: string) {
+  function applyFlag(val: string) {
     setAxis("flag", "arthur-flag", val)
     flushSync(() => setFlag(val))
+  }
+
+  function pickFlag(val: string) {
+    if (val === flag) return
+    runReveal(<FlagFill flag={val} />, originFromPointer(), () => applyFlag(val))
   }
 
   function applyMode(val: string) {
@@ -108,21 +132,37 @@ export function SiteNav() {
             `circle(${endRadius}px at ${o.x}px ${o.y}px)`,
           ],
         },
-        { duration: 500, easing: "ease-in-out", pseudoElement: "::view-transition-new(root)" },
+        {
+          duration: THEME_TRANSITION.durationMs,
+          easing: THEME_TRANSITION.easing,
+          pseudoElement: "::view-transition-new(root)",
+        },
       )
     })
   }
 
   function pickLocale(locale: string) {
+    if (locale === currentLocale) return
+    // No full-screen reveal here — the pill's own active-state transition is the
+    // only animation on a language change.
     router.push(intlPathname, { locale: locale as (typeof routing.locales)[number] })
   }
 
   return (
     <header
-      className="w-full border-b border-hairline bg-background font-ui"
+      className="w-full bg-background font-ui"
       style={{ position: "relative", zIndex: 10 }}
-      onPointerDown={(e) => { pointer.current = { x: e.clientX, y: e.clientY } }}
+      onPointerDown={(e) => {
+        const btn = (e.target as HTMLElement).closest("button")
+        if (btn) {
+          const r = btn.getBoundingClientRect()
+          pointer.current = { x: r.left + r.width / 2, y: r.top + r.height / 2 }
+        } else {
+          pointer.current = { x: e.clientX, y: e.clientY }
+        }
+      }}
     >
+      {revealOverlay}
       <div className="t-nav">
         {/* Left — logo */}
         <NavLink href="/" className="shrink-0 font-bold tracking-[-0.01em]">
@@ -140,11 +180,44 @@ export function SiteNav() {
 
         {/* Controls row (drops to own row on ≤900px) */}
         <div className="t-controls">
-          <PillGroup options={FLAGS} active={flag} onPick={pickFlag} />
-          <span className="h-3 w-px bg-border" />
-          <PillGroup options={MODES} active={mode} onPick={pickMode} />
-          <span className="h-3 w-px bg-border" />
-          <PillGroup options={LANGS} active={currentLocale} onPick={pickLocale} />
+          <TooltipProvider delayDuration={300}>
+            <Tooltip>
+              <TooltipTrigger asChild>
+                <span className="inline-flex items-center">
+                  <PillGroup options={FLAGS} active={flag} onPick={pickFlag} />
+                </span>
+              </TooltipTrigger>
+              <TooltipContent side="bottom" sideOffset={6}>
+                {tTip("theme")}
+              </TooltipContent>
+            </Tooltip>
+
+            <span className="h-3 w-px bg-border" />
+
+            <Tooltip>
+              <TooltipTrigger asChild>
+                <span className="inline-flex items-center">
+                  <PillGroup options={MODES} active={mode} onPick={pickMode} />
+                </span>
+              </TooltipTrigger>
+              <TooltipContent side="bottom" sideOffset={6}>
+                {tTip("mode")}
+              </TooltipContent>
+            </Tooltip>
+
+            <span className="h-3 w-px bg-border" />
+
+            <Tooltip>
+              <TooltipTrigger asChild>
+                <span className="inline-flex items-center">
+                  <PillGroup options={LANGS} active={currentLocale} onPick={pickLocale} />
+                </span>
+              </TooltipTrigger>
+              <TooltipContent side="bottom" sideOffset={6}>
+                {tTip("language")}
+              </TooltipContent>
+            </Tooltip>
+          </TooltipProvider>
         </div>
       </div>
     </header>

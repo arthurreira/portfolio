@@ -1,11 +1,12 @@
 import { getTranslations, getLocale } from "next-intl/server"
-import { ArrowRight } from "@phosphor-icons/react/ssr"
+import { ArrowRightIcon } from "@phosphor-icons/react/ssr"
 import { about } from "@arthurreira/content"
 import { MdxContent } from "@/components/molecules/mdx-content"
+import Link from "next/link"
 
 const CERTS = [
   { name: "AWS Cloud Practitioner", code: "CLF-C02", period: "2026–2029", url: "https://www.credly.com/badges/" },
-  { name: "Azure Fundamentals",     code: "AZ-900",  period: "2025",      url: "https://learn.microsoft.com/en-us/credentials/" },
+  { name: "Azure Fundamentals",     code: "AZ-900",  period: "2026",      url: "https://learn.microsoft.com/en-us/credentials/" },
 ]
 
 function SidebarRow({ label, value }: { label: string; value: string }) {
@@ -58,15 +59,15 @@ export async function SiteAbout() {
               <span className="t-cert-name text-base font-bold text-foreground">{cert.name}</span>
               <span className="text-sm text-muted-foreground">{cert.code}</span>
               <span className="text-sm text-muted-foreground">{cert.period}</span>
-              <a
+              <Link
                 href={cert.url}
                 target="_blank"
                 rel="noopener noreferrer"
                 className="label-caps inline-flex items-center gap-1 no-underline"
               >
                 {t("verified")}
-                <ArrowRight weight="bold" className="size-3" />
-              </a>
+                <ArrowRightIcon weight="bold" className="size-3" />
+              </Link>
             </div>
           ))}
           <div className="border-t border-border" />
