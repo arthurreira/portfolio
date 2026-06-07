@@ -3,71 +3,46 @@ title: "Acme Financial Dashboard"
 description: "Aplicação de painel financeiro Next.js construída para praticar Next.js 16, agora pronta para produção e totalmente funcional com deploy ao vivo, autenticação e analytics."
 createdAt: "2023-03-28"
 featured: false
+role: "solo"
+highlight: "Full-stack Next.js 16 learning project — live at nextjs-dashboard.arthurreira.dev with Neon PostgreSQL + NextAuth.js v5"
 techStack:
-  - "Next.js"
+  - "Next.js 16"
   - "TypeScript"
   - "Tailwind CSS"
   - "PostgreSQL"
+  - "NextAuth.js"
+  - "Vercel"
 githubRepo: "https://github.com/arthurreira/acme-financial-dashboard"
 url: "https://nextjs-dashboard.arthurreira.dev"
 status: "done"
-highlight: ""
 ---
+
 
 [![](https://github.com/arthurreira/acme-financial-dashboard/blob/main/public/opengraph-image.png)](https://github.com/arthurreira/acme-financial-dashboard)
 
-**Acme Financial Dashboard** é uma aplicação de painel financeiro criada para **praticar e aprender Next.js**. Foi desenvolvida para explorar os recursos do Next.js, entender roteamento, busca de dados e padrões modernos de React. O projeto está agora **pronto para produção e totalmente funcional**.
+## What I built
 
-## Status do projeto
+A full-stack financial dashboard built by following the official Next.js 16 learn course — then extended and actually deployed to production. The app manages customers and invoices for a fictional company called Acme, with a dashboard showing revenue statistics and interactive charts.
 
-**Status:** **Pronto para produção e totalmente funcional**
+The stack covers the full Next.js App Router architecture: Server Components for data fetching, Client Components for interactivity, Server Actions for form submissions, and Suspense boundaries for streaming. Authentication is handled by NextAuth.js v5 with a PostgreSQL session store on Neon. The whole thing is deployed on Vercel with a custom subdomain.
 
-- Totalmente implantado e funcionando no Vercel
-- Banco de dados inicializado e populado (Neon PostgreSQL)
-- Autenticação funcionando corretamente (NextAuth.js v5)
-- Todos os patches de segurança aplicados
-- Analytics integrado (Vercel Analytics)
-- Domínio personalizado configurado (arthurreira.dev)
+## What I learned
 
-**URL ao vivo:** [https://nextjs-dashboard.arthurreira.dev](https://nextjs-dashboard.arthurreira.dev)
+The biggest insight was understanding WHEN to use Server vs Client Components — and that the default should always be Server. Data fetching without useEffect, server actions replacing API routes for forms, and streaming with Suspense were the patterns that clicked through building this. Authentication with NextAuth.js v5 (beta) was rough — the beta API changed during development and required careful reading of changelogs. Real deployment also surfaced things that local dev hides: environment variables, database seeding, and the difference between preview and production Vercel environments.
 
-## Objetivos de aprendizado
+## Highlights
 
-Este projeto serve como experiência prática para:
-- Praticar a criação de aplicações com **Next.js 16**
-- Entender server components, client components e o App Router
-- Aprender sobre busca de dados, streaming e técnicas de otimização
-- Praticar estilização com **Tailwind CSS**
-- Explorar manipulação de formulários, validação e interações com o usuário
-- Entender fluxos de autenticação (NextAuth.js)
-- Praticar tratamento de erros e estados de carregamento
+- Full CRUD for customers and invoices with search + pagination
+- Dashboard with revenue stats and interactive charts
+- NextAuth.js v5 authentication with PostgreSQL session store
+- Deployed to production on Vercel with a custom domain
+- Test login: `user@nextmail.com` / `123456`
 
-## Funcionalidades implementadas
+## Tech Stack
 
-### Gerenciamento de clientes
-- Adicionar, atualizar e visualizar detalhes de clientes
-- Listagem com busca e paginação
-
-### Gerenciamento de faturas
-- Criar, visualizar e atualizar faturas
-- Rastreamento e gerenciamento de status de faturas
-
-### Visão geral financeira
-- Painel com estatísticas de receita
-- Gráficos interativos para visualização de dados
-- Rastreamento de valores coletados e pendentes
-
-## Credenciais de teste
-
-- **Email:** `user@nextmail.com`
-- **Senha:** `123456`
-
-## Tecnologias
-
-- **Framework:** Next.js 16.1.1 (App Router)
-- **Linguagem:** TypeScript
-- **Estilo:** Tailwind CSS v4
-- **Banco de dados:** PostgreSQL (Neon)
-- **Autenticação:** NextAuth.js v5
-- **Analytics:** Vercel Analytics
-- **Validação de formulários:** Zod
+- **Framework:** Next.js 16 (App Router, Server Components)
+- **Language:** TypeScript
+- **Styling:** Tailwind CSS v4
+- **Database:** PostgreSQL (Neon)
+- **Auth:** NextAuth.js v5
+- **Deployment:** Vercel

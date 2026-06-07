@@ -1,44 +1,40 @@
 ---
 title: "hackathon-projects"
-description: "Project showcase application for displaying hackathon project submissions, deployed via GitHub Pages."
-createdAt: "2024-01-15"
+description: "Project showcase site deployed to projects.arthurreira.dev — third app in the same Terraform-managed GitHub Pages infrastructure demonstration."
+createdAt: "2026-01-15"
 featured: false
+role: "solo"
+highlight: "Third app in the 3-app Terraform infra demo — project gallery at projects.arthurreira.dev"
 techStack:
   - "HTML"
   - "CSS"
   - "JavaScript"
-  - "GitHub Pages"
+  - "Terraform"
   - "GitHub Actions"
+  - "GitHub Pages"
 githubRepo: "https://github.com/arthurreira/hackathon-projects"
 url: "https://projects.arthurreira.dev"
-status: "done"
-highlight: ""
+status: "fun"
 ---
 
-**hackathon-projects** is a **static web application** for showcasing hackathon project submissions, deployed via GitHub Pages.
+## What I built
 
-It provides a centralized platform where participants and judges can browse and view all submitted hackathon projects in an organized, accessible format.
+A static project-showcase site — one of three apps in a Terraform infrastructure demo. It displays hackathon project submissions in an organised gallery. The real engineering is the automation: this site, plus `hackathon-registration` and `hackathon-schedule`, are all provisioned by a single Terraform module that creates the GitHub repo, enables Pages, configures the custom subdomain, and generates the deploy workflow.
 
-## Key Features
+## What I learned
 
-1. **Project Showcase:** Displays all hackathon project submissions with details, descriptions, and links.
-2. **Automatic Deployment:** GitHub Actions workflow automatically builds and deploys the site on every commit to the main branch.
-3. **Custom Domain:** Deployed at `projects.arthurreira.dev` via custom subdomain configuration.
-4. **Easy Updates:** Organizers can add or update project listings by editing files and committing changes - no manual deployment needed.
-5. **Infrastructure Automation:** Created and configured automatically via Terraform infrastructure automation.
+See [hackathon-registration](/projects/hackathon-registration) for the full write-up on the Terraform automation behind all three sites — the GitHub provider quirks and what infrastructure-as-code is really for.
+
+## Highlights
+
+- Project submission gallery
+- Provisioned automatically via the shared Terraform module
+- Live at [projects.arthurreira.dev](https://projects.arthurreira.dev)
+- Part of the 3-app infra demo with registration + schedule
 
 ## Tech Stack
 
-- **Deployment:** GitHub Pages
-- **Automation:** GitHub Actions
-- **Infrastructure:** Provisioned via Terraform
-- **Domain:** Custom subdomain (projects.arthurreira.dev)
-
-## Architecture
-
-The application is part of an automated infrastructure system:
-
-1. **Infrastructure Provisioning:** Created automatically by the `infra` Terraform project
-2. **Repository Setup:** GitHub repository with Pages enabled and custom domain configured
-3. **Deployment Workflow:** Auto-generated GitHub Actions workflow handles builds and deployments
-4. **Content Management:** Static files that can be easily updated via Git commits
+- **IaC:** Terraform (GitHub provider)
+- **CI/CD:** GitHub Actions
+- **Hosting:** GitHub Pages
+- **Frontend:** HTML, CSS, JavaScript

@@ -1,65 +1,38 @@
 ---
-title: "Infraestrutura como Código"
-description: "Automação Terraform para criar repositórios GitHub Pages com subdomínios personalizados."
-createdAt: "2024-01-15"
+title: "Infrastructure as Code"
+description: "Terraform automation for creating GitHub Pages repositories with custom subdomains, auto-generated CD workflows, and DNS configuration — one run provisions everything."
+createdAt: "2026-01-15"
 featured: false
+role: "solo"
+highlight: "Terraform module that provisions GitHub repos + Pages + custom DNS + GitHub Actions workflows in a single run"
 techStack:
   - "Terraform"
   - "GitHub Actions"
+  - "GitHub Pages"
 githubRepo: "https://github.com/arthurreira/infra"
 url: "https://github.com/arthurreira/infra"
 status: "done"
-highlight: ""
 ---
 
-**infra** é um **sistema de automação Terraform** para criar e gerenciar múltiplos repositórios GitHub Pages com subdomínios personalizados.
 
-Automatiza todo o processo de configuração da infraestrutura, desde a criação do repositório até a configuração do Pages e geração do workflow de deploy.
+## What I built
 
-## Funcionalidades principais
+A Terraform module that provisions the complete lifecycle of a GitHub Pages static site — from zero to a live custom-domain URL — in a single `terraform apply`. It creates the repository, enables Pages, writes the CNAME file for the custom subdomain, and generates a GitHub Actions workflow that handles all future deployments. The three hackathon sites (`register.arthurreira.dev`, `schedule.arthurreira.dev`, `projects.arthurreira.dev`) were all provisioned this way.
 
-1. **Criação automatizada de repositórios:** Cria repositórios GitHub com visibilidade (público/privado) e convenções de nomenclatura definidas.
-2. **Configuração do GitHub Pages:** Habilita o GitHub Pages automaticamente via Terraform usando um Personal Access Token com permissões de admin.
-3. **Domínio personalizado:** Gera arquivos CNAME para subdomínios personalizados (ex: `register.arthurreira.dev`, `schedule.arthurreira.dev`).
-4. **Workflows de deploy:** Gera automaticamente workflows do GitHub Actions para cada repositório, que constroem e fazem deploy do conteúdo estático para o Pages.
-5. **Operações idempotentes:** Inclui importação automática de repositórios para evitar erros de recriação em re-execuções.
+## What I learned
 
-## Arquitetura
+The GitHub Terraform provider has subtleties that cloud providers don't. GitHub's API is eventually consistent — repository creation and Pages enablement can't always be chained immediately, which required careful `depends_on` and `time_sleep` blocks. The deeper lesson was about what IaC is really for: not just provisioning servers, but encoding the entire setup process so it's repeatable, reviewable, and destroyable. A Terraform plan is a diff of intended vs actual infrastructure — that model fundamentally changes how you think about setup.
 
-O sistema é composto por dois componentes principais:
+## Highlights
 
-1. **Infraestrutura Terraform (repo infra):**
-   - Cria repositórios GitHub
-   - Habilita o GitHub Pages
-   - Define domínios personalizados via arquivos CNAME
-   - Gera workflows de deploy
-   - Importa repos existentes para evitar recriação
+- One `terraform apply` provisions a full GitHub Pages site
+- Creates repo + enables Pages + sets CNAME + generates CD workflow
+- Powers the 3 hackathon subdomains
+- Idempotent — safe to re-run
 
-2. **Workflows de deploy (repos das apps):**
-   - Disparam automaticamente em push para a branch principal
-   - Constroem o conteúdo estático
-   - Fazem upload e deploy para o Pages
-   - Executam com permissões padrão do GitHub Actions
+## Tech Stack
 
-## Tecnologias
-
-- **Infraestrutura:** Terraform >= 1.5
-- **Provider:** `integrations/github` ~> 6.0
-- **Automação:** GitHub Actions
-- **Deploy:** GitHub Pages
-
-## Uso
-
-**Local:**
-```bash
-export TF_VAR_github_owner="arthurreira"
-export TF_VAR_github_token="ghp_yourClassicPAT"
-
-terraform -chdir=infra init
-terraform -chdir=infra apply
-```
-
-**GitHub Actions:**
-- Configure o secret `GH_PAT` com Classic PAT (escopos repo + delete_repo)
-- Execute o workflow pela aba Actions
-- Ative `apply` para executar as alterações
+- **IaC:** Terraform ≥ 1.5
+- **Provider:** integrations/github ~> 6.0
+- **CI/CD:** GitHub Actions
+- **Hosting:** GitHub Pages

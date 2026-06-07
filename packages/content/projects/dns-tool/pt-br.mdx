@@ -1,44 +1,47 @@
 ---
 title: "dns-tool"
-description: "Esta é uma breve descrição do meu projeto de ferramentas DNS construído com tecnologias modernas."
+description: "Ferramenta DNS full-stack com Next.js e AWS Lambda. Consulte qualquer domínio por registros A, AAAA, MX, TXT, CNAME e NS através de uma interface shadcn/ui com histórico de consultas."
 createdAt: "2026-04-25"
 featured: true
-url: "https://example.com"
+role: "solo"
+highlight: "Full-stack DNS lookup tool — 6 record types, serverless AWS Lambda backend, live at dns.arthurreira.dev"
 techStack:
-  - "React"
+  - "Next.js"
   - "TypeScript"
+  - "AWS Lambda"
   - "Tailwind CSS"
-githubRepo: "af-dns-lookup"
-status: "ongoing"
-highlight: "Em uso em produção · 3 regiões AWS"
+  - "shadcn/ui"
+githubRepo: "https://github.com/arthurreira/af-dns-lookup"
+url: "https://dns.arthurreira.dev"
+status: "done"
 coverImage: "./cover.png"
 ---
 
+
 ![dns-tool screenshot](./homePageClean.png)
 
-![dns-tool screenshot 2](./homePageInUsage.png)
+![dns-tool screenshot in use](./homePageInUsage.png)
 
-![dns-tool screenshot 3](./dns-tool-history.png)
+## What I built
 
-## Visão geral
+A DNS lookup tool that lets you query any domain for six record types: A, AAAA, MX, TXT, CNAME, and NS. The interface is built with Next.js and shadcn/ui — enter a domain, pick a record type, get structured results immediately. A query history panel on the right tracks previous lookups so you can compare results without re-typing.
 
-Este projeto é uma aplicação web moderna construída para demonstrar como usar **Velite com MDX**.
+The DNS resolution runs on an AWS Lambda function rather than the Next.js server. The frontend calls an API route that proxies to the Lambda, which performs the actual DNS queries. The whole stack deploys to `dns.arthurreira.dev`.
 
-Ele suporta conteúdo rico como:
+## What I learned
 
-- Formatação Markdown
-- Componentes incorporados
-- Blocos de código
+The main engineering challenge was latency — DNS resolution involves unpredictable network round-trips and Lambda cold-start penalties. Reducing that required understanding Lambda provisioned concurrency, the trade-off between keeping functions warm and cost, and how to structure the API route to return a loading state immediately while resolution completes.
 
-## Funcionalidades
+## Highlights
 
-- Alto desempenho
-- Interface limpa
-- Fácil personalização
+- Query A, AAAA, MX, TXT, CNAME, NS records for any domain
+- Query history panel — compare results without re-typing
+- Serverless DNS resolution on AWS Lambda
+- Per-failure error states (NXDOMAIN, SERVFAIL, timeout)
+- Live at [dns.arthurreira.dev](https://dns.arthurreira.dev)
 
-## Exemplo de código
+## Tech Stack
 
-```ts
-export function greet(name: string) {
-  return `Hello, ${name}!`
-}
+- **Frontend:** Next.js, TypeScript, shadcn/ui, Tailwind CSS
+- **Backend:** AWS Lambda
+- **Deployment:** Vercel + AWS

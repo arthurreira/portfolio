@@ -3,71 +3,46 @@ title: "Acme Financial Dashboard"
 description: "Next.js-taloushallinnan koontinäyttösovellus, joka on rakennettu harjoittelemaan Next.js 16:ta, nyt tuotantovalmis ja täysin toiminnallinen live-version kanssa, tunnistautumisella ja analytiikalla."
 createdAt: "2023-03-28"
 featured: false
+role: "solo"
+highlight: "Full-stack Next.js 16 learning project — live at nextjs-dashboard.arthurreira.dev with Neon PostgreSQL + NextAuth.js v5"
 techStack:
-  - "Next.js"
+  - "Next.js 16"
   - "TypeScript"
   - "Tailwind CSS"
   - "PostgreSQL"
+  - "NextAuth.js"
+  - "Vercel"
 githubRepo: "https://github.com/arthurreira/acme-financial-dashboard"
 url: "https://nextjs-dashboard.arthurreira.dev"
 status: "done"
-highlight: ""
 ---
+
 
 [![](https://github.com/arthurreira/acme-financial-dashboard/blob/main/public/opengraph-image.png)](https://github.com/arthurreira/acme-financial-dashboard)
 
-**Acme Financial Dashboard** on taloushallinnan koontinäyttösovellus, joka on luotu **harjoittelemaan Next.js:ää**. Se rakennettiin tutustumaan Next.js:n ominaisuuksiin, reititykseen, datan hakemiseen ja moderneihin React-malleihin. Projekti on nyt **tuotantovalmis ja täysin toiminnallinen**.
+## What I built
 
-## Projektin tila
+A full-stack financial dashboard built by following the official Next.js 16 learn course — then extended and actually deployed to production. The app manages customers and invoices for a fictional company called Acme, with a dashboard showing revenue statistics and interactive charts.
 
-**Tila:** **Tuotantovalmis ja täysin toiminnallinen**
+The stack covers the full Next.js App Router architecture: Server Components for data fetching, Client Components for interactivity, Server Actions for form submissions, and Suspense boundaries for streaming. Authentication is handled by NextAuth.js v5 with a PostgreSQL session store on Neon. The whole thing is deployed on Vercel with a custom subdomain.
 
-- Täysin käyttöönotettu ja toiminnassa Vercelissä
-- Tietokanta alustettu ja siemennetty (Neon PostgreSQL)
-- Tunnistautuminen toimii oikein (NextAuth.js v5)
-- Kaikki tietoturvapäivitykset asennettu
-- Analytiikka integroitu (Vercel Analytics)
-- Mukautettu domain konfiguroitu (arthurreira.dev)
+## What I learned
 
-**Live-URL:** [https://nextjs-dashboard.arthurreira.dev](https://nextjs-dashboard.arthurreira.dev)
+The biggest insight was understanding WHEN to use Server vs Client Components — and that the default should always be Server. Data fetching without useEffect, server actions replacing API routes for forms, and streaming with Suspense were the patterns that clicked through building this. Authentication with NextAuth.js v5 (beta) was rough — the beta API changed during development and required careful reading of changelogs. Real deployment also surfaced things that local dev hides: environment variables, database seeding, and the difference between preview and production Vercel environments.
 
-## Oppimistavoitteet
+## Highlights
 
-Tämä projekti toimii käytännön oppimiskokemuksena:
-- **Next.js 16** -sovellusten rakentamisen harjoittelu
-- Palvelinkomponenttien, asiakaskomponenttien ja App Routerin ymmärtäminen
-- Datan hakemisen, suoratoiston ja optimointitekniikoiden oppiminen
-- Tyylittely **Tailwind CSS**:llä
-- Lomakkeiden käsittely, validointi ja käyttäjävuorovaikutukset
-- Tunnistautumisvirrat (NextAuth.js)
-- Virheenkäsittely ja lataustilojen hallinta
+- Full CRUD for customers and invoices with search + pagination
+- Dashboard with revenue stats and interactive charts
+- NextAuth.js v5 authentication with PostgreSQL session store
+- Deployed to production on Vercel with a custom domain
+- Test login: `user@nextmail.com` / `123456`
 
-## Toteutetut ominaisuudet
+## Tech Stack
 
-### Asiakashallinta
-- Asiakastietojen lisääminen, päivittäminen ja tarkastelu
-- Asiakaslistaus hakutoiminnolla ja sivutuksella
-
-### Laskuhallinta
-- Laskujen luominen, tarkastelu ja päivittäminen
-- Laskujen seuranta ja tilaehallinta
-
-### Taloudellinen yleiskatsaus
-- Koontinäyttö tuottotilastoineen
-- Interaktiiviset kaaviot datan visualisointiin
-- Kerättyjen ja odottavien summien seuranta
-
-## Testikäyttäjätiedot
-
-- **Sähköposti:** `user@nextmail.com`
-- **Salasana:** `123456`
-
-## Teknologiat
-
-- **Framework:** Next.js 16.1.1 (App Router)
-- **Kieli:** TypeScript
-- **Tyyli:** Tailwind CSS v4
-- **Tietokanta:** PostgreSQL (Neon)
-- **Tunnistautuminen:** NextAuth.js v5
-- **Analytiikka:** Vercel Analytics
-- **Lomakevalidointi:** Zod
+- **Framework:** Next.js 16 (App Router, Server Components)
+- **Language:** TypeScript
+- **Styling:** Tailwind CSS v4
+- **Database:** PostgreSQL (Neon)
+- **Auth:** NextAuth.js v5
+- **Deployment:** Vercel

@@ -19,6 +19,9 @@ const buttonVariants = cva(
         destructive:
           "bg-destructive/10 text-destructive hover:bg-destructive/20 focus-visible:border-destructive/40 focus-visible:ring-destructive/20 dark:bg-destructive/20 dark:hover:bg-destructive/30 dark:focus-visible:ring-destructive/40",
         link: "text-primary underline-offset-4 hover:underline",
+        // Toggle pill (inactive state). Pair with size="pill".
+        // For the active state, switch to variant="default" from the parent.
+        pill: "border-border bg-transparent text-muted-foreground hover:border-primary hover:text-foreground",
       },
       size: {
         default:
@@ -30,6 +33,7 @@ const buttonVariants = cva(
         "icon-xs": "size-6 rounded-none [&_svg:not([class*='size-'])]:size-3",
         "icon-sm": "size-7 rounded-none",
         "icon-lg": "size-9",
+        pill: "h-auto px-2 py-[3px] font-ui text-[10px] tracking-[0.15em] uppercase [&_svg:not([class*='size-'])]:size-3",
       },
     },
     defaultVariants: {

@@ -1,38 +1,42 @@
 ---
 title: "PrimeKG Explorer"
-description: "Interaktiivinen 3D-biomedikaaliset tietoverkon selain, joka perustuu PrimeKG-datasetiin. Käyttää Neo4j-graafitietokantaa ja react-force-graph-3d-visualisointia."
-createdAt: "2025-03-05"
+description: "An interactive 3D biomedical knowledge graph explorer built on top of the PrimeKG dataset, using Neo4j for graph storage and react-force-graph-3d for WebGL visualization."
+createdAt: "2026-03-05"
 featured: false
+role: "solo"
+highlight: "Interactive 3D biomedical graph — 4M+ PrimeKG nodes in Neo4j, WebGL force-directed visualization, disease-drug-gene relationships"
 techStack:
   - "TypeScript"
+  - "Next.js"
   - "Neo4j"
   - "react-force-graph-3d"
-  - "Next.js"
 githubRepo: "https://github.com/arthurreira/primekg-explorer"
 url: "https://github.com/arthurreira/primekg-explorer"
 status: "done"
-highlight: ""
 ---
 
-**PrimeKG Explorer** on interaktiivinen työkalu [PrimeKG](https://zitniklab.hms.harvard.edu/projects/PrimeKG/)-biomedikaaliverkon tutkimiseen — datasetin, joka yhdistää sairauksia, lääkkeitä, geenejä, proteiineja ja biologisia signalointireittejä.
 
-## Mitä se tekee
+## What I built
 
-- Lataa PrimeKG:n solmut ja reunat **Neo4j**-graafitietokantaan
-- Esittää verkon reaaliaikaisena interaktiivisena 3D-visualisointina **react-force-graph-3d**:llä
-- Mahdollistaa sairauksien, lääkkeiden, geenien ja proteiinien välisten suhteiden tutkimisen
-- Tukee hakua ja suodatusta solmutyypin tai nimen perusteella
+A tool for navigating PrimeKG — a Harvard biomedical dataset linking diseases, drugs, genes, proteins, and biological pathways across 4 million+ nodes and relationships. The pipeline loads PrimeKG into a Neo4j graph database, serves it through Next.js API routes, and renders it as an interactive 3D force-directed graph using WebGL via react-force-graph-3d.
 
-## Tekniset kohokohdat
+You can search by disease, drug, or gene name, filter by entity type, and click nodes to explore their relationships. Node colours are coded by entity type; edge thickness represents relationship weight.
 
-- Cypher-kyselyt Neo4j JavaScript -ajurin kautta
-- Graafidata välitetään Next.js API-reittien kautta
-- 3D-voimaohjattu asettelu WebGL-renderöinnillä
-- Solmujen värikoodaus entiteettityypin mukaan (sairaus, lääke, geeni jne.)
+## What I learned
 
-## Teknologiat
+Graph databases think differently from relational ones. A query that would require five JOINs in SQL is a two-hop traversal in Cypher. The mental model shift — "find all neighbours two hops away from this node" vs "JOIN three tables on these columns" — took time but is genuinely more natural for connected data. 3D WebGL rendering also introduced performance constraints I hadn't encountered before: a graph that looks fine at 1,000 nodes becomes unresponsive at 50,000. The solution was LOD (level-of-detail) filtering — showing only high-degree nodes at the global view and expanding detail on zoom.
 
-- **TypeScript** — tyyppiturvallisuus koko sovelluksessa
-- **Neo4j** — graafitietokanta biomedikaalisille entiteeteille
-- **react-force-graph-3d** — Three.js-pohjainen graafivisualisointi
-- **Next.js** — API- ja frontend-sovelluskehys
+## Highlights
+
+- Navigates PrimeKG — 4M+ biomedical nodes and relationships
+- Loads the dataset into a Neo4j graph database
+- Real-time 3D force-directed graph (WebGL)
+- Search and filter by disease, drug, gene, or protein
+- Node colour-coding by entity type
+
+## Tech Stack
+
+- **Language:** TypeScript
+- **Database:** Neo4j (Cypher)
+- **Visualization:** react-force-graph-3d (Three.js)
+- **Framework:** Next.js

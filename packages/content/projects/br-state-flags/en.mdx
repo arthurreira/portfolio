@@ -1,58 +1,52 @@
 ---
 title: "br-state-flags (Library)"
 description: "A production-ready, fully typed collection of high-fidelity SVG flags for all 27 Brazilian states. Lightweight, dependency-free, and engineered for modern React workflows."
-createdAt: "2025-12-22"
+createdAt: "2026-12-22"
 featured: false
+role: "solo"
+highlight: "Published npm package — 27 Brazilian state flags as React SVG components, dependency-free, TypeScript-first"
 techStack:
   - "React"
   - "TypeScript"
+  - "SVG"
+  - "npm"
 githubRepo: "https://github.com/arthurreira/br-state-flags"
 url: "https://www.npmjs.com/package/br-state-flags"
 status: "done"
-highlight: ""
 coverImage: "./cover.png"
 ---
 
+
 [![](/images/projects/br-state-flags/br-state-flags-demo.arthurreira.dev.png)](https://www.npmjs.com/package/br-state-flags)
 
-**br-state-flags** is the core library providing high-fidelity, production-ready React components for all 27 Brazilian state flags. It is designed to be lightweight, dependency-free, and includes enriched geographical and demographic metadata for each state. For an interactive showcase, check the [demo project](/projects/br-state-flags-demo).
+## What I built
 
-## Key Features
-
-1. **Full State Coverage:** Includes official flags for all 26 states plus the Federal District, with accurate colors and aspect ratios.
-2. **Dependency-Free Architecture:** Extremely lightweight with no external dependencies. Optimized SVGs ensure minimal bundle impact.
-3. **First-Class TypeScript Support:** Built with TypeScript for an exceptional developer experience. Full type definitions included.
-4. **Effortless Integration:** Import the flags you need and use them as standard React components. Fully compatible with all SVG props and styling systems.
-
-## Tech Stack
-
-- **Core:** React, TypeScript
-- **Visuals:** SVG (High-fidelity, optimized for web)
-- **Framework compatibility:** Supports Next.js (App and Pages router) and Vite
-
-## Usage Example
+An npm package that ships all 27 Brazilian state flags as individual React SVG components — plus enriched metadata (capital, population, region) for each state. Zero dependencies. The package works out of the box with Next.js, Vite, and any TypeScript React project. The SVGs were optimised for web: consistent aspect ratios, minimal file sizes, accurate official colours.
 
 ```bash
 npm install br-state-flags
 ```
 
 ```tsx
-import { AC, SP } from 'br-state-flags';
-
-const MyComponent = () => (
-  <div className="flex gap-4">
-    <AC width={120} title="Acre" />
-    <SP width={120} title="São Paulo" />
-  </div>
-);
+import { SP, RJ } from 'br-state-flags'
+<SP width={120} title="São Paulo" />
 ```
 
-The library also provides metadata for each state:
+## What I learned
 
-```tsx
-import { statesData } from 'br-state-flags';
+Publishing a library to npm is a different discipline from building an app. The API surface has to be stable — once you ship `import { SP }`, you can't rename it. I learned about bundle formats (ESM vs CJS), `exports` field in package.json, and how to write TypeScript declarations so consumers get autocomplete. SVG optimisation was also new: SVGO strips metadata and reduces file sizes by 40-60% without visual change.
 
-const spData = statesData.SP;
-console.log(spData.capital); // "São Paulo"
-console.log(spData.population); // 45919049
-```
+## Highlights
+
+- All 27 Brazilian state flags as individual React SVG components
+- Zero runtime dependencies
+- Full TypeScript support with prop inference
+- Enriched metadata per state: capital, population, region
+- Published on npm: `npm install br-state-flags`
+
+## Tech Stack
+
+- **Core:** React, TypeScript
+- **Visuals:** Optimised SVG
+- **Distribution:** npm package (ESM + CJS)
+- **Compatibility:** Next.js, Vite, any React project

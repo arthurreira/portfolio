@@ -1,35 +1,40 @@
 ---
 title: "hackathon-schedule"
-description: "Aplicação de exibição de programação de eventos para hackathons, implantada via GitHub Pages."
-createdAt: "2024-01-15"
+description: "Static event schedule display deployed to schedule.arthurreira.dev, part of the same 3-app Terraform-managed GitHub Pages infrastructure demonstration."
+createdAt: "2026-01-15"
 featured: false
+role: "solo"
+highlight: "Companion to hackathon-registration — schedule page on schedule.arthurreira.dev, part of the same Terraform infra demo"
 techStack:
   - "HTML"
   - "CSS"
   - "JavaScript"
-  - "GitHub Pages"
+  - "Terraform"
   - "GitHub Actions"
+  - "GitHub Pages"
 githubRepo: "https://github.com/arthurreira/hackathon-schedule"
 url: "https://schedule.arthurreira.dev"
-status: "done"
-highlight: ""
+status: "fun"
 ---
 
-**hackathon-schedule** é uma **aplicação web estática** para exibir a programação de eventos de hackathons, implantada via GitHub Pages.
+## What I built
 
-Fornece uma programação centralizada e facilmente acessível que os participantes podem visualizar para ver cronogramas, sessões, workshops e atividades.
+A static event-schedule site — one of three apps in a Terraform infrastructure demo. It displays the hackathon timeline. Like its companions, it isn't provisioned by hand: a single Terraform module creates the GitHub repo, enables Pages, sets the custom subdomain, and wires up the CD workflow.
 
-## Funcionalidades principais
+## What I learned
 
-1. **Exibição de cronograma:** Mostra a programação do hackathon com sessões, workshops e atividades-chave organizadas por horário.
-2. **Deploy automático:** O workflow do GitHub Actions constrói e implanta o site automaticamente a cada commit na branch principal.
-3. **Domínio personalizado:** Implantado em `schedule.arthurreira.dev` via configuração de subdomínio personalizado.
-4. **Atualizações simples:** Os organizadores podem atualizar a programação editando arquivos e fazendo commit — sem deploy manual.
-5. **Automação de infraestrutura:** Criado e configurado automaticamente pelo projeto Terraform de infraestrutura.
+See [hackathon-registration](/projects/hackathon-registration) for the full write-up on the Terraform automation behind all three sites.
 
-## Tecnologias
+## Highlights
 
-- **Deploy:** GitHub Pages
-- **Automação:** GitHub Actions
-- **Infraestrutura:** Terraform
-- **Domínio:** Subdomínio personalizado (schedule.arthurreira.dev)
+- Event timeline display
+- Provisioned automatically via the shared Terraform module
+- Live at [schedule.arthurreira.dev](https://schedule.arthurreira.dev)
+- Part of the 3-app infra demo with registration + projects
+
+## Tech Stack
+
+- **IaC:** Terraform (GitHub provider)
+- **CI/CD:** GitHub Actions
+- **Hosting:** GitHub Pages
+- **Frontend:** HTML, CSS, JavaScript

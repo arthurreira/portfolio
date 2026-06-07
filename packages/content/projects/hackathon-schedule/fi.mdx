@@ -1,35 +1,40 @@
 ---
 title: "hackathon-schedule"
-description: "Tapahtuma-aikataulun näyttösovellus hackathon-tapahtumille, otettu käyttöön GitHub Pagesin kautta."
-createdAt: "2024-01-15"
+description: "Static event schedule display deployed to schedule.arthurreira.dev, part of the same 3-app Terraform-managed GitHub Pages infrastructure demonstration."
+createdAt: "2026-01-15"
 featured: false
+role: "solo"
+highlight: "Companion to hackathon-registration — schedule page on schedule.arthurreira.dev, part of the same Terraform infra demo"
 techStack:
   - "HTML"
   - "CSS"
   - "JavaScript"
-  - "GitHub Pages"
+  - "Terraform"
   - "GitHub Actions"
+  - "GitHub Pages"
 githubRepo: "https://github.com/arthurreira/hackathon-schedule"
 url: "https://schedule.arthurreira.dev"
-status: "done"
-highlight: ""
+status: "fun"
 ---
 
-**hackathon-schedule** on **staattinen verkkosovellus** hackathon-tapahtumien aikataulujen näyttämiseen, julkaistu GitHub Pagesin kautta.
+## What I built
 
-Se tarjoaa keskitetyn, helposti saatavilla olevan aikataulun, jonka osallistujat voivat katsoa nähdäkseen tapahtuma-aikataulut, sessiot, työpajat ja aktiviteetit.
+A static event-schedule site — one of three apps in a Terraform infrastructure demo. It displays the hackathon timeline. Like its companions, it isn't provisioned by hand: a single Terraform module creates the GitHub repo, enables Pages, sets the custom subdomain, and wires up the CD workflow.
 
-## Tärkeimmät ominaisuudet
+## What I learned
 
-1. **Tapahtumaaikataulu:** Näyttää hackathon-aikataulun sessioineen, työpajoineen ja tärkeimpine aktiviteetteineen ajanmukaisen järjestyksen mukaan.
-2. **Automaattinen julkaisu:** GitHub Actions -työnkulku rakentaa ja julkaisee sivuston automaattisesti jokaisella commitilla päähaaran.
-3. **Mukautettu domain:** Julkaistu osoitteessa `schedule.arthurreira.dev` mukautetun alidomainin kautta.
-4. **Helpot päivitykset:** Järjestäjät voivat päivittää aikataulua muokkaamalla tiedostoja ja tekemällä commitin — ei manuaalista julkaisua tarvita.
-5. **Infrastruktuuriautomaatio:** Luotu ja konfiguroitu automaattisesti Terraform-infrastruktuuriautomaation kautta.
+See [hackathon-registration](/projects/hackathon-registration) for the full write-up on the Terraform automation behind all three sites.
 
-## Teknologiat
+## Highlights
 
-- **Julkaisu:** GitHub Pages
-- **Automaatio:** GitHub Actions
-- **Infrastruktuuri:** Terraform
-- **Domain:** Mukautettu alidomaini (schedule.arthurreira.dev)
+- Event timeline display
+- Provisioned automatically via the shared Terraform module
+- Live at [schedule.arthurreira.dev](https://schedule.arthurreira.dev)
+- Part of the 3-app infra demo with registration + projects
+
+## Tech Stack
+
+- **IaC:** Terraform (GitHub provider)
+- **CI/CD:** GitHub Actions
+- **Hosting:** GitHub Pages
+- **Frontend:** HTML, CSS, JavaScript

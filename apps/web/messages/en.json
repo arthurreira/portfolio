@@ -1,6 +1,10 @@
 {
   "hero": {
     "heading": "Hi,I'm Arthur!",
+    "greeting": "Hi, I'm",
+    "firstName": "Arthur",
+    "lastName": "Ferreira.",
+    "heroSubtitle": "Junior Software Developer · Kuopio, Finland · Cloud & Web",
     "imageAlt": "Arthur Ferreira Junior Software Developer",
     "subtitle": "Junior Software Developer from Kuopio.",
     "descriptionFirst": "I build digital solutions where business and technology move together. Focused on modern web applications, clean architecture, and creating real impact — not just shipping code.",
@@ -18,39 +22,50 @@
     "cards": {
       "fromTitle": "Where I'm from",
       "fromDesc": "Brazilian living in Finland for 10+ years. Currently in Kuopio, North Savo.",
-
       "roleTitle": "Current role",
       "roleDesc": "Junior Software Engineer at Nordcloud Oy.",
-
       "projectTitle": "Current project",
       "projectDesc": "Building cool stuff as a cloud engineer at Nordcloud Oy.",
-
       "learningTitle": "Learning",
       "learningDesc": "Learning cloud concepts, earning certifications, and improving programming skills daily.",
-
       "footballTitle": "Football",
       "footballDesc": "Football/soccer is one of my favorite hobbies outside of tech.",
-
       "devsecopsTitle": "DevSecOps",
       "devsecopsDesc": "DevSecOps is a culture.",
-
       "gpuTitle": "Dream setup",
       "gpuDesc": "One day I’d love to build a setup powered by an RTX 5090 😄"
     }
   },
   "projects": {
-  "title": "Projects",
-  "viewProject": "View project",
-  "viewGithub": "GitHub"
-},
+    "title": "Projects",
+    "heading": "Projects.",
+    "countSuffix": "projects",
+    "viewProject": "View project",
+    "viewGithub": "GitHub"
+  },
   "about": {
     "title": "About",
+    "originLabel": "Origin",
+    "originValue": "Brazil → Finland",
+    "yearsLabel": "Years",
+    "yearsValue": "10+ years in Suomi",
+    "roleLabel": "Role",
+    "roleValue": "Junior @ Nordcloud",
+    "offClockLabel": "Off the clock",
+    "offClockValue": "Goalkeeper, Miesten Kolmonen",
+    "certsLabel": "Certifications",
+    "verified": "Verified →",
     "weather": {
       "from": "Where I'm from",
       "live": "Where I live",
       "humidity": "Humidity",
       "wind": "Wind"
     }
+  },
+  "nav": {
+    "projects": "Projects",
+    "about": "About",
+    "contact": "Contact"
   },
   "topBar": {
     "darkModeHint": "Press d to toggle dark mode",
@@ -61,6 +76,9 @@
   },
   "contact": {
     "title": "Contact",
+    "heading1": "Let's",
+    "heading2": "Talk.",
+    "openTo": "Open to open-source opportunities, freelance projects, and coffee chats.",
     "subtitle": "I'm always open to new opportunities, collaborations or just a chat. Find me here:",
     "github": "GitHub",
     "linkedin": "LinkedIn",
@@ -68,6 +86,36 @@
     "availability": "Building cool stuff as cloud engineer",
     "location": "Based in Kuopio, Finland 🇫🇮",
     "responseTime": "Usually responds within 24 hours"
+  },
+  "theme": {
+    "dark": "Dark",
+    "light": "Light"
+  },
+  "project": {
+    "label": "Project",
+    "role": "Role",
+    "year": "Year",
+    "status": "Status",
+    "live": "Live",
+    "source": "Source",
+    "defaultRole": "Design & Build",
+    "back": "← Back to Projects",
+    "viewSite": "View site →",
+    "github": "GitHub →",
+    "screenshotPlaceholder": "Project Screenshot — Full Bleed",
+    "statuses": {
+      "done": "Shipped",
+      "ongoing": "In Progress",
+      "someday": "Planned",
+      "fun": "Personal Project",
+      "learning": "Self-learning",
+      "school": "School Project"
+    },
+    "roles": {
+      "solo": "Solo Project",
+      "lead": "Lead Developer",
+      "contributor": "Contributor",
+      "engineer": "Engineer"
+    }
   }
-  
 }

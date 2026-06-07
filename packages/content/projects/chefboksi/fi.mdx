@@ -1,46 +1,42 @@
 ---
 title: "ChefBoksi"
-description: "PHP:llä ja MySQL:llä rakennettu viikoittainen ateriasuunnittelualusta, joka helpottaa aterioiden valintaa, toimituksia ja ravitsemuksen seurantaa."
-createdAt: "2023-10-15"
+description: "A weekly meal-planning platform built with PHP and MySQL, designed to simplify meal selection, delivery, and nutrition tracking. School project using MVC architecture."
+createdAt: "2024-10-15"
 featured: false
+role: "solo"
+highlight: "Full-stack MVC meal kit platform — PHP, MySQL, admin dashboard, dietary filters, school period project"
 techStack:
   - "PHP"
   - "MySQL"
-  - "HTML"
-  - "CSS"
   - "JavaScript"
   - "Bootstrap"
 githubRepo: "https://github.com/arthurreira/chefboksi-fi"
 url: "https://chefboksi.fi"
-status: "done"
-highlight: ""
+status: "school"
 ---
 
-[![](https://github.com/arthurreira/chefboksi-fi/blob/main/public/screenshot.png)](https://chefboksi.fi)
 
-**ChefBoksi** on ateriapalvelualusta (kuten HelloFresh), joka on rakennettu **PHP:llä ja MySQL:llä** MVC-arkkitehtuurimallilla.
-Se auttaa käyttäjiä valitsemaan aterioita, mukauttamaan viikkosuunnitelmia, seuraamaan ravitsemusta ja hallitsemaan toimituksia. Alustaan sisältyy adminpaneeli tuotteiden, kategorioiden, käyttäjien ja tilausten hallintaan, tukien useita ruokavaliomieltymyksiä (gluteeniton, keto, vegaani, kasvissyöjä jne.).
+## What I built
 
-## Tietoa projektista
+A meal kit service platform for the Finnish market — think HelloFresh but built from scratch in PHP and MySQL. Users can browse meals by dietary preference (Gluten-free, Keto, Vegan, Vegetarian, High-protein), build weekly plans, and place orders. An admin dashboard lets the operator manage products, categories, users, and orders. Full MVC architecture: separate controllers, models, and views for every feature area.
 
-ChefBoksi.fi oli tarkoitettu ateriatoimitupalveluksi Suomen markkinoille. Alusta mahdollistaa aterioiden valinnan erilaisista ruokavaliokategorioista, viikkoaterioiden suunnittelun, esiannosteltujen ainesten ja reseptien tilaamisen sekä toimitusosoitteiden hallinnan ja tilausten seurannan.
+This was a school period final project with the goal of understanding how full-stack web applications work end-to-end without framework magic.
 
-Tämä oli oppimisprojekti, joka keskittyi full-stack-verkkokehityksen ymmärtämiseen, täydellisen verkkosovelluksen rakentamiseen frontendistä backendiin, tietokantojen ja käyttäjätunnistautumisen kanssa työskentelyyn sekä PHP:n, MySQL:n, JavaScriptin ja modernien web-kehysten kokemuksen kartuttamiseen.
+## What I learned
 
-## Toteutetut ominaisuudet
+Building MVC from scratch in plain PHP is humbling. Without a framework enforcing patterns, you have to be deliberate about every routing decision, every SQL query, every session check. I learned why frameworks exist — not because the patterns are hard to understand, but because maintaining consistency across a large codebase without them requires real discipline. Database design was the other major lesson: normalising the relationships between meals, categories, dietary types, and orders before writing any code saved enormous refactoring later.
 
-- Käyttäjätunnistautuminen (rekisteröityminen/kirjautuminen)
-- Ateriasuunnittelujärjestelmä ruokavaliosuodattimilla
-- Tuoteluettelo kategorioilla
-- Ostoskoritoiminnallisuus
-- Kassalomake
-- Adminpaneeli tuotteiden, kategorioiden, käyttäjien ja tilausten hallintaan
-- Tilausseurantajärjestelmä
-- Toimitusosoitteen hallinta
-- Useiden ruokavaliovaihtoehtojen tuki (gluteeniton, keto, kasvissyöjä, vegaani, korkea proteiini jne.)
+## Highlights
 
-## Projektin tila
+- Meal browsing by dietary preference (Gluten-free, Keto, Vegan, Vegetarian, High-protein)
+- Weekly meal planning and ordering
+- Admin dashboard for products, categories, users, orders
+- Full MVC architecture in plain PHP
+- School period final project (incomplete — foundation works)
 
-**Tämä projekti on kesken ja kehitys on lopetettu.**
+## Tech Stack
 
-Projekti kehitettiin koulujakson lopputyönä full-stack-verkkokehityksen syvemmän ymmärryksen saamiseksi. Projekti ei valmistunut, koska kehittäjä oli epävarma seuraavista askeleista ja projektin suunnasta.
+- **Backend:** PHP (custom MVC)
+- **Database:** MySQL
+- **Frontend:** JavaScript, Bootstrap
+- **Architecture:** Model-View-Controller
