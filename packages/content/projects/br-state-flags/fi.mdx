@@ -1,15 +1,16 @@
 ---
-title: "br-state-flags (Library)"
-description: "A production-ready, fully typed collection of high-fidelity SVG flags for all 27 Brazilian states. Lightweight, dependency-free, and engineered for modern React workflows."
+title: "br-state-flags"
+description: "npm-paketti — kaikki 27 Brasilian osavaltion lippua React SVG -komponentteina, nolla riippuvuuksia, TypeScript-first. Sisältää live-demodivustson."
 createdAt: "2026-12-22"
 featured: false
 role: "solo"
-highlight: "Published npm package — 27 Brazilian state flags as React SVG components, dependency-free, TypeScript-first"
+highlight: "Julkaistu npm-paketti — nolla riippuvuuksia, TypeScript-first, ESM + CJS. Demo osoitteessa br-state-flags-demo.arthurreira.dev"
 techStack:
   - "React"
   - "TypeScript"
   - "SVG"
   - "npm"
+  - "Next.js"
 githubRepo: "https://github.com/arthurreira/br-state-flags"
 url: "https://www.npmjs.com/package/br-state-flags"
 status: "done"
@@ -17,11 +18,11 @@ coverImage: "./cover.png"
 ---
 
 
-[![](/images/projects/br-state-flags/br-state-flags-demo.arthurreira.dev.png)](https://www.npmjs.com/package/br-state-flags)
+[![](/images/projects/br-state-flags/br-state-flags-demo.arthurreira.dev.png)](https://br-state-flags-demo.arthurreira.dev)
 
-## What I built
+## Mitä rakensin
 
-An npm package that ships all 27 Brazilian state flags as individual React SVG components — plus enriched metadata (capital, population, region) for each state. Zero dependencies. The package works out of the box with Next.js, Vite, and any TypeScript React project. The SVGs were optimised for web: consistent aspect ratios, minimal file sizes, accurate official colours.
+npm-paketti, joka toimittaa kaikki 27 Brasilian osavaltion lippua erillisinä React SVG -komponentteina — sekä täydennettyä metatietoa (pääkaupunki, väestö, alue) jokaiselle osavaltiolle. Nolla riippuvuuksia. Toimii suoraan Next.js:n, Viten ja minkä tahansa TypeScript React -projektin kanssa. SVG:t on optimoitu webille: yhtenäiset kuvasuhteet, minimaaliset tiedostokoot, tarkat viralliset värit.
 
 ```bash
 npm install br-state-flags
@@ -32,21 +33,24 @@ import { SP, RJ } from 'br-state-flags'
 <SP width={120} title="São Paulo" />
 ```
 
-## What I learned
+Demosivu osoitteessa [br-state-flags-demo.arthurreira.dev](https://br-state-flags-demo.arthurreira.dev) toimii kirjaston ensisijaisena dokumentaationa — selattava galleria kaikista 27 lipusta, osavaltion tiedot klikkauksella ja valmiit import-koodinpätkät kopioitavaksi.
 
-Publishing a library to npm is a different discipline from building an app. The API surface has to be stable — once you ship `import { SP }`, you can't rename it. I learned about bundle formats (ESM vs CJS), `exports` field in package.json, and how to write TypeScript declarations so consumers get autocomplete. SVG optimisation was also new: SVGO strips metadata and reduces file sizes by 40-60% without visual change.
+## Mitä opin
 
-## Highlights
+npm-kirjaston julkaiseminen on eri asia kuin sovelluksen rakentaminen. API-pinta on oltava vakaa — kun toimitat `import { SP }`:n, sitä ei voi enää nimetä uudelleen. Opin bundle-formaateista (ESM vs CJS), `exports`-kentästä package.json:ssa ja TypeScript-deklaraatioiden kirjoittamisesta niin, että käyttäjät saavat automaattitäydennyksen. SVG-optimointi oli myös uutta: SVGO poistaa metatietoa ja pienentää tiedostokokoja 40-60 % ilman visuaalista muutosta.
 
-- All 27 Brazilian state flags as individual React SVG components
-- Zero runtime dependencies
-- Full TypeScript support with prop inference
-- Enriched metadata per state: capital, population, region
-- Published on npm: `npm install br-state-flags`
+## Kohokohdat
 
-## Tech Stack
+- Kaikki 27 Brasilian osavaltion lippua yksittäisinä React SVG -komponentteina
+- Nolla ajonaikaiset riippuvuudet
+- Täysi TypeScript-tuki prop-inferenssillä
+- Täydennetty metadata per osavaltio: pääkaupunki, väestö, alue
+- Live-demo: [br-state-flags-demo.arthurreira.dev](https://br-state-flags-demo.arthurreira.dev)
+- Julkaistu npm:ssä: `npm install br-state-flags`
 
-- **Core:** React, TypeScript
-- **Visuals:** Optimised SVG
-- **Distribution:** npm package (ESM + CJS)
-- **Compatibility:** Next.js, Vite, any React project
+## Teknologiat
+
+- **Kirjasto:** React, TypeScript, optimoitu SVG
+- **Jakelu:** npm (ESM + CJS)
+- **Demo:** Next.js, Tailwind CSS
+- **Yhteensopivuus:** Next.js, Vite, mikä tahansa React-projekti

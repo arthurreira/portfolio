@@ -1,0 +1,59 @@
+---
+title: "Kernel Monitor"
+description: "Monitor do kernel Linux com eBPF que intercepta cada syscall openat, armazena os eventos no SQLite e responde perguntas em linguagem natural sobre a atividade do kernel via IA local."
+createdAt: "2026-05-10"
+featured: true
+role: "solo"
+highlight: "eBPF hookeia cada abertura de arquivo no kernel, SQLite armazena, phi3:mini local responde perguntas em português — zero nuvem, zero custo de API"
+techStack:
+  - "Python"
+  - "eBPF"
+  - "FastAPI"
+  - "SQLite"
+  - "Ollama"
+  - "Next.js"
+  - "TypeScript"
+githubRepo: "https://github.com/arthurreira/kernel-monitor-backend"
+url: "https://github.com/arthurreira/kernel-monitor-ui"
+status: "done"
+---
+
+## O que construí
+
+Dois repositórios que funcionam como um sistema único. O backend roda em uma máquina Linux: um programa eBPF se prende ao tracepoint `sys_enter_openat` e captura cada evento de abertura de arquivo — PID, nome do processo, nome do arquivo — e escreve no SQLite. Um servidor FastAPI expõe um endpoint `/ask` que recebe uma pergunta em linguagem natural, consulta o banco de eventos e passa os resultados para um modelo phi3:mini local via Ollama para gerar a resposta.
+
+O frontend é uma interface de chat Next.js que roda no Mac, envia perguntas para o backend FastAPI pela rede local e exibe as respostas.
+
+```
+Interface de chat React (Mac)
+    → HTTP POST para FastAPI (máquina Linux)
+        → consulta SQLite (eventos reais do kernel via eBPF)
+            → phi3:mini via Ollama (IA local)
+                → resposta
+```
+
+Você pode perguntar: *"Qual é o processo mais ativo?"*, *"O que o Docker está fazendo?"*, *"Há algo suspeito?"* — e receber respostas baseadas em dados reais do kernel.
+
+Zero nuvem. Zero custo de API. Os dados do kernel nunca saem da rede local.
+
+## O que aprendi
+
+eBPF é a forma mais direta de observar o que um sistema Linux está realmente fazendo. Se prender a um tracepoint em vez de fazer polling no `/proc` significa que você vê tudo — sem amostragem, sem lacunas. O desafio de engenharia foi tornar esse fluxo bruto de eventos útil: traduzir "capturar cada syscall openat" em respostas a perguntas como "há algo suspeito?" exigiu um pipeline SQL-para-LLM que resume milhares de eventos em uma frase útil.
+
+Rodar inferência localmente com Ollama + phi3:mini foi uma escolha deliberada. Elimina a latência de chamadas de API, remove custos e significa que os dados do kernel nunca saem da máquina — o que importa quando os dados incluem cada arquivo que o sistema toca.
+
+## Destaques
+
+- Hook eBPF no tracepoint `sys_enter_openat` — captura cada abertura de arquivo
+- Banco de eventos SQLite — consultável com SQL
+- Endpoint FastAPI `/ask` para consultas em linguagem natural
+- Inferência LLM local via Ollama (phi3:mini) — sem nuvem, sem custo de API
+- Interface de chat Next.js comunica com o backend pela rede local
+- Testado no kernel 6.17, Ubuntu 24
+
+## Stack
+
+- **eBPF:** BCC (bindings Python)
+- **Backend:** Python, FastAPI, uvicorn, SQLite
+- **IA:** Ollama, phi3:mini (inferência local)
+- **Frontend:** Next.js 15, TypeScript, Tailwind CSS

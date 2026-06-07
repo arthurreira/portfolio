@@ -1,41 +1,41 @@
 ---
-title: "hackathon-registration"
-description: "Formulário estático em register.arthurreira.dev — parte de uma demonstração de automação Terraform para GitHub Pages."
+title: "Demo Terraform GitHub Pages"
+description: "Três sites estáticos (cadastro, agenda, galeria de projetos) — cada um provisionado automaticamente em seu próprio subdomínio por um único módulo Terraform."
 createdAt: "2026-01-15"
 featured: false
 role: "solo"
-highlight: "Part of a 3-app Terraform-managed GitHub Pages demo — each app auto-provisioned to its own subdomain"
+highlight: "Um único terraform apply cria 3 repos, GitHub Pages, DNS e workflows de CD — sem tocar na UI do GitHub"
 techStack:
-  - "HTML"
-  - "CSS"
-  - "JavaScript"
   - "Terraform"
   - "GitHub Actions"
   - "GitHub Pages"
+  - "HTML"
+  - "CSS"
+  - "JavaScript"
 githubRepo: "https://github.com/arthurreira/hackathon-registration"
 url: "https://register.arthurreira.dev"
 status: "fun"
 ---
 
+## O que construí
 
-## What I built
+Três sites estáticos — um formulário de cadastro, uma agenda de eventos e uma galeria de projetos — todos em subdomínios próprios: `register.arthurreira.dev`, `schedule.arthurreira.dev` e `projects.arthurreira.dev`. Os sites em si são intencionalmente simples. O projeto real é a automação Terraform por trás deles.
 
-This is not really a hackathon registration tool — it's an infrastructure demonstration. The real project is the Terraform automation that provisions it. Together with `hackathon-schedule` and `hackathon-projects`, these three static sites form a single showcase: one Terraform run creates three separate GitHub repositories, configures GitHub Pages on each, sets up custom subdomain DNS, and generates the GitHub Actions CD workflow — all without touching the GitHub UI.
+Um único `terraform apply` cria três repositórios GitHub separados, ativa o Pages em cada um, configura o DNS dos subdomínios e gera o workflow de CD do GitHub Actions para cada repo — sem nenhuma interação manual com a UI do GitHub.
 
-## What I learned
+## O que aprendi
 
-The GitHub Terraform provider has a steeper learning curve than the AWS or Azure providers because GitHub's API is less predictable — rate limits, repository creation delays, and Pages configuration timing all require careful `depends_on` chains to work reliably. Writing Terraform that provisions other CI/CD pipelines taught me how infrastructure-as-code can manage not just servers but the entire deployment process.
+O provider Terraform do GitHub é menos previsível que AWS ou Azure: rate limits, delays na criação de repositórios e timing da configuração do Pages exigem cadeias cuidadosas de `depends_on`. Escrever Terraform que provisiona pipelines de CI/CD ensinou como infrastructure-as-code pode gerenciar não só servidores, mas todo o processo de deploy — da criação do repo à URL ao vivo.
 
-## Highlights
+## Destaques
 
-- Part of a 3-app Terraform-managed GitHub Pages demo
-- One `terraform apply` provisions repo + Pages + DNS + CD workflow
-- Companion sites: schedule.arthurreira.dev, projects.arthurreira.dev
-- Live at [register.arthurreira.dev](https://register.arthurreira.dev)
+- Um único `terraform apply` cria 3 repos + Pages + DNS + workflows de CD
+- Sites: register / schedule / projects — cada um em seu próprio subdomínio
+- Nenhuma interação manual com a UI do GitHub
 
-## Tech Stack
+## Stack
 
-- **IaC:** Terraform (GitHub provider)
-- **CI/CD:** GitHub Actions (auto-generated)
+- **IaC:** Terraform (provider GitHub)
+- **CI/CD:** GitHub Actions (gerado automaticamente por repo)
 - **Hosting:** GitHub Pages
 - **Frontend:** HTML, CSS, JavaScript
