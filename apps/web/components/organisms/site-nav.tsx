@@ -1,15 +1,11 @@
 "use client"
 
-import { useState, useEffect } from "react"
+import { useState, useEffect, useRef } from "react"
 import { flushSync } from "react-dom"
-import { usePathname } from "next/navigation"
 import { useRouter, usePathname as useIntlPathname, routing } from "@/i18n/routing"
 import { useLocale, useTranslations } from "next-intl"
 import { NavLink } from "@/components/atoms/nav-link"
 import { PillGroup } from "@/components/molecules/pill-group"
-import { Hairline } from "../atoms/hairline"
-
-const NAV_HREFS = ["/projects", "/about", "/contact"] as const
 
 const FLAGS = [
   { key: "brasil", label: "Brasil" },
@@ -25,28 +21,23 @@ function setAxis(attr: string, storageKey: string, value: string) {
   document.documentElement.setAttribute(`data-${attr}`, value)
   try {
     localStorage.setItem(storageKey, value)
-    // Also set a cookie so the server can read it on next navigation (no flash)
+    // Cookie so the server can read it on next navigation (no flash)
     document.cookie = `${storageKey}=${value};path=/;max-age=31536000;SameSite=Lax`
-  } catch {}
+  } catch {
+    /* storage unavailable (private mode) — DOM attribute already applied */
+  }
 }
 
-function LangSwitcher({
-  active,
-  onPick,
-}: {
-  active: string
-  onPick: (locale: string) => void
-}) {
-  return <PillGroup options={LANGS} active={active} onPick={onPick} />
+type ViewTransitionDoc = Document & {
+  startViewTransition?: (cb: () => void) => { ready: Promise<void> }
 }
 
 export function SiteNav() {
-  const pathname        = usePathname()   // full path incl. locale prefix e.g. /fi/projects
-  const router          = useRouter()
-  const intlPathname    = useIntlPathname() // path without locale e.g. /projects
-  const currentLocale   = useLocale()
-  const t               = useTranslations("nav")
-  const tTheme          = useTranslations("theme")
+  const router        = useRouter()
+  const intlPathname  = useIntlPathname() // path without locale prefix, e.g. /projects
+  const currentLocale = useLocale()
+  const t             = useTranslations("nav")
+  const tTheme        = useTranslations("theme")
 
   const MODES = [
     { key: "dark",  label: tTheme("dark")  },
@@ -61,6 +52,7 @@ export function SiteNav() {
 
   const [flag, setFlag] = useState("brasil")
   const [mode, setMode] = useState("dark")
+  const pointer = useRef<{ x: number; y: number } | null>(null)
 
   // Sync from DOM on mount + tab visibility change
   useEffect(() => {
@@ -73,7 +65,7 @@ export function SiteNav() {
     return () => document.removeEventListener("visibilitychange", sync)
   }, [])
 
-  // Sync button highlight when boot-script keyboard handler fires
+  // Sync button highlight when the boot-script keyboard handler fires
   useEffect(() => {
     function onTheme(e: Event) {
       const detail = (e as CustomEvent).detail ?? {}
@@ -90,19 +82,50 @@ export function SiteNav() {
     setAxis("flag", "arthur-flag", val)
     flushSync(() => setFlag(val))
   }
-  function pickMode(val: string) {
+
+  function applyMode(val: string) {
     setAxis("mode", "arthur-mode", val)
     flushSync(() => setMode(val))
   }
+
+  function pickMode(val: string) {
+    const doc = document as ViewTransitionDoc
+    if (!doc.startViewTransition) {
+      applyMode(val)
+      return
+    }
+    const o = pointer.current ?? { x: window.innerWidth, y: 0 }
+    const endRadius = Math.hypot(
+      Math.max(o.x, window.innerWidth - o.x),
+      Math.max(o.y, window.innerHeight - o.y),
+    )
+    const transition = doc.startViewTransition(() => applyMode(val))
+    transition.ready.then(() => {
+      document.documentElement.animate(
+        {
+          clipPath: [
+            `circle(0px at ${o.x}px ${o.y}px)`,
+            `circle(${endRadius}px at ${o.x}px ${o.y}px)`,
+          ],
+        },
+        { duration: 500, easing: "ease-in-out", pseudoElement: "::view-transition-new(root)" },
+      )
+    })
+  }
+
   function pickLocale(locale: string) {
-    router.push(intlPathname, { locale: locale as typeof routing.locales[number] })
+    router.push(intlPathname, { locale: locale as (typeof routing.locales)[number] })
   }
 
   return (
-    <header className="w-full bg-background font-ui border-b border-hairline " style={{ position: "relative", zIndex: 10 }}>
+    <header
+      className="w-full border-b border-hairline bg-background font-ui"
+      style={{ position: "relative", zIndex: 10 }}
+      onPointerDown={(e) => { pointer.current = { x: e.clientX, y: e.clientY } }}
+    >
       <div className="t-nav">
         {/* Left — logo */}
-        <NavLink href="/" className="font-bold tracking-[-0.01em] shrink-0">
+        <NavLink href="/" className="shrink-0 font-bold tracking-[-0.01em]">
           arthurreira.dev
         </NavLink>
 
@@ -118,13 +141,12 @@ export function SiteNav() {
         {/* Controls row (drops to own row on ≤900px) */}
         <div className="t-controls">
           <PillGroup options={FLAGS} active={flag} onPick={pickFlag} />
-          <span className="w-px h-3 bg-border" />
+          <span className="h-3 w-px bg-border" />
           <PillGroup options={MODES} active={mode} onPick={pickMode} />
-          <span className="w-px h-3 bg-border" />
-          <LangSwitcher active={currentLocale} onPick={pickLocale} />
+          <span className="h-3 w-px bg-border" />
+          <PillGroup options={LANGS} active={currentLocale} onPick={pickLocale} />
         </div>
       </div>
-
     </header>
   )
 }

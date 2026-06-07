@@ -1,6 +1,7 @@
 import { getTranslations, getLocale } from "next-intl/server"
+import { ArrowRight } from "@phosphor-icons/react/ssr"
 import { about } from "@arthurreira/content"
-import { TestMDXContent } from "@/components/molecules/mdx-content"
+import { MdxContent } from "@/components/molecules/mdx-content"
 
 const CERTS = [
   { name: "AWS Cloud Practitioner", code: "CLF-C02", period: "2026–2029", url: "https://www.credly.com/badges/" },
@@ -45,7 +46,7 @@ export async function SiteAbout() {
 
           {aboutContent && (
             <div className="max-w-xl">
-              <TestMDXContent code={aboutContent.content} />
+              <MdxContent code={aboutContent.content} />
             </div>
           )}
 
@@ -61,9 +62,10 @@ export async function SiteAbout() {
                 href={cert.url}
                 target="_blank"
                 rel="noopener noreferrer"
-                className="label-caps no-underline"
+                className="label-caps inline-flex items-center gap-1 no-underline"
               >
                 {t("verified")}
+                <ArrowRight weight="bold" className="size-3" />
               </a>
             </div>
           ))}

@@ -50,7 +50,7 @@ const components = {
   hr: () => <hr style={{ border: "none", borderTop: "1px solid var(--border)", margin: "0.75rem 0" }} />,
 }
 
-export function TestMDXContent({ code }: { code: string }) {
+export function MdxContent({ code }: { code: string }) {
   try {
     const fn = new Function(code)
     const { default: Component } = fn(runtime)

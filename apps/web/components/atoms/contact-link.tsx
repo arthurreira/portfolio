@@ -1,3 +1,5 @@
+import { ArrowRight } from "@phosphor-icons/react/ssr"
+
 interface ContactLinkProps {
   label: string
   href: string
@@ -15,7 +17,7 @@ export function ContactLink({ label, href }: ContactLinkProps) {
       className="inline-flex items-center gap-4 py-2 text-[clamp(1.25rem,3vw,2rem)] font-bold text-foreground transition-colors duration-150 hover:text-primary"
     >
       {label}
-      <span className="font-normal text-muted-foreground">→</span>
+      <ArrowRight weight="bold" className="size-[0.7em] text-muted-foreground" />
     </a>
   )
 }
