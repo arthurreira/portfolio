@@ -1,0 +1,52 @@
+---
+title: "AF Analytics"
+description: "Privacy-first AI-powered web analytics platform. Multi-tenant SaaS with RAG pipeline, pgvector semantic search, and an AI chat interface that answers questions about your site's traffic in plain English."
+createdAt: "2026-01-01"
+featured: true
+role: "solo"
+highlight: "Full-stack analytics SaaS — multi-tenancy, RAG pipeline with pgvector, Claude AI chat, live at analytics.arthurreira.dev"
+techStack:
+  - "Next.js"
+  - "TypeScript"
+  - "FastAPI"
+  - "PostgreSQL"
+  - "pgvector"
+  - "Cloudflare Workers"
+  - "BetterAuth"
+  - "Turborepo"
+githubRepo: "https://github.com/arthurreira/af-analytics"
+url: "https://analytics.arthurreira.dev"
+status: "ongoing"
+---
+
+## What I built
+
+A privacy-first web analytics platform built as a multi-tenant SaaS. Site owners embed a lightweight JavaScript SDK that tracks page views, sessions, and custom events without cookies or fingerprinting. The data flows through Cloudflare Workers at the edge into a FastAPI backend backed by Neon PostgreSQL with pgvector for semantic search.
+
+The AI layer uses RAG — every question about site traffic is answered by retrieving relevant event aggregations from the database, enriching them with deployment context and device/country breakdowns, and passing the result to Claude Sonnet. The answer is grounded in real data, not model guessing.
+
+The platform is multi-tenant from the database level — organizations, members, and invitations are schema-level concepts, not application-level hacks. BetterAuth handles authentication with email/password and Google OAuth.
+
+## What I learned
+
+Building multi-tenancy correctly from day one is significantly harder than adding it later — but the alternative is worse. Every query, every API endpoint, every RAG retrieval needs `organization_id` scoping. Missing it once is a data leak.
+
+The RAG pipeline required more iteration than expected. Embedding model choice matters — upgrading from `bge-small-en-v1.5` (384 dims) to `bge-base-en-v1.5` (768 dims) measurably improved retrieval quality. Distance threshold filtering (< 0.4) was necessary to prevent the AI from answering with unrelated context.
+
+## Highlights
+
+- SDK published as `@af/analytics` on npm
+- RAG pipeline with pgvector — 768-dim embeddings, distance threshold filtering
+- Multi-tenant schema — organizations, members, invitations
+- BetterAuth — email/password + Google OAuth
+- Cloudflare Workers edge layer for low-latency event ingestion
+- Turborepo monorepo — FastAPI + Next.js + Cloudflare Workers
+
+## Tech Stack
+- **Frontend:** Next.js, TypeScript, Tailwind CSS, shadcn/ui
+- **Backend:** FastAPI, Python, Neon PostgreSQL, pgvector
+- **Edge:** Cloudflare Workers
+- **AI:** Claude Sonnet, RAG pipeline, bge-base-en-v1.5 embeddings
+- **Auth:** BetterAuth
+- **Monorepo:** Turborepo, pnpm
+- **Deployment:** Vercel, Fly.io, Cloudflare

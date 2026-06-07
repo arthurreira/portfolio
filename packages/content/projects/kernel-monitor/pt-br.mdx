@@ -1,0 +1,48 @@
+---
+title: "Kernel Monitor"
+description: "Monitor de filesystem do kernel Linux em tempo real usando eBPF. Intercepta cada syscall em uma máquina Linux, armazena eventos no SQLite e permite investigar o kernel em português via IA local. Zero nuvem, zero custo."
+createdAt: "2026-06-07"
+featured: true
+role: "solo"
+highlight: "Monitor eBPF do kernel — mais de 1,6 milhão de syscalls capturados, IA local phi3:mini, dashboard ao vivo do Mac para Linux via WiFi"
+techStack:
+  - "eBPF / BCC"
+  - "Python"
+  - "FastAPI"
+  - "SQLite"
+  - "Ollama"
+  - "Next.js"
+  - "TypeScript"
+  - "Tailwind CSS"
+githubRepo: "https://github.com/arthurreira/kernel-monitor-backend"
+url: "https://github.com/arthurreira/kernel-monitor-ui"
+status: "done"
+coverImage: "./cover.png"
+---
+
+## O que construí
+
+Um sistema de monitoramento do kernel Linux que se prende à syscall `openat` via eBPF, capturando cada evento de abertura de arquivo na máquina — nome do processo, PID, nome do arquivo, timestamp. Os eventos entram no SQLite a mais de 200 por segundo. Um backend FastAPI expõe os dados por três endpoints. Um dashboard Next.js rodando em uma máquina separada consulta os dados via WiFi local a cada 3 segundos, exibindo um feed de eventos ao vivo com detecção de caminhos suspeitos e uma interface de chat com IA local alimentada por phi3:mini via Ollama.
+
+A IA recebe dados reais do kernel como contexto em cada pergunta — sem alucinação, sem adivinhação. Pergunte "o que o Docker está fazendo?" e ela consulta o SQLite, constrói o contexto e responde com base em evidências reais de syscalls.
+
+## O que aprendi
+
+eBPF é surpreendentemente complexo em kernels modernos. Os nomes dos campos de tracepoint, os helpers de leitura de memória e os métodos de attach mudaram entre versões do kernel — o que funciona no 5.x falha silenciosamente no 6.17. O debug exigiu ler os arquivos de formato de tracepoint do kernel diretamente em `/sys/kernel/debug/tracing` e iterar no C embutido no Python até o verifier aceitar. O verifier em si foi o conceito mais interessante — um motor de análise estática que prova que seu código de kernel não pode travar o sistema antes de permitir que ele rode.
+
+A arquitetura de IA local foi uma escolha deliberada. O eBPF vê dados sensíveis — leituras de chaves SSH, acesso a arquivos de senha, caminhos de arquivos privados. Enviar isso para qualquer API em nuvem seria uma violação de privacidade. Manter a inferência local com Ollama significa que os dados do kernel nunca saem da máquina.
+
+## Destaques
+
+- Hook de tracepoint eBPF em `sys_enter_openat` — kernel 6.17
+- Mais de 1,6 milhão de eventos de syscall capturados em um dia
+- Detecção de caminhos suspeitos — `/etc/passwd`, `/etc/shadow`, `/etc/gshadow`
+- Clique em qualquer linha de evento → IA investiga aquele processo automaticamente
+- Inferência local phi3:mini — sem custo de API, sem dados saindo da máquina
+- Dashboard ao vivo acessível do Mac via WiFi local
+
+## Stack
+- **Camada do kernel:** eBPF via bindings Python do BCC
+- **Backend:** FastAPI, SQLite, Ollama, psutil
+- **Frontend:** Next.js, TypeScript, Tailwind CSS, shadcn/ui
+- **Infraestrutura:** Linux Ubuntu, kernel 6.17, ASUS ROG GL502VML
