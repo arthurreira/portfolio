@@ -24,7 +24,7 @@ export function HeroText({
         <span className="block text-primary">{lastName}</span>
       </h1>
 
-      <p className="font-ui text-sm text-muted-foreground">{subtitle}</p>
+      <p className="font-ui text-[clamp(1rem,3.5vw,1.5rem)] text-muted-foreground">{subtitle}</p>
     </div>
   )
 }

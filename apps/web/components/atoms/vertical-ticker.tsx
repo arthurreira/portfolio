@@ -14,7 +14,7 @@ function TickerItems({ prefix }: { prefix: string }) {
     <>
       {HALF.map((item, i) => (
         <span key={`${prefix}${i}`}>
-          <span className="text-muted-foreground">{item}</span>
+          <span className="text-foreground">{item}</span>
           <span className="text-primary"> · </span>
         </span>
       ))}
