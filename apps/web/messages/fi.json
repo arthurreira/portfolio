@@ -90,6 +90,11 @@
     "dark": "Tumma",
     "light": "Vaalea"
   },
+  "tooltips": {
+    "theme": "Vaihda sivuston teema — Brasil tai Suomi",
+    "mode": "Vaihda vaalean ja tumman välillä",
+    "language": "Vaihda kieli"
+  },
   "project": {
     "label": "Projekti",
     "role": "Rooli",

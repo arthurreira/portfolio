@@ -91,6 +91,11 @@
     "dark": "Dark",
     "light": "Light"
   },
+  "tooltips": {
+    "theme": "Switch the site theme — Brasil or Suomi",
+    "mode": "Switch between light and dark",
+    "language": "Change the language"
+  },
   "project": {
     "label": "Project",
     "role": "Role",

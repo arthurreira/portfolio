@@ -90,6 +90,11 @@
     "dark": "Escuro",
     "light": "Claro"
   },
+  "tooltips": {
+    "theme": "Trocar o tema do site — Brasil ou Suomi",
+    "mode": "Alternar entre claro e escuro",
+    "language": "Mudar o idioma"
+  },
   "project": {
     "label": "Projeto",
     "role": "Função",
