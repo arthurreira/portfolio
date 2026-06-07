@@ -31,10 +31,26 @@ const components = {
       {children}
     </a>
   ),
+  img: ({ src, alt }: { src?: string; alt?: string }) => (
+    // eslint-disable-next-line @next/next/no-img-element
+    <img
+      src={src}
+      alt={alt ?? ""}
+      loading="lazy"
+      style={{
+        display: "block",
+        width: "100%",
+        height: "auto",
+        border: "1px solid var(--border)",
+        background: "var(--muted)",
+        margin: "1.5rem 0",
+      }}
+    />
+  ),
   hr: () => <hr style={{ border: "none", borderTop: "1px solid var(--border)", margin: "0.75rem 0" }} />,
 }
 
-export function TestMDXContent({ code }: { code: string }) {
+export function MdxContent({ code }: { code: string }) {
   try {
     const fn = new Function(code)
     const { default: Component } = fn(runtime)

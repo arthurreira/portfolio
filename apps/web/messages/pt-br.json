@@ -54,7 +54,7 @@
     "offClockLabel": "Fora do trabalho",
     "offClockValue": "Goleiro, Miesten Kolmonen",
     "certsLabel": "Certificações",
-    "verified": "Verificado →",
+    "verified": "Verificado",
     "weather": {
       "from": "De onde eu sou",
       "live": "Onde moro",
@@ -98,9 +98,9 @@
     "live": "Live",
     "source": "Código",
     "defaultRole": "Design & Desenvolvimento",
-    "back": "← Voltar aos projetos",
-    "viewSite": "Ver site →",
-    "github": "GitHub →",
+    "back": "Voltar aos projetos",
+    "viewSite": "Ver site",
+    "github": "GitHub",
     "screenshotPlaceholder": "Captura de tela do projeto",
     "statuses": {
       "done": "Publicado",

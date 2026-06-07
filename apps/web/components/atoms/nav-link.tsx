@@ -1,8 +1,11 @@
+import { ComponentProps } from "react"
 import { Link } from "@/i18n/routing"
 import { cn } from "@arthurreira/ui"
 
+type LinkHref = ComponentProps<typeof Link>["href"]
+
 interface NavLinkProps {
-  href: string
+  href: LinkHref
   active?: boolean
   children: React.ReactNode
   className?: string
@@ -13,7 +16,7 @@ interface NavLinkProps {
 export function NavLink({ href, active, children, className }: NavLinkProps) {
   return (
     <Link
-      href={href as any}
+      href={href}
       className={cn(
         "font-ui text-sm transition-colors duration-150",
         active

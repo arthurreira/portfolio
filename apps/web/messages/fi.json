@@ -54,7 +54,7 @@
     "offClockLabel": "Vapaa-aika",
     "offClockValue": "Maalivahti, Miesten Kolmonen",
     "certsLabel": "Sertifikaatit",
-    "verified": "Vahvistettu →",
+    "verified": "Vahvistettu",
     "weather": {
       "from": "Kotoisin",
       "live": "Asun täällä",
@@ -98,9 +98,9 @@
     "live": "Live",
     "source": "Lähdekoodi",
     "defaultRole": "Suunnittelu & Toteutus",
-    "back": "← Takaisin projekteihin",
-    "viewSite": "Näytä sivusto →",
-    "github": "GitHub →",
+    "back": "Takaisin projekteihin",
+    "viewSite": "Näytä sivusto",
+    "github": "GitHub",
     "screenshotPlaceholder": "Projektin kuvakaappaus",
     "statuses": {
       "done": "Valmis",

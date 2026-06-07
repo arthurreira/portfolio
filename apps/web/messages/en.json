@@ -54,7 +54,7 @@
     "offClockLabel": "Off the clock",
     "offClockValue": "Goalkeeper, Miesten Kolmonen",
     "certsLabel": "Certifications",
-    "verified": "Verified →",
+    "verified": "Verified",
     "weather": {
       "from": "Where I'm from",
       "live": "Where I live",
@@ -99,9 +99,9 @@
     "live": "Live",
     "source": "Source",
     "defaultRole": "Design & Build",
-    "back": "← Back to Projects",
-    "viewSite": "View site →",
-    "github": "GitHub →",
+    "back": "Back to Projects",
+    "viewSite": "View site",
+    "github": "GitHub",
     "screenshotPlaceholder": "Project Screenshot — Full Bleed",
     "statuses": {
       "done": "Shipped",

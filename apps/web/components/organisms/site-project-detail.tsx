@@ -3,9 +3,10 @@
 import Link from "next/link"
 import Image from "next/image"
 import { useTranslations } from "next-intl"
+import { ArrowRight, ArrowLeft } from "@phosphor-icons/react/ssr"
 import { cn } from "@arthurreira/ui"
 import type { ProjectStatus, ProjectRole } from "@arthurreira/content/types"
-import { TestMDXContent } from "@/components/molecules/mdx-content"
+import { MdxContent } from "@/components/molecules/mdx-content"
 
 function MetaRow({ label, children }: { label: string; children: React.ReactNode }) {
   return (
@@ -33,7 +34,7 @@ export interface SiteProjectDetailProps {
 }
 
 export function SiteProjectDetail({
-  index, title, description, techStack, year, status, role, highlight,
+  index, title, techStack, year, status, role, highlight,
   url, githubRepo, coverImage, content, locale,
 }: SiteProjectDetailProps) {
   const t   = useTranslations("project")
@@ -117,13 +118,14 @@ export function SiteProjectDetail({
 
           {/* Left — body starts with ## What I built, no redundant description paragraph */}
           <div>
-            <TestMDXContent code={content} />
+            <MdxContent code={content} />
 
             <div className="mt-16 border-t border-border pt-8">
               <Link
                 href={`/${locale}/projects`}
                 className="inline-flex items-center gap-2 text-sm text-foreground no-underline"
               >
+                <ArrowLeft weight="bold" className="size-4" />
                 {t("back")}
               </Link>
             </div>
@@ -149,6 +151,7 @@ export function SiteProjectDetail({
                   className="inline-flex items-center gap-1.5 font-medium text-primary no-underline"
                 >
                   {t("viewSite")}
+                  <ArrowRight weight="bold" className="size-4" />
                 </a>
               </MetaRow>
             )}
@@ -158,9 +161,10 @@ export function SiteProjectDetail({
                   href={githubRepo.startsWith("http") ? githubRepo : `https://github.com/${githubRepo}`}
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="text-sm text-muted-foreground no-underline"
+                  className="inline-flex items-center gap-1.5 text-sm text-muted-foreground no-underline"
                 >
                   {t("github")}
+                  <ArrowRight weight="bold" className="size-3.5" />
                 </a>
               </MetaRow>
             )}
