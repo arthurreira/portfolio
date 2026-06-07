@@ -20,7 +20,7 @@ export function ProjectRow({ num, title, year, href, featured, description }: Pr
         </span>
         <span
           className={cn(
-            "flex-1 font-bold text-foreground transition-colors duration-150 group-hover:text-primary leading-tight",
+            "flex-1 font-bold text-foreground transition-all duration-200 group-hover:translate-x-1 group-hover:text-primary leading-tight",
             featured ? "text-2xl sm:text-3xl" : "text-base sm:text-lg",
           )}
         >
@@ -29,7 +29,7 @@ export function ProjectRow({ num, title, year, href, featured, description }: Pr
         <span className="shrink-0 font-ui text-sm text-foreground tabular-nums">{year}</span>
         <ArrowRight
           weight="bold"
-          className="size-4 shrink-0 text-muted-foreground transition-all duration-150 group-hover:translate-x-1 group-hover:text-primary"
+          className="size-4 shrink-0 text-muted-foreground transition-all duration-200 group-hover:translate-x-2 group-hover:text-primary"
         />
       </div>
 

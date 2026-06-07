@@ -1,4 +1,4 @@
-import { ProjectRow } from "@/components/atoms/project-row"
+import { ProjectList } from "@/components/molecules/project-list"
 
 export interface SiteProject {
   id: string
@@ -30,20 +30,7 @@ export function SiteProjects({
           {projects.length} {countSuffix}
         </p>
 
-        <div>
-          {projects.map((project, i) => (
-            <ProjectRow
-              key={project.id}
-              num={String(i + 1).padStart(2, "0")}
-              title={project.title}
-              year={project.year}
-              href={`/projects/${project.slug}`}
-              featured={i === 0}
-              description={project.description}
-            />
-          ))}
-          <div className="border-t border-border" />
-        </div>
+        <ProjectList projects={projects} />
       </div>
     </section>
   )
