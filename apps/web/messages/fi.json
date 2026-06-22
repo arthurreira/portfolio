@@ -59,7 +59,12 @@
       "from": "Kotoisin",
       "live": "Asun täällä",
       "wind": "Tuuli"
-    }
+    },
+    "creativeLabel": "Mikä sun uskonto oikeen on?",
+    "creativeTitle": "Mikä sun uskonto oikeen on?",
+    "creativeText": "Kaikki. Helluntailainen? Joo, tuun toimeen. Luterilainen? Sekin käy! Ortodoksi? Ei hitto sentään, männöö sekin... Lestadiolainen? Rakastan! Ai oot jehova? Joo joo, tiistaina oli hyvät jutut. Ai Buda tuli kuvioihin — onks se ok? On, sekin menee. Kuule, se joka ei vihaa ketään, niin kaikki rakastaa sitä. Se on ykköslaki kaupunginvaltuutetun asiantuntijoille. Rikkaasta köyhään, mustasta valkoiseen, isosta pieneen — kättelen jokaista ihan samalla lailla. Tiiätkö miks? Koska se joka ampuu joka suuntaan, osuu johki. Ja ku osuu — osuu kunnolla. Ai mut sä oot vielä nuori… Mulla on ihan älytön henkinen suoja — luterilaisen jumalan, pyhimyksen, Budan, hindun kautta. En tiiä mistä kaikkialta, mut kaikki rakastaa mua siellä... ",
+    "langLabel": "Kieli & Persoona",
+    "langText": "Monikielisellä ihmisellä persoonallisuus vaihtuu huomaamatta käytettävän kielen mukana tilanteissa. Tämä siksi, että eri kielet kantaa mukanaan erilaisia kulttuurisia yhteyksiä ja tapoja nähdä maailmaa, esimerkiksi rakenteiden ja erilaisten sanastojen kautta. Tähän vaikuttaa myös kyseiseen kieleen ja kulttuuriin liitetyt ominaisuudet, mitä kohti puhujan persoonallisuus aina hieman siirtyy.🙂‍↕️"
   },
   "nav": {
     "projects": "Projektit",

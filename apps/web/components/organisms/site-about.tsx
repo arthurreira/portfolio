@@ -18,6 +18,15 @@ function SidebarRow({ label, value }: { label: string; value: string }) {
   )
 }
 
+function SidebarRowLong({ label, value }: { label: string; value: string }) {
+  return (
+    <div className="border-b border-border py-5">
+      <p className="label-caps mb-1.5">{label}</p>
+      <p className="font-ui text-sm text-muted-foreground leading-relaxed">{value}</p>
+    </div>
+  )
+}
+
 export async function SiteAbout() {
   const [t, locale] = await Promise.all([
     getTranslations("about"),
@@ -71,6 +80,14 @@ export async function SiteAbout() {
             </div>
           ))}
           <div className="border-t border-border" />
+
+          
+
+          {/* Language & Personality */}
+          <SidebarRowLong
+            label={t("langLabel")}
+            value={t("langText")}
+          />
         </div>
 
         {/* Right — sidebar */}
@@ -78,6 +95,8 @@ export async function SiteAbout() {
           {sidebar.map((row) => (
             <SidebarRow key={row.label} {...row} />
           ))}
+
+        
         </div>
       </div>
     </div>
