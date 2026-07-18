@@ -1,0 +1,263 @@
+{
+  "$schema": "https://docs.oasis-open.org/sarif/sarif/v2.1.0/errata01/os/schemas/sarif-schema-2.1.0.json",
+  "version": "2.1.0",
+  "runs": [
+    {
+      "tool": {
+        "driver": {
+          "name": "SnykCode",
+          "semanticVersion": "1.1306.0",
+          "version": "1.1306.0",
+          "informationUri": "https://docs.snyk.io/",
+          "rules": [
+            {
+              "id": "javascript/WebCookieSecureDisabledByDefault",
+              "name": "WebCookieSecureDisabledByDefault",
+              "shortDescription": {
+                "text": "Sensitive Cookie in HTTPS Session Without 'Secure' Attribute"
+              },
+              "defaultConfiguration": { "level": "note" },
+              "help": {
+                "markdown": "\n## Details\n\nIn a session hijacking attack, if a cookie containing sensitive data is set without the `secure` attribute, an attacker might be able to intercept that cookie. Once the attacker has this information, they can potentially impersonate a user, accessing confidential data and performing actions that they would not normally be authorized to do. Attackers often gain access to this sensitive cookie data when it is transmitted insecurely in plain text over a standard HTTP session, rather than being encrypted and sent over an HTTPS session. This type of attack is highly preventable by following best practices when setting sensitive session cookies.\n\n## Best practices for prevention\n* Set the `secure` attribute in the response header when setting cookies on the client side, and use a test tool to verify that secure cookie transmission is in place.\n* Always use HTTPS for all login pages and never redirect from HTTP to HTTPS, which leaves secure session data open to interception.\n* Follow other best practices when it comes to session cookies, such as setting the HttpOnly flag and maintaining highly time-limited sessions.\n* Consider implementing browser checks and providing secure data only within a browser that supports tight cookie security.\n* Generate session IDs in a way that is not easily predictable, invalidate sessions upon logout, and never reuse session IDs.\n* Educate developers to use built-in secure session-management functionality within the development environment instead of taking a DIY approach.",
+                "text": ""
+              },
+              "properties": {
+                "tags": [
+                  "javascript",
+                  "WebCookieSecureDisabledByDefault",
+                  "Security"
+                ],
+                "categories": ["Security"],
+                "exampleCommitFixes": [
+                  {
+                    "commitURL": "https://github.com/cmilfont/biohacking/commit/d034909675024ef5cbdee75e2ec14e7a89caa1f4?diff=split#diff-a4c65ede64197e1a112899a68bf994485b889c4b143198bac4af53425b38406fL-1",
+                    "lines": [
+                      {
+                        "line": "cookie: {\n",
+                        "lineNumber": 32,
+                        "lineChange": "none"
+                      },
+                      {
+                        "line": "  maxAge: 60000,\n",
+                        "lineNumber": 33,
+                        "lineChange": "none"
+                      },
+                      {
+                        "line": "  domain,\n",
+                        "lineNumber": 34,
+                        "lineChange": "none"
+                      },
+                      {
+                        "line": "  secure: true,\n",
+                        "lineNumber": 35,
+                        "lineChange": "added"
+                      }
+                    ]
+                  },
+                  {
+                    "commitURL": "https://github.com/sahava/GoogleTagManagerTemplates_site/commit/d61e1e054c79a7a6da38869819d6fa3a27fc48a0?diff=split#diff-5518f6a4122fcd2aee3d829253b3f89262461ec1d5127af437853ae173862043L-1",
+                    "lines": [
+                      {
+                        "line": "  try {\n",
+                        "lineNumber": 5,
+                        "lineChange": "none"
+                      },
+                      {
+                        "line": "    const idToken = req.body.idToken.toString();\n",
+                        "lineNumber": 6,
+                        "lineChange": "none"
+                      },
+                      { "line": "\n", "lineNumber": 7, "lineChange": "none" },
+                      {
+                        "line": "    // Set session cookie settings\n",
+                        "lineNumber": 8,
+                        "lineChange": "none"
+                      },
+                      {
+                        "line": "    const expiresIn = 1000 * 60 * 60 * 24 * 5;\n",
+                        "lineNumber": 9,
+                        "lineChange": "none"
+                      },
+                      {
+                        "line": "    const options = {maxAge: expiresIn, httpOnly: true};\n",
+                        "lineNumber": 10,
+                        "lineChange": "removed"
+                      },
+                      {
+                        "line": "    const options = {maxAge: expiresIn, httpOnly: true, secure: process.env.NODE_ENV === 'production'};\n",
+                        "lineNumber": 10,
+                        "lineChange": "added"
+                      },
+                      { "line": "\n", "lineNumber": 11, "lineChange": "none" },
+                      {
+                        "line": "    const sessionCookie = await app.auth().createSessionCookie(idToken, {expiresIn});\n",
+                        "lineNumber": 12,
+                        "lineChange": "none"
+                      },
+                      { "line": "\n", "lineNumber": 13, "lineChange": "none" },
+                      {
+                        "line": "    res.cookie('session', sessionCookie, options);\n",
+                        "lineNumber": 14,
+                        "lineChange": "none"
+                      }
+                    ]
+                  },
+                  {
+                    "commitURL": "https://github.com/mike-goodwin/owasp-threat-dragon/commit/9bb8e8ca86c152c32e3070994c34d3e1923d7d2a?diff=split#diff-ae9b91456b11c181adfefe3d9f1966931be9926c98a4ed0390ef82cf38be6fe9L-1",
+                    "lines": [
+                      {
+                        "line": "res.cookie('XSRF-TOKEN', req.csrfToken(), { httpOnly: false });\n",
+                        "lineNumber": 7,
+                        "lineChange": "removed"
+                      },
+                      {
+                        "line": "var cookieOptions = { httpOnly: false };\n",
+                        "lineNumber": 9,
+                        "lineChange": "added"
+                      },
+                      { "line": "\n", "lineNumber": 10, "lineChange": "added" },
+                      {
+                        "line": "if(process.env.NODE_ENV != 'development' && process.env.NODE_ENV) {\n",
+                        "lineNumber": 11,
+                        "lineChange": "added"
+                      },
+                      {
+                        "line": "    cookieOptions.secure = true;\n",
+                        "lineNumber": 12,
+                        "lineChange": "added"
+                      },
+                      {
+                        "line": "} else {\n",
+                        "lineNumber": 13,
+                        "lineChange": "added"
+                      },
+                      {
+                        "line": "    require('../config/loggers.config').logger.error({security: true}, 'secure anti-XSRF cookie flag was false - should only happen in dev environments');\n",
+                        "lineNumber": 14,
+                        "lineChange": "added"
+                      },
+                      {
+                        "line": "}\n",
+                        "lineNumber": 15,
+                        "lineChange": "added"
+                      },
+                      { "line": "\n", "lineNumber": 16, "lineChange": "added" },
+                      {
+                        "line": "res.cookie('XSRF-TOKEN', req.csrfToken(), cookieOptions);\n",
+                        "lineNumber": 17,
+                        "lineChange": "added"
+                      }
+                    ]
+                  }
+                ],
+                "exampleCommitDescriptions": [],
+                "precision": "very-high",
+                "repoDatasetSize": 50,
+                "cwe": ["CWE-614"]
+              }
+            }
+          ]
+        }
+      },
+      "results": [
+        {
+          "ruleId": "javascript/WebCookieSecureDisabledByDefault",
+          "ruleIndex": 0,
+          "level": "note",
+          "message": {
+            "text": "Cookie misses the Secure attribute (it is false by default). Set it to true to protect the cookie from man-in-the-middle attacks.",
+            "markdown": "{0} misses the Secure attribute (it is false by default). Set it to true to protect the cookie from man-in-the-middle attacks.",
+            "arguments": ["[Cookie](0)"]
+          },
+          "locations": [
+            {
+              "id": 0,
+              "physicalLocation": {
+                "artifactLocation": {
+                  "uri": "apps/web/components/organisms/site-nav.tsx",
+                  "uriBaseId": "%SRCROOT%"
+                },
+                "region": {
+                  "startLine": 35,
+                  "endLine": 35,
+                  "startColumn": 14,
+                  "endColumn": 20
+                }
+              }
+            }
+          ],
+          "fingerprints": {
+            "identity": "8a995d12-4ab3-4f87-abab-b361654b70d2",
+            "0": "b0d55a27ed6e3ba3b4bcdd9e08d1b5d782bc923c327c8d0d5fc2f48e5d82be19",
+            "1": "cf7733e4.1a0b1e78.dae89c6e.a517c54b.ef9f7d82.8020cfdf.0b4f0b50.f5919d50.cf7733e4.1a0b1e78.4876e8bd.e9ac1afd.ef9f7d82.8020cfdf.f762c7b8.f5919d50",
+            "snyk/asset/finding/v1": "8a995d12-4ab3-4f87-abab-b361654b70d2"
+          },
+          "codeFlows": [
+            {
+              "threadFlows": [
+                {
+                  "locations": [
+                    {
+                      "location": {
+                        "id": 0,
+                        "physicalLocation": {
+                          "artifactLocation": {
+                            "uri": "apps/web/components/organisms/site-nav.tsx",
+                            "uriBaseId": "%SRCROOT%"
+                          },
+                          "region": {
+                            "startLine": 35,
+                            "endLine": 35,
+                            "startColumn": 14,
+                            "endColumn": 20
+                          }
+                        }
+                      }
+                    }
+                  ]
+                }
+              ]
+            }
+          ],
+          "properties": {
+            "isAutofixable": true,
+            "priorityScore": 450,
+            "priorityScoreFactors": [
+              { "label": true, "type": "hotFileCodeFlow" },
+              { "label": true, "type": "fixExamples" }
+            ]
+          }
+        }
+      ],
+      "properties": {
+        "coverage": [
+          {
+            "files": 6,
+            "isSupported": true,
+            "lang": ".js",
+            "type": "SUPPORTED"
+          },
+          {
+            "files": 6,
+            "isSupported": true,
+            "lang": ".mjs",
+            "type": "SUPPORTED"
+          },
+          {
+            "files": 14,
+            "isSupported": true,
+            "lang": ".ts",
+            "type": "SUPPORTED"
+          },
+          {
+            "files": 71,
+            "isSupported": true,
+            "lang": ".tsx",
+            "type": "SUPPORTED"
+          }
+        ]
+      },
+      "automationDetails": { "id": "Snyk/Code/2026-07-10T04:56:22Z" }
+    }
+  ]
+}

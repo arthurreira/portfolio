@@ -2,7 +2,7 @@ import { Geist, JetBrains_Mono } from "next/font/google"
 import { NextIntlClientProvider } from 'next-intl'
 import { getMessages } from 'next-intl/server'
 import { cookies } from 'next/headers'
-
+import SmoothScroll from "@/lib/SmoothScroll"
 import "@arthurreira/ui/globals.css"
 import { cn } from "@arthurreira/ui"
 import { SiteNav } from "@/components/organisms/site-nav"
@@ -55,9 +55,11 @@ export default async function RootLayout({
             apiKey={process.env.NEXT_PUBLIC_ANALYTICS_KEY!}
             apiUrl={process.env.NEXT_PUBLIC_ANALYTICS_URL!}
           />
+          <SmoothScroll>
           <main>
             {children}
           </main>
+        </SmoothScroll>
         </NextIntlClientProvider>
       </body>
     </html>
