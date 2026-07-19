@@ -40,3 +40,7 @@ npm-debug.log*
 
 *.tgz
 .vscode/
+
+# Security scan artifacts — run locally, never commit
+snyk-results.json
+snyk-code-results.json
