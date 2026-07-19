@@ -1,31 +1,23 @@
 import { getTranslations, getLocale } from "next-intl/server"
 import { ArrowRightIcon } from "@phosphor-icons/react/ssr"
 import { about } from "@arthurreira/content"
+import { LabeledRow } from "@/components/molecules/labeled-row"
+import { LineReveal } from "@/components/molecules/line-reveal"
+import {
+  ProximityArea,
+  ProximityLetters,
+} from "@/components/molecules/proximity-text"
 import { MdxContent } from "@/components/molecules/mdx-content"
+import { Reveal } from "@/components/molecules/reveal"
 import Link from "next/link"
+
+/** Stagger (s) between cert / sidebar row reveals. */
+const ROW_STAGGER_S = 0.06
 
 const CERTS = [
   { name: "AWS Cloud Practitioner", code: "CLF-C02", period: "2026–2029", url: "https://www.credly.com/badges/" },
   { name: "Azure Fundamentals",     code: "AZ-900",  period: "2026",      url: "https://learn.microsoft.com/en-us/credentials/" },
 ]
-
-function SidebarRow({ label, value }: { label: string; value: string }) {
-  return (
-    <div className="border-b border-border py-5">
-      <p className="label-caps mb-1.5">{label}</p>
-      <p className="font-ui text-base font-bold text-foreground">{value}</p>
-    </div>
-  )
-}
-
-function SidebarRowLong({ label, value }: { label: string; value: string }) {
-  return (
-    <div className="border-b border-border py-5">
-      <p className="label-caps mb-1.5">{label}</p>
-      <p className="font-ui text-sm text-muted-foreground leading-relaxed">{value}</p>
-    </div>
-  )
-}
 
 export async function SiteAbout() {
   const [t, locale] = await Promise.all([
@@ -49,10 +41,16 @@ export async function SiteAbout() {
         {/* Left */}
         <div>
           {/* font-black / leading / tracking from @layer base h1 */}
-          <h1 className="mb-10 text-[clamp(3rem,11.5vw,11.5rem)]">
-            <span className="block text-foreground">Arthur</span>
-            <span className="block text-primary">Ferreira.</span>
-          </h1>
+          <ProximityArea>
+            <h1 className="mb-10 text-[clamp(3rem,11.5vw,11.5rem)]">
+              <LineReveal className="text-foreground">
+                <ProximityLetters text="Arthur" />
+              </LineReveal>
+              <LineReveal className="text-primary" delay={0.09}>
+                <ProximityLetters text="Ferreira." tone="primary" />
+              </LineReveal>
+            </h1>
+          </ProximityArea>
 
           {aboutContent && (
             <div className="max-w-xl">
@@ -61,42 +59,51 @@ export async function SiteAbout() {
           )}
 
           {/* Certifications */}
-          <p className="label-caps mt-8 mb-5">{t("certsLabel")}</p>
+          <Reveal once={false}>
+            <p className="label-caps mt-8 mb-5">{t("certsLabel")}</p>
+          </Reveal>
 
-          {CERTS.map((cert) => (
-            <div key={cert.code} className="t-cert-row">
-              <span className="t-cert-name text-base font-bold text-foreground">{cert.name}</span>
-              <span className="text-sm text-muted-foreground">{cert.code}</span>
-              <span className="text-sm text-muted-foreground">{cert.period}</span>
-              <Link
-                href={cert.url}
-                target="_blank"
-                rel="noopener noreferrer"
-                className="label-caps inline-flex items-center gap-1 no-underline"
-              >
-                {t("verified")}
-                <ArrowRightIcon weight="bold" className="size-3" />
-              </Link>
-            </div>
+          {CERTS.map((cert, i) => (
+            <Reveal key={cert.code} once={false} delay={i * ROW_STAGGER_S}>
+              <div className="t-cert-row">
+                <span className="t-cert-name text-base font-bold text-foreground">{cert.name}</span>
+                <span className="text-sm text-muted-foreground">{cert.code}</span>
+                <span className="text-sm text-muted-foreground">{cert.period}</span>
+                <Link
+                  href={cert.url}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="label-caps inline-flex items-center gap-1 no-underline"
+                >
+                  {t("verified")}
+                  <ArrowRightIcon weight="bold" className="size-3" />
+                </Link>
+              </div>
+            </Reveal>
           ))}
           <div className="border-t border-border" />
 
-          
-
           {/* Language & Personality */}
-          <SidebarRowLong
-            label={t("langLabel")}
-            value={t("langText")}
-          />
+          <Reveal once={false}>
+            <LabeledRow label={t("langLabel")}>
+              <p className="font-ui text-sm text-muted-foreground leading-relaxed">
+                {t("langText")}
+              </p>
+            </LabeledRow>
+          </Reveal>
         </div>
 
-        {/* Right — sidebar */}
+        {/* Right — sidebar, rows cascade in */}
         <div className="pt-1">
-          {sidebar.map((row) => (
-            <SidebarRow key={row.label} {...row} />
+          {sidebar.map((row, i) => (
+            <Reveal key={row.label} once={false} delay={i * ROW_STAGGER_S}>
+              <LabeledRow label={row.label}>
+                <p className="font-ui text-base font-bold text-foreground">
+                  {row.value}
+                </p>
+              </LabeledRow>
+            </Reveal>
           ))}
-
-        
         </div>
       </div>
     </div>

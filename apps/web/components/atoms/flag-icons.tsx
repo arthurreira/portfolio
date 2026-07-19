@@ -1,43 +1,36 @@
-import type { SVGProps } from "react"
+// Official flag artwork lives in /public/images/flags — rendered as CSS
+// backgrounds with `cover` so the flags always fill their box edge-to-edge
+// (crops instead of distorting, like preserveAspectRatio "slice").
+const BRASIL_SRC = "/images/flags/Flag_of_Brazil.svg"
+const SUOMI_SRC = "/images/flags/Flag_of_Finland.svg"
 
-// Full-bleed flags use `slice` so they cover the viewport without distortion.
-const COVER = "xMidYMid slice"
-
-export function FinnishFlag(props: SVGProps<SVGSVGElement>) {
-  return (
-    <svg viewBox="0 0 18 11" preserveAspectRatio={COVER} xmlns="http://www.w3.org/2000/svg" {...props}>
-      <rect width="18" height="11" fill="#ffffff" />
-      <rect x="4" width="2.5" height="11" fill="#003580" />
-      <rect y="4" width="18" height="2.5" fill="#003580" />
-    </svg>
-  )
+function flagSrc(flag: string): string {
+  return flag === "suomi" ? SUOMI_SRC : BRASIL_SRC
 }
 
-export function BrazilFlag(props: SVGProps<SVGSVGElement>) {
-  return (
-    <svg viewBox="0 0 20 14" preserveAspectRatio={COVER} xmlns="http://www.w3.org/2000/svg" {...props}>
-      <rect width="20" height="14" fill="#009c3b" />
-      <polygon points="10,1 19,7 10,13 1,7" fill="#ffdf00" />
-      <circle cx="10" cy="7" r="3" fill="#002776" />
-    </svg>
-  )
-}
-
-/** Full-bleed flag for the transition overlay. */
+/** Full-bleed flag for the theme-change circle-reveal overlay. */
 export function FlagFill({ flag }: { flag: string }) {
-  const className = "block h-full w-full"
-  return flag === "suomi" ? (
-    <FinnishFlag className={className} />
-  ) : (
-    <BrazilFlag className={className} />
+  return (
+    <div
+      className="h-full w-full bg-cover bg-center"
+      style={{ backgroundImage: `url(${flagSrc(flag)})` }}
+    />
   )
 }
 
 /**
- * Small fixed-ratio flag for the nav pills. Inline width/height override the
- * pill's default square SVG sizing so the flag keeps its rectangular shape.
+ * Flag that fills an entire p-0 nav pill edge-to-edge (no padding box).
+ * A div sidesteps the pill's default square SVG sizing entirely.
  */
-export function FlagChip({ flag }: { flag: string }) {
-  const Flag = flag === "suomi" ? FinnishFlag : BrazilFlag
-  return <Flag className="rounded-[1px]" style={{ width: "1.125rem", height: "0.75rem" }} />
+export function FlagPillFill({ flag }: { flag: string }) {
+  return (
+    <div
+      className="bg-cover bg-center"
+      style={{
+        width: "1.75rem",
+        height: "1.125rem",
+        backgroundImage: `url(${flagSrc(flag)})`,
+      }}
+    />
+  )
 }

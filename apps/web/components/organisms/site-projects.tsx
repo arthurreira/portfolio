@@ -1,3 +1,8 @@
+import { LineReveal } from "@/components/molecules/line-reveal"
+import {
+  ProximityArea,
+  ProximityLetters,
+} from "@/components/molecules/proximity-text"
 import { ProjectList } from "@/components/molecules/project-list"
 
 export interface SiteProject {
@@ -23,12 +28,19 @@ export function SiteProjects({
   return (
     <section className="relative min-h-screen overflow-hidden bg-background font-ui">
       <div className="t-shell pt-12 pb-16">
-        <h1 className="mb-3 text-[clamp(3rem,11.5vw,11.5rem)] text-foreground">
-          {heading}
-        </h1>
-        <p className="mb-12 text-sm text-muted-foreground">
-          {projects.length} {countSuffix}
-        </p>
+        <div className="flex flex-row justify-between ">
+          <ProximityArea>
+            <h1 className="mb-3 text-[clamp(3rem,11.5vw,11.5rem)] text-foreground">
+              <LineReveal>
+                <ProximityLetters text={heading} />
+              </LineReveal>
+            </h1>
+          </ProximityArea>
+          <p className="mb-12 text-sm text-muted-foreground">
+            {projects.length} {countSuffix}
+          </p>
+        </div>
+
 
         <ProjectList projects={projects} />
       </div>

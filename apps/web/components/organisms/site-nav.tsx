@@ -6,6 +6,7 @@ import { useRouter, usePathname as useIntlPathname, routing } from "@/i18n/routi
 import { useLocale, useTranslations } from "next-intl"
 import { Sun, Moon } from "@phosphor-icons/react/ssr"
 import { NavLink } from "@/components/atoms/nav-link"
+import { RollingText } from "@/components/atoms/rolling-text"
 import {
   Tooltip,
   TooltipContent,
@@ -14,12 +15,17 @@ import {
 } from "@arthurreira/ui/components/tooltip"
 import { PillGroup } from "@/components/molecules/pill-group"
 import { useCircleReveal } from "@/components/molecules/circle-reveal"
-import { FlagFill, FlagChip } from "@/components/atoms/flag-icons"
+import { FlagFill, FlagPillFill } from "@/components/atoms/flag-icons"
 import { THEME_TRANSITION } from "@/lib/theme-transition"
 
+// Full-bleed flags: no padding box, dimmed when inactive, accent border when
+// active (via aria-pressed set by PillButton).
+const FLAG_PILL_CLASS =
+  "overflow-hidden p-0 opacity-60 saturate-50 transition-all hover:opacity-100 aria-pressed:border-primary aria-pressed:opacity-100 aria-pressed:saturate-100"
+
 const FLAGS = [
-  { key: "brasil", label: <FlagChip flag="brasil" />, ariaLabel: "Brasil" },
-  { key: "suomi",  label: <FlagChip flag="suomi"  />, ariaLabel: "Suomi"  },
+  { key: "brasil", label: <FlagPillFill flag="brasil" />, ariaLabel: "Brasil", className: FLAG_PILL_CLASS },
+  { key: "suomi",  label: <FlagPillFill flag="suomi"  />, ariaLabel: "Suomi",  className: FLAG_PILL_CLASS },
 ]
 const LANGS = [
   { key: "en",    label: "EN" },
@@ -86,19 +92,6 @@ export function SiteNav() {
     return () => document.removeEventListener("visibilitychange", sync)
   }, [])
 
-  // Sync button highlight when the boot-script keyboard handler fires
-  useEffect(() => {
-    function onTheme(e: Event) {
-      const detail = (e as CustomEvent).detail ?? {}
-      flushSync(() => {
-        if (detail.mode) setMode(detail.mode)
-        if (detail.flag) setFlag(detail.flag)
-      })
-    }
-    window.addEventListener("arthur-theme", onTheme)
-    return () => window.removeEventListener("arthur-theme", onTheme)
-  }, [])
-
   function applyFlag(val: string) {
     setAxis("flag", "arthur-flag", val)
     flushSync(() => setFlag(val))
@@ -150,6 +143,28 @@ export function SiteNav() {
     router.push(intlPathname, { locale: locale as (typeof routing.locales)[number] })
   }
 
+  // Keyboard shortcuts promised by the top-bar hints: d toggles the mode
+  // (with the view-transition sweep), l cycles the language. Re-subscribes per
+  // render so the handlers always see current state; listeners are cheap.
+  useEffect(() => {
+    function onKeydown(e: KeyboardEvent) {
+      if (e.metaKey || e.ctrlKey || e.altKey || e.repeat) return
+      const el = e.target instanceof HTMLElement ? e.target : null
+      if (el?.closest("input, textarea, select, [contenteditable='true']")) return
+
+      const key = e.key.toLowerCase()
+      if (key === "d") {
+        pickMode(mode === "dark" ? "light" : "dark")
+      } else if (key === "l") {
+        const idx = LANGS.findIndex((lang) => lang.key === currentLocale)
+        const next = LANGS[(idx + 1) % LANGS.length]
+        if (next) pickLocale(next.key)
+      }
+    }
+    window.addEventListener("keydown", onKeydown)
+    return () => window.removeEventListener("keydown", onKeydown)
+  })
+
   return (
     <header
       className="w-full bg-background font-ui"
@@ -168,7 +183,7 @@ export function SiteNav() {
       <div className="t-nav">
         {/* Left — logo */}
         <NavLink href="/" className="shrink-0 font-bold tracking-[-0.01em]">
-          arthurreira.dev
+          <RollingText text="arthurreira.dev" />
         </NavLink>
 
         {/* Right — page links */}

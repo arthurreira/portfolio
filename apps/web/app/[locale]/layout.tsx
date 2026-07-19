@@ -7,6 +7,9 @@ import "@arthurreira/ui/globals.css"
 import { cn } from "@arthurreira/ui"
 import { SiteNav } from "@/components/organisms/site-nav"
 import { VerticalTicker } from "@/components/atoms/vertical-ticker"
+import { ScrollProgress } from "@/components/atoms/scroll-progress"
+import { BackToTop } from "@/components/atoms/back-to-top"
+import { CursorFollower } from "@/components/atoms/cursor-follower"
 import { Analytics } from '@arthurreira/analytics/client'
 
 const fontSans = Geist({
@@ -26,15 +29,19 @@ export default async function RootLayout({
   const { locale } = await params
   const messages = await getMessages({ locale })
   const cookieStore = await cookies()
-  const themeFlag = cookieStore.get("arthur-flag")?.value ?? "brasil"
-  const themeMode = cookieStore.get("arthur-mode")?.value ?? "dark"
+  // No defaults here: when a cookie is missing the attribute is omitted, so
+  // the boot script below can fall back to localStorage (else it never could).
+  const themeFlag = cookieStore.get("arthur-flag")?.value
+  const themeMode = cookieStore.get("arthur-mode")?.value
 
   return (
     <html lang={locale} data-flag={themeFlag} data-mode={themeMode} suppressHydrationWarning
       className={cn("antialiased", fontSans.variable, "font-mono", jetbrainsMono.variable)}
     >
       <head>
-        {/* No-flash boot: sync localStorage with the server-set attributes (keyboard handled in SiteNav) */}
+        {/* No-flash boot: cookie-set attributes win; otherwise restore from
+            localStorage before first paint (covers cleared-cookie visitors).
+            Keyboard shortcuts (d = mode, l = language) live in SiteNav. */}
         <script dangerouslySetInnerHTML={{ __html: `(function(){
             try{
               var r=document.documentElement;
@@ -49,6 +56,8 @@ export default async function RootLayout({
       </head>
       <body>
         <NextIntlClientProvider messages={messages}>
+          <ScrollProgress />
+          <CursorFollower />
           <VerticalTicker />
           <SiteNav />
           <Analytics
@@ -59,6 +68,7 @@ export default async function RootLayout({
           <main>
             {children}
           </main>
+          <BackToTop />
         </SmoothScroll>
         </NextIntlClientProvider>
       </body>
