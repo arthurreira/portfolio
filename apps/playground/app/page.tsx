@@ -15,7 +15,7 @@ export default function Page() {
       {/* Header */}
       <div className="space-y-3">
         <p className="font-mono text-xs text-muted-foreground/40 tracking-[0.2em] uppercase select-none">
-          // playground
+          {"// playground"}
         </p>
         <h1 className="font-mono font-bold text-3xl sm:text-4xl text-foreground tracking-tight">
           <span className="text-muted-foreground/20 mr-1 select-none">[</span>
@@ -23,7 +23,7 @@ export default function Page() {
           <span className="text-muted-foreground/20 ml-1 select-none">]</span>
         </h1>
         <p className="font-mono text-sm text-muted-foreground border-l-2 border-border pl-4">
-          <span className="text-muted-foreground/40 select-none">// </span>
+          <span className="text-muted-foreground/40 select-none">{"// "}</span>
           Where new ideas get tested before they ship. Code on{" "}
           <a
             href="https://github.com/arthurreira/arthurreira"
@@ -52,7 +52,7 @@ export default function Page() {
                 {exp.label}
               </p>
               <p className="font-mono text-xs text-muted-foreground/60">
-                <span className="text-muted-foreground/30 select-none">// </span>
+                <span className="text-muted-foreground/30 select-none">{"// "}</span>
                 {exp.desc}
               </p>
               <div className="flex flex-wrap gap-1.5">
@@ -73,7 +73,7 @@ export default function Page() {
       {/* Spring demo */}
       <div className="space-y-3">
         <p className="font-mono text-xs text-muted-foreground/40 tracking-[0.2em] uppercase select-none">
-          // spring-demo
+          {"// spring-demo"}
         </p>
         <SpringBox />
       </div>

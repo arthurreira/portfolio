@@ -31,7 +31,7 @@ export function SortableCardGrid({ cards: initialCards }: { cards: CardItem[] })
 export function SortableCard({ card, index }: { card: CardItem, index: number }) {
 
 
-    const sortable = useSortable({ id: card.id, index })
+    const { ref: setSortableRef } = useSortable({ id: card.id, index })
 
 
     return (
@@ -43,7 +43,7 @@ export function SortableCard({ card, index }: { card: CardItem, index: number })
             animate={{ opacity: 1, y: 0 }}
             transition={{ type: "spring", stiffness: 300, damping: 30 }}
             layout
-            ref={sortable.ref}
+            ref={setSortableRef}
             
             className={cn(
               "cursor-pointer overflow-hidden rounded-br-3xl shadow-md bg-muted backdrop-opacity-65",
