@@ -33,12 +33,25 @@ packages/
 The main portfolio site. Built with:
 
 - **Next.js 16** with Turbopack
-- **next-intl** — i18n with English, Finnish, and Brazilian Portuguese
+- **next-intl** — i18n with English, Finnish, and Brazilian Portuguese (locale-prefixed URLs, `fi` default)
 - **Velite** — MDX content pipeline for projects and about page
 - **@arthurreira/ui** — design system and components
-- **motion** — animations
+- **motion** + **Lenis** — the animation and smooth-scrolling layer
 
-Routes: `/`, `/projects`, `/projects/[slug]`, `/about`, `/contact`
+Routes: `/`, `/projects`, `/projects/[slug]`, `/about`, `/contact` (all under `/[locale]`)
+
+Components follow atomic design (`atoms/`, `molecules/`, `organisms/`).
+
+**Motion & interaction layer:**
+
+- Lenis smooth scrolling with parallax project rows, scroll progress bar, and an eased back-to-top button
+- Scroll reveals that hide on scroll-up and replay — lists, sidebars, and MDX content blocks
+- Masked line entrances on the hero and every page heading
+- Proximity type effect — letters lift and shift color as the cursor nears them
+- Custom cursor (accent dot + trailing spring ring) on fine pointers only
+- Motion-driven vertical cert ticker that eases to a stop on hover
+- 2×2 theme matrix (Brasil/Suomi × dark/light) with view-transition sweeps; keyboard: `d` toggles mode, `l` cycles language
+- Touch and `prefers-reduced-motion` users get a calm, static-friendly experience
 
 ### `apps/playground` — Component Playground
 
@@ -49,7 +62,7 @@ A live sandbox for exploring and testing UI components. Built with:
 - **motion** — layout and spring animations
 - **@arthurreira/ui** — same component library as the portfolio
 
-Routes: `/`, `/cards`, `/sortable`
+Routes: `/`, `/cards`, `/sortable`, `/number-reveal`
 
 ---
 
@@ -106,12 +119,20 @@ pnpm dev
 pnpm --filter web dev
 pnpm --filter playground dev
 
-# Build the UI package
-pnpm --filter @arthurreira/ui build
+# Build everything in dependency order (content builds before web)
+pnpm build
 
-# Type check everything
+# Rebuild the MDX content layer alone
+pnpm --filter @arthurreira/content build
+
+# Verify — this repo has no test runner by design
 pnpm typecheck
+pnpm lint
+pnpm format
 ```
+
+> `@arthurreira/ui` ships raw source (no build step) — consuming apps transpile
+> it via `transpilePackages`.
 
 ---
 
@@ -139,6 +160,7 @@ Branch naming: `feat/`, `fix/`, `docs/`, `chore/`
 | Styling | Tailwind CSS v4 |
 | Components | Radix UI, @arthurreira/ui |
 | Animations | Motion (motion/react) |
+| Smooth scroll | Lenis |
 | Content | Velite + MDX |
 | i18n | next-intl |
 | Drag & Drop | dnd-kit |
