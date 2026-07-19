@@ -149,10 +149,9 @@
   /* Vertical ticker track — writing-mode can't be a Tailwind class */
   .ticker-track {
     writing-mode: vertical-rl;
-    animation: vertTicker 120s linear infinite;
-    /* Stroke guarantees extra weight even when the font caps at 700. */
-    -webkit-text-stroke: 0.4px currentColor;
-    @apply text-[1.35rem] leading-tight font-black tracking-[0.14em] uppercase whitespace-nowrap font-ui;
+    /* Movement is motion-driven in vertical-ticker.tsx (hover eases speed);
+       items are Badge pills, which bring their own type scale. */
+    @apply tracking-[0.14em] uppercase whitespace-nowrap font-ui;
   }
   .ticker-wrapper {
     @apply rotate-180;

@@ -1,22 +1,25 @@
 "use client"
 
-import Link from "next/link"
+import type { ReactNode } from "react"
 import Image from "next/image"
+import { Link } from "@/i18n/routing"
 import { useTranslations } from "next-intl"
 import { ArrowRight, ArrowLeft } from "@phosphor-icons/react/ssr"
 import { cn } from "@arthurreira/ui"
 import type { ProjectStatus, ProjectRole } from "@arthurreira/content/types"
+import { LabeledRow } from "@/components/molecules/labeled-row"
+import { LineReveal } from "@/components/molecules/line-reveal"
+import {
+  ProximityArea,
+  ProximityLetters,
+} from "@/components/molecules/proximity-text"
 import { MdxContent } from "@/components/molecules/mdx-content"
 import { Reveal } from "@/components/molecules/reveal"
 
-function MetaRow({ label, children }: { label: string; children: React.ReactNode }) {
-  return (
-    <div className="border-b border-border py-5">
-      <p className="label-caps mb-1.5">{label}</p>
-      {children}
-    </div>
-  )
-}
+/** Entrance delay (s) for the header meta block, after the title unmasks. */
+const HEADER_META_DELAY_S = 0.12
+/** Stagger (s) between sidebar row reveals. */
+const SIDEBAR_STAGGER_S = 0.06
 
 export interface SiteProjectDetailProps {
   index: number
@@ -31,12 +34,11 @@ export interface SiteProjectDetailProps {
   githubRepo?: string
   coverImage?: string
   content: string
-  locale: string
 }
 
 export function SiteProjectDetail({
   index, title, techStack, year, status, role, highlight,
-  url, githubRepo, coverImage, content, locale,
+  url, githubRepo, coverImage, content,
 }: SiteProjectDetailProps) {
   const t   = useTranslations("project")
   const num = String(index).padStart(2, "0")
@@ -53,45 +55,99 @@ export function SiteProjectDetail({
     return role ? t(`roles.${role}`) : t("defaultRole")
   }
 
+  const rowValueClass = "text-base font-bold text-foreground"
+  const sidebarRows: { label: string; content: ReactNode }[] = [
+    { label: t("role"), content: <p className={rowValueClass}>{resolveRole()}</p> },
+    { label: t("year"), content: <p className={rowValueClass}>{year}</p> },
+    {
+      label: t("status"),
+      content: <p className={rowValueClass}>{t(`statuses.${status}`)}</p>,
+    },
+    ...(url
+      ? [
+          {
+            label: t("live"),
+            content: (
+              <a
+                href={url}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="inline-flex items-center gap-1.5 font-medium text-primary no-underline"
+              >
+                {t("viewSite")}
+                <ArrowRight weight="bold" className="size-4" />
+              </a>
+            ),
+          },
+        ]
+      : []),
+    ...(githubRepo
+      ? [
+          {
+            label: t("source"),
+            content: (
+              <a
+                href={githubRepo.startsWith("http") ? githubRepo : `https://github.com/${githubRepo}`}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="inline-flex items-center gap-1.5 text-sm text-muted-foreground no-underline"
+              >
+                {t("github")}
+                <ArrowRight weight="bold" className="size-3.5" />
+              </a>
+            ),
+          },
+        ]
+      : []),
+  ]
+
   return (
     <div className="min-h-screen bg-background font-ui">
 
       {/* Header */}
       <div className="t-shell pt-10">
-        <p className="label-caps mb-6">
-          {t("label")} [{num}]
-        </p>
+        <Reveal once={false}>
+          <p className="label-caps mb-6">
+            {t("label")} [{num}]
+          </p>
+        </Reveal>
 
         {/* font-black / leading / tracking from @layer base h1 */}
-        <h1 className="mb-6 text-[clamp(2.5rem,8vw,7rem)] text-foreground">
-          {title}
-        </h1>
+        <ProximityArea>
+          <h1 className="mb-6 text-[clamp(2.5rem,8vw,7rem)] text-foreground">
+            <LineReveal>
+              <ProximityLetters text={title} />
+            </LineReveal>
+          </h1>
+        </ProximityArea>
 
-        {techStack && techStack.length > 0 && (
-          <p className="mb-1 text-sm text-muted-foreground">
-            {techStack.map((tech, i) => (
-              <span key={tech}>
-                {tech}
-                {i < techStack.length - 1 && (
-                  <span className="mx-2 text-muted-foreground opacity-40">·</span>
-                )}
-              </span>
-            ))}
-          </p>
-        )}
+        <Reveal once={false} delay={HEADER_META_DELAY_S}>
+          {techStack && techStack.length > 0 && (
+            <p className="mb-1 text-sm text-muted-foreground">
+              {techStack.map((tech, i) => (
+                <span key={tech}>
+                  {tech}
+                  {i < techStack.length - 1 && (
+                    <span className="mx-2 text-muted-foreground opacity-40">·</span>
+                  )}
+                </span>
+              ))}
+            </p>
+          )}
 
-        <p className={cn("text-sm text-muted-foreground", highlight ? "mb-4" : "mb-8")}>{year}</p>
+          <p className={cn("text-sm text-muted-foreground", highlight ? "mb-4" : "mb-8")}>{year}</p>
 
-        {highlight && (
-          <p className="mb-8 text-sm font-medium tracking-[0.01em] text-primary">
-            {highlight}
-          </p>
-        )}
+          {highlight && (
+            <p className="mb-8 text-sm font-medium tracking-[0.01em] text-primary">
+              {highlight}
+            </p>
+          )}
+        </Reveal>
 
         <div className="h-px bg-border" />
 
         {/* Cover image — striped placeholder uses --stripe token (flips in light mode) */}
-        <Reveal className="relative mt-8 aspect-[16/7] w-full overflow-hidden bg-muted">
+        <Reveal once={false} className="relative mt-8 aspect-[16/7] w-full overflow-hidden bg-muted">
           {coverImage ? (
             <Image src={coverImage} alt={title} fill className="object-cover" priority />
           ) : (
@@ -115,62 +171,32 @@ export function SiteProjectDetail({
 
       {/* Body */}
       <div className="t-shell pt-12 pb-24">
-        <Reveal className="t-detail-body">
+        <div className="t-detail-body">
 
           {/* Left — body starts with ## What I built, no redundant description paragraph */}
-          <div>
+          <Reveal once={false}>
             <MdxContent code={content} />
 
             <div className="mt-16 border-t border-border pt-8">
               <Link
-                href={`/${locale}/projects`}
+                href="/projects"
                 className="inline-flex items-center gap-2 text-sm text-foreground no-underline"
               >
                 <ArrowLeft weight="bold" className="size-4" />
                 {t("back")}
               </Link>
             </div>
-          </div>
+          </Reveal>
 
-          {/* Right — sidebar */}
+          {/* Right — sidebar, rows reveal one after another */}
           <div>
-            <MetaRow label={t("role")}>
-              <p className="text-base font-bold text-foreground">{resolveRole()}</p>
-            </MetaRow>
-            <MetaRow label={t("year")}>
-              <p className="text-base font-bold text-foreground">{year}</p>
-            </MetaRow>
-            <MetaRow label={t("status")}>
-              <p className="text-base font-bold text-foreground">{t(`statuses.${status}`)}</p>
-            </MetaRow>
-            {url && (
-              <MetaRow label={t("live")}>
-                <a
-                  href={url}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="inline-flex items-center gap-1.5 font-medium text-primary no-underline"
-                >
-                  {t("viewSite")}
-                  <ArrowRight weight="bold" className="size-4" />
-                </a>
-              </MetaRow>
-            )}
-            {githubRepo && (
-              <MetaRow label={t("source")}>
-                <a
-                  href={githubRepo.startsWith("http") ? githubRepo : `https://github.com/${githubRepo}`}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="inline-flex items-center gap-1.5 text-sm text-muted-foreground no-underline"
-                >
-                  {t("github")}
-                  <ArrowRight weight="bold" className="size-3.5" />
-                </a>
-              </MetaRow>
-            )}
+            {sidebarRows.map((row, i) => (
+              <Reveal key={row.label} once={false} delay={i * SIDEBAR_STAGGER_S}>
+                <LabeledRow label={row.label}>{row.content}</LabeledRow>
+              </Reveal>
+            ))}
           </div>
-        </Reveal>
+        </div>
       </div>
     </div>
   )

@@ -69,7 +69,8 @@
   "nav": {
     "projects": "Projektit",
     "about": "Tietoa",
-    "contact": "Ota yhteyttä"
+    "contact": "Ota yhteyttä",
+    "backToTop": "Takaisin ylös"
   },
   "topBar": {
     "darkModeHint": "Paina d vaihtaaksesi tumman tilan",

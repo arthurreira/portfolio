@@ -32,7 +32,6 @@ export default async function ProjectDetailPage({
       githubRepo={project.githubRepo}
       coverImage={project.coverImage?.src}
       content={project.content}
-      locale={locale}
     />
   )
 }

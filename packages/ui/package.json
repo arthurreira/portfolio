@@ -25,6 +25,7 @@
     "react-dom": ">=18"
   },
   "devDependencies": {
+    "@arthurreira/eslint-config": "workspace:*",
     "@tailwindcss/postcss": "^4.1.18",
     "@turbo/gen": "^2.8.1",
     "@types/node": "^25.1.0",
