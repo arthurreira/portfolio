@@ -82,4 +82,4 @@ Standalone Next.js sandbox for the same `@arthurreira/ui` components, adding `@d
 - **Prettier** (`.prettierrc`): no semicolons, double quotes, 2-space tabs, `printWidth: 80`, `trailingComma: es5`. Tailwind class sorting is enabled and aware of `cn` / `cva`.
 - **Animations** use `motion` (`motion/react`) — a peer dependency of `@arthurreira/ui`.
 - **Git workflow**: feature branch → PR into `dev` (staging, tested) → merge to `main` (production). Branch prefixes: `feat/`, `fix/`, `docs/`, `chore/`. Never PR straight to `main`.
-- `snyk-results.json` / `snyk-code-results.json` at the root are security-scan artifacts; the root `package.json` `pnpm.overrides` block pins transitive deps to remediated versions — preserve these when touching dependencies.
+- Snyk scan artifacts (`snyk-results.json` / `snyk-code-results.json`) are **gitignored** — run scans locally, never commit the results (the repo is public). The root `package.json` `pnpm.overrides` block pins transitive deps to remediated versions — preserve it when touching dependencies.
