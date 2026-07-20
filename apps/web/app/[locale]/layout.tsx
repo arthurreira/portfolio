@@ -10,7 +10,7 @@ import { VerticalTicker } from "@/components/atoms/vertical-ticker"
 import { ScrollProgress } from "@/components/atoms/scroll-progress"
 import { BackToTop } from "@/components/atoms/back-to-top"
 import { CursorFollower } from "@/components/atoms/cursor-follower"
-import { Analytics } from '@arthurreira/analytics/client'
+import { Analytics } from "@vercel/analytics/next"
 
 const fontSans = Geist({
   subsets: ["latin"],
@@ -60,10 +60,7 @@ export default async function RootLayout({
           <CursorFollower />
           <VerticalTicker />
           <SiteNav />
-          <Analytics
-            apiKey={process.env.NEXT_PUBLIC_ANALYTICS_KEY!}
-            apiUrl={process.env.NEXT_PUBLIC_ANALYTICS_URL!}
-          />
+          <Analytics />
           <SmoothScroll>
           <main>
             {children}
