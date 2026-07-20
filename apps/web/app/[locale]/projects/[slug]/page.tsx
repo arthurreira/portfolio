@@ -1,6 +1,16 @@
 import { projects } from "@arthurreira/content"
 import { notFound } from "next/navigation"
+import { setRequestLocale } from "next-intl/server"
+import { routing } from "@/i18n/routing"
 import { SiteProjectDetail } from "@/components/organisms/site-project-detail"
+
+export function generateStaticParams() {
+  return routing.locales.flatMap((locale) =>
+    projects
+      .filter((p) => p.locale === locale)
+      .map((p) => ({ locale, slug: p.slug ?? "" }))
+  )
+}
 
 export default async function ProjectDetailPage({
   params,
@@ -8,6 +18,7 @@ export default async function ProjectDetailPage({
   params: Promise<{ locale: string; slug: string }>
 }) {
   const { locale, slug } = await params
+  setRequestLocale(locale)
 
   const sorted = projects
     .filter((p) => p.locale === locale)
