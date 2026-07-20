@@ -1,7 +1,7 @@
 import { Geist, JetBrains_Mono } from "next/font/google"
-import { NextIntlClientProvider } from 'next-intl'
-import { getMessages } from 'next-intl/server'
-import { cookies } from 'next/headers'
+import { hasLocale, NextIntlClientProvider } from 'next-intl'
+import { getMessages, setRequestLocale } from 'next-intl/server'
+import { notFound } from 'next/navigation'
 import SmoothScroll from "@/lib/SmoothScroll"
 import "@arthurreira/ui/globals.css"
 import { cn } from "@arthurreira/ui"
@@ -11,6 +11,7 @@ import { ScrollProgress } from "@/components/atoms/scroll-progress"
 import { BackToTop } from "@/components/atoms/back-to-top"
 import { CursorFollower } from "@/components/atoms/cursor-follower"
 import { Analytics } from "@vercel/analytics/next"
+import { routing } from "@/i18n/routing"
 
 const fontSans = Geist({
   subsets: ["latin"],
@@ -18,6 +19,10 @@ const fontSans = Geist({
 })
 
 const jetbrainsMono = JetBrains_Mono({ subsets: ['latin'], variable: '--font-mono' })
+
+export function generateStaticParams() {
+  return routing.locales.map((locale) => ({ locale }))
+}
 
 export default async function RootLayout({
   children,
@@ -27,26 +32,30 @@ export default async function RootLayout({
   params: Promise<{ locale: string }>
 }) {
   const { locale } = await params
-  const messages = await getMessages({ locale })
-  const cookieStore = await cookies()
-  // No defaults here: when a cookie is missing the attribute is omitted, so
-  // the boot script below can fall back to localStorage (else it never could).
-  const themeFlag = cookieStore.get("arthur-flag")?.value
-  const themeMode = cookieStore.get("arthur-mode")?.value
+  if (!hasLocale(routing.locales, locale)) notFound()
+
+  // Enables static rendering. Without it, next-intl reads headers() on every
+  // request, which opts the whole route tree out of static generation (a
+  // serverless invocation per request, including RSC prefetches).
+  setRequestLocale(locale)
+
+  const messages = await getMessages()
 
   return (
-    <html lang={locale} data-flag={themeFlag} data-mode={themeMode} suppressHydrationWarning
+    <html lang={locale} suppressHydrationWarning
       className={cn("antialiased", fontSans.variable, "font-mono", jetbrainsMono.variable)}
     >
       <head>
-        {/* No-flash boot: cookie-set attributes win; otherwise restore from
-            localStorage before first paint (covers cleared-cookie visitors).
+        {/* No-flash boot: restore the theme from localStorage before first
+            paint. Runs in <head> before <body> renders, so there is no flash.
+            Theme used to be seeded from cookies server-side, but that read
+            forced dynamic rendering for the entire site.
             Keyboard shortcuts (d = mode, l = language) live in SiteNav. */}
         <script dangerouslySetInnerHTML={{ __html: `(function(){
             try{
               var r=document.documentElement;
-              var flag=r.getAttribute('data-flag')||localStorage.getItem('arthur-flag')||'brasil';
-              var mode=r.getAttribute('data-mode')||localStorage.getItem('arthur-mode')||'dark';
+              var flag=localStorage.getItem('arthur-flag')||'brasil';
+              var mode=localStorage.getItem('arthur-mode')||'dark';
               r.setAttribute('data-flag',flag);
               r.setAttribute('data-mode',mode);
               localStorage.setItem('arthur-flag',flag);

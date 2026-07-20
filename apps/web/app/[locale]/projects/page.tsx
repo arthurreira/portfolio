@@ -1,5 +1,5 @@
 import { projects } from "@arthurreira/content"
-import { getTranslations } from "next-intl/server"
+import { getTranslations, setRequestLocale } from "next-intl/server"
 import { SiteProjects } from "@/components/organisms/site-projects"
 
 export default async function ProjectsPage({
@@ -8,6 +8,7 @@ export default async function ProjectsPage({
   params: Promise<{ locale: string }>
 }) {
   const { locale } = await params
+  setRequestLocale(locale)
   const t = await getTranslations("projects")
 
   const items = projects
