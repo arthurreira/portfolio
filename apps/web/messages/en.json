@@ -131,7 +131,7 @@
   },
   "chat": {
     "emptyTitle": "Ask about Arthur",
-    "emptyDescription": "Ask about his background, experience, or any project. Answers come from this portfolio.",
+    "emptyDescription": "Background, experience, any project — answers come from this portfolio.",
     "placeholder": "Ask a question…",
     "send": "Send message",
     "thinking": "Thinking…",
@@ -149,6 +149,15 @@
     "degraded": "Answered by the backup model, so this reply may be less detailed.",
     "modelLabel": "Model",
     "modelClaude": "Claude Haiku 4.5",
-    "modelFree": "Llama 3.3 70B"
+    "modelFree": "Llama 3.3 70B",
+    "metaPrivate": "Not stored",
+    "metaPrivateHint": "Messages live only in this tab and disappear on reload.",
+    "clear": "Start over",
+    "copy": "Copy answer",
+    "copied": "Copied",
+    "metaScope": "Answers from this portfolio",
+    "openHint": "Press / to ask",
+    "charsLeft": "{count} characters left",
+    "tooLong": "Message is too long"
   }
 }
