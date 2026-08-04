@@ -57,13 +57,25 @@ const requestSchema = z
     messages: z.array(messageSchema).min(1).max(MAX_MESSAGES),
     locale: z.string().optional(),
     turnstileToken: z.string().optional(),
+    model: z.unknown().optional(),
   })
   .passthrough()
+
+export type ModelChoice = "claude" | "workers-ai"
+
+/**
+ * Anything but the exact free-model id falls back to the default silently —
+ * a forged value must not select a model, and must not produce an error that
+ * maps out the allowlist either.
+ */
+const resolveModelChoice = (value: unknown): ModelChoice =>
+  value === "workers-ai" ? "workers-ai" : "claude"
 
 export interface ChatRequest {
   messages: UIMessage[]
   locale?: string
   turnstileToken?: string
+  model: ModelChoice
 }
 
 export type ValidationResult =
@@ -126,6 +138,7 @@ export const validateChatRequest = (payload: unknown): ValidationResult => {
       messages: messages as unknown as UIMessage[],
       locale: parsed.data.locale,
       turnstileToken: parsed.data.turnstileToken,
+      model: resolveModelChoice(parsed.data.model),
     },
   }
 }

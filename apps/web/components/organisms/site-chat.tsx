@@ -35,6 +35,10 @@ import {
 } from "@arthurreira/ui/client"
 
 import { ChatComposer } from "@/components/molecules/chat-composer"
+import {
+  ChatModelPicker,
+  type ModelChoice,
+} from "@/components/molecules/chat-model-picker"
 import { ChatMessage } from "@/components/molecules/chat-message"
 import { ChatTurnstile } from "@/components/molecules/chat-turnstile"
 import { useDegraded } from "@/hooks/use-degraded"
@@ -76,6 +80,8 @@ export function SiteChat() {
   const wasOpen = useRef(false)
 
   const { ref: turnstileRef, getToken } = useTurnstile()
+
+  const [model, setModel] = useState<ModelChoice>("claude")
   const { trackingFetch, degradedIds, settle, discard } = useDegraded()
 
   // Built once rather than on every render. `getToken` reads the widget ref
@@ -206,7 +212,10 @@ export function SiteChat() {
                                     variant="outline"
                                     size="sm"
                                     onClick={() =>
-                                      sendMessage({ text: question })
+                                      sendMessage(
+                                        { text: question },
+                                        { body: { model } }
+                                      )
                                     }
                                   >
                                     {question}
@@ -230,7 +239,10 @@ export function SiteChat() {
                                 !isBusy && index === messages.length - 1
                               }
                               onFollowup={(question) =>
-                                sendMessage({ text: question })
+                                sendMessage(
+                                  { text: question },
+                                  { body: { model } }
+                                )
                               }
                               isDegraded={degradedIds.has(message.id)}
                               degradedLabel={t("degraded")}
@@ -267,9 +279,16 @@ export function SiteChat() {
 
               <ChatTurnstile widgetRef={turnstileRef} />
 
-              <CardFooter>
+              <CardFooter className="flex-col items-stretch gap-2">
+                <div className="self-start">
+                  <ChatModelPicker
+                    value={model}
+                    onChange={setModel}
+                    disabled={isBusy}
+                  />
+                </div>
                 <ChatComposer
-                  onSend={(text) => sendMessage({ text })}
+                  onSend={(text) => sendMessage({ text }, { body: { model } })}
                   onStop={stop}
                   isBusy={isBusy}
                   placeholder={t("placeholder")}
