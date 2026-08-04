@@ -1,79 +1,58 @@
-import Anthropic from "@anthropic-ai/sdk"
+import { createAnthropic } from "@ai-sdk/anthropic"
+import {
+  convertToModelMessages,
+  createUIMessageStreamResponse,
+  streamText,
+  toUIMessageStream,
+  type UIMessage,
+} from "ai"
 
-/** Haiku 4.5 — cheapest model, ample for portfolio Q&A. */
-const MODEL = "claude-haiku-4-5"
-
-/** Hard ceiling on generated tokens. Answers are meant to be short; this also caps per-request cost. */
-const MAX_TOKENS = 1024
-
-/** Wire format for the browser. Provider-agnostic so the fallback provider can reuse it. */
-export type ChatStreamEvent =
-  | { type: "delta"; text: string }
-  | { type: "done" }
-  | { type: "error"; error: string }
-
-/** Request-side message shape — narrower than the SDK's, this is our API contract. */
-export interface ChatMessage {
-  role: "user" | "assistant"
-  content: string
-}
+import type { ChatConfig } from "./config"
 
 interface StreamChatParams {
   apiKey: string
+  config: ChatConfig
   systemPrompt: string
-  messages: ChatMessage[]
+  messages: UIMessage[]
+  headers?: Record<string, string>
 }
 
 /**
- * Streams a completion as Server-Sent Events.
+ * Streams a completion in the AI SDK UI Message Stream format, so the browser
+ * can consume it with `useChat` + `DefaultChatTransport` and no custom parsing.
  *
- * The system prompt carries a `cache_control` breakpoint so the (stable)
- * portfolio context is billed at cache-read rates on repeat requests.
+ * Keeping the wire format standard is also what lets the shadcn AI SDK helper
+ * stand in for this Worker during UI development.
  */
-export const streamChat = ({
+export const streamChat = async ({
   apiKey,
+  config,
   systemPrompt,
   messages,
-}: StreamChatParams): ReadableStream<Uint8Array> => {
-  const client = new Anthropic({ apiKey })
-  const encoder = new TextEncoder()
+  headers,
+}: StreamChatParams): Promise<Response> => {
+  const anthropic = createAnthropic({ apiKey })
 
-  return new ReadableStream<Uint8Array>({
-    async start(controller) {
-      const send = (event: ChatStreamEvent) =>
-        controller.enqueue(encoder.encode(`data: ${JSON.stringify(event)}\n\n`))
+  // Keep only the most recent turns: history length drives input cost, and an
+  // unbounded transcript would also eventually exceed the context window.
+  const recent = messages.slice(-config.maxHistoryMessages)
 
-      try {
-        const stream = client.messages.stream({
-          model: MODEL,
-          max_tokens: MAX_TOKENS,
-          system: [
-            {
-              type: "text",
-              text: systemPrompt,
-              cache_control: { type: "ephemeral" },
-            },
-          ],
-          messages: messages.map(({ role, content }) => ({ role, content })),
-        })
+  const result = streamText({
+    model: anthropic(config.model),
+    system: systemPrompt,
+    messages: await convertToModelMessages(recent),
+    maxOutputTokens: config.maxOutputTokens,
+  })
 
-        for await (const event of stream) {
-          if (
-            event.type === "content_block_delta" &&
-            event.delta.type === "text_delta"
-          ) {
-            send({ type: "delta", text: event.delta.text })
-          }
-        }
-
-        send({ type: "done" })
-      } catch (error) {
+  return createUIMessageStreamResponse({
+    headers,
+    stream: toUIMessageStream({
+      stream: result.stream,
+      onError: (error) => {
         // Logged to Workers observability; the client gets a generic message.
         console.error("chat stream failed", error)
-        send({ type: "error", error: "upstream_failed" })
-      } finally {
-        controller.close()
-      }
-    },
+        return "upstream_failed"
+      },
+    }),
   })
 }

@@ -21,7 +21,8 @@
     "wrangler": "^4"
   },
   "dependencies": {
-    "@anthropic-ai/sdk": "^0.115.0",
-    "@arthurreira/content": "workspace:^"
+    "@ai-sdk/anthropic": "^4.0.29",
+    "@arthurreira/content": "workspace:^",
+    "ai": "^7.0.51"
   }
 }

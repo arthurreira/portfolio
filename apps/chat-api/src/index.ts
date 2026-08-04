@@ -1,34 +1,40 @@
+import type { UIMessage } from "ai"
 import { corsHeaders, parseAllowedOrigins } from "./lib/cors"
 import { json } from "./lib/response"
-import { streamChat, type ChatMessage } from "./lib/chat"
+import { streamChat } from "./lib/chat"
+import { resolveChatConfig, type ChatConfigEnv } from "./lib/config"
 import {
   buildSystemPrompt,
   DEFAULT_LOCALE,
   isLocale,
 } from "./lib/portfolio-context"
 
-export interface Env {
-  /** Anthropic API key. Set with `wrangler secret put ANTHROPIC_API_KEY`. */
+export interface Env extends ChatConfigEnv {
+  /** The only secret here. Set with `wrangler secret put ANTHROPIC_API_KEY`. */
   ANTHROPIC_API_KEY: string
   /** Optional comma-separated CORS allowlist; defaults to the known site origins. */
   ALLOWED_ORIGINS?: string
 }
 
-const isChatMessage = (value: unknown): value is ChatMessage => {
+/** `useChat` posts AI SDK UIMessages: a role plus an array of parts. */
+const isUIMessage = (value: unknown): value is UIMessage => {
   if (typeof value !== "object" || value === null) return false
-  const { role, content } = value as Partial<ChatMessage>
-  return (role === "user" || role === "assistant") && typeof content === "string"
+  const { role, parts } = value as Partial<UIMessage>
+  return (
+    (role === "user" || role === "assistant" || role === "system") &&
+    Array.isArray(parts)
+  )
 }
 
 /**
  * Shape check only — size limits and history trimming land with the
  * validation work, so this just rejects structurally invalid payloads.
  */
-const parseMessages = (payload: unknown): ChatMessage[] | null => {
+const parseMessages = (payload: unknown): UIMessage[] | null => {
   if (typeof payload !== "object" || payload === null) return null
   const { messages } = payload as { messages?: unknown }
   if (!Array.isArray(messages) || messages.length === 0) return null
-  return messages.every(isChatMessage) ? messages : null
+  return messages.every(isUIMessage) ? messages : null
 }
 
 const handleChat = async (
@@ -60,17 +66,13 @@ const handleChat = async (
     isLocale(locale) ? locale : DEFAULT_LOCALE
   )
 
-  return new Response(
-    streamChat({ apiKey: env.ANTHROPIC_API_KEY, systemPrompt, messages }),
-    {
-      headers: {
-        "content-type": "text/event-stream",
-        "cache-control": "no-cache",
-        connection: "keep-alive",
-        ...cors,
-      },
-    }
-  )
+  return streamChat({
+    apiKey: env.ANTHROPIC_API_KEY,
+    config: resolveChatConfig(env),
+    systemPrompt,
+    messages,
+    headers: cors,
+  })
 }
 
 export default {
