@@ -1,7 +1,7 @@
 {
   "hero": {
-    "heading": "Morjens, mä on Arthuri",
-    "greeting": "Morjens, mä on",
+    "heading": "Morjens, mä oon Arthuri",
+    "greeting": "Morjens, mä oon",
     "firstName": "Arthur",
     "lastName": "Ferreira.",
     "heroSubtitle": "Junior Software Developer · Kuopio, Suomi · Infra & Cloud",
@@ -21,7 +21,7 @@
     },
     "cards": {
       "fromTitle": "Mistä olen",
-      "fromDesc": "Brasialainen, joka on asunut Suomessa yli 10 vuotta. Tällä hetkellä Kuopiossa, Pohjois-Savossa.",
+      "fromDesc": "Brasilialainen, joka on asunut Suomessa yli 10 vuotta. Tällä hetkellä Kuopiossa, Pohjois-Savossa.",
       "roleTitle": "Nykyinen rooli",
       "roleDesc": "Junior Software Engineer Nordcloud Oy:llä.",
       "projectTitle": "Nykyinen projekti",
@@ -40,7 +40,7 @@
     "title": "Projektit",
     "heading": "Projektit.",
     "countSuffix": "projektia",
-    "viewProject": "Katso Projekti",
+    "viewProject": "Katso projekti",
     "viewGithub": "GitHubista"
   },
   "about": {
@@ -52,7 +52,7 @@
     "roleLabel": "Rooli",
     "roleValue": "Junior @ Nordcloud",
     "offClockLabel": "Vapaa-aika",
-    "offClockValue": "Maalivahti, Miesten Kolmonen",
+    "offClockValue": "Maalivahti, miesten Kolmonen",
     "certsLabel": "Sertifikaatit",
     "verified": "Vahvistettu",
     "weather": {
@@ -64,7 +64,7 @@
     "creativeTitle": "Mikä sun uskonto oikeen on?",
     "creativeText": "Kaikki. Helluntailainen? Joo, tuun toimeen. Luterilainen? Sekin käy! Ortodoksi? Ei hitto sentään, männöö sekin... Lestadiolainen? Rakastan! Ai oot jehova? Joo joo, tiistaina oli hyvät jutut. Ai Buda tuli kuvioihin — onks se ok? On, sekin menee. Kuule, se joka ei vihaa ketään, niin kaikki rakastaa sitä. Se on ykköslaki kaupunginvaltuutetun asiantuntijoille. Rikkaasta köyhään, mustasta valkoiseen, isosta pieneen — kättelen jokaista ihan samalla lailla. Tiiätkö miks? Koska se joka ampuu joka suuntaan, osuu johki. Ja ku osuu — osuu kunnolla. Ai mut sä oot vielä nuori… Mulla on ihan älytön henkinen suoja — luterilaisen jumalan, pyhimyksen, Budan, hindun kautta. En tiiä mistä kaikkialta, mut kaikki rakastaa mua siellä... ",
     "langLabel": "Kieli & Persoona",
-    "langText": "Monikielisellä ihmisellä persoonallisuus vaihtuu huomaamatta käytettävän kielen mukana tilanteissa. Tämä siksi, että eri kielet kantaa mukanaan erilaisia kulttuurisia yhteyksiä ja tapoja nähdä maailmaa, esimerkiksi rakenteiden ja erilaisten sanastojen kautta. Tähän vaikuttaa myös kyseiseen kieleen ja kulttuuriin liitetyt ominaisuudet, mitä kohti puhujan persoonallisuus aina hieman siirtyy.🙂‍↕️"
+    "langText": "Monikielisellä ihmisellä persoonallisuus vaihtuu huomaamatta käytettävän kielen mukana. Tämä johtuu siitä, että eri kielet kantavat mukanaan erilaisia kulttuurisia yhteyksiä ja tapoja nähdä maailmaa, esimerkiksi rakenteiden ja sanastojen kautta. Tähän vaikuttavat myös kieleen ja kulttuuriin liitetyt ominaisuudet, joita kohti puhujan persoonallisuus aina hieman siirtyy.🙂‍↕️"
   },
   "nav": {
     "projects": "Projektit",
@@ -73,24 +73,24 @@
     "backToTop": "Takaisin ylös"
   },
   "topBar": {
-    "darkModeHint": "Paina d vaihtaaksesi tumman tilan",
-    "lightModeHint": "Paina d vaihtaaksesi vaalean tilan",
+    "darkModeHint": "Paina d vaihtaaksesi tummaan tilaan",
+    "lightModeHint": "Paina d vaihtaaksesi vaaleaan tilaan",
     "languageSwitcherHint": "Paina l vaihtaaksesi kielen",
-    "home": "Koti",
+    "home": "Etusivu",
     "about": "Tietoa"
   },
   "contact": {
     "title": "Ota yhteyttä",
     "heading1": "Otahan",
-    "heading2": "Yhteyttä? :)",
-    "openTo": "Avoin avoimen lähdekoodin mahdollisuuksille, freelance-projekteille ja kahvikeskusteluille.",
+    "heading2": "yhteyttä? :)",
+    "openTo": "Käytettävissä avoimen lähdekoodin projekteihin, freelance-töihin ja kahvikeskusteluihin.",
     "subtitle": "Olen aina avoin uusille mahdollisuuksille, yhteistyölle tai vain jutulle. Löydät minut täältä:",
     "github": "GitHub",
     "linkedin": "LinkedIn",
     "email": "Sähköposti",
-    "availability": "Rakennan uraani Pilvipalveuiden parissa",
-    "location": "Kuopiossa, Suomi 🇫🇮",
-    "responseTime": "Vastaa yleensä 24 tunnin kuluessa"
+    "availability": "Rakennan uraani pilvipalveluiden parissa",
+    "location": "Kuopio, Suomi 🇫🇮",
+    "responseTime": "Vastaan yleensä 24 tunnin kuluessa"
   },
   "theme": {
     "dark": "Tumma",
@@ -108,7 +108,7 @@
     "status": "Tila",
     "live": "Live",
     "source": "Lähdekoodi",
-    "defaultRole": "Suunnittelu & Toteutus",
+    "defaultRole": "Suunnittelu & toteutus",
     "back": "Takaisin projekteihin",
     "viewSite": "Näytä sivusto",
     "github": "GitHub",
@@ -122,7 +122,7 @@
       "school": "Kouluprojekti"
     },
     "roles": {
-      "solo": "Yksintoteutettu",
+      "solo": "Yksin toteutettu",
       "lead": "Pääkehittäjä",
       "contributor": "Osallistuja",
       "engineer": "Insinööri"
@@ -145,7 +145,7 @@
       "Mikä af-analytics on?",
       "Miten tämä chat toimii?"
     ],
-    "degraded": "Vastauksen antoi varamalli, joten se voi olla tavallista suppeampi.",
+    "degraded": "Varamalli vastasi tähän, joten vastaus voi olla tavallista suppeampi.",
     "modelLabel": "Malli",
     "modelClaude": "Claude Haiku 4.5",
     "modelFree": "Llama 3.3 70B"
