@@ -144,6 +144,7 @@
       "What does Arthur do?",
       "Which projects use TypeScript?",
       "What is af-analytics?"
-    ]
+    ],
+    "degraded": "Answered by the backup model, so this reply may be less detailed."
   }
 }
