@@ -23,6 +23,7 @@
   "dependencies": {
     "@ai-sdk/anthropic": "^4.0.29",
     "@arthurreira/content": "workspace:^",
-    "ai": "^7.0.51"
+    "ai": "^7.0.51",
+    "zod": "^3.25"
   }
 }
