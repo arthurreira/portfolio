@@ -8,6 +8,12 @@
   "observability": {
     "enabled": true,
   },
+  // Fallback model, used when Anthropic is unavailable. Bills against the
+  // Workers plan rather than the Anthropic balance — which matters, since the
+  // balance running dry is the likeliest reason we ever reach it.
+  "ai": {
+    "binding": "AI",
+  },
   "vars": {
     // Deployed builds must have a Turnstile secret. Without this the check
     // silently skips itself when the secret is missing, which would ship an
