@@ -37,6 +37,7 @@ import {
 import { ChatComposer } from "@/components/molecules/chat-composer"
 import { ChatMessage } from "@/components/molecules/chat-message"
 import { ChatTurnstile } from "@/components/molecules/chat-turnstile"
+import { useDegraded } from "@/hooks/use-degraded"
 import { useTurnstile } from "@/hooks/use-turnstile"
 
 const CHAT_API_URL =
@@ -75,6 +76,7 @@ export function SiteChat() {
   const wasOpen = useRef(false)
 
   const { ref: turnstileRef, getToken } = useTurnstile()
+  const { trackingFetch, degradedIds, settle, discard } = useDegraded()
 
   // Built once rather than on every render. `getToken` reads the widget ref
   // when it runs, which is inside the send handler — not during render.
@@ -82,6 +84,8 @@ export function SiteChat() {
     () =>
       new DefaultChatTransport({
         api: CHAT_API_URL,
+        // Wrapped only to read the degraded-mode header off the response.
+        fetch: trackingFetch,
         // A token is fetched per send rather than once: Turnstile tokens are
         // single-use, so one taken at mount would fail on the second message.
         prepareSendMessagesRequest: async ({ messages, body }) => ({
@@ -93,7 +97,7 @@ export function SiteChat() {
           },
         }),
       }),
-    [locale, getToken]
+    [locale, getToken, trackingFetch]
   )
 
   const { messages, sendMessage, status, error, stop } = useChat({ transport })
@@ -102,6 +106,20 @@ export function SiteChat() {
 
   // A blank chat gives no clue what it knows about — these do.
   const suggestions = t.raw("suggestions") as string[]
+
+  // The Worker marks the response, but the reply it produced does not exist
+  // until the turn settles — so the flag is attached once streaming is done.
+  useEffect(() => {
+    // A failed turn produced no reply to mark, and a flag left held would be
+    // misattributed to whatever gets answered next.
+    if (status === "error") {
+      discard()
+      return
+    }
+    if (status !== "ready") return
+    const last = messages.at(-1)
+    if (last?.role === "assistant") settle(last.id)
+  }, [status, messages, settle, discard])
 
   // Escape closes the panel — a dialog primitive would have done this for us.
   useEffect(() => {
@@ -214,6 +232,8 @@ export function SiteChat() {
                               onFollowup={(question) =>
                                 sendMessage({ text: question })
                               }
+                              isDegraded={degradedIds.has(message.id)}
+                              degradedLabel={t("degraded")}
                             />
                           </MessageScrollerItem>
                         ))}
