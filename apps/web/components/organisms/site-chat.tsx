@@ -180,12 +180,22 @@ export function SiteChat() {
                           </MessageScrollerItem>
                         )}
 
-                        {messages.map((message) => (
+                        {messages.map((message, index) => (
                           <MessageScrollerItem
                             key={message.id}
                             messageId={message.id}
                           >
-                            <ChatMessage message={message} />
+                            <ChatMessage
+                              message={message}
+                              // Only the newest reply, and only once it has
+                              // finished — mid-stream suggestions would jump.
+                              showFollowups={
+                                !isBusy && index === messages.length - 1
+                              }
+                              onFollowup={(question) =>
+                                sendMessage({ text: question })
+                              }
+                            />
                           </MessageScrollerItem>
                         ))}
 

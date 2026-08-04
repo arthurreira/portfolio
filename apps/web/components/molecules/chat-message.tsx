@@ -2,13 +2,23 @@ import type { UIMessage } from "ai"
 import {
   Bubble,
   BubbleContent,
+  Button,
   Message,
   MessageAvatar,
   MessageContent,
+  MessageFooter,
 } from "@arthurreira/ui"
 import { Avatar, AvatarFallback, AvatarImage } from "@arthurreira/ui/client"
 
 import { ChatMarkdown } from "@/components/molecules/chat-markdown"
+import { splitFollowups } from "@/lib/followups"
+
+interface ChatMessageProps {
+  message: UIMessage
+  /** Suggested next questions render only on the newest reply; older ones are stale. */
+  showFollowups?: boolean
+  onFollowup?: (question: string) => void
+}
 
 /**
  * A single chat turn.
@@ -19,15 +29,25 @@ import { ChatMarkdown } from "@/components/molecules/chat-markdown"
  * Only the assistant gets an avatar. The visitor has no identity in this chat,
  * so a generic icon on every other row would be noise in a narrow panel.
  */
-export function ChatMessage({ message }: { message: UIMessage }) {
+export function ChatMessage({
+  message,
+  showFollowups = false,
+  onFollowup,
+}: ChatMessageProps) {
   const isUser = message.role === "user"
 
-  const text = message.parts
+  const raw = message.parts
     .filter((part) => part.type === "text")
     .map((part) => part.text)
     .join("")
 
-  if (!text) return null
+  // The assistant appends its suggestions to the same reply, so they have to be
+  // peeled off before anything is rendered.
+  const { answer, followups } = isUser
+    ? { answer: raw, followups: [] }
+    : splitFollowups(raw)
+
+  if (!answer) return null
 
   return (
     <Message align={isUser ? "end" : "start"}>
@@ -48,12 +68,28 @@ export function ChatMessage({ message }: { message: UIMessage }) {
               is markdown, and only it gets parsed. */}
           <BubbleContent>
             {isUser ? (
-              <span className="whitespace-pre-wrap">{text}</span>
+              <span className="whitespace-pre-wrap">{answer}</span>
             ) : (
-              <ChatMarkdown>{text}</ChatMarkdown>
+              <ChatMarkdown>{answer}</ChatMarkdown>
             )}
           </BubbleContent>
         </Bubble>
+
+        {showFollowups && followups.length > 0 && onFollowup && (
+          <MessageFooter className="flex flex-col items-start gap-1.5">
+            {followups.map((question) => (
+              <Button
+                key={question}
+                variant="outline"
+                size="sm"
+                className="h-auto py-1 text-left whitespace-normal"
+                onClick={() => onFollowup(question)}
+              >
+                {question}
+              </Button>
+            ))}
+          </MessageFooter>
+        )}
       </MessageContent>
     </Message>
   )
