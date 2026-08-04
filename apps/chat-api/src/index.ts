@@ -73,7 +73,8 @@ const handleChat = async (
     return json({ success: false, error: validated.error }, 400, cors)
   }
 
-  const { messages, turnstileToken, locale: requestedLocale } = validated.data
+  const { messages, turnstileToken, model, locale: requestedLocale } =
+    validated.data
 
   // Guards run cheapest first. The throttle is a local counter with no network
   // call, so it goes ahead of Turnstile — a flood costs nothing to refuse.
@@ -131,6 +132,7 @@ const handleChat = async (
     messages,
     headers: cors,
     ai: env.AI,
+    model,
   })
 }
 

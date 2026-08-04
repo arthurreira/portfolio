@@ -143,8 +143,12 @@
     "suggestions": [
       "What does Arthur do?",
       "Which projects use TypeScript?",
-      "What is af-analytics?"
+      "What is af-analytics?",
+      "How does this chat work?"
     ],
-    "degraded": "Answered by the backup model, so this reply may be less detailed."
+    "degraded": "Answered by the backup model, so this reply may be less detailed.",
+    "modelLabel": "Model",
+    "modelClaude": "Claude Haiku 4.5",
+    "modelFree": "Llama 3.3 70B"
   }
 }
