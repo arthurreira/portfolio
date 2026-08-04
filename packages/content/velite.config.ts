@@ -71,6 +71,13 @@ export default defineConfig({
           })
         ),
         focus: s.array(s.string()),
+        // Deliberately narrow. Only what Arthur has actually stated goes here;
+        // everything else routes to the contact page rather than becoming a
+        // status line that silently goes stale.
+        availability: s.object({
+          openTo: s.array(s.string()),
+          routeElsewhereToContact: s.boolean(),
+        }),
       }),
     },
     about: {

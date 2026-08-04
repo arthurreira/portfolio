@@ -29,6 +29,14 @@ certifications:
     issuer: Microsoft
     status: in-progress
 
+# Only what has actually been stated. Anything not listed here is not a "no" —
+# it is simply unstated, and the chat sends those enquiries to the contact page
+# instead of guessing. Keeps this from rotting into a stale status line.
+availability:
+  openTo:
+    - Collaboration on open-source projects
+  routeElsewhereToContact: true
+
 focus:
   - Backend and cloud engineering
   - RAG and agentic AI workflows — LLM APIs, tool use, vector search, embeddings
