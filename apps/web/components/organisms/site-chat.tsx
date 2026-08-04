@@ -1,10 +1,11 @@
 "use client"
 
-import { useEffect, useId, useRef, useState } from "react"
+import { useEffect, useId, useMemo, useRef, useState } from "react"
 import { useChat } from "@ai-sdk/react"
 import { DefaultChatTransport } from "ai"
 import { useLocale, useTranslations } from "next-intl"
 import { AnimatePresence, MotionConfig, motion } from "motion/react"
+import { Turnstile } from "@marsidev/react-turnstile"
 import { ChatsCircleIcon, XIcon } from "@phosphor-icons/react"
 import {
   Button,
@@ -36,6 +37,7 @@ import {
 
 import { ChatComposer } from "@/components/molecules/chat-composer"
 import { ChatMessage } from "@/components/molecules/chat-message"
+import { TURNSTILE_SITE_KEY, useTurnstile } from "@/hooks/use-turnstile"
 
 const CHAT_API_URL =
   process.env.NEXT_PUBLIC_CHAT_API_URL ?? "http://127.0.0.1:8787/chat"
@@ -72,12 +74,29 @@ export function SiteChat() {
   const triggerRef = useRef<HTMLButtonElement>(null)
   const wasOpen = useRef(false)
 
-  const { messages, sendMessage, status, error, stop } = useChat({
-    transport: new DefaultChatTransport({
-      api: CHAT_API_URL,
-      body: { locale },
-    }),
-  })
+  const { ref: turnstileRef, getToken } = useTurnstile()
+
+  // Built once rather than on every render. `getToken` reads the widget ref
+  // when it runs, which is inside the send handler — not during render.
+  const transport = useMemo(
+    () =>
+      new DefaultChatTransport({
+        api: CHAT_API_URL,
+        // A token is fetched per send rather than once: Turnstile tokens are
+        // single-use, so one taken at mount would fail on the second message.
+        prepareSendMessagesRequest: async ({ messages, body }) => ({
+          body: {
+            ...body,
+            messages,
+            locale,
+            turnstileToken: await getToken(),
+          },
+        }),
+      }),
+    [locale, getToken]
+  )
+
+  const { messages, sendMessage, status, error, stop } = useChat({ transport })
 
   const isBusy = status === "submitted" || status === "streaming"
 
@@ -225,6 +244,17 @@ export function SiteChat() {
                   </MessageScroller>
                 </MessageScrollerProvider>
               </CardContent>
+
+              {TURNSTILE_SITE_KEY && (
+                <Turnstile
+                  ref={turnstileRef}
+                  siteKey={TURNSTILE_SITE_KEY}
+                  options={{
+                    execution: "execute",
+                    appearance: "interaction-only",
+                  }}
+                />
+              )}
 
               <CardFooter>
                 <ChatComposer

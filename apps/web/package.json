@@ -15,6 +15,7 @@
     "@ai-sdk/react": "^4.0.54",
     "@arthurreira/content": "workspace:*",
     "@arthurreira/ui": "workspace:*",
+    "@marsidev/react-turnstile": "^1.5.4",
     "@phosphor-icons/react": "^2.1.10",
     "@vercel/analytics": "^2.0.1",
     "ai": "^7.0.51",
