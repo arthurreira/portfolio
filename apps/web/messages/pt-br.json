@@ -142,7 +142,8 @@
     "suggestions": [
       "O que o Arthur faz?",
       "Quais projetos usam TypeScript?",
-      "O que é o af-analytics?"
+      "O que é o af-analytics?",
+      "Como funciona este chat?"
     ],
     "degraded": "Respondido pelo modelo reserva, então esta resposta pode ser menos detalhada."
   }

@@ -142,7 +142,8 @@
     "suggestions": [
       "Mitä Arthur tekee?",
       "Missä projekteissa on TypeScriptiä?",
-      "Mikä af-analytics on?"
+      "Mikä af-analytics on?",
+      "Miten tämä chat toimii?"
     ],
     "degraded": "Vastauksen antoi varamalli, joten se voi olla tavallista suppeampi."
   }
