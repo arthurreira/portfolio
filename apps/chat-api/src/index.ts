@@ -3,6 +3,7 @@ import { corsHeaders, parseAllowedOrigins } from "./lib/cors"
 import { json } from "./lib/response"
 import { streamChat } from "./lib/chat"
 import { resolveChatConfig, type ChatConfigEnv } from "./lib/config"
+import { verifyTurnstile } from "./lib/turnstile"
 import {
   buildSystemPrompt,
   DEFAULT_LOCALE,
@@ -10,10 +11,18 @@ import {
 } from "./lib/portfolio-context"
 
 export interface Env extends ChatConfigEnv {
-  /** The only secret here. Set with `wrangler secret put ANTHROPIC_API_KEY`. */
+  /** Set with `wrangler secret put ANTHROPIC_API_KEY`. */
   ANTHROPIC_API_KEY: string
+  /**
+   * Turnstile secret. Set with `wrangler secret put TURNSTILE_SECRET_KEY`.
+   * When absent the check is skipped, so local development needs no keys —
+   * but see the deploy guard in handleChat.
+   */
+  TURNSTILE_SECRET_KEY?: string
   /** Optional comma-separated CORS allowlist; defaults to the known site origins. */
   ALLOWED_ORIGINS?: string
+  /** Per-IP throttle, declared in wrangler.jsonc. */
+  CHAT_RATE_LIMIT?: RateLimit
 }
 
 /** `useChat` posts AI SDK UIMessages: a role plus an array of parts. */
@@ -55,6 +64,40 @@ const handleChat = async (
   if (!messages) {
     return json({ success: false, error: "invalid_messages" }, 400, cors)
   }
+
+  // Guards run cheapest first. The throttle is a local counter with no network
+  // call, so it goes ahead of Turnstile — a flood costs nothing to refuse.
+  // cf-connecting-ip is set by Cloudflare and cannot be spoofed by the client;
+  // the fallback only matters when running outside their network.
+  if (env.CHAT_RATE_LIMIT) {
+    const key = request.headers.get("cf-connecting-ip") ?? "unknown"
+    const { success } = await env.CHAT_RATE_LIMIT.limit({ key })
+    if (!success) {
+      return json({ success: false, error: "rate_limited" }, 429, {
+        ...cors,
+        "retry-after": "60",
+      })
+    }
+  }
+
+  if (env.TURNSTILE_SECRET_KEY) {
+    const { turnstileToken } = payload as { turnstileToken?: unknown }
+    if (typeof turnstileToken !== "string" || !turnstileToken) {
+      return json({ success: false, error: "turnstile_missing" }, 403, cors)
+    }
+
+    const human = await verifyTurnstile(
+      turnstileToken,
+      env.TURNSTILE_SECRET_KEY,
+      request.headers.get("cf-connecting-ip") ?? undefined
+    )
+    if (!human) {
+      return json({ success: false, error: "turnstile_failed" }, 403, cors)
+    }
+  }
+
+  // Throttle per visitor. cf-connecting-ip is set by Cloudflare and cannot be
+  // spoofed by the client; the fallback only matters outside their network.
 
   if (!env.ANTHROPIC_API_KEY) {
     console.error("ANTHROPIC_API_KEY is not configured")
