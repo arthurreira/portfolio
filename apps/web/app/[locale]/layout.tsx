@@ -10,6 +10,7 @@ import { VerticalTicker } from "@/components/atoms/vertical-ticker"
 import { ScrollProgress } from "@/components/atoms/scroll-progress"
 import { BackToTop } from "@/components/atoms/back-to-top"
 import { CursorFollower } from "@/components/atoms/cursor-follower"
+import { SiteChat } from "@/components/organisms/site-chat"
 import { Analytics } from "@vercel/analytics/next"
 import { routing } from "@/i18n/routing"
 
@@ -76,6 +77,7 @@ export default async function RootLayout({
           </main>
           <BackToTop />
         </SmoothScroll>
+        <SiteChat />
         </NextIntlClientProvider>
       </body>
     </html>

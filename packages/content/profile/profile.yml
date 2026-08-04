@@ -1,0 +1,147 @@
+# Credentials and skills. Language-neutral on purpose: these are proper nouns,
+# and the chat translates surrounding prose per locale anyway.
+#
+# `level` mirrors the tiering on the GitHub profile README and must be kept:
+#   core      — worked with substantially
+#   working   — reached for as needed
+#   exploring — actively learning, not claimed as expertise
+
+education:
+  - school: Savo Vocational College
+    program: Software Development
+    note: Graduated. Finnish name Savon ammattiopisto.
+
+certifications:
+  - name: Microsoft Azure Fundamentals
+    code: AZ-900
+    issuer: Microsoft
+    status: certified
+  - name: AWS Certified Cloud Practitioner
+    code: CLF-C02
+    issuer: Amazon Web Services
+    status: certified
+  - name: AWS Certified AI Practitioner
+    code: AIF-C01
+    issuer: Amazon Web Services
+    status: certified
+  - name: Microsoft Azure AI Fundamentals
+    code: AI-900
+    issuer: Microsoft
+    status: in-progress
+
+# Only what has actually been stated. Anything not listed here is not a "no" —
+# it is simply unstated, and the chat sends those enquiries to the contact page
+# instead of guessing. Keeps this from rotting into a stale status line.
+availability:
+  openTo:
+    - Collaboration on open-source projects
+  routeElsewhereToContact: true
+
+focus:
+  - Backend and cloud engineering
+  - RAG and agentic AI workflows — LLM APIs, tool use, vector search, embeddings
+  - Serverless and event-driven architecture
+  - Cloud architecture patterns and system design
+
+skills:
+  # Languages
+  - { name: TypeScript, category: language, level: core }
+  - { name: JavaScript, category: language, level: core }
+  - { name: C#, category: language, level: core }
+  - { name: Python, category: language, level: core }
+  - { name: SQL, category: language, level: core }
+  - { name: C++, category: language, level: working }
+  - { name: PHP, category: language, level: working }
+
+  # Frontend
+  - { name: React, category: frontend, level: core }
+  - { name: Next.js, category: frontend, level: core }
+  - { name: Tailwind CSS, category: frontend, level: core }
+  - { name: shadcn/ui, category: frontend, level: core }
+  - { name: TanStack Query, category: frontend, level: core }
+  - { name: Framer Motion, category: frontend, level: core }
+  - { name: Zod, category: frontend, level: working }
+  - { name: Better Auth, category: frontend, level: working }
+  - { name: Atomic Design, category: frontend, level: working }
+  - { name: Velite, category: frontend, level: working }
+  - { name: Bootstrap, category: frontend, level: working }
+
+  # Backend and data
+  - { name: Node.js, category: backend, level: core }
+  - { name: Express, category: backend, level: core }
+  - { name: ASP.NET Core, category: backend, level: core }
+  - { name: Hono, category: backend, level: core }
+  - { name: FastAPI, category: backend, level: core }
+  - { name: REST APIs, category: backend, level: core }
+  - { name: PostgreSQL, category: data, level: core }
+  - { name: MySQL, category: data, level: core }
+  - { name: Prisma, category: data, level: core }
+  - { name: Entity Framework Core, category: data, level: core }
+  - { name: Redis, category: data, level: core }
+  - { name: Supabase, category: data, level: core }
+  - { name: SQLite, category: data, level: working }
+  - { name: MariaDB, category: data, level: working }
+  - { name: Neon, category: data, level: working }
+  - { name: Pydantic, category: data, level: working }
+  - { name: SQLAlchemy, category: data, level: working }
+  - { name: Stripe API, category: data, level: working }
+  - { name: Databricks, category: data, level: working }
+
+  # Cloud
+  - { name: Microsoft Azure, category: cloud, level: core }
+  - { name: AWS, category: cloud, level: core }
+  - { name: Cloudflare Workers, category: cloud, level: core }
+  - { name: Vercel, category: cloud, level: core }
+  - { name: Cloudflare Workers AI, category: cloud, level: working }
+  - { name: Cloudflare Queues, category: cloud, level: working }
+  - { name: Durable Objects, category: cloud, level: working }
+  - { name: Wrangler, category: cloud, level: working }
+
+  # DevSecOps
+  - { name: Docker, category: devops, level: core }
+  - { name: Kubernetes, category: devops, level: core }
+  - { name: Terraform, category: devops, level: core }
+  - { name: Bicep, category: devops, level: core }
+  - { name: GitHub Actions, category: devops, level: core }
+  - { name: Azure DevOps, category: devops, level: core }
+  - { name: CI/CD, category: devops, level: core }
+  - { name: Snyk, category: devops, level: core }
+  - { name: Grafana, category: devops, level: core }
+  - { name: Datadog, category: devops, level: core }
+  - { name: Git, category: devops, level: core }
+
+  # Tooling
+  - { name: Turborepo, category: tooling, level: core }
+  - { name: pnpm, category: tooling, level: core }
+  - { name: Vite, category: tooling, level: core }
+  - { name: ESLint, category: tooling, level: core }
+  - { name: Prettier, category: tooling, level: core }
+
+  # Testing
+  - { name: Vitest, category: testing, level: core }
+  - { name: pytest, category: testing, level: core }
+  - { name: Jest, category: testing, level: core }
+  - { name: Testing Library, category: testing, level: core }
+  - { name: Postman, category: testing, level: core }
+  - { name: k6, category: testing, level: core }
+
+  # AI — explicitly the learning edge, not claimed expertise
+  - { name: Claude API, category: ai, level: exploring }
+  - { name: RAG, category: ai, level: exploring }
+  - { name: Vector embeddings, category: ai, level: exploring }
+  - { name: Prompt engineering, category: ai, level: exploring }
+  - { name: Tool use / function calling, category: ai, level: exploring }
+  - { name: Amazon Bedrock, category: ai, level: exploring }
+  - { name: Azure OpenAI, category: ai, level: exploring }
+  - { name: Azure AI Foundry, category: ai, level: exploring }
+  - { name: MLflow, category: ai, level: exploring }
+
+  # Embedded
+  - { name: Arduino, category: embedded, level: working }
+  - { name: Raspberry Pi, category: embedded, level: working }
+  - { name: ESP32, category: embedded, level: working }
+
+  # Design
+  - { name: Figma, category: design, level: working }
+  - { name: Unity, category: design, level: working }
+  - { name: Blender, category: design, level: working }

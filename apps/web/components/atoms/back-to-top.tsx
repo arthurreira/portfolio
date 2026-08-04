@@ -28,7 +28,7 @@ export function BackToTop() {
       aria-label={t("backToTop")}
       onClick={() => lenis?.scrollTo(0, { duration: 1.1 })}
       className={cn(
-        "border-border bg-background/80 text-muted-foreground fixed right-5 bottom-5 z-50 flex size-10 items-center justify-center border backdrop-blur transition-all duration-300",
+        "border-border bg-background/80 text-muted-foreground fixed right-5 bottom-20 z-50 flex size-10 items-center justify-center border backdrop-blur transition-all duration-300",
         "hover:border-primary hover:text-primary",
         visible
           ? "translate-y-0 opacity-100"

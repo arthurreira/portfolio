@@ -8,6 +8,7 @@ This file provides guidance to Claude Code (claude.ai/code) when working with co
 
 - `apps/web` — Portfolio site → [arthurreira.dev](https://arthurreira.dev)
 - `apps/playground` — Component sandbox → [playground.arthurreira.dev](https://playground.arthurreira.dev)
+- `apps/chat-api` — Cloudflare Worker backing the portfolio AI chat
 - `packages/ui` — `@arthurreira/ui`, the shared component library
 - `packages/content` — `@arthurreira/content`, the Velite/MDX content layer
 - `packages/eslint-config`, `packages/typescript-config` — shared configs
@@ -76,6 +77,30 @@ Internationalized with **next-intl**. Locales are `['en', 'fi', 'pt-br']` with *
 ### `apps/playground`
 
 Standalone Next.js sandbox for the same `@arthurreira/ui` components, adding `@dnd-kit` (drag-and-drop sortable grids) and `motion`. Routes: `/`, `/cards`, `/sortable`.
+
+### `apps/chat-api` — AI chat Worker
+
+A Cloudflare Worker (Wrangler + TypeScript) that answers visitor questions about Arthur. **Stateless by design**: nothing is persisted anywhere — no database, no KV/D1/Durable Objects, no vector store. Conversations live in React state and disappear on refresh.
+
+- **Context, not RAG.** The portfolio is small enough to fit in the system prompt, assembled per locale in `src/lib/portfolio-context.ts` from `@arthurreira/content`. Note the Velite `content` field is *compiled MDX* (a JS function) and unusable as model context — the about text comes from `raw: s.raw()`, and projects are rendered from their structured metadata.
+- **Wire format: the AI SDK UI Message Stream.** `POST /chat` returns `createUIMessageStreamResponse(toUIMessageStream(...))` from `ai`, so the browser consumes it with `useChat` + `DefaultChatTransport` and no custom parsing. (`result.toUIMessageStreamResponse()` is deprecated — use the standalone helpers.) `convertToModelMessages()` is async in `ai@7`; await it.
+- **Config vs. secret.** `ANTHROPIC_API_KEY` is the only secret (`wrangler secret put`, or `.dev.vars` locally — both gitignored). Model, output-token cap, and history window are plain env vars resolved in `src/lib/config.ts`; cost-critical values are **clamped to hardcoded ceilings**, so config can lower them but never raise them.
+- `@ai-sdk/anthropic` needs the `nodejs_compat` compatibility flag in `wrangler.jsonc`.
+- **`wrangler dev` does not hot-reload `.dev.vars`** — restart it after changing a key, or you will keep debugging a stale value.
+
+**Building the chat UI without a model.** `@shadcn/helpers/ai-sdk` scripts a conversation in code and streams it through the real `useChat` lifecycle — no model, API route, network request, or API key. Because the Worker speaks the standard AI SDK protocol, the helper is a drop-in stand-in for it:
+
+```ts
+import { createChat } from "@shadcn/helpers/ai-sdk"
+
+const chat = createChat()
+  .user("What projects use TypeScript?")
+  .assistant("AF Analytics and dns-tool.")
+
+// useChat({ messages: chat.get(0), transport: chat.transport() })
+```
+
+Use it to develop message bubbles and streaming states offline, deterministically, and **without spending API credits**. It is a development and testing tool only — production always goes through the Worker.
 
 ## Conventions
 

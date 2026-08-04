@@ -127,5 +127,22 @@
       "contributor": "Contribuidor",
       "engineer": "Engenheiro"
     }
+  },
+  "chat": {
+    "emptyTitle": "Pergunte sobre o Arthur",
+    "emptyDescription": "Pergunte sobre a trajetória, a experiência ou qualquer projeto. As respostas vêm deste portfólio.",
+    "placeholder": "Escreva uma pergunta…",
+    "send": "Enviar mensagem",
+    "thinking": "Pensando…",
+    "error": "Algo deu errado. Tente novamente.",
+    "open": "Pergunte sobre o Arthur",
+    "title": "Pergunte sobre o Arthur",
+    "close": "Fechar chat",
+    "stop": "Parar a resposta",
+    "suggestions": [
+      "O que o Arthur faz?",
+      "Quais projetos usam TypeScript?",
+      "O que é o af-analytics?"
+    ]
   }
 }
