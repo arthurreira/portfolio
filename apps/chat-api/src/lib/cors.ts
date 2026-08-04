@@ -1,7 +1,10 @@
 const FALLBACK_ORIGINS = [
   "https://arthurreira.dev",
   "https://www.arthurreira.dev",
+  // Both dev spellings: the browser sends whichever host you typed, and they
+  // are distinct origins, so allowlisting only one silently blocks the other.
   "http://localhost:3000",
+  "http://127.0.0.1:3000",
 ]
 
 /** Parses the comma-separated ALLOWED_ORIGINS binding, falling back to the known site origins. */
