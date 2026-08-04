@@ -1,48 +1,71 @@
 ---
 title: "arthurreira.dev"
-description: "Henkilökohtainen portfolio Turborepo-monoreposssa — Next.js 15, Velite MDX-sisällölle, next-intl kolmelle kielelle ja jaettu @arthurreira/ui design token -paketti."
+description: "Henkilökohtainen portfolio Turborepo-monorepossa — Next.js 16, Velite MDX-sisällölle, next-intl kolmelle kielelle, jaettu @arthurreira/ui design token -paketti ja tilaton tekoälychat Cloudflare Workersilla."
 createdAt: "2026-03-28"
 featured: false
 role: "solo"
-highlight: "Multilingual portfolio (EN/PT/FI) in a Turborepo monorepo with Velite MDX content and a shared design system"
+highlight: "Kolmikielinen portfolio (EN/PT/FI) Turborepo-monorepossa, mukana tilaton tekoälychat Cloudflare Workersilla"
 techStack:
-  - "Next.js 15"
+  - "Next.js 16"
   - "TypeScript"
   - "Turborepo"
   - "Velite"
   - "next-intl"
   - "Tailwind CSS"
   - "shadcn/ui"
+  - "Cloudflare Workers"
+  - "AI SDK"
+  - "Claude"
 githubRepo: "https://github.com/arthurreira/arthurreira.dev"
 url: "https://arthurreira.dev"
 status: "ongoing"
 ---
 
 
-## What I built
+## Mitä rakensin
 
-The site lives inside a Turborepo monorepo with three workspaces: `apps/web` (the Next.js 15 site), `packages/content` (Velite-powered MDX), and `packages/ui` (a shared design token package called `@arthurreira/ui`). The design system exports Tailwind config, global CSS, and reusable components — any app in the monorepo can install the package and inherit the entire token set.
+Sivusto elää Turborepo-monorepossa, jossa on kolme työtilaa: `apps/web` (Next.js 16 -sivusto), `packages/content` (Veliten pyörittämä MDX) ja `packages/ui` (jaettu design token -paketti `@arthurreira/ui`). Design-järjestelmä vie ulos Tailwind-konfiguraation, globaalit tyylit ja uudelleenkäytettävät komponentit — mikä tahansa monorepon sovellus voi asentaa paketin ja periä koko token-setin.
 
-Content is managed through Velite, which transforms MDX frontmatter and body into typed TypeScript at build time. Switching from Contentlayer was a deliberate choice: Velite handles custom schema transforms natively, is actively maintained, and gives full type-safety on every field without hacks.
+Sisältöä hallitaan Velitellä, joka muuntaa MDX:n frontmatterin ja rungon tyypitetyksi TypeScriptiksi käännösvaiheessa. Contentlayeristä luopuminen oli tietoinen valinta: Velite hoitaa skeemamuunnokset natiivisti, sitä ylläpidetään aktiivisesti, ja se antaa täyden tyyppiturvan jokaiselle kentälle ilman kikkailua.
 
-Internationalisation runs through `next-intl` with three locales (EN, PT-BR, FI). A `postinstall` script in `packages/ui` auto-syncs design tokens whenever the package rebuilds, so the web app never drifts out of sync with the system.
+Monikielisyys hoituu `next-intl`-kirjastolla kolmella lokaalilla (EN, PT-BR, FI). `packages/ui`:n `postinstall`-skripti synkronoi design tokenit automaattisesti aina kun paketti rakennetaan uudelleen, joten web-sovellus ei koskaan ajaudu erilleen järjestelmästä.
 
-## What I learned
+## Tekoälychat
 
-Building your own design system forces every decision to be explicit. I learned how Tailwind's `@theme` and CSS custom properties interact, how to publish a package inside a monorepo without a registry, and how far you can push a content-as-code approach before it becomes friction. The biggest lesson: structure the monorepo for change, not for the current use case.
+Nurkassa oleva chat vastaa minua koskeviin kysymyksiin tämän portfolion omasta sisällöstä. Se pyörii Cloudflare Workerissa, ja kiinnostavimmat ratkaisut siinä koskevat pitkälti sitä, mitä jätin **rakentamatta**.
 
-## Highlights
+**Mitään ei tallenneta.** Ei tietokantaa, ei avain–arvo-varastoa, ei vektorivarastoa. Keskustelut elävät Reactin tilassa ja katoavat sivun latautuessa uudelleen. Se oli ensimmäinen päätös, ja useimmat muut seuraavat siitä: kun mitään ei säilötä, ei ole dataa vuotaa, ei säilytyskäytäntöä kirjoitettavaksi eikä mitään selitettävää tietosuojaselosteessa.
 
-- Turborepo monorepo: web app + content + design-system packages
-- Velite for type-safe MDX content
-- 3 languages via next-intl (EN / PT-BR / FI)
-- @arthurreira/ui shared design token package
-- Built-in 2×2 theme matrix (Brasil/Suomi × dark/light)
+**Ei RAGia.** Haku on ilmeinen refleksi kun puhutaan omasta sisällöstä keskustelemisesta, mutta tämä portfolio mahtuu mukavasti system prompt -kehotteeseen. Embedding-putken ja vektorivaraston rakentaminen olisi tuonut infrastruktuuria, kuluja ja kokonaisen luokan hakuvirheitä ratkaisemaan ongelmaa jota minulla ei ollut. Konteksti kootaan kielikohtaisesti samasta MDX- ja profiilidatasta jonka sivusto renderöi, joten projektin muokkaaminen muuttaa sitä mitä chat tietää.
 
-## Tech Stack
+**Kulut on katkaistu kohdasta josta niistä ei voi kiistellä.** Vastauksen pituusraja ja historiaikkuna luetaan konfiguraatiosta, mutta ne on rajattu koodissa kovaan kattoon, joten väärin kirjoitettu arvo voi laskea niitä muttei koskaan nostaa. Pyyntöjen pituus validoidaan ennen mallille päätymistä, koska syötteen koko on se ainoa kululevy jota anonyymi kävijä hallitsee. IP-kohtainen nopeusrajoitus ja bottitarkistus ajetaan ennen kaikkea tätä — halvin vartija ensin, jotta väärinkäyttö torjutaan ennen kuin se laskuttaa.
 
-- **Framework:** Next.js 15 (App Router)
-- **Content:** Velite (type-safe MDX)
-- **i18n:** next-intl
+**Se heikkenee sen sijaan että hajoaisi.** Jos mallin tarjoaja pettää — todennäköisimmin siksi että annoin saldon loppua — pyyntö yritetään uudelleen Cloudflaren omalla infralla pyörivällä mallilla, ja vastaus kertoo tulleensa varajärjestelmästä. Portfolio jonka chat vastaa hieman huonommin on parempi kuin portfolio jonka chat on rikki sen edessä joka sitä lukee.
+
+Tuon varajärjestelmän toimimaan saaminen vaati yhden epäilmeisen palan. Striimaus-API ei heitä virhettä kun pyyntö hylätään; se ratkeaa iloisesti ja raportoi virheen striimin sisällä — mihin mennessä vastaus on jo alkanut eikä mallia voi enää vaihtaa. Siksi striimiä luetaan kunnes se joko kaatuu tai tuottaa oikeaa sisältöä, ja vasta sitten siihen sitoudutaan — mikä muuttaa "vastaus alkoi jo" takaisin päätökseksi.
+
+Worker puhuu AI SDK:n vakiomuotoista striimausformaattia oman protokollan sijaan. Se piti selainpuolen yhdessä hookissa ilman jäsentämistä, ja tarkoitti myös että pystyin rakentamaan koko chat-käyttöliittymän skriptattua sijaista vasten — jokaisen kuplan, striimaustilan ja virhepolun — ilman mallia, verkkopyyntöä tai yhtäkään API-krediittiä.
+
+## Mitä opin
+
+Oman design-järjestelmän rakentaminen pakottaa jokaisen päätöksen eksplisiittiseksi. Frameworkin oletusten taakse ei voi piiloutua. Opin miten Tailwindin `@theme` ja CSS-muuttujat toimivat yhdessä, miten paketin voi julkaista monorepossa ilman rekisteriä, ja kuinka pitkälle sisältö-koodina-lähestymistavan voi viedä ennen kuin siitä tulee kitkaa.
+
+Chat opetti toisenlaisen läksyn: tekoälyn lisäämisessä vaikeinta on harvoin itse malli. Vaikeaa oli päättää mitä jättää tallentamatta, rajata mitä tuntematon voi kuluttaa minun piikkiini, ja saada koko juttu pettämään tavalla joka näyttää yhä harkitulta. Suurin oppi: rakenna muutosta varten, älä nykyistä käyttötapausta varten.
+
+## Kohokohdat
+
+- Turborepo-monorepo: web-sovellus + sisältö + design-järjestelmäpaketit
+- Velite tyyppiturvalliselle MDX-sisällölle
+- 3 kieltä next-intl:n kautta (EN / PT-BR / FI)
+- @arthurreira/ui jaettu design token -paketti
+- Sisäänrakennettu 2×2 teemamatriisi (Brasil/Suomi × tumma/vaalea)
+- Tilaton tekoälychat Cloudflare Workersilla, varamallilla ja kovilla kulukatoilla
+
+## Teknologiat
+
+- **Framework:** Next.js 16 (App Router)
+- **Sisältö:** Velite (tyyppiturvallinen MDX)
+- **Monikielisyys:** next-intl
 - **Monorepo:** Turborepo + pnpm
-- **Design system:** @arthurreira/ui (Tailwind v4 + shadcn/ui)
+- **Design-järjestelmä:** @arthurreira/ui (Tailwind v4 + shadcn/ui)
+- **Chat:** Cloudflare Workers + AI SDK + Claude, varalla Workers AI
