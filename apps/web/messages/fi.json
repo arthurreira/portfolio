@@ -143,6 +143,7 @@
       "Mitä Arthur tekee?",
       "Missä projekteissa on TypeScriptiä?",
       "Mikä af-analytics on?"
-    ]
+    ],
+    "degraded": "Vastauksen antoi varamalli, joten se voi olla tavallista suppeampi."
   }
 }

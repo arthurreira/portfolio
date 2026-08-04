@@ -1,9 +1,9 @@
-import type { UIMessage } from "ai"
 import { corsHeaders, parseAllowedOrigins } from "./lib/cors"
 import { json } from "./lib/response"
 import { streamChat } from "./lib/chat"
 import { resolveChatConfig, type ChatConfigEnv } from "./lib/config"
 import { verifyTurnstile } from "./lib/turnstile"
+import { MAX_BODY_BYTES, validateChatRequest } from "./lib/validation"
 import {
   buildSystemPrompt,
   DEFAULT_LOCALE,
@@ -24,28 +24,31 @@ export interface Env extends ChatConfigEnv {
   ALLOWED_ORIGINS?: string
   /** Per-IP throttle, declared in wrangler.jsonc. */
   CHAT_RATE_LIMIT?: RateLimit
-}
-
-/** `useChat` posts AI SDK UIMessages: a role plus an array of parts. */
-const isUIMessage = (value: unknown): value is UIMessage => {
-  if (typeof value !== "object" || value === null) return false
-  const { role, parts } = value as Partial<UIMessage>
-  return (
-    (role === "user" || role === "assistant" || role === "system") &&
-    Array.isArray(parts)
-  )
+  /**
+   * Workers AI, used to answer when Anthropic is unavailable. Optional so the
+   * Worker still runs in a local session started without the binding.
+   */
+  AI?: Ai
 }
 
 /**
- * Shape check only — size limits and history trimming land with the
- * validation work, so this just rejects structurally invalid payloads.
+ * Reads the body, refusing anything past the byte ceiling before parsing it.
+ *
+ * `content-length` is checked first because it is free, but it is a claim by
+ * the client rather than a fact — a chunked request may not send one at all.
+ * The decoded size is therefore checked again for real.
  */
-const parseMessages = (payload: unknown): UIMessage[] | null => {
-  if (typeof payload !== "object" || payload === null) return null
-  const { messages } = payload as { messages?: unknown }
-  if (!Array.isArray(messages) || messages.length === 0) return null
-  return messages.every(isUIMessage) ? messages : null
+const readBoundedJson = async (request: Request): Promise<unknown | symbol> => {
+  const declared = Number(request.headers.get("content-length"))
+  if (Number.isFinite(declared) && declared > MAX_BODY_BYTES) return TOO_LARGE
+
+  const raw = await request.arrayBuffer()
+  if (raw.byteLength > MAX_BODY_BYTES) return TOO_LARGE
+
+  return JSON.parse(new TextDecoder().decode(raw)) as unknown
 }
+
+const TOO_LARGE = Symbol("too_large")
 
 const handleChat = async (
   request: Request,
@@ -53,18 +56,24 @@ const handleChat = async (
   cors: Record<string, string>
 ): Promise<Response> => {
   // Validate the request before checking server config, so a malformed payload
-  // reports as a client error (400) rather than being masked as a 500.
+  // reports as a client error rather than being masked as a 500.
   let payload: unknown
   try {
-    payload = await request.json()
+    payload = await readBoundedJson(request)
   } catch {
     return json({ success: false, error: "invalid_json" }, 400, cors)
   }
 
-  const messages = parseMessages(payload)
-  if (!messages) {
-    return json({ success: false, error: "invalid_messages" }, 400, cors)
+  if (payload === TOO_LARGE) {
+    return json({ success: false, error: "payload_too_large" }, 413, cors)
   }
+
+  const validated = validateChatRequest(payload)
+  if (!validated.ok) {
+    return json({ success: false, error: validated.error }, 400, cors)
+  }
+
+  const { messages, turnstileToken, locale: requestedLocale } = validated.data
 
   // Guards run cheapest first. The throttle is a local counter with no network
   // call, so it goes ahead of Turnstile — a flood costs nothing to refuse.
@@ -92,8 +101,7 @@ const handleChat = async (
   }
 
   if (env.TURNSTILE_SECRET_KEY) {
-    const { turnstileToken } = payload as { turnstileToken?: unknown }
-    if (typeof turnstileToken !== "string" || !turnstileToken) {
+    if (!turnstileToken) {
       return json({ success: false, error: "turnstile_missing" }, 403, cors)
     }
 
@@ -112,9 +120,8 @@ const handleChat = async (
     return json({ success: false, error: "not_configured" }, 500, cors)
   }
 
-  const { locale } = payload as { locale?: unknown }
   const systemPrompt = buildSystemPrompt(
-    isLocale(locale) ? locale : DEFAULT_LOCALE
+    isLocale(requestedLocale) ? requestedLocale : DEFAULT_LOCALE
   )
 
   return streamChat({
@@ -123,6 +130,7 @@ const handleChat = async (
     systemPrompt,
     messages,
     headers: cors,
+    ai: env.AI,
   })
 }
 

@@ -18,6 +18,9 @@ interface ChatMessageProps {
   /** Suggested next questions render only on the newest reply; older ones are stale. */
   showFollowups?: boolean
   onFollowup?: (question: string) => void
+  /** This reply came from the fallback model rather than the usual one. */
+  isDegraded?: boolean
+  degradedLabel?: string
 }
 
 /**
@@ -33,6 +36,8 @@ export function ChatMessage({
   message,
   showFollowups = false,
   onFollowup,
+  isDegraded = false,
+  degradedLabel,
 }: ChatMessageProps) {
   const isUser = message.role === "user"
 
@@ -74,6 +79,15 @@ export function ChatMessage({
             )}
           </BubbleContent>
         </Bubble>
+
+        {/* Stated plainly rather than as a warning: the answer is real and
+            usable, it just came from the weaker model. Alarming styling here
+            would misrepresent a working chat as a broken one. */}
+        {isDegraded && degradedLabel && (
+          <MessageFooter>
+            <p className="text-muted-foreground text-xs">{degradedLabel}</p>
+          </MessageFooter>
+        )}
 
         {showFollowups && followups.length > 0 && onFollowup && (
           <MessageFooter className="flex flex-col items-start gap-1.5">

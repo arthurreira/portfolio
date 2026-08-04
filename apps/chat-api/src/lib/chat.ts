@@ -1,13 +1,20 @@
 import { createAnthropic } from "@ai-sdk/anthropic"
 import {
   convertToModelMessages,
+  createUIMessageStream,
   createUIMessageStreamResponse,
   streamText,
   toUIMessageStream,
+  type ModelMessage,
+  type TextStreamPart,
+  type ToolSet,
   type UIMessage,
 } from "ai"
 
 import type { ChatConfig } from "./config"
+import { DEGRADED_HEADER } from "./headers"
+import { probeStream } from "./probe-stream"
+import { streamWorkersAiText } from "./workers-ai"
 
 interface StreamChatParams {
   apiKey: string
@@ -15,7 +22,25 @@ interface StreamChatParams {
   systemPrompt: string
   messages: UIMessage[]
   headers?: Record<string, string>
+  /** Workers AI binding. Absent locally unless `wrangler dev --remote`. */
+  ai?: Ai
 }
+
+const toResponse = <TOOLS extends ToolSet>(
+  stream: ReadableStream<TextStreamPart<TOOLS>>,
+  headers?: Record<string, string>
+): Response =>
+  createUIMessageStreamResponse({
+    headers,
+    stream: toUIMessageStream({
+      stream,
+      onError: (error) => {
+        // Logged to Workers observability; the client gets a generic message.
+        console.error("chat stream failed", error)
+        return "upstream_failed"
+      },
+    }),
+  })
 
 /**
  * Streams a completion in the AI SDK UI Message Stream format, so the browser
@@ -23,6 +48,11 @@ interface StreamChatParams {
  *
  * Keeping the wire format standard is also what lets the shadcn AI SDK helper
  * stand in for this Worker during UI development.
+ *
+ * If Anthropic fails, the same request is retried against a Workers AI model and
+ * the response is marked degraded. The likeliest reason for that failure is the
+ * Anthropic balance running out, and a portfolio whose chat answers a little
+ * less well is better than one whose chat is broken in front of a recruiter.
  */
 export const streamChat = async ({
   apiKey,
@@ -30,29 +60,88 @@ export const streamChat = async ({
   systemPrompt,
   messages,
   headers,
+  ai,
 }: StreamChatParams): Promise<Response> => {
-  const anthropic = createAnthropic({ apiKey })
-
   // Keep only the most recent turns: history length drives input cost, and an
   // unbounded transcript would also eventually exceed the context window.
   const recent = messages.slice(-config.maxHistoryMessages)
+  const modelMessages = await convertToModelMessages(recent)
 
-  const result = streamText({
+  const anthropic = createAnthropic({ apiKey })
+  const primary = streamText({
     model: anthropic(config.model),
     system: systemPrompt,
-    messages: await convertToModelMessages(recent),
+    messages: modelMessages,
     maxOutputTokens: config.maxOutputTokens,
   })
 
-  return createUIMessageStreamResponse({
+  const probed = await probeStream(primary.stream)
+  if (probed.ok) return toResponse(probed.stream, headers)
+
+  console.error("primary model failed, falling back", probed.error)
+
+  if (!ai) {
+    // No binding to fall back to, so the original failure is the real answer.
+    console.error("no Workers AI binding configured for fallback")
+    return toResponse(primary.stream, headers)
+  }
+
+  return streamFallback({
+    ai,
+    config,
+    systemPrompt,
+    messages: modelMessages,
     headers,
-    stream: toUIMessageStream({
-      stream: result.stream,
-      onError: (error) => {
-        // Logged to Workers observability; the client gets a generic message.
-        console.error("chat stream failed", error)
-        return "upstream_failed"
-      },
-    }),
+  })
+}
+
+interface StreamFallbackParams {
+  ai: Ai
+  config: ChatConfig
+  systemPrompt: string
+  messages: ModelMessage[]
+  headers?: Record<string, string>
+}
+
+/**
+ * Second attempt, on Cloudflare's own models.
+ *
+ * Deliberately not probed. There is nothing left to fall back to, so a failure
+ * here has to reach the client as an error either way, and probing would only
+ * delay it.
+ */
+const streamFallback = ({
+  ai,
+  config,
+  systemPrompt,
+  messages,
+  headers,
+}: StreamFallbackParams): Response => {
+  const stream = createUIMessageStream({
+    execute: async ({ writer }) => {
+      const id = "fallback"
+      writer.write({ type: "text-start", id })
+
+      for await (const delta of streamWorkersAiText({
+        ai,
+        model: config.fallbackModel,
+        system: systemPrompt,
+        messages,
+        maxOutputTokens: config.maxOutputTokens,
+      })) {
+        writer.write({ type: "text-delta", id, delta })
+      }
+
+      writer.write({ type: "text-end", id })
+    },
+    onError: (error) => {
+      console.error("fallback stream failed", error)
+      return "upstream_failed"
+    },
+  })
+
+  return createUIMessageStreamResponse({
+    headers: { ...headers, [DEGRADED_HEADER]: "true" },
+    stream,
   })
 }
