@@ -1,0 +1,21 @@
+# Copy to .dev.vars (gitignored) for local `wrangler dev`.
+# In production set it as a secret instead: wrangler secret put ANTHROPIC_API_KEY
+ANTHROPIC_API_KEY=sk-ant-...
+
+# --- Optional operational settings (not secrets) ---
+# These exist so the model or the cost ceiling can change without a redeploy.
+# Invalid values fall back to the defaults below.
+
+# Model id. Default: claude-haiku-4-5
+# CHAT_MODEL=claude-haiku-4-5
+
+# Max tokens generated per answer. Default 1024, hard-capped at 2048 in code —
+# config can lower this ceiling but never raise it.
+# CHAT_MAX_OUTPUT_TOKENS=1024
+
+# How many recent messages are sent upstream. Default 20, hard-capped at 50.
+# CHAT_MAX_HISTORY_MESSAGES=20
+
+# Comma-separated CORS allowlist.
+# Defaults to https://arthurreira.dev, https://www.arthurreira.dev, http://localhost:3000
+# ALLOWED_ORIGINS=https://arthurreira.dev,http://localhost:3000

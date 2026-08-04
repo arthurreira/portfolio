@@ -1,0 +1,96 @@
+import type { UIMessage } from "ai"
+import {
+  Bubble,
+  BubbleContent,
+  Button,
+  Message,
+  MessageAvatar,
+  MessageContent,
+  MessageFooter,
+} from "@arthurreira/ui"
+import { Avatar, AvatarFallback, AvatarImage } from "@arthurreira/ui/client"
+
+import { ChatMarkdown } from "@/components/molecules/chat-markdown"
+import { splitFollowups } from "@/lib/followups"
+
+interface ChatMessageProps {
+  message: UIMessage
+  /** Suggested next questions render only on the newest reply; older ones are stale. */
+  showFollowups?: boolean
+  onFollowup?: (question: string) => void
+}
+
+/**
+ * A single chat turn.
+ *
+ * AI SDK messages carry an array of parts rather than a string, so the text
+ * parts are joined here — the assistant streams them in as it generates.
+ *
+ * Only the assistant gets an avatar. The visitor has no identity in this chat,
+ * so a generic icon on every other row would be noise in a narrow panel.
+ */
+export function ChatMessage({
+  message,
+  showFollowups = false,
+  onFollowup,
+}: ChatMessageProps) {
+  const isUser = message.role === "user"
+
+  const raw = message.parts
+    .filter((part) => part.type === "text")
+    .map((part) => part.text)
+    .join("")
+
+  // The assistant appends its suggestions to the same reply, so they have to be
+  // peeled off before anything is rendered.
+  const { answer, followups } = isUser
+    ? { answer: raw, followups: [] }
+    : splitFollowups(raw)
+
+  if (!answer) return null
+
+  return (
+    <Message align={isUser ? "end" : "start"}>
+      {!isUser && (
+        <MessageAvatar>
+          <Avatar>
+            {/* Decorative — the message text carries the meaning. */}
+            <AvatarImage src="/images/minavr.png" alt="" />
+            <AvatarFallback>AF</AvatarFallback>
+          </Avatar>
+        </MessageAvatar>
+      )}
+      <MessageContent>
+        {/* `muted` is only 5% opacity in these themes — invisible on a card.
+            `outline` reads clearly against the elevated panel surface. */}
+        <Bubble variant={isUser ? "default" : "outline"}>
+          {/* The visitor's own text is shown verbatim; only the model's reply
+              is markdown, and only it gets parsed. */}
+          <BubbleContent>
+            {isUser ? (
+              <span className="whitespace-pre-wrap">{answer}</span>
+            ) : (
+              <ChatMarkdown>{answer}</ChatMarkdown>
+            )}
+          </BubbleContent>
+        </Bubble>
+
+        {showFollowups && followups.length > 0 && onFollowup && (
+          <MessageFooter className="flex flex-col items-start gap-1.5">
+            {followups.map((question) => (
+              <Button
+                key={question}
+                variant="outline"
+                size="sm"
+                className="h-auto py-1 text-left whitespace-normal"
+                onClick={() => onFollowup(question)}
+              >
+                {question}
+              </Button>
+            ))}
+          </MessageFooter>
+        )}
+      </MessageContent>
+    </Message>
+  )
+}

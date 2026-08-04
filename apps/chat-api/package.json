@@ -1,0 +1,28 @@
+{
+  "name": "chat-api",
+  "version": "0.0.1",
+  "type": "module",
+  "private": true,
+  "scripts": {
+    "dev": "wrangler dev",
+    "deploy": "wrangler deploy",
+    "build": "wrangler deploy --dry-run --outdir dist",
+    "lint": "eslint .",
+    "typecheck": "tsc --noEmit",
+    "format": "prettier --write \"**/*.{ts,js,json,jsonc}\""
+  },
+  "devDependencies": {
+    "@arthurreira/eslint-config": "workspace:*",
+    "@arthurreira/typescript-config": "workspace:*",
+    "@cloudflare/workers-types": "^5",
+    "eslint": "^9.39.4",
+    "prettier": "^3.8.1",
+    "typescript": "^5.9.3",
+    "wrangler": "^4"
+  },
+  "dependencies": {
+    "@ai-sdk/anthropic": "^4.0.29",
+    "@arthurreira/content": "workspace:^",
+    "ai": "^7.0.51"
+  }
+}

@@ -1,0 +1,32 @@
+{
+  "$schema": "node_modules/wrangler/config-schema.json",
+  "name": "chat-api",
+  "main": "src/index.ts",
+  "compatibility_date": "2026-07-20",
+  // The AI SDK's Anthropic provider imports Node built-ins.
+  "compatibility_flags": ["nodejs_compat"],
+  "observability": {
+    "enabled": true,
+  },
+  "vars": {
+    // Deployed builds must have a Turnstile secret. Without this the check
+    // silently skips itself when the secret is missing, which would ship an
+    // unprotected endpoint with no error to notice. Local `.dev.vars` can set
+    // this to "false" to run keyless.
+    "REQUIRE_TURNSTILE": "true",
+  },
+  "unsafe": {
+    "bindings": [
+      {
+        // Per-IP throttle applied before any upstream call, so abuse costs
+        // nothing. Counts per data centre rather than globally, which makes it
+        // approximate — fine for stopping abuse, not for exact quotas.
+        // `period` accepts only 10 or 60 seconds.
+        "name": "CHAT_RATE_LIMIT",
+        "type": "ratelimit",
+        "namespace_id": "1001",
+        "simple": { "limit": 10, "period": 60 },
+      },
+    ],
+  },
+}

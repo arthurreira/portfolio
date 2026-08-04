@@ -127,5 +127,22 @@
       "contributor": "Osallistuja",
       "engineer": "Insinööri"
     }
+  },
+  "chat": {
+    "emptyTitle": "Kysy Arthurista",
+    "emptyDescription": "Kysy taustasta, kokemuksesta tai mistä tahansa projektista. Vastaukset perustuvat tämän portfolion sisältöön.",
+    "placeholder": "Kirjoita kysymys…",
+    "send": "Lähetä viesti",
+    "thinking": "Mietitään…",
+    "error": "Jokin meni pieleen. Yritä uudelleen.",
+    "open": "Kysy Arthurista",
+    "title": "Kysy Arthurista",
+    "close": "Sulje chat",
+    "stop": "Keskeytä vastaus",
+    "suggestions": [
+      "Mitä Arthur tekee?",
+      "Missä projekteissa on TypeScriptiä?",
+      "Mikä af-analytics on?"
+    ]
   }
 }
