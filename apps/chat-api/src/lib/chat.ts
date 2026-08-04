@@ -12,6 +12,7 @@ import {
 } from "ai"
 
 import type { ChatConfig } from "./config"
+import type { ModelChoice } from "./validation"
 import { DEGRADED_HEADER } from "./headers"
 import { probeStream } from "./probe-stream"
 import { streamWorkersAiText } from "./workers-ai"
@@ -24,6 +25,8 @@ interface StreamChatParams {
   headers?: Record<string, string>
   /** Workers AI binding. Absent locally unless `wrangler dev --remote`. */
   ai?: Ai
+  /** Validated visitor choice; "workers-ai" streams the free model directly. */
+  model: ModelChoice
 }
 
 const toResponse = <TOOLS extends ToolSet>(
@@ -61,11 +64,27 @@ export const streamChat = async ({
   messages,
   headers,
   ai,
+  model,
 }: StreamChatParams): Promise<Response> => {
   // Keep only the most recent turns: history length drives input cost, and an
   // unbounded transcript would also eventually exceed the context window.
   const recent = messages.slice(-config.maxHistoryMessages)
   const modelMessages = await convertToModelMessages(recent)
+
+  // The visitor chose the free model. Not marked degraded — that header means
+  // the primary failed, and this is a choice working as intended. If the
+  // binding is missing the choice quietly becomes the default, same as any
+  // other unhonourable value.
+  if (model === "workers-ai" && ai) {
+    return streamFallback({
+      ai,
+      config,
+      systemPrompt,
+      messages: modelMessages,
+      headers,
+      degraded: false,
+    })
+  }
 
   const anthropic = createAnthropic({ apiKey })
   const primary = streamText({
@@ -92,6 +111,7 @@ export const streamChat = async ({
     systemPrompt,
     messages: modelMessages,
     headers,
+    degraded: true,
   })
 }
 
@@ -101,6 +121,8 @@ interface StreamFallbackParams {
   systemPrompt: string
   messages: ModelMessage[]
   headers?: Record<string, string>
+  /** True when this is a failure fallback rather than the visitor's choice. */
+  degraded: boolean
 }
 
 /**
@@ -116,6 +138,7 @@ const streamFallback = ({
   systemPrompt,
   messages,
   headers,
+  degraded,
 }: StreamFallbackParams): Response => {
   const stream = createUIMessageStream({
     execute: async ({ writer }) => {
@@ -141,7 +164,7 @@ const streamFallback = ({
   })
 
   return createUIMessageStreamResponse({
-    headers: { ...headers, [DEGRADED_HEADER]: "true" },
+    headers: degraded ? { ...headers, [DEGRADED_HEADER]: "true" } : headers,
     stream,
   })
 }

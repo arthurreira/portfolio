@@ -35,6 +35,10 @@ import {
 } from "@arthurreira/ui/client"
 
 import { ChatComposer } from "@/components/molecules/chat-composer"
+import {
+  ChatModelPicker,
+  type ModelChoice,
+} from "@/components/molecules/chat-model-picker"
 import { ChatMessage } from "@/components/molecules/chat-message"
 import { ChatTurnstile } from "@/components/molecules/chat-turnstile"
 import { useDegraded } from "@/hooks/use-degraded"
@@ -76,6 +80,15 @@ export function SiteChat() {
   const wasOpen = useRef(false)
 
   const { ref: turnstileRef, getToken } = useTurnstile()
+
+  // Read through a ref inside the transport so changing model does not rebuild
+  // the transport (and with it the chat) mid-conversation.
+  const [model, setModel] = useState<ModelChoice>("claude")
+  const modelRef = useRef<ModelChoice>("claude")
+  const selectModel = (next: ModelChoice) => {
+    modelRef.current = next
+    setModel(next)
+  }
   const { trackingFetch, degradedIds, settle, discard } = useDegraded()
 
   // Built once rather than on every render. `getToken` reads the widget ref
@@ -93,6 +106,7 @@ export function SiteChat() {
             ...body,
             messages,
             locale,
+            model: modelRef.current,
             turnstileToken: await getToken(),
           },
         }),
@@ -267,7 +281,14 @@ export function SiteChat() {
 
               <ChatTurnstile widgetRef={turnstileRef} />
 
-              <CardFooter>
+              <CardFooter className="flex-col items-stretch gap-2">
+                <div className="self-start">
+                  <ChatModelPicker
+                    value={model}
+                    onChange={selectModel}
+                    disabled={isBusy}
+                  />
+                </div>
                 <ChatComposer
                   onSend={(text) => sendMessage({ text })}
                   onStop={stop}

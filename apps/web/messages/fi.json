@@ -145,6 +145,9 @@
       "Mikä af-analytics on?",
       "Miten tämä chat toimii?"
     ],
-    "degraded": "Vastauksen antoi varamalli, joten se voi olla tavallista suppeampi."
+    "degraded": "Vastauksen antoi varamalli, joten se voi olla tavallista suppeampi.",
+    "modelLabel": "Malli",
+    "modelClaude": "Claude Haiku 4.5",
+    "modelFree": "Llama 3.3 70B"
   }
 }
