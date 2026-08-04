@@ -81,14 +81,7 @@ export function SiteChat() {
 
   const { ref: turnstileRef, getToken } = useTurnstile()
 
-  // Read through a ref inside the transport so changing model does not rebuild
-  // the transport (and with it the chat) mid-conversation.
   const [model, setModel] = useState<ModelChoice>("claude")
-  const modelRef = useRef<ModelChoice>("claude")
-  const selectModel = (next: ModelChoice) => {
-    modelRef.current = next
-    setModel(next)
-  }
   const { trackingFetch, degradedIds, settle, discard } = useDegraded()
 
   // Built once rather than on every render. `getToken` reads the widget ref
@@ -106,7 +99,6 @@ export function SiteChat() {
             ...body,
             messages,
             locale,
-            model: modelRef.current,
             turnstileToken: await getToken(),
           },
         }),
@@ -220,7 +212,10 @@ export function SiteChat() {
                                     variant="outline"
                                     size="sm"
                                     onClick={() =>
-                                      sendMessage({ text: question })
+                                      sendMessage(
+                                        { text: question },
+                                        { body: { model } }
+                                      )
                                     }
                                   >
                                     {question}
@@ -244,7 +239,10 @@ export function SiteChat() {
                                 !isBusy && index === messages.length - 1
                               }
                               onFollowup={(question) =>
-                                sendMessage({ text: question })
+                                sendMessage(
+                                  { text: question },
+                                  { body: { model } }
+                                )
                               }
                               isDegraded={degradedIds.has(message.id)}
                               degradedLabel={t("degraded")}
@@ -285,12 +283,12 @@ export function SiteChat() {
                 <div className="self-start">
                   <ChatModelPicker
                     value={model}
-                    onChange={selectModel}
+                    onChange={setModel}
                     disabled={isBusy}
                   />
                 </div>
                 <ChatComposer
-                  onSend={(text) => sendMessage({ text })}
+                  onSend={(text) => sendMessage({ text }, { body: { model } })}
                   onStop={stop}
                   isBusy={isBusy}
                   placeholder={t("placeholder")}
