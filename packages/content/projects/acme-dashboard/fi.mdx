@@ -4,7 +4,7 @@ description: "Next.js-taloushallinnan koontinäyttösovellus, joka on rakennettu
 createdAt: "2023-03-28"
 featured: false
 role: "solo"
-highlight: "Full-stack Next.js 16 learning project — live at nextjs-dashboard.arthurreira.dev with Neon PostgreSQL + NextAuth.js v5"
+highlight: "Full-stack Next.js 16 -harjoitusprojekti — livenä osoitteessa nextjs-dashboard.arthurreira.dev, Neon PostgreSQL + NextAuth.js v5"
 techStack:
   - "Next.js 16"
   - "TypeScript"
@@ -19,29 +19,29 @@ status: "done"
 
 
 
-## What I built
+## Mitä rakensin
 
-A full-stack financial dashboard built by following the official Next.js 16 learn course — then extended and actually deployed to production. The app manages customers and invoices for a fictional company called Acme, with a dashboard showing revenue statistics and interactive charts.
+Full-stack-taloushallinnan koontinäyttö, joka syntyi virallista Next.js 16 -kurssia seuraamalla — ja jatkui siitä oikeaksi tuotantojulkaisuksi. Sovellus hallinnoi kuvitteellisen Acme-yhtiön asiakkaita ja laskuja, ja koontinäyttö näyttää liikevaihtotilastot ja interaktiiviset kaaviot.
 
-The stack covers the full Next.js App Router architecture: Server Components for data fetching, Client Components for interactivity, Server Actions for form submissions, and Suspense boundaries for streaming. Authentication is handled by NextAuth.js v5 with a PostgreSQL session store on Neon. The whole thing is deployed on Vercel with a custom subdomain.
+Pino kattaa koko Next.js App Router -arkkitehtuurin: Server Componentit datan hakuun, Client Componentit interaktiivisuuteen, Server Actionit lomakkeille ja Suspense-rajat striimaukseen. Tunnistautumisen hoitaa NextAuth.js v5, jonka istunnot tallentuvat Neonin PostgreSQL-kantaan. Kokonaisuus on julkaistu Verceliin omalla alidomainilla.
 
-## What I learned
+## Mitä opin
 
-The biggest insight was understanding WHEN to use Server vs Client Components — and that the default should always be Server. Data fetching without useEffect, server actions replacing API routes for forms, and streaming with Suspense were the patterns that clicked through building this. Authentication with NextAuth.js v5 (beta) was rough — the beta API changed during development and required careful reading of changelogs. Real deployment also surfaced things that local dev hides: environment variables, database seeding, and the difference between preview and production Vercel environments.
+Suurin oivallus oli ymmärtää, MILLOIN käyttää Server- ja milloin Client-komponentteja — ja että oletuksen pitäisi aina olla Server. Datan haku ilman useEffectiä, Server Actionit API-reittien tilalla lomakkeissa ja striimaus Suspensella olivat ne mallit, jotka loksahtivat paikalleen tätä rakentaessa. Tunnistautuminen NextAuth.js v5:llä (beta) oli kivikkoista — betan API muuttui kesken kehityksen ja vaati muutoslokien tarkkaa lukemista. Oikea julkaisu nosti esiin myös asioita, jotka paikallinen kehitys piilottaa: ympäristömuuttujat, tietokannan alustuksen ja Vercelin preview- ja tuotantoympäristöjen erot.
 
-## Highlights
+## Kohokohdat
 
-- Full CRUD for customers and invoices with search + pagination
-- Dashboard with revenue stats and interactive charts
-- NextAuth.js v5 authentication with PostgreSQL session store
-- Deployed to production on Vercel with a custom domain
-- Test login: `user@nextmail.com` / `123456`
+- Täysi CRUD asiakkaille ja laskuille, haku ja sivutus
+- Koontinäyttö liikevaihtotilastoilla ja interaktiivisilla kaavioilla
+- NextAuth.js v5 -tunnistautuminen, istunnot PostgreSQL:ssä
+- Tuotannossa Vercelissä omalla domainilla
+- Testitunnus: `user@nextmail.com` / `123456`
 
-## Tech Stack
+## Teknologiat
 
-- **Framework:** Next.js 16 (App Router, Server Components)
-- **Language:** TypeScript
-- **Styling:** Tailwind CSS v4
-- **Database:** PostgreSQL (Neon)
+- **Framework:** Next.js 16 (App Router, Server Componentit)
+- **Kieli:** TypeScript
+- **Tyylit:** Tailwind CSS v4
+- **Tietokanta:** PostgreSQL (Neon)
 - **Auth:** NextAuth.js v5
-- **Deployment:** Vercel
+- **Julkaisu:** Vercel

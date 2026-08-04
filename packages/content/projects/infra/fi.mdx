@@ -1,10 +1,10 @@
 ---
 title: "Infrastructure as Code"
-description: "Terraform automation for creating GitHub Pages repositories with custom subdomains, auto-generated CD workflows, and DNS configuration — one run provisions everything."
+description: "Terraform-automaatio GitHub Pages -repojen luontiin: omat alidomainit, automaattisesti generoidut julkaisuputket ja DNS-asetukset — yksi ajo pystyttää kaiken."
 createdAt: "2026-01-15"
 featured: false
 role: "solo"
-highlight: "Terraform module that provisions GitHub repos + Pages + custom DNS + GitHub Actions workflows in a single run"
+highlight: "Terraform-moduuli, joka pystyttää GitHub-repot, Pagesin, DNS:n ja GitHub Actions -työnkulut yhdellä ajolla"
 techStack:
   - "Terraform"
   - "GitHub Actions"
@@ -15,24 +15,24 @@ status: "done"
 ---
 
 
-## What I built
+## Mitä rakensin
 
-A Terraform module that provisions the complete lifecycle of a GitHub Pages static site — from zero to a live custom-domain URL — in a single `terraform apply`. It creates the repository, enables Pages, writes the CNAME file for the custom subdomain, and generates a GitHub Actions workflow that handles all future deployments. The three hackathon sites (`register.arthurreira.dev`, `schedule.arthurreira.dev`, `projects.arthurreira.dev`) were all provisioned this way.
+Terraform-moduuli, joka pystyttää GitHub Pages -staattisen sivuston koko elinkaaren tyhjästä valmiiseen omaan verkko-osoitteeseen yhdellä `terraform apply` -komennolla. Se luo repon, ottaa Pagesin käyttöön, kirjoittaa CNAME-tiedoston omalle alidomainille ja generoi GitHub Actions -työnkulun, joka hoitaa kaikki tulevat julkaisut. Kolme hackathon-sivustoa (`register.arthurreira.dev`, `schedule.arthurreira.dev` ja `projects.arthurreira.dev`) pystytettiin kaikki tällä tavalla.
 
-## What I learned
+## Mitä opin
 
-The GitHub Terraform provider has subtleties that cloud providers don't. GitHub's API is eventually consistent — repository creation and Pages enablement can't always be chained immediately, which required careful `depends_on` and `time_sleep` blocks. The deeper lesson was about what IaC is really for: not just provisioning servers, but encoding the entire setup process so it's repeatable, reviewable, and destroyable. A Terraform plan is a diff of intended vs actual infrastructure — that model fundamentally changes how you think about setup.
+GitHubin Terraform-providerissa on hienovaraisuuksia, joita pilvipalveluiden providereissa ei ole. GitHubin rajapinta on eventually consistent, joten repon luontia ja Pagesin käyttöönottoa ei aina voi ketjuttaa välittömästi peräkkäin. Se vaati huolellisia `depends_on`- ja `time_sleep`-lohkoja. Syvempi oppi koski sitä, mihin infrastruktuuri koodina oikeasti on: ei vain palvelimien pystyttämiseen, vaan koko asennusprosessin kirjaamiseen niin, että se on toistettava, katselmoitava ja purettava. Terraformin suunnitelma on erotus aiotun ja todellisen infrastruktuurin välillä, ja se malli muuttaa perusteellisesti tapaa ajatella pystytystä.
 
-## Highlights
+## Kohokohdat
 
-- One `terraform apply` provisions a full GitHub Pages site
-- Creates repo + enables Pages + sets CNAME + generates CD workflow
-- Powers the 3 hackathon subdomains
-- Idempotent — safe to re-run
+- Yksi `terraform apply` pystyttää täyden GitHub Pages -sivuston
+- Luo repon, ottaa Pagesin käyttöön, asettaa CNAMEn ja generoi julkaisuputken
+- Pyörittää kolmea hackathon-alidomainia
+- Idempotentti, joten ajon voi turvallisesti toistaa
 
-## Tech Stack
+## Teknologiat
 
-- **IaC:** Terraform ≥ 1.5
+- **Infrastruktuuri koodina:** Terraform ≥ 1.5
 - **Provider:** integrations/github ~> 6.0
 - **CI/CD:** GitHub Actions
-- **Hosting:** GitHub Pages
+- **Isännöinti:** GitHub Pages
