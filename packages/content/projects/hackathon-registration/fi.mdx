@@ -4,7 +4,7 @@ description: "Kolme staattista sivustoa (rekisteröinti, aikataulu, projektigall
 createdAt: "2026-01-15"
 featured: false
 role: "solo"
-highlight: "Yksi terraform apply luo 3 repoa, GitHub Pages -deployaukset, DNS-konfiguraation ja CD-workflowt — ilman yhtään manuaalista GitHub UI -toimenpidettä"
+highlight: "Yksi terraform apply luo 3 repoa, GitHub Pages -deployaukset, DNS-konfiguraation ja CD-workflow’t — ilman yhtään manuaalista GitHub UI -toimenpidettä"
 techStack:
   - "Terraform"
   - "GitHub Actions"
@@ -21,15 +21,15 @@ status: "fun"
 
 Kolme staattista sivustoa — rekisteröintilomake, tapahtuma-aikataulu ja projektigalleria — kaikki omilla alidomaineillaan: `register.arthurreira.dev`, `schedule.arthurreira.dev` ja `projects.arthurreira.dev`. Itse sivustot ovat tahallaan yksinkertaisia. Varsinainen projekti on niiden takana oleva Terraform-automaatio.
 
-Yksi `terraform apply` luo kolme erillistä GitHub-repoa, ottaa Pages käyttöön jokaisessa, konfiguroi DNS-asetukset alidomaineille ja generoi GitHub Actions CD -workflown jokaiselle repolle — ilman yhtään manuaalista GitHub UI -toimenpidettä.
+Yksi `terraform apply` luo kolme erillistä GitHub-repoa, ottaa Pagesin käyttöön jokaisessa, konfiguroi DNS-asetukset alidomaineille ja generoi GitHub Actions CD -workflow’n jokaiselle repolle — ilman yhtään manuaalista GitHub UI -toimenpidettä.
 
 ## Mitä opin
 
-GitHub Terraform -provider on arvaamattomampi kuin AWS tai Azure: rate limitit, repon luomisen viiveet ja Pages-konfiguraation ajoitus vaativat huolellisia `depends_on`-ketjuja. Terraform-koodin kirjoittaminen CI/CD-pipelineille opetti, miten infrastructure-as-code voi hallita koko deploymentprosessia — repon luomisesta live-URLiin asti.
+GitHub Terraform -provider on arvaamattomampi kuin AWS tai Azure: rate limitit, repon luomisen viiveet ja Pages-konfiguraation ajoitus vaativat huolellisia `depends_on`-ketjuja. Terraform-koodin kirjoittaminen CI/CD-pipelineille opetti, miten infrastructure-as-code voi hallita koko deployment-prosessia — repon luomisesta live-URLiin asti.
 
 ## Kohokohdat
 
-- Yksi `terraform apply` luo 3 repoa + Pages + DNS + CD-workflowt
+- Yksi `terraform apply` luo 3 repoa + Pages + DNS + CD-workflow’t
 - Sivustot: register / schedule / projects — kaikki omilla alidomaineillaan
 - Ei yhtään manuaalista GitHub UI -toimenpidettä
 

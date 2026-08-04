@@ -24,9 +24,9 @@ status: "ongoing"
 
 ## Mitä rakensin
 
-Sivusto elää Turborepo-monorepossa, jossa on kolme työtilaa: `apps/web` (Next.js 16 -sivusto), `packages/content` (Veliten pyörittämä MDX) ja `packages/ui` (jaettu design token -paketti `@arthurreira/ui`). Design-järjestelmä vie ulos Tailwind-konfiguraation, globaalit tyylit ja uudelleenkäytettävät komponentit — mikä tahansa monorepon sovellus voi asentaa paketin ja periä koko token-setin.
+Sivusto elää Turborepo-monorepossa, jossa on kolme työtilaa: `apps/web` (Next.js 16 -sivusto), `packages/content` (Veliten pyörittämä MDX) ja `packages/ui` (jaettu design token -paketti `@arthurreira/ui`). Design-järjestelmä tarjoaa Tailwind-konfiguraation, globaalit tyylit ja uudelleenkäytettävät komponentit — mikä tahansa monorepon sovellus voi asentaa paketin ja periä koko token-setin.
 
-Sisältöä hallitaan Velitellä, joka muuntaa MDX:n frontmatterin ja rungon tyypitetyksi TypeScriptiksi käännösvaiheessa. Contentlayeristä luopuminen oli tietoinen valinta: Velite hoitaa skeemamuunnokset natiivisti, sitä ylläpidetään aktiivisesti, ja se antaa täyden tyyppiturvan jokaiselle kentälle ilman kikkailua.
+Sisältöä hallitaan Velitellä, joka muuntaa MDX:n frontmatterin ja rungon tyypitetyksi TypeScriptiksi käännösvaiheessa. Contentlayerista luopuminen oli tietoinen valinta: Velite hoitaa skeemamuunnokset natiivisti, sitä ylläpidetään aktiivisesti, ja se antaa täyden tyyppiturvan jokaiselle kentälle ilman kikkailua.
 
 Monikielisyys hoituu `next-intl`-kirjastolla kolmella lokaalilla (EN, PT-BR, FI). `packages/ui`:n `postinstall`-skripti synkronoi design tokenit automaattisesti aina kun paketti rakennetaan uudelleen, joten web-sovellus ei koskaan ajaudu erilleen järjestelmästä.
 
@@ -36,21 +36,21 @@ Nurkassa oleva chat vastaa minua koskeviin kysymyksiin tämän portfolion omasta
 
 **Mitään ei tallenneta.** Ei tietokantaa, ei avain–arvo-varastoa, ei vektorivarastoa. Keskustelut elävät Reactin tilassa ja katoavat sivun latautuessa uudelleen. Se oli ensimmäinen päätös, ja useimmat muut seuraavat siitä: kun mitään ei säilötä, ei ole dataa vuotaa, ei säilytyskäytäntöä kirjoitettavaksi eikä mitään selitettävää tietosuojaselosteessa.
 
-**Ei RAGia.** Haku on ilmeinen refleksi kun puhutaan omasta sisällöstä keskustelemisesta, mutta tämä portfolio mahtuu mukavasti system prompt -kehotteeseen. Embedding-putken ja vektorivaraston rakentaminen olisi tuonut infrastruktuuria, kuluja ja kokonaisen luokan hakuvirheitä ratkaisemaan ongelmaa jota minulla ei ollut. Konteksti kootaan kielikohtaisesti samasta MDX- ja profiilidatasta jonka sivusto renderöi, joten projektin muokkaaminen muuttaa sitä mitä chat tietää.
+**Ei RAGia.** Haku on ilmeinen refleksi, kun puhutaan omasta sisällöstä keskustelemisesta, mutta tämä portfolio mahtuu mukavasti järjestelmäkehotteeseen (system prompt). Embedding-putken ja vektorivaraston rakentaminen olisi tuonut infrastruktuuria, kuluja ja kokonaisen virheluokan ratkaisemaan ongelmaa, jota minulla ei ollut. Konteksti kootaan kielikohtaisesti samasta MDX- ja profiilidatasta jonka sivusto renderöi, joten projektin muokkaaminen muuttaa sitä mitä chat tietää.
 
-**Kulut on katkaistu kohdasta josta niistä ei voi kiistellä.** Vastauksen pituusraja ja historiaikkuna luetaan konfiguraatiosta, mutta ne on rajattu koodissa kovaan kattoon, joten väärin kirjoitettu arvo voi laskea niitä muttei koskaan nostaa. Pyyntöjen pituus validoidaan ennen mallille päätymistä, koska syötteen koko on se ainoa kululevy jota anonyymi kävijä hallitsee. IP-kohtainen nopeusrajoitus ja bottitarkistus ajetaan ennen kaikkea tätä — halvin vartija ensin, jotta väärinkäyttö torjutaan ennen kuin se laskuttaa.
+**Kulut on katkaistu siellä, missä niistä ei voi kiistellä.** Vastauksen pituusraja ja historiaikkuna luetaan konfiguraatiosta, mutta ne on rajattu koodissa kovaan kattoon, joten väärin kirjoitettu arvo voi laskea niitä muttei koskaan nostaa. Pyyntöjen pituus validoidaan ennen mallille päätymistä, koska syötteen koko on ainoa kuluihin vaikuttava tekijä, jota anonyymi kävijä hallitsee. IP-kohtainen nopeusrajoitus ja bottitarkistus ajetaan ennen kaikkea tätä — halvin vartija ensin, jotta väärinkäyttö torjutaan ennen kuin se laskuttaa.
 
-**Se heikkenee sen sijaan että hajoaisi.** Jos mallin tarjoaja pettää — todennäköisimmin siksi että annoin saldon loppua — pyyntö yritetään uudelleen Cloudflaren omalla infralla pyörivällä mallilla, ja vastaus kertoo tulleensa varajärjestelmästä. Portfolio jonka chat vastaa hieman huonommin on parempi kuin portfolio jonka chat on rikki sen edessä joka sitä lukee.
+**Se heikkenee sen sijaan että hajoaisi.** Jos mallin tarjoaja pettää — todennäköisimmin siksi että annoin saldon loppua — pyyntö yritetään uudelleen Cloudflaren omalla infralla pyörivällä mallilla, ja vastaus kertoo tulleensa varajärjestelmästä. Portfolio, jonka chat vastaa hieman huonommin, on parempi kuin portfolio, jonka chat on rikki lukijan silmien edessä.
 
-Tuon varajärjestelmän toimimaan saaminen vaati yhden epäilmeisen palan. Striimaus-API ei heitä virhettä kun pyyntö hylätään; se ratkeaa iloisesti ja raportoi virheen striimin sisällä — mihin mennessä vastaus on jo alkanut eikä mallia voi enää vaihtaa. Siksi striimiä luetaan kunnes se joko kaatuu tai tuottaa oikeaa sisältöä, ja vasta sitten siihen sitoudutaan — mikä muuttaa "vastaus alkoi jo" takaisin päätökseksi.
+Tuon varajärjestelmän toimimaan saaminen vaati yhden kaikkea muuta kuin ilmeisen palasen. Striimaus-API ei heitä virhettä kun pyyntö hylätään; se ratkeaa iloisesti ja raportoi virheen striimin sisällä — mihin mennessä vastaus on jo alkanut eikä mallia voi enää vaihtaa. Siksi striimiä luetaan, kunnes se joko kaatuu tai tuottaa oikeaa sisältöä, ja vasta sitten siihen sitoudutaan — mikä muuttaa ”vastaus alkoi jo” takaisin päätökseksi.
 
-Worker puhuu AI SDK:n vakiomuotoista striimausformaattia oman protokollan sijaan. Se piti selainpuolen yhdessä hookissa ilman jäsentämistä, ja tarkoitti myös että pystyin rakentamaan koko chat-käyttöliittymän skriptattua sijaista vasten — jokaisen kuplan, striimaustilan ja virhepolun — ilman mallia, verkkopyyntöä tai yhtäkään API-krediittiä.
+Worker puhuu AI SDK:n vakiomuotoista striimausformaattia oman protokollan sijaan. Se piti selainpuolen yhdessä hookissa ilman jäsentämistä ja tarkoitti myös, että pystyin rakentamaan koko chat-käyttöliittymän skriptattua sijaista vasten — jokaisen kuplan, striimaustilan ja virhepolun — ilman mallia, verkkopyyntöä tai yhtäkään API-krediittiä.
 
 ## Mitä opin
 
-Oman design-järjestelmän rakentaminen pakottaa jokaisen päätöksen eksplisiittiseksi. Frameworkin oletusten taakse ei voi piiloutua. Opin miten Tailwindin `@theme` ja CSS-muuttujat toimivat yhdessä, miten paketin voi julkaista monorepossa ilman rekisteriä, ja kuinka pitkälle sisältö-koodina-lähestymistavan voi viedä ennen kuin siitä tulee kitkaa.
+Oman design-järjestelmän rakentaminen pakottaa jokaisen päätöksen eksplisiittiseksi. Frameworkin oletusten taakse ei voi piiloutua. Opin miten Tailwindin `@theme` ja CSS-muuttujat toimivat yhdessä, miten paketin voi julkaista monorepossa ilman rekisteriä, ja kuinka pitkälle sisältö koodina -lähestymistavan voi viedä ennen kuin siitä tulee kitkaa.
 
-Chat opetti toisenlaisen läksyn: tekoälyn lisäämisessä vaikeinta on harvoin itse malli. Vaikeaa oli päättää mitä jättää tallentamatta, rajata mitä tuntematon voi kuluttaa minun piikkiini, ja saada koko juttu pettämään tavalla joka näyttää yhä harkitulta. Suurin oppi: rakenna muutosta varten, älä nykyistä käyttötapausta varten.
+Chat opetti toisenlaisen läksyn: tekoälyn lisäämisessä vaikeinta on harvoin itse malli. Vaikeaa oli päättää mitä jättää tallentamatta, rajata, mitä tuntematon voi kuluttaa minun piikkiini, ja saada koko juttu pettämään tavalla, joka näyttää yhä harkitulta. Suurin oppi: rakenna muutosta varten, älä nykyistä käyttötapausta varten.
 
 ## Kohokohdat
 
@@ -58,7 +58,7 @@ Chat opetti toisenlaisen läksyn: tekoälyn lisäämisessä vaikeinta on harvoin
 - Velite tyyppiturvalliselle MDX-sisällölle
 - 3 kieltä next-intl:n kautta (EN / PT-BR / FI)
 - @arthurreira/ui jaettu design token -paketti
-- Sisäänrakennettu 2×2 teemamatriisi (Brasil/Suomi × tumma/vaalea)
+- Sisäänrakennettu 2×2-teemamatriisi (Brasil/Suomi × tumma/vaalea)
 - Tilaton tekoälychat Cloudflare Workersilla, varamallilla ja kovilla kulukatoilla
 
 ## Teknologiat
