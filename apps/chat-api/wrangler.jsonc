@@ -8,6 +8,13 @@
   "observability": {
     "enabled": true,
   },
+  "vars": {
+    // Deployed builds must have a Turnstile secret. Without this the check
+    // silently skips itself when the secret is missing, which would ship an
+    // unprotected endpoint with no error to notice. Local `.dev.vars` can set
+    // this to "false" to run keyless.
+    "REQUIRE_TURNSTILE": "true",
+  },
   "unsafe": {
     "bindings": [
       {

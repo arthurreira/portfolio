@@ -13,12 +13,13 @@ import {
 export interface Env extends ChatConfigEnv {
   /** Set with `wrangler secret put ANTHROPIC_API_KEY`. */
   ANTHROPIC_API_KEY: string
-  /**
-   * Turnstile secret. Set with `wrangler secret put TURNSTILE_SECRET_KEY`.
-   * When absent the check is skipped, so local development needs no keys —
-   * but see the deploy guard in handleChat.
-   */
+  /** Turnstile secret. Set with `wrangler secret put TURNSTILE_SECRET_KEY`. */
   TURNSTILE_SECRET_KEY?: string
+  /**
+   * "true" in deployed builds (set in wrangler.jsonc). Turns a missing
+   * Turnstile secret into a hard failure instead of a silently skipped check.
+   */
+  REQUIRE_TURNSTILE?: string
   /** Optional comma-separated CORS allowlist; defaults to the known site origins. */
   ALLOWED_ORIGINS?: string
   /** Per-IP throttle, declared in wrangler.jsonc. */
@@ -80,6 +81,16 @@ const handleChat = async (
     }
   }
 
+  // Refuse rather than quietly run unprotected. Skipping the check is a local
+  // convenience; in a deployed build a missing secret is a misconfiguration,
+  // and one nobody would notice if it just disabled bot protection.
+  if (env.REQUIRE_TURNSTILE === "true" && !env.TURNSTILE_SECRET_KEY) {
+    console.error(
+      "REQUIRE_TURNSTILE is set but TURNSTILE_SECRET_KEY is missing"
+    )
+    return json({ success: false, error: "not_configured" }, 500, cors)
+  }
+
   if (env.TURNSTILE_SECRET_KEY) {
     const { turnstileToken } = payload as { turnstileToken?: unknown }
     if (typeof turnstileToken !== "string" || !turnstileToken) {
@@ -95,9 +106,6 @@ const handleChat = async (
       return json({ success: false, error: "turnstile_failed" }, 403, cors)
     }
   }
-
-  // Throttle per visitor. cf-connecting-ip is set by Cloudflare and cannot be
-  // spoofed by the client; the fallback only matters outside their network.
 
   if (!env.ANTHROPIC_API_KEY) {
     console.error("ANTHROPIC_API_KEY is not configured")
