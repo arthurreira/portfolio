@@ -1,10 +1,10 @@
 ---
 title: "br-state-flags"
-description: "npm-paketti — kaikki 27 Brasilian osavaltion lippua React SVG -komponentteina, nolla riippuvuuksia, TypeScript-first. Sisältää live-demodivustson."
+description: "npm-paketti — kaikki 27 Brasilian osavaltion lippua React SVG -komponentteina, nolla riippuvuutta, TypeScript-first. Sisältää live-demosivuston."
 createdAt: "2026-12-22"
 featured: false
 role: "solo"
-highlight: "Julkaistu npm-paketti — nolla riippuvuuksia, TypeScript-first, ESM + CJS. Demo osoitteessa br-state-flags-demo.arthurreira.dev"
+highlight: "Julkaistu npm-paketti — nolla riippuvuutta, TypeScript-first, ESM + CJS. Demo osoitteessa br-state-flags-demo.arthurreira.dev"
 techStack:
   - "React"
   - "TypeScript"
@@ -22,7 +22,7 @@ coverImage: "./cover.png"
 
 ## Mitä rakensin
 
-npm-paketti, joka toimittaa kaikki 27 Brasilian osavaltion lippua erillisinä React SVG -komponentteina — sekä täydennettyä metatietoa (pääkaupunki, väestö, alue) jokaiselle osavaltiolle. Nolla riippuvuuksia. Toimii suoraan Next.js:n, Viten ja minkä tahansa TypeScript React -projektin kanssa. SVG:t on optimoitu webille: yhtenäiset kuvasuhteet, minimaaliset tiedostokoot, tarkat viralliset värit.
+npm-paketti, joka toimittaa kaikki 27 Brasilian osavaltion lippua erillisinä React SVG -komponentteina — sekä täydennettyä metatietoa (pääkaupunki, väestö, alue) jokaiselle osavaltiolle. Nolla riippuvuutta. Toimii suoraan Next.js:n, Viten ja minkä tahansa TypeScript React -projektin kanssa. SVG:t on optimoitu webille: yhtenäiset kuvasuhteet, minimaaliset tiedostokoot, tarkat viralliset värit.
 
 ```bash
 npm install br-state-flags
@@ -37,14 +37,14 @@ Demosivu osoitteessa [br-state-flags-demo.arthurreira.dev](https://br-state-flag
 
 ## Mitä opin
 
-npm-kirjaston julkaiseminen on eri asia kuin sovelluksen rakentaminen. API-pinta on oltava vakaa — kun toimitat `import { SP }`:n, sitä ei voi enää nimetä uudelleen. Opin bundle-formaateista (ESM vs CJS), `exports`-kentästä package.json:ssa ja TypeScript-deklaraatioiden kirjoittamisesta niin, että käyttäjät saavat automaattitäydennyksen. SVG-optimointi oli myös uutta: SVGO poistaa metatietoa ja pienentää tiedostokokoja 40-60 % ilman visuaalista muutosta.
+npm-kirjaston julkaiseminen on eri asia kuin sovelluksen rakentaminen. API-pinnan on oltava vakaa — kun toimitat `import { SP }`:n, sitä ei voi enää nimetä uudelleen. Opin bundle-formaateista (ESM vs CJS), `exports`-kentästä package.json:ssa ja TypeScript-deklaraatioiden kirjoittamisesta niin, että käyttäjät saavat automaattitäydennyksen. SVG-optimointi oli myös uutta: SVGO poistaa metatietoa ja pienentää tiedostokokoja 40–60 % ilman visuaalista muutosta.
 
 ## Kohokohdat
 
 - Kaikki 27 Brasilian osavaltion lippua yksittäisinä React SVG -komponentteina
-- Nolla ajonaikaiset riippuvuudet
+- Ei ajonaikaisia riippuvuuksia
 - Täysi TypeScript-tuki prop-inferenssillä
-- Täydennetty metadata per osavaltio: pääkaupunki, väestö, alue
+- Osavaltiokohtaiset metatiedot: pääkaupunki, väestö, alue
 - Live-demo: [br-state-flags-demo.arthurreira.dev](https://br-state-flags-demo.arthurreira.dev)
 - Julkaistu npm:ssä: `npm install br-state-flags`
 
