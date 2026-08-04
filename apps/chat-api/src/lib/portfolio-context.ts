@@ -1,4 +1,4 @@
-import { about, projects } from "@arthurreira/content"
+import { about, profile, projects } from "@arthurreira/content"
 
 export const LOCALES = ["en", "fi", "pt-br"] as const
 export type Locale = (typeof LOCALES)[number]
@@ -14,6 +14,62 @@ export const isLocale = (value: unknown): value is Locale =>
   typeof value === "string" && (LOCALES as readonly string[]).includes(value)
 
 type PortfolioProject = (typeof projects)[number]
+type Skill = (typeof profile.skills)[number]
+
+/** Groups skills by category so the list reads as a stack, not 82 loose names. */
+const formatSkillTier = (level: Skill["level"]): string => {
+  const tier = profile.skills.filter((skill) => skill.level === level)
+  if (tier.length === 0) return ""
+
+  const byCategory = new Map<string, string[]>()
+  for (const skill of tier) {
+    const names = byCategory.get(skill.category) ?? []
+    names.push(skill.name)
+    byCategory.set(skill.category, names)
+  }
+
+  return [...byCategory]
+    .map(([category, names]) => `- ${category}: ${names.join(", ")}`)
+    .join("\n")
+}
+
+/**
+ * Credentials and skills, with the tiers spelled out.
+ *
+ * The tier labels are the point: handed a flat list, the model presents
+ * everything as equal expertise and Arthur ends up defending Blender in an
+ * interview.
+ */
+const formatProfile = (): string =>
+  [
+    "### Education",
+    ...profile.education.map(
+      (entry) =>
+        `- ${entry.program}, ${entry.school}${entry.note ? ` (${entry.note})` : ""}`
+    ),
+    "",
+    "### Certifications",
+    ...profile.certifications.map(
+      (cert) =>
+        `- ${cert.name}${cert.code ? ` (${cert.code})` : ""}, ${cert.issuer} — ${
+          cert.status === "certified" ? "certified" : "in progress"
+        }`
+    ),
+    "",
+    "### Current focus",
+    ...profile.focus.map((item) => `- ${item}`),
+    "",
+    "### Skills (core)",
+    formatSkillTier("core"),
+    "",
+    "### Skills (working knowledge)",
+    formatSkillTier("working"),
+    "",
+    "### Skills (learning)",
+    formatSkillTier("exploring"),
+  ]
+    .filter(Boolean)
+    .join("\n")
 
 /**
  * Renders one project as plain text. Only the structured metadata is used —
@@ -39,12 +95,15 @@ const formatProject = (project: PortfolioProject): string => {
  * and every project in that locale. Stable across requests, so it is sent as a
  * prompt-cache prefix.
  *
- * Note: measured at ~3k tokens per locale, which is below Haiku 4.5's 4096-token
- * minimum cacheable prefix — so the `cache_control` breakpoint currently no-ops.
- * That is the cheaper trade at portfolio traffic: a bigger prompt would cache,
- * but sporadic visitors would mostly pay the 1.25x cache-write premium instead
- * of reading it back. Re-evaluate with `usage.cache_read_input_tokens` if the
- * context grows or traffic becomes steady.
+ * Caching: adding credentials and skills pushed this past Haiku 4.5's 4096-token
+ * minimum, so the `cache_control` breakpoint now actually does something.
+ * Measured with count_tokens, not estimated — en 4503, fi 5129, pt-br 4741.
+ * Finnish tokenizes noticeably worse, so it is the one to watch.
+ *
+ * That means later turns in a conversation read the prefix at cache rates
+ * instead of paying for it again. Confirm with `usage.cache_read_input_tokens`
+ * before assuming it holds; anything that shrinks this prompt could drop a
+ * locale back under the threshold, silently.
  */
 export const buildSystemPrompt = (locale: Locale): string => {
   // Translations can lag. Without a fallback the chat would silently know less
@@ -87,6 +146,7 @@ export const buildSystemPrompt = (locale: Locale): string => {
     "- Never invent projects, employers, job titles, dates, technologies, metrics, or opinions.",
     "- If CONTEXT does not answer the question, say so plainly and point to the contact page. Do not guess.",
     "- Do not infer beyond what is written — no assumptions about salary, availability, or future plans.",
+    "- Respect the skill tiers: `core` is real experience, `working knowledge` is something he reaches for, `learning` is not yet expertise. Never flatten them, and never quote the tier labels back to the visitor — describe the level in your own words.",
     "",
     "# Tone",
     `- Reply in ${LANGUAGE_NAMES[locale]}, regardless of the language the visitor writes in.`,
@@ -123,6 +183,9 @@ export const buildSystemPrompt = (locale: Locale): string => {
     "",
     "## About Arthur",
     bio,
+    "",
+    "## Credentials and skills",
+    formatProfile(),
     "",
     "## Projects",
     localeProjects.map(formatProject).join("\n\n"),
