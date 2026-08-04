@@ -200,7 +200,7 @@ html {
 :root {
   --background: #022619;
   --foreground: #f2f5ee;
-  --muted-foreground: #7a9a88;
+  --muted-foreground: #92ac9c;
   --primary: #ffcc02;
   --primary-foreground: #022619;
   --muted: rgba(242, 245, 238, 0.05);
@@ -220,7 +220,7 @@ html {
 :root[data-flag="brasil"][data-mode="dark"] {
   --background: #022619;
   --foreground: #f2f5ee;
-  --muted-foreground: #7a9a88;
+  --muted-foreground: #92ac9c;
   --primary: #ffcc02;
   --primary-foreground: #022619;
   --muted: rgba(242, 245, 238, 0.05);
@@ -240,7 +240,7 @@ html {
 :root[data-flag="brasil"][data-mode="light"] {
   --background: #f4f3ee;
   --foreground: #0a200f;
-  --muted-foreground: #4d7a5a;
+  --muted-foreground: #3b6147;
   --primary: #059642;
   --primary-foreground: #f4f3ee;
   --muted: rgba(10, 32, 15, 0.05);
@@ -261,7 +261,7 @@ html {
 :root[data-flag="suomi"][data-mode="dark"] {
   --background: #001b40;
   --foreground: #eef3ff;
-  --muted-foreground: #7a90b5;
+  --muted-foreground: #8fa2c2;
   --primary: #8abef5;
   --primary-foreground: #001b40;
   --muted: rgba(238, 243, 255, 0.05);

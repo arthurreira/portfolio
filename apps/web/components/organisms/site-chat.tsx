@@ -5,21 +5,21 @@ import { useChat } from "@ai-sdk/react"
 import { DefaultChatTransport } from "ai"
 import { useLocale, useTranslations } from "next-intl"
 import { AnimatePresence, MotionConfig, motion } from "motion/react"
-import { ChatsCircleIcon, XIcon } from "@phosphor-icons/react"
+import {
+  ArrowCounterClockwiseIcon,
+  ChatsCircleIcon,
+  LockSimpleIcon,
+  XIcon,
+} from "@phosphor-icons/react"
 import {
   Button,
   Card,
   CardAction,
   CardContent,
+  CardDescription,
   CardFooter,
   CardHeader,
   CardTitle,
-  Empty,
-  EmptyContent,
-  EmptyDescription,
-  EmptyHeader,
-  EmptyMedia,
-  EmptyTitle,
   Marker,
   MarkerContent,
   MarkerIcon,
@@ -113,7 +113,8 @@ export function SiteChat() {
     [locale, getToken, trackingFetch]
   )
 
-  const { messages, sendMessage, status, error, stop } = useChat({ transport })
+  const { messages, sendMessage, setMessages, status, error, stop } =
+    useChat({ transport })
 
   const isBusy = status === "submitted" || status === "streaming"
 
@@ -133,6 +134,29 @@ export function SiteChat() {
     const last = messages.at(-1)
     if (last?.role === "assistant") settle(last.id)
   }, [status, messages, settle, discard])
+
+  // `/` opens the panel. The site already binds d and l, so a single-key
+  // shortcut is the established language here rather than a new convention.
+  useEffect(() => {
+    const onKeyDown = (event: KeyboardEvent) => {
+      if (event.key !== "/" || event.metaKey || event.ctrlKey || event.altKey) {
+        return
+      }
+      const target = event.target
+      // Never steal the key from someone typing — including in this panel.
+      if (
+        target instanceof HTMLElement &&
+        (target.isContentEditable ||
+          ["INPUT", "TEXTAREA", "SELECT"].includes(target.tagName))
+      ) {
+        return
+      }
+      event.preventDefault()
+      setIsOpen(true)
+    }
+    document.addEventListener("keydown", onKeyDown)
+    return () => document.removeEventListener("keydown", onKeyDown)
+  }, [])
 
   // Escape closes the panel — a dialog primitive would have done this for us.
   useEffect(() => {
@@ -168,9 +192,38 @@ export function SiteChat() {
             >
               <CardHeader className="border-b">
                 <CardTitle>{t("title")}</CardTitle>
+                {/* The one thing worth saying up front. Every other chat on the
+                    web stores your messages; this one does not, and a visitor
+                    has no way to know that unless it is stated. */}
+                <CardDescription className="flex flex-col gap-0.5 text-xs">
+                  <span
+                    className="flex items-center gap-1.5"
+                    title={t("metaPrivateHint")}
+                  >
+                    <LockSimpleIcon className="size-3.5 shrink-0" aria-hidden />
+                    {t("metaPrivate")}
+                    <span aria-hidden>·</span>
+                    {model === "claude" ? t("modelClaude") : t("modelFree")}
+                  </span>
+                  <span>{t("metaScope")}</span>
+                </CardDescription>
                 {/* CardAction is the header's dedicated slot — it drives the
                     grid columns, which a hand-rolled flex row would override. */}
-                <CardAction>
+                <CardAction className="flex items-center gap-1">
+                  {/* Nothing is persisted, so "start over" is a real state here
+                      rather than housekeeping — currently only a page reload
+                      achieves it. */}
+                  {messages.length > 0 && (
+                    <Button
+                      variant="ghost"
+                      size="icon-sm"
+                      aria-label={t("clear")}
+                      title={t("clear")}
+                      onClick={() => setMessages([])}
+                    >
+                      <ArrowCounterClockwiseIcon />
+                    </Button>
+                  )}
                   <Button
                     variant="ghost"
                     size="icon-sm"
@@ -202,22 +255,21 @@ export function SiteChat() {
                           // Every direct child of the content must be an Item, or
                           // the scroller cannot measure and anchor it.
                           <MessageScrollerItem messageId="empty">
-                            <Empty>
-                              <EmptyHeader>
-                                <EmptyMedia variant="icon">
-                                  <ChatsCircleIcon />
-                                </EmptyMedia>
-                                <EmptyTitle>{t("emptyTitle")}</EmptyTitle>
-                                <EmptyDescription>
-                                  {t("emptyDescription")}
-                                </EmptyDescription>
-                              </EmptyHeader>
-                              <EmptyContent className="flex flex-col gap-2">
+                            {/* Deliberately not the Empty primitive: it centres
+                                its content, and everything else on this site is
+                                left-aligned. The header already names the panel,
+                                so repeating the title here would say it twice. */}
+                            <div className="flex flex-col items-start gap-4">
+                              <p className="text-muted-foreground text-sm text-pretty">
+                                {t("emptyDescription")}
+                              </p>
+                              <div className="flex w-full flex-col items-stretch gap-2">
                                 {suggestions.map((question) => (
                                   <Button
                                     key={question}
                                     variant="outline"
                                     size="sm"
+                                    className="h-auto justify-start py-1.5 text-left whitespace-normal"
                                     onClick={() =>
                                       sendMessage(
                                         { text: question },
@@ -228,8 +280,8 @@ export function SiteChat() {
                                     {question}
                                   </Button>
                                 ))}
-                              </EmptyContent>
-                            </Empty>
+                              </div>
+                            </div>
                           </MessageScrollerItem>
                         )}
 
@@ -254,6 +306,8 @@ export function SiteChat() {
                                 }
                                 isDegraded={degradedIds.has(message.id)}
                                 degradedLabel={t("degraded")}
+                                copyLabel={t("copy")}
+                                copiedLabel={t("copied")}
                               />
                             </motion.div>
                           </MessageScrollerItem>
@@ -305,6 +359,8 @@ export function SiteChat() {
                   placeholder={t("placeholder")}
                   sendLabel={t("send")}
                   stopLabel={t("stop")}
+                  charsLeftLabel={t("charsLeft")}
+                  tooLongLabel={t("tooLong")}
                   autoFocus
                 />
               </CardFooter>
@@ -316,6 +372,7 @@ export function SiteChat() {
           ref={triggerRef}
           size="icon"
           aria-label={isOpen ? t("close") : t("open")}
+          title={isOpen ? t("close") : t("openHint")}
           aria-expanded={isOpen}
           aria-controls={isOpen ? panelId : undefined}
           onClick={() => setIsOpen((open) => !open)}

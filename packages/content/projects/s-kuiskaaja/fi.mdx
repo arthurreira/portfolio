@@ -4,7 +4,7 @@ description: "IoT-sääasema ESP32-mikrokontrollerilla — BME280- ja DHT11-antu
 createdAt: "2023-10-15"
 featured: false
 role: "solo"
-highlight: "Physical IoT build — BME280 + DHT11 sensors on ESP32, live data logged to MySQL, PHP web dashboard"
+highlight: "Fyysinen IoT-rakennelma — BME280- ja DHT11-anturit ESP32:lla, live-data MySQL:ään, PHP-koontinäyttö"
 techStack:
   - "ESP32"
   - "Arduino IDE"
@@ -21,27 +21,27 @@ coverImage: "./cover.png"
 
 [![](./verkkosivu.png)](https://github.com/arthurreira/esp32-sääasema)
 
-## What I built
+## Mitä rakensin
 
-A complete IoT pipeline from physical hardware to a live web dashboard. The ESP32 microcontroller reads environmental data continuously via two sensors: the BME280 for temperature, humidity, and barometric pressure, and the DHT11 as a secondary reference. Firmware was written in Arduino IDE (C++) and configured to POST sensor readings to a PHP endpoint at a set interval.
+Kokonainen IoT-putki fyysisestä laitteesta live-koontinäyttöön. ESP32-mikrokontrolleri lukee ympäristödataa jatkuvasti kahdella anturilla: BME280 mittaa lämpötilan, kosteuden ja ilmanpaineen, ja DHT11 toimii toisena vertailulähteenä. Firmware on kirjoitettu Arduino IDE:llä (C++) ja lähettää anturilukemat POST-pyyntönä PHP-päätepisteeseen määrävälein.
 
-The backend is a PHP script running on a local WampServer instance. It receives the POST, validates the payload, and writes to a MySQL database. The frontend dashboard reads from the same database and auto-refreshes every 30 seconds to show the latest readings — styled with MDB Bootstrap.
+Taustapalvelu on paikallisella WampServerillä pyörivä PHP-skripti, joka ottaa pyynnön vastaan, tarkistaa datan ja kirjoittaa sen MySQL-tietokantaan. Koontinäyttö lukee samasta kannasta ja päivittyy automaattisesti 30 sekunnin välein näyttäen tuoreimmat lukemat. Tyylit tulevat MDB Bootstrapista.
 
-## What I learned
+## Mitä opin
 
-This project was the first time I had to think about three completely separate layers at once: hardware (wiring, sensor protocols, firmware), a backend data pipeline (HTTP POST, PHP, MySQL), and a frontend display — all working together. Debugging was harder than any pure software project because a bug could live in the circuit, the firmware, the PHP, or the SQL.
+Tässä projektissa jouduin ensimmäistä kertaa ajattelemaan kolmea täysin erillistä kerrosta yhtä aikaa: laitteistoa eli kytkentöjä, anturiprotokollia ja firmwarea, taustapalvelun dataputkea eli HTTP-pyyntöjä, PHP:tä ja MySQL:ää, sekä käyttöliittymää. Vianetsintä oli vaikeampaa kuin missään puhtaassa ohjelmistoprojektissa, koska vika saattoi olla piirissä, firmwaressa, PHP:ssä tai SQL:ssä.
 
-## Highlights
+## Kohokohdat
 
-- ESP32 reads BME280 + DHT11 sensors every 30s
-- Firmware POSTs JSON to a PHP endpoint
-- PHP validates and writes to MySQL
-- Dashboard auto-refreshes with live temp / humidity / pressure
-- Full hardware → backend → frontend pipeline
+- ESP32 lukee BME280- ja DHT11-anturit 30 sekunnin välein
+- Firmware lähettää JSONin PHP-päätepisteeseen
+- PHP tarkistaa datan ja kirjoittaa sen MySQL:ään
+- Koontinäyttö päivittyy automaattisesti: lämpötila, kosteus ja paine
+- Koko putki laitteistosta taustapalvelun kautta käyttöliittymään
 
-## Tech Stack
+## Teknologiat
 
-- **Hardware:** ESP32 + BME280 + DHT11
+- **Laitteisto:** ESP32, BME280 ja DHT11
 - **Firmware:** Arduino IDE (C++)
-- **Backend:** PHP + MySQL (WampServer)
-- **Frontend:** JavaScript + MDB Bootstrap
+- **Taustapalvelu:** PHP ja MySQL (WampServer)
+- **Käyttöliittymä:** JavaScript ja MDB Bootstrap

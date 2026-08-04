@@ -4,7 +4,7 @@ description: "Minimalistinen sääsovellus suomalaisille ja brasilialaisille kau
 createdAt: "2026-09-10"
 featured: false
 role: "solo"
-highlight: "Live weather app for Finnish + Brazilian cities — pnpm/Turborepo monorepo, Open-Meteo, dark mode, shared design tokens"
+highlight: "Live-sääsovellus suomalaisille ja brasilialaisille kaupungeille — pnpm/Turborepo-monorepo, Open-Meteo, tumma tila, jaetut design-tokenit"
 techStack:
   - "Next.js 15"
   - "TypeScript"
@@ -17,28 +17,28 @@ status: "done"
 ---
 
 
-## What I built
+## Mitä rakensin
 
-A weather app showing current conditions and short-range forecasts for six cities: Helsinki, Tampere, and Oulu in Finland, and São Paulo, Fortaleza, and Curitiba in Brazil. The app uses the Open-Meteo API which is completely free and requires no API key.
+Sääsovellus, joka näyttää vallitsevan sään ja lähipäivien ennusteen kuudelle kaupungille: Helsingille, Tampereelle ja Oululle Suomessa sekä São Paulolle, Fortalezalle ja Curitiballe Brasiliassa. Sovellus käyttää Open-Meteo-rajapintaa, joka on täysin ilmainen eikä vaadi API-avainta.
 
-The project lives inside the same Turborepo monorepo as the portfolio, consuming the `@arthurreira/ui` design token package. That means the weather app's colours, typography, and spacing stay in sync with the portfolio automatically. The route architecture splits static city pages from a dynamic `/api/weather` endpoint that fetches fresh data on each request.
+Projekti elää samassa Turborepo-monorepossa kuin portfolio ja käyttää `@arthurreira/ui`-design-token-pakettia. Siksi sääsovelluksen värit, typografia ja välistykset pysyvät automaattisesti synkassa portfolion kanssa. Reittiarkkitehtuuri erottaa staattiset kaupunkisivut dynaamisesta `/api/weather`-päätepisteestä, joka hakee tuoreen datan jokaisella pyynnöllä.
 
-## What I learned
+## Mitä opin
 
-The main insight was about monorepo design token sharing: the pattern works well until you need one app to diverge from the system. Working out how to override tokens without breaking the shared package taught me where the boundaries of a shared system should live.
+Tärkein oivallus koski design-tokenien jakamista monorepossa: malli toimii hyvin siihen asti, kunnes yhden sovelluksen pitää poiketa järjestelmästä. Sen selvittäminen, miten tokeneita voi ohittaa rikkomatta jaettua pakettia, opetti, missä jaetun järjestelmän rajojen kuuluu kulkea.
 
-## Highlights
+## Kohokohdat
 
-- Live forecasts for 6 cities — Helsinki, Tampere, Oulu, São Paulo, Fortaleza, Curitiba
-- Open-Meteo API (free, no API key required)
-- Shares the @arthurreira/ui design token package with the portfolio
-- Static city pages + dynamic /api/weather endpoint
-- Dark mode toggle, live at [weather.arthurreira.dev](https://weather.arthurreira.dev)
+- Live-ennusteet 6 kaupungille — Helsinki, Tampere, Oulu, São Paulo, Fortaleza, Curitiba
+- Open-Meteo-rajapinta (ilmainen, ei API-avainta)
+- Jakaa @arthurreira/ui-design-token-paketin portfolion kanssa
+- Staattiset kaupunkisivut + dynaaminen /api/weather-päätepiste
+- Tumma tila, livenä osoitteessa [weather.arthurreira.dev](https://weather.arthurreira.dev)
 
-## Tech Stack
+## Teknologiat
 
 - **Framework:** Next.js 15 (App Router)
-- **Language:** TypeScript
-- **Data:** Open-Meteo API
-- **Monorepo:** Turborepo + pnpm workspaces
-- **Styling:** Tailwind CSS + @arthurreira/ui tokens
+- **Kieli:** TypeScript
+- **Data:** Open-Meteo-rajapinta
+- **Monorepo:** Turborepo + pnpm-työtilat
+- **Tyylit:** Tailwind CSS + @arthurreira/ui-tokenit

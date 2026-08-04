@@ -1,10 +1,10 @@
 ---
 title: "Honor Notes"
-description: "A full-stack notes application with a Next.js frontend and a Dockerized REST API backend, featuring rich text editing, tags, and persistent storage."
+description: "Full-stack-muistiinpanosovellus: Next.js-käyttöliittymä ja Dockeroitu REST-rajapinta, mukana muotoiltu teksti, tagit ja pysyvä tallennus."
 createdAt: "2026-11-20"
 featured: false
 role: "solo"
-highlight: "Decoupled full-stack notes app — Next.js frontend + Dockerized REST API, shared TypeScript types across services"
+highlight: "Eriytetty full-stack-muistiinpanosovellus — Next.js-käyttöliittymä ja Dockeroitu REST-rajapinta, jaetut TypeScript-tyypit palveluiden välillä"
 techStack:
   - "TypeScript"
   - "Next.js"
@@ -16,27 +16,27 @@ status: "done"
 ---
 
 
-## What I built
+## Mitä rakensin
 
-A notes app split into two independent services: a Next.js frontend and a separate Dockerized REST API backend. The separation is deliberate — the two repos share a TypeScript interface package so the API contract is type-safe on both ends. The frontend consumes the API over HTTP; the API handles all CRUD and persistence. Either service can be replaced or redeployed independently.
+Muistiinpanosovellus, joka on jaettu kahdeksi itsenäiseksi palveluksi: Next.js-käyttöliittymäksi ja erilliseksi Dockeroiduksi REST-rajapinnaksi. Jako on tarkoituksellinen, ja repot jakavat TypeScript-rajapintapaketin, joten rajapintasopimus on tyyppiturvallinen molemmissa päissä. Käyttöliittymä käyttää rajapintaa HTTP:n yli, ja rajapinta hoitaa kaiken tallennuksen ja muokkauksen. Kumman tahansa palvelun voi korvata tai julkaista erikseen.
 
-Features: create/read/update/delete notes, tag-based organisation, persistent storage via the API.
+Ominaisuudet: muistiinpanojen luonti, luku, muokkaus ja poisto, tagipohjainen järjestely sekä pysyvä tallennus rajapinnan kautta.
 
-## What I learned
+## Mitä opin
 
-The main lesson was about the cost of service boundaries. With a monolith, sharing types is trivial. With two separate repos communicating over HTTP, you need to be intentional about the API contract — what shape do requests and responses have, and how do you keep both sides in sync when it changes? Managing a shared types package taught me why API versioning and clear contracts matter more than they seem in small projects.
+Tärkein oppi koski palvelurajojen hintaa. Monoliitissa tyyppien jakaminen on triviaalia. Kun kaksi erillistä repoa keskustelee HTTP:n yli, rajapintasopimus on mietittävä tarkkaan: minkä muotoisia pyynnöt ja vastaukset ovat, ja miten molemmat päät pidetään synkassa, kun sopimus muuttuu. Jaetun tyyppipaketin ylläpito opetti, miksi rajapintojen versiointi ja selkeät sopimukset merkitsevät enemmän kuin pienissä projekteissa äkkiseltään näyttää.
 
-## Highlights
+## Kohokohdat
 
-- Create, read, update, delete notes
-- Tag-based organisation
-- Decoupled Next.js frontend + Dockerized REST API backend
-- Shared TypeScript types across both services
-- Each service independently deployable
+- Muistiinpanojen luonti, luku, muokkaus ja poisto
+- Tagipohjainen järjestely
+- Eriytetty Next.js-käyttöliittymä ja Dockeroitu REST-rajapinta
+- Jaetut TypeScript-tyypit molemmissa palveluissa
+- Kumpikin palvelu julkaistavissa erikseen
 
-## Tech Stack
+## Teknologiat
 
-- **Language:** TypeScript (shared types)
-- **Frontend:** Next.js
-- **Backend:** Dockerized REST API
-- **Transport:** HTTP
+- **Kieli:** TypeScript (jaetut tyypit)
+- **Käyttöliittymä:** Next.js
+- **Taustapalvelu:** Dockeroitu REST-rajapinta
+- **Siirtotapa:** HTTP

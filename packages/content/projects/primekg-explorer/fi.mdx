@@ -1,10 +1,10 @@
 ---
 title: "PrimeKG Explorer"
-description: "An interactive 3D biomedical knowledge graph explorer built on top of the PrimeKG dataset, using Neo4j for graph storage and react-force-graph-3d for WebGL visualization."
+description: "Interaktiivinen 3D-selain biolääketieteelliseen tietoverkkoon PrimeKG-aineiston päällä — Neo4j graafitietokantana ja react-force-graph-3d WebGL-visualisointiin."
 createdAt: "2026-03-05"
 featured: false
 role: "solo"
-highlight: "Interactive 3D biomedical graph — 4M+ PrimeKG nodes in Neo4j, WebGL force-directed visualization, disease-drug-gene relationships"
+highlight: "Interaktiivinen 3D-biograafi — yli 4 miljoonaa PrimeKG-solmua Neo4j:ssä, WebGL-voimagraafi, tauti–lääke–geeni-suhteet"
 techStack:
   - "TypeScript"
   - "Next.js"
@@ -16,27 +16,27 @@ status: "done"
 ---
 
 
-## What I built
+## Mitä rakensin
 
-A tool for navigating PrimeKG — a Harvard biomedical dataset linking diseases, drugs, genes, proteins, and biological pathways across 4 million+ nodes and relationships. The pipeline loads PrimeKG into a Neo4j graph database, serves it through Next.js API routes, and renders it as an interactive 3D force-directed graph using WebGL via react-force-graph-3d.
+Työkalu PrimeKG-aineiston selaamiseen. PrimeKG on Harvardin biolääketieteellinen aineisto, joka yhdistää tauteja, lääkkeitä, geenejä, proteiineja ja biologisia reittejä yli neljän miljoonan solmun ja suhteen verkostoksi. Putki lataa PrimeKG:n Neo4j-graafitietokantaan, tarjoilee sen Next.js:n API-reittien kautta ja piirtää sen interaktiivisena 3D-voimagraafina WebGL:llä react-force-graph-3d-kirjastoa käyttäen.
 
-You can search by disease, drug, or gene name, filter by entity type, and click nodes to explore their relationships. Node colours are coded by entity type; edge thickness represents relationship weight.
+Hakea voi taudin, lääkkeen tai geenin nimellä, suodattaa entiteettityypin mukaan ja klikata solmuja niiden suhteiden tutkimiseksi. Solmujen värit koodaavat entiteettityypin, ja kaarien paksuus kuvaa suhteen painoa.
 
-## What I learned
+## Mitä opin
 
-Graph databases think differently from relational ones. A query that would require five JOINs in SQL is a two-hop traversal in Cypher. The mental model shift — "find all neighbours two hops away from this node" vs "JOIN three tables on these columns" — took time but is genuinely more natural for connected data. 3D WebGL rendering also introduced performance constraints I hadn't encountered before: a graph that looks fine at 1,000 nodes becomes unresponsive at 50,000. The solution was LOD (level-of-detail) filtering — showing only high-degree nodes at the global view and expanding detail on zoom.
+Graafitietokannat ajattelevat eri tavalla kuin relaatiotietokannat. Kysely, joka SQL:ssä vaatisi viisi liitosta, on Cypherissä kahden hypyn läpikäynti. Ajattelutavan muutos — ”etsi kaikki naapurit kahden hypyn päästä tästä solmusta” sen sijaan että ”liitä kolme taulua näillä sarakkeilla” — vei aikaa, mutta on aidosti luontevampi kytkeytyneelle datalle. 3D-WebGL-renderöinti toi mukanaan myös suorituskykyrajoitteita, joita en ollut aiemmin kohdannut: graafi, joka näyttää hyvältä tuhannella solmulla, muuttuu jähmeäksi viidelläkymmenellätuhannella. Ratkaisu oli tarkkuustasosuodatus, jossa yleisnäkymässä näytetään vain runsaskytkentäiset solmut ja tarkkuus kasvaa lähennettäessä.
 
-## Highlights
+## Kohokohdat
 
-- Navigates PrimeKG — 4M+ biomedical nodes and relationships
-- Loads the dataset into a Neo4j graph database
-- Real-time 3D force-directed graph (WebGL)
-- Search and filter by disease, drug, gene, or protein
-- Node colour-coding by entity type
+- Selaa PrimeKG:tä — yli 4 miljoonaa biolääketieteellistä solmua ja suhdetta
+- Lataa aineiston Neo4j-graafitietokantaan
+- Reaaliaikainen 3D-voimagraafi (WebGL)
+- Haku ja suodatus taudin, lääkkeen, geenin tai proteiinin mukaan
+- Solmujen värikoodaus entiteettityypin mukaan
 
-## Tech Stack
+## Teknologiat
 
-- **Language:** TypeScript
-- **Database:** Neo4j (Cypher)
-- **Visualization:** react-force-graph-3d (Three.js)
+- **Kieli:** TypeScript
+- **Tietokanta:** Neo4j (Cypher)
+- **Visualisointi:** react-force-graph-3d (Three.js)
 - **Framework:** Next.js

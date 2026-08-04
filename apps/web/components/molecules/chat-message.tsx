@@ -1,5 +1,7 @@
+import { useState } from "react"
 import type { UIMessage } from "ai"
 import { motion } from "motion/react"
+import { CheckIcon, CopyIcon } from "@phosphor-icons/react"
 import {
   Bubble,
   BubbleContent,
@@ -22,6 +24,8 @@ interface ChatMessageProps {
   /** This reply came from the fallback model rather than the usual one. */
   isDegraded?: boolean
   degradedLabel?: string
+  copyLabel?: string
+  copiedLabel?: string
 }
 
 /**
@@ -39,7 +43,10 @@ export function ChatMessage({
   onFollowup,
   isDegraded = false,
   degradedLabel,
+  copyLabel,
+  copiedLabel,
 }: ChatMessageProps) {
+  const [isCopied, setIsCopied] = useState(false)
   const isUser = message.role === "user"
 
   const raw = message.parts
@@ -54,6 +61,18 @@ export function ChatMessage({
     : splitFollowups(raw)
 
   if (!answer) return null
+
+  const copy = async () => {
+    try {
+      await navigator.clipboard.writeText(answer)
+      setIsCopied(true)
+      window.setTimeout(() => setIsCopied(false), 2_000)
+    } catch (error) {
+      // Clipboard access can be refused outright; a silent no-op beats an error
+      // toast for something the visitor can still select by hand.
+      console.error("copy failed", error)
+    }
+  }
 
   return (
     <Message align={isUser ? "end" : "start"}>
@@ -84,9 +103,27 @@ export function ChatMessage({
         {/* Stated plainly rather than as a warning: the answer is real and
             usable, it just came from the weaker model. Alarming styling here
             would misrepresent a working chat as a broken one. */}
-        {isDegraded && degradedLabel && (
-          <MessageFooter>
-            <p className="text-muted-foreground text-xs">{degradedLabel}</p>
+        {!isUser && (copyLabel || isDegraded) && (
+          <MessageFooter className="flex items-center gap-2">
+            {copyLabel && (
+              <Button
+                variant="ghost"
+                size="sm"
+                onClick={copy}
+                aria-label={isCopied ? copiedLabel : copyLabel}
+                className="text-muted-foreground h-auto gap-1.5 px-1.5 py-1 text-xs"
+              >
+                {isCopied ? (
+                  <CheckIcon className="size-3.5" />
+                ) : (
+                  <CopyIcon className="size-3.5" />
+                )}
+                {isCopied ? copiedLabel : copyLabel}
+              </Button>
+            )}
+            {isDegraded && degradedLabel && (
+              <p className="text-muted-foreground text-xs">{degradedLabel}</p>
+            )}
           </MessageFooter>
         )}
 
