@@ -3,6 +3,8 @@
   "name": "chat-api",
   "main": "src/index.ts",
   "compatibility_date": "2026-07-20",
+  // Required by @anthropic-ai/sdk, which imports Node built-ins.
+  "compatibility_flags": ["nodejs_compat"],
   "observability": {
     "enabled": true
   }

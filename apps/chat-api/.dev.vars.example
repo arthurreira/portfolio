@@ -1,0 +1,7 @@
+# Copy to .dev.vars (gitignored) for local `wrangler dev`.
+# In production set it as a secret instead: wrangler secret put ANTHROPIC_API_KEY
+ANTHROPIC_API_KEY=sk-ant-...
+
+# Optional: comma-separated CORS allowlist.
+# Defaults to https://arthurreira.dev, https://www.arthurreira.dev, http://localhost:3000
+# ALLOWED_ORIGINS=https://arthurreira.dev,http://localhost:3000

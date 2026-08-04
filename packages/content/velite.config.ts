@@ -41,6 +41,9 @@ export default defineConfig({
       schema: s.object({
         locale: s.path().transform(path => path.split('/')[1]),
         content: s.mdx(),
+        // Plain-text source. `content` is compiled MDX (a JS function), which is
+        // unusable as LLM context — the chat Worker reads `raw` instead.
+        raw: s.raw(),
       })
     },
 
