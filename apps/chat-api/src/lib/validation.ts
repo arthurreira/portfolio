@@ -34,11 +34,21 @@ const partSchema = z
   })
   .passthrough()
 
+/**
+ * `parts` may legitimately be empty.
+ *
+ * `useChat` creates the assistant message before anything streams into it, so a
+ * request that fails or is stopped leaves an empty one in the transcript.
+ * Rejecting that would make a single transient failure poison the whole
+ * conversation: the empty message is resent with every following question, so
+ * the chat would stay broken until the visitor reloaded. Contentless messages
+ * are dropped below instead.
+ */
 const messageSchema = z
   .object({
     id: z.string().optional(),
     role: z.enum(["user", "assistant", "system"]),
-    parts: z.array(partSchema).min(1),
+    parts: z.array(partSchema),
   })
   .passthrough()
 
@@ -99,10 +109,21 @@ export const validateChatRequest = (payload: unknown): ValidationResult => {
     return { ok: false, error: "conversation_too_long" }
   }
 
+  // Drop anything with no text to contribute. Passing an empty assistant turn
+  // upstream is rejected by the model API, so leaving them in would trade a
+  // spurious 400 for a spurious 500.
+  const messages = parsed.data.messages.filter((message) =>
+    message.parts.some((part) => part.text && part.text.length > 0)
+  )
+
+  if (messages.length === 0) {
+    return { ok: false, error: "invalid_messages" }
+  }
+
   return {
     ok: true,
     data: {
-      messages: parsed.data.messages as unknown as UIMessage[],
+      messages: messages as unknown as UIMessage[],
       locale: parsed.data.locale,
       turnstileToken: parsed.data.turnstileToken,
     },
