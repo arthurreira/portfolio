@@ -1,6 +1,6 @@
 # arthurreira.dev — Portfolio Monorepo
 
-Personal portfolio, component playground, and published UI library — all in one pnpm workspace.
+Personal portfolio, component playground, published UI library, and the Worker behind the site's AI chat — all in one pnpm workspace.
 
 **Live sites:**
 
@@ -16,6 +16,7 @@ Personal portfolio, component playground, and published UI library — all in on
 apps/
   web/          → Portfolio site (Next.js 16, Turbopack, next-intl, Velite)
   playground/   → Component playground (Next.js 16, dnd-kit, motion)
+  chat-api/     → AI chat backend (Cloudflare Worker, AI SDK, Anthropic)
 
 packages/
   ui/                   → @arthurreira/ui — published React component library (v0.1.x)
@@ -64,6 +65,29 @@ A live sandbox for exploring and testing UI components. Built with:
 
 Routes: `/`, `/cards`, `/sortable`, `/number-reveal`
 
+### `apps/chat-api` — AI Chat Worker
+
+The backend for the portfolio's chat, which answers visitor questions about
+Arthur from the site's own content. Built with:
+
+- **Cloudflare Workers** (Wrangler, TypeScript)
+- **AI SDK** — streams in the UI Message Stream format, so the browser consumes
+  it with `useChat` and no custom parsing
+- **@arthurreira/content** — the system prompt is assembled per locale from the
+  same MDX and profile data the site renders
+
+**Stateless by design.** Nothing is persisted anywhere: no database, no KV, no
+Durable Objects, no vector store. Conversations live in React state and are gone
+on reload.
+
+There is also no RAG, deliberately — the portfolio is small enough to fit in the
+system prompt, so retrieval would add moving parts without adding answers.
+
+Cost and abuse are handled in layers: the output-token cap and history window are
+clamped to hardcoded ceilings so misconfiguration cannot run up a bill, and
+requests pass a per-IP rate limit and a Turnstile check before anything reaches
+the model.
+
 ---
 
 ## Packages
@@ -102,7 +126,9 @@ Built with: Radix UI, class-variance-authority, Tailwind CSS v4, tw-animate-css,
 
 ### `packages/content` — @arthurreira/content
 
-Internal MDX content layer powered by [Velite](https://velite.js.org). Defines typed schemas for projects and about pages. Content lives in `packages/content/projects/` and `packages/content/about/` as MDX files.
+Internal MDX content layer powered by [Velite](https://velite.js.org). Defines typed schemas for projects, about pages, and a profile collection (education, certifications, and skills grouped by how well they are actually known). Content lives in `packages/content/projects/`, `packages/content/about/`, and `packages/content/profile/`.
+
+Consumed by both the site and the chat Worker, so an edit to the content updates what the chat knows.
 
 ---
 
@@ -118,6 +144,7 @@ pnpm dev
 # Run a specific app
 pnpm --filter web dev
 pnpm --filter playground dev
+pnpm --filter chat-api dev     # wrangler dev
 
 # Build everything in dependency order (content builds before web)
 pnpm build
@@ -164,5 +191,8 @@ Branch naming: `feat/`, `fix/`, `docs/`, `chore/`
 | Content | Velite + MDX |
 | i18n | next-intl |
 | Drag & Drop | dnd-kit |
+| AI | AI SDK + Anthropic (Claude) |
+| Edge runtime | Cloudflare Workers |
+| Bot protection | Cloudflare Turnstile |
 | Package Manager | pnpm (workspace) |
-| Deployment | Vercel |
+| Deployment | Vercel (sites) + Cloudflare (chat Worker) |
