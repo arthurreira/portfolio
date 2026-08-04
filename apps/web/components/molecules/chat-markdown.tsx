@@ -1,5 +1,9 @@
+import Link from "next/link"
 import Markdown, { type Components } from "react-markdown"
 import remarkGfm from "remark-gfm"
+import { useLocale } from "next-intl"
+
+import { linkifyProjects } from "@/lib/project-links"
 
 /**
  * Renders the assistant's markdown.
@@ -30,17 +34,27 @@ const components: Components = {
   ),
   li: ({ children }) => <li className="ps-0.5">{children}</li>,
 
-  a: ({ children, href }) => (
-    <a
-      href={href}
-      // Model output is untrusted; never hand it an opener reference.
-      target="_blank"
-      rel="noopener noreferrer"
-      className="underline underline-offset-2 hover:text-foreground"
-    >
-      {children}
-    </a>
-  ),
+  a: ({ children, href }) =>
+    // Internal project links (inserted by linkifyProjects, already
+    // locale-prefixed) navigate in-tab; anything external stays untrusted and
+    // opens in a new tab with no opener reference.
+    href?.startsWith("/") ? (
+      <Link
+        href={href}
+        className="underline underline-offset-2 hover:text-foreground"
+      >
+        {children}
+      </Link>
+    ) : (
+      <a
+        href={href}
+        target="_blank"
+        rel="noopener noreferrer"
+        className="underline underline-offset-2 hover:text-foreground"
+      >
+        {children}
+      </a>
+    ),
 
   code: ({ children }) => (
     <code className="rounded-none bg-foreground/10 px-1 py-0.5 font-mono text-[0.95em]">
@@ -66,9 +80,11 @@ const components: Components = {
 }
 
 export function ChatMarkdown({ children }: { children: string }) {
+  const locale = useLocale()
+
   return (
     <Markdown remarkPlugins={[remarkGfm]} components={components}>
-      {children}
+      {linkifyProjects(children, locale)}
     </Markdown>
   )
 }
