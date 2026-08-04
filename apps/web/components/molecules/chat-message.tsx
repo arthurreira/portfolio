@@ -20,7 +20,9 @@ export function ChatMessage({ message }: { message: UIMessage }) {
   return (
     <Message align={isUser ? "end" : "start"}>
       <MessageContent>
-        <Bubble variant={isUser ? "default" : "muted"}>
+        {/* `muted` is only 5% opacity in these themes — invisible on a card.
+            `outline` reads clearly against the elevated panel surface. */}
+        <Bubble variant={isUser ? "default" : "outline"}>
           <BubbleContent className="whitespace-pre-wrap">{text}</BubbleContent>
         </Bubble>
       </MessageContent>

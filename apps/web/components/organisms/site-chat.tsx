@@ -4,6 +4,7 @@ import { useEffect, useId, useRef, useState } from "react"
 import { useChat } from "@ai-sdk/react"
 import { DefaultChatTransport } from "ai"
 import { useLocale, useTranslations } from "next-intl"
+import { AnimatePresence, MotionConfig, motion } from "motion/react"
 import { ChatsCircleIcon, XIcon } from "@phosphor-icons/react"
 import {
   Button,
@@ -36,6 +37,16 @@ import { ChatMessage } from "@/components/molecules/chat-message"
 
 const CHAT_API_URL =
   process.env.NEXT_PUBLIC_CHAT_API_URL ?? "http://127.0.0.1:8787/chat"
+
+const MotionCard = motion.create(Card)
+
+/** Grows out of the launcher button rather than just fading in. */
+const PANEL_MOTION = {
+  initial: { opacity: 0, scale: 0.94, y: 12 },
+  animate: { opacity: 1, scale: 1, y: 0 },
+  exit: { opacity: 0, scale: 0.96, y: 8 },
+  transition: { duration: 0.22, ease: [0.23, 1, 0.32, 1] as const },
+}
 
 /**
  * The portfolio chat, as a floating card.
@@ -88,109 +99,127 @@ export function SiteChat() {
   }, [isOpen])
 
   return (
-    <div className="fixed right-5 bottom-5 z-50 flex flex-col items-end gap-3">
-      {isOpen && (
-        <Card
-          ref={panelRef}
-          role="dialog"
-          aria-label={t("title")}
-          id={panelId}
-          tabIndex={-1}
-          className="flex h-[min(70svh,32rem)] w-[calc(100vw-2.5rem)] flex-col gap-0 sm:w-96"
-        >
-          <CardHeader className="flex flex-row items-center justify-between border-b">
-            <CardTitle>{t("title")}</CardTitle>
-            <Button
-              variant="ghost"
-              size="icon-sm"
-              aria-label={t("close")}
-              onClick={() => setIsOpen(false)}
+    <MotionConfig reducedMotion="user">
+      <div className="fixed right-5 bottom-5 z-50 flex flex-col items-end gap-3">
+        <AnimatePresence>
+          {isOpen && (
+            <MotionCard
+              {...PANEL_MOTION}
+              // Scale from the launcher below it, not from the middle.
+              style={{ transformOrigin: "bottom right" }}
+              ref={panelRef}
+              role="dialog"
+              aria-label={t("title")}
+              id={panelId}
+              tabIndex={-1}
+              className="flex h-[min(70svh,32rem)] w-[calc(100vw-2.5rem)] flex-col gap-0 shadow-2xl sm:w-96"
             >
-              <XIcon />
-            </Button>
-          </CardHeader>
+              <CardHeader className="flex flex-row items-center justify-between border-b">
+                <CardTitle>{t("title")}</CardTitle>
+                <Button
+                  variant="ghost"
+                  size="icon-sm"
+                  aria-label={t("close")}
+                  onClick={() => setIsOpen(false)}
+                >
+                  <XIcon />
+                </Button>
+              </CardHeader>
 
-          <CardContent className="min-h-0 flex-1 overflow-hidden p-0">
-            <MessageScrollerProvider autoScroll scrollPreviousItemPeek={64}>
-              <MessageScroller>
-                <MessageScrollerViewport>
-                  <MessageScrollerContent aria-busy={isBusy} className="p-4">
-                    {messages.length === 0 && (
-                      // Every direct child of the content must be an Item, or
-                      // the scroller cannot measure and anchor it.
-                      <MessageScrollerItem messageId="empty">
-                        <Empty>
-                          <EmptyHeader>
-                            <EmptyMedia variant="icon">
-                              <ChatsCircleIcon />
-                            </EmptyMedia>
-                            <EmptyTitle>{t("emptyTitle")}</EmptyTitle>
-                            <EmptyDescription>
-                              {t("emptyDescription")}
-                            </EmptyDescription>
-                          </EmptyHeader>
-                        </Empty>
-                      </MessageScrollerItem>
-                    )}
-
-                    {messages.map((message) => (
-                      <MessageScrollerItem
-                        key={message.id}
-                        messageId={message.id}
-                        // Anchor each question so its answer streams in below it.
-                        scrollAnchor={message.role === "user"}
+              <CardContent className="min-h-0 flex-1 overflow-hidden p-0">
+                <MessageScrollerProvider autoScroll scrollPreviousItemPeek={64}>
+                  <MessageScroller>
+                    <MessageScrollerViewport>
+                      <MessageScrollerContent
+                        aria-busy={isBusy}
+                        className="p-4"
                       >
-                        <ChatMessage message={message} />
-                      </MessageScrollerItem>
-                    ))}
+                        {messages.length === 0 && (
+                          // Every direct child of the content must be an Item, or
+                          // the scroller cannot measure and anchor it.
+                          <MessageScrollerItem messageId="empty">
+                            <Empty>
+                              <EmptyHeader>
+                                <EmptyMedia variant="icon">
+                                  <ChatsCircleIcon />
+                                </EmptyMedia>
+                                <EmptyTitle>{t("emptyTitle")}</EmptyTitle>
+                                <EmptyDescription>
+                                  {t("emptyDescription")}
+                                </EmptyDescription>
+                              </EmptyHeader>
+                            </Empty>
+                          </MessageScrollerItem>
+                        )}
 
-                    {status === "submitted" && (
-                      <MessageScrollerItem messageId="pending">
-                        <Marker role="status">
-                          <MarkerIcon>
-                            <Spinner />
-                          </MarkerIcon>
-                          <MarkerContent>{t("thinking")}</MarkerContent>
-                        </Marker>
-                      </MessageScrollerItem>
-                    )}
+                        {messages.map((message) => (
+                          <MessageScrollerItem
+                            key={message.id}
+                            messageId={message.id}
+                            // Anchor each question so its answer streams in below it.
+                            scrollAnchor={message.role === "user"}
+                          >
+                            <ChatMessage message={message} />
+                          </MessageScrollerItem>
+                        ))}
 
-                    {error && (
-                      <MessageScrollerItem messageId="error">
-                        <Marker role="status">
-                          <MarkerContent>{t("error")}</MarkerContent>
-                        </Marker>
-                      </MessageScrollerItem>
-                    )}
-                  </MessageScrollerContent>
-                </MessageScrollerViewport>
-                <MessageScrollerButton />
-              </MessageScroller>
-            </MessageScrollerProvider>
-          </CardContent>
+                        {status === "submitted" && (
+                          <MessageScrollerItem messageId="pending">
+                            <Marker role="status">
+                              <MarkerIcon>
+                                <Spinner />
+                              </MarkerIcon>
+                              <MarkerContent>{t("thinking")}</MarkerContent>
+                            </Marker>
+                          </MessageScrollerItem>
+                        )}
 
-          <CardFooter className="border-t pt-4">
-            <ChatComposer
-              onSend={(text) => sendMessage({ text })}
-              isBusy={isBusy}
-              placeholder={t("placeholder")}
-              sendLabel={t("send")}
-            />
-          </CardFooter>
-        </Card>
-      )}
+                        {error && (
+                          <MessageScrollerItem messageId="error">
+                            <Marker role="status">
+                              <MarkerContent>{t("error")}</MarkerContent>
+                            </Marker>
+                          </MessageScrollerItem>
+                        )}
+                      </MessageScrollerContent>
+                    </MessageScrollerViewport>
+                    <MessageScrollerButton />
+                  </MessageScroller>
+                </MessageScrollerProvider>
+              </CardContent>
 
-      <Button
-        ref={triggerRef}
-        size="icon"
-        aria-label={isOpen ? t("close") : t("open")}
-        aria-expanded={isOpen}
-        aria-controls={isOpen ? panelId : undefined}
-        onClick={() => setIsOpen((open) => !open)}
-        className="size-12 rounded-full shadow-lg"
-      >
-        {isOpen ? <XIcon /> : <ChatsCircleIcon />}
-      </Button>
-    </div>
+              <CardFooter className="border-t pt-4">
+                <ChatComposer
+                  onSend={(text) => sendMessage({ text })}
+                  isBusy={isBusy}
+                  placeholder={t("placeholder")}
+                  sendLabel={t("send")}
+                />
+              </CardFooter>
+            </MotionCard>
+          )}
+        </AnimatePresence>
+
+        <Button
+          ref={triggerRef}
+          size="icon"
+          aria-label={isOpen ? t("close") : t("open")}
+          aria-expanded={isOpen}
+          aria-controls={isOpen ? panelId : undefined}
+          onClick={() => setIsOpen((open) => !open)}
+          className="size-12 rounded-full shadow-lg"
+        >
+          <motion.span
+            key={isOpen ? "close" : "open"}
+            initial={{ rotate: -90, opacity: 0 }}
+            animate={{ rotate: 0, opacity: 1 }}
+            transition={{ duration: 0.18 }}
+            className="flex items-center justify-center"
+          >
+            {isOpen ? <XIcon /> : <ChatsCircleIcon />}
+          </motion.span>
+        </Button>
+      </div>
+    </MotionConfig>
   )
 }
