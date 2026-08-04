@@ -9,6 +9,7 @@ import { ChatsCircleIcon, XIcon } from "@phosphor-icons/react"
 import {
   Button,
   Card,
+  CardAction,
   CardContent,
   CardFooter,
   CardHeader,
@@ -118,20 +119,29 @@ export function SiteChat() {
               tabIndex={-1}
               className="flex h-[min(70svh,32rem)] w-[calc(100vw-2.5rem)] flex-col gap-0 shadow-2xl sm:w-96"
             >
-              <CardHeader className="flex flex-row items-center justify-between border-b">
+              <CardHeader className="border-b">
                 <CardTitle>{t("title")}</CardTitle>
-                <Button
-                  variant="ghost"
-                  size="icon-sm"
-                  aria-label={t("close")}
-                  onClick={() => setIsOpen(false)}
-                >
-                  <XIcon />
-                </Button>
+                {/* CardAction is the header's dedicated slot — it drives the
+                    grid columns, which a hand-rolled flex row would override. */}
+                <CardAction>
+                  <Button
+                    variant="ghost"
+                    size="icon-sm"
+                    aria-label={t("close")}
+                    onClick={() => setIsOpen(false)}
+                  >
+                    <XIcon />
+                  </Button>
+                </CardAction>
               </CardHeader>
 
               <CardContent className="min-h-0 flex-1 overflow-hidden p-0">
-                <MessageScrollerProvider autoScroll scrollPreviousItemPeek={64}>
+                {/* No scrollAnchor here on purpose. Anchoring lifts each new
+                    turn to the top so a long answer can be read from its start
+                    — good on a full page, wrong in a 32rem panel, where it
+                    pushes the streaming reply out of sight. This panel wants
+                    the plain chat behaviour: follow the bottom edge. */}
+                <MessageScrollerProvider autoScroll>
                   <MessageScroller>
                     <MessageScrollerViewport>
                       <MessageScrollerContent
@@ -174,8 +184,6 @@ export function SiteChat() {
                           <MessageScrollerItem
                             key={message.id}
                             messageId={message.id}
-                            // Anchor each question so its answer streams in below it.
-                            scrollAnchor={message.role === "user"}
                           >
                             <ChatMessage message={message} />
                           </MessageScrollerItem>
@@ -208,7 +216,7 @@ export function SiteChat() {
                 </MessageScrollerProvider>
               </CardContent>
 
-              <CardFooter className="border-t pt-4">
+              <CardFooter>
                 <ChatComposer
                   onSend={(text) => sendMessage({ text })}
                   onStop={stop}
