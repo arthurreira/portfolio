@@ -16,7 +16,7 @@ import { linkifyProjects } from "@/lib/project-links"
  * foreground-derived tint instead — faint backgrounds vanish on the card.
  */
 const components: Components = {
-  p: ({ children }) => <p className="not-first:mt-2">{children}</p>,
+  p: ({ children }) => <p className="not-first:mt-2 motion-safe:animate-in motion-safe:fade-in-0 motion-safe:slide-in-from-bottom-1 motion-safe:duration-300">{children}</p>,
 
   strong: ({ children }) => (
     <strong className="font-semibold text-foreground">{children}</strong>
@@ -32,7 +32,7 @@ const components: Components = {
       {children}
     </ol>
   ),
-  li: ({ children }) => <li className="ps-0.5">{children}</li>,
+  li: ({ children }) => <li className="ps-0.5 motion-safe:animate-in motion-safe:fade-in-0 motion-safe:slide-in-from-bottom-1 motion-safe:duration-300">{children}</li>,
 
   a: ({ children, href }) =>
     // Internal project links (inserted by linkifyProjects, already
@@ -62,20 +62,20 @@ const components: Components = {
     </code>
   ),
   pre: ({ children }) => (
-    <pre className="overflow-x-auto rounded-none bg-foreground/10 p-2 not-first:mt-2">
+    <pre className="overflow-x-auto rounded-none bg-foreground/10 p-2 not-first:mt-2 motion-safe:animate-in motion-safe:fade-in-0 motion-safe:slide-in-from-bottom-1 motion-safe:duration-300">
       {children}
     </pre>
   ),
 
   // Headings are rare in a chat reply; keep them close to body size.
   h1: ({ children }) => (
-    <p className="font-semibold text-foreground not-first:mt-3">{children}</p>
+    <p className="font-semibold text-foreground not-first:mt-3 motion-safe:animate-in motion-safe:fade-in-0 motion-safe:slide-in-from-bottom-1 motion-safe:duration-300">{children}</p>
   ),
   h2: ({ children }) => (
-    <p className="font-semibold text-foreground not-first:mt-3">{children}</p>
+    <p className="font-semibold text-foreground not-first:mt-3 motion-safe:animate-in motion-safe:fade-in-0 motion-safe:slide-in-from-bottom-1 motion-safe:duration-300">{children}</p>
   ),
   h3: ({ children }) => (
-    <p className="font-semibold text-foreground not-first:mt-3">{children}</p>
+    <p className="font-semibold text-foreground not-first:mt-3 motion-safe:animate-in motion-safe:fade-in-0 motion-safe:slide-in-from-bottom-1 motion-safe:duration-300">{children}</p>
   ),
 }
 

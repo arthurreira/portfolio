@@ -1,4 +1,5 @@
 import type { UIMessage } from "ai"
+import { motion } from "motion/react"
 import {
   Bubble,
   BubbleContent,
@@ -91,16 +92,22 @@ export function ChatMessage({
 
         {showFollowups && followups.length > 0 && onFollowup && (
           <MessageFooter className="flex flex-col items-start gap-1.5">
-            {followups.map((question) => (
-              <Button
+            {followups.map((question, index) => (
+              <motion.div
                 key={question}
-                variant="outline"
-                size="sm"
-                className="h-auto py-1 text-left whitespace-normal"
-                onClick={() => onFollowup(question)}
+                initial={{ opacity: 0, y: 4 }}
+                animate={{ opacity: 1, y: 0 }}
+                transition={{ duration: 0.18, delay: index * 0.07 }}
               >
-                {question}
-              </Button>
+                <Button
+                  variant="outline"
+                  size="sm"
+                  className="h-auto py-1 text-left whitespace-normal"
+                  onClick={() => onFollowup(question)}
+                >
+                  {question}
+                </Button>
+              </motion.div>
             ))}
           </MessageFooter>
         )}
