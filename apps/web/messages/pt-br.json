@@ -136,6 +136,7 @@
     "thinking": "Pensando…",
     "error": "Algo deu errado. Tente novamente.",
     "open": "Pergunte sobre o Arthur",
-    "title": "Pergunte sobre o Arthur"
+    "title": "Pergunte sobre o Arthur",
+    "close": "Fechar chat"
   }
 }

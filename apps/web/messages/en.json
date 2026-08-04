@@ -137,6 +137,7 @@
     "thinking": "Thinking…",
     "error": "Something went wrong. Please try again.",
     "open": "Ask about Arthur",
-    "title": "Ask about Arthur"
+    "title": "Ask about Arthur",
+    "close": "Close chat"
   }
 }

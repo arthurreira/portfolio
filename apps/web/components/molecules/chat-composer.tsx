@@ -47,7 +47,7 @@ export function ChatComposer({
   }
 
   return (
-    <form onSubmit={submit}>
+    <form onSubmit={submit} className="w-full">
       <InputGroup>
         <InputGroupTextarea
           value={draft}
@@ -65,11 +65,7 @@ export function ChatComposer({
             aria-label={sendLabel}
             className="ml-auto"
           >
-            {isBusy ? (
-              <Spinner data-icon="inline-start" />
-            ) : (
-              <PaperPlaneTiltIcon data-icon="inline-start" />
-            )}
+            {isBusy ? <Spinner /> : <PaperPlaneTiltIcon />}
           </Button>
         </InputGroupAddon>
       </InputGroup>
