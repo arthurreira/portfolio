@@ -1,18 +1,21 @@
 ---
 title: "arthurreira.dev"
-description: "Personal portfolio built in a Turborepo monorepo — Next.js 15, Velite for MDX content, next-intl for three languages, and a custom @arthurreira/ui design token package shared across apps."
+description: "Personal portfolio built in a Turborepo monorepo — Next.js 16, Velite for MDX content, next-intl for three languages, a custom @arthurreira/ui design token package, and a stateless AI chat running on Cloudflare Workers."
 createdAt: "2026-03-28"
 featured: false
 role: "solo"
-highlight: "Multilingual portfolio (EN/PT/FI) in a Turborepo monorepo with Velite MDX content and a shared design system"
+highlight: "Multilingual portfolio (EN/PT/FI) in a Turborepo monorepo, with a stateless AI chat on Cloudflare Workers"
 techStack:
-  - "Next.js 15"
+  - "Next.js 16"
   - "TypeScript"
   - "Turborepo"
   - "Velite"
   - "next-intl"
   - "Tailwind CSS"
   - "shadcn/ui"
+  - "Cloudflare Workers"
+  - "AI SDK"
+  - "Claude"
 githubRepo: "https://github.com/arthurreira/arthurreira.dev"
 url: "https://arthurreira.dev"
 status: "ongoing"
@@ -21,15 +24,33 @@ status: "ongoing"
 
 ## What I built
 
-The site lives inside a Turborepo monorepo with three workspaces: `apps/web` (the Next.js 15 site), `packages/content` (Velite-powered MDX), and `packages/ui` (a shared design token package called `@arthurreira/ui`). The design system exports Tailwind config, global CSS, and reusable components — any app in the monorepo can install the package and inherit the entire token set.
+The site lives inside a Turborepo monorepo with three workspaces: `apps/web` (the Next.js 16 site), `packages/content` (Velite-powered MDX), and `packages/ui` (a shared design token package called `@arthurreira/ui`). The design system exports Tailwind config, global CSS, and reusable components — any app in the monorepo can install the package and inherit the entire token set.
 
 Content is managed through Velite, which transforms MDX frontmatter and body into typed TypeScript at build time. Switching from Contentlayer was a deliberate choice: Velite handles custom schema transforms natively, is actively maintained, and gives full type-safety on every field without hacks. Projects, about pages, and translations all live as MDX files under `packages/content` — the web app reads them but never owns them.
 
 Internationalisation runs through `next-intl` with three locales (EN, PT-BR, FI). Route segments use `[locale]` prefixes, and the translation JSON files live alongside the content package. A `postinstall` script in `packages/ui` auto-syncs design tokens whenever the package rebuilds, so the web app never drifts out of sync with the system.
 
+## The AI chat
+
+The chat in the corner answers questions about me from this portfolio's own content. It runs on a Cloudflare Worker, and the interesting decisions in it are mostly about what I chose *not* to build.
+
+**Nothing is stored.** No database, no key-value store, no vector store. Conversations live in React state and are gone when the page reloads. That was the first decision, and most of the others follow from it: with nothing persisted there is no data to leak, no retention policy to write, and nothing to explain in a privacy notice.
+
+**No RAG.** Retrieval is the obvious reflex for "chat with my content", but this portfolio fits comfortably inside a system prompt. Building an embedding pipeline and a vector store would have added infrastructure, cost, and a whole class of retrieval bugs to solve a problem I did not have. The context is assembled per language from the same MDX and profile data the site renders, so editing a project changes what the chat knows.
+
+**Costs are capped where they cannot be argued with.** The output limit and history window are read from configuration, but clamped to hard ceilings in code, so a mistyped value can lower them and never raise them. Requests are validated for length before reaching the model, because input size is the one cost lever an anonymous visitor controls. A per-IP rate limit and a bot check both run before any of that — the cheapest guard first, so abuse is refused before it bills.
+
+**It degrades instead of breaking.** If the model provider fails — most likely because I let the balance run out — the request is retried against a model running on Cloudflare's own infrastructure, and the reply says it came from the backup. A portfolio whose chat answers slightly less well is better than one whose chat is broken in front of whoever is reading it.
+
+Making that fallback work needed one non-obvious piece. The streaming API does not throw when a request is rejected; it resolves happily and reports the failure inside the stream, by which point the response has already started and the model can no longer be swapped. So the stream is read until it either fails or produces real content, and only then committed to — which turns "the answer already started" back into a decision.
+
+The Worker speaks the AI SDK's standard streaming format rather than a custom protocol. That kept the browser side to a single hook with no parsing, and it also meant I could build the entire chat interface against a scripted stand-in — every bubble, streaming state, and error path — without a model, a network request, or a single API credit.
+
 ## What I learned
 
-Building your own design system — even a small one — forces every decision to be explicit. There's no hiding behind framework defaults. I learned how Tailwind's `@theme` and CSS custom properties interact, how to publish a package inside a monorepo without a registry, and how far you can push a content-as-code approach before it becomes friction. The biggest lesson: structure the monorepo for change, not for the current use case.
+Building your own design system — even a small one — forces every decision to be explicit. There's no hiding behind framework defaults. I learned how Tailwind's `@theme` and CSS custom properties interact, how to publish a package inside a monorepo without a registry, and how far you can push a content-as-code approach before it becomes friction.
+
+The chat taught me a different lesson: the hard part of adding AI to something is rarely the model. It was deciding what not to store, capping what a stranger can spend on my behalf, and making the thing fail in a way that still looks deliberate. The biggest lesson overall: structure for change, not for the current use case.
 
 ## Highlights
 
@@ -38,11 +59,13 @@ Building your own design system — even a small one — forces every decision t
 - 3 languages via next-intl (EN / PT-BR / FI)
 - @arthurreira/ui shared design token package
 - Built-in 2×2 theme matrix (Brasil/Suomi × dark/light)
+- Stateless AI chat on Cloudflare Workers, with a fallback model and hard cost ceilings
 
 ## Tech Stack
 
-- **Framework:** Next.js 15 (App Router)
+- **Framework:** Next.js 16 (App Router)
 - **Content:** Velite (type-safe MDX)
 - **i18n:** next-intl
 - **Monorepo:** Turborepo + pnpm
 - **Design system:** @arthurreira/ui (Tailwind v4 + shadcn/ui)
+- **Chat:** Cloudflare Workers + AI SDK + Claude, with a Workers AI fallback
