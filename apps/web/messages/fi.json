@@ -130,7 +130,7 @@
   },
   "chat": {
     "emptyTitle": "Kysy Arthurista",
-    "emptyDescription": "Kysy taustasta, kokemuksesta tai mistä tahansa projektista. Vastaukset perustuvat tämän portfolion sisältöön.",
+    "emptyDescription": "Tausta, kokemus, mikä tahansa projekti — vastaukset perustuvat tämän portfolion sisältöön.",
     "placeholder": "Kirjoita kysymys…",
     "send": "Lähetä viesti",
     "thinking": "Mietitään…",
@@ -148,6 +148,15 @@
     "degraded": "Varamalli vastasi tähän, joten vastaus voi olla tavallista suppeampi.",
     "modelLabel": "Malli",
     "modelClaude": "Claude Haiku 4.5",
-    "modelFree": "Llama 3.3 70B"
+    "modelFree": "Llama 3.3 70B",
+    "metaPrivate": "Ei tallenneta",
+    "metaPrivateHint": "Viestit elävät vain tässä välilehdessä ja katoavat sivun latautuessa.",
+    "clear": "Aloita alusta",
+    "copy": "Kopioi vastaus",
+    "copied": "Kopioitu",
+    "metaScope": "Vastaa portfolion sisällöstä",
+    "openHint": "Paina / kysyäksesi",
+    "charsLeft": "{count} merkkiä jäljellä",
+    "tooLong": "Viesti on liian pitkä"
   }
 }

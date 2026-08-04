@@ -26,25 +26,37 @@ interface ProximityLettersProps {
 
 /**
  * Splits text into per-letter spans that react to the cursor inside the
- * nearest `ProximityArea`. Spaces stay plain text nodes so words keep their
- * spacing and long lines can wrap.
+ * nearest `ProximityArea`.
+ *
+ * Each word is wrapped and marked `nowrap` before its letters are split.
+ * Without that, every letter is its own inline-block and the browser treats
+ * each as a separate break opportunity — so a heading wraps mid-word
+ * ("mä oo / n Arthur") as soon as a line happens to be long enough. Words
+ * still wrap between each other; only the inside of a word is held together.
  */
 export function ProximityLetters({
   text,
   tone = "default",
 }: ProximityLettersProps) {
+  // Keeps the separators, so original spacing survives the split.
+  const words = text.split(/(\s+)/)
+
   return (
     <>
-      {Array.from(text).map((char, i) =>
-        char === " " ? (
-          " "
+      {words.map((word, wordIndex) =>
+        /^\s+$/.test(word) || word === "" ? (
+          word
         ) : (
-          <span
-            key={`${char}-${i}`}
-            data-letter={tone}
-            className="inline-block transition-[transform,color] duration-200 ease-out will-change-transform"
-          >
-            {char}
+          <span key={`${word}-${wordIndex}`} className="inline-block whitespace-nowrap">
+            {Array.from(word).map((char, i) => (
+              <span
+                key={`${char}-${i}`}
+                data-letter={tone}
+                className="inline-block transition-[transform,color] duration-200 ease-out will-change-transform"
+              >
+                {char}
+              </span>
+            ))}
           </span>
         )
       )}

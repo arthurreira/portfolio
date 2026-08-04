@@ -130,7 +130,7 @@
   },
   "chat": {
     "emptyTitle": "Pergunte sobre o Arthur",
-    "emptyDescription": "Pergunte sobre a trajetória, a experiência ou qualquer projeto. As respostas vêm deste portfólio.",
+    "emptyDescription": "Trajetória, experiência, qualquer projeto — as respostas vêm deste portfolio.",
     "placeholder": "Escreva uma pergunta…",
     "send": "Enviar mensagem",
     "thinking": "Pensando…",
@@ -148,6 +148,15 @@
     "degraded": "Respondido pelo modelo reserva, então esta resposta pode ser menos detalhada.",
     "modelLabel": "Modelo",
     "modelClaude": "Claude Haiku 4.5",
-    "modelFree": "Llama 3.3 70B"
+    "modelFree": "Llama 3.3 70B",
+    "metaPrivate": "Não é salvo",
+    "metaPrivateHint": "As mensagens ficam só nesta aba e somem ao recarregar.",
+    "clear": "Recomeçar",
+    "copy": "Copiar resposta",
+    "copied": "Copiado",
+    "metaScope": "Responde com base neste portfolio",
+    "openHint": "Pressione / para perguntar",
+    "charsLeft": "{count} caracteres restantes",
+    "tooLong": "A mensagem está longa demais"
   }
 }
