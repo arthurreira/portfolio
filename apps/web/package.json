@@ -12,10 +12,12 @@
     "typecheck": "tsc --noEmit"
   },
   "dependencies": {
+    "@ai-sdk/react": "^4.0.54",
     "@arthurreira/content": "workspace:*",
     "@arthurreira/ui": "workspace:*",
     "@phosphor-icons/react": "^2.1.10",
     "@vercel/analytics": "^2.0.1",
+    "ai": "^7.0.51",
     "lenis": "^1.3.25",
     "motion": "^12.38.0",
     "next": "16.2.6",
@@ -26,6 +28,7 @@
   "devDependencies": {
     "@arthurreira/eslint-config": "workspace:*",
     "@arthurreira/typescript-config": "workspace:*",
+    "@shadcn/helpers": "^0.1.0",
     "@tailwindcss/postcss": "^4.1.18",
     "@types/minimatch": "^6.0.0",
     "@types/node": "^25.1.0",
