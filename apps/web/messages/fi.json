@@ -137,6 +137,12 @@
     "error": "Jokin meni pieleen. Yritä uudelleen.",
     "open": "Kysy Arthurista",
     "title": "Kysy Arthurista",
-    "close": "Sulje chat"
+    "close": "Sulje chat",
+    "stop": "Keskeytä vastaus",
+    "suggestions": [
+      "Mitä Arthur tekee?",
+      "Missä projekteissa on TypeScriptiä?",
+      "Mikä af-analytics on?"
+    ]
   }
 }

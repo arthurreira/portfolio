@@ -138,6 +138,12 @@
     "error": "Something went wrong. Please try again.",
     "open": "Ask about Arthur",
     "title": "Ask about Arthur",
-    "close": "Close chat"
+    "close": "Close chat",
+    "stop": "Stop generating",
+    "suggestions": [
+      "What does Arthur do?",
+      "Which projects use TypeScript?",
+      "What is af-analytics?"
+    ]
   }
 }

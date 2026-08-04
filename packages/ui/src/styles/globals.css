@@ -1,4 +1,6 @@
 @import "tailwindcss";
+/* Shared shadcn utilities (shimmer, …) — ships with the `shadcn` package. */
+@import "shadcn/tailwind.css";
 @import "tw-animate-css";
 
 @custom-variant dark (&:is(.dark *));

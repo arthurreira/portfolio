@@ -137,6 +137,12 @@
     "error": "Algo deu errado. Tente novamente.",
     "open": "Pergunte sobre o Arthur",
     "title": "Pergunte sobre o Arthur",
-    "close": "Fechar chat"
+    "close": "Fechar chat",
+    "stop": "Parar a resposta",
+    "suggestions": [
+      "O que o Arthur faz?",
+      "Quais projetos usam TypeScript?",
+      "O que é o af-analytics?"
+    ]
   }
 }

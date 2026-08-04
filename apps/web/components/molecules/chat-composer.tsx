@@ -1,8 +1,8 @@
 "use client"
 
 import { useState, type FormEvent, type KeyboardEvent } from "react"
-import { PaperPlaneTiltIcon } from "@phosphor-icons/react"
-import { Button, Spinner } from "@arthurreira/ui"
+import { PaperPlaneTiltIcon, SquareIcon } from "@phosphor-icons/react"
+import { Button } from "@arthurreira/ui"
 import {
   InputGroup,
   InputGroupAddon,
@@ -11,10 +11,13 @@ import {
 
 interface ChatComposerProps {
   onSend: (text: string) => void
-  /** True while a reply is streaming — blocks a second send. */
+  /** Aborts the in-flight reply. */
+  onStop: () => void
+  /** True while a reply is streaming — the send button becomes a stop button. */
   isBusy?: boolean
   placeholder: string
   sendLabel: string
+  stopLabel: string
 }
 
 /**
@@ -25,9 +28,11 @@ interface ChatComposerProps {
  */
 export function ChatComposer({
   onSend,
+  onStop,
   isBusy = false,
   placeholder,
   sendLabel,
+  stopLabel,
 }: ChatComposerProps) {
   const [draft, setDraft] = useState("")
   const canSend = draft.trim().length > 0 && !isBusy
@@ -58,15 +63,30 @@ export function ChatComposer({
           aria-label={placeholder}
         />
         <InputGroupAddon align="block-end">
-          <Button
-            type="submit"
-            size="icon-sm"
-            disabled={!canSend}
-            aria-label={sendLabel}
-            className="ml-auto"
-          >
-            {isBusy ? <Spinner /> : <PaperPlaneTiltIcon />}
-          </Button>
+          {/* While streaming the same slot becomes a stop control — cancelling
+              a long answer is the one thing that saves API credits mid-flight. */}
+          {isBusy ? (
+            <Button
+              type="button"
+              size="icon-sm"
+              variant="secondary"
+              onClick={onStop}
+              aria-label={stopLabel}
+              className="ml-auto"
+            >
+              <SquareIcon weight="fill" />
+            </Button>
+          ) : (
+            <Button
+              type="submit"
+              size="icon-sm"
+              disabled={!canSend}
+              aria-label={sendLabel}
+              className="ml-auto"
+            >
+              <PaperPlaneTiltIcon />
+            </Button>
+          )}
         </InputGroupAddon>
       </InputGroup>
     </form>

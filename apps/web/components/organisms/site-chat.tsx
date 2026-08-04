@@ -14,6 +14,7 @@ import {
   CardHeader,
   CardTitle,
   Empty,
+  EmptyContent,
   EmptyDescription,
   EmptyHeader,
   EmptyMedia,
@@ -71,7 +72,7 @@ export function SiteChat() {
   const triggerRef = useRef<HTMLButtonElement>(null)
   const wasOpen = useRef(false)
 
-  const { messages, sendMessage, status, error } = useChat({
+  const { messages, sendMessage, status, error, stop } = useChat({
     transport: new DefaultChatTransport({
       api: CHAT_API_URL,
       body: { locale },
@@ -79,6 +80,9 @@ export function SiteChat() {
   })
 
   const isBusy = status === "submitted" || status === "streaming"
+
+  // A blank chat gives no clue what it knows about — these do.
+  const suggestions = t.raw("suggestions") as string[]
 
   // Escape closes the panel — a dialog primitive would have done this for us.
   useEffect(() => {
@@ -148,6 +152,20 @@ export function SiteChat() {
                                   {t("emptyDescription")}
                                 </EmptyDescription>
                               </EmptyHeader>
+                              <EmptyContent className="flex flex-col gap-2">
+                                {suggestions.map((question) => (
+                                  <Button
+                                    key={question}
+                                    variant="outline"
+                                    size="sm"
+                                    onClick={() =>
+                                      sendMessage({ text: question })
+                                    }
+                                  >
+                                    {question}
+                                  </Button>
+                                ))}
+                              </EmptyContent>
                             </Empty>
                           </MessageScrollerItem>
                         )}
@@ -169,7 +187,9 @@ export function SiteChat() {
                               <MarkerIcon>
                                 <Spinner />
                               </MarkerIcon>
-                              <MarkerContent>{t("thinking")}</MarkerContent>
+                              <MarkerContent className="shimmer">
+                                {t("thinking")}
+                              </MarkerContent>
                             </Marker>
                           </MessageScrollerItem>
                         )}
@@ -191,9 +211,11 @@ export function SiteChat() {
               <CardFooter className="border-t pt-4">
                 <ChatComposer
                   onSend={(text) => sendMessage({ text })}
+                  onStop={stop}
                   isBusy={isBusy}
                   placeholder={t("placeholder")}
                   sendLabel={t("send")}
+                  stopLabel={t("stop")}
                 />
               </CardFooter>
             </MotionCard>
