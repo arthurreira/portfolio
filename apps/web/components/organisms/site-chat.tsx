@@ -69,7 +69,6 @@ export function SiteChat() {
   const panelId = useId()
 
   const [isOpen, setIsOpen] = useState(false)
-  const panelRef = useRef<HTMLDivElement>(null)
   const triggerRef = useRef<HTMLButtonElement>(null)
   const wasOpen = useRef(false)
 
@@ -95,11 +94,11 @@ export function SiteChat() {
     return () => document.removeEventListener("keydown", onKeyDown)
   }, [isOpen])
 
-  // Move focus into the panel on open and back to the trigger on close, but
-  // never on first mount — that would steal focus on every page load.
+  // On open the composer takes focus (see its autoFocus prop) so the panel is
+  // ready to type in. Here we only handle the return trip, guarded so it never
+  // steals focus on first mount.
   useEffect(() => {
-    if (isOpen) panelRef.current?.focus()
-    else if (wasOpen.current) triggerRef.current?.focus()
+    if (!isOpen && wasOpen.current) triggerRef.current?.focus()
     wasOpen.current = isOpen
   }, [isOpen])
 
@@ -112,11 +111,9 @@ export function SiteChat() {
               {...PANEL_MOTION}
               // Scale from the launcher below it, not from the middle.
               style={{ transformOrigin: "bottom right" }}
-              ref={panelRef}
               role="dialog"
               aria-label={t("title")}
               id={panelId}
-              tabIndex={-1}
               className="flex h-[min(70svh,32rem)] w-[calc(100vw-2.5rem)] flex-col gap-0 shadow-2xl sm:w-96"
             >
               <CardHeader className="border-b">
@@ -224,6 +221,7 @@ export function SiteChat() {
                   placeholder={t("placeholder")}
                   sendLabel={t("send")}
                   stopLabel={t("stop")}
+                  autoFocus
                 />
               </CardFooter>
             </MotionCard>

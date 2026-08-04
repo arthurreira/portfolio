@@ -8,6 +8,8 @@ import {
 } from "@arthurreira/ui"
 import { Avatar, AvatarFallback, AvatarImage } from "@arthurreira/ui/client"
 
+import { ChatMarkdown } from "@/components/molecules/chat-markdown"
+
 /**
  * A single chat turn.
  *
@@ -42,7 +44,15 @@ export function ChatMessage({ message }: { message: UIMessage }) {
         {/* `muted` is only 5% opacity in these themes — invisible on a card.
             `outline` reads clearly against the elevated panel surface. */}
         <Bubble variant={isUser ? "default" : "outline"}>
-          <BubbleContent className="whitespace-pre-wrap">{text}</BubbleContent>
+          {/* The visitor's own text is shown verbatim; only the model's reply
+              is markdown, and only it gets parsed. */}
+          <BubbleContent>
+            {isUser ? (
+              <span className="whitespace-pre-wrap">{text}</span>
+            ) : (
+              <ChatMarkdown>{text}</ChatMarkdown>
+            )}
+          </BubbleContent>
         </Bubble>
       </MessageContent>
     </Message>

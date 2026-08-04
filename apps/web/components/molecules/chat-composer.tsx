@@ -1,6 +1,12 @@
 "use client"
 
-import { useState, type FormEvent, type KeyboardEvent } from "react"
+import {
+  useEffect,
+  useRef,
+  useState,
+  type FormEvent,
+  type KeyboardEvent,
+} from "react"
 import { PaperPlaneTiltIcon, SquareIcon } from "@phosphor-icons/react"
 import { Button } from "@arthurreira/ui"
 import {
@@ -18,6 +24,8 @@ interface ChatComposerProps {
   placeholder: string
   sendLabel: string
   stopLabel: string
+  /** Focus the field on mount — the panel opens ready to type. */
+  autoFocus?: boolean
 }
 
 /**
@@ -33,8 +41,14 @@ export function ChatComposer({
   placeholder,
   sendLabel,
   stopLabel,
+  autoFocus = false,
 }: ChatComposerProps) {
   const [draft, setDraft] = useState("")
+  const inputRef = useRef<HTMLTextAreaElement>(null)
+
+  useEffect(() => {
+    if (autoFocus) inputRef.current?.focus()
+  }, [autoFocus])
   const canSend = draft.trim().length > 0 && !isBusy
 
   const submit = (event?: FormEvent) => {
@@ -55,12 +69,16 @@ export function ChatComposer({
     <form onSubmit={submit} className="w-full">
       <InputGroup>
         <InputGroupTextarea
+          ref={inputRef}
           value={draft}
           onChange={(event) => setDraft(event.target.value)}
           onKeyDown={handleKeyDown}
           placeholder={placeholder}
           rows={1}
           aria-label={placeholder}
+          // Grow with the text instead of staying one line, capped so a long
+          // message can never swallow the transcript above it.
+          className="field-sizing-content max-h-32 resize-none"
         />
         <InputGroupAddon align="block-end">
           {/* While streaming the same slot becomes a stop control — cancelling
