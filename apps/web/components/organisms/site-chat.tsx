@@ -49,6 +49,13 @@ const CHAT_API_URL =
 
 const MotionCard = motion.create(Card)
 
+/** Each turn rises in once; streaming growth inside it is handled in CSS. */
+const ITEM_MOTION = {
+  initial: { opacity: 0, y: 8 },
+  animate: { opacity: 1, y: 0 },
+  transition: { duration: 0.2, ease: "easeOut" as const },
+}
+
 /** Grows out of the launcher button rather than just fading in. */
 const PANEL_MOTION = {
   initial: { opacity: 0, scale: 0.94, y: 12 },
@@ -231,35 +238,39 @@ export function SiteChat() {
                             key={message.id}
                             messageId={message.id}
                           >
-                            <ChatMessage
-                              message={message}
+                            <motion.div {...ITEM_MOTION}>
+                              <ChatMessage
+                                message={message}
                               // Only the newest reply, and only once it has
                               // finished — mid-stream suggestions would jump.
-                              showFollowups={
-                                !isBusy && index === messages.length - 1
-                              }
-                              onFollowup={(question) =>
-                                sendMessage(
-                                  { text: question },
-                                  { body: { model } }
-                                )
-                              }
-                              isDegraded={degradedIds.has(message.id)}
-                              degradedLabel={t("degraded")}
-                            />
+                                showFollowups={
+                                  !isBusy && index === messages.length - 1
+                                }
+                                onFollowup={(question) =>
+                                  sendMessage(
+                                    { text: question },
+                                    { body: { model } }
+                                  )
+                                }
+                                isDegraded={degradedIds.has(message.id)}
+                                degradedLabel={t("degraded")}
+                              />
+                            </motion.div>
                           </MessageScrollerItem>
                         ))}
 
                         {status === "submitted" && (
                           <MessageScrollerItem messageId="pending">
-                            <Marker role="status">
-                              <MarkerIcon>
-                                <Spinner />
-                              </MarkerIcon>
-                              <MarkerContent className="shimmer">
-                                {t("thinking")}
-                              </MarkerContent>
-                            </Marker>
+                            <motion.div {...ITEM_MOTION}>
+                              <Marker role="status">
+                                <MarkerIcon>
+                                  <Spinner />
+                                </MarkerIcon>
+                                <MarkerContent className="shimmer">
+                                  {t("thinking")}
+                                </MarkerContent>
+                              </Marker>
+                            </motion.div>
                           </MessageScrollerItem>
                         )}
 
