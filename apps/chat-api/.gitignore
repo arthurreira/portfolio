@@ -1,3 +1,7 @@
 dist/
 .wrangler/
-.dev.vars
+
+# Local secrets — covers .dev.vars, .dev.vars.bak, .dev.vars.local, ...
+.dev.vars*
+# ...but the placeholder template is meant to be committed.
+!.dev.vars.example

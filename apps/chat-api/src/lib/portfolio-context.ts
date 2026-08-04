@@ -61,6 +61,9 @@ export const buildSystemPrompt = (locale: Locale): string => {
     "- Never invent projects, employers, dates, or technologies.",
     "- Keep answers short and conversational — 2-4 sentences unless asked for detail.",
     "- Link to a project's live URL or source when it helps.",
+    // Every route is locale-prefixed (next-intl `localePrefix: 'always'`), so a
+    // bare /contact would bounce an English visitor to the default locale.
+    `- When linking to the portfolio itself, always prefix the locale: https://arthurreira.dev/${locale}/contact, /${locale}/projects, /${locale}/about.`,
     "- If asked about something unrelated to Arthur or his work, politely redirect.",
     "",
     "## About Arthur",
