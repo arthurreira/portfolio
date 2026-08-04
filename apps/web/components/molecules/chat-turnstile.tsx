@@ -9,15 +9,8 @@ import { cn } from "@arthurreira/ui"
 
 import { TURNSTILE_SITE_KEY } from "@/hooks/use-turnstile"
 
-/**
- * Turnstile's language codes are not our locale keys — `pt-br` has to be sent
- * as `pt-BR` or the widget falls back to English.
- */
-const TURNSTILE_LANGUAGES: Record<string, string> = {
-  en: "en",
-  fi: "fi",
-  "pt-br": "pt-BR",
-}
+// Turnstile wants lowercase language codes, which our locales already are —
+// sending `pt-BR` gets a console warning and a fallback to `pt-br`.
 
 interface ChatTurnstileProps {
   widgetRef: RefObject<TurnstileInstance | null>
@@ -66,7 +59,7 @@ export function ChatTurnstile({ widgetRef }: ChatTurnstileProps) {
           // `auto` follows the OS preference, which is wrong here — the site
           // has its own theme toggle and the two routinely disagree.
           theme: resolvedTheme === "dark" ? "dark" : "light",
-          language: TURNSTILE_LANGUAGES[locale] ?? "auto",
+          language: locale,
         }}
       />
     </div>
