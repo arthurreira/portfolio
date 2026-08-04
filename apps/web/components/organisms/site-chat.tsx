@@ -140,7 +140,10 @@ export function SiteChat() {
                     the plain chat behaviour: follow the bottom edge. */}
                 <MessageScrollerProvider autoScroll>
                   <MessageScroller>
-                    <MessageScrollerViewport>
+                    {/* The site runs Lenis in root mode, which takes over wheel
+                        events for the whole document — without this the panel
+                        cannot scroll and the page behind it moves instead. */}
+                    <MessageScrollerViewport data-lenis-prevent>
                       <MessageScrollerContent
                         aria-busy={isBusy}
                         className="p-4"
