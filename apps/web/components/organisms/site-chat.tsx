@@ -5,7 +5,6 @@ import { useChat } from "@ai-sdk/react"
 import { DefaultChatTransport } from "ai"
 import { useLocale, useTranslations } from "next-intl"
 import { AnimatePresence, MotionConfig, motion } from "motion/react"
-import { Turnstile } from "@marsidev/react-turnstile"
 import { ChatsCircleIcon, XIcon } from "@phosphor-icons/react"
 import {
   Button,
@@ -37,7 +36,8 @@ import {
 
 import { ChatComposer } from "@/components/molecules/chat-composer"
 import { ChatMessage } from "@/components/molecules/chat-message"
-import { TURNSTILE_SITE_KEY, useTurnstile } from "@/hooks/use-turnstile"
+import { ChatTurnstile } from "@/components/molecules/chat-turnstile"
+import { useTurnstile } from "@/hooks/use-turnstile"
 
 const CHAT_API_URL =
   process.env.NEXT_PUBLIC_CHAT_API_URL ?? "http://127.0.0.1:8787/chat"
@@ -245,16 +245,7 @@ export function SiteChat() {
                 </MessageScrollerProvider>
               </CardContent>
 
-              {TURNSTILE_SITE_KEY && (
-                <Turnstile
-                  ref={turnstileRef}
-                  siteKey={TURNSTILE_SITE_KEY}
-                  options={{
-                    execution: "execute",
-                    appearance: "interaction-only",
-                  }}
-                />
-              )}
+              <ChatTurnstile widgetRef={turnstileRef} />
 
               <CardFooter>
                 <ChatComposer
