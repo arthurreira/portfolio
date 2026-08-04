@@ -1,3 +1,5 @@
+import { DEGRADED_HEADER } from "./headers"
+
 const FALLBACK_ORIGINS = [
   "https://arthurreira.dev",
   "https://www.arthurreira.dev",
@@ -28,6 +30,9 @@ export const corsHeaders = (
     "access-control-allow-origin": origin,
     "access-control-allow-methods": "POST, GET, OPTIONS",
     "access-control-allow-headers": "content-type",
+    // Response headers are invisible to cross-origin page scripts unless named
+    // here, so without this the degraded-mode flag would be set and unreadable.
+    "access-control-expose-headers": DEGRADED_HEADER,
     "access-control-max-age": "86400",
     vary: "origin",
   }

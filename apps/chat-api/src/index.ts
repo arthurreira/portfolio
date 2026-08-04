@@ -24,6 +24,11 @@ export interface Env extends ChatConfigEnv {
   ALLOWED_ORIGINS?: string
   /** Per-IP throttle, declared in wrangler.jsonc. */
   CHAT_RATE_LIMIT?: RateLimit
+  /**
+   * Workers AI, used to answer when Anthropic is unavailable. Optional so the
+   * Worker still runs in a local session started without the binding.
+   */
+  AI?: Ai
 }
 
 /** `useChat` posts AI SDK UIMessages: a role plus an array of parts. */
@@ -123,6 +128,7 @@ const handleChat = async (
     systemPrompt,
     messages,
     headers: cors,
+    ai: env.AI,
   })
 }
 

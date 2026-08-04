@@ -1,6 +1,14 @@
 /** Cheapest model that handles portfolio Q&A well. */
 const DEFAULT_MODEL = "claude-haiku-4-5"
 
+/**
+ * Workers AI model used when Anthropic is unavailable. Runs on Cloudflare's own
+ * infrastructure and bills against the Workers plan rather than the Anthropic
+ * balance, which is the point: the balance running dry is the most likely
+ * reason we ever need it.
+ */
+const DEFAULT_FALLBACK_MODEL = "@cf/meta/llama-3.3-70b-instruct-fp8-fast"
+
 const DEFAULT_MAX_OUTPUT_TOKENS = 1024
 
 /**
@@ -15,12 +23,14 @@ const MAX_HISTORY_MESSAGES_CEILING = 50
 
 export interface ChatConfig {
   model: string
+  fallbackModel: string
   maxOutputTokens: number
   maxHistoryMessages: number
 }
 
 export interface ChatConfigEnv {
   CHAT_MODEL?: string
+  CHAT_FALLBACK_MODEL?: string
   CHAT_MAX_OUTPUT_TOKENS?: string
   CHAT_MAX_HISTORY_MESSAGES?: string
 }
@@ -44,6 +54,7 @@ const positiveInt = (
  */
 export const resolveChatConfig = (env: ChatConfigEnv): ChatConfig => ({
   model: env.CHAT_MODEL?.trim() || DEFAULT_MODEL,
+  fallbackModel: env.CHAT_FALLBACK_MODEL?.trim() || DEFAULT_FALLBACK_MODEL,
   maxOutputTokens: positiveInt(
     env.CHAT_MAX_OUTPUT_TOKENS,
     DEFAULT_MAX_OUTPUT_TOKENS,
