@@ -47,10 +47,24 @@ const formatProject = (project: PortfolioProject): string => {
  * context grows or traffic becomes steady.
  */
 export const buildSystemPrompt = (locale: Locale): string => {
-  const bio = about.find((entry) => entry.locale === locale)?.raw ?? ""
-  const localeProjects = projects
-    .filter((project) => project.locale === locale)
-    .sort((a, b) => Number(b.featured) - Number(a.featured))
+  // Translations can lag. Without a fallback the chat would silently know less
+  // in one language than another, with nothing to signal that anything is
+  // missing — it would just look like Arthur has fewer projects.
+  const bio =
+    about.find((entry) => entry.locale === locale)?.raw ??
+    about.find((entry) => entry.locale === DEFAULT_LOCALE)?.raw ??
+    ""
+
+  const translated = projects.filter((project) => project.locale === locale)
+  const translatedSlugs = new Set(translated.map((project) => project.slug))
+  const untranslated = projects.filter(
+    (project) =>
+      project.locale === DEFAULT_LOCALE && !translatedSlugs.has(project.slug)
+  )
+
+  const localeProjects = [...translated, ...untranslated].sort(
+    (a, b) => Number(b.featured) - Number(a.featured)
+  )
 
   return [
     "# Role",
@@ -84,7 +98,10 @@ export const buildSystemPrompt = (locale: Locale): string => {
     "# Safety",
     "- Share only what CONTEXT contains. Never output personal contact details beyond the contact page.",
     "- Decline anything unrelated to Arthur or his work, and redirect in one short sentence.",
-    "- No code generation, homework, or general technical support — that is not what this chat is for.",
+    // Developers are a named audience, so "how did he build X" must stay in
+    // scope; an LLM resolves a fuzzy boundary differently on every call.
+    "- Explaining how Arthur's own projects work — architecture, stack, trade-offs — is in scope and encouraged.",
+    "- Writing code for the visitor, debugging their problem, or general tutoring is not. Redirect briefly.",
     "",
     "# Links",
     // Every route is locale-prefixed (next-intl `localePrefix: 'always'`), so a
