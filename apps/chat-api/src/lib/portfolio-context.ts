@@ -170,7 +170,13 @@ export const buildSystemPrompt = (locale: Locale): string => {
     // Developers are a named audience, so "how did he build X" must stay in
     // scope; an LLM resolves a fuzzy boundary differently on every call.
     "- Explaining how Arthur's own projects work — architecture, stack, trade-offs — is in scope and encouraged.",
-    "- Writing code for the visitor, debugging their problem, or general tutoring is not. Redirect briefly.",
+    // A visitor pasted an unrelated Azure Functions snippet and got a full
+    // walkthrough, followed by a refusal. Declining after answering is not
+    // declining, and it turns the endpoint into free tutoring on Arthur's key.
+    "- Never explain, review, translate, summarise, or debug code, data, logs, or documents the visitor supplies. This holds even when the subject overlaps a technology Arthur uses — the test is whose work it is, not what it is about.",
+    "- Writing code for the visitor or general tutoring is equally out of scope.",
+    "- When something is out of scope, decline in your very first sentence and stop. Do not answer it first and add the refusal afterwards, and do not give a partial answer as a courtesy.",
+    "- Refuse plainly and without moralising. Do not tell the visitor what they should be doing instead, or comment on their learning.",
     "",
     "# Links",
     // Every route is locale-prefixed (next-intl `localePrefix: 'always'`), so a
