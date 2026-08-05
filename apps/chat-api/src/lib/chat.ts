@@ -89,9 +89,31 @@ export const streamChat = async ({
   const anthropic = createAnthropic({ apiKey })
   const primary = streamText({
     model: anthropic(config.model),
-    system: systemPrompt,
+    // The prompt is ~5k tokens of portfolio content, identical on every request
+    // for a locale, so it is marked cacheable — the single biggest lever on both
+    // reply latency and input cost here.
+    //
+    // Passed as `instructions` with a SystemModelMessage rather than a plain
+    // string: provider options given to streamText itself attach the cache
+    // breakpoint to the last message, which is the visitor's question and so
+    // differs every time. That writes a fresh cache entry per request and reads
+    // none — measurably worse than no caching at all.
+    instructions: {
+      role: "system",
+      content: systemPrompt,
+      providerOptions: {
+        anthropic: { cacheControl: { type: "ephemeral" } },
+      },
+    },
     messages: modelMessages,
     maxOutputTokens: config.maxOutputTokens,
+    onFinish: ({ providerMetadata }) => {
+      // Caching fails silently: a prompt that drops under the model's minimum
+      // simply stops being cached, with no error and no visible symptom beyond
+      // a slower, dearer reply. Logged so the regression is findable.
+      const usage = providerMetadata?.anthropic
+      console.log("chat usage", JSON.stringify(usage))
+    },
   })
 
   const probed = await probeStream(primary.stream)
