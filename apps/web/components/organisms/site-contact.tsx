@@ -34,7 +34,7 @@ export function SiteContact() {
           </h1>
         </ProximityArea>
 
-        <p className="mb-16 text-sm text-muted-foreground">{t("openTo")}</p>
+        <p className="mb-16 text-base text-muted-foreground">{t("openTo")}</p>
 
         <div className="flex flex-col gap-1">
           {LINKS.map(({ label, href }) => (
