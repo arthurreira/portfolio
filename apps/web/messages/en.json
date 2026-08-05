@@ -140,12 +140,6 @@
     "title": "Ask about Arthur",
     "close": "Close chat",
     "stop": "Stop generating",
-    "suggestions": [
-      "What does Arthur do?",
-      "Which projects use TypeScript?",
-      "What is af-analytics?",
-      "How does this chat work?"
-    ],
     "degraded": "Answered by the backup model, so this reply may be less detailed.",
     "modelLabel": "Model",
     "modelClaude": "Claude Haiku 4.5",
@@ -158,6 +152,18 @@
     "metaScope": "Answers from this portfolio",
     "openHint": "Press / to ask",
     "charsLeft": "{count} characters left",
-    "tooLong": "Message is too long"
+    "tooLong": "Message is too long",
+    "suggestionsTechLabel": "Technical",
+    "suggestionsPersonalLabel": "Personal",
+    "suggestionsTech": [
+      "How does this chat work?",
+      "Which projects use TypeScript?",
+      "Why Velite and not Contentlayer?"
+    ],
+    "suggestionsPersonal": [
+      "Where in Brazil is Arthur from?",
+      "What is his favourite food?",
+      "Does he still play football?"
+    ]
   }
 }

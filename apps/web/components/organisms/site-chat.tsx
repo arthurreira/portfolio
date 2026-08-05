@@ -118,8 +118,16 @@ export function SiteChat() {
 
   const isBusy = status === "submitted" || status === "streaming"
 
-  // A blank chat gives no clue what it knows about — these do.
-  const suggestions = t.raw("suggestions") as string[]
+  // A blank chat gives no clue what it knows about — these do. Grouped because
+  // visitors do not expect a portfolio chat to answer anything but technical
+  // questions, and the personal half is the part that needs advertising.
+  const suggestionGroups = [
+    { label: t("suggestionsTechLabel"), items: t.raw("suggestionsTech") },
+    {
+      label: t("suggestionsPersonalLabel"),
+      items: t.raw("suggestionsPersonal"),
+    },
+  ] as { label: string; items: string[] }[]
 
   // The Worker marks the response, but the reply it produced does not exist
   // until the turn settles — so the flag is attached once streaming is done.
@@ -263,24 +271,32 @@ export function SiteChat() {
                               <p className="text-muted-foreground text-sm text-pretty">
                                 {t("emptyDescription")}
                               </p>
-                              <div className="flex w-full flex-col items-stretch gap-2">
-                                {suggestions.map((question) => (
-                                  <Button
-                                    key={question}
-                                    variant="outline"
-                                    size="sm"
-                                    className="h-auto justify-start py-1.5 text-left whitespace-normal"
-                                    onClick={() =>
-                                      sendMessage(
-                                        { text: question },
-                                        { body: { model } }
-                                      )
-                                    }
-                                  >
-                                    {question}
-                                  </Button>
-                                ))}
-                              </div>
+                              {suggestionGroups.map((group) => (
+                                <div
+                                  key={group.label}
+                                  className="flex w-full flex-col items-stretch gap-1.5"
+                                >
+                                  <p className="text-muted-foreground text-xs font-medium">
+                                    {group.label}
+                                  </p>
+                                  {group.items.map((question) => (
+                                    <Button
+                                      key={question}
+                                      variant="outline"
+                                      size="sm"
+                                      className="h-auto justify-start py-1.5 text-left whitespace-normal"
+                                      onClick={() =>
+                                        sendMessage(
+                                          { text: question },
+                                          { body: { model } }
+                                        )
+                                      }
+                                    >
+                                      {question}
+                                    </Button>
+                                  ))}
+                                </div>
+                              ))}
                             </div>
                           </MessageScrollerItem>
                         )}

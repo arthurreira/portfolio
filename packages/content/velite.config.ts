@@ -2,6 +2,7 @@ import { defineConfig, s } from 'velite'
 import { PROJECT_STATUSES, PROJECT_ROLES } from './src/types/project'
 import {
   CERTIFICATION_STATUSES,
+  LANGUAGE_LEVELS,
   SKILL_CATEGORIES,
   SKILL_LEVELS,
 } from './src/types/profile'
@@ -71,6 +72,35 @@ export default defineConfig({
           })
         ),
         focus: s.array(s.string()),
+        // The human questions visitors actually ask. Without these the chat
+        // answers "not stated here, see the contact page" to things Arthur is
+        // perfectly happy to answer, which reads as evasive rather than careful.
+        personal: s.object({
+          origin: s.object({
+            city: s.string(),
+            region: s.string(),
+            country: s.string(),
+            movedToFinland: s.number(),
+            movedBecause: s.string().optional(),
+          }),
+          languages: s.array(
+            s.object({
+              name: s.string(),
+              level: s.enum(LANGUAGE_LEVELS),
+            })
+          ),
+          football: s
+            .object({
+              position: s.string(),
+              league: s.string().optional(),
+              note: s.string().optional(),
+            })
+            .optional(),
+          favourites: s.array(
+            s.object({ what: s.string(), answer: s.string() })
+          ),
+          funFacts: s.array(s.string()),
+        }),
         // Deliberately narrow. Only what Arthur has actually stated goes here;
         // everything else routes to the contact page rather than becoming a
         // status line that silently goes stale.
