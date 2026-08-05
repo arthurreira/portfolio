@@ -35,6 +35,8 @@ export interface WorkersAiStreamParams {
   system: string
   messages: ModelMessage[]
   maxOutputTokens: number
+  /** Repeated after the visitor's message, where a small model weights it most. */
+  reminder?: string
 }
 
 /**
@@ -49,6 +51,7 @@ export async function* streamWorkersAiText({
   system,
   messages,
   maxOutputTokens,
+  reminder,
 }: WorkersAiStreamParams): AsyncGenerator<string> {
   const result = await ai.run(
     model as Parameters<Ai["run"]>[0],
@@ -61,6 +64,10 @@ export async function* streamWorkersAiText({
           role: message.role,
           content: toPlainText(message.content),
         })),
+        // Last position, after the question. A 6k-token prompt buries its own
+        // rules for a model this size — repeating them at the very end is the
+        // only placement that measurably changed its behaviour.
+        ...(reminder ? [{ role: "system", content: reminder }] : []),
       ],
     } as never
   )
