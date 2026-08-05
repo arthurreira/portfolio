@@ -86,7 +86,11 @@ export function SiteChat() {
   const triggerRef = useRef<HTMLButtonElement>(null)
   const wasOpen = useRef(false)
 
-  const { ref: turnstileRef, getToken } = useTurnstile()
+  const {
+    ref: turnstileRef,
+    getToken,
+    hasFailed: turnstileFailed,
+  } = useTurnstile()
 
   const [model, setModel] = useState<ModelChoice>("claude")
   const { trackingFetch, degradedIds, settle, discard } = useDegraded()
@@ -347,7 +351,14 @@ export function SiteChat() {
                         {error && (
                           <MessageScrollerItem messageId="error">
                             <Marker role="status">
-                              <MarkerContent>{t("error")}</MarkerContent>
+                              {/* A failed bot check is the one error a visitor
+                                  can actually do something about, so it says
+                                  what happened instead of "try again". */}
+                              <MarkerContent>
+                                {turnstileFailed
+                                  ? t("turnstileFailed")
+                                  : t("error")}
+                              </MarkerContent>
                             </Marker>
                           </MessageScrollerItem>
                         )}

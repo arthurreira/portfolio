@@ -1,6 +1,6 @@
 "use client"
 
-import { useCallback, useRef } from "react"
+import { useCallback, useRef, useState } from "react"
 import type { TurnstileInstance } from "@marsidev/react-turnstile"
 
 export const TURNSTILE_SITE_KEY = process.env.NEXT_PUBLIC_TURNSTILE_SITE_KEY
@@ -22,6 +22,11 @@ const TOKEN_TIMEOUT_MS = 15_000
  */
 export function useTurnstile() {
   const ref = useRef<TurnstileInstance | null>(null)
+  // Surfaced so the panel can say the bot check failed rather than showing the
+  // generic error. The widget fails for reasons the visitor can act on —
+  // content blockers and DNS-level privacy relays both break it, and Safari
+  // hits this far more often than Chrome.
+  const [hasFailed, setHasFailed] = useState(false)
 
   const getToken = useCallback(async (): Promise<string | undefined> => {
     if (!TURNSTILE_SITE_KEY || !ref.current) return undefined
@@ -29,8 +34,11 @@ export function useTurnstile() {
     try {
       ref.current.reset()
       ref.current.execute()
-      return await ref.current.getResponsePromise(TOKEN_TIMEOUT_MS)
+      const token = await ref.current.getResponsePromise(TOKEN_TIMEOUT_MS)
+      setHasFailed(false)
+      return token
     } catch (error) {
+      setHasFailed(true)
       // Let the send proceed without a token; the Worker is the one that
       // decides, and it refuses. Failing here would only hide the reason.
       console.error("turnstile token failed", error)
@@ -38,5 +46,5 @@ export function useTurnstile() {
     }
   }, [])
 
-  return { ref, getToken, enabled: Boolean(TURNSTILE_SITE_KEY) }
+  return { ref, getToken, hasFailed, enabled: Boolean(TURNSTILE_SITE_KEY) }
 }
