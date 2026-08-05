@@ -123,7 +123,7 @@ export function SiteProjectDetail({
 
         <Reveal once={false} delay={HEADER_META_DELAY_S}>
           {techStack && techStack.length > 0 && (
-            <p className="mb-1 text-sm text-muted-foreground">
+            <p className="mb-1 text-base text-muted-foreground">
               {techStack.map((tech, i) => (
                 <span key={tech}>
                   {tech}
@@ -138,7 +138,7 @@ export function SiteProjectDetail({
           <p className={cn("text-sm text-muted-foreground", highlight ? "mb-4" : "mb-8")}>{year}</p>
 
           {highlight && (
-            <p className="mb-8 text-sm font-medium tracking-[0.01em] text-primary">
+            <p className="mb-8 text-base font-medium tracking-[0.01em] text-primary">
               {highlight}
             </p>
           )}
@@ -182,7 +182,7 @@ export function SiteProjectDetail({
             <div className="mt-16 border-t border-border pt-8">
               <Link
                 href="/projects"
-                className="inline-flex items-center gap-2 text-sm text-foreground no-underline"
+                className="inline-flex items-center gap-2 text-base text-foreground no-underline"
               >
                 <ArrowLeft weight="bold" className="size-4" />
                 {t("back")}

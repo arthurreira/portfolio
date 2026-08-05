@@ -53,7 +53,7 @@ export async function SiteAbout() {
           </ProximityArea>
 
           {aboutContent && (
-            <div className="typeset typeset-notes max-w-xl">
+            <div className="typeset typeset-notes max-w-xll">
               <MdxContent code={aboutContent.content} variant="typeset" />
             </div>
           )}
@@ -67,8 +67,8 @@ export async function SiteAbout() {
             <Reveal key={cert.code} once={false} delay={i * ROW_STAGGER_S}>
               <div className="t-cert-row">
                 <span className="t-cert-name text-base font-bold text-foreground">{cert.name}</span>
-                <span className="text-sm text-muted-foreground">{cert.code}</span>
-                <span className="text-sm text-muted-foreground">{cert.period}</span>
+                <span className="text-base text-muted-foreground">{cert.code}</span>
+                <span className="text-base text-muted-foreground">{cert.period}</span>
                 <Link
                   href={cert.url}
                   target="_blank"
@@ -86,7 +86,7 @@ export async function SiteAbout() {
           {/* Language & Personality */}
           <Reveal once={false}>
             <LabeledRow label={t("langLabel")}>
-              <p className="font-ui text-sm text-muted-foreground leading-relaxed">
+              <p className="font-ui text-base text-muted-foreground leading-relaxed">
                 {t("langText")}
               </p>
             </LabeledRow>
