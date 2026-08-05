@@ -25,3 +25,10 @@ export type SkillCategory = typeof SKILL_CATEGORIES[number]
 
 export const CERTIFICATION_STATUSES = ['certified', 'in-progress'] as const
 export type CertificationStatus = typeof CERTIFICATION_STATUSES[number]
+
+/**
+ * How well a language is actually spoken. Kept coarse on purpose — a scale with
+ * more rungs invites the model to embellish where the difference is not real.
+ */
+export const LANGUAGE_LEVELS = ['native', 'fluent', 'conversational'] as const
+export type LanguageLevel = typeof LANGUAGE_LEVELS[number]

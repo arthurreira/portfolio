@@ -145,3 +145,37 @@ skills:
   - { name: Figma, category: design, level: working }
   - { name: Unity, category: design, level: working }
   - { name: Blender, category: design, level: working }
+
+# The human questions visitors actually ask. Everything here is stated by
+# Arthur — nothing inferred, because the chat presents it as fact.
+personal:
+  origin:
+    city: Vila Nova
+    region: Caraí, Minas Gerais
+    country: Brazil
+    movedToFinland: 2015
+    movedBecause: Followed his mother, who had moved to Finland
+
+  languages:
+    - name: Portuguese
+      level: native
+    - name: Finnish
+      level: fluent
+    - name: English
+      level: fluent
+
+  football:
+    position: Goalkeeper
+    league: Miesten Kolmonen
+    note: Still playing, though less actively this year since starting work
+
+  favourites:
+    - what: Food
+      answer: Feijoada
+    - what: Music
+      answer: >-
+        Brazilian funk, samba and valsa — a way of staying close to the
+        culture he grew up in
+
+  funFacts:
+    - Does not actually like the taste of coffee. Drinks it purely for the energy.
