@@ -36,7 +36,7 @@ export function SiteProjects({
               </LineReveal>
             </h1>
           </ProximityArea>
-          <p className="mb-12 text-sm text-muted-foreground">
+          <p className="mb-12 text-base text-muted-foreground">
             {projects.length} {countSuffix}
           </p>
         </div>

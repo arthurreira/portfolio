@@ -34,7 +34,7 @@ export function ProjectRow({ num, title, year, href, featured, description }: Pr
       </div>
 
       {featured && description && (
-        <p className="mt-2 max-w-xl pl-[4.25rem] text-sm leading-relaxed text-muted-foreground">
+        <p className="mt-2 max-w-xl pl-[4.25rem] text-base leading-relaxed text-muted-foreground">
           {description}
         </p>
       )}
