@@ -71,6 +71,7 @@ const handleChat = async (
 
   const validated = validateChatRequest(payload)
   if (!validated.ok) {
+    console.error("rejected:", validated.error)
     return json({ success: false, error: validated.error }, 400, cors)
   }
 
@@ -85,6 +86,7 @@ const handleChat = async (
     const key = request.headers.get("cf-connecting-ip") ?? "unknown"
     const { success } = await env.CHAT_RATE_LIMIT.limit({ key })
     if (!success) {
+      console.error("rejected: rate limited", key)
       return json({ success: false, error: "rate_limited" }, 429, {
         ...cors,
         "retry-after": "60",
@@ -104,6 +106,10 @@ const handleChat = async (
 
   if (env.TURNSTILE_SECRET_KEY) {
     if (!turnstileToken) {
+      // Logged, not silent. Without this the rejection appears in the tail as a
+      // plain "Ok" with no error line, and a browser-side Turnstile failure
+      // looks identical to the Worker working perfectly.
+      console.error("rejected: no turnstile token in request")
       return json({ success: false, error: "turnstile_missing" }, 403, cors)
     }
 
