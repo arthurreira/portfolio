@@ -8,6 +8,7 @@ import {
   type KeyboardEvent,
 } from "react"
 import { PaperPlaneTiltIcon, SquareIcon } from "@phosphor-icons/react"
+import { useTranslations } from "next-intl"
 import { Button, cn } from "@arthurreira/ui"
 import {
   InputGroup,
@@ -33,9 +34,6 @@ interface ChatComposerProps {
   placeholder: string
   sendLabel: string
   stopLabel: string
-  /** `{count}` is replaced with the characters remaining. */
-  charsLeftLabel: string
-  tooLongLabel: string
   /** Focus the field on mount — the panel opens ready to type. */
   autoFocus?: boolean
 }
@@ -53,10 +51,11 @@ export function ChatComposer({
   placeholder,
   sendLabel,
   stopLabel,
-  charsLeftLabel,
-  tooLongLabel,
   autoFocus = false,
 }: ChatComposerProps) {
+  // Translated here rather than passed in: `charsLeft` carries an ICU
+  // placeholder, and reading it without the value throws a formatting error.
+  const t = useTranslations("chat")
   const [draft, setDraft] = useState("")
   const inputRef = useRef<HTMLTextAreaElement>(null)
 
@@ -134,9 +133,7 @@ export function ChatComposer({
             isTooLong ? "text-destructive" : "text-muted-foreground"
           )}
         >
-          {isTooLong
-            ? tooLongLabel
-            : charsLeftLabel.replace("{count}", String(remaining))}
+          {isTooLong ? t("tooLong") : t("charsLeft", { count: remaining })}
         </p>
       )}
     </form>

@@ -182,7 +182,7 @@ export function SiteNav() {
       {revealOverlay}
       <div className="t-nav">
         {/* Left — logo */}
-        <NavLink href="/" className="shrink-0 font-bold tracking-[-0.01em]">
+        <NavLink href="/" className="shrink-0 text-lg font-bold tracking-[-0.02em]">
           <RollingText text="arthurreira.dev" />
         </NavLink>
 
