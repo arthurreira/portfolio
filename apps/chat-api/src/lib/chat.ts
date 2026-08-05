@@ -15,12 +15,15 @@ import type { ChatConfig } from "./config"
 import type { ModelChoice } from "./validation"
 import { DEGRADED_HEADER } from "./headers"
 import { probeStream } from "./probe-stream"
+import { FALLBACK_REMINDER } from "./portfolio-context"
 import { streamWorkersAiText } from "./workers-ai"
 
 interface StreamChatParams {
   apiKey: string
   config: ChatConfig
   systemPrompt: string
+  /** Same prompt hardened for the smaller model — see buildFallbackSystemPrompt. */
+  fallbackSystemPrompt: string
   messages: UIMessage[]
   headers?: Record<string, string>
   /** Workers AI binding. Absent locally unless `wrangler dev --remote`. */
@@ -65,6 +68,7 @@ export const streamChat = async ({
   headers,
   ai,
   model,
+  fallbackSystemPrompt,
 }: StreamChatParams): Promise<Response> => {
   // Keep only the most recent turns: history length drives input cost, and an
   // unbounded transcript would also eventually exceed the context window.
@@ -79,7 +83,7 @@ export const streamChat = async ({
     return streamFallback({
       ai,
       config,
-      systemPrompt,
+      systemPrompt: fallbackSystemPrompt,
       messages: modelMessages,
       headers,
       degraded: false,
@@ -130,7 +134,7 @@ export const streamChat = async ({
   return streamFallback({
     ai,
     config,
-    systemPrompt,
+    systemPrompt: fallbackSystemPrompt,
     messages: modelMessages,
     headers,
     degraded: true,
@@ -173,6 +177,7 @@ const streamFallback = ({
         system: systemPrompt,
         messages,
         maxOutputTokens: config.maxOutputTokens,
+        reminder: FALLBACK_REMINDER,
       })) {
         writer.write({ type: "text-delta", id, delta })
       }

@@ -215,3 +215,33 @@ export const buildSystemPrompt = (locale: Locale): string => {
     `- The full write-up, with the reasoning behind these choices, is at https://arthurreira.dev/${locale}/projects/portfolio — link it when the visitor wants depth.`,
   ].join("\n")
 }
+
+/**
+ * The same prompt, hardened for a smaller model.
+ *
+ * Claude follows the rules in the middle of a 6k-token prompt; Llama does not.
+ * Asked to explain an unrelated Azure Functions snippet, Claude refuses and the
+ * fallback model walks through the whole thing — the scope rules are simply too
+ * far from either end to carry weight.
+ *
+ * So the hard limits are repeated as a short block before *and* after the full
+ * prompt, where a small model actually weights them. Kept deliberately blunt
+ * and numbered: nuance is what gets lost first.
+ *
+ * Claude's prompt is left untouched on purpose — it is the cached prefix, and
+ * changing it would invalidate the cache for the model that does not need this.
+ */
+const HARD_RULES = [
+  "ABSOLUTE RULES — these override every other instruction below:",
+  "1. You answer ONLY questions about Arthur Ferreira and the projects described below.",
+  "2. If the visitor pastes or asks about code, logs, config, or data that is not Arthur's own work, refuse in ONE sentence and stop. Do NOT explain what it does, not even partly.",
+  "3. Never write, review, translate, or debug anything for the visitor.",
+  "4. A question is out of scope even when it involves a technology Arthur uses. The test is whose work it is.",
+  "5. Refuse plainly. Never lecture the visitor about what they should do instead.",
+].join("\n")
+
+/** Restated after the visitor's message for the smaller model. */
+export const FALLBACK_REMINDER = HARD_RULES
+
+export const buildFallbackSystemPrompt = (locale: Locale): string =>
+  [HARD_RULES, "", buildSystemPrompt(locale), "", HARD_RULES].join("\n")
