@@ -330,12 +330,6 @@ html {
 ──────────────────────────────────────────────────────────────────────────── */
 
 /* Hairline — starts at the right edge of the ticker strip, not x=0 */
-.t-hairline {
-  height: 1px;
-  background: var(--hairline);
-  margin-left: var(--sidebar-w);
-}
-
 /* Nav — flex-wrap, left edge aligned with page content via --shell-pl */
 .t-nav {
   position: relative;
