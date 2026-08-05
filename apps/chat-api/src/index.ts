@@ -5,6 +5,7 @@ import { resolveChatConfig, type ChatConfigEnv } from "./lib/config"
 import { verifyTurnstile } from "./lib/turnstile"
 import { MAX_BODY_BYTES, validateChatRequest } from "./lib/validation"
 import {
+  buildFallbackSystemPrompt,
   buildSystemPrompt,
   DEFAULT_LOCALE,
   isLocale,
@@ -121,14 +122,14 @@ const handleChat = async (
     return json({ success: false, error: "not_configured" }, 500, cors)
   }
 
-  const systemPrompt = buildSystemPrompt(
-    isLocale(requestedLocale) ? requestedLocale : DEFAULT_LOCALE
-  )
+  const locale = isLocale(requestedLocale) ? requestedLocale : DEFAULT_LOCALE
+  const systemPrompt = buildSystemPrompt(locale)
 
   return streamChat({
     apiKey: env.ANTHROPIC_API_KEY,
     config: resolveChatConfig(env),
     systemPrompt,
+    fallbackSystemPrompt: buildFallbackSystemPrompt(locale),
     messages,
     headers: cors,
     ai: env.AI,
