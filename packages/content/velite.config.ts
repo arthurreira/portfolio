@@ -100,6 +100,17 @@ export default defineConfig({
             s.object({ what: s.string(), answer: s.string() })
           ),
           funFacts: s.array(s.string()),
+          // Narrative rather than facts — the questions where the answer is a
+          // point of view, not a value. Written in English like the rest of the
+          // file; the chat renders it in the visitor's language.
+          story: s.object({
+            whySoftware: s.string(),
+            closestProject: s.string(),
+            currentlyLearning: s.string(),
+            workStyle: s.string(),
+            lookingAhead: s.string(),
+            finlandAndBrazil: s.string(),
+          }),
         }),
         // Deliberately narrow. Only what Arthur has actually stated goes here;
         // everything else routes to the contact page rather than becoming a
