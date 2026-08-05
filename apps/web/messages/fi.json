@@ -163,6 +163,7 @@
       "Mistä päin Brasiliaa Arthur on?",
       "Mikä on hänen lempiruokansa?",
       "Pelaako hän yhä jalkapalloa?"
-    ]
+    ],
+    "turnstileFailed": "Bottitarkistus ei latautunut. Syynä on yleensä sisällönestäjä tai yksityisyysvälityspalvelin — kokeile toista selainta tai poista estot käytöstä tälle sivustolle."
   }
 }

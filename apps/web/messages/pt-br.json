@@ -163,6 +163,7 @@
       "De que parte do Brasil o Arthur é?",
       "Qual é a comida favorita dele?",
       "Ele ainda joga futebol?"
-    ]
+    ],
+    "turnstileFailed": "A verificação anti-bot não carregou. Normalmente é um bloqueador de conteúdo ou um relay de privacidade — tente outro navegador ou desative os bloqueadores para este site."
   }
 }

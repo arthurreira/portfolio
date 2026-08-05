@@ -164,6 +164,7 @@
       "Where in Brazil is Arthur from?",
       "What is his favourite food?",
       "Does he still play football?"
-    ]
+    ],
+    "turnstileFailed": "The bot check could not load. A content blocker or a privacy relay usually causes this — try another browser, or disable blockers for this site."
   }
 }
