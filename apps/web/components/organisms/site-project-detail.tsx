@@ -175,7 +175,9 @@ export function SiteProjectDetail({
 
           {/* Left — body starts with ## What I built, no redundant description paragraph */}
           <Reveal once={false}>
-            <MdxContent code={content} />
+            <div className="typeset typeset-notes">
+              <MdxContent code={content} variant="typeset" />
+            </div>
 
             <div className="mt-16 border-t border-border pt-8">
               <Link

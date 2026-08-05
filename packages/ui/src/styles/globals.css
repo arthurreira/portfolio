@@ -2,6 +2,30 @@
 /* Shared shadcn utilities (shimmer, …) — ships with the `shadcn` package. */
 @import "shadcn/tailwind.css";
 @import "tw-animate-css";
+/* Styles rendered markdown inside a `.typeset` container; nothing outside it. */
+@import "./typeset.css";
+
+/* Typeset preset for long-form rendered markdown. Fonts come from the Next
+   font variables declared on <html> in apps/web. */
+.typeset-notes {
+  --typeset-font-body: var(--font-geist);
+  --typeset-font-heading: var(--font-space-grotesk);
+  --typeset-font-mono: var(--font-ibm-plex-sans);
+  --typeset-size: 18px;
+  --typeset-leading: 1.9;
+  --typeset-flow: 2em;
+}
+
+/* Same idea in the chat panel, at a size that fits 384px. Separate preset
+   because the notes size (18px) overflows the bubble. */
+.typeset-chat {
+  --typeset-font-body: var(--font-geist);
+  --typeset-font-heading: var(--font-space-grotesk);
+  --typeset-font-mono: var(--font-ibm-plex-sans);
+  --typeset-size: 14px;
+  --typeset-leading: 1.65;
+  --typeset-flow: 1em;
+}
 
 @custom-variant dark (&:is(.dark *));
 @source "../components/**/*.{ts,tsx}";
@@ -181,7 +205,8 @@ html {
 
 /* Font + layout tokens — change here, applies everywhere */
 :root {
-  --font-ui: "Helvetica Neue", Inter, Helvetica, Arial, sans-serif;
+  /* Geist, loaded in the web app. The fallbacks only cover the first paint. */
+  --font-ui: var(--font-geist), "Helvetica Neue", Arial, sans-serif;
   --sidebar-w: clamp(44px, 5vw, 72px); /* ticker strip width            */
   --ticker-gap: 88px; /* air between strip + text      */
   --shell-pl: calc(
