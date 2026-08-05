@@ -27,7 +27,7 @@ const SPEED_SPRING = { stiffness: 60, damping: 20 }
 /** Resting opacity; hover brings the strip to full strength. */
 const IDLE_OPACITY = 0.75
 /** Poster-scale type so the strip's reserved width doesn't sit empty. */
-const TICKER_TYPE_CLASS = "text-[1.75rem] leading-tight font-black"
+const TICKER_TYPE_CLASS = "text-[2.5rem] leading-tight font-black"
 
 function TickerItems({ prefix }: { prefix: string }) {
   return (

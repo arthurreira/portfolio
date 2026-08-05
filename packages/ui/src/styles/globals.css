@@ -209,7 +209,7 @@ html {
 :root {
   /* Geist, loaded in the web app. The fallbacks only cover the first paint. */
   --font-ui: var(--font-geist), "Helvetica Neue", Arial, sans-serif;
-  --sidebar-w: clamp(52px, 6vw, 86px); /* ticker strip width            */
+  --sidebar-w: clamp(64px, 8vw, 116px); /* ticker strip width           */
   --ticker-gap: 88px; /* air between strip + text      */
   --shell-pl: calc(
     var(--sidebar-w) + var(--ticker-gap)
