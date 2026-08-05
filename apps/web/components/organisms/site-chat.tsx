@@ -386,8 +386,6 @@ export function SiteChat() {
                   placeholder={t("placeholder")}
                   sendLabel={t("send")}
                   stopLabel={t("stop")}
-                  charsLeftLabel={t("charsLeft")}
-                  tooLongLabel={t("tooLong")}
                   autoFocus
                 />
               </CardFooter>

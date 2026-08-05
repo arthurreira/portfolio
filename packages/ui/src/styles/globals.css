@@ -17,9 +17,11 @@
 }
 
 /* Same idea in the chat panel, at a size that fits 384px. Separate preset
-   because the notes size (18px) overflows the bubble. */
+   because the notes size (18px) overflows the bubble.
+   Body stays mono: the whole site renders in mono, and switching the chat to
+   Geist made it the one surface that did not match. */
 .typeset-chat {
-  --typeset-font-body: var(--font-geist);
+  --typeset-font-body: var(--font-mono);
   --typeset-font-heading: var(--font-space-grotesk);
   --typeset-font-mono: var(--font-ibm-plex-sans);
   --typeset-size: 14px;
