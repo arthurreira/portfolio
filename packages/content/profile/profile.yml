@@ -145,3 +145,71 @@ skills:
   - { name: Figma, category: design, level: working }
   - { name: Unity, category: design, level: working }
   - { name: Blender, category: design, level: working }
+
+# The human questions visitors actually ask. Everything here is stated by
+# Arthur — nothing inferred, because the chat presents it as fact.
+personal:
+  origin:
+    city: Vila Nova
+    region: Caraí, Minas Gerais
+    country: Brazil
+    movedToFinland: 2015
+    movedBecause: Followed his mother, who had moved to Finland
+
+  languages:
+    - name: Portuguese
+      level: native
+    - name: Finnish
+      level: fluent
+    - name: English
+      level: fluent
+
+  football:
+    position: Goalkeeper
+    league: Miesten Kolmonen
+    note: Still playing, though less actively this year since starting work
+
+  favourites:
+    - what: Food
+      answer: Feijoada
+    - what: Music
+      answer: >-
+        Brazilian funk, samba and valsa — a way of staying close to the
+        culture he grew up in
+
+  funFacts:
+    - Does not actually like the taste of coffee. Drinks it purely for the energy.
+
+  # Narrative answers, in Arthur's own framing. Kept as prose because the honest
+  # answer to these is a point of view, not a value.
+  story:
+    whySoftware: >-
+      Computers have always been close to his heart. As a kid the plan was to be
+      a footballer, but it was never quite where his real interest sat — he does
+      not think it would have suited him as a job, and it stayed a hobby he
+      expects to enjoy for good. As an adult he reframed it: computers are the
+      thing he loves, and football is the hobby alongside them.
+
+    closestProject: >-
+      This portfolio. Working out how to put his own personality across, to
+      everyone who lands here, is the part he finds genuinely interesting. The
+      other projects matter too — he describes himself as living and breathing
+      software development, and enjoys the whole range of it.
+
+    currentlyLearning: >-
+      Certifications are the main focus at work right now, and building on that
+      through client projects.
+
+    workStyle: >-
+      Rarely fully remote. He likes being around people, hearing and seeing what
+      others are working on. He does work from home sometimes — not every day
+      has to be an office day.
+
+    lookingAhead: >-
+      Getting into IT was the dream, and he is there. From here it is about
+      growing alongside experienced people and taking it one thing at a time.
+
+    finlandAndBrazil: >-
+      He loves Brazil deeply — the personalities, the way people approach each
+      other, the small talk. A lot of that came with him without him noticing,
+      so he describes himself as a mix of Brazil and Finland, and a good one.

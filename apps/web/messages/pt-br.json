@@ -139,12 +139,6 @@
     "title": "Pergunte sobre o Arthur",
     "close": "Fechar chat",
     "stop": "Parar a resposta",
-    "suggestions": [
-      "O que o Arthur faz?",
-      "Quais projetos usam TypeScript?",
-      "O que é o af-analytics?",
-      "Como funciona este chat?"
-    ],
     "degraded": "Respondido pelo modelo reserva, então esta resposta pode ser menos detalhada.",
     "modelLabel": "Modelo",
     "modelClaude": "Claude Haiku 4.5",
@@ -157,6 +151,18 @@
     "metaScope": "Responde com base neste portfolio",
     "openHint": "Pressione / para perguntar",
     "charsLeft": "{count} caracteres restantes",
-    "tooLong": "A mensagem está longa demais"
+    "tooLong": "A mensagem está longa demais",
+    "suggestionsTechLabel": "Técnico",
+    "suggestionsPersonalLabel": "Pessoal",
+    "suggestionsTech": [
+      "Como funciona este chat?",
+      "Quais projetos usam TypeScript?",
+      "Por que Velite e não Contentlayer?"
+    ],
+    "suggestionsPersonal": [
+      "De que parte do Brasil o Arthur é?",
+      "Qual é a comida favorita dele?",
+      "Ele ainda joga futebol?"
+    ]
   }
 }

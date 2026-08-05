@@ -139,12 +139,6 @@
     "title": "Kysy Arthurista",
     "close": "Sulje chat",
     "stop": "Keskeytä vastaus",
-    "suggestions": [
-      "Mitä Arthur tekee?",
-      "Missä projekteissa on TypeScriptiä?",
-      "Mikä af-analytics on?",
-      "Miten tämä chat toimii?"
-    ],
     "degraded": "Varamalli vastasi tähän, joten vastaus voi olla tavallista suppeampi.",
     "modelLabel": "Malli",
     "modelClaude": "Claude Haiku 4.5",
@@ -157,6 +151,18 @@
     "metaScope": "Vastaa portfolion sisällöstä",
     "openHint": "Paina / kysyäksesi",
     "charsLeft": "{count} merkkiä jäljellä",
-    "tooLong": "Viesti on liian pitkä"
+    "tooLong": "Viesti on liian pitkä",
+    "suggestionsTechLabel": "Tekninen",
+    "suggestionsPersonalLabel": "Henkilökohtainen",
+    "suggestionsTech": [
+      "Miten tämä chat toimii?",
+      "Missä projekteissa on TypeScriptiä?",
+      "Miksi Velite eikä Contentlayer?"
+    ],
+    "suggestionsPersonal": [
+      "Mistä päin Brasiliaa Arthur on?",
+      "Mikä on hänen lempiruokansa?",
+      "Pelaako hän yhä jalkapalloa?"
+    ]
   }
 }

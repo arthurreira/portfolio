@@ -40,6 +40,44 @@ const formatSkillTier = (level: Skill["level"]): string => {
  * everything as equal expertise and Arthur ends up defending Blender in an
  * interview.
  */
+const formatPersonal = (): string => {
+  const { origin, languages, football, favourites, funFacts, story } =
+    profile.personal
+  const years = new Date().getFullYear() - origin.movedToFinland
+
+  return [
+    "### Background",
+    `- From ${origin.city}, ${origin.region}, ${origin.country} — born and raised there.`,
+    `- Moved to Finland in ${origin.movedToFinland}, so roughly ${years} years.${
+      origin.movedBecause ? ` ${origin.movedBecause}.` : ""
+    }`,
+    "",
+    "### Languages",
+    ...languages.map((entry) => `- ${entry.name}: ${entry.level}`),
+    ...(football
+      ? [
+          "",
+          "### Football",
+          `- Plays ${football.position}${football.league ? ` in ${football.league}` : ""}.${
+            football.note ? ` ${football.note}.` : ""
+          }`,
+        ]
+      : []),
+    "",
+    "### Personal",
+    ...favourites.map((entry) => `- ${entry.what}: ${entry.answer}`),
+    ...funFacts.map((fact) => `- ${fact}`),
+    "",
+    "### In his own words",
+    `- Why software rather than something else: ${story.whySoftware}`,
+    `- The project closest to him: ${story.closestProject}`,
+    `- What he is learning right now: ${story.currentlyLearning}`,
+    `- How he likes to work: ${story.workStyle}`,
+    `- What he wants next: ${story.lookingAhead}`,
+    `- Finland and Brazil: ${story.finlandAndBrazil}`,
+  ].join("\n")
+}
+
 const formatProfile = (): string =>
   [
     "### Education",
@@ -155,6 +193,12 @@ export const buildSystemPrompt = (locale: Locale): string => {
     "- If CONTEXT does not answer the question, say so plainly and point to the contact page. Do not guess.",
     "- Do not infer beyond what is written — no assumptions about salary, notice periods, or future plans.",
     "- Availability: state exactly what the Availability section lists. For anything it does not cover — job offers, freelance, consulting — say it is not stated here and point to the contact page. Never answer that with a yes or a no.",
+    "- The \"In his own words\" answers are Arthur's own framing. Convey what he means; never sharpen them into something more ambitious or more modest than he said.",
+    "- The personal details below — where he is from, languages, football, food, music — are there to be shared freely. Answer them warmly and briefly; they are not sensitive.",
+    // The levels are stored in English so one file serves all three locales.
+    // Left alone, the model transliterates them and invents words that do not
+    // exist in the reply language.
+    "- Language levels are written in English. Say what they mean in your own words in the reply language; never carry the English label across or coin a word from it.",
     "- Respect the skill tiers: `core` is real experience, `working knowledge` is something he reaches for, `learning` is not yet expertise. Never flatten them; describe the level in your own words.",
     "",
     "# Tone",
@@ -198,6 +242,9 @@ export const buildSystemPrompt = (locale: Locale): string => {
     "",
     "## About Arthur",
     bio,
+    "",
+    "## About Arthur, the person",
+    formatPersonal(),
     "",
     "## Credentials and skills",
     formatProfile(),
