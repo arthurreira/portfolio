@@ -399,7 +399,9 @@ html {
 .t-about-grid {
   display: grid;
   grid-template-columns: 1fr 280px;
-  gap: 1rem;
+  /* Wide column gap so the bio's measure and the meta rail read as two
+     things; 1rem let them run together. */
+  gap: 1rem 4rem;
 }
 
 /* About cert rows — 4 columns */
