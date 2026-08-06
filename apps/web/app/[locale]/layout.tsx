@@ -1,9 +1,4 @@
-import {
-  Geist,
-  IBM_Plex_Sans,
-  JetBrains_Mono,
-  Space_Grotesk,
-} from "next/font/google"
+import { Geist, JetBrains_Mono } from "next/font/google"
 import { hasLocale, NextIntlClientProvider } from 'next-intl'
 import { getMessages, setRequestLocale } from 'next-intl/server'
 import { notFound } from 'next/navigation'
@@ -26,18 +21,7 @@ const jetbrainsMono = JetBrains_Mono({ subsets: ['latin'], variable: '--font-mon
 // a second Geist was loaded and never used.
 const geist = Geist({ subsets: ["latin"], variable: "--font-geist" })
 
-const spaceGrotesk = Space_Grotesk({
-  subsets: ["latin"],
-  variable: "--font-space-grotesk",
-})
 
-const ibmPlexSans = IBM_Plex_Sans({
-  subsets: ["latin"],
-  // IBM Plex Sans has no variable font, so the weights typeset uses are
-  // requested explicitly — without this the build fails.
-  weight: ["400", "500", "600", "700"],
-  variable: "--font-ibm-plex-sans",
-})
 
 export function generateStaticParams() {
   return routing.locales.map((locale) => ({ locale }))
@@ -64,11 +48,8 @@ export default async function RootLayout({
     <html lang={locale} suppressHydrationWarning
       className={cn(
         "antialiased",
-        "font-mono",
-        jetbrainsMono.variable,
         geist.variable,
-        spaceGrotesk.variable,
-        ibmPlexSans.variable
+        jetbrainsMono.variable
       )}
     >
       <head>

@@ -35,7 +35,7 @@ export async function SiteAbout() {
   ]
 
   return (
-    <div className="t-shell min-h-screen bg-background pt-10 pb-24 font-ui">
+    <div className="t-shell min-h-screen bg-background pt-10 pb-24">
       <div className="t-about-grid">
 
         {/* Left */}
@@ -53,7 +53,7 @@ export async function SiteAbout() {
           </ProximityArea>
 
           {aboutContent && (
-            <div className="typeset typeset-notes max-w-xl">
+            <div className="typeset typeset-notes ">
               <MdxContent code={aboutContent.content} variant="typeset" />
             </div>
           )}
@@ -86,7 +86,7 @@ export async function SiteAbout() {
           {/* Language & Personality */}
           <Reveal once={false}>
             <LabeledRow label={t("langLabel")}>
-              <p className="font-ui text-base text-muted-foreground leading-relaxed">
+              <p className="text-base text-muted-foreground leading-relaxed">
                 {t("langText")}
               </p>
             </LabeledRow>
@@ -98,7 +98,7 @@ export async function SiteAbout() {
           {sidebar.map((row, i) => (
             <Reveal key={row.label} once={false} delay={i * ROW_STAGGER_S}>
               <LabeledRow label={row.label}>
-                <p className="font-ui text-base font-bold text-foreground">
+                <p className="text-base font-bold text-foreground">
                   {row.value}
                 </p>
               </LabeledRow>

@@ -102,7 +102,7 @@ export function SiteProjectDetail({
   ]
 
   return (
-    <div className="min-h-screen bg-background font-ui">
+    <div className="min-h-screen bg-background">
 
       {/* Header */}
       <div className="t-shell pt-10">
@@ -159,7 +159,7 @@ export function SiteProjectDetail({
                 }}
               />
               <div className="absolute inset-0 flex items-center justify-center">
-                <span className="font-ui text-[11px] uppercase tracking-[0.3em] text-muted-foreground opacity-50">
+                <span className="text-[11px] uppercase tracking-[0.3em] text-muted-foreground opacity-50">
                   {t("screenshotPlaceholder")}
                 </span>
               </div>

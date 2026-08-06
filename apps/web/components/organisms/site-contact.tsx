@@ -18,7 +18,7 @@ export function SiteContact() {
   const t = useTranslations("contact")
 
   return (
-    <div className="t-shell flex min-h-screen flex-col justify-between bg-background pt-12 font-ui">
+    <div className="t-shell flex min-h-screen flex-col justify-between bg-background pt-12">
       <div>
         {/* font-black / leading / tracking come from @layer base h1 */}
         <ProximityArea>

@@ -11,7 +11,7 @@ export function SiteHero({ greeting, firstName, lastName, subtitle }: SiteHeroPr
   return (
     <section className="relative min-h-screen bg-background flex flex-col overflow-hidden">
       <div
-        className="t-shell flex-1 flex items-start font-ui"
+        className="t-shell flex-1 flex items-start"
         style={{ paddingTop: "clamp(12vh, 20vh, 28vh)", paddingBottom: "clamp(8vh, 12vh, 16vh)" }}
       >
         <HeroText

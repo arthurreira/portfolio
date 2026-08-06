@@ -1,5 +1,5 @@
 import { Link } from "@/i18n/routing"
-import { ArrowRight } from "@phosphor-icons/react/ssr"
+import { ArrowRightIcon } from "@phosphor-icons/react/ssr"
 import { cn } from "@arthurreira/ui"
 
 interface ProjectRowProps {
@@ -14,8 +14,8 @@ interface ProjectRowProps {
 export function ProjectRow({ num, title, year, href, featured, description }: ProjectRowProps) {
   return (
     <Link href={href as never} className="group block border-t border-border -mx-2 px-2 py-4 transition-colors duration-150 hover:bg-muted">
-      <div className="flex items-center gap-x-5">
-        <span className="w-12 shrink-0 font-ui text-[11px] tracking-[0.1em] text-primary leading-none">
+      <div className="flex items-center gap-4 px-2">
+        <span className="w-12 shrink-0 text-[11px] tracking-[0.1em] text-primary leading-none">
           [{num}]
         </span>
         <span
@@ -26,8 +26,8 @@ export function ProjectRow({ num, title, year, href, featured, description }: Pr
         >
           {title}
         </span>
-        <span className="shrink-0 font-ui text-sm text-foreground tabular-nums">{year}</span>
-        <ArrowRight
+        <span className="shrink-0 text-sm text-foreground tabular-nums">{year}</span>
+        <ArrowRightIcon
           weight="bold"
           className="size-4 shrink-0 text-muted-foreground transition-all duration-200 group-hover:translate-x-2 group-hover:text-primary"
         />

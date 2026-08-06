@@ -167,7 +167,7 @@ export function SiteNav() {
 
   return (
     <header
-      className="w-full bg-background font-ui"
+      className="w-full bg-background"
       style={{ position: "relative", zIndex: 10 }}
       onPointerDown={(e) => {
         const btn = (e.target as HTMLElement).closest("button")

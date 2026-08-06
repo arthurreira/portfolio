@@ -8,9 +8,9 @@
 /* Typeset preset for long-form rendered markdown. Fonts come from the Next
    font variables declared on <html> in apps/web. */
 .typeset-notes {
-  --typeset-font-body: var(--font-geist);
-  --typeset-font-heading: var(--font-space-grotesk);
-  --typeset-font-mono: var(--font-ibm-plex-sans);
+  --typeset-font-body: var(--font-ui);
+  --typeset-font-heading: var(--font-ui);
+  --typeset-font-mono: var(--font-mono);
   --typeset-size: 18px;
   --typeset-leading: 1.9;
   --typeset-flow: 2em;
@@ -43,9 +43,9 @@
    Body stays mono: the whole site renders in mono, and switching the chat to
    Geist made it the one surface that did not match. */
 .typeset-chat {
-  --typeset-font-body: var(--font-mono);
-  --typeset-font-heading: var(--font-space-grotesk);
-  --typeset-font-mono: var(--font-ibm-plex-sans);
+  --typeset-font-body: var(--font-ui);
+  --typeset-font-heading: var(--font-ui);
+  --typeset-font-mono: var(--font-mono);
   --typeset-size: 14px;
   --typeset-leading: 1.65;
   --typeset-flow: 1em;
@@ -175,7 +175,9 @@
     @apply border-border outline-ring/50;
   }
   body {
-    @apply bg-background text-foreground;
+    /* One typeface for the whole site. Pages used to set font-ui on each
+       section root, which meant the html-level font never rendered anywhere. */
+    @apply bg-background font-ui text-foreground;
   }
   /* Display headings — weight/tracking/leading shared across all h1s */
   h1 {
