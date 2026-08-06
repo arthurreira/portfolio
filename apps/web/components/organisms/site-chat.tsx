@@ -281,9 +281,10 @@ export function SiteChat() {
                                   key={group.label}
                                   className="flex w-full flex-col gap-1.5"
                                 >
-                                  <p className="text-muted-foreground text-xs font-medium">
-                                    {group.label}
-                                  </p>
+                                  {/* label-caps is the site's own idiom for a
+                                      small section label — the ticker and the
+                                      project rows already use it. */}
+                                  <p className="label-caps">{group.label}</p>
                                   {/* Vertical ButtonGroup joins the options into
                                       one block instead of loose pills — the
                                       canonical shape for a stack of choices. */}
@@ -296,7 +297,10 @@ export function SiteChat() {
                                         key={question}
                                         variant="outline"
                                         size="sm"
-                                        className="h-auto justify-start py-2 text-left whitespace-normal"
+                                        // Lighter than the card frame around
+                                        // them; matching weight makes the group
+                                        // read as a second card inside the first.
+                                        className="h-auto justify-start border-border/60 py-2 text-left whitespace-normal"
                                         onClick={() =>
                                           sendMessage(
                                             { text: question },
