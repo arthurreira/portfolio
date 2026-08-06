@@ -9,10 +9,12 @@ import {
 } from "react"
 import { PaperPlaneTiltIcon, SquareIcon } from "@phosphor-icons/react"
 import { useTranslations } from "next-intl"
-import { Button, cn } from "@arthurreira/ui"
+import { cn } from "@arthurreira/ui"
 import {
   InputGroup,
   InputGroupAddon,
+  InputGroupButton,
+  InputGroupText,
   InputGroupTextarea,
 } from "@arthurreira/ui/client"
 
@@ -96,11 +98,23 @@ export function ChatComposer({
           className="field-sizing-content max-h-32 resize-none"
         />
         <InputGroupAddon align="block-end">
+          {/* Silent until it matters. The Worker refuses an over-long message,
+              and being told that after pressing send is far worse than seeing
+              it coming. InputGroupText is the group's own slot for this, so it
+              sits on the button row instead of below the field. */}
+          {draft.length >= WARN_FROM && (
+            <InputGroupText
+              aria-live="polite"
+              className={cn(isTooLong && "text-destructive")}
+            >
+              {isTooLong ? t("tooLong") : t("charsLeft", { count: remaining })}
+            </InputGroupText>
+          )}
+
           {/* While streaming the same slot becomes a stop control — cancelling
               a long answer is the one thing that saves API credits mid-flight. */}
           {isBusy ? (
-            <Button
-              type="button"
+            <InputGroupButton
               size="icon-sm"
               variant="secondary"
               onClick={onStop}
@@ -108,34 +122,21 @@ export function ChatComposer({
               className="ml-auto"
             >
               <SquareIcon weight="fill" />
-            </Button>
+            </InputGroupButton>
           ) : (
-            <Button
+            <InputGroupButton
               type="submit"
               size="icon-sm"
+              variant="default"
               disabled={!canSend}
               aria-label={sendLabel}
               className="ml-auto"
             >
               <PaperPlaneTiltIcon />
-            </Button>
+            </InputGroupButton>
           )}
         </InputGroupAddon>
       </InputGroup>
-
-      {/* Silent until it matters. The Worker refuses an over-long message, and
-          being told that after pressing send is far worse than seeing it coming. */}
-      {draft.length >= WARN_FROM && (
-        <p
-          aria-live="polite"
-          className={cn(
-            "mt-1 text-xs",
-            isTooLong ? "text-destructive" : "text-muted-foreground"
-          )}
-        >
-          {isTooLong ? t("tooLong") : t("charsLeft", { count: remaining })}
-        </p>
-      )}
     </form>
   )
 }
