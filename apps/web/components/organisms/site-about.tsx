@@ -1,5 +1,4 @@
 import { getTranslations, getLocale } from "next-intl/server"
-import { ArrowRightIcon } from "@phosphor-icons/react/ssr"
 import { about } from "@arthurreira/content"
 import { LabeledRow } from "@/components/molecules/labeled-row"
 import { LineReveal } from "@/components/molecules/line-reveal"
@@ -10,7 +9,13 @@ import {
 import { MdxContent } from "@/components/molecules/mdx-content"
 import { Reveal } from "@/components/molecules/reveal"
 import Link from "next/link"
+import { Card, CardContent, Separator } from "@arthurreira/ui"
+import { Button } from "@arthurreira/ui"
+import { Badge } from "@arthurreira/ui"
 
+// /ssr, not the package root: this is a server component, and the root entry
+// builds an IconContext with createContext, which server components cannot do.
+import { ArrowUpRightIcon } from "@phosphor-icons/react/ssr"
 /** Stagger (s) between cert / sidebar row reveals. */
 const ROW_STAGGER_S = 0.06
 
@@ -63,24 +68,37 @@ export async function SiteAbout() {
             <p className="label-caps mt-8 mb-5">{t("certsLabel")}</p>
           </Reveal>
 
-          {CERTS.map((cert, i) => (
-            <Reveal key={cert.code} once={false} delay={i * ROW_STAGGER_S}>
-              <div className="t-cert-row">
-                <span className="t-cert-name text-base font-bold text-foreground">{cert.name}</span>
-                <span className="text-base text-muted-foreground">{cert.code}</span>
-                <span className="text-base text-muted-foreground">{cert.period}</span>
-                <Link
-                  href={cert.url}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="label-caps inline-flex items-center gap-1 no-underline"
-                >
-                  {t("verified")}
-                  <ArrowRightIcon weight="bold" className="size-3" />
-                </Link>
-              </div>
-            </Reveal>
-          ))}
+          
+          <div>
+            {CERTS.map((cert, i) => (
+              <Reveal key={cert.code} once={false} delay={i * ROW_STAGGER_S}>
+                <div className="flex items-center justify-between py-4">
+                  <div>
+                    <p className="font-semibold">{cert.name}</p>
+                    <div className="mt-1 flex items-center gap-2">
+                      <Badge variant="default">{cert.code}</Badge>
+                      <span className="text-sm text-muted-foreground">
+                        {cert.period}
+                      </span>
+                    </div>
+                  </div>
+
+                  <Button asChild variant="ghost" size="sm">
+                    <Link
+                      href={cert.url}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                    >
+                      {t("verified")}
+                      <ArrowUpRightIcon className="ml-2 h-4 w-4" />
+                    </Link>
+                  </Button>
+                </div>
+
+                {i < CERTS.length - 1 && <Separator />}
+              </Reveal>
+            ))}
+          </div>
           <div className="border-t border-border" />
 
           {/* Language & Personality */}

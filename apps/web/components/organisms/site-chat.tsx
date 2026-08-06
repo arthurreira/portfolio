@@ -13,7 +13,6 @@ import {
 } from "@phosphor-icons/react"
 import {
   Button,
-  ButtonGroup,
   Card,
   CardAction,
   CardContent,
@@ -27,6 +26,7 @@ import {
   Spinner,
 } from "@arthurreira/ui"
 import {
+  ButtonGroup,
   MessageScroller,
   MessageScrollerButton,
   MessageScrollerContent,
