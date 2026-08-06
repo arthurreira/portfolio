@@ -53,7 +53,7 @@ export async function SiteAbout() {
           </ProximityArea>
 
           {aboutContent && (
-            <div className="typeset typeset-notes max-w-xll">
+            <div className="typeset typeset-notes max-w-xl">
               <MdxContent code={aboutContent.content} variant="typeset" />
             </div>
           )}

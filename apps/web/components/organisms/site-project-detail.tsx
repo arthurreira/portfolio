@@ -123,12 +123,12 @@ export function SiteProjectDetail({
 
         <Reveal once={false} delay={HEADER_META_DELAY_S}>
           {techStack && techStack.length > 0 && (
-            <p className="mb-1 text-base text-muted-foreground">
+            <p className="mb-1 text-base leading-snug text-muted-foreground">
               {techStack.map((tech, i) => (
                 <span key={tech}>
                   {tech}
                   {i < techStack.length - 1 && (
-                    <span className="mx-2 text-muted-foreground opacity-40">·</span>
+                    <span className="mx-1.5 text-muted-foreground opacity-40">·</span>
                   )}
                 </span>
               ))}

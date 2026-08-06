@@ -16,6 +16,17 @@
   --typeset-flow: 2em;
 }
 
+/* Typeset multiplies its size by 1.125 below 48rem, which would put the prose
+   at 20px on a phone — larger than on desktop. Stepping the token down lands
+   mobile on the same 18px, still above the 16px minimum for body text. */
+@media (max-width: 48rem) {
+  .typeset-notes {
+    --typeset-size: 16px;
+    --typeset-leading: 1.7;
+    --typeset-flow: 1.5em;
+  }
+}
+
 /* Same idea in the chat panel, at a size that fits 384px. Separate preset
    because the notes size (18px) overflows the bubble.
    Body stays mono: the whole site renders in mono, and switching the chat to
