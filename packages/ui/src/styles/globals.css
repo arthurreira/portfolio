@@ -470,14 +470,21 @@ html {
     left: var(--gutter);
     right: var(--gutter);
   }
+  /* Links get a row of their own, aligned to the page's left edge like
+     everything else. Squeezed against the right they wrapped raggedly and
+     left "Ota yhteyttä" stranded on a line by itself. */
   .t-links {
-    gap: 0.75rem 1rem !important;
+    order: 2;
+    flex-basis: 100%;
+    flex: none;
+    justify-content: flex-start;
+    gap: 0.75rem 1.25rem !important;
   }
   .t-controls {
     order: 3;
     flex-basis: 100%;
-    padding-top: 0.5rem;
-    justify-content: flex-end;
+    padding-top: 0.25rem;
+    justify-content: flex-start;
     gap: 0.75rem;
   }
   /* Keep the thin | separators visible between groups */
