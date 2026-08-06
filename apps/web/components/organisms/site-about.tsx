@@ -53,9 +53,9 @@ export async function SiteAbout() {
           </ProximityArea>
 
           {aboutContent && (
-            <div className="typeset typeset-notes ">
+            <>
               <MdxContent code={aboutContent.content} variant="typeset" />
-            </div>
+            </>
           )}
 
           {/* Certifications */}

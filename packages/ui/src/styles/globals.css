@@ -472,22 +472,22 @@ html {
     left: var(--gutter);
     right: var(--gutter);
   }
-  /* Links get a row of their own, aligned to the page's left edge like
-     everything else. Squeezed against the right they wrapped raggedly and
-     left "Ota yhteyttä" stranded on a line by itself. */
-  .t-links {
+  /* Row 1 is the brand with the flag, mode and language controls beside it;
+     row 2 is the links. Squeezed against the right edge on one row they
+     wrapped mid-list and stranded "Ota yhteyttä" on a line of its own.
+     If the controls cannot fit beside the brand they wrap on their own,
+     which degrades to three rows rather than breaking. */
+  .t-controls {
     order: 2;
+    margin-left: auto;
+    gap: 0.5rem;
+  }
+  .t-links {
+    order: 3;
     flex-basis: 100%;
     flex: none;
     justify-content: flex-start;
     gap: 0.75rem 1.25rem !important;
-  }
-  .t-controls {
-    order: 3;
-    flex-basis: 100%;
-    padding-top: 0.25rem;
-    justify-content: flex-start;
-    gap: 0.75rem;
   }
   /* Keep the thin | separators visible between groups */
   .t-controls > span {
