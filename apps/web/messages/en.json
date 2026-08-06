@@ -48,7 +48,7 @@
     "originLabel": "Origin",
     "originValue": "Brazil → Finland",
     "yearsLabel": "Years",
-    "yearsValue": "10+ years in Suomi",
+    "yearsValue": "10+ years in Finland",
     "roleLabel": "Role",
     "roleValue": "Junior @ Nordcloud",
     "offClockLabel": "Off the clock",
@@ -58,7 +58,6 @@
     "weather": {
       "from": "Where I'm from",
       "live": "Where I live",
-      "humidity": "Humidity",
       "wind": "Wind"
     },
     "creativeLabel": "What's Your Religious Deal?",
