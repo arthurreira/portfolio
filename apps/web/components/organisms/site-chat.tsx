@@ -13,6 +13,7 @@ import {
 } from "@phosphor-icons/react"
 import {
   Button,
+  ButtonGroup,
   Card,
   CardAction,
   CardContent,
@@ -278,27 +279,35 @@ export function SiteChat() {
                               {suggestionGroups.map((group) => (
                                 <div
                                   key={group.label}
-                                  className="flex w-full flex-col items-stretch gap-1.5"
+                                  className="flex w-full flex-col gap-1.5"
                                 >
                                   <p className="text-muted-foreground text-xs font-medium">
                                     {group.label}
                                   </p>
-                                  {group.items.map((question) => (
-                                    <Button
-                                      key={question}
-                                      variant="outline"
-                                      size="sm"
-                                      className="h-auto justify-start py-1.5 text-left whitespace-normal"
-                                      onClick={() =>
-                                        sendMessage(
-                                          { text: question },
-                                          { body: { model } }
-                                        )
-                                      }
-                                    >
-                                      {question}
-                                    </Button>
-                                  ))}
+                                  {/* Vertical ButtonGroup joins the options into
+                                      one block instead of loose pills — the
+                                      canonical shape for a stack of choices. */}
+                                  <ButtonGroup
+                                    orientation="vertical"
+                                    className="w-full"
+                                  >
+                                    {group.items.map((question) => (
+                                      <Button
+                                        key={question}
+                                        variant="outline"
+                                        size="sm"
+                                        className="h-auto justify-start py-2 text-left whitespace-normal"
+                                        onClick={() =>
+                                          sendMessage(
+                                            { text: question },
+                                            { body: { model } }
+                                          )
+                                        }
+                                      >
+                                        {question}
+                                      </Button>
+                                    ))}
+                                  </ButtonGroup>
                                 </div>
                               ))}
                             </div>
