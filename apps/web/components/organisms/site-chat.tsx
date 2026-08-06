@@ -373,22 +373,28 @@ export function SiteChat() {
                         )}
                       </MessageScrollerContent>
                     </MessageScrollerViewport>
-                    <MessageScrollerButton />
+                    {/* Centred by default, which in a 384px panel lands the
+                        button on top of whatever line is under it. Pinned to
+                        the trailing edge instead, with a shadow so it reads as
+                        floating rather than as a hole in the text. */}
+                    <MessageScrollerButton className="start-auto end-3 translate-x-0 shadow-md rtl:translate-x-0" />
                   </MessageScroller>
                 </MessageScrollerProvider>
               </CardContent>
 
               <ChatTurnstile widgetRef={turnstileRef} />
 
-              <CardFooter className="flex-col items-stretch gap-2">
-                <div className="self-start">
-                  <ChatModelPicker
-                    value={model}
-                    onChange={setModel}
-                    disabled={isBusy}
-                  />
-                </div>
+              <CardFooter>
                 <ChatComposer
+                  // The picker rides in the composer's button row rather than
+                  // a row of its own — one less band of chrome above the field.
+                  leading={
+                    <ChatModelPicker
+                      value={model}
+                      onChange={setModel}
+                      disabled={isBusy}
+                    />
+                  }
                   onSend={(text) => sendMessage({ text }, { body: { model } })}
                   onStop={stop}
                   isBusy={isBusy}

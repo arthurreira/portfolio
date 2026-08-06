@@ -36,6 +36,8 @@ interface ChatComposerProps {
   placeholder: string
   sendLabel: string
   stopLabel: string
+  /** Rendered at the start of the button row, opposite the send control. */
+  leading?: React.ReactNode
   /** Focus the field on mount — the panel opens ready to type. */
   autoFocus?: boolean
 }
@@ -53,6 +55,7 @@ export function ChatComposer({
   placeholder,
   sendLabel,
   stopLabel,
+  leading,
   autoFocus = false,
 }: ChatComposerProps) {
   // Translated here rather than passed in: `charsLeft` carries an ICU
@@ -98,6 +101,8 @@ export function ChatComposer({
           className="field-sizing-content max-h-32 resize-none"
         />
         <InputGroupAddon align="block-end">
+          {leading}
+
           {/* Silent until it matters. The Worker refuses an over-long message,
               and being told that after pressing send is far worse than seeing
               it coming. InputGroupText is the group's own slot for this, so it
