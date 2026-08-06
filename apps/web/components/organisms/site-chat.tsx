@@ -13,6 +13,7 @@ import {
 } from "@phosphor-icons/react"
 import {
   Button,
+  ButtonGroup,
   Card,
   CardAction,
   CardContent,
@@ -278,27 +279,39 @@ export function SiteChat() {
                               {suggestionGroups.map((group) => (
                                 <div
                                   key={group.label}
-                                  className="flex w-full flex-col items-stretch gap-1.5"
+                                  className="flex w-full flex-col gap-1.5"
                                 >
-                                  <p className="text-muted-foreground text-xs font-medium">
-                                    {group.label}
-                                  </p>
-                                  {group.items.map((question) => (
-                                    <Button
-                                      key={question}
-                                      variant="outline"
-                                      size="sm"
-                                      className="h-auto justify-start py-1.5 text-left whitespace-normal"
-                                      onClick={() =>
-                                        sendMessage(
-                                          { text: question },
-                                          { body: { model } }
-                                        )
-                                      }
-                                    >
-                                      {question}
-                                    </Button>
-                                  ))}
+                                  {/* label-caps is the site's own idiom for a
+                                      small section label — the ticker and the
+                                      project rows already use it. */}
+                                  <p className="label-caps">{group.label}</p>
+                                  {/* Vertical ButtonGroup joins the options into
+                                      one block instead of loose pills — the
+                                      canonical shape for a stack of choices. */}
+                                  <ButtonGroup
+                                    orientation="vertical"
+                                    className="w-full"
+                                  >
+                                    {group.items.map((question) => (
+                                      <Button
+                                        key={question}
+                                        variant="outline"
+                                        size="sm"
+                                        // Lighter than the card frame around
+                                        // them; matching weight makes the group
+                                        // read as a second card inside the first.
+                                        className="h-auto justify-start border-border/60 py-2 text-left whitespace-normal"
+                                        onClick={() =>
+                                          sendMessage(
+                                            { text: question },
+                                            { body: { model } }
+                                          )
+                                        }
+                                      >
+                                        {question}
+                                      </Button>
+                                    ))}
+                                  </ButtonGroup>
                                 </div>
                               ))}
                             </div>
@@ -364,22 +377,28 @@ export function SiteChat() {
                         )}
                       </MessageScrollerContent>
                     </MessageScrollerViewport>
-                    <MessageScrollerButton />
+                    {/* Centred by default, which in a 384px panel lands the
+                        button on top of whatever line is under it. Pinned to
+                        the trailing edge instead, with a shadow so it reads as
+                        floating rather than as a hole in the text. */}
+                    <MessageScrollerButton className="start-auto end-3 translate-x-0 shadow-md rtl:translate-x-0" />
                   </MessageScroller>
                 </MessageScrollerProvider>
               </CardContent>
 
               <ChatTurnstile widgetRef={turnstileRef} />
 
-              <CardFooter className="flex-col items-stretch gap-2">
-                <div className="self-start">
-                  <ChatModelPicker
-                    value={model}
-                    onChange={setModel}
-                    disabled={isBusy}
-                  />
-                </div>
+              <CardFooter>
                 <ChatComposer
+                  // The picker rides in the composer's button row rather than
+                  // a row of its own — one less band of chrome above the field.
+                  leading={
+                    <ChatModelPicker
+                      value={model}
+                      onChange={setModel}
+                      disabled={isBusy}
+                    />
+                  }
                   onSend={(text) => sendMessage({ text }, { body: { model } })}
                   onStop={stop}
                   isBusy={isBusy}
