@@ -123,18 +123,20 @@ export function SiteProjectDetail({
 
         <Reveal once={false} delay={HEADER_META_DELAY_S}>
           {techStack && techStack.length > 0 && (
-            <p className="mb-1 text-base leading-snug text-muted-foreground">
+            /* A wrapping flex row, not a paragraph of inline spans. Each name
+               stays whole, and the gap gives the row real break points — as
+               inline spans with no whitespace between them there were none at
+               all, so the line ran straight off the screen. */
+            <ul className="mb-1 flex list-none flex-wrap items-center gap-x-3 gap-y-1 p-0 text-base text-muted-foreground">
               {techStack.map((tech, i) => (
-                // Multi-word names like "Cloudflare Workers" were breaking
-                // across lines mid-name on a phone.
-                <span key={tech} className="whitespace-nowrap">
+                <li key={tech} className="flex items-center gap-x-3 whitespace-nowrap">
                   {tech}
                   {i < techStack.length - 1 && (
-                    <span className="mx-1.5 text-muted-foreground opacity-40">·</span>
+                    <span aria-hidden className="opacity-40">·</span>
                   )}
-                </span>
+                </li>
               ))}
-            </p>
+            </ul>
           )}
 
           <p className={cn("text-sm text-muted-foreground", highlight ? "mb-4" : "mb-8")}>{year}</p>

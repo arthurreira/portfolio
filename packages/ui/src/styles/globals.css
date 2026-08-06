@@ -33,6 +33,9 @@
    so the browser can hyphenate them properly. */
 .typeset-notes {
   hyphens: auto;
+  /* Without limits the browser will break after two letters — "Si-vuston" —
+     which costs more readability than the ragged edge it fixes. */
+  hyphenate-limit-chars: 8 4 4;
 }
 
 /* Same idea in the chat panel, at a size that fits 384px. Separate preset
