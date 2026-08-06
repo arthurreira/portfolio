@@ -125,7 +125,9 @@ export function SiteProjectDetail({
           {techStack && techStack.length > 0 && (
             <p className="mb-1 text-base leading-snug text-muted-foreground">
               {techStack.map((tech, i) => (
-                <span key={tech}>
+                // Multi-word names like "Cloudflare Workers" were breaking
+                // across lines mid-name on a phone.
+                <span key={tech} className="whitespace-nowrap">
                   {tech}
                   {i < techStack.length - 1 && (
                     <span className="mx-1.5 text-muted-foreground opacity-40">·</span>

@@ -27,6 +27,14 @@
   }
 }
 
+/* Finnish compounds run long — verkkoanalytiikka-alustan is 25 characters —
+   and on a narrow screen a single one of them can own a whole line, leaving
+   a badly ragged right edge. The <html> lang attribute is already correct,
+   so the browser can hyphenate them properly. */
+.typeset-notes {
+  hyphens: auto;
+}
+
 /* Same idea in the chat panel, at a size that fits 384px. Separate preset
    because the notes size (18px) overflows the bubble.
    Body stays mono: the whole site renders in mono, and switching the chat to
@@ -408,17 +416,19 @@ html {
   gap: 3rem;
 }
 
-@media (min-width: 1100px) {
+@media (min-width: 80rem) {
   .t-detail-body {
     grid-template-columns: 1fr 240px;
   }
 }
 
-/* ── Below large ≤ 900 px ────────────────────────────────────────────────
-   Nav wraps to 2 rows AND ticker hides. Shell resets to gutter-only padding.
-   This matches picture 2: content flush-left, no strip stealing width.
+/* ── Below Tailwind's lg (64rem) ─────────────────────────────────────────
+   Ticker hides, nav wraps, shell drops the ticker offset, and both grids
+   collapse — all at one width. These used to be split across 900px and
+   860px while components used Tailwind's own scale, so the layout changed
+   in stages and never looked settled between them.
 ──────────────────────────────────────────────────────────────────────── */
-@media (max-width: 900px) {
+@media (max-width: 64rem) {
   body {
     overflow-x: hidden;
   }
@@ -431,6 +441,14 @@ html {
   /* Hairline goes full width when ticker is hidden */
   .t-hairline {
     margin-left: 0;
+  }
+
+  /* Both grids collapse here too — the sidebar has no room left beside a
+     240px column once the page is this narrow. */
+  .t-about-grid,
+  .t-detail-body {
+    grid-template-columns: 1fr !important;
+    gap: 3rem;
   }
 
   /* Reset shell padding — no more ticker offset, just the gutter on both sides */
@@ -471,22 +489,8 @@ html {
 }
 
 /* ── Tablet ≤ 860 px — stack multi-column pages ──────────────────────── */
-@media (max-width: 860px) {
-  /* About: sidebar drops below bio */
-  .t-about-grid {
-    grid-template-columns: 1fr !important;
-    gap: 3rem;
-  }
-
-  /* Project detail: metadata drops below content */
-  .t-detail-body {
-    grid-template-columns: 1fr !important;
-    gap: 3rem;
-  }
-}
-
-/* ── Small ≤ 600 px — cert row wraps name to own line ────────────────── */
-@media (max-width: 600px) {
+/* ── Below Tailwind's sm (40rem) — cert row wraps name to own line ───── */
+@media (max-width: 40rem) {
   .t-cert-row {
     grid-template-columns: 1fr auto;
   }
