@@ -399,7 +399,7 @@ html {
 .t-about-grid {
   display: grid;
   grid-template-columns: 1fr 280px;
-  gap: 6rem;
+  gap: 1rem;
 }
 
 /* About cert rows — 4 columns */

@@ -40,14 +40,16 @@ export async function SiteAbout() {
   ]
 
   return (
-    <div className="t-shell min-h-screen bg-background pt-10 pb-24">
+    <div className="t-shell min-h-screen bg-background ">
       <div className="t-about-grid">
 
         {/* Left */}
         <div>
           {/* font-black / leading / tracking from @layer base h1 */}
           <ProximityArea>
-            <h1 className="mb-10 text-[clamp(3rem,11.5vw,11.5rem)]">
+
+            <div className="flex flex-row justify-between">
+ <h1 className="mb-10 text-[clamp(3rem,11.5vw,11.5rem)]">
               <LineReveal className="text-foreground">
                 <ProximityLetters text="Arthur" />
               </LineReveal>
@@ -55,12 +57,30 @@ export async function SiteAbout() {
                 <ProximityLetters text="Ferreira." tone="primary" />
               </LineReveal>
             </h1>
+             {/* Right — sidebar, rows cascade in */}
+        <div className="">
+          {sidebar.map((row, i) => (
+            <Reveal key={row.label} once={false} delay={i * ROW_STAGGER_S}>
+              <LabeledRow label={row.label}>
+                <p className="text-base font-bold text-foreground">
+                  {row.value}
+                </p>
+              </LabeledRow>
+            </Reveal>
+          ))}
+        </div>
+            </div>
+           
           </ProximityArea>
 
+          {/* max-w-prose is 65ch, so the measure holds at whatever size typeset
+              is running — a rem value would drift when the token changes. The
+              typeset classes have to be here: variant="typeset" strips the
+              inline styles on the assumption this wrapper replaces them. */}
           {aboutContent && (
-            <>
+            <div className="typeset typeset-notes max-w-prose">
               <MdxContent code={aboutContent.content} variant="typeset" />
-            </>
+            </div>
           )}
 
           {/* Certifications */}
@@ -111,18 +131,7 @@ export async function SiteAbout() {
           </Reveal>
         </div>
 
-        {/* Right — sidebar, rows cascade in */}
-        <div className="pt-1">
-          {sidebar.map((row, i) => (
-            <Reveal key={row.label} once={false} delay={i * ROW_STAGGER_S}>
-              <LabeledRow label={row.label}>
-                <p className="text-base font-bold text-foreground">
-                  {row.value}
-                </p>
-              </LabeledRow>
-            </Reveal>
-          ))}
-        </div>
+       
       </div>
     </div>
   )
