@@ -18,7 +18,7 @@ export function NavLink({ href, active, children, className }: NavLinkProps) {
     <Link
       href={href}
       className={cn(
-        "font-ui text-base transition-colors duration-150",
+        "text-base transition-colors duration-150",
         active
           ? "text-primary font-medium"
           : "text-foreground hover:text-primary font-normal",

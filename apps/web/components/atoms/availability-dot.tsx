@@ -12,7 +12,7 @@ export function AvailabilityDot({
   return (
     <div className={cn("flex items-center gap-2", className)}>
       <span className="size-2 rounded-full bg-primary animate-pulse shrink-0" />
-      <span className="font-ui text-sm text-foreground">{label}</span>
+      <span className="text-sm text-foreground">{label}</span>
     </div>
   )
 }
