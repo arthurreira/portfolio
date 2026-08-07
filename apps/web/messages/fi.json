@@ -5,61 +5,29 @@
     "firstName": "Arthur",
     "lastName": "Ferreira.",
     "heroSubtitle": "Junior Software Developer · Kuopio, Suomi · Infra & Cloud",
-    "imageAlt": "Arthur Ferreira — Junior Software Developer",
-    "subtitle": "Junior Software Developer Kuopiosta.",
-    "descriptionFirst": "Rakennan ratkaisuja, joissa liiketoiminta ja teknologia kulkevat käsi kädessä. Keskityn moderneihin web-sovelluksiin ja arkkitehtuuriin, joka tuottaa oikeaa arvoa — en vain toimivaa koodia.",
-    "descriptionSecond": "Olen Brasiliasta kotoisin ja asunut Suomessa yli 10 vuotta. Olen utelias ja hands-on-tekijä, joka arvostaa selkeää koodia, hyvää käyttökokemusta ja jatkuvaa kehittymistä.",
     "buttons": {
       "contact": "Ota yhteyttä",
       "projects": "Projektit",
       "about": "Tietoa minusta"
-    },
-    "stats": {
-      "finland": "vuotta Suomessa",
-      "coding": "vuotta koodausta",
-      "languages": "kieltä"
-    },
-    "cards": {
-      "fromTitle": "Mistä olen",
-      "fromDesc": "Brasilialainen, joka on asunut Suomessa yli 10 vuotta. Tällä hetkellä Kuopiossa, Pohjois-Savossa.",
-      "roleTitle": "Nykyinen rooli",
-      "roleDesc": "Junior Software Engineer Nordcloud Oy:llä.",
-      "projectTitle": "Nykyinen projekti",
-      "projectDesc": "Rakentamassa siistejä juttuja cloud engineerina Nordcloud Oy:llä.",
-      "learningTitle": "Oppiminen",
-      "learningDesc": "Opiskelen pilvikonsepteja, suoritan sertifikaatteja ja kehitän ohjelmointitaitojani päivittäin.",
-      "footballTitle": "Jalkapallo",
-      "footballDesc": "Jalkapallo on yksi lempiharrastuksistani teknologian ulkopuolella.",
-      "devsecopsTitle": "DevSecOps",
-      "devsecopsDesc": "DevSecOps on kulttuuri.",
-      "gpuTitle": "Unelmasetup",
-      "gpuDesc": "Jonain päivänä haluaisin rakentaa setupin RTX 5090:llä 😄"
     }
   },
   "projects": {
     "title": "Projektit",
     "heading": "Projektit.",
-    "countSuffix": "projektia",
-    "viewProject": "Katso projekti",
-    "viewGithub": "GitHubista"
+    "countSuffix": "projektia"
   },
   "about": {
     "title": "Tietoa minusta",
-    "originLabel": "Alkuperä",
+    "originLabel": "Kotoisin",
     "originValue": "Brasilia → Suomi",
-    "yearsLabel": "Vuodet",
-    "yearsValue": "10+ vuotta Suomessa",
+    "yearsLabel": "Suomessa",
+    "yearsValue": "10+ vuotta",
     "roleLabel": "Rooli",
     "roleValue": "Junior @ Nordcloud",
     "offClockLabel": "Vapaa-aika",
     "offClockValue": "Maalivahti, miesten Kolmonen",
     "certsLabel": "Sertifikaatit",
     "verified": "Vahvistettu",
-    "weather": {
-      "from": "Kotoisin",
-      "live": "Asun täällä",
-      "wind": "Tuuli"
-    },
     "creativeLabel": "Mikä sun uskonto oikeen on?",
     "creativeTitle": "Mikä sun uskonto oikeen on?",
     "creativeText": "Kaikki. Helluntailainen? Joo, tuun toimeen. Luterilainen? Sekin käy! Ortodoksi? Ei hitto sentään, männöö sekin... Lestadiolainen? Rakastan! Ai oot jehova? Joo joo, tiistaina oli hyvät jutut. Ai Buda tuli kuvioihin — onks se ok? On, sekin menee. Kuule, se joka ei vihaa ketään, niin kaikki rakastaa sitä. Se on ykköslaki kaupunginvaltuutetun asiantuntijoille. Rikkaasta köyhään, mustasta valkoiseen, isosta pieneen — kättelen jokaista ihan samalla lailla. Tiiätkö miks? Koska se joka ampuu joka suuntaan, osuu johki. Ja ku osuu — osuu kunnolla. Ai mut sä oot vielä nuori… Mulla on ihan älytön henkinen suoja — luterilaisen jumalan, pyhimyksen, Budan, hindun kautta. En tiiä mistä kaikkialta, mut kaikki rakastaa mua siellä... ",
@@ -72,24 +40,11 @@
     "contact": "Ota yhteyttä",
     "backToTop": "Takaisin ylös"
   },
-  "topBar": {
-    "darkModeHint": "Paina d vaihtaaksesi tummaan tilaan",
-    "lightModeHint": "Paina d vaihtaaksesi vaaleaan tilaan",
-    "languageSwitcherHint": "Paina l vaihtaaksesi kielen",
-    "home": "Etusivu",
-    "about": "Tietoa"
-  },
   "contact": {
     "title": "Ota yhteyttä",
     "heading1": "Otahan",
     "heading2": "yhteyttä? :)",
     "openTo": "Käytettävissä avoimen lähdekoodin projekteihin, freelance-töihin ja kahvikeskusteluihin.",
-    "subtitle": "Olen aina avoin uusille mahdollisuuksille, yhteistyölle tai vain jutulle. Löydät minut täältä:",
-    "github": "GitHub",
-    "linkedin": "LinkedIn",
-    "email": "Sähköposti",
-    "availability": "Rakennan uraani pilvipalveluiden parissa",
-    "location": "Kuopio, Suomi 🇫🇮",
     "responseTime": "Vastaan yleensä 24 tunnin kuluessa"
   },
   "theme": {
@@ -125,11 +80,10 @@
       "solo": "Yksin toteutettu",
       "lead": "Pääkehittäjä",
       "contributor": "Osallistuja",
-      "engineer": "Insinööri"
+      "engineer": "Kehittäjä"
     }
   },
   "chat": {
-    "emptyTitle": "Kysy Arthurista",
     "emptyDescription": "Tausta, kokemus, mikä tahansa projekti — vastaukset perustuvat tämän portfolion sisältöön.",
     "placeholder": "Kirjoita kysymys…",
     "send": "Lähetä viesti",
