@@ -1,6 +1,6 @@
 import { getTranslations, getLocale } from "next-intl/server"
 import { about } from "@arthurreira/content"
-import { Badge, Button } from "@arthurreira/ui"
+import { Badge, Button, Separator } from "@arthurreira/ui"
 import { LabeledRow } from "@/components/molecules/labeled-row"
 import { LineReveal } from "@/components/molecules/line-reveal"
 import {
@@ -62,14 +62,14 @@ export async function SiteAbout() {
   ]
 
   return (
-    <div className="t-shell min-h-screen bg-background pt-10 pb-24">
+    <section className="t-shell pt-12 ">
       {/* One column the whole way down. The facts used to sit in a 280px rail
           beside the bio; as a row of four under it they read as one band of
           standing information rather than a sidebar competing with the prose. */}
 
       {/* font-black / leading / tracking come from the @layer base h1 */}
       <ProximityArea>
-        <h1 className="mb-10 text-[clamp(3rem,11.5vw,11.5rem)]">
+        <h1 className="mb-10 text-[clamp(2rem,11.5vw,11.5rem)]">
           <LineReveal className="text-foreground">
             <ProximityLetters text="Arthur" />
           </LineReveal>
@@ -79,12 +79,9 @@ export async function SiteAbout() {
         </h1>
       </ProximityArea>
 
-      {/* max-w-prose is 65ch, so the measure holds at whatever size the typeset
-          token is set to — a rem value would drift with it. The typeset classes
-          belong here: variant="typeset" strips the inline styles on the
-          assumption this wrapper supplies them. */}
+ 
       {aboutContent && (
-        <div className="typeset typeset-notes max-w-prose">
+        <div className="typeset typeset-notes">
           <MdxContent code={aboutContent.content} variant="typeset" />
         </div>
       )}
@@ -146,18 +143,16 @@ export async function SiteAbout() {
             </li>
           ))}
         </ul>
-        <div className="border-t border-border" />
+        <Separator  />
       </section>
 
-      <section className="mt-16 max-w-prose">
         <Reveal once={false}>
           <LabeledRow label={t("langLabel")}>
-            <p className="text-base leading-relaxed text-muted-foreground">
+            <p className="text-base leading-relaxed ">
               {t("langText")}
             </p>
           </LabeledRow>
         </Reveal>
-      </section>
-    </div>
+    </section>
   )
 }
