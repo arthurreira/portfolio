@@ -26,7 +26,7 @@ export function SiteProjects({
   countSuffix = "projects",
 }: SiteProjectsProps) {
   return (
-    <section className="relative min-h-screen overflow-hidden bg-background font-ui">
+    <section className="relative min-h-screen overflow-hidden bg-background">
       <div className="t-shell pt-12 pb-16">
         <div className="flex flex-row justify-between ">
           <ProximityArea>

@@ -4,8 +4,7 @@ import type { ReactNode } from "react"
 import Image from "next/image"
 import { Link } from "@/i18n/routing"
 import { useTranslations } from "next-intl"
-import { ArrowRight, ArrowLeft } from "@phosphor-icons/react/ssr"
-import { cn } from "@arthurreira/ui"
+import { Badge, cn } from "@arthurreira/ui"
 import type { ProjectStatus, ProjectRole } from "@arthurreira/content/types"
 import { LabeledRow } from "@/components/molecules/labeled-row"
 import { LineReveal } from "@/components/molecules/line-reveal"
@@ -15,6 +14,7 @@ import {
 } from "@/components/molecules/proximity-text"
 import { MdxContent } from "@/components/molecules/mdx-content"
 import { Reveal } from "@/components/molecules/reveal"
+import { ArrowLeftIcon, ArrowRightIcon } from "@phosphor-icons/react"
 
 /** Entrance delay (s) for the header meta block, after the title unmasks. */
 const HEADER_META_DELAY_S = 0.12
@@ -75,7 +75,7 @@ export function SiteProjectDetail({
                 className="inline-flex items-center gap-1.5 font-medium text-primary no-underline"
               >
                 {t("viewSite")}
-                <ArrowRight weight="bold" className="size-4" />
+                <ArrowRightIcon weight="bold" className="size-4" />
               </a>
             ),
           },
@@ -93,7 +93,7 @@ export function SiteProjectDetail({
                 className="inline-flex items-center gap-1.5 text-sm text-muted-foreground no-underline"
               >
                 {t("github")}
-                <ArrowRight weight="bold" className="size-3.5" />
+                <ArrowRightIcon weight="bold" className="size-3.5" />
               </a>
             ),
           },
@@ -102,14 +102,19 @@ export function SiteProjectDetail({
   ]
 
   return (
-    <div className="min-h-screen bg-background font-ui">
+    <div className="min-h-screen bg-background">
 
       {/* Header */}
       <div className="t-shell pt-10">
         <Reveal once={false}>
-          <p className="label-caps mb-6">
-            {t("label")} [{num}]
-          </p>
+          <div className="mb-6 flex items-center justify-between gap-4">
+            <p className="label-caps mb-6">
+              {t("label")} [{num}]
+            </p>
+            <p className={cn("text-sm text-muted-foreground", highlight ? "mb-4" : "mb-8")}>{year}</p>
+
+          </div>
+          
         </Reveal>
 
         {/* font-black / leading / tracking from @layer base h1 */}
@@ -122,32 +127,26 @@ export function SiteProjectDetail({
         </ProximityArea>
 
         <Reveal once={false} delay={HEADER_META_DELAY_S}>
-          {techStack && techStack.length > 0 && (
-            <p className="mb-1 text-base text-muted-foreground">
-              {techStack.map((tech, i) => (
-                <span key={tech}>
+          {techStack?.length ? (
+            <div className="mb-2 flex flex-wrap gap-2">
+              {techStack.map((tech) => (
+                <Badge
+                  key={tech}
+                  variant="default"
+                  className="whitespace-nowrap"
+                >
                   {tech}
-                  {i < techStack.length - 1 && (
-                    <span className="mx-2 text-muted-foreground opacity-40">·</span>
-                  )}
-                </span>
+                </Badge>
               ))}
-            </p>
-          )}
-
-          <p className={cn("text-sm text-muted-foreground", highlight ? "mb-4" : "mb-8")}>{year}</p>
-
-          {highlight && (
-            <p className="mb-8 text-base font-medium tracking-[0.01em] text-primary">
-              {highlight}
-            </p>
-          )}
+            </div>
+          ): null}
+          
         </Reveal>
 
         <div className="h-px bg-border" />
 
         {/* Cover image — striped placeholder uses --stripe token (flips in light mode) */}
-        <Reveal once={false} className="relative mt-8 aspect-[16/7] w-full overflow-hidden bg-muted">
+        <Reveal once={false} className="relative my-8 aspect-[16/7] w-full overflow-hidden bg-muted">
           {coverImage ? (
             <Image src={coverImage} alt={title} fill className="object-cover" priority />
           ) : (
@@ -160,17 +159,23 @@ export function SiteProjectDetail({
                 }}
               />
               <div className="absolute inset-0 flex items-center justify-center">
-                <span className="font-ui text-[11px] uppercase tracking-[0.3em] text-muted-foreground opacity-50">
+                <span className="text-[11px] uppercase tracking-[0.3em] text-muted-foreground opacity-50">
                   {t("screenshotPlaceholder")}
                 </span>
               </div>
             </>
           )}
+          
         </Reveal>
+        {highlight && (
+            <span className="text-primary">
+              {highlight}
+            </span>
+          )}
       </div>
 
       {/* Body */}
-      <div className="t-shell pt-12 pb-24">
+      <div className="t-shell pb-24">
         <div className="t-detail-body">
 
           {/* Left — body starts with ## What I built, no redundant description paragraph */}
@@ -184,7 +189,7 @@ export function SiteProjectDetail({
                 href="/projects"
                 className="inline-flex items-center gap-2 text-base text-foreground no-underline"
               >
-                <ArrowLeft weight="bold" className="size-4" />
+                <ArrowLeftIcon weight="bold" className="size-4" />
                 {t("back")}
               </Link>
             </div>

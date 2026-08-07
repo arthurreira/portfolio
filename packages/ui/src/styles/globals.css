@@ -8,12 +8,34 @@
 /* Typeset preset for long-form rendered markdown. Fonts come from the Next
    font variables declared on <html> in apps/web. */
 .typeset-notes {
-  --typeset-font-body: var(--font-geist);
-  --typeset-font-heading: var(--font-space-grotesk);
-  --typeset-font-mono: var(--font-ibm-plex-sans);
+  --typeset-font-body: var(--font-ui);
+  --typeset-font-heading: var(--font-ui);
+  --typeset-font-mono: var(--font-mono);
   --typeset-size: 18px;
   --typeset-leading: 1.9;
   --typeset-flow: 2em;
+}
+
+/* Typeset multiplies its size by 1.125 below 48rem, which would put the prose
+   at 20px on a phone — larger than on desktop. Stepping the token down lands
+   mobile on the same 18px, still above the 16px minimum for body text. */
+@media (max-width: 48rem) {
+  .typeset-notes {
+    --typeset-size: 16px;
+    --typeset-leading: 1.7;
+    --typeset-flow: 1.5em;
+  }
+}
+
+/* Finnish compounds run long — verkkoanalytiikka-alustan is 25 characters —
+   and on a narrow screen a single one of them can own a whole line, leaving
+   a badly ragged right edge. The <html> lang attribute is already correct,
+   so the browser can hyphenate them properly. */
+.typeset-notes {
+  hyphens: auto;
+  /* Without limits the browser will break after two letters — "Si-vuston" —
+     which costs more readability than the ragged edge it fixes. */
+  hyphenate-limit-chars: 8 4 4;
 }
 
 /* Same idea in the chat panel, at a size that fits 384px. Separate preset
@@ -21,9 +43,9 @@
    Body stays mono: the whole site renders in mono, and switching the chat to
    Geist made it the one surface that did not match. */
 .typeset-chat {
-  --typeset-font-body: var(--font-mono);
-  --typeset-font-heading: var(--font-space-grotesk);
-  --typeset-font-mono: var(--font-ibm-plex-sans);
+  --typeset-font-body: var(--font-ui);
+  --typeset-font-heading: var(--font-ui);
+  --typeset-font-mono: var(--font-mono);
   --typeset-size: 14px;
   --typeset-leading: 1.65;
   --typeset-flow: 1em;
@@ -153,7 +175,9 @@
     @apply border-border outline-ring/50;
   }
   body {
-    @apply bg-background text-foreground;
+    /* One typeface for the whole site. Pages used to set font-ui on each
+       section root, which meant the html-level font never rendered anywhere. */
+    @apply bg-background font-ui text-foreground;
   }
   /* Display headings — weight/tracking/leading shared across all h1s */
   h1 {
@@ -372,12 +396,6 @@ html {
 }
 
 /* About — two-column layout */
-.t-about-grid {
-  display: grid;
-  grid-template-columns: 1fr 280px;
-  gap: 6rem;
-}
-
 /* About cert rows — 4 columns */
 .t-cert-row {
   display: grid;
@@ -397,17 +415,19 @@ html {
   gap: 3rem;
 }
 
-@media (min-width: 1100px) {
+@media (min-width: 80rem) {
   .t-detail-body {
     grid-template-columns: 1fr 240px;
   }
 }
 
-/* ── Below large ≤ 900 px ────────────────────────────────────────────────
-   Nav wraps to 2 rows AND ticker hides. Shell resets to gutter-only padding.
-   This matches picture 2: content flush-left, no strip stealing width.
+/* ── Below Tailwind's lg (64rem) ─────────────────────────────────────────
+   Ticker hides, nav wraps, shell drops the ticker offset, and both grids
+   collapse — all at one width. These used to be split across 900px and
+   860px while components used Tailwind's own scale, so the layout changed
+   in stages and never looked settled between them.
 ──────────────────────────────────────────────────────────────────────── */
-@media (max-width: 900px) {
+@media (max-width: 64rem) {
   body {
     overflow-x: hidden;
   }
@@ -420,6 +440,13 @@ html {
   /* Hairline goes full width when ticker is hidden */
   .t-hairline {
     margin-left: 0;
+  }
+
+  /* The project detail grid collapses here — no room left beside a 240px
+     column once the page is this narrow. */
+  .t-detail-body {
+    grid-template-columns: 1fr !important;
+    gap: 3rem;
   }
 
   /* Reset shell padding — no more ticker offset, just the gutter on both sides */
@@ -438,15 +465,22 @@ html {
     left: var(--gutter);
     right: var(--gutter);
   }
-  .t-links {
-    gap: 0.75rem 1rem !important;
-  }
+  /* Row 1 is the brand with the flag, mode and language controls beside it;
+     row 2 is the links. Squeezed against the right edge on one row they
+     wrapped mid-list and stranded "Ota yhteyttä" on a line of its own.
+     If the controls cannot fit beside the brand they wrap on their own,
+     which degrades to three rows rather than breaking. */
   .t-controls {
+    order: 2;
+    margin-left: auto;
+    gap: 0.5rem;
+  }
+  .t-links {
     order: 3;
     flex-basis: 100%;
-    padding-top: 0.5rem;
-    justify-content: flex-end;
-    gap: 0.75rem;
+    flex: none;
+    justify-content: flex-start;
+    gap: 0.75rem 1.25rem !important;
   }
   /* Keep the thin | separators visible between groups */
   .t-controls > span {
@@ -460,22 +494,8 @@ html {
 }
 
 /* ── Tablet ≤ 860 px — stack multi-column pages ──────────────────────── */
-@media (max-width: 860px) {
-  /* About: sidebar drops below bio */
-  .t-about-grid {
-    grid-template-columns: 1fr !important;
-    gap: 3rem;
-  }
-
-  /* Project detail: metadata drops below content */
-  .t-detail-body {
-    grid-template-columns: 1fr !important;
-    gap: 3rem;
-  }
-}
-
-/* ── Small ≤ 600 px — cert row wraps name to own line ────────────────── */
-@media (max-width: 600px) {
+/* ── Below Tailwind's sm (40rem) — cert row wraps name to own line ───── */
+@media (max-width: 40rem) {
   .t-cert-row {
     grid-template-columns: 1fr auto;
   }
