@@ -5,61 +5,29 @@
     "firstName": "Arthur",
     "lastName": "Ferreira.",
     "heroSubtitle": "Desenvolvedor de Software Júnior · Kuopio, Finlândia · Cloud & Web",
-    "imageAlt": "Arthur Ferreira — Desenvolvedor de Software Júnior",
-    "subtitle": "Desenvolvedor de Software Júnior de Kuopio.",
-    "descriptionFirst": "Transformo problemas em soluções digitais que fazem sentido — tanto para o negócio quanto para as pessoas.",
-    "descriptionSecond": "Brasileiro vivendo na Finlândia há mais de 10 anos. Atualmente atuando como Junior Software Engineer na Nordcloud e sempre aprendendo algo novo na prática. ",
     "buttons": {
       "contact": "Contato",
       "projects": "Projetos",
       "about": "Sobre mim"
-    },
-    "stats": {
-      "finland": "anos na Finlândia",
-      "coding": "anos de programação",
-      "languages": "idiomas falados"
-    },
-    "cards": {
-      "fromTitle": "De onde sou",
-      "fromDesc": "Brasileiro vivendo na Finlândia há mais de 10 anos. Atualmente em Kuopio, North Savo.",
-      "roleTitle": "Cargo atual",
-      "roleDesc": "Junior Software Engineer na Nordcloud Oy.",
-      "projectTitle": "Projeto atual",
-      "projectDesc": "Construindo coisas legais como cloud engineer na Nordcloud Oy.",
-      "learningTitle": "Aprendizado",
-      "learningDesc": "Estudando conceitos de cloud, conquistando certificações e evoluindo na programação diariamente.",
-      "footballTitle": "Futebol",
-      "footballDesc": "Futebol é um dos meus hobbies favoritos fora da tecnologia.",
-      "devsecopsTitle": "DevSecOps",
-      "devsecopsDesc": "DevSecOps é uma cultura.",
-      "gpuTitle": "Setup dos sonhos",
-      "gpuDesc": "Um dia ainda quero montar um setup com uma RTX 5090 😄"
     }
   },
   "projects": {
     "title": "Projetos",
     "heading": "Projetos.",
-    "countSuffix": "projetos",
-    "viewProject": "Ver Projeto",
-    "viewGithub": "GitHub"
+    "countSuffix": "projetos"
   },
   "about": {
     "title": "Sobre mim",
-    "originLabel": "Origem",
+    "originLabel": "De onde sou",
     "originValue": "Brasil → Finlândia",
-    "yearsLabel": "Anos",
-    "yearsValue": "10+ anos na Finlândia",
+    "yearsLabel": "Na Finlândia",
+    "yearsValue": "10+ anos",
     "roleLabel": "Função",
     "roleValue": "Junior @ Nordcloud",
     "offClockLabel": "Fora do trabalho",
     "offClockValue": "Goleiro, Miesten Kolmonen",
     "certsLabel": "Certificações",
     "verified": "Verificado",
-    "weather": {
-      "from": "De onde eu sou",
-      "live": "Onde moro",
-      "wind": "Vento"
-    },
     "creativeLabel": "Qual que é teu cu religioso?",
     "creativeTitle": "Qual que é teu cu religioso?",
     "creativeText": "Todos. Crente, vou, católica, também! Umbanda, quem diria...! Candomblé, filho? Amo! Ah, mais na espírita? Uhum, passada da terça. Ah, mas saiu um Buda, tu vai tomar bem? Vou, também. Filho, quem não tem inimizade com ninguém, é amado por todo mundo. É a lei número um do vereador! Do rico ao pobre, do preto ao branco, do alto ao baixo, aperto a mão de todo mundo igual. Sabe por quê? Porque quem acerta tudo o quanto é alvo, quem atira para tudo o quanto é lado, alguma coisa acerta. E quando acerta, acerta bem! Ah, mas você é filho… Eu tenho uma proteção espiritual danada, porque do orixá. Do santo, ao Buda, ao hindu — ah, não sei o quê, filho, todo o mundo ali me ama...!",
@@ -72,24 +40,11 @@
     "contact": "Contato",
     "backToTop": "Voltar ao topo"
   },
-  "topBar": {
-    "darkModeHint": "Pressione d para alternar o modo escuro",
-    "lightModeHint": "Pressione d para alternar o modo claro",
-    "languageSwitcherHint": "Pressione l para alternar o idioma",
-    "home": "Início",
-    "about": "Sobre"
-  },
   "contact": {
     "title": "Contato",
     "heading1": "Vamos",
     "heading2": "Conversar.",
     "openTo": "Aberto a trabalho, freelance e um café.",
-    "subtitle": "Estou sempre aberto a novas oportunidades, colaborações ou apenas uma conversa. Encontre-me aqui:",
-    "github": "GitHub",
-    "linkedin": "LinkedIn",
-    "email": "Email",
-    "availability": "Aberto a oportunidades",
-    "location": "Baseado em Kuopio, Finlândia 🇫🇮",
     "responseTime": "Normalmente responde dentro de 24 horas"
   },
   "theme": {
@@ -125,11 +80,10 @@
       "solo": "Projeto solo",
       "lead": "Desenvolvedor líder",
       "contributor": "Contribuidor",
-      "engineer": "Engenheiro"
+      "engineer": "Desenvolvedor"
     }
   },
   "chat": {
-    "emptyTitle": "Pergunte sobre o Arthur",
     "emptyDescription": "Trajetória, experiência, qualquer projeto — as respostas vêm deste portfolio.",
     "placeholder": "Escreva uma pergunta…",
     "send": "Enviar mensagem",
