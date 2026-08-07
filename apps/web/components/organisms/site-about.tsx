@@ -14,8 +14,16 @@ import { Reveal } from "@/components/molecules/reveal"
 // builds an IconContext with createContext, which server components cannot do.
 import { ArrowUpRightIcon } from "@phosphor-icons/react/ssr"
 
-/** Stagger (s) between cert / sidebar row reveals. */
+/** Stagger (s) between cert / meta reveals. */
 const ROW_STAGGER_S = 0.06
+
+/**
+ * Shared column template for the certification rows. Declared once so the
+ * codes, years and links line up down the page — per-row grids would each
+ * size their own columns and the edges would drift.
+ */
+const CERT_COLUMNS =
+  "sm:grid-cols-[minmax(0,1fr)_6rem_7rem_auto] sm:items-center sm:gap-x-6"
 
 const CERTS = [
   {
@@ -30,6 +38,12 @@ const CERTS = [
     period: "2026",
     url: "https://learn.microsoft.com/en-us/credentials/",
   },
+  {
+    name: "AWS AI Practitioner",
+    code: "AIF-C01",
+    period: "2026",
+    url: "https://www.credly.com/badges/",
+  },
 ]
 
 export async function SiteAbout() {
@@ -40,7 +54,7 @@ export async function SiteAbout() {
 
   const aboutContent = about.find((a) => a.locale === locale)
 
-  const sidebar = [
+  const facts = [
     { label: t("originLabel"), value: t("originValue") },
     { label: t("yearsLabel"), value: t("yearsValue") },
     { label: t("roleLabel"), value: t("roleValue") },
@@ -49,48 +63,45 @@ export async function SiteAbout() {
 
   return (
     <div className="t-shell min-h-screen bg-background pt-10 pb-24">
-      {/* Name and bio on the left, the standing facts on the right. The grid
-          collapses to one column at lg, where a 280px rail has no room left. */}
-      <div className="t-about-grid">
-        <div>
-          {/* font-black / leading / tracking come from the @layer base h1 */}
-          <ProximityArea>
-            <h1 className="mb-10 text-[clamp(3rem,11.5vw,11.5rem)]">
-              <LineReveal className="text-foreground">
-                <ProximityLetters text="Arthur" />
-              </LineReveal>
-              <LineReveal className="text-primary" delay={0.09}>
-                <ProximityLetters text="Ferreira." tone="primary" />
-              </LineReveal>
-            </h1>
-          </ProximityArea>
+      {/* One column the whole way down. The facts used to sit in a 280px rail
+          beside the bio; as a row of four under it they read as one band of
+          standing information rather than a sidebar competing with the prose. */}
 
-          {/* max-w-prose is 65ch, so the measure holds at whatever size the
-              typeset token is set to — a rem value would drift with it. The
-              typeset classes belong here: variant="typeset" strips the inline
-              styles on the assumption this wrapper supplies them. */}
-          {aboutContent && (
-            <div className="typeset typeset-notes max-w-prose">
-              <MdxContent code={aboutContent.content} variant="typeset" />
-            </div>
-          )}
+      {/* font-black / leading / tracking come from the @layer base h1 */}
+      <ProximityArea>
+        <h1 className="mb-10 text-[clamp(3rem,11.5vw,11.5rem)]">
+          <LineReveal className="text-foreground">
+            <ProximityLetters text="Arthur" />
+          </LineReveal>
+          <LineReveal className="text-primary" delay={0.09}>
+            <ProximityLetters text="Ferreira Miranda." tone="primary" />
+          </LineReveal>
+        </h1>
+      </ProximityArea>
+
+      {/* max-w-prose is 65ch, so the measure holds at whatever size the typeset
+          token is set to — a rem value would drift with it. The typeset classes
+          belong here: variant="typeset" strips the inline styles on the
+          assumption this wrapper supplies them. */}
+      {aboutContent && (
+        <div className="typeset typeset-notes max-w-prose">
+          <MdxContent code={aboutContent.content} variant="typeset" />
         </div>
+      )}
 
-        <div>
-          {sidebar.map((row, i) => (
-            <Reveal key={row.label} once={false} delay={i * ROW_STAGGER_S}>
-              <LabeledRow label={row.label}>
-                <p className="text-base font-bold text-foreground">
-                  {row.value}
-                </p>
-              </LabeledRow>
-            </Reveal>
-          ))}
-        </div>
-      </div>
+      {/* Standing facts — four columns wide, two on a phone. A definition list
+          because that is what a label over a value is. */}
+      <dl className="mt-16 grid grid-cols-2 gap-x-8 gap-y-8 lg:grid-cols-4">
+        {facts.map((fact, i) => (
+          <Reveal key={fact.label} once={false} delay={i * ROW_STAGGER_S}>
+            <dt className="label-caps mb-1.5">{fact.label}</dt>
+            <dd className="m-0 text-base font-bold text-foreground">
+              {fact.value}
+            </dd>
+          </Reveal>
+        ))}
+      </dl>
 
-      {/* Full width, below the grid: these rows want the whole measure, with
-          the name at one edge and the credential link at the other. */}
       <section className="mt-20">
         <Reveal once={false}>
           <p className="label-caps mb-2">{t("certsLabel")}</p>
@@ -100,26 +111,26 @@ export async function SiteAbout() {
           {CERTS.map((cert, i) => (
             <li key={cert.code}>
               <Reveal once={false} delay={i * ROW_STAGGER_S}>
-                {/* Stacks on a phone — side by side, the link ends up squeezed
-                    against a wrapping credential name. */}
-                <div className="flex flex-col gap-3 border-t border-border py-5 sm:flex-row sm:items-center sm:justify-between sm:gap-6">
-                  <div className="min-w-0">
-                    <p className="font-semibold text-foreground">{cert.name}</p>
-                    <div className="mt-1.5 flex flex-wrap items-center gap-2">
-                      <Badge variant="secondary">{cert.code}</Badge>
-                      <span className="text-sm text-muted-foreground tabular-nums">
-                        {cert.period}
-                      </span>
-                    </div>
-                  </div>
+                {/* Stacks on a phone: four columns at that width would put the
+                    name on three lines and the link against the edge. */}
+                <div
+                  className={`grid grid-cols-1 gap-2 border-t border-border py-4 ${CERT_COLUMNS}`}
+                >
+                  <p className="font-semibold text-foreground">{cert.name}</p>
+                  <Badge variant="secondary" className="w-fit">
+                    {cert.code}
+                  </Badge>
+                  <span className="text-sm text-muted-foreground tabular-nums">
+                    {cert.period}
+                  </span>
 
-                  {/* size="sm" already sets the gap and sizes the icon, so the
-                      icon carries no margin or size class of its own. */}
+                  {/* size="sm" already sets the gap and sizes the icon, so it
+                      carries no margin or size class of its own. */}
                   <Button
                     asChild
                     variant="ghost"
                     size="sm"
-                    className="self-start sm:self-auto"
+                    className="w-fit justify-self-start sm:justify-self-end"
                   >
                     <a
                       href={cert.url}

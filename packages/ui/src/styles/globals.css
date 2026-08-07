@@ -396,14 +396,6 @@ html {
 }
 
 /* About — two-column layout */
-.t-about-grid {
-  display: grid;
-  grid-template-columns: 1fr 280px;
-  /* Wide column gap so the bio's measure and the meta rail read as two
-     things; 1rem let them run together. */
-  gap: 1rem 4rem;
-}
-
 /* About cert rows — 4 columns */
 .t-cert-row {
   display: grid;
@@ -450,9 +442,8 @@ html {
     margin-left: 0;
   }
 
-  /* Both grids collapse here too — the sidebar has no room left beside a
-     240px column once the page is this narrow. */
-  .t-about-grid,
+  /* The project detail grid collapses here — no room left beside a 240px
+     column once the page is this narrow. */
   .t-detail-body {
     grid-template-columns: 1fr !important;
     gap: 3rem;
