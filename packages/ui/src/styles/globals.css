@@ -239,12 +239,29 @@ html {
     var(--sidebar-w) + var(--ticker-gap)
   ); /* ← shared left edge for all    */
   --gutter: clamp(24px, 4vw, 56px); /* right-edge padding            */
+  /* Widest the page ever gets. Past this the layout centres instead of
+     stretching — on a 34" monitor every row would otherwise run the full
+     3440px and the eye loses the start of the next line. */
+  --page-max: 100rem;
+  /* Distance from the viewport edge to the centred page. Zero until the
+     screen is wider than the page; the fixed ticker reads it so it stays
+     against the content rather than the glass. */
+  --page-inset: max(0px, calc((100vw - var(--page-max)) / 2));
 }
 
 /* Shell: margin-left pushes past the strip, padding-left adds the gap */
 .t-shell {
+  max-width: var(--page-max);
+  margin-inline: auto;
   padding-left: calc(var(--sidebar-w) + var(--ticker-gap));
   padding-right: var(--gutter);
+}
+
+/* Fixed, so it cannot be centred by the parent — it tracks the same inset
+   the page uses instead. Owns its own left position; the component used to
+   set left-0, which pinned it to the viewport while the page moved in. */
+.t-sidebar {
+  left: var(--page-inset);
 }
 
 /* ── Fallback = Brasil · Dark (no ThemeProvider — data-flag+data-mode owns all) */
@@ -356,6 +373,8 @@ html {
 /* Hairline — starts at the right edge of the ticker strip, not x=0 */
 /* Nav — flex-wrap, left edge aligned with page content via --shell-pl */
 .t-nav {
+  max-width: var(--page-max);
+  margin-inline: auto;
   position: relative;
   display: flex;
   align-items: center;
