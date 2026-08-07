@@ -76,7 +76,7 @@ export function VerticalTicker() {
   return (
     <div
       aria-hidden
-      className="t-sidebar fixed left-0 top-0 h-screen overflow-hidden flex justify-center"
+      className="t-sidebar fixed top-0 h-screen overflow-hidden flex justify-center"
       // Width comes from the token, not a copy of it. --sidebar-w also drives
       // --shell-pl, so the strip and the page's left edge move together; a
       // second hardcoded value here silently drifted from it.
