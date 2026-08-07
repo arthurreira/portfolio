@@ -5,61 +5,29 @@
     "firstName": "Arthur",
     "lastName": "Ferreira.",
     "heroSubtitle": "Junior Software Developer · Kuopio, Finland · Cloud & Web",
-    "imageAlt": "Arthur Ferreira Junior Software Developer",
-    "subtitle": "Junior Software Developer from Kuopio.",
-    "descriptionFirst": "I build digital solutions where business and technology move together. Focused on modern web applications, clean architecture, and creating real impact — not just shipping code.",
-    "descriptionSecond": "Curious by nature and hands-on by mindset, I enjoy turning complex problems into clear, scalable solutions. ",
     "buttons": {
       "contact": "Contact",
       "projects": "Projects",
       "about": "About me"
-    },
-    "stats": {
-      "finland": "years in Finland",
-      "coding": "years coding",
-      "languages": "languages spoken"
-    },
-    "cards": {
-      "fromTitle": "Where I'm from",
-      "fromDesc": "Brazilian living in Finland for 10+ years. Currently in Kuopio, North Savo.",
-      "roleTitle": "Current role",
-      "roleDesc": "Junior Software Engineer at Nordcloud Oy.",
-      "projectTitle": "Current project",
-      "projectDesc": "Building cool stuff as a cloud engineer at Nordcloud Oy.",
-      "learningTitle": "Learning",
-      "learningDesc": "Learning cloud concepts, earning certifications, and improving programming skills daily.",
-      "footballTitle": "Football",
-      "footballDesc": "Football/soccer is one of my favorite hobbies outside of tech.",
-      "devsecopsTitle": "DevSecOps",
-      "devsecopsDesc": "DevSecOps is a culture.",
-      "gpuTitle": "Dream setup",
-      "gpuDesc": "One day I’d love to build a setup powered by an RTX 5090 😄"
     }
   },
   "projects": {
     "title": "Projects",
     "heading": "Projects.",
-    "countSuffix": "projects",
-    "viewProject": "View project",
-    "viewGithub": "GitHub"
+    "countSuffix": "projects"
   },
   "about": {
     "title": "About",
-    "originLabel": "Origin",
+    "originLabel": "From",
     "originValue": "Brazil → Finland",
-    "yearsLabel": "Years",
-    "yearsValue": "10+ years in Finland",
+    "yearsLabel": "In Finland",
+    "yearsValue": "10+ years",
     "roleLabel": "Role",
     "roleValue": "Junior @ Nordcloud",
     "offClockLabel": "Off the clock",
     "offClockValue": "Goalkeeper, Miesten Kolmonen",
     "certsLabel": "Certifications",
     "verified": "Verified",
-    "weather": {
-      "from": "Where I'm from",
-      "live": "Where I live",
-      "wind": "Wind"
-    },
     "creativeLabel": "What's Your Religious Deal?",
     "creativeTitle": "What's Your Religious Deal?",
     "creativeText": "All of them. Evangelical? Yeah, I'm cool with that. Catholic? Sure, why not! Umbanda? Well I'll be damned... Candomblé? Love it! Oh you're a spiritist? Yeah yeah, Tuesday's session was good. Oh a Buddha showed up — you good with that? Yep, that works too. Look, the person who has no enemies — everybody loves that person. That's rule number one for any politician worth their salt. From rich to poor, from black to white, from tall to short — I shake everybody's hand exactly the same way. You know why? Because the one who shoots in every direction, hits something eventually. And when they hit — they hit good. Ah, but you're still young… I've got an insane amount of spiritual protection — through the orixá, the saint, the Buddha, the hindu gods. I don't even know from where exactly, but everybody loves me there...!",
@@ -72,24 +40,11 @@
     "contact": "Contact",
     "backToTop": "Back to top"
   },
-  "topBar": {
-    "darkModeHint": "Press d to toggle dark mode",
-    "lightModeHint": "Press d to toggle light mode",
-    "languageSwitcherHint": "Press l to switch language",
-    "home": "Home",
-    "about": "About"
-  },
   "contact": {
     "title": "Contact",
     "heading1": "Let's",
     "heading2": "Talk.",
     "openTo": "Open to open-source opportunities, freelance projects, and coffee chats.",
-    "subtitle": "I'm always open to new opportunities, collaborations or just a chat. Find me here:",
-    "github": "GitHub",
-    "linkedin": "LinkedIn",
-    "email": "Email",
-    "availability": "Building cool stuff as cloud engineer",
-    "location": "Based in Kuopio, Finland 🇫🇮",
     "responseTime": "Usually responds within 24 hours"
   },
   "theme": {
@@ -112,7 +67,7 @@
     "back": "Back to Projects",
     "viewSite": "View site",
     "github": "GitHub",
-    "screenshotPlaceholder": "Project Screenshot — Full Bleed",
+    "screenshotPlaceholder": "Project screenshot",
     "statuses": {
       "done": "Shipped",
       "ongoing": "In Progress",
@@ -129,7 +84,6 @@
     }
   },
   "chat": {
-    "emptyTitle": "Ask about Arthur",
     "emptyDescription": "Background, experience, any project — answers come from this portfolio.",
     "placeholder": "Ask a question…",
     "send": "Send message",
