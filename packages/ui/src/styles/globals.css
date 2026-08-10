@@ -270,17 +270,19 @@ html {
      about page had already drifted to a different minimum.
 
      clamp() scales continuously with the viewport, so there is no
-     breakpoint where the type jumps — the 11.5vw middle term IS the
+     breakpoint where the type jumps — the vw middle term IS the
      "different size per device". Only the two ends are pinned:
 
-       --text-display  min 2.5rem  → 40px on a 390px phone
-                       11.5vw      → grows with the viewport
-                       max 11.5rem → 184px, reached exactly at --page-max
-                                     (100rem), so it stops growing at the
-                                     same width the page stops growing. */
-  --text-display: clamp(2.5rem, 11.5vw, 11.5rem);
+       --text-display  min 2.25rem → 36px on a 390px phone
+                       5.5vw       → grows with the viewport
+                       max 5.5rem  → 88px
+
+     Keep the vw number and the rem number equal and the type stops growing
+     at exactly --page-max (100rem = 1600px), the same width the layout
+     stops growing: 5.5vw of 1600px is 88px, which is 5.5rem. */
+  --text-display: clamp(2.25rem, 5.5vw, 5.5rem);
   /* Project titles — arbitrary content length, so a lower ceiling. */
-  --text-display-sm: clamp(2rem, 8vw, 7rem);
+  --text-display-sm: clamp(2rem, 4vw, 4rem);
   /* Reading measure. Past ~65 characters the eye loses the start of the
      next line, which is what the page-max cap exists to prevent for the
      layout and this prevents for prose. */
