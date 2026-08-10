@@ -16,8 +16,11 @@
      bites because 65ch is wider than the column. 16px puts the measure back
      in charge of the line length. */
   --typeset-size: 16px;
-  --typeset-leading: 1.75;
-  --typeset-flow: 1.6em;
+  --typeset-leading: 1.7;
+  /* Space between blocks. 1.6em put a paragraph break close to a full blank
+     line, which on a 400-word project page added several screens of nothing
+     to scroll past. */
+  --typeset-flow: 1.15em;
 }
 
 /* Typeset multiplies its size by 1.125 below 48rem, so the token has to be
@@ -203,9 +206,13 @@
   .text-display {
     font-size: var(--text-display);
   }
-  /* Project detail titles */
+  /* Project detail titles, contact links */
   .text-display-sm {
     font-size: var(--text-display-sm);
+  }
+  /* Standfirst under a display heading */
+  .text-lead {
+    font-size: var(--text-lead);
   }
   /* Caps a block of prose at a readable line length */
   .max-w-measure {
@@ -270,8 +277,12 @@ html {
      breakpoint where the type jumps — the vw middle term IS the
      "different size per device". Only the two ends are pinned. */
   --text-display: clamp(1.75rem, 4vw, 2.5rem); /* 28px → 40px */
-  /* Project titles — arbitrary content length, so a lower ceiling. */
+  /* Project titles and contact links — arbitrary content length, so a lower
+     ceiling than the page display size. */
   --text-display-sm: clamp(1.5rem, 3.5vw, 2rem); /* 24px → 32px */
+  /* The sentence directly under a display heading. Bigger than body, well
+     clear of the display size above it. */
+  --text-lead: clamp(1.125rem, 2vw, 1.375rem); /* 18px → 22px */
   /* Reading measure. Past ~65 characters the eye loses the start of the
      next line. Narrower than the column at body size, so it still bites. */
   --measure: 65ch;
@@ -391,15 +402,12 @@ html {
    Media query handles all responsive overrides in one place.
 ──────────────────────────────────────────────────────────────────────────── */
 
-/* The nav row shares the page column, so the links start on exactly the same
-   left edge as the hero and every section heading below them. The brand is
-   the one exception: it is lifted out of this row (see .t-brand) into the
-   viewport corner, which is what frees the links to begin at the column edge
-   instead of wherever the brand happens to end. */
+/* The nav row shares the page column, so it starts on exactly the same left
+   edge as the hero and every section heading below it. */
 .t-nav {
   max-width: var(--page-max);
   margin-inline: auto;
-  position: static;
+  position: relative;
   display: flex;
   align-items: center;
   flex-wrap: wrap;
@@ -430,14 +438,12 @@ html {
    context — .t-nav is deliberately static so this escapes the centred column
    rather than being trapped by it. Goes back in flow on a phone, where the
    column fills the screen and there is no corner to escape to. */
+/* Back in the row, ahead of the links. It was pinned to the viewport corner
+   while the links held the column's left edge; with only three links there is
+   room for both, and one row reads as one thing rather than two. The row as a
+   whole still starts on the page's left edge — the brand just leads it. */
 .t-brand {
-  position: absolute;
-  left: var(--gutter);
-  /* Centred against the header, not pinned to its top edge. The row centres
-     its links with align-items, and the brand is a larger size — matching
-     top edges left the two sitting on visibly different baselines. */
-  top: 50%;
-  transform: translateY(-50%);
+  margin-right: 2rem;
 }
 
 /* Row 2: theme switcher + language (stays on same row desktop, drops on mobile) */
@@ -497,8 +503,8 @@ html {
     padding: 0.875rem var(--gutter);
     gap: 0.5rem 1rem;
   }
-  /* No corner to escape to once the column fills the screen, and the row is
-     tight enough without it — the nav links carry the navigation here. */
+  /* Hidden on a phone: the row is tight enough without it, and the links
+     carry the navigation there. */
   .t-brand {
     display: none;
   }

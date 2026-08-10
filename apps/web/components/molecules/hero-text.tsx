@@ -55,7 +55,7 @@ export function HeroText({
       </h1>
 
       <motion.p
-        className="text-[clamp(1rem,3.5vw,1.5rem)] text-muted-foreground"
+        className="text-lead text-muted-foreground"
         initial={{ opacity: 0, y: 12 }}
         animate={{ opacity: 1, y: 0 }}
         transition={{ duration: 0.5, ease: LINE_EASE, delay: 0.45 }}

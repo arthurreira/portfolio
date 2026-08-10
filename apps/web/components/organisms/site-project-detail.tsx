@@ -132,7 +132,9 @@ export function SiteProjectDetail({
         {/* This wrapper is load-bearing: <Image fill> and the striped
             placeholder are both absolutely positioned, so they need the
             relative box and the aspect ratio to have any size at all. */}
-        <div className="relative my-10 aspect-[16/7] w-full overflow-hidden bg-muted">
+        {/* 16/7 was 300px tall in a 44rem column before a word of the body.
+            21/9 keeps the panorama and gives ~60px back. */}
+        <div className="relative my-8 aspect-[21/9] w-full overflow-hidden bg-muted">
           {coverImage ? (
             <Image
               src={coverImage}
@@ -151,7 +153,7 @@ export function SiteProjectDetail({
                 }}
               />
               <div className="absolute inset-0 flex items-center justify-center">
-                <span className="text-[11px] tracking-[0.3em] text-muted-foreground uppercase opacity-50">
+                <span className="text-xs tracking-[0.3em] text-muted-foreground uppercase opacity-50">
                   {t("screenshotPlaceholder")}
                 </span>
               </div>

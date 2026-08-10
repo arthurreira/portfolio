@@ -9,7 +9,7 @@ const FONT = "var(--font-ui)"
    and images and rules are structure rather than typography. */
 const shared = {
   h2: ({ children }: { children?: React.ReactNode }) => (
-    <h2 style={{ fontFamily: FONT, fontSize: 11, letterSpacing: "0.22em", textTransform: "uppercase" as const, color: "var(--primary)", margin: 0, marginTop: "2.5rem", marginBottom: "1rem" }}>
+    <h2 style={{ fontFamily: FONT, fontSize: 11, letterSpacing: "0.22em", textTransform: "uppercase" as const, color: "var(--primary)", margin: 0, marginTop: "2rem", marginBottom: "0.75rem" }}>
       {children}
     </h2>
   ),

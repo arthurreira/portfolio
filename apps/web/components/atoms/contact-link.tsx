@@ -15,7 +15,7 @@ export function ContactLink({ label, href }: ContactLinkProps) {
       href={href}
       target={external ? "_blank" : undefined}
       rel={external ? "noopener noreferrer" : undefined}
-      className="group inline-flex items-center gap-4 py-2 text-[clamp(1.25rem,3vw,2rem)] font-bold text-foreground transition-colors duration-150 hover:text-primary"
+      className="group inline-flex items-center gap-4 py-2 text-display-sm font-bold text-foreground transition-colors duration-150 hover:text-primary"
     >
       <span className="transition-transform duration-200 group-hover:translate-x-1">
         {label}
