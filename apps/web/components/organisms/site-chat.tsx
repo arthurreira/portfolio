@@ -7,7 +7,6 @@ import { useLocale, useTranslations } from "next-intl"
 import { AnimatePresence, MotionConfig, motion } from "motion/react"
 import {
   ArrowCounterClockwiseIcon,
-  ChatsCircleIcon,
   LockSimpleIcon,
   XIcon,
 } from "@phosphor-icons/react"
@@ -201,7 +200,7 @@ export function SiteChat() {
               role="dialog"
               aria-label={t("title")}
               id={panelId}
-              className="flex h-[min(70svh,32rem)] w-[calc(100vw-2.5rem)] flex-col gap-0 shadow-2xl sm:w-96"
+              className="flex h-[min(70svh,32rem)] w-[calc(100vw-2.5rem)] flex-col gap-0 border shadow-sm sm:w-96"
             >
               <CardHeader className="border-b">
                 <CardTitle>{t("title")}</CardTitle>
@@ -412,26 +411,22 @@ export function SiteChat() {
           )}
         </AnimatePresence>
 
-        <Button
+        {/* A plain text link, not a floating circle. The bubble was the
+            loudest thing left on the page once the rest of the chrome went;
+            as text it stays reachable from every page without competing with
+            the content for attention. */}
+        <button
           ref={triggerRef}
-          size="icon"
+          type="button"
           aria-label={isOpen ? t("close") : t("open")}
           title={isOpen ? t("close") : t("openHint")}
           aria-expanded={isOpen}
           aria-controls={isOpen ? panelId : undefined}
           onClick={() => setIsOpen((open) => !open)}
-          className="size-12 rounded-full shadow-lg"
+          className="bg-background/80 px-1 py-0.5 text-sm text-muted-foreground backdrop-blur-sm transition-colors hover:text-foreground"
         >
-          <motion.span
-            key={isOpen ? "close" : "open"}
-            initial={{ rotate: -90, opacity: 0 }}
-            animate={{ rotate: 0, opacity: 1 }}
-            transition={{ duration: 0.18 }}
-            className="flex items-center justify-center"
-          >
-            {isOpen ? <XIcon /> : <ChatsCircleIcon />}
-          </motion.span>
-        </Button>
+          {isOpen ? t("close") : t("open")}
+        </button>
       </div>
     </MotionConfig>
   )
