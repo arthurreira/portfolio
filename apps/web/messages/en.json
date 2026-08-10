@@ -63,7 +63,10 @@
     "heading1": "Let's",
     "heading2": "Talk.",
     "openTo": "Open to open-source opportunities, freelance projects, and coffee chats.",
-    "responseTime": "Usually responds within 24 hours"
+    "responseTime": "Usually responds within 24 hours",
+    "email": "Email",
+    "github": "GitHub",
+    "linkedin": "LinkedIn"
   },
   "theme": {
     "dark": "Dark",

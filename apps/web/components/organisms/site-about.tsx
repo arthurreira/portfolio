@@ -22,16 +22,14 @@ export async function SiteAbout() {
   ]
 
   return (
-    <section className="t-shell pt-12">
-      {/* One column the whole way down. The facts used to sit in a 280px rail
-          beside the bio; as a row of four under it they read as one band of
-          standing information rather than a sidebar competing with the prose. */}
-
-      {/* font-black / leading / tracking come from the @layer base h1 */}
-      <h1 className="mb-10 text-display">
-        <LineReveal className="text-foreground">Arthur</LineReveal>
-        <LineReveal className="text-primary" delay={0.09}>
-          Ferreira Miranda.
+    <section className="t-shell pt-16 pb-24">
+      {/* One reveal, so the name sits on one line — the hero does the same.
+          Two reveals put "Arthur" and the surname on separate lines, because
+          each LineReveal is a block. */}
+      <h1 className="text-display mb-8">
+        <LineReveal>
+          <span className="text-foreground">Arthur </span>
+          <span className="text-primary">Ferreira Miranda.</span>
         </LineReveal>
       </h1>
 
@@ -41,9 +39,9 @@ export async function SiteAbout() {
         </div>
       )}
 
-      {/* Standing facts — four columns wide, two on a phone. A definition list
-          because that is what a label over a value is. */}
-      <dl className="mt-16 grid grid-cols-2 gap-x-8 gap-y-8 lg:grid-cols-4">
+      {/* Standing facts. Reuses the project page's meta grid rather than a
+          second four-column definition of its own — same shape, one rule. */}
+      <dl className="t-detail-meta mt-16">
         {facts.map((fact) => (
           // Fragment, not a div: a <dl> may only contain <dt>/<dd> pairs, and
           // a wrapper element between them breaks that.
@@ -56,18 +54,16 @@ export async function SiteAbout() {
         ))}
       </dl>
 
-      <div className="mt-20">
+      <div className="mt-16">
         <SiteCertifications />
       </div>
 
-      {/* Its own section, so it gets the same mt-20 rhythm as the certs block.
-          It used to sit outside that section with no spacing of its own. */}
-      <section className="mt-20">
-          <LabeledRow label={t("langLabel")}>
-            <p className="max-w-measure text-base leading-relaxed">
-              {t("langText")}
-            </p>
-          </LabeledRow>
+      <section className="mt-16">
+        <LabeledRow label={t("langLabel")}>
+          <p className="max-w-measure text-base leading-relaxed">
+            {t("langText")}
+          </p>
+        </LabeledRow>
       </section>
     </section>
   )

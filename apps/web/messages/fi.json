@@ -64,7 +64,10 @@
     "heading1": "Otahan",
     "heading2": "yhteyttä? :)",
     "openTo": "Käytettävissä avoimen lähdekoodin projekteihin, freelance-töihin ja kahvikeskusteluihin.",
-    "responseTime": "Vastaan yleensä 24 tunnin kuluessa"
+    "responseTime": "Vastaan yleensä 24 tunnin kuluessa",
+    "email": "Sähköposti",
+    "github": "GitHub",
+    "linkedin": "LinkedIn"
   },
   "theme": {
     "dark": "Tumma",

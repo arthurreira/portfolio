@@ -64,7 +64,10 @@
     "heading1": "Vamos",
     "heading2": "Conversar.",
     "openTo": "Aberto a trabalho, freelance e um café.",
-    "responseTime": "Normalmente responde dentro de 24 horas"
+    "responseTime": "Normalmente responde dentro de 24 horas",
+    "email": "E-mail",
+    "github": "GitHub",
+    "linkedin": "LinkedIn"
   },
   "theme": {
     "dark": "Escuro",

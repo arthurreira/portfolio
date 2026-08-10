@@ -1,29 +1,33 @@
-import { ArrowRight } from "@phosphor-icons/react/ssr"
-
 interface ContactLinkProps {
+  /** Where it goes — Email, GitHub, LinkedIn. */
   label: string
+  /** The address or handle, shown right-aligned like a project's year. */
+  value: string
   href: string
 }
 
-// Large contact link with a trailing arrow.
-// Hover: label turns primary and slides right; the arrow chases further and
-// picks up the accent (same motion language as the project rows).
-export function ContactLink({ label, href }: ContactLinkProps) {
+/**
+ * One contact as a border-top row: label left, address right. The same shape
+ * as the project and certification rows, so every list on the site reads as
+ * one system.
+ *
+ * It used to be 32px bold text with a chasing arrow. The arrow went from the
+ * project rows for repeating what the row already said, and the same applies
+ * here.
+ */
+export function ContactLink({ label, value, href }: ContactLinkProps) {
   const external = !href.startsWith("mailto")
   return (
     <a
       href={href}
       target={external ? "_blank" : undefined}
       rel={external ? "noopener noreferrer" : undefined}
-      className="group inline-flex items-center gap-4 py-2 text-display-sm font-bold text-foreground transition-colors duration-150 hover:text-primary"
+      className="group -mx-2 flex items-baseline gap-4 border-t border-border px-4 py-3 transition-colors duration-150 hover:bg-muted"
     >
-      <span className="transition-transform duration-200 group-hover:translate-x-1">
+      <span className="flex-1 text-base text-foreground transition-all duration-200 group-hover:translate-x-1 group-hover:text-primary">
         {label}
       </span>
-      <ArrowRight
-        weight="bold"
-        className="size-[0.7em] text-muted-foreground transition-all duration-200 group-hover:translate-x-2 group-hover:text-primary"
-      />
+      <span className="shrink-0 text-sm text-muted-foreground">{value}</span>
     </a>
   )
 }
