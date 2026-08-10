@@ -5,6 +5,10 @@
     "lastName": "Ferreira.",
     "heroSubtitle": "Junior Software Developer · Kuopio, Finland · Cloud & Web"
   },
+  "home": {
+    "selectedLabel": "Selected work",
+    "allProjects": "All projects"
+  },
   "projects": {
     "title": "Projects",
     "heading": "Projects.",
@@ -20,10 +24,12 @@
     "roleValue": "Junior @ Nordcloud",
     "offClockLabel": "Off the clock",
     "offClockValue": "Goalkeeper, Miesten Kolmonen",
-    "certsLabel": "Certifications",
-    "verified": "Verified",
     "langLabel": "Language & Personality",
     "langText": "Multilingual people shift personalities without noticing, depending on the language they're speaking. Each language carries different cultural connections and ways of seeing the world."
+  },
+  "certs": {
+    "label": "Certifications",
+    "inProgress": "In progress"
   },
   "nav": {
     "projects": "Projects",

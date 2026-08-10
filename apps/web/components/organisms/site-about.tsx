@@ -1,46 +1,13 @@
 import { getTranslations, getLocale } from "next-intl/server"
 import { about } from "@arthurreira/content"
-import { Badge, Button } from "@arthurreira/ui"
 import { LabeledRow } from "@/components/molecules/labeled-row"
 import { LineReveal } from "@/components/molecules/line-reveal"
 import { MdxContent } from "@/components/molecules/mdx-content"
 import { Reveal } from "@/components/molecules/reveal"
+import { SiteCertifications } from "@/components/organisms/site-certifications"
 
-// /ssr, not the package root: this is a server component, and the root entry
-// builds an IconContext with createContext, which server components cannot do.
-import { ArrowUpRightIcon } from "@phosphor-icons/react/ssr"
-
-/** Stagger (s) between cert / meta reveals. */
+/** Stagger (s) between meta reveals. */
 const ROW_STAGGER_S = 0.06
-
-/**
- * Shared column template for the certification rows. Declared once so the
- * codes, years and links line up down the page — per-row grids would each
- * size their own columns and the edges would drift.
- */
-const CERT_COLUMNS =
-  "sm:grid-cols-[minmax(0,1fr)_6rem_7rem_auto] sm:items-center sm:gap-x-6"
-
-const CERTS = [
-  {
-    name: "AWS Cloud Practitioner",
-    code: "CLF-C02",
-    period: "2026–2029",
-    url: "https://www.credly.com/badges/",
-  },
-  {
-    name: "Azure Fundamentals",
-    code: "AZ-900",
-    period: "2026",
-    url: "https://learn.microsoft.com/en-us/credentials/",
-  },
-  {
-    name: "AWS AI Practitioner",
-    code: "AIF-C01",
-    period: "2026",
-    url: "https://www.credly.com/badges/",
-  },
-]
 
 export async function SiteAbout() {
   const [t, locale] = await Promise.all([
@@ -90,51 +57,9 @@ export async function SiteAbout() {
         ))}
       </dl>
 
-      <section className="mt-20">
-        <Reveal once={false}>
-          <p className="label-caps mb-2">{t("certsLabel")}</p>
-        </Reveal>
-
-        <ul className="list-none p-0">
-          {CERTS.map((cert, i) => (
-            <li key={cert.code}>
-              <Reveal once={false} delay={i * ROW_STAGGER_S}>
-                {/* Stacks on a phone: four columns at that width would put the
-                    name on three lines and the link against the edge. */}
-                <div
-                  className={`grid grid-cols-1 gap-2 border-t border-border py-4 ${CERT_COLUMNS}`}
-                >
-                  <p className="font-semibold text-foreground">{cert.name}</p>
-                  <Badge variant="secondary" className="w-fit">
-                    {cert.code}
-                  </Badge>
-                  <span className="text-sm text-muted-foreground tabular-nums">
-                    {cert.period}
-                  </span>
-
-                  {/* size="sm" already sets the gap and sizes the icon, so it
-                      carries no margin or size class of its own. */}
-                  <Button
-                    asChild
-                    variant="ghost"
-                    size="sm"
-                    className="w-fit justify-self-start sm:justify-self-end"
-                  >
-                    <a
-                      href={cert.url}
-                      target="_blank"
-                      rel="noopener noreferrer"
-                    >
-                      {t("verified")}
-                      <ArrowUpRightIcon weight="bold" />
-                    </a>
-                  </Button>
-                </div>
-              </Reveal>
-            </li>
-          ))}
-        </ul>
-      </section>
+      <div className="mt-20">
+        <SiteCertifications />
+      </div>
 
       {/* Its own section, so it gets the same mt-20 rhythm as the certs block.
           It used to sit outside that section with no spacing of its own. */}

@@ -5,6 +5,10 @@
     "lastName": "Ferreira.",
     "heroSubtitle": "Junior Software Developer · Kuopio, Suomi · Infra & Cloud"
   },
+  "home": {
+    "selectedLabel": "Valitut projektit",
+    "allProjects": "Kaikki projektit"
+  },
   "projects": {
     "title": "Projektit",
     "heading": "Projektit.",
@@ -20,10 +24,12 @@
     "roleValue": "Junior @ Nordcloud",
     "offClockLabel": "Vapaa-aika",
     "offClockValue": "Maalivahti, miesten Kolmonen",
-    "certsLabel": "Sertifikaatit",
-    "verified": "Vahvistettu",
     "langLabel": "Kieli & Persoona",
     "langText": "Monikielisellä ihmisellä persoonallisuus vaihtuu huomaamatta käytettävän kielen mukana. Tämä johtuu siitä, että eri kielet kantavat mukanaan erilaisia kulttuurisia yhteyksiä ja tapoja nähdä maailmaa, esimerkiksi rakenteiden ja sanastojen kautta. Tähän vaikuttavat myös kieleen ja kulttuuriin liitetyt ominaisuudet, joita kohti puhujan persoonallisuus aina hieman siirtyy."
+  },
+  "certs": {
+    "label": "Sertifikaatit",
+    "inProgress": "Kesken"
   },
   "nav": {
     "projects": "Projektit",

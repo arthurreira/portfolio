@@ -5,6 +5,10 @@
     "lastName": "Ferreira.",
     "heroSubtitle": "Desenvolvedor de Software Júnior · Kuopio, Finlândia · Cloud & Web"
   },
+  "home": {
+    "selectedLabel": "Projetos selecionados",
+    "allProjects": "Todos os projetos"
+  },
   "projects": {
     "title": "Projetos",
     "heading": "Projetos.",
@@ -20,10 +24,12 @@
     "roleValue": "Junior @ Nordcloud",
     "offClockLabel": "Fora do trabalho",
     "offClockValue": "Goleiro, Miesten Kolmonen",
-    "certsLabel": "Certificações",
-    "verified": "Verificado",
     "langLabel": "Língua & Personalidade",
     "langText": "Pessoas multilíngues mudam de personalidade sem perceber, dependendo do idioma usado em cada situação. Isso acontece porque cada língua carrega consigo diferentes conexões culturais e formas de ver o mundo, por exemplo através das suas estruturas e vocabulários. Também influenciam as características associadas a cada língua e cultura, para as quais a personalidade do falante sempre se desloca um pouco."
+  },
+  "certs": {
+    "label": "Certificações",
+    "inProgress": "Em andamento"
   },
   "nav": {
     "projects": "Projetos",
