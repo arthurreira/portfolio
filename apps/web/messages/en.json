@@ -47,7 +47,6 @@
   "certs": {
     "label": "Certifications",
     "inProgress": "In progress",
-    "plusInProgress": "{count} in progress",
     "seeAll": "All certifications"
   },
   "nav": {

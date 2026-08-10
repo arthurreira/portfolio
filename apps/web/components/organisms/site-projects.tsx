@@ -16,26 +16,26 @@ interface SiteProjectsProps {
   countSuffix?: string
 }
 
+/**
+ * The full project list. Same shell, spacing and row treatment as the home
+ * page section — the count sits under the heading as a quiet line rather than
+ * floating opposite it, which is what the home page does with its labels.
+ */
 export function SiteProjects({
   projects,
   heading = "Projects.",
   countSuffix = "projects",
 }: SiteProjectsProps) {
   return (
-    <section className="relative min-h-screen overflow-hidden bg-background">
-      <div className="t-shell pt-12 pb-16">
-        <div className="flex flex-row justify-between ">
-          <h1 className="text-display mb-3 text-foreground">
-            <LineReveal>{heading}</LineReveal>
-          </h1>
-          <p className="mb-12 text-base text-muted-foreground">
-            {projects.length} {countSuffix}
-          </p>
-        </div>
+    <div className="t-shell pt-16 pb-24">
+      <h1 className="text-display mb-2 text-foreground">
+        <LineReveal>{heading}</LineReveal>
+      </h1>
+      <p className="section-label mb-8">
+        {projects.length} {countSuffix}
+      </p>
 
-
-        <ProjectList projects={projects} />
-      </div>
-    </section>
+      <ProjectList projects={projects} />
+    </div>
   )
 }

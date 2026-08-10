@@ -458,15 +458,20 @@ html {
 /* Project detail — two-column body
    Medium: left capped at 42rem so sidebar sits flush to content
    Large (>1100px): left goes full 1fr — more screen, more content room  */
-.t-detail-body {
+/* Project meta as a band under the title. It used to be a 240px right rail
+   beside a 42rem body — a 960px minimum, which cannot fit inside a 44rem
+   page, so the two-column grid had to go when the page narrowed. Two columns
+   on a phone, four once there is room. */
+.t-detail-meta {
   display: grid;
-  grid-template-columns: minmax(0, 42rem) 240px;
-  gap: 3rem;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 1.5rem 2rem;
+  margin: 0 0 2.5rem;
 }
 
-@media (min-width: 80rem) {
-  .t-detail-body {
-    grid-template-columns: 1fr 240px;
+@media (min-width: 48rem) {
+  .t-detail-meta {
+    grid-template-columns: repeat(4, minmax(0, 1fr));
   }
 }
 
@@ -479,13 +484,6 @@ html {
 @media (max-width: 64rem) {
   body {
     overflow-x: hidden;
-  }
-
-  /* The project detail grid collapses here — no room left beside a 240px
-     column once the page is this narrow. */
-  .t-detail-body {
-    grid-template-columns: 1fr !important;
-    gap: 3rem;
   }
 
   /* Nav: row 1 = brand + controls, row 2 = links. All three on one row
