@@ -1,7 +1,6 @@
 import { Fragment } from "react"
 import { getTranslations, getLocale } from "next-intl/server"
 import { about } from "@arthurreira/content"
-import { LabeledRow } from "@/components/molecules/labeled-row"
 import { LineReveal } from "@/components/molecules/line-reveal"
 import { MdxContent } from "@/components/molecules/mdx-content"
 import { SiteCertifications } from "@/components/organisms/site-certifications"
@@ -58,12 +57,15 @@ export async function SiteAbout() {
         <SiteCertifications />
       </div>
 
+      {/* Not a LabeledRow: that renders its label as label-caps — amber,
+          uppercase, wide tracking — which is right for a short meta tag like
+          "Role" but made this section heading shout in a different voice from
+          every other one on the site. */}
       <section className="mt-16">
-        <LabeledRow label={t("langLabel")}>
-          <p className="max-w-measure text-base leading-relaxed">
-            {t("langText")}
-          </p>
-        </LabeledRow>
+        <h2 className="section-label mb-3">{t("langLabel")}</h2>
+        <p className="max-w-measure text-base leading-relaxed text-muted-foreground">
+          {t("langText")}
+        </p>
       </section>
     </section>
   )
