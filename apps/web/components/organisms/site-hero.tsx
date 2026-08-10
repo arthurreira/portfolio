@@ -1,3 +1,4 @@
+import type { ReactNode } from "react"
 import { HeroText } from "@/components/molecules/hero-text"
 
 interface SiteHeroProps {
@@ -5,7 +6,9 @@ interface SiteHeroProps {
   intro: string
   firstName: string
   lastName: string
-  subtitle: string
+  subtitle: ReactNode
+  cultureLine: string
+  stages: string[]
 }
 
 /**
@@ -23,6 +26,8 @@ export function SiteHero({
   firstName,
   lastName,
   subtitle,
+  cultureLine,
+  stages,
 }: SiteHeroProps) {
   return (
     <section className="pt-16">
@@ -32,6 +37,8 @@ export function SiteHero({
         firstName={firstName}
         lastName={lastName}
         subtitle={subtitle}
+        cultureLine={cultureLine}
+        stages={stages}
       />
     </section>
   )

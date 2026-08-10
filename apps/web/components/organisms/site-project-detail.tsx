@@ -9,13 +9,7 @@ import type { ProjectStatus, ProjectRole } from "@arthurreira/content/types"
 import { LabeledRow } from "@/components/molecules/labeled-row"
 import { LineReveal } from "@/components/molecules/line-reveal"
 import { MdxContent } from "@/components/molecules/mdx-content"
-import { Reveal } from "@/components/molecules/reveal"
 import { ArrowLeftIcon, ArrowRightIcon } from "@phosphor-icons/react"
-
-/** Entrance delay (s) for the header meta block, after the title unmasks. */
-const HEADER_META_DELAY_S = 0.12
-/** Stagger (s) between sidebar row reveals. */
-const SIDEBAR_STAGGER_S = 0.06
 
 export interface SiteProjectDetailProps {
   index: number
@@ -102,7 +96,6 @@ export function SiteProjectDetail({
 
       {/* Header */}
       <div className="t-shell pt-10">
-        <Reveal once={false}>
           <div className="mb-6 flex items-center justify-between gap-4">
             <p className="label-caps mb-6">
               {t("label")} [{num}]
@@ -111,14 +104,12 @@ export function SiteProjectDetail({
 
           </div>
           
-        </Reveal>
 
         {/* font-black / leading / tracking from @layer base h1 */}
         <h1 className="text-display-sm mb-6 text-foreground">
           <LineReveal>{title}</LineReveal>
         </h1>
 
-        <Reveal once={false} delay={HEADER_META_DELAY_S}>
           {techStack?.length ? (
             <div className="mb-2 flex flex-wrap gap-2">
               {techStack.map((tech) => (
@@ -133,12 +124,10 @@ export function SiteProjectDetail({
             </div>
           ): null}
           
-        </Reveal>
 
         <div className="h-px bg-border" />
 
         {/* Cover image — striped placeholder uses --stripe token (flips in light mode) */}
-        <Reveal once={false} className="relative my-8 aspect-[16/7] w-full overflow-hidden bg-muted">
           {coverImage ? (
             <Image src={coverImage} alt={title} fill className="object-cover" priority />
           ) : (
@@ -158,7 +147,6 @@ export function SiteProjectDetail({
             </>
           )}
           
-        </Reveal>
         {highlight && (
             <span className="text-primary">
               {highlight}
@@ -171,7 +159,6 @@ export function SiteProjectDetail({
         <div className="t-detail-body">
 
           {/* Left — body starts with ## What I built, no redundant description paragraph */}
-          <Reveal once={false}>
             <div className="typeset typeset-notes">
               <MdxContent code={content} variant="typeset" />
             </div>
@@ -185,14 +172,13 @@ export function SiteProjectDetail({
                 {t("back")}
               </Link>
             </div>
-          </Reveal>
 
-          {/* Right — sidebar, rows reveal one after another */}
+          {/* Right — sidebar */}
           <div>
-            {sidebarRows.map((row, i) => (
-              <Reveal key={row.label} once={false} delay={i * SIDEBAR_STAGGER_S}>
-                <LabeledRow label={row.label}>{row.content}</LabeledRow>
-              </Reveal>
+            {sidebarRows.map((row) => (
+              <LabeledRow key={row.label} label={row.label}>
+                {row.content}
+              </LabeledRow>
             ))}
           </div>
         </div>

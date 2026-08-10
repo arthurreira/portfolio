@@ -10,10 +10,21 @@
     "intro": "eu sou",
     "firstName": "Arthur",
     "lastName": "Ferreira.",
-    "heroSubtitle": "Desenvolvedor de Software Júnior · Kuopio, Finlândia · Cloud & Web"
+    "heroSubtitle": "Trabalho como engenheiro de software na <company>Nordcloud</company>, uma empresa IBM.",
+    "cultureLine": "DevSecOps é cultura —",
+    "devsecopsStages": [
+      "Plan",
+      "Code",
+      "Build",
+      "Test",
+      "Release",
+      "Deploy",
+      "Operate",
+      "Monitor"
+    ]
   },
   "home": {
-    "selectedLabel": "Projetos selecionados",
+    "selectedLabel": "Últimos projetos em que estive trabalhando",
     "allProjects": "Todos os projetos"
   },
   "projects": {

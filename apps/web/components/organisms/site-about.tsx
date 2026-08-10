@@ -1,13 +1,10 @@
+import { Fragment } from "react"
 import { getTranslations, getLocale } from "next-intl/server"
 import { about } from "@arthurreira/content"
 import { LabeledRow } from "@/components/molecules/labeled-row"
 import { LineReveal } from "@/components/molecules/line-reveal"
 import { MdxContent } from "@/components/molecules/mdx-content"
-import { Reveal } from "@/components/molecules/reveal"
 import { SiteCertifications } from "@/components/organisms/site-certifications"
-
-/** Stagger (s) between meta reveals. */
-const ROW_STAGGER_S = 0.06
 
 export async function SiteAbout() {
   const [t, locale] = await Promise.all([
@@ -47,13 +44,15 @@ export async function SiteAbout() {
       {/* Standing facts — four columns wide, two on a phone. A definition list
           because that is what a label over a value is. */}
       <dl className="mt-16 grid grid-cols-2 gap-x-8 gap-y-8 lg:grid-cols-4">
-        {facts.map((fact, i) => (
-          <Reveal key={fact.label} once={false} delay={i * ROW_STAGGER_S}>
+        {facts.map((fact) => (
+          // Fragment, not a div: a <dl> may only contain <dt>/<dd> pairs, and
+          // a wrapper element between them breaks that.
+          <Fragment key={fact.label}>
             <dt className="label-caps mb-1.5">{fact.label}</dt>
             <dd className="m-0 text-base font-bold text-foreground">
               {fact.value}
             </dd>
-          </Reveal>
+          </Fragment>
         ))}
       </dl>
 
@@ -64,13 +63,11 @@ export async function SiteAbout() {
       {/* Its own section, so it gets the same mt-20 rhythm as the certs block.
           It used to sit outside that section with no spacing of its own. */}
       <section className="mt-20">
-        <Reveal once={false}>
           <LabeledRow label={t("langLabel")}>
             <p className="max-w-measure text-base leading-relaxed">
               {t("langText")}
             </p>
           </LabeledRow>
-        </Reveal>
       </section>
     </section>
   )

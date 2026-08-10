@@ -10,10 +10,21 @@
     "intro": "mä oon",
     "firstName": "Arthur",
     "lastName": "Ferreira.",
-    "heroSubtitle": "Junior Software Developer · Kuopio, Suomi · Infra & Cloud"
+    "heroSubtitle": "Työskentelen ohjelmistokehittäjänä <company>Nordcloud </company>, an IBM company.",
+    "cultureLine": "DevSecOps on kulttuuri –",
+    "devsecopsStages": [
+      "Plan",
+      "Code",
+      "Build",
+      "Test",
+      "Release",
+      "Deploy",
+      "Operate",
+      "Monitor"
+    ]
   },
   "home": {
-    "selectedLabel": "Valitut projektit",
+    "selectedLabel": "Viimeisimmät projektit, joiden parissa olen työskennellyt",
     "allProjects": "Kaikki projektit"
   },
   "projects": {
