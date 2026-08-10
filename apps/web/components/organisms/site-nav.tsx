@@ -18,10 +18,11 @@ import { useCircleReveal } from "@/components/molecules/circle-reveal"
 import { FlagFill, FlagPillFill } from "@/components/atoms/flag-icons"
 import { THEME_TRANSITION } from "@/lib/theme-transition"
 
-// Full-bleed flags: no padding box, dimmed when inactive, accent border when
-// active (via aria-pressed set by PillButton).
+// Full-bleed flags: no padding box, dimmed and desaturated when inactive,
+// full colour when active (via aria-pressed set by PillButton). The active
+// state is the colour coming back, so it needs no border to announce itself.
 const FLAG_PILL_CLASS =
-  "overflow-hidden p-0 opacity-60 saturate-50 transition-all hover:opacity-100 aria-pressed:border-primary aria-pressed:opacity-100 aria-pressed:saturate-100"
+  "overflow-hidden p-0 opacity-60 saturate-50 transition-all hover:opacity-100 aria-pressed:opacity-100 aria-pressed:saturate-100"
 
 const FLAGS = [
   { key: "brasil", label: <FlagPillFill flag="brasil" />, ariaLabel: "Brasil", className: FLAG_PILL_CLASS },
@@ -181,17 +182,15 @@ export function SiteNav() {
     >
       {revealOverlay}
       <div className="t-nav">
-        {/* Left — logo. Breaks out to the viewport corner above 75rem; see
-            .t-brand. Positioned against the <header>, which owns the relative
-            context, not against the centred .t-nav. */}
+        {/* Left — logo, in the viewport corner because .t-nav is full width */}
         <NavLink
           href="/"
-          className="t-brand shrink-0 text-lg font-bold tracking-[-0.02em]"
+          className="shrink-0 text-lg font-bold tracking-[-0.02em]"
         >
           <RollingText text="arthurreira.dev" />
         </NavLink>
 
-        {/* Right — page links */}
+        {/* Centre — page links */}
         <nav className="t-links">
           {NAV_LINKS.map(({ href, label }) => (
             <NavLink key={href} href={href} active={intlPathname.startsWith(href)}>

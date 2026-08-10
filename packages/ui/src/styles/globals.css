@@ -384,11 +384,13 @@ html {
    Media query handles all responsive overrides in one place.
 ──────────────────────────────────────────────────────────────────────────── */
 
-/* Nav — same column and gutters as .t-shell, so its left edge lines up
-   with the page content below it. */
+/* Nav spans the viewport rather than the 44rem column: the brand sits in the
+   real top-left corner and the controls in the top-right, with the page
+   content still centred below.
+   The tradeoff is deliberate — the nav's left edge no longer lines up with
+   the content's. Boxing the nav into the column instead put the brand
+   floating mid-screen on a wide monitor, which read worse. */
 .t-nav {
-  max-width: var(--page-max);
-  margin-inline: auto;
   position: relative;
   display: flex;
   align-items: center;
@@ -402,22 +404,17 @@ html {
 
 /* Hairline under the nav — spans the content width only (inset from edges),
    matching the nav's own horizontal padding. */
-.t-nav::after {
-  content: "";
-  position: absolute;
-  bottom: 0;
-  left: var(--gutter);
-  right: var(--gutter);
-  border-bottom: 1px solid var(--hairline);
-}
 
 /* Row 1: logo + page links */
+/* Centre of the nav row. flex:1 makes it eat the space between the brand and
+   the controls, so the links sit in the middle of the viewport regardless of
+   how wide the brand or the controls are. */
 .t-links {
   display: flex;
   align-items: center;
   gap: 1.5rem;
   flex: 1;
-  justify-content: flex-end;
+  justify-content: center;
   flex-wrap: wrap;
 }
 
@@ -428,19 +425,6 @@ html {
   gap: 0.75rem;
 }
 
-/* The brand leaves the centred column and sits in the real top-left corner of
-   the viewport. Only above 75rem: a 44rem column plus a gutter on each side
-   leaves no room beside it on anything narrower, so below this it stays in
-   flow at the column's left edge like everything else.
-   .t-links is flex:1 / justify-end, so the freed space costs the links
-   nothing — they stay against the right edge of the column. */
-@media (min-width: 75rem) {
-  .t-brand {
-    position: absolute;
-    top: 1.25rem;
-    left: var(--gutter);
-  }
-}
 
 /* About — two-column layout */
 /* About cert rows — 4 columns */
@@ -486,16 +470,16 @@ html {
     gap: 3rem;
   }
 
-  /* Nav: row 1 = brand + links, row 2 = controls */
+  /* Nav: row 1 = brand + controls, row 2 = links. All three on one row
+     squeezed the links until the list wrapped mid-way and stranded
+     "Ota yhteyttä" on a line of its own. */
   .t-nav {
     padding: 0.875rem var(--gutter);
     gap: 0.5rem 1rem;
   }
-  /* Row 1 is the brand with the flag, mode and language controls beside it;
-     row 2 is the links. Squeezed against the right edge on one row they
-     wrapped mid-list and stranded "Ota yhteyttä" on a line of its own.
-     If the controls cannot fit beside the brand they wrap on their own,
-     which degrades to three rows rather than breaking. */
+  /* Centring the links only works while all three fit on one row. On a phone
+     they drop to their own row under the brand and controls, left-aligned —
+     centred there they would sit under nothing in particular. */
   .t-controls {
     order: 2;
     margin-left: auto;
