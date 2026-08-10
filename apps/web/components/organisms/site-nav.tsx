@@ -2,17 +2,28 @@
 
 import { usePathname as useIntlPathname } from "@/i18n/routing"
 import { useTranslations } from "next-intl"
+import { ArrowLeftIcon } from "@phosphor-icons/react"
 import { NavLink } from "@/components/atoms/nav-link"
 import { RollingText } from "@/components/atoms/rolling-text"
+
+/** /projects/<slug>, but not /projects itself. */
+const PROJECT_DETAIL = /^\/projects\/.+/
 
 /**
  * Brand and page links. The theme, mode and language switchers used to live
  * here too and now sit in the footer — they are global controls rather than
  * navigation, and they were the densest thing in the top bar.
+ *
+ * On a project page the links are replaced by a single way back. A detail
+ * page is a reading page: the site index competing with the article is the
+ * thing you least need while reading it.
  */
 export function SiteNav() {
   const intlPathname = useIntlPathname()
   const t = useTranslations("nav")
+  const tProject = useTranslations("project")
+
+  const isProjectDetail = PROJECT_DETAIL.test(intlPathname)
 
   const NAV_LINKS = [
     { href: "/projects", label: t("projects") },
@@ -33,15 +44,22 @@ export function SiteNav() {
         </NavLink>
 
         <nav className="t-links">
-          {NAV_LINKS.map(({ href, label }) => (
-            <NavLink
-              key={href}
-              href={href}
-              active={intlPathname.startsWith(href)}
-            >
-              {label}
+          {isProjectDetail ? (
+            <NavLink href="/projects" className="inline-flex items-center gap-2">
+              <ArrowLeftIcon weight="bold" className="size-4" />
+              {tProject("back")}
             </NavLink>
-          ))}
+          ) : (
+            NAV_LINKS.map(({ href, label }) => (
+              <NavLink
+                key={href}
+                href={href}
+                active={intlPathname.startsWith(href)}
+              >
+                {label}
+              </NavLink>
+            ))
+          )}
         </nav>
       </div>
     </header>
