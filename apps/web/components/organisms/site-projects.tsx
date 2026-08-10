@@ -35,7 +35,7 @@ export function SiteProjects({
         {projects.length} {countSuffix}
       </p>
 
-      <ProjectList projects={projects} />
+      <ProjectList projects={projects} paginate />
     </div>
   )
 }

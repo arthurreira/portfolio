@@ -13,6 +13,9 @@ export * from './components/input-group'
 // Owns scroll state and context — client-only.
 export * from './components/message-scroller'
 export * from './components/navbar'
+// Imports @phosphor-icons/react at the root, which builds an IconContext with
+// createContext — so it cannot be exported from the server-safe barrel.
+export * from './components/pagination'
 export * from './components/pageHeader'
 export * from './components/popover'
 export * from './components/select'

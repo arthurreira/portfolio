@@ -29,7 +29,9 @@
   "projects": {
     "title": "Projects",
     "heading": "Projects.",
-    "countSuffix": "projects"
+    "countSuffix": "projects",
+    "previous": "Previous",
+    "next": "Next"
   },
   "about": {
     "title": "About",

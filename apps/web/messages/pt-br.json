@@ -30,7 +30,9 @@
   "projects": {
     "title": "Projetos",
     "heading": "Projetos.",
-    "countSuffix": "projetos"
+    "countSuffix": "projetos",
+    "previous": "Anterior",
+    "next": "Próximo"
   },
   "about": {
     "title": "Sobre mim",

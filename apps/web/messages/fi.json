@@ -30,7 +30,9 @@
   "projects": {
     "title": "Projektit",
     "heading": "Projektit.",
-    "countSuffix": "projektia"
+    "countSuffix": "projektia",
+    "previous": "Edellinen",
+    "next": "Seuraava"
   },
   "about": {
     "title": "Tietoa minusta",
