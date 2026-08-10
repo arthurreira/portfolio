@@ -2,7 +2,6 @@ import { Link } from "@/i18n/routing"
 import { cn } from "@arthurreira/ui"
 
 interface ProjectRowProps {
-  num: string
   title: string
   year: string
   href: string
@@ -20,7 +19,6 @@ interface ProjectRowProps {
  * that on its own.
  */
 export function ProjectRow({
-  num,
   title,
   year,
   href,
@@ -33,9 +31,6 @@ export function ProjectRow({
       className="group -mx-2 block border-t border-border px-2 py-3 transition-colors duration-150 hover:bg-muted"
     >
       <div className="flex items-baseline gap-4 px-2">
-        <span className="w-8 shrink-0 text-[11px] leading-none tracking-[0.1em] text-primary">
-          [{num}]
-        </span>
         <span
           className={cn(
             "flex-1 text-foreground transition-all duration-200 group-hover:translate-x-1 group-hover:text-primary",
@@ -50,7 +45,7 @@ export function ProjectRow({
       </div>
 
       {featured && description && (
-        <p className="mt-2 max-w-measure pl-14 text-base leading-relaxed text-muted-foreground">
+        <p className="mt-2 max-w-measure px-2 text-base leading-relaxed text-muted-foreground">
           {description}
         </p>
       )}

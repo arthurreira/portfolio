@@ -20,7 +20,6 @@ export function ProjectList({
       {projects.map((project, i) => (
         <ProjectRow
           key={project.id}
-          num={String(i + 1).padStart(2, "0")}
           title={project.title}
           year={project.year}
           href={`/projects/${project.slug}`}

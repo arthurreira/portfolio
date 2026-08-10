@@ -12,7 +12,6 @@ import { MdxContent } from "@/components/molecules/mdx-content"
 import { ArrowLeftIcon, ArrowRightIcon } from "@phosphor-icons/react"
 
 export interface SiteProjectDetailProps {
-  index: number
   title: string
   description: string
   techStack?: string[]
@@ -27,11 +26,10 @@ export interface SiteProjectDetailProps {
 }
 
 export function SiteProjectDetail({
-  index, title, techStack, year, status, role, highlight,
+  title, techStack, year, status, role, highlight,
   url, githubRepo, coverImage, content,
 }: SiteProjectDetailProps) {
   const t   = useTranslations("project")
-  const num = String(index).padStart(2, "0")
 
   function resolveRole(): string {
     // Professional projects with an explicit role → show the role
@@ -95,17 +93,18 @@ export function SiteProjectDetail({
     <div className="min-h-screen bg-background">
 
       <div className="t-shell pt-10 pb-24">
-        <div className="mb-6 flex items-center justify-between gap-4">
-          <p className="label-caps">
-            {t("label")} [{num}]
+        {/* The kicker used to read "PROJECT [03]" above the title. The number
+            was decoration, and once it goes the word only repeats what the
+            heading underneath already says — so the title carries the line on
+            its own, with the year opposite it. */}
+        <div className="mb-6 flex items-baseline justify-between gap-4">
+          <h1 className="text-display-sm text-foreground">
+            <LineReveal>{title}</LineReveal>
+          </h1>
+          <p className="shrink-0 text-sm text-muted-foreground tabular-nums">
+            {year}
           </p>
-          <p className="text-sm text-muted-foreground tabular-nums">{year}</p>
         </div>
-
-        {/* h1 gets its weight/leading/tracking from @layer base */}
-        <h1 className="text-display-sm mb-6 text-foreground">
-          <LineReveal>{title}</LineReveal>
-        </h1>
 
         {highlight && <p className="mb-6 text-primary">{highlight}</p>}
 

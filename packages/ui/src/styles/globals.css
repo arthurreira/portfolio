@@ -432,8 +432,12 @@ html {
    column fills the screen and there is no corner to escape to. */
 .t-brand {
   position: absolute;
-  top: 1.25rem;
   left: var(--gutter);
+  /* Centred against the header, not pinned to its top edge. The row centres
+     its links with align-items, and the brand is a larger size — matching
+     top edges left the two sitting on visibly different baselines. */
+  top: 50%;
+  transform: translateY(-50%);
 }
 
 /* Row 2: theme switcher + language (stays on same row desktop, drops on mobile) */
