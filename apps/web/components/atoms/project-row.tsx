@@ -1,5 +1,4 @@
 import { Link } from "@/i18n/routing"
-import { ArrowRightIcon } from "@phosphor-icons/react/ssr"
 import { cn } from "@arthurreira/ui"
 
 interface ProjectRowProps {
@@ -11,30 +10,47 @@ interface ProjectRowProps {
   description?: string
 }
 
-export function ProjectRow({ num, title, year, href, featured, description }: ProjectRowProps) {
+/**
+ * One project as a border-top row: index, title, year. The same shape as the
+ * certification rows, so the two sections on the home page read as one system
+ * rather than two designs.
+ *
+ * The trailing → is gone. It repeated what the row already says — the whole
+ * row is a link, and the title moving and changing colour on hover carries
+ * that on its own.
+ */
+export function ProjectRow({
+  num,
+  title,
+  year,
+  href,
+  featured,
+  description,
+}: ProjectRowProps) {
   return (
-    <Link href={href as never} className="group block border-t border-border -mx-2 px-2 py-4 transition-colors duration-150 hover:bg-muted">
-      <div className="flex items-center gap-4 px-2">
-        <span className="w-12 shrink-0 text-[11px] tracking-[0.1em] text-primary leading-none">
+    <Link
+      href={href as never}
+      className="group -mx-2 block border-t border-border px-2 py-3 transition-colors duration-150 hover:bg-muted"
+    >
+      <div className="flex items-baseline gap-4 px-2">
+        <span className="w-8 shrink-0 text-[11px] leading-none tracking-[0.1em] text-primary">
           [{num}]
         </span>
         <span
           className={cn(
-            "flex-1 font-bold text-foreground transition-all duration-200 group-hover:translate-x-1 group-hover:text-primary leading-tight",
-            featured ? "text-2xl sm:text-3xl" : "text-base sm:text-lg",
+            "flex-1 text-foreground transition-all duration-200 group-hover:translate-x-1 group-hover:text-primary",
+            featured ? "text-lg font-bold sm:text-xl" : "text-base"
           )}
         >
           {title}
         </span>
-        <span className="shrink-0 text-sm text-foreground tabular-nums">{year}</span>
-        <ArrowRightIcon
-          weight="bold"
-          className="size-4 shrink-0 text-muted-foreground transition-all duration-200 group-hover:translate-x-2 group-hover:text-primary"
-        />
+        <span className="shrink-0 text-sm text-muted-foreground tabular-nums">
+          {year}
+        </span>
       </div>
 
       {featured && description && (
-        <p className="mt-2 max-w-xl text-base leading-relaxed text-muted-foreground sm:pl-[4.25rem]">
+        <p className="mt-2 max-w-measure pl-14 text-base leading-relaxed text-muted-foreground">
           {description}
         </p>
       )}

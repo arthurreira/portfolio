@@ -34,7 +34,7 @@ export async function SiteCertifications({
 
     return (
       <section>
-        <h2 className="label-caps mb-2">{t("label")}</h2>
+        <h2 className="section-label mb-2">{t("label")}</h2>
         <p className="text-base text-muted-foreground">
           {done.map((c) => c.code ?? c.name).join(" · ")}
           {pending > 0 && ` · ${t("plusInProgress", { count: pending })}`}
@@ -51,7 +51,7 @@ export async function SiteCertifications({
 
   return (
     <section>
-      <h2 className="label-caps mb-4">{t("label")}</h2>
+      <h2 className="section-label mb-4">{t("label")}</h2>
 
       <ul className="list-none p-0">
         {certs.map((cert) => (

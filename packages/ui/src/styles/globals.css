@@ -211,9 +211,16 @@
   .max-w-measure {
     max-width: var(--measure);
   }
-  /* Amber uppercase label — PROJECT [01], CERTIFICATIONS, etc. */
+  /* Amber uppercase label — PROJECT [01] and other short tags. Caps with
+     0.22em tracking only survives at a couple of words; anything sentence
+     length belongs in .section-label. */
   .label-caps {
     @apply font-ui text-[11px] tracking-[0.22em] text-primary uppercase;
+  }
+  /* Heading above a page section. Sentence case, because these now read as
+     sentences ("Latest projects I've been working on") rather than tags. */
+  .section-label {
+    @apply font-ui text-sm text-muted-foreground;
   }
   /* 1px hairline row divider */
   .row-divider {
@@ -488,31 +495,30 @@ html {
     padding: 0.875rem var(--gutter);
     gap: 0.5rem 1rem;
   }
-  /* No corner to escape to once the column fills the screen — the brand goes
-     back into the row as the first item. */
+  /* No corner to escape to once the column fills the screen, and the row is
+     tight enough without it — the nav links carry the navigation here. */
   .t-brand {
-    position: static;
+    display: none;
+  }
+  /* Both rows start on the column's left edge, the same edge as the page
+     content. `flex: 0 0 100%` rather than `flex-basis: 100%` — the shorthand
+     has to come last or it resets the basis back to auto, which is what put
+     the links and the controls on one drifting row. */
+  .t-links {
+    order: 1;
+    flex: 0 0 100%;
+    justify-content: flex-start;
+    gap: 0.75rem 1.25rem !important;
   }
   .t-controls {
     order: 2;
-    margin-left: auto;
-    gap: 0.5rem;
-  }
-  .t-links {
-    order: 3;
-    flex-basis: 100%;
-    flex: none;
+    flex: 0 0 100%;
     justify-content: flex-start;
-    gap: 0.75rem 1.25rem !important;
+    gap: 0.5rem;
   }
   /* Keep the thin | separators visible between groups */
   .t-controls > span {
     display: inline-block;
-  }
-
-  /* Drop trailing → on project rows */
-  .t-arrow {
-    display: none !important;
   }
 }
 

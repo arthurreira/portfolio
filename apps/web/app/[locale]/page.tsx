@@ -38,7 +38,7 @@ export default async function Page({
       <SiteHeroServer />
 
       <section>
-        <h2 className="label-caps mb-4">{t("selectedLabel")}</h2>
+        <h2 className="section-label mb-4">{t("selectedLabel")}</h2>
         {/* No emphasised first row here — the whole section is already a
             three-item curated list, so enlarging one of them says nothing. */}
         <ProjectList projects={featured} emphasiseFirst={false} />
