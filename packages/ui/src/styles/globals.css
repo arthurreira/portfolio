@@ -183,9 +183,11 @@
        section root, which meant the html-level font never rendered anywhere. */
     @apply bg-background font-ui text-foreground;
   }
-  /* Display headings — weight/tracking/leading shared across all h1s */
+  /* Display headings — weight/tracking/leading shared across all h1s.
+     900 weight and -0.045em tracking were tuned for 184px type; at 40px
+     that reads as chunky rather than clean, so both ease off. */
   h1 {
-    @apply leading-[0.92] font-black tracking-[-0.045em];
+    @apply leading-[1.1] font-bold tracking-[-0.02em];
   }
   /* Section labels — tighter headings */
   h2 {
@@ -214,16 +216,6 @@
   .row-divider {
     @apply border-t border-border;
   }
-  /* Vertical ticker track — writing-mode can't be a Tailwind class */
-  .ticker-track {
-    writing-mode: vertical-rl;
-    /* Movement is motion-driven in vertical-ticker.tsx (hover eases speed);
-       items are Badge pills, which bring their own type scale. */
-    @apply font-ui tracking-[0.14em] whitespace-nowrap uppercase;
-  }
-  .ticker-wrapper {
-    @apply rotate-180;
-  }
 }
 
 html {
@@ -249,59 +241,38 @@ html {
 :root {
   /* Geist, loaded in the web app. The fallbacks only cover the first paint. */
   --font-ui: var(--font-geist), "Helvetica Neue", Arial, sans-serif;
-  --sidebar-w: clamp(72px, 9vw, 132px); /* ticker strip width           */
-  --ticker-gap: 88px; /* air between strip + text      */
-  --shell-pl: calc(
-    var(--sidebar-w) + var(--ticker-gap)
-  ); /* ← shared left edge for all    */
-  --gutter: clamp(24px, 4vw, 56px); /* right-edge padding            */
-  /* Widest the page ever gets. Past this the layout centres instead of
-     stretching — on a 34" monitor every row would otherwise run the full
-     3440px and the eye loses the start of the next line. */
-  --page-max: 100rem;
-  /* Distance from the viewport edge to the centred page. Zero until the
-     screen is wider than the page; the fixed ticker reads it so it stays
-     against the content rather than the glass. */
-  --page-inset: max(0px, calc((100vw - var(--page-max)) / 2));
+  --gutter: clamp(24px, 4vw, 56px); /* padding on both edges */
+
+  /* The page is one centred column, not a full-bleed canvas. Everything
+     else here follows from that: a 704px column has no room for a left
+     rail, and display type has to come down to stay in proportion.
+
+     This used to be 100rem with a fixed ticker strip offsetting the left
+     edge, which is why --sidebar-w, --ticker-gap, --shell-pl and
+     --page-inset existed. All four are gone with the strip. */
+  --page-max: 44rem;
 
   /* ── Type scale ───────────────────────────────────────────────────────
      One clamp per role, declared here instead of inline per component.
-     Five headings each carried their own copy of these numbers, and the
-     about page had already drifted to a different minimum.
+     Five headings each carried their own copy of these numbers.
 
      clamp() scales continuously with the viewport, so there is no
      breakpoint where the type jumps — the vw middle term IS the
-     "different size per device". Only the two ends are pinned:
-
-       --text-display  min 2.25rem → 36px on a 390px phone
-                       5.5vw       → grows with the viewport
-                       max 5.5rem  → 88px
-
-     Keep the vw number and the rem number equal and the type stops growing
-     at exactly --page-max (100rem = 1600px), the same width the layout
-     stops growing: 5.5vw of 1600px is 88px, which is 5.5rem. */
-  --text-display: clamp(2.25rem, 5.5vw, 5.5rem);
+     "different size per device". Only the two ends are pinned. */
+  --text-display: clamp(1.75rem, 4vw, 2.5rem); /* 28px → 40px */
   /* Project titles — arbitrary content length, so a lower ceiling. */
-  --text-display-sm: clamp(2rem, 4vw, 4rem);
+  --text-display-sm: clamp(1.5rem, 3.5vw, 2rem); /* 24px → 32px */
   /* Reading measure. Past ~65 characters the eye loses the start of the
-     next line, which is what the page-max cap exists to prevent for the
-     layout and this prevents for prose. */
+     next line. Narrower than the column at body size, so it still bites. */
   --measure: 65ch;
 }
 
-/* Shell: margin-left pushes past the strip, padding-left adds the gap */
+/* Shell: one centred column, same gutter on both sides. */
 .t-shell {
   max-width: var(--page-max);
   margin-inline: auto;
-  padding-left: calc(var(--sidebar-w) + var(--ticker-gap));
+  padding-left: var(--gutter);
   padding-right: var(--gutter);
-}
-
-/* Fixed, so it cannot be centred by the parent — it tracks the same inset
-   the page uses instead. Owns its own left position; the component used to
-   set left-0, which pinned it to the viewport while the page moved in. */
-.t-sidebar {
-  left: var(--page-inset);
 }
 
 /* ── Fallback = Brasil · Dark (no ThemeProvider — data-flag+data-mode owns all) */
@@ -410,8 +381,8 @@ html {
    Media query handles all responsive overrides in one place.
 ──────────────────────────────────────────────────────────────────────────── */
 
-/* Hairline — starts at the right edge of the ticker strip, not x=0 */
-/* Nav — flex-wrap, left edge aligned with page content via --shell-pl */
+/* Nav — same column and gutters as .t-shell, so its left edge lines up
+   with the page content below it. */
 .t-nav {
   max-width: var(--page-max);
   margin-inline: auto;
@@ -421,7 +392,7 @@ html {
   flex-wrap: wrap;
   padding-top: 1.25rem;
   padding-bottom: 1.25rem;
-  padding-left: var(--shell-pl);
+  padding-left: var(--gutter);
   padding-right: var(--gutter);
   gap: 0.75rem 1.5rem;
 }
@@ -432,7 +403,7 @@ html {
   content: "";
   position: absolute;
   bottom: 0;
-  left: var(--shell-pl);
+  left: var(--gutter);
   right: var(--gutter);
   border-bottom: 1px solid var(--hairline);
 }
@@ -491,16 +462,6 @@ html {
     overflow-x: hidden;
   }
 
-  /* Hide the vertical ticker strip */
-  .t-sidebar {
-    display: none !important;
-  }
-
-  /* Hairline goes full width when ticker is hidden */
-  .t-hairline {
-    margin-left: 0;
-  }
-
   /* The project detail grid collapses here — no room left beside a 240px
      column once the page is this narrow. */
   .t-detail-body {
@@ -508,21 +469,10 @@ html {
     gap: 3rem;
   }
 
-  /* Reset shell padding — no more ticker offset, just the gutter on both sides */
-  .t-shell {
-    padding-left: var(--gutter) !important;
-    padding-right: var(--gutter) !important;
-  }
-
   /* Nav: row 1 = brand + links, row 2 = controls */
   .t-nav {
     padding: 0.875rem var(--gutter);
     gap: 0.5rem 1rem;
-  }
-  /* Inset hairline tracks the gutter-only padding on mobile */
-  .t-nav::after {
-    left: var(--gutter);
-    right: var(--gutter);
   }
   /* Row 1 is the brand with the flag, mode and language controls beside it;
      row 2 is the links. Squeezed against the right edge on one row they

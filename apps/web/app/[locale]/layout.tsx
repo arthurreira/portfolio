@@ -2,13 +2,9 @@ import { Geist, JetBrains_Mono } from "next/font/google"
 import { hasLocale, NextIntlClientProvider } from 'next-intl'
 import { getMessages, setRequestLocale } from 'next-intl/server'
 import { notFound } from 'next/navigation'
-import SmoothScroll from "@/lib/SmoothScroll"
 import "@arthurreira/ui/globals.css"
 import { cn } from "@arthurreira/ui"
 import { SiteNav } from "@/components/organisms/site-nav"
-import { VerticalTicker } from "@/components/atoms/vertical-ticker"
-import { ScrollProgress } from "@/components/atoms/scroll-progress"
-import { BackToTop } from "@/components/atoms/back-to-top"
 import { SiteChat } from "@/components/organisms/site-chat"
 import { Analytics } from "@vercel/analytics/next"
 import { routing } from "@/i18n/routing"
@@ -71,17 +67,10 @@ export default async function RootLayout({
       </head>
       <body>
         <NextIntlClientProvider messages={messages}>
-          <ScrollProgress />
-          <VerticalTicker />
           <SiteNav />
           <Analytics />
-          <SmoothScroll>
-          <main>
-            {children}
-          </main>
-          <BackToTop />
-        </SmoothScroll>
-        <SiteChat />
+          <main>{children}</main>
+          <SiteChat />
         </NextIntlClientProvider>
       </body>
     </html>
