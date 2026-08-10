@@ -1,6 +1,13 @@
 {
   "hero": {
-    "greeting": "Morjens, mä oon",
+    "greetings": [
+      "Morjens",
+      "Moi",
+      "Terve",
+      "Moikka",
+      "Hei"
+    ],
+    "intro": "mä oon",
     "firstName": "Arthur",
     "lastName": "Ferreira.",
     "heroSubtitle": "Junior Software Developer · Kuopio, Suomi · Infra & Cloud"

@@ -1,6 +1,12 @@
 {
   "hero": {
-    "greeting": "Hi, I'm",
+    "greetings": [
+      "Hi",
+      "Hey",
+      "Hello",
+      "Yo"
+    ],
+    "intro": "I'm",
     "firstName": "Arthur",
     "lastName": "Ferreira.",
     "heroSubtitle": "Junior Software Developer · Kuopio, Finland · Cloud & Web"

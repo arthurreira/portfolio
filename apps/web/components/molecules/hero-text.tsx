@@ -3,9 +3,13 @@
 import { motion } from "motion/react"
 import { cn } from "@arthurreira/ui"
 import { LINE_EASE, LineReveal } from "@/components/molecules/line-reveal"
+import { RotatingGreeting } from "@/components/molecules/rotating-greeting"
 
 interface HeroTextProps {
-  greeting: string
+  /** The locale's ways of saying hello; the first word cycles through them. */
+  greetings: string[]
+  /** What follows the greeting on the same line — "I'm", "mä oon", "eu sou". */
+  intro: string
   firstName: string
   lastName: string
   subtitle: string
@@ -20,7 +24,8 @@ const LINE_STAGGER_S = 0.09
  * carries the hierarchy; the only motion is the one-time reveal on load.
  */
 export function HeroText({
-  greeting,
+  greetings,
+  intro,
   firstName,
   lastName,
   subtitle,
@@ -30,7 +35,9 @@ export function HeroText({
     <div className={cn("flex flex-col gap-4 sm:gap-6", className)}>
       {/* h1 gets font-black leading-[0.92] tracking-[-0.045em] from @layer base */}
       <h1 className="text-display">
-        <LineReveal className="text-foreground">{greeting}</LineReveal>
+        <LineReveal className="text-foreground">
+          <RotatingGreeting greetings={greetings} />, {intro}
+        </LineReveal>
         <LineReveal className="text-foreground" delay={LINE_STAGGER_S}>
           {firstName}
         </LineReveal>

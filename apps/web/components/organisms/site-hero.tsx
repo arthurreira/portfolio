@@ -1,7 +1,8 @@
 import { HeroText } from "@/components/molecules/hero-text"
 
 interface SiteHeroProps {
-  greeting: string
+  greetings: string[]
+  intro: string
   firstName: string
   lastName: string
   subtitle: string
@@ -17,7 +18,8 @@ interface SiteHeroProps {
  * sections under it.
  */
 export function SiteHero({
-  greeting,
+  greetings,
+  intro,
   firstName,
   lastName,
   subtitle,
@@ -25,7 +27,8 @@ export function SiteHero({
   return (
     <section className="pt-16">
       <HeroText
-        greeting={greeting}
+        greetings={greetings}
+        intro={intro}
         firstName={firstName}
         lastName={lastName}
         subtitle={subtitle}

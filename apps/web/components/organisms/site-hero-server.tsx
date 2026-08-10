@@ -6,7 +6,9 @@ export async function SiteHeroServer() {
 
   return (
     <SiteHero
-      greeting={t("greeting")}
+      // t.raw, not t: this key is an array of greetings, not a string.
+      greetings={t.raw("greetings") as string[]}
+      intro={t("intro")}
       firstName={t("firstName")}
       lastName={t("lastName")}
       subtitle={t("heroSubtitle")}

@@ -1,6 +1,13 @@
 {
   "hero": {
-    "greeting": "Opa, eu sou",
+    "greetings": [
+      "E aí",
+      "Opa",
+      "Oi",
+      "Salve",
+      "Uai"
+    ],
+    "intro": "eu sou",
     "firstName": "Arthur",
     "lastName": "Ferreira.",
     "heroSubtitle": "Desenvolvedor de Software Júnior · Kuopio, Finlândia · Cloud & Web"

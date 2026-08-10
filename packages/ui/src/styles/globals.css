@@ -11,17 +11,20 @@
   --typeset-font-body: var(--font-ui);
   --typeset-font-heading: var(--font-ui);
   --typeset-font-mono: var(--font-mono);
-  --typeset-size: 18px;
-  --typeset-leading: 1.9;
-  --typeset-flow: 2em;
+  /* 18px/1.9 was sized for prose running the full width of a 1600px canvas.
+     In a 44rem column it reads as oversized, and at that size --measure never
+     bites because 65ch is wider than the column. 16px puts the measure back
+     in charge of the line length. */
+  --typeset-size: 16px;
+  --typeset-leading: 1.75;
+  --typeset-flow: 1.6em;
 }
 
-/* Typeset multiplies its size by 1.125 below 48rem, which would put the prose
-   at 20px on a phone — larger than on desktop. Stepping the token down lands
-   mobile on the same 18px, still above the 16px minimum for body text. */
+/* Typeset multiplies its size by 1.125 below 48rem, so the token has to be
+   stepped down to land mobile on the same 16px rather than 18px. */
 @media (max-width: 48rem) {
   .typeset-notes {
-    --typeset-size: 16px;
+    --typeset-size: 14.2px;
     --typeset-leading: 1.7;
     --typeset-flow: 1.5em;
   }
