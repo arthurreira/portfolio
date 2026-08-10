@@ -8,10 +8,6 @@ import { Badge, cn } from "@arthurreira/ui"
 import type { ProjectStatus, ProjectRole } from "@arthurreira/content/types"
 import { LabeledRow } from "@/components/molecules/labeled-row"
 import { LineReveal } from "@/components/molecules/line-reveal"
-import {
-  ProximityArea,
-  ProximityLetters,
-} from "@/components/molecules/proximity-text"
 import { MdxContent } from "@/components/molecules/mdx-content"
 import { Reveal } from "@/components/molecules/reveal"
 import { ArrowLeftIcon, ArrowRightIcon } from "@phosphor-icons/react"
@@ -118,13 +114,9 @@ export function SiteProjectDetail({
         </Reveal>
 
         {/* font-black / leading / tracking from @layer base h1 */}
-        <ProximityArea>
-          <h1 className="mb-6 text-[clamp(2.5rem,8vw,7rem)] text-foreground">
-            <LineReveal>
-              <ProximityLetters text={title} />
-            </LineReveal>
-          </h1>
-        </ProximityArea>
+        <h1 className="mb-6 text-[clamp(2.5rem,8vw,7rem)] text-foreground">
+          <LineReveal>{title}</LineReveal>
+        </h1>
 
         <Reveal once={false} delay={HEADER_META_DELAY_S}>
           {techStack?.length ? (

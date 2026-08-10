@@ -3,10 +3,6 @@
 import { motion } from "motion/react"
 import { cn } from "@arthurreira/ui"
 import { LINE_EASE, LineReveal } from "@/components/molecules/line-reveal"
-import {
-  ProximityArea,
-  ProximityLetters,
-} from "@/components/molecules/proximity-text"
 
 interface HeroTextProps {
   greeting: string
@@ -20,9 +16,8 @@ interface HeroTextProps {
 const LINE_STAGGER_S = 0.09
 
 /**
- * Hero heading — staggered masked line entrance plus the proximity type
- * effect (letters near the cursor lift and shift color). Both behaviors are
- * the shared molecules also used by the page headers.
+ * Hero heading — staggered masked line entrance, and nothing else. The type
+ * carries the hierarchy; the only motion is the one-time reveal on load.
  */
 export function HeroText({
   greeting,
@@ -32,17 +27,15 @@ export function HeroText({
   className,
 }: HeroTextProps) {
   return (
-    <ProximityArea className={cn("flex flex-col gap-4 sm:gap-6", className)}>
+    <div className={cn("flex flex-col gap-4 sm:gap-6", className)}>
       {/* h1 gets font-black leading-[0.92] tracking-[-0.045em] from @layer base */}
       <h1 className="text-[clamp(3rem,11.5vw,11.5rem)]">
-        <LineReveal className="text-foreground">
-          <ProximityLetters text={greeting} />
-        </LineReveal>
+        <LineReveal className="text-foreground">{greeting}</LineReveal>
         <LineReveal className="text-foreground" delay={LINE_STAGGER_S}>
-          <ProximityLetters text={firstName} />
+          {firstName}
         </LineReveal>
         <LineReveal className="text-primary" delay={LINE_STAGGER_S * 2}>
-          <ProximityLetters text={lastName} tone="primary" />
+          {lastName}
         </LineReveal>
       </h1>
 
@@ -54,6 +47,6 @@ export function HeroText({
       >
         {subtitle}
       </motion.p>
-    </ProximityArea>
+    </div>
   )
 }

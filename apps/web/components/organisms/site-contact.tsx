@@ -3,10 +3,6 @@
 import { useTranslations } from "next-intl"
 import { ContactLink } from "@/components/atoms/contact-link"
 import { LineReveal } from "@/components/molecules/line-reveal"
-import {
-  ProximityArea,
-  ProximityLetters,
-} from "@/components/molecules/proximity-text"
 
 const LINKS = [
   { label: "arthur.ferreiramiran@gmail.com", href: "mailto:arthur.ferreiramiran@gmail.com" },
@@ -21,18 +17,12 @@ export function SiteContact() {
     <div className="t-shell flex min-h-screen flex-col justify-between bg-background pt-12">
       <div>
         {/* font-black / leading / tracking come from @layer base h1 */}
-        <ProximityArea>
-          <h1 className="mb-6 text-[clamp(3rem,11.5vw,11.5rem)]">
-            <LineReveal>
-              <span className="text-foreground">
-                <ProximityLetters text={`${t("heading1")} `} />
-              </span>
-              <span className="text-primary">
-                <ProximityLetters text={t("heading2")} tone="primary" />
-              </span>
-            </LineReveal>
-          </h1>
-        </ProximityArea>
+        <h1 className="mb-6 text-[clamp(3rem,11.5vw,11.5rem)]">
+          <LineReveal>
+            <span className="text-foreground">{t("heading1")} </span>
+            <span className="text-primary">{t("heading2")}</span>
+          </LineReveal>
+        </h1>
 
         <p className="mb-16 text-base text-muted-foreground">{t("openTo")}</p>
 

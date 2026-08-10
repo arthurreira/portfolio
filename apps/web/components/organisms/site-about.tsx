@@ -3,10 +3,6 @@ import { about } from "@arthurreira/content"
 import { Badge, Button, Separator } from "@arthurreira/ui"
 import { LabeledRow } from "@/components/molecules/labeled-row"
 import { LineReveal } from "@/components/molecules/line-reveal"
-import {
-  ProximityArea,
-  ProximityLetters,
-} from "@/components/molecules/proximity-text"
 import { MdxContent } from "@/components/molecules/mdx-content"
 import { Reveal } from "@/components/molecules/reveal"
 
@@ -68,16 +64,12 @@ export async function SiteAbout() {
           standing information rather than a sidebar competing with the prose. */}
 
       {/* font-black / leading / tracking come from the @layer base h1 */}
-      <ProximityArea>
-        <h1 className="mb-10 text-[clamp(2rem,11.5vw,11.5rem)]">
-          <LineReveal className="text-foreground">
-            <ProximityLetters text="Arthur" />
-          </LineReveal>
-          <LineReveal className="text-primary" delay={0.09}>
-            <ProximityLetters text="Ferreira Miranda." tone="primary" />
-          </LineReveal>
-        </h1>
-      </ProximityArea>
+      <h1 className="mb-10 text-[clamp(2rem,11.5vw,11.5rem)]">
+        <LineReveal className="text-foreground">Arthur</LineReveal>
+        <LineReveal className="text-primary" delay={0.09}>
+          Ferreira Miranda.
+        </LineReveal>
+      </h1>
 
  
       {aboutContent && (
