@@ -182,10 +182,11 @@ export function SiteNav() {
     >
       {revealOverlay}
       <div className="t-nav">
-        {/* Left — logo, in the viewport corner because .t-nav is full width */}
+        {/* Logo — lifted out of the row into the viewport corner by .t-brand,
+            so the links below can start on the page's own left edge. */}
         <NavLink
           href="/"
-          className="shrink-0 text-lg font-bold tracking-[-0.02em]"
+          className="t-brand shrink-0 text-lg font-bold tracking-[-0.02em]"
         >
           <RollingText text="arthurreira.dev" />
         </NavLink>
