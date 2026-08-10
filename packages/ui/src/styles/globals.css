@@ -454,17 +454,6 @@ html {
 }
 
 
-/* About — two-column layout */
-/* About cert rows — 4 columns */
-.t-cert-row {
-  display: grid;
-  grid-template-columns: 1fr auto auto auto;
-  gap: 1.5rem;
-  align-items: baseline;
-  border-top: 1px solid var(--border);
-  padding: 1.25rem 0;
-}
-
 /* Project detail — two-column body
    Medium: left capped at 42rem so sidebar sits flush to content
    Large (>1100px): left goes full 1fr — more screen, more content room  */
@@ -472,16 +461,26 @@ html {
    beside a 42rem body — a 960px minimum, which cannot fit inside a 44rem
    page, so the two-column grid had to go when the page narrowed. Two columns
    on a phone, four once there is room. */
+/* Standing facts — project meta and the about page's facts.
+   Two columns, never four. Four was written when the page was a 1600px
+   canvas; inside a 44rem column it leaves about 128px per cell, so
+   "Goalkeeper, Miesten Kolmonen" wraps onto three lines while "10+ years"
+   sits on one and the row goes ragged. One column on a phone for the same
+   reason.
+
+   Carries no margin of its own. It used to set `margin: 0 0 2.5rem`, and
+   this rule is unlayered while Tailwind's utilities live in @layer
+   utilities — unlayered always wins, so an `mt-16` on the element was
+   silently discarded. Spacing belongs to the caller. */
 .t-detail-meta {
   display: grid;
-  grid-template-columns: repeat(2, minmax(0, 1fr));
-  gap: 1.5rem 2rem;
-  margin: 0 0 2.5rem;
+  grid-template-columns: minmax(0, 1fr);
+  gap: 1.25rem 2rem;
 }
 
-@media (min-width: 48rem) {
+@media (min-width: 40rem) {
   .t-detail-meta {
-    grid-template-columns: repeat(4, minmax(0, 1fr));
+    grid-template-columns: repeat(2, minmax(0, 1fr));
   }
 }
 
@@ -530,13 +529,3 @@ html {
   }
 }
 
-/* ── Tablet ≤ 860 px — stack multi-column pages ──────────────────────── */
-/* ── Below Tailwind's sm (40rem) — cert row wraps name to own line ───── */
-@media (max-width: 40rem) {
-  .t-cert-row {
-    grid-template-columns: 1fr auto;
-  }
-  .t-cert-row .t-cert-name {
-    grid-column: 1 / -1;
-  }
-}

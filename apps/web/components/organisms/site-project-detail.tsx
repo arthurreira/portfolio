@@ -121,7 +121,7 @@ export function SiteProjectDetail({
         {/* Meta reads as a band under the title now that the page is one
             column — as a 240px right rail it had nowhere to go in a 44rem
             page, and the grid's 42rem + 240px minimum could never fit. */}
-        <dl className="t-detail-meta">
+        <dl className="t-detail-meta mb-10">
           {sidebarRows.map((row) => (
             <LabeledRow key={row.label} label={row.label}>
               {row.content}
