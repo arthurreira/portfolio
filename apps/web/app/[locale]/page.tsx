@@ -50,7 +50,9 @@ export default async function Page({
         </Link>
       </section>
 
-      <SiteCertifications />
+      {/* Summary here, full list on /about — the same block twice would give
+          nobody a reason to open the second one. */}
+      <SiteCertifications variant="summary" />
     </div>
   )
 }

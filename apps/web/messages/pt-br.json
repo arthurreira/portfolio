@@ -36,7 +36,9 @@
   },
   "certs": {
     "label": "Certificações",
-    "inProgress": "Em andamento"
+    "inProgress": "Em andamento",
+    "plusInProgress": "{count} em andamento",
+    "seeAll": "Todas as certificações"
   },
   "nav": {
     "projects": "Projetos",

@@ -428,6 +428,20 @@ html {
   gap: 0.75rem;
 }
 
+/* The brand leaves the centred column and sits in the real top-left corner of
+   the viewport. Only above 75rem: a 44rem column plus a gutter on each side
+   leaves no room beside it on anything narrower, so below this it stays in
+   flow at the column's left edge like everything else.
+   .t-links is flex:1 / justify-end, so the freed space costs the links
+   nothing — they stay against the right edge of the column. */
+@media (min-width: 75rem) {
+  .t-brand {
+    position: absolute;
+    top: 1.25rem;
+    left: var(--gutter);
+  }
+}
+
 /* About — two-column layout */
 /* About cert rows — 4 columns */
 .t-cert-row {

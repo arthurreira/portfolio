@@ -36,7 +36,9 @@
   },
   "certs": {
     "label": "Sertifikaatit",
-    "inProgress": "Kesken"
+    "inProgress": "Kesken",
+    "plusInProgress": "{count} kesken",
+    "seeAll": "Kaikki sertifikaatit"
   },
   "nav": {
     "projects": "Projektit",

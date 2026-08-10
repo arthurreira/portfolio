@@ -181,8 +181,13 @@ export function SiteNav() {
     >
       {revealOverlay}
       <div className="t-nav">
-        {/* Left — logo */}
-        <NavLink href="/" className="shrink-0 text-lg font-bold tracking-[-0.02em]">
+        {/* Left — logo. Breaks out to the viewport corner above 75rem; see
+            .t-brand. Positioned against the <header>, which owns the relative
+            context, not against the centred .t-nav. */}
+        <NavLink
+          href="/"
+          className="t-brand shrink-0 text-lg font-bold tracking-[-0.02em]"
+        >
           <RollingText text="arthurreira.dev" />
         </NavLink>
 
