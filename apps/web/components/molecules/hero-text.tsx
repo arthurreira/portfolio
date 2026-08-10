@@ -29,7 +29,7 @@ export function HeroText({
   return (
     <div className={cn("flex flex-col gap-4 sm:gap-6", className)}>
       {/* h1 gets font-black leading-[0.92] tracking-[-0.045em] from @layer base */}
-      <h1 className="text-[clamp(3rem,11.5vw,11.5rem)]">
+      <h1 className="text-display">
         <LineReveal className="text-foreground">{greeting}</LineReveal>
         <LineReveal className="text-foreground" delay={LINE_STAGGER_S}>
           {firstName}

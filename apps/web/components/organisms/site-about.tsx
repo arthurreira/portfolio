@@ -1,6 +1,6 @@
 import { getTranslations, getLocale } from "next-intl/server"
 import { about } from "@arthurreira/content"
-import { Badge, Button, Separator } from "@arthurreira/ui"
+import { Badge, Button } from "@arthurreira/ui"
 import { LabeledRow } from "@/components/molecules/labeled-row"
 import { LineReveal } from "@/components/molecules/line-reveal"
 import { MdxContent } from "@/components/molecules/mdx-content"
@@ -58,20 +58,19 @@ export async function SiteAbout() {
   ]
 
   return (
-    <section className="t-shell pt-12 ">
+    <section className="t-shell pt-12">
       {/* One column the whole way down. The facts used to sit in a 280px rail
           beside the bio; as a row of four under it they read as one band of
           standing information rather than a sidebar competing with the prose. */}
 
       {/* font-black / leading / tracking come from the @layer base h1 */}
-      <h1 className="mb-10 text-[clamp(2rem,11.5vw,11.5rem)]">
+      <h1 className="mb-10 text-display">
         <LineReveal className="text-foreground">Arthur</LineReveal>
         <LineReveal className="text-primary" delay={0.09}>
           Ferreira Miranda.
         </LineReveal>
       </h1>
 
- 
       {aboutContent && (
         <div className="typeset typeset-notes">
           <MdxContent code={aboutContent.content} variant="typeset" />
@@ -135,16 +134,19 @@ export async function SiteAbout() {
             </li>
           ))}
         </ul>
-        <Separator  />
       </section>
 
+      {/* Its own section, so it gets the same mt-20 rhythm as the certs block.
+          It used to sit outside that section with no spacing of its own. */}
+      <section className="mt-20">
         <Reveal once={false}>
           <LabeledRow label={t("langLabel")}>
-            <p className="text-base leading-relaxed ">
+            <p className="max-w-measure text-base leading-relaxed">
               {t("langText")}
             </p>
           </LabeledRow>
         </Reveal>
+      </section>
     </section>
   )
 }

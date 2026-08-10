@@ -36,6 +36,10 @@
   /* Without limits the browser will break after two letters — "Si-vuston" —
      which costs more readability than the ragged edge it fixes. */
   hyphenate-limit-chars: 8 4 4;
+  /* The prose used to run the full shell width — about 130 characters per
+     line on a wide screen. The page-max cap does not help here: it stops the
+     layout growing, not the paragraph. */
+  max-width: var(--measure);
 }
 
 /* Same idea in the chat panel, at a size that fits 384px. Separate preset
@@ -190,6 +194,18 @@
 }
 
 @layer components {
+  /* Page display heading — pairs with the @layer base h1 weight/tracking */
+  .text-display {
+    font-size: var(--text-display);
+  }
+  /* Project detail titles */
+  .text-display-sm {
+    font-size: var(--text-display-sm);
+  }
+  /* Caps a block of prose at a readable line length */
+  .max-w-measure {
+    max-width: var(--measure);
+  }
   /* Amber uppercase label — PROJECT [01], CERTIFICATIONS, etc. */
   .label-caps {
     @apply font-ui text-[11px] tracking-[0.22em] text-primary uppercase;
@@ -247,6 +263,28 @@ html {
      screen is wider than the page; the fixed ticker reads it so it stays
      against the content rather than the glass. */
   --page-inset: max(0px, calc((100vw - var(--page-max)) / 2));
+
+  /* ── Type scale ───────────────────────────────────────────────────────
+     One clamp per role, declared here instead of inline per component.
+     Five headings each carried their own copy of these numbers, and the
+     about page had already drifted to a different minimum.
+
+     clamp() scales continuously with the viewport, so there is no
+     breakpoint where the type jumps — the 11.5vw middle term IS the
+     "different size per device". Only the two ends are pinned:
+
+       --text-display  min 2.5rem  → 40px on a 390px phone
+                       11.5vw      → grows with the viewport
+                       max 11.5rem → 184px, reached exactly at --page-max
+                                     (100rem), so it stops growing at the
+                                     same width the page stops growing. */
+  --text-display: clamp(2.5rem, 11.5vw, 11.5rem);
+  /* Project titles — arbitrary content length, so a lower ceiling. */
+  --text-display-sm: clamp(2rem, 8vw, 7rem);
+  /* Reading measure. Past ~65 characters the eye loses the start of the
+     next line, which is what the page-max cap exists to prevent for the
+     layout and this prevents for prose. */
+  --measure: 65ch;
 }
 
 /* Shell: margin-left pushes past the strip, padding-left adds the gap */

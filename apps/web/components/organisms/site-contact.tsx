@@ -17,7 +17,7 @@ export function SiteContact() {
     <div className="t-shell flex min-h-screen flex-col justify-between bg-background pt-12">
       <div>
         {/* font-black / leading / tracking come from @layer base h1 */}
-        <h1 className="mb-6 text-[clamp(3rem,11.5vw,11.5rem)]">
+        <h1 className="text-display mb-6">
           <LineReveal>
             <span className="text-foreground">{t("heading1")} </span>
             <span className="text-primary">{t("heading2")}</span>

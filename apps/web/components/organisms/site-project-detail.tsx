@@ -114,7 +114,7 @@ export function SiteProjectDetail({
         </Reveal>
 
         {/* font-black / leading / tracking from @layer base h1 */}
-        <h1 className="mb-6 text-[clamp(2.5rem,8vw,7rem)] text-foreground">
+        <h1 className="text-display-sm mb-6 text-foreground">
           <LineReveal>{title}</LineReveal>
         </h1>
 

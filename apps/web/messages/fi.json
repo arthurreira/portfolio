@@ -1,15 +1,9 @@
 {
   "hero": {
-    "heading": "Morjens, mä oon Arthuri",
     "greeting": "Morjens, mä oon",
     "firstName": "Arthur",
     "lastName": "Ferreira.",
-    "heroSubtitle": "Junior Software Developer · Kuopio, Suomi · Infra & Cloud",
-    "buttons": {
-      "contact": "Ota yhteyttä",
-      "projects": "Projektit",
-      "about": "Tietoa minusta"
-    }
+    "heroSubtitle": "Junior Software Developer · Kuopio, Suomi · Infra & Cloud"
   },
   "projects": {
     "title": "Projektit",
@@ -28,11 +22,8 @@
     "offClockValue": "Maalivahti, miesten Kolmonen",
     "certsLabel": "Sertifikaatit",
     "verified": "Vahvistettu",
-    "creativeLabel": "Mikä sun uskonto oikeen on?",
-    "creativeTitle": "Mikä sun uskonto oikeen on?",
-    "creativeText": "Kaikki. Helluntailainen? Joo, tuun toimeen. Luterilainen? Sekin käy! Ortodoksi? Ei hitto sentään, männöö sekin... Lestadiolainen? Rakastan! Ai oot jehova? Joo joo, tiistaina oli hyvät jutut. Ai Buda tuli kuvioihin — onks se ok? On, sekin menee. Kuule, se joka ei vihaa ketään, niin kaikki rakastaa sitä. Se on ykköslaki kaupunginvaltuutetun asiantuntijoille. Rikkaasta köyhään, mustasta valkoiseen, isosta pieneen — kättelen jokaista ihan samalla lailla. Tiiätkö miks? Koska se joka ampuu joka suuntaan, osuu johki. Ja ku osuu — osuu kunnolla. Ai mut sä oot vielä nuori… Mulla on ihan älytön henkinen suoja — luterilaisen jumalan, pyhimyksen, Budan, hindun kautta. En tiiä mistä kaikkialta, mut kaikki rakastaa mua siellä... ",
     "langLabel": "Kieli & Persoona",
-    "langText": "Monikielisellä ihmisellä persoonallisuus vaihtuu huomaamatta käytettävän kielen mukana. Tämä johtuu siitä, että eri kielet kantavat mukanaan erilaisia kulttuurisia yhteyksiä ja tapoja nähdä maailmaa, esimerkiksi rakenteiden ja sanastojen kautta. Tähän vaikuttavat myös kieleen ja kulttuuriin liitetyt ominaisuudet, joita kohti puhujan persoonallisuus aina hieman siirtyy.🙂‍↕️"
+    "langText": "Monikielisellä ihmisellä persoonallisuus vaihtuu huomaamatta käytettävän kielen mukana. Tämä johtuu siitä, että eri kielet kantavat mukanaan erilaisia kulttuurisia yhteyksiä ja tapoja nähdä maailmaa, esimerkiksi rakenteiden ja sanastojen kautta. Tähän vaikuttavat myös kieleen ja kulttuuriin liitetyt ominaisuudet, joita kohti puhujan persoonallisuus aina hieman siirtyy."
   },
   "nav": {
     "projects": "Projektit",
