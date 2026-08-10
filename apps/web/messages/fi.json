@@ -48,7 +48,8 @@
   "certs": {
     "label": "Sertifikaatit",
     "inProgress": "Kesken",
-    "seeAll": "Kaikki sertifikaatit"
+    "seeAll": "Kaikki sertifikaatit",
+    "latestLabel": "Viimeisimpiä sertifikaattejani"
   },
   "nav": {
     "projects": "Projektit",

@@ -1,15 +1,17 @@
 import { getTranslations } from "next-intl/server"
 import { profile } from "@arthurreira/content"
-import { Badge, cn } from "@arthurreira/ui"
+import { Badge } from "@arthurreira/ui"
 import { Link } from "@/i18n/routing"
+
+/** How many recent certifications the home page shows. */
+const SUMMARY_LIMIT = 3
 
 interface SiteCertificationsProps {
   /**
-   * "full" spells out every certification name with its code — the about
-   * page. "summary" shows the codes alone and links through to that list —
-   * the home page, where repeating the full names would be the same content
-   * twice with no reason to click. Both render as rows, so the block matches
-   * the project list above it.
+   * "full" is the whole list, in-progress included — the about page.
+   * "summary" is the most recently earned few, in-progress excluded — the
+   * home page, where the point is what has been achieved lately. Both render
+   * as rows, so the block matches the project list above it.
    */
   variant?: "full" | "summary"
 }
@@ -21,20 +23,29 @@ interface SiteCertificationsProps {
  * different names, and placeholder Credly URLs with no badge id.
  *
  * Language-neutral on purpose. Certification names and codes are proper nouns;
- * only the status labels are translated.
+ * only the status label is translated.
  */
 export async function SiteCertifications({
   variant = "full",
 }: SiteCertificationsProps) {
   const t = await getTranslations("certs")
-  const certs = profile.certifications
-
-  // Summary shows the codes only; the full list spells the names out.
   const isSummary = variant === "summary"
+
+  // Sorted by year rather than filtered to one — "certifications earned in
+  // 2026" would silently empty this section on 1 January. Most-recent-first
+  // keeps "latest" true without a year hardcoded anywhere.
+  const certs = isSummary
+    ? profile.certifications
+        .filter((c) => c.status === "certified")
+        .sort((a, b) => (b.earned ?? 0) - (a.earned ?? 0))
+        .slice(0, SUMMARY_LIMIT)
+    : profile.certifications
 
   return (
     <section>
-      <h2 className="section-label mb-4">{t("label")}</h2>
+      <h2 className="section-label mb-4">
+        {isSummary ? t("latestLabel") : t("label")}
+      </h2>
 
       <ul className="list-none p-0">
         {certs.map((cert) => (
@@ -42,34 +53,31 @@ export async function SiteCertifications({
             key={cert.code ?? cert.name}
             className="flex items-baseline gap-4 border-t border-border px-2 py-3"
           >
-            {/* Earned ones sit in the muted tone; the in-progress one keeps
-                the full foreground colour so the eye lands on the only row
-                that is actually news. Same trick as the project rows, where
-                weight rather than colour marks the featured one. */}
-            <span
-              className={cn(
-                "flex-1 text-base",
-                cert.status === "in-progress"
-                  ? "text-foreground"
-                  : "text-muted-foreground"
-              )}
-            >
-              {isSummary ? (cert.code ?? cert.name) : cert.name}
+            <span className="flex-1 text-base text-foreground">
+              {cert.name}
             </span>
 
-            {!isSummary && cert.code && (
+            {cert.code && (
               <span className="shrink-0 text-sm text-muted-foreground tabular-nums">
                 {cert.code}
               </span>
             )}
 
-            {/* Only the in-progress ones need a marker — "certified" is the
-                default state and a badge on every row would be noise. */}
-            {cert.status === "in-progress" && (
-              <Badge variant="secondary" className="shrink-0">
-                {t("inProgress")}
-              </Badge>
-            )}
+            {/* The year on the summary, where recency is the whole point.
+                On the full list the in-progress badge is the only marker
+                worth carrying — "certified" is the default state, and a
+                badge on every row would be noise. */}
+            {isSummary
+              ? cert.earned && (
+                  <span className="w-12 shrink-0 text-right text-sm text-muted-foreground tabular-nums">
+                    {cert.earned}
+                  </span>
+                )
+              : cert.status === "in-progress" && (
+                  <Badge variant="secondary" className="shrink-0">
+                    {t("inProgress")}
+                  </Badge>
+                )}
           </li>
         ))}
       </ul>

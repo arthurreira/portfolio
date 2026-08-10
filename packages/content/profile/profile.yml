@@ -12,18 +12,23 @@ education:
     note: Graduated. Finnish name Savon ammattiopisto.
 
 certifications:
+  # `earned` is the year passed. The site sorts on it to show the latest
+  # first, so no year needs hardcoding anywhere in the UI.
   - name: Microsoft Azure Fundamentals
     code: AZ-900
     issuer: Microsoft
     status: certified
+    earned: 2026
   - name: AWS Certified Cloud Practitioner
     code: CLF-C02
     issuer: Amazon Web Services
     status: certified
+    earned: 2026
   - name: AWS Certified AI Practitioner
     code: AIF-C01
     issuer: Amazon Web Services
     status: certified
+    earned: 2026
   - name: Microsoft Azure AI Fundamentals
     code: AI-900
     issuer: Microsoft

@@ -47,7 +47,8 @@
   "certs": {
     "label": "Certifications",
     "inProgress": "In progress",
-    "seeAll": "All certifications"
+    "seeAll": "All certifications",
+    "latestLabel": "Some of my latest certifications"
   },
   "nav": {
     "projects": "Projects",

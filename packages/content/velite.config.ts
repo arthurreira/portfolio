@@ -62,6 +62,10 @@ export default defineConfig({
             code: s.string().optional(),
             issuer: s.string(),
             status: s.enum(CERTIFICATION_STATUSES),
+            // Year passed. Optional because an in-progress one has not been
+            // earned yet; the site sorts on it to show the most recent first,
+            // which keeps "latest" true without a hardcoded year to update.
+            earned: s.number().int().optional(),
           })
         ),
         skills: s.array(
