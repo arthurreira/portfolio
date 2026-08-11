@@ -3,3 +3,6 @@
  * paragraphs under it, and the page transition.
  */
 export const LINE_EASE = [0.22, 1, 0.36, 1] as const
+
+/** Delay between segments of a heading starting to decode. */
+export const SEGMENT_STAGGER_S = 0.12

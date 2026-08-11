@@ -36,7 +36,13 @@
   },
   "about": {
     "title": "Sobre mim",
-    "roleLine": "Engenheiro de software · Cloud & DevSecOps",
+    "roleLead": "Engenheiro de software ·",
+    "specialisms": [
+      "Cloud",
+      "DevSecOps",
+      "RAG & AI",
+      "Terraform"
+    ],
     "originLabel": "De onde sou",
     "originValue": "Brasil → Finlândia",
     "yearsLabel": "Na Finlândia",

@@ -3,7 +3,7 @@
 import type { ReactNode } from "react"
 import { motion } from "motion/react"
 import { cn } from "@arthurreira/ui"
-import { LINE_EASE } from "@/lib/motion"
+import { LINE_EASE, SEGMENT_STAGGER_S } from "@/lib/motion"
 import { ScrambleText } from "@/components/molecules/scramble-text"
 import { RotatingWord } from "@/components/molecules/rotating-word"
 
@@ -26,7 +26,6 @@ interface HeroTextProps {
 }
 
 /** Delay (s) between each segment of the heading starting to decode. */
-const SEGMENT_STAGGER_S = 0.12
 
 /** Hero heading — the name decodes out of noise on load, segment by segment. */
 export function HeroText({
