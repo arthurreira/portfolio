@@ -27,13 +27,15 @@ certifications:
     issuer: Amazon Web Services
     status: certified
     earned: 2026
-    # url: https://www.credly.com/badges/<badge-id>/public_url
+    expires: 2029
+    url: https://www.credly.com/badges/85407006-1f0c-4d0d-af85-6bd3b30dfc02/public_url
   - name: AWS Certified AI Practitioner
     code: AIF-C01
     issuer: Amazon Web Services
     status: certified
     earned: 2026
-    # url: https://www.credly.com/badges/<badge-id>/public_url
+    expires: 2029
+    url: https://www.credly.com/badges/dba5e353-4dbc-4a1b-8c4a-0b9b619e8fc0/public_url
   - name: Microsoft Azure AI Fundamentals
     code: AI-900
     issuer: Microsoft

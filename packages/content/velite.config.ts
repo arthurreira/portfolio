@@ -70,6 +70,8 @@ export default defineConfig({
             // has no badge yet — without it the row renders as plain text
             // rather than a link that goes nowhere.
             url: s.string().url().optional(),
+            // Year the credential lapses. Shown as a range beside `earned`.
+            expires: s.number().int().optional(),
           })
         ),
         skills: s.array(

@@ -54,11 +54,18 @@ export async function SiteCertifications({
                       {cert.earned}
                     </span>
                   )
-                : cert.status === "in-progress" && (
-                    <Badge variant="secondary" className="shrink-0">
-                      {t("inProgress")}
-                    </Badge>
-                  )}
+                : cert.status === "in-progress"
+                  ? (
+                      <Badge variant="secondary" className="shrink-0">
+                        {t("inProgress")}
+                      </Badge>
+                    )
+                  : cert.earned && (
+                      <span className="shrink-0 text-sm text-muted-foreground tabular-nums">
+                        {cert.earned}
+                        {cert.expires && `–${cert.expires}`}
+                      </span>
+                    )}
             </>
           )
 
