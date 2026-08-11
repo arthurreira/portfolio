@@ -38,10 +38,16 @@
     "title": "Sobre mim",
     "roleLead": "Engenheiro de software ·",
     "specialisms": [
-      "Cloud",
-      "DevSecOps",
-      "RAG & AI",
-      "Terraform"
+    "Cloud",
+    "Arquitetura Cloud",
+    "DevSecOps",
+    "Engenharia de Plataformas",
+    "RAG & IA",
+    "LLMOps & Agentes de IA",
+    "Infra como Código",
+    "Kubernetes & Containers",
+    "Observabilidade",
+    "Segurança Cibernética"
     ],
     "originLabel": "De onde sou",
     "originValue": "Brasil → Finlândia",
@@ -71,7 +77,14 @@
     "title": "Contato",
     "heading1": "Vamos",
     "heading2": "Conversar.",
-    "openTo": "Aberto a trabalho, freelance e um café.",
+    "openToLead": "Aberto a",
+    "openToItems": [
+      "colaboração open-source",
+      "projetos freelance",
+      "um café",
+      "ideias novas",
+      "programação em par"
+    ],
     "responseTime": "Normalmente responde dentro de 24 horas",
     "email": "E-mail",
     "github": "GitHub",

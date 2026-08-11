@@ -38,9 +38,15 @@
     "roleLead": "Software Engineer ·",
     "specialisms": [
       "Cloud",
+      "Cloud Architecture",
       "DevSecOps",
+      "Platform Engineering",
       "RAG & AI",
-      "Terraform"
+      "LLMOps & AI Agents",
+      "Infra as Code",
+      "Kubernetes & Containers",
+      "Observability",
+      "Cybersecurity"
     ],
     "originLabel": "From",
     "originValue": "Brazil → Finland",
@@ -70,7 +76,14 @@
     "title": "Contact",
     "heading1": "Let's",
     "heading2": "Talk.",
-    "openTo": "Open to open-source opportunities, freelance projects, and coffee chats.",
+    "openToLead": "Open to",
+    "openToItems": [
+      "open-source collaboration",
+      "freelance projects",
+      "coffee chats",
+      "new ideas",
+      "pair programming"
+    ],
     "responseTime": "Usually responds within 24 hours",
     "email": "Email",
     "github": "GitHub",
