@@ -18,7 +18,10 @@ import { splitFollowups } from "@/lib/followups"
 
 interface ChatMessageProps {
   message: UIMessage
-  /** Suggested next questions render only on the newest reply; older ones are stale. */
+  /**
+   * Suggested next questions render only on the newest reply; older ones are
+   * stale.
+   */
   showFollowups?: boolean
   onFollowup?: (question: string) => void
   /** This reply came from the fallback model rather than the usual one. */
@@ -28,15 +31,7 @@ interface ChatMessageProps {
   copiedLabel?: string
 }
 
-/**
- * A single chat turn.
- *
- * AI SDK messages carry an array of parts rather than a string, so the text
- * parts are joined here — the assistant streams them in as it generates.
- *
- * Only the assistant gets an avatar. The visitor has no identity in this chat,
- * so a generic icon on every other row would be noise in a narrow panel.
- */
+/** A single chat turn. */
 export function ChatMessage({
   message,
   showFollowups = false,
@@ -79,18 +74,13 @@ export function ChatMessage({
       {!isUser && (
         <MessageAvatar>
           <Avatar>
-            {/* Decorative — the message text carries the meaning. */}
             <AvatarImage src="/images/minavr.png" alt="" />
             <AvatarFallback>AF</AvatarFallback>
           </Avatar>
         </MessageAvatar>
       )}
       <MessageContent>
-        {/* `muted` is only 5% opacity in these themes — invisible on a card.
-            `outline` reads clearly against the elevated panel surface. */}
         <Bubble variant={isUser ? "default" : "outline"}>
-          {/* The visitor's own text is shown verbatim; only the model's reply
-              is markdown, and only it gets parsed. */}
           <BubbleContent>
             {isUser ? (
               <span className="whitespace-pre-wrap">{answer}</span>
@@ -100,9 +90,6 @@ export function ChatMessage({
           </BubbleContent>
         </Bubble>
 
-        {/* Stated plainly rather than as a warning: the answer is real and
-            usable, it just came from the weaker model. Alarming styling here
-            would misrepresent a working chat as a broken one. */}
         {!isUser && (copyLabel || isDegraded) && (
           <MessageFooter className="flex items-center gap-2">
             {copyLabel && (

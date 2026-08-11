@@ -14,30 +14,23 @@ import {
 export interface Env extends ChatConfigEnv {
   /** Set with `wrangler secret put ANTHROPIC_API_KEY`. */
   ANTHROPIC_API_KEY: string
-  /** Turnstile secret. Set with `wrangler secret put TURNSTILE_SECRET_KEY`. */
+  /** Turnstile secret. */
   TURNSTILE_SECRET_KEY?: string
-  /**
-   * "true" in deployed builds (set in wrangler.jsonc). Turns a missing
-   * Turnstile secret into a hard failure instead of a silently skipped check.
-   */
+  /** "true" in deployed builds (set in wrangler.jsonc). */
   REQUIRE_TURNSTILE?: string
-  /** Optional comma-separated CORS allowlist; defaults to the known site origins. */
+  /**
+   * Optional comma-separated CORS allowlist; defaults to the known site
+   * origins.
+   */
   ALLOWED_ORIGINS?: string
   /** Per-IP throttle, declared in wrangler.jsonc. */
   CHAT_RATE_LIMIT?: RateLimit
-  /**
-   * Workers AI, used to answer when Anthropic is unavailable. Optional so the
-   * Worker still runs in a local session started without the binding.
-   */
+  /** Workers AI, used to answer when Anthropic is unavailable. */
   AI?: Ai
 }
 
 /**
  * Reads the body, refusing anything past the byte ceiling before parsing it.
- *
- * `content-length` is checked first because it is free, but it is a claim by
- * the client rather than a fact — a chunked request may not send one at all.
- * The decoded size is therefore checked again for real.
  */
 const readBoundedJson = async (request: Request): Promise<unknown | symbol> => {
   const declared = Number(request.headers.get("content-length"))
@@ -78,10 +71,7 @@ const handleChat = async (
   const { messages, turnstileToken, model, locale: requestedLocale } =
     validated.data
 
-  // Guards run cheapest first. The throttle is a local counter with no network
-  // call, so it goes ahead of Turnstile — a flood costs nothing to refuse.
-  // cf-connecting-ip is set by Cloudflare and cannot be spoofed by the client;
-  // the fallback only matters when running outside their network.
+  // Guards run cheapest first.
   if (env.CHAT_RATE_LIMIT) {
     const key = request.headers.get("cf-connecting-ip") ?? "unknown"
     const { success } = await env.CHAT_RATE_LIMIT.limit({ key })
@@ -94,9 +84,7 @@ const handleChat = async (
     }
   }
 
-  // Refuse rather than quietly run unprotected. Skipping the check is a local
-  // convenience; in a deployed build a missing secret is a misconfiguration,
-  // and one nobody would notice if it just disabled bot protection.
+  // Refuse rather than quietly run unprotected.
   if (env.REQUIRE_TURNSTILE === "true" && !env.TURNSTILE_SECRET_KEY) {
     console.error(
       "REQUIRE_TURNSTILE is set but TURNSTILE_SECRET_KEY is missing"
@@ -106,9 +94,7 @@ const handleChat = async (
 
   if (env.TURNSTILE_SECRET_KEY) {
     if (!turnstileToken) {
-      // Logged, not silent. Without this the rejection appears in the tail as a
-      // plain "Ok" with no error line, and a browser-side Turnstile failure
-      // looks identical to the Worker working perfectly.
+      // Logged, not silent.
       console.error("rejected: no turnstile token in request")
       return json({ success: false, error: "turnstile_missing" }, 403, cors)
     }

@@ -18,11 +18,7 @@ import {
   InputGroupTextarea,
 } from "@arthurreira/ui/client"
 
-/**
- * Mirrors MAX_CHARS_PER_MESSAGE in the Worker's validation. Duplicated rather
- * than shared because the Worker is the authority and must reject regardless of
- * what the browser believes — this copy only exists to warn before that happens.
- */
+/** Mirrors MAX_CHARS_PER_MESSAGE in the Worker's validation. */
 const MAX_CHARS = 4_000
 /** How close to the ceiling before the count is worth showing. */
 const WARN_FROM = 3_500
@@ -31,7 +27,9 @@ interface ChatComposerProps {
   onSend: (text: string) => void
   /** Aborts the in-flight reply. */
   onStop: () => void
-  /** True while a reply is streaming — the send button becomes a stop button. */
+  /**
+   * True while a reply is streaming — the send button becomes a stop button.
+   */
   isBusy?: boolean
   placeholder: string
   sendLabel: string
@@ -42,12 +40,7 @@ interface ChatComposerProps {
   autoFocus?: boolean
 }
 
-/**
- * The chat input. Owns only the draft text; sending is the parent's concern.
- *
- * Enter sends, Shift+Enter adds a newline — the convention people expect from
- * a chat box, and the reason this is a textarea rather than an input.
- */
+/** The chat input. */
 export function ChatComposer({
   onSend,
   onStop,
@@ -103,10 +96,6 @@ export function ChatComposer({
         <InputGroupAddon align="block-end">
           {leading}
 
-          {/* Silent until it matters. The Worker refuses an over-long message,
-              and being told that after pressing send is far worse than seeing
-              it coming. InputGroupText is the group's own slot for this, so it
-              sits on the button row instead of below the field. */}
           {draft.length >= WARN_FROM && (
             <InputGroupText
               aria-live="polite"
@@ -116,8 +105,6 @@ export function ChatComposer({
             </InputGroupText>
           )}
 
-          {/* While streaming the same slot becomes a stop control — cancelling
-              a long answer is the one thing that saves API credits mid-flight. */}
           {isBusy ? (
             <InputGroupButton
               size="icon-sm"

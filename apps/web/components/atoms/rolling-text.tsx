@@ -10,8 +10,7 @@ interface RollingTextProps {
 /**
  * Letter-roll hover — each letter slides up out of a clipped line while an
  * accent-colored copy rolls in from below, staggered across the word (and
- * rolls back on leave). Pure CSS transitions, so it stays server-safe.
- * Screen readers get the intact text; the letter spans are decorative.
+ * rolls back on leave).
  */
 export function RollingText({
   text,

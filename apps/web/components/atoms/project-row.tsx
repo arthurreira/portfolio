@@ -9,15 +9,7 @@ interface ProjectRowProps {
   description?: string
 }
 
-/**
- * One project as a border-top row: index, title, year. The same shape as the
- * certification rows, so the two sections on the home page read as one system
- * rather than two designs.
- *
- * The trailing → is gone. It repeated what the row already says — the whole
- * row is a link, and the title moving and changing colour on hover carries
- * that on its own.
- */
+/** One project as a border-top row: index, title, year. */
 export function ProjectRow({
   title,
   year,

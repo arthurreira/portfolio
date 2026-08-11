@@ -16,20 +16,7 @@ interface ChatTurnstileProps {
   widgetRef: RefObject<TurnstileInstance | null>
 }
 
-/**
- * The bot check, sized and themed to sit inside the chat panel.
- *
- * Most visitors never see this: in `interaction-only` appearance the widget
- * renders nothing and contributes no height until Cloudflare decides it needs
- * a human. The border and padding are therefore applied only while a challenge
- * is actually on screen — otherwise the panel would carry an empty strip above
- * the composer for everyone.
- *
- * Height is deliberately *not* forced to zero in the idle state. Clipping the
- * widget ourselves risks hiding a challenge in the window between Cloudflare
- * showing it and our state catching up, and a challenge nobody can see is a
- * chat nobody can use.
- */
+/** The bot check, sized and themed to sit inside the chat panel. */
 export function ChatTurnstile({ widgetRef }: ChatTurnstileProps) {
   const locale = useLocale()
   const { resolvedTheme } = useTheme()

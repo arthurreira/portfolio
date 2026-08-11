@@ -9,7 +9,10 @@ const FALLBACK_ORIGINS = [
   "http://127.0.0.1:3000",
 ]
 
-/** Parses the comma-separated ALLOWED_ORIGINS binding, falling back to the known site origins. */
+/**
+ * Parses the comma-separated ALLOWED_ORIGINS binding, falling back to the
+ * known site origins.
+ */
 export const parseAllowedOrigins = (configured?: string): string[] => {
   const entries = (configured ?? "")
     .split(",")

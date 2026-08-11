@@ -7,23 +7,13 @@ import { Link } from "@/i18n/routing"
 const SUMMARY_LIMIT = 3
 
 interface SiteCertificationsProps {
-  /**
-   * "full" is the whole list, in-progress included — the about page.
-   * "summary" is the most recently earned few, in-progress excluded — the
-   * home page, where the point is what has been achieved lately. Both render
-   * as rows, so the block matches the project list above it.
-   */
+  /** "full" is the whole list, in-progress included — the about page. */
   variant?: "full" | "summary"
 }
 
 /**
  * Certifications, read from `packages/content/profile/*.yml` — the same source
- * the chat Worker uses. The about page used to carry its own hardcoded copy of
- * this list, which had already drifted: three entries instead of four,
- * different names, and placeholder Credly URLs with no badge id.
- *
- * Language-neutral on purpose. Certification names and codes are proper nouns;
- * only the status label is translated.
+ * the chat Worker uses.
  */
 export async function SiteCertifications({
   variant = "full",
@@ -31,9 +21,6 @@ export async function SiteCertifications({
   const t = await getTranslations("certs")
   const isSummary = variant === "summary"
 
-  // Sorted by year rather than filtered to one — "certifications earned in
-  // 2026" would silently empty this section on 1 January. Most-recent-first
-  // keeps "latest" true without a year hardcoded anywhere.
   const certs = isSummary
     ? profile.certifications
         .filter((c) => c.status === "certified")
@@ -63,10 +50,6 @@ export async function SiteCertifications({
               </span>
             )}
 
-            {/* The year on the summary, where recency is the whole point.
-                On the full list the in-progress badge is the only marker
-                worth carrying — "certified" is the default state, and a
-                badge on every row would be noise. */}
             {isSummary
               ? cert.earned && (
                   <span className="w-12 shrink-0 text-right text-sm text-muted-foreground tabular-nums">

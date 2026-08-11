@@ -18,10 +18,7 @@ export function FlagFill({ flag }: { flag: string }) {
   )
 }
 
-/**
- * Flag that fills an entire p-0 nav pill edge-to-edge (no padding box).
- * A div sidesteps the pill's default square SVG sizing entirely.
- */
+/** Flag that fills an entire p-0 nav pill edge-to-edge (no padding box). */
 export function FlagPillFill({ flag }: { flag: string }) {
   return (
     <div

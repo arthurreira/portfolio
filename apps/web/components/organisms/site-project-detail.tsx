@@ -2,14 +2,13 @@
 
 import type { ReactNode } from "react"
 import Image from "next/image"
-import { Link } from "@/i18n/routing"
 import { useTranslations } from "next-intl"
 import { Badge } from "@arthurreira/ui"
 import type { ProjectStatus, ProjectRole } from "@arthurreira/content/types"
 import { LabeledRow } from "@/components/molecules/labeled-row"
 import { ScrambleText } from "@/components/molecules/scramble-text"
 import { MdxContent } from "@/components/molecules/mdx-content"
-import { ArrowLeftIcon, ArrowRightIcon } from "@phosphor-icons/react"
+import { ArrowRightIcon } from "@phosphor-icons/react"
 
 export interface SiteProjectDetailProps {
   title: string
@@ -92,11 +91,7 @@ export function SiteProjectDetail({
   return (
     <div className="min-h-screen bg-background">
 
-      <div className="t-shell pt-10 pb-24">
-        {/* The kicker used to read "PROJECT [03]" above the title. The number
-            was decoration, and once it goes the word only repeats what the
-            heading underneath already says — so the title carries the line on
-            its own, with the year opposite it. */}
+      <div className="mx-auto max-w-page px-gutter pt-10 pb-24">
         <div className="mb-6 flex items-baseline justify-between gap-4">
           <h1 className="text-display-sm text-foreground">
             <ScrambleText text={title} />
@@ -118,10 +113,7 @@ export function SiteProjectDetail({
           </div>
         ) : null}
 
-        {/* Meta reads as a band under the title now that the page is one
-            column — as a 240px right rail it had nowhere to go in a 44rem
-            page, and the grid's 42rem + 240px minimum could never fit. */}
-        <dl className="t-detail-meta mb-10">
+        <dl className="grid grid-cols-1 gap-x-8 gap-y-5 sm:grid-cols-2 mb-10">
           {sidebarRows.map((row) => (
             <LabeledRow key={row.label} label={row.label}>
               {row.content}
@@ -132,8 +124,6 @@ export function SiteProjectDetail({
         {/* This wrapper is load-bearing: <Image fill> and the striped
             placeholder are both absolutely positioned, so they need the
             relative box and the aspect ratio to have any size at all. */}
-        {/* 16/7 was 300px tall in a 44rem column before a word of the body.
-            21/9 keeps the panorama and gives ~60px back. */}
         <div className="relative my-8 aspect-[21/9] w-full overflow-hidden bg-muted">
           {coverImage ? (
             <Image
@@ -165,15 +155,6 @@ export function SiteProjectDetail({
           <MdxContent code={content} variant="typeset" />
         </div>
 
-        <div className="mt-16 border-t border-border pt-8">
-          <Link
-            href="/projects"
-            className="inline-flex items-center gap-2 text-base text-foreground no-underline transition-colors hover:text-primary"
-          >
-            <ArrowLeftIcon weight="bold" className="size-4" />
-            {t("back")}
-          </Link>
-        </div>
       </div>
     </div>
   )

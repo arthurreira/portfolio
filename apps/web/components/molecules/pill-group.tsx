@@ -10,7 +10,7 @@ interface Option {
   label: ReactNode
   /** Accessible name — required when `label` is an icon rather than text. */
   ariaLabel?: string
-  /** Extra classes for this option's button (e.g. p-0 for full-bleed flags). */
+  /** Extra classes for this option's button (e.g. */
   className?: string
 }
 

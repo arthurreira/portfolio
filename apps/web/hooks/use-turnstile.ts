@@ -23,9 +23,7 @@ const TOKEN_TIMEOUT_MS = 15_000
 export function useTurnstile() {
   const ref = useRef<TurnstileInstance | null>(null)
   // Surfaced so the panel can say the bot check failed rather than showing the
-  // generic error. The widget fails for reasons the visitor can act on —
-  // content blockers and DNS-level privacy relays both break it, and Safari
-  // hits this far more often than Chrome.
+  // generic error.
   const [hasFailed, setHasFailed] = useState(false)
 
   const getToken = useCallback(async (): Promise<string | undefined> => {

@@ -19,16 +19,7 @@ function maxRadius({ x, y }: Origin): number {
   )
 }
 
-/**
- * Full-screen circular reveal that grows from a click origin, then fades.
- *
- * A clip-path circle expands from `origin` until it covers the screen (the new
- * state is committed via `apply` at that peak), then the overlay fades out to
- * reveal it — the same growing motion as the light/dark mode toggle.
- *
- * `run` takes the overlay content (a flag, a solid panel, …) so one instance
- * serves multiple controls. Pure WAAPI + state, no animation libraries.
- */
+/** Full-screen circular reveal that grows from a click origin, then fades. */
 export function useCircleReveal() {
   const overlayRef = useRef<HTMLDivElement>(null)
   const [fill, setFill] = useState<{ node: ReactNode } | null>(null)

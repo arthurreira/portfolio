@@ -5,20 +5,11 @@ import { SiteSwitchers } from "@/components/organisms/site-switchers"
 
 const GITHUB_URL = "https://github.com/arthurreira"
 
-/**
- * The switchers and the GitHub link. They are global controls, so they need to
- * exist on every page — putting them in the hero would have made them
- * home-page-only, leaving no way to change language from /projects.
- *
- * GitHub sits here rather than in the top-right corner: the nav is navigation,
- * and this is an external destination.
- */
+/** The switchers and the GitHub link. */
 export function SiteFooter() {
   return (
-    <footer className="t-shell pt-16 pb-10">
-      <div className="flex flex-wrap items-center justify-between gap-4 border-t border-border pt-6">
-        <SiteSwitchers />
-
+    <footer className="mx-auto max-w-page px-gutter pb-10">
+      <div className="flex flex-row items-center justify-between gap-4 border-t border-border pt-6">
         <a
           href={GITHUB_URL}
           target="_blank"
@@ -28,6 +19,8 @@ export function SiteFooter() {
         >
           <GithubLogoIcon weight="fill" className="size-5" />
         </a>
+
+        <SiteSwitchers />
       </div>
     </footer>
   )

@@ -5,8 +5,7 @@ import { motion, MotionConfig } from "motion/react"
 
 /**
  * App Router `template` re-mounts on every navigation, so this gives each page
- * a fresh enter transition (fade + slight rise). `reducedMotion="user"` honors
- * the OS "reduce motion" setting.
+ * a fresh enter transition (fade + slight rise).
  */
 export default function Template({ children }: { children: ReactNode }) {
   return (

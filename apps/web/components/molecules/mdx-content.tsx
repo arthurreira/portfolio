@@ -53,8 +53,7 @@ const shared = {
 
 /**
  * Body typography lives in inline styles here, which beat any stylesheet — so
- * a `.typeset` wrapper has no effect until these are gone. This variant drops the
- * styling entirely, letting typeset own the prose.
+ * a `.typeset` wrapper has no effect until these are gone.
  */
 const { strong: _strong, a: _a, ...structural } = shared
 
@@ -73,7 +72,7 @@ type MdxComponents = typeof shared | typeof typesetComponents
 
 type MdxComponent = React.ComponentType<{ components: MdxComponents }>
 
-/** Evaluates the Velite-compiled MDX bundle. Returns null (and logs) on failure. */
+/** Evaluates the Velite-compiled MDX bundle. */
 function evaluateMdx(code: string): MdxComponent | null {
   try {
     const fn = new Function(code)

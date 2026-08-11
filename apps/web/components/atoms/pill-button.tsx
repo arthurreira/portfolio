@@ -5,8 +5,6 @@ interface PillButtonProps extends React.ComponentProps<typeof Button> {
 }
 
 // Thin wrapper over the shadcn Button.
-// Active → variant="default" (solid primary), inactive → variant="pill" (transparent).
-// aria-pressed kept for accessibility (screen readers announce toggle state).
 export function PillButton({ active, ...props }: PillButtonProps) {
   return (
     <Button

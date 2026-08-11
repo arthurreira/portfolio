@@ -21,18 +21,12 @@ const MAX_VISIBLE_PAGES = 7
 
 interface ProjectListProps {
   projects: SiteProject[]
-  /** Enlarges the first row and shows its description. Off on the home page,
-   *  where the section is already a short curated list. */
+  /** Enlarges the first row and shows its description. */
   emphasiseFirst?: boolean
   /** Off on the home page, which shows a fixed three. */
   paginate?: boolean
 }
 
-/**
- * Page numbers to render, with `null` marking an ellipsis. Always keeps the
- * first and last page reachable plus the current one's neighbours, so the
- * strip never grows past MAX_VISIBLE_PAGES slots however long the list gets.
- */
 function pageWindow(current: number, total: number): (number | null)[] {
   if (total <= MAX_VISIBLE_PAGES) {
     return Array.from({ length: total }, (_, i) => i + 1)
@@ -47,8 +41,6 @@ function pageWindow(current: number, total: number): (number | null)[] {
   })
 }
 
-/** Plain rows, no motion. Paginated on the projects page — 21 projects is a
- *  long scroll — and unpaginated on the home page's curated three. */
 export function ProjectList({
   projects,
   emphasiseFirst = true,
@@ -64,9 +56,8 @@ export function ProjectList({
     ? projects.slice((page - 1) * PAGE_SIZE, page * PAGE_SIZE)
     : projects
 
-  // Buttons, not links: /projects is statically prerendered, and reading the
-  // page from a search param would opt the whole route into dynamic
-  // rendering. The tradeoff is that a page is not deep-linkable.
+  // Buttons, not links: a ?page param would opt the route out of static
+  // prerendering. The cost is that a page is not deep-linkable.
   function goTo(next: number) {
     setPage(Math.min(Math.max(next, 1), totalPages))
   }
