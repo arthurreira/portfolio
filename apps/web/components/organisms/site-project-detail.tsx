@@ -91,7 +91,7 @@ export function SiteProjectDetail({
   return (
     <div className="min-h-screen bg-background">
 
-      <div className="t-shell pt-10 pb-24">
+      <div className="mx-auto max-w-page px-gutter pt-10 pb-24">
         <div className="mb-6 flex items-baseline justify-between gap-4">
           <h1 className="text-display-sm text-foreground">
             <ScrambleText text={title} />
@@ -113,7 +113,7 @@ export function SiteProjectDetail({
           </div>
         ) : null}
 
-        <dl className="t-detail-meta mb-10">
+        <dl className="grid grid-cols-1 gap-x-8 gap-y-5 sm:grid-cols-2 mb-10">
           {sidebarRows.map((row) => (
             <LabeledRow key={row.label} label={row.label}>
               {row.content}

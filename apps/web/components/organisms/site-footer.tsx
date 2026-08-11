@@ -8,7 +8,7 @@ const GITHUB_URL = "https://github.com/arthurreira"
 /** The switchers and the GitHub link. */
 export function SiteFooter() {
   return (
-    <footer className="t-shell pb-10">
+    <footer className="mx-auto max-w-page px-gutter pb-10">
       <div className="flex flex-row items-center justify-between gap-4 border-t border-border pt-6">
         <a
           href={GITHUB_URL}

@@ -28,7 +28,7 @@ export function SiteProjects({
     heading.match(/^(.*?)([.!?…]*)$/) ?? []
 
   return (
-    <div className="t-shell pt-16 pb-24">
+    <div className="mx-auto max-w-page px-gutter pt-16 pb-24">
       <div className="flex flex-row justify-between items-baseline gap-4">
         <h1 className="text-display mb-2">
           <ScrambleText text={body} className="text-foreground" />

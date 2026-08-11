@@ -33,7 +33,7 @@ export default async function Page({
     }))
 
   return (
-    <div className="t-shell flex flex-col gap-20 pb-24">
+    <div className="mx-auto max-w-page px-gutter flex flex-col gap-20 pb-24">
       <SiteHeroServer />
 
       <section>

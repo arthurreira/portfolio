@@ -7,8 +7,6 @@
 
 /* Typeset preset for long-form rendered markdown. Fonts come from the Next
    font variables declared on <html> in apps/web. */
-/* Layered so Tailwind utilities can override these. Unlayered CSS beats
-   anything in a layer, which silently ate an mt-16 on .t-detail-meta. */
 @layer components {
   .typeset-notes {
     --typeset-font-body: var(--font-ui);
@@ -69,6 +67,13 @@
 @source "../components/**/*.{ts,tsx}";
 @source "../hooks/**/*.{ts,tsx}";
 @source "../lib/**/*.{ts,tsx}";
+@theme {
+  /* The page column and its edge padding. Declared here rather than in :root
+     so Tailwind generates max-w-page and px-gutter from them. */
+  --container-page: 44rem;
+  --spacing-gutter: clamp(24px, 4vw, 56px);
+}
+
 @theme inline {
   --font-heading: var(--font-mono);
   --color-sidebar-ring: var(--sidebar-ring);
@@ -262,16 +267,11 @@ html {
 :root {
   /* Geist, loaded in the web app. The fallbacks only cover the first paint. */
   --font-ui: var(--font-geist), "Helvetica Neue", Arial, sans-serif;
-  --gutter: clamp(24px, 4vw, 56px); /* padding on both edges */
 
-  /* The page is one centred column, not a full-bleed canvas. Everything
-     else here follows from that: a 704px column has no room for a left
-     rail, and display type has to come down to stay in proportion.
-
-     This used to be 100rem with a fixed ticker strip offsetting the left
-     edge, which is why --sidebar-w, --ticker-gap, --shell-pl and
-     --page-inset existed. All four are gone with the strip. */
-  --page-max: 44rem;
+  /* Aliases so CSS can keep reading the short names. The values live in
+     @theme, where Tailwind turns them into max-w-page and px-gutter. */
+  --gutter: var(--spacing-gutter);
+  --page-max: var(--container-page);
 
   /* ── Type scale ───────────────────────────────────────────────────────
      One clamp per role, declared here instead of inline per component.
@@ -292,17 +292,6 @@ html {
   --measure: 65ch;
 }
 
-/* Shell: one centred column, same gutter on both sides. */
-/* Layered so Tailwind utilities can override these. Unlayered CSS beats
-   anything in a layer, which silently ate an mt-16 on .t-detail-meta. */
-@layer components {
-  .t-shell {
-    max-width: var(--page-max);
-    margin-inline: auto;
-    padding-left: var(--gutter);
-    padding-right: var(--gutter);
-  }
-}
 
 /* ── Fallback = Brasil · Dark (no ThemeProvider — data-flag+data-mode owns all) */
 :root {
@@ -412,8 +401,6 @@ html {
 
 /* The nav row shares the page column, so it starts on exactly the same left
    edge as the hero and every section heading below it. */
-/* Layered so Tailwind utilities can override these. Unlayered CSS beats
-   anything in a layer, which silently ate an mt-16 on .t-detail-meta. */
 @layer components {
   .t-nav {
     max-width: var(--page-max);
@@ -468,48 +455,14 @@ html {
 }
 
 
-/* Project detail — two-column body
-   Medium: left capped at 42rem so sidebar sits flush to content
-   Large (>1100px): left goes full 1fr — more screen, more content room  */
-/* Project meta as a band under the title. It used to be a 240px right rail
-   beside a 42rem body — a 960px minimum, which cannot fit inside a 44rem
-   page, so the two-column grid had to go when the page narrowed. Two columns
-   on a phone, four once there is room. */
-/* Standing facts — project meta and the about page's facts.
-   Two columns, never four. Four was written when the page was a 1600px
-   canvas; inside a 44rem column it leaves about 128px per cell, so
-   "Goalkeeper, Miesten Kolmonen" wraps onto three lines while "10+ years"
-   sits on one and the row goes ragged. One column on a phone for the same
-   reason.
-
-   Carries no margin of its own. It used to set `margin: 0 0 2.5rem`, and
-   this rule is unlayered while Tailwind's utilities live in @layer
-   utilities — unlayered always wins, so an `mt-16` on the element was
-   silently discarded. Spacing belongs to the caller. */
-/* Layered so Tailwind utilities can override these. Unlayered CSS beats
-   anything in a layer, which silently ate an mt-16 on .t-detail-meta. */
-@layer components {
-  .t-detail-meta {
-    display: grid;
-    grid-template-columns: minmax(0, 1fr);
-    gap: 1.25rem 2rem;
-  }
-
-  @media (min-width: 40rem) {
-    .t-detail-meta {
-      grid-template-columns: repeat(2, minmax(0, 1fr));
-    }
-  }
-}
-
 /* ── Below Tailwind's lg (64rem) ─────────────────────────────────────────
    Ticker hides, nav wraps, shell drops the ticker offset, and both grids
    collapse — all at one width. These used to be split across 900px and
    860px while components used Tailwind's own scale, so the layout changed
    in stages and never looked settled between them.
 ──────────────────────────────────────────────────────────────────────── */
-/* Layered so Tailwind utilities can override these. Unlayered CSS beats
-   anything in a layer, which silently ate an mt-16 on .t-detail-meta. */
+/* Layered so Tailwind utilities can override these — unlayered CSS beats
+   anything in a layer, whatever its specificity. */
 @layer components {
   @media (max-width: 64rem) {
     body {

@@ -24,7 +24,7 @@ export function SiteContact() {
   const t = useTranslations("contact")
 
   return (
-    <div className="t-shell pt-16 pb-24">
+    <div className="mx-auto max-w-page px-gutter pt-16 pb-24">
       <h1 className="text-display mb-4">
         <ScrambleText text={t("heading1")} className="text-foreground" />{" "}
         <ScrambleText

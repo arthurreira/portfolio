@@ -20,7 +20,7 @@ export async function SiteAbout() {
   ]
 
   return (
-    <section className="t-shell pt-16">
+    <section className="mx-auto max-w-page px-gutter pt-16">
       <h1 className="text-display">
         <ScrambleText text="Arthur" className="text-foreground" />{" "}
         <ScrambleText
@@ -38,7 +38,7 @@ export async function SiteAbout() {
         </div>
       )}
 
-      <dl className="t-detail-meta mt-6">
+      <dl className="grid grid-cols-1 gap-x-8 gap-y-5 sm:grid-cols-2 mt-6">
         {facts.map((fact) => (
           // dt and dd are each a grid item; without a wrapper they land in
           // adjacent cells instead of stacking.
