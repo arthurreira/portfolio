@@ -20,18 +20,16 @@ export default async function ProjectDetailPage({
   const { locale, slug } = await params
   setRequestLocale(locale)
 
-  const sorted = projects
-    .filter((p) => p.locale === locale)
-    .sort((a, b) => Number(b.featured) - Number(a.featured))
-
-  const index = sorted.findIndex((p) => p.slug === slug)
-  const project = sorted[index]
+  // Plain lookup: the list order used to matter because the header showed a
+  // "[03]" position, and it no longer does.
+  const project = projects.find(
+    (p) => p.locale === locale && p.slug === slug
+  )
 
   if (!project) notFound()
 
   return (
     <SiteProjectDetail
-      index={index + 1}
       title={project.title}
       description={project.description}
       techStack={project.techStack}

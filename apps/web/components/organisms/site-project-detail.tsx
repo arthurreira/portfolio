@@ -4,25 +4,14 @@ import type { ReactNode } from "react"
 import Image from "next/image"
 import { Link } from "@/i18n/routing"
 import { useTranslations } from "next-intl"
-import { Badge, cn } from "@arthurreira/ui"
+import { Badge } from "@arthurreira/ui"
 import type { ProjectStatus, ProjectRole } from "@arthurreira/content/types"
 import { LabeledRow } from "@/components/molecules/labeled-row"
-import { LineReveal } from "@/components/molecules/line-reveal"
-import {
-  ProximityArea,
-  ProximityLetters,
-} from "@/components/molecules/proximity-text"
+import { ScrambleText } from "@/components/molecules/scramble-text"
 import { MdxContent } from "@/components/molecules/mdx-content"
-import { Reveal } from "@/components/molecules/reveal"
 import { ArrowLeftIcon, ArrowRightIcon } from "@phosphor-icons/react"
 
-/** Entrance delay (s) for the header meta block, after the title unmasks. */
-const HEADER_META_DELAY_S = 0.12
-/** Stagger (s) between sidebar row reveals. */
-const SIDEBAR_STAGGER_S = 0.06
-
 export interface SiteProjectDetailProps {
-  index: number
   title: string
   description: string
   techStack?: string[]
@@ -37,11 +26,10 @@ export interface SiteProjectDetailProps {
 }
 
 export function SiteProjectDetail({
-  index, title, techStack, year, status, role, highlight,
+  title, techStack, year, status, role, highlight,
   url, githubRepo, coverImage, content,
 }: SiteProjectDetailProps) {
   const t   = useTranslations("project")
-  const num = String(index).padStart(2, "0")
 
   function resolveRole(): string {
     // Professional projects with an explicit role → show the role
@@ -104,51 +92,57 @@ export function SiteProjectDetail({
   return (
     <div className="min-h-screen bg-background">
 
-      {/* Header */}
-      <div className="t-shell pt-10">
-        <Reveal once={false}>
-          <div className="mb-6 flex items-center justify-between gap-4">
-            <p className="label-caps mb-6">
-              {t("label")} [{num}]
-            </p>
-            <p className={cn("text-sm text-muted-foreground", highlight ? "mb-4" : "mb-8")}>{year}</p>
-
-          </div>
-          
-        </Reveal>
-
-        {/* font-black / leading / tracking from @layer base h1 */}
-        <ProximityArea>
-          <h1 className="mb-6 text-[clamp(2.5rem,8vw,7rem)] text-foreground">
-            <LineReveal>
-              <ProximityLetters text={title} />
-            </LineReveal>
+      <div className="t-shell pt-10 pb-24">
+        {/* The kicker used to read "PROJECT [03]" above the title. The number
+            was decoration, and once it goes the word only repeats what the
+            heading underneath already says — so the title carries the line on
+            its own, with the year opposite it. */}
+        <div className="mb-6 flex items-baseline justify-between gap-4">
+          <h1 className="text-display-sm text-foreground">
+            <ScrambleText text={title} />
           </h1>
-        </ProximityArea>
+          <p className="shrink-0 text-sm text-muted-foreground tabular-nums">
+            {year}
+          </p>
+        </div>
 
-        <Reveal once={false} delay={HEADER_META_DELAY_S}>
-          {techStack?.length ? (
-            <div className="mb-2 flex flex-wrap gap-2">
-              {techStack.map((tech) => (
-                <Badge
-                  key={tech}
-                  variant="default"
-                  className="whitespace-nowrap"
-                >
-                  {tech}
-                </Badge>
-              ))}
-            </div>
-          ): null}
-          
-        </Reveal>
+        {highlight && <p className="mb-6 text-primary">{highlight}</p>}
 
-        <div className="h-px bg-border" />
+        {techStack?.length ? (
+          <div className="mb-8 flex flex-wrap gap-2">
+            {techStack.map((tech) => (
+              <Badge key={tech} variant="default" className="whitespace-nowrap">
+                {tech}
+              </Badge>
+            ))}
+          </div>
+        ) : null}
 
-        {/* Cover image — striped placeholder uses --stripe token (flips in light mode) */}
-        <Reveal once={false} className="relative my-8 aspect-[16/7] w-full overflow-hidden bg-muted">
+        {/* Meta reads as a band under the title now that the page is one
+            column — as a 240px right rail it had nowhere to go in a 44rem
+            page, and the grid's 42rem + 240px minimum could never fit. */}
+        <dl className="t-detail-meta mb-10">
+          {sidebarRows.map((row) => (
+            <LabeledRow key={row.label} label={row.label}>
+              {row.content}
+            </LabeledRow>
+          ))}
+        </dl>
+
+        {/* This wrapper is load-bearing: <Image fill> and the striped
+            placeholder are both absolutely positioned, so they need the
+            relative box and the aspect ratio to have any size at all. */}
+        {/* 16/7 was 300px tall in a 44rem column before a word of the body.
+            21/9 keeps the panorama and gives ~60px back. */}
+        <div className="relative my-8 aspect-[21/9] w-full overflow-hidden bg-muted">
           {coverImage ? (
-            <Image src={coverImage} alt={title} fill className="object-cover" priority />
+            <Image
+              src={coverImage}
+              alt={title}
+              fill
+              className="object-cover"
+              priority
+            />
           ) : (
             <>
               <div
@@ -159,50 +153,26 @@ export function SiteProjectDetail({
                 }}
               />
               <div className="absolute inset-0 flex items-center justify-center">
-                <span className="text-[11px] uppercase tracking-[0.3em] text-muted-foreground opacity-50">
+                <span className="text-xs tracking-[0.3em] text-muted-foreground uppercase opacity-50">
                   {t("screenshotPlaceholder")}
                 </span>
               </div>
             </>
           )}
-          
-        </Reveal>
-        {highlight && (
-            <span className="text-primary">
-              {highlight}
-            </span>
-          )}
-      </div>
+        </div>
 
-      {/* Body */}
-      <div className="t-shell pb-24">
-        <div className="t-detail-body">
+        <div className="typeset typeset-notes">
+          <MdxContent code={content} variant="typeset" />
+        </div>
 
-          {/* Left — body starts with ## What I built, no redundant description paragraph */}
-          <Reveal once={false}>
-            <div className="typeset typeset-notes">
-              <MdxContent code={content} variant="typeset" />
-            </div>
-
-            <div className="mt-16 border-t border-border pt-8">
-              <Link
-                href="/projects"
-                className="inline-flex items-center gap-2 text-base text-foreground no-underline"
-              >
-                <ArrowLeftIcon weight="bold" className="size-4" />
-                {t("back")}
-              </Link>
-            </div>
-          </Reveal>
-
-          {/* Right — sidebar, rows reveal one after another */}
-          <div>
-            {sidebarRows.map((row, i) => (
-              <Reveal key={row.label} once={false} delay={i * SIDEBAR_STAGGER_S}>
-                <LabeledRow label={row.label}>{row.content}</LabeledRow>
-              </Reveal>
-            ))}
-          </div>
+        <div className="mt-16 border-t border-border pt-8">
+          <Link
+            href="/projects"
+            className="inline-flex items-center gap-2 text-base text-foreground no-underline transition-colors hover:text-primary"
+          >
+            <ArrowLeftIcon weight="bold" className="size-4" />
+            {t("back")}
+          </Link>
         </div>
       </div>
     </div>

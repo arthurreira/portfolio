@@ -21,7 +21,11 @@ const buttonVariants = cva(
         link: "text-primary underline-offset-4 hover:underline",
         // Toggle pill (inactive state). Pair with size="pill".
         // For the active state, switch to variant="default" from the parent.
-        pill: "border-border bg-transparent text-muted-foreground hover:border-primary hover:text-foreground",
+        // No border: the base class already sets `border border-transparent`,
+        // so the box keeps its size and the state reads from text colour
+        // alone. A visible outline on every toggle was more chrome than three
+        // small switchers need.
+        pill: "bg-transparent text-muted-foreground hover:text-foreground",
       },
       size: {
         default:

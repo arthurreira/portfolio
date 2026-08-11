@@ -1,51 +1,75 @@
 {
   "hero": {
-    "heading": "Morjens, mä oon Arthuri",
-    "greeting": "Morjens, mä oon",
+    "greetings": [
+      "Morjens",
+      "Moi",
+      "Terve",
+      "Moikka",
+      "Hei"
+    ],
+    "intro": "mä oon",
     "firstName": "Arthur",
     "lastName": "Ferreira.",
-    "heroSubtitle": "Junior Software Developer · Kuopio, Suomi · Infra & Cloud",
-    "buttons": {
-      "contact": "Ota yhteyttä",
-      "projects": "Projektit",
-      "about": "Tietoa minusta"
-    }
+    "heroSubtitle": "Työskentelen ohjelmistokehittäjänä yrityksessä <company>Nordcloud, an IBM company</company>.",
+    "cultureLine": "DevSecOps on kulttuuri –",
+    "devsecopsStages": [
+      "Suunnittelu",
+      "Koodaus",
+      "Buildaus",
+      "Testaus",
+      "Julkaisu",
+      "Käyttöönotto",
+      "Ylläpito",
+      "Monitorointi"
+    ]
+  },
+  "home": {
+    "selectedLabel": "Viimeisimmät projektit, joiden parissa olen työskennellyt",
+    "allProjects": "Kaikki projektit"
   },
   "projects": {
     "title": "Projektit",
     "heading": "Projektit.",
-    "countSuffix": "projektia"
+    "countSuffix": "projektia",
+    "previous": "Edellinen",
+    "next": "Seuraava"
   },
   "about": {
     "title": "Tietoa minusta",
-    "originLabel": "Kotoisin",
-    "originValue": "Brasilia → Suomi",
-    "yearsLabel": "Suomessa",
-    "yearsValue": "10+ vuotta",
+    "roleLine": "Ohjelmistokehittäjä",
+    "originLabel": "Mistä päin olen kotoisin",
+    "originValue": "Brasiliasta",
+    "yearsLabel": "Kauanko Suomessa",
+    "yearsValue": "Reilut 10 vuotta",
     "roleLabel": "Rooli",
-    "roleValue": "Junior @ Nordcloud",
+    "roleValue": "Junior Software Engineer at Nordcloud, an IBM company",
     "offClockLabel": "Vapaa-aika",
     "offClockValue": "Maalivahti, miesten Kolmonen",
-    "certsLabel": "Sertifikaatit",
-    "verified": "Vahvistettu",
-    "creativeLabel": "Mikä sun uskonto oikeen on?",
-    "creativeTitle": "Mikä sun uskonto oikeen on?",
-    "creativeText": "Kaikki. Helluntailainen? Joo, tuun toimeen. Luterilainen? Sekin käy! Ortodoksi? Ei hitto sentään, männöö sekin... Lestadiolainen? Rakastan! Ai oot jehova? Joo joo, tiistaina oli hyvät jutut. Ai Buda tuli kuvioihin — onks se ok? On, sekin menee. Kuule, se joka ei vihaa ketään, niin kaikki rakastaa sitä. Se on ykköslaki kaupunginvaltuutetun asiantuntijoille. Rikkaasta köyhään, mustasta valkoiseen, isosta pieneen — kättelen jokaista ihan samalla lailla. Tiiätkö miks? Koska se joka ampuu joka suuntaan, osuu johki. Ja ku osuu — osuu kunnolla. Ai mut sä oot vielä nuori… Mulla on ihan älytön henkinen suoja — luterilaisen jumalan, pyhimyksen, Budan, hindun kautta. En tiiä mistä kaikkialta, mut kaikki rakastaa mua siellä... ",
-    "langLabel": "Kieli & Persoona",
-    "langText": "Monikielisellä ihmisellä persoonallisuus vaihtuu huomaamatta käytettävän kielen mukana. Tämä johtuu siitä, että eri kielet kantavat mukanaan erilaisia kulttuurisia yhteyksiä ja tapoja nähdä maailmaa, esimerkiksi rakenteiden ja sanastojen kautta. Tähän vaikuttavat myös kieleen ja kulttuuriin liitetyt ominaisuudet, joita kohti puhujan persoonallisuus aina hieman siirtyy.🙂‍↕️"
+    "langLabel": "Yksi hauska juttu",
+    "langText": "Monikielisellä ihmisellä persoonallisuus vaihtuu huomaamatta käytettävän kielen mukana. Tämä johtuu siitä, että eri kielet kantavat mukanaan erilaisia kulttuurisia yhteyksiä ja tapoja nähdä maailmaa, esimerkiksi rakenteiden ja sanastojen kautta. Tähän vaikuttavat myös kieleen ja kulttuuriin liitetyt ominaisuudet, joita kohti puhujan persoonallisuus aina hieman siirtyy."
+  },
+  "certs": {
+    "label": "Sertifikaatit",
+    "inProgress": "Kesken",
+    "seeAll": "Kaikki sertifikaatit",
+    "latestLabel": "Viimeisimpiä sertifikaattejani"
   },
   "nav": {
     "projects": "Projektit",
     "about": "Tietoa",
     "contact": "Ota yhteyttä",
-    "backToTop": "Takaisin ylös"
+    "backToTop": "Takaisin ylös",
+    "back": "Takaisin"
   },
   "contact": {
     "title": "Ota yhteyttä",
     "heading1": "Otahan",
     "heading2": "yhteyttä? :)",
     "openTo": "Käytettävissä avoimen lähdekoodin projekteihin, freelance-töihin ja kahvikeskusteluihin.",
-    "responseTime": "Vastaan yleensä 24 tunnin kuluessa"
+    "responseTime": "Vastaan yleensä 24 tunnin kuluessa",
+    "email": "Sähköposti",
+    "github": "GitHub",
+    "linkedin": "LinkedIn"
   },
   "theme": {
     "dark": "Tumma",

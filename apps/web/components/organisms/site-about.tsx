@@ -1,50 +1,8 @@
 import { getTranslations, getLocale } from "next-intl/server"
 import { about } from "@arthurreira/content"
-import { Badge, Button, Separator } from "@arthurreira/ui"
-import { LabeledRow } from "@/components/molecules/labeled-row"
-import { LineReveal } from "@/components/molecules/line-reveal"
-import {
-  ProximityArea,
-  ProximityLetters,
-} from "@/components/molecules/proximity-text"
+import { ScrambleText } from "@/components/molecules/scramble-text"
 import { MdxContent } from "@/components/molecules/mdx-content"
-import { Reveal } from "@/components/molecules/reveal"
-
-// /ssr, not the package root: this is a server component, and the root entry
-// builds an IconContext with createContext, which server components cannot do.
-import { ArrowUpRightIcon } from "@phosphor-icons/react/ssr"
-
-/** Stagger (s) between cert / meta reveals. */
-const ROW_STAGGER_S = 0.06
-
-/**
- * Shared column template for the certification rows. Declared once so the
- * codes, years and links line up down the page — per-row grids would each
- * size their own columns and the edges would drift.
- */
-const CERT_COLUMNS =
-  "sm:grid-cols-[minmax(0,1fr)_6rem_7rem_auto] sm:items-center sm:gap-x-6"
-
-const CERTS = [
-  {
-    name: "AWS Cloud Practitioner",
-    code: "CLF-C02",
-    period: "2026–2029",
-    url: "https://www.credly.com/badges/",
-  },
-  {
-    name: "Azure Fundamentals",
-    code: "AZ-900",
-    period: "2026",
-    url: "https://learn.microsoft.com/en-us/credentials/",
-  },
-  {
-    name: "AWS AI Practitioner",
-    code: "AIF-C01",
-    period: "2026",
-    url: "https://www.credly.com/badges/",
-  },
-]
+import { SiteCertifications } from "@/components/organisms/site-certifications"
 
 export async function SiteAbout() {
   const [t, locale] = await Promise.all([
@@ -62,97 +20,60 @@ export async function SiteAbout() {
   ]
 
   return (
-    <section className="t-shell pt-12 ">
-      {/* One column the whole way down. The facts used to sit in a 280px rail
-          beside the bio; as a row of four under it they read as one band of
-          standing information rather than a sidebar competing with the prose. */}
+    <section className="t-shell pt-16">
+      <h1 className="text-display">
+        <ScrambleText text="Arthur" className="text-foreground" />{" "}
+        <ScrambleText
+          text="Ferreira Miranda."
+          delay={0.12}
+          className="text-primary"
+        />
+      </h1>
 
-      {/* font-black / leading / tracking come from the @layer base h1 */}
-      <ProximityArea>
-        <h1 className="mb-10 text-[clamp(2rem,11.5vw,11.5rem)]">
-          <LineReveal className="text-foreground">
-            <ProximityLetters text="Arthur" />
-          </LineReveal>
-          <LineReveal className="text-primary" delay={0.09}>
-            <ProximityLetters text="Ferreira Miranda." tone="primary" />
-          </LineReveal>
-        </h1>
-      </ProximityArea>
+      {/* Name over role, the way the hero puts the name over what it does.
+          Without it the page opened on a name and went straight into prose,
+          with nothing saying what the person is. */}
+      <p className="text-lead mb-6 text-muted-foreground">{t("roleLine")}</p>
 
- 
       {aboutContent && (
         <div className="typeset typeset-notes">
           <MdxContent code={aboutContent.content} variant="typeset" />
         </div>
       )}
 
-      {/* Standing facts — four columns wide, two on a phone. A definition list
-          because that is what a label over a value is. */}
-      <dl className="mt-16 grid grid-cols-2 gap-x-8 gap-y-8 lg:grid-cols-4">
-        {facts.map((fact, i) => (
-          <Reveal key={fact.label} once={false} delay={i * ROW_STAGGER_S}>
-            <dt className="label-caps mb-1.5">{fact.label}</dt>
-            <dd className="m-0 text-base font-bold text-foreground">
+      {/* Standing facts. Reuses the project page's meta grid rather than a
+          second four-column definition of its own — same shape, one rule. */}
+      <dl className="t-detail-meta mt-6">
+        {facts.map((fact) => (
+          // Fragment, not a div: a <dl> may only contain <dt>/<dd> pairs, and
+          // a wrapper element between them breaks that.
+          // One cell per pair. dt and dd are each their own grid item, so as
+          // direct children of the grid they landed in adjacent cells — label
+          // beside value instead of above it. A <div> grouping a dt/dd pair is
+          // valid inside a <dl>; a Fragment is not a box and creates no cell.
+          <div key={fact.label}>
+            <dt className="text-base text-foreground">{fact.label}</dt>
+            <dd className="m-0 mt-1 text-sm text-muted-foreground">
               {fact.value}
             </dd>
-          </Reveal>
+          </div>
         ))}
       </dl>
 
-      <section className="mt-20">
-        <Reveal once={false}>
-          <p className="label-caps mb-2">{t("certsLabel")}</p>
-        </Reveal>
+      <div className="mt-12">
+        <SiteCertifications />
+      </div>
 
-        <ul className="list-none p-0">
-          {CERTS.map((cert, i) => (
-            <li key={cert.code}>
-              <Reveal once={false} delay={i * ROW_STAGGER_S}>
-                {/* Stacks on a phone: four columns at that width would put the
-                    name on three lines and the link against the edge. */}
-                <div
-                  className={`grid grid-cols-1 gap-2 border-t border-border py-4 ${CERT_COLUMNS}`}
-                >
-                  <p className="font-semibold text-foreground">{cert.name}</p>
-                  <Badge variant="secondary" className="w-fit">
-                    {cert.code}
-                  </Badge>
-                  <span className="text-sm text-muted-foreground tabular-nums">
-                    {cert.period}
-                  </span>
-
-                  {/* size="sm" already sets the gap and sizes the icon, so it
-                      carries no margin or size class of its own. */}
-                  <Button
-                    asChild
-                    variant="ghost"
-                    size="sm"
-                    className="w-fit justify-self-start sm:justify-self-end"
-                  >
-                    <a
-                      href={cert.url}
-                      target="_blank"
-                      rel="noopener noreferrer"
-                    >
-                      {t("verified")}
-                      <ArrowUpRightIcon weight="bold" />
-                    </a>
-                  </Button>
-                </div>
-              </Reveal>
-            </li>
-          ))}
-        </ul>
-        <Separator  />
+      {/* Not a LabeledRow: that renders its label as label-caps — amber,
+          uppercase, wide tracking — which is right for a short meta tag like
+          "Role" but made this section heading shout in a different voice from
+          every other one on the site. */}
+      <section className="mt-16">
+        <h2 className="section-label mb-3">{t("langLabel")}</h2>
+        <p className="max-w-measure text-base leading-relaxed text-muted-foreground">
+          {t("langText")}
+        </p>
       </section>
-
-        <Reveal once={false}>
-          <LabeledRow label={t("langLabel")}>
-            <p className="text-base leading-relaxed ">
-              {t("langText")}
-            </p>
-          </LabeledRow>
-        </Reveal>
     </section>
   )
 }

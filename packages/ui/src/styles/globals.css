@@ -11,17 +11,23 @@
   --typeset-font-body: var(--font-ui);
   --typeset-font-heading: var(--font-ui);
   --typeset-font-mono: var(--font-mono);
-  --typeset-size: 18px;
-  --typeset-leading: 1.9;
-  --typeset-flow: 2em;
+  /* 18px/1.9 was sized for prose running the full width of a 1600px canvas.
+     In a 44rem column it reads as oversized, and at that size --measure never
+     bites because 65ch is wider than the column. 16px puts the measure back
+     in charge of the line length. */
+  --typeset-size: 16px;
+  --typeset-leading: 1.7;
+  /* Space between blocks. 1.6em put a paragraph break close to a full blank
+     line, which on a 400-word project page added several screens of nothing
+     to scroll past. */
+  --typeset-flow: 1.15em;
 }
 
-/* Typeset multiplies its size by 1.125 below 48rem, which would put the prose
-   at 20px on a phone — larger than on desktop. Stepping the token down lands
-   mobile on the same 18px, still above the 16px minimum for body text. */
+/* Typeset multiplies its size by 1.125 below 48rem, so the token has to be
+   stepped down to land mobile on the same 16px rather than 18px. */
 @media (max-width: 48rem) {
   .typeset-notes {
-    --typeset-size: 16px;
+    --typeset-size: 14.2px;
     --typeset-leading: 1.7;
     --typeset-flow: 1.5em;
   }
@@ -36,6 +42,10 @@
   /* Without limits the browser will break after two letters — "Si-vuston" —
      which costs more readability than the ragged edge it fixes. */
   hyphenate-limit-chars: 8 4 4;
+  /* The prose used to run the full shell width — about 130 characters per
+     line on a wide screen. The page-max cap does not help here: it stops the
+     layout growing, not the paragraph. */
+  max-width: var(--measure);
 }
 
 /* Same idea in the chat panel, at a size that fits 384px. Separate preset
@@ -179,9 +189,11 @@
        section root, which meant the html-level font never rendered anywhere. */
     @apply bg-background font-ui text-foreground;
   }
-  /* Display headings — weight/tracking/leading shared across all h1s */
+  /* Display headings — weight/tracking/leading shared across all h1s.
+     900 weight and -0.045em tracking were tuned for 184px type; at 40px
+     that reads as chunky rather than clean, so both ease off. */
   h1 {
-    @apply leading-[0.92] font-black tracking-[-0.045em];
+    @apply leading-[1.1] font-bold tracking-[-0.02em];
   }
   /* Section labels — tighter headings */
   h2 {
@@ -190,23 +202,36 @@
 }
 
 @layer components {
-  /* Amber uppercase label — PROJECT [01], CERTIFICATIONS, etc. */
+  /* Page display heading — pairs with the @layer base h1 weight/tracking */
+  .text-display {
+    font-size: var(--text-display);
+  }
+  /* Project detail titles, contact links */
+  .text-display-sm {
+    font-size: var(--text-display-sm);
+  }
+  /* Standfirst under a display heading */
+  .text-lead {
+    font-size: var(--text-lead);
+  }
+  /* Caps a block of prose at a readable line length */
+  .max-w-measure {
+    max-width: var(--measure);
+  }
+  /* Amber uppercase label — PROJECT [01] and other short tags. Caps with
+     0.22em tracking only survives at a couple of words; anything sentence
+     length belongs in .section-label. */
   .label-caps {
     @apply font-ui text-[11px] tracking-[0.22em] text-primary uppercase;
+  }
+  /* Heading above a page section. Sentence case, because these now read as
+     sentences ("Latest projects I've been working on") rather than tags. */
+  .section-label {
+    @apply font-ui text-sm text-muted-foreground;
   }
   /* 1px hairline row divider */
   .row-divider {
     @apply border-t border-border;
-  }
-  /* Vertical ticker track — writing-mode can't be a Tailwind class */
-  .ticker-track {
-    writing-mode: vertical-rl;
-    /* Movement is motion-driven in vertical-ticker.tsx (hover eases speed);
-       items are Badge pills, which bring their own type scale. */
-    @apply font-ui tracking-[0.14em] whitespace-nowrap uppercase;
-  }
-  .ticker-wrapper {
-    @apply rotate-180;
   }
 }
 
@@ -233,35 +258,42 @@ html {
 :root {
   /* Geist, loaded in the web app. The fallbacks only cover the first paint. */
   --font-ui: var(--font-geist), "Helvetica Neue", Arial, sans-serif;
-  --sidebar-w: clamp(72px, 9vw, 132px); /* ticker strip width           */
-  --ticker-gap: 88px; /* air between strip + text      */
-  --shell-pl: calc(
-    var(--sidebar-w) + var(--ticker-gap)
-  ); /* ← shared left edge for all    */
-  --gutter: clamp(24px, 4vw, 56px); /* right-edge padding            */
-  /* Widest the page ever gets. Past this the layout centres instead of
-     stretching — on a 34" monitor every row would otherwise run the full
-     3440px and the eye loses the start of the next line. */
-  --page-max: 100rem;
-  /* Distance from the viewport edge to the centred page. Zero until the
-     screen is wider than the page; the fixed ticker reads it so it stays
-     against the content rather than the glass. */
-  --page-inset: max(0px, calc((100vw - var(--page-max)) / 2));
+  --gutter: clamp(24px, 4vw, 56px); /* padding on both edges */
+
+  /* The page is one centred column, not a full-bleed canvas. Everything
+     else here follows from that: a 704px column has no room for a left
+     rail, and display type has to come down to stay in proportion.
+
+     This used to be 100rem with a fixed ticker strip offsetting the left
+     edge, which is why --sidebar-w, --ticker-gap, --shell-pl and
+     --page-inset existed. All four are gone with the strip. */
+  --page-max: 44rem;
+
+  /* ── Type scale ───────────────────────────────────────────────────────
+     One clamp per role, declared here instead of inline per component.
+     Five headings each carried their own copy of these numbers.
+
+     clamp() scales continuously with the viewport, so there is no
+     breakpoint where the type jumps — the vw middle term IS the
+     "different size per device". Only the two ends are pinned. */
+  --text-display: clamp(1.75rem, 4vw, 2.5rem); /* 28px → 40px */
+  /* Project titles and contact links — arbitrary content length, so a lower
+     ceiling than the page display size. */
+  --text-display-sm: clamp(1.5rem, 3.5vw, 2rem); /* 24px → 32px */
+  /* The sentence directly under a display heading. Bigger than body, well
+     clear of the display size above it. */
+  --text-lead: clamp(1.125rem, 2vw, 1.375rem); /* 18px → 22px */
+  /* Reading measure. Past ~65 characters the eye loses the start of the
+     next line. Narrower than the column at body size, so it still bites. */
+  --measure: 65ch;
 }
 
-/* Shell: margin-left pushes past the strip, padding-left adds the gap */
+/* Shell: one centred column, same gutter on both sides. */
 .t-shell {
   max-width: var(--page-max);
   margin-inline: auto;
-  padding-left: calc(var(--sidebar-w) + var(--ticker-gap));
+  padding-left: var(--gutter);
   padding-right: var(--gutter);
-}
-
-/* Fixed, so it cannot be centred by the parent — it tracks the same inset
-   the page uses instead. Owns its own left position; the component used to
-   set left-0, which pinned it to the viewport while the page moved in. */
-.t-sidebar {
-  left: var(--page-inset);
 }
 
 /* ── Fallback = Brasil · Dark (no ThemeProvider — data-flag+data-mode owns all) */
@@ -370,8 +402,8 @@ html {
    Media query handles all responsive overrides in one place.
 ──────────────────────────────────────────────────────────────────────────── */
 
-/* Hairline — starts at the right edge of the ticker strip, not x=0 */
-/* Nav — flex-wrap, left edge aligned with page content via --shell-pl */
+/* The nav row shares the page column, so it starts on exactly the same left
+   edge as the hero and every section heading below it. */
 .t-nav {
   max-width: var(--page-max);
   margin-inline: auto;
@@ -381,23 +413,20 @@ html {
   flex-wrap: wrap;
   padding-top: 1.25rem;
   padding-bottom: 1.25rem;
-  padding-left: var(--shell-pl);
+  padding-left: var(--gutter);
   padding-right: var(--gutter);
   gap: 0.75rem 1.5rem;
 }
 
 /* Hairline under the nav — spans the content width only (inset from edges),
    matching the nav's own horizontal padding. */
-.t-nav::after {
-  content: "";
-  position: absolute;
-  bottom: 0;
-  left: var(--shell-pl);
-  right: var(--gutter);
-  border-bottom: 1px solid var(--hairline);
-}
 
 /* Row 1: logo + page links */
+/* Brand on the page's left edge, links on its right, the row spanning the
+   column between them. flex:1 is what pushes them apart.
+   This also covers the project pages, where the three links are replaced by a
+   single way back — it lands on the same right edge rather than beside the
+   brand, where it read as a nav item that had lost its siblings. */
 .t-links {
   display: flex;
   align-items: center;
@@ -407,6 +436,18 @@ html {
   flex-wrap: wrap;
 }
 
+/* Pinned to the viewport corner against the <header>, which owns the relative
+   context — .t-nav is deliberately static so this escapes the centred column
+   rather than being trapped by it. Goes back in flow on a phone, where the
+   column fills the screen and there is no corner to escape to. */
+/* Back in the row, ahead of the links. It was pinned to the viewport corner
+   while the links held the column's left edge; with only three links there is
+   room for both, and one row reads as one thing rather than two. The row as a
+   whole still starts on the page's left edge — the brand just leads it. */
+.t-brand {
+  margin-right: 2rem;
+}
+
 /* Row 2: theme switcher + language (stays on same row desktop, drops on mobile) */
 .t-controls {
   display: flex;
@@ -414,29 +455,34 @@ html {
   gap: 0.75rem;
 }
 
-/* About — two-column layout */
-/* About cert rows — 4 columns */
-.t-cert-row {
-  display: grid;
-  grid-template-columns: 1fr auto auto auto;
-  gap: 1.5rem;
-  align-items: baseline;
-  border-top: 1px solid var(--border);
-  padding: 1.25rem 0;
-}
 
 /* Project detail — two-column body
    Medium: left capped at 42rem so sidebar sits flush to content
    Large (>1100px): left goes full 1fr — more screen, more content room  */
-.t-detail-body {
+/* Project meta as a band under the title. It used to be a 240px right rail
+   beside a 42rem body — a 960px minimum, which cannot fit inside a 44rem
+   page, so the two-column grid had to go when the page narrowed. Two columns
+   on a phone, four once there is room. */
+/* Standing facts — project meta and the about page's facts.
+   Two columns, never four. Four was written when the page was a 1600px
+   canvas; inside a 44rem column it leaves about 128px per cell, so
+   "Goalkeeper, Miesten Kolmonen" wraps onto three lines while "10+ years"
+   sits on one and the row goes ragged. One column on a phone for the same
+   reason.
+
+   Carries no margin of its own. It used to set `margin: 0 0 2.5rem`, and
+   this rule is unlayered while Tailwind's utilities live in @layer
+   utilities — unlayered always wins, so an `mt-16` on the element was
+   silently discarded. Spacing belongs to the caller. */
+.t-detail-meta {
   display: grid;
-  grid-template-columns: minmax(0, 42rem) 240px;
-  gap: 3rem;
+  grid-template-columns: minmax(0, 1fr);
+  gap: 1.25rem 2rem;
 }
 
-@media (min-width: 80rem) {
-  .t-detail-body {
-    grid-template-columns: 1fr 240px;
+@media (min-width: 40rem) {
+  .t-detail-meta {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
   }
 }
 
@@ -451,74 +497,39 @@ html {
     overflow-x: hidden;
   }
 
-  /* Hide the vertical ticker strip */
-  .t-sidebar {
-    display: none !important;
-  }
-
-  /* Hairline goes full width when ticker is hidden */
-  .t-hairline {
-    margin-left: 0;
-  }
-
-  /* The project detail grid collapses here — no room left beside a 240px
-     column once the page is this narrow. */
-  .t-detail-body {
-    grid-template-columns: 1fr !important;
-    gap: 3rem;
-  }
-
-  /* Reset shell padding — no more ticker offset, just the gutter on both sides */
-  .t-shell {
-    padding-left: var(--gutter) !important;
-    padding-right: var(--gutter) !important;
-  }
-
-  /* Nav: row 1 = brand + links, row 2 = controls */
+  /* Nav: row 1 = brand + controls, row 2 = links. All three on one row
+     squeezed the links until the list wrapped mid-way and stranded
+     "Ota yhteyttä" on a line of its own. */
   .t-nav {
     padding: 0.875rem var(--gutter);
     gap: 0.5rem 1rem;
   }
-  /* Inset hairline tracks the gutter-only padding on mobile */
-  .t-nav::after {
-    left: var(--gutter);
-    right: var(--gutter);
+  /* Stays at every width. It was hidden on a phone when three links shared
+     the row; an inner page now carries one back link, so there is room, and
+     the brand is the only route home. */
+  .t-brand {
+    margin-right: 1rem;
   }
-  /* Row 1 is the brand with the flag, mode and language controls beside it;
-     row 2 is the links. Squeezed against the right edge on one row they
-     wrapped mid-list and stranded "Ota yhteyttä" on a line of its own.
-     If the controls cannot fit beside the brand they wrap on their own,
-     which degrades to three rows rather than breaking. */
+  /* Both rows start on the column's left edge, the same edge as the page
+     content. `flex: 0 0 100%` rather than `flex-basis: 100%` — the shorthand
+     has to come last or it resets the basis back to auto, which is what put
+     the links and the controls on one drifting row. */
+  /* No forced row of its own. That was there to fill the space left by the
+     hidden brand; now the row wraps only when it actually has to, so an inner
+     page keeps its brand and back link on one line and only the home page's
+     three links drop below on a narrow screen. */
+  .t-links {
+    gap: 0.75rem 1.25rem !important;
+  }
   .t-controls {
     order: 2;
-    margin-left: auto;
-    gap: 0.5rem;
-  }
-  .t-links {
-    order: 3;
-    flex-basis: 100%;
-    flex: none;
+    flex: 0 0 100%;
     justify-content: flex-start;
-    gap: 0.75rem 1.25rem !important;
+    gap: 0.5rem;
   }
   /* Keep the thin | separators visible between groups */
   .t-controls > span {
     display: inline-block;
   }
-
-  /* Drop trailing → on project rows */
-  .t-arrow {
-    display: none !important;
-  }
 }
 
-/* ── Tablet ≤ 860 px — stack multi-column pages ──────────────────────── */
-/* ── Below Tailwind's sm (40rem) — cert row wraps name to own line ───── */
-@media (max-width: 40rem) {
-  .t-cert-row {
-    grid-template-columns: 1fr auto;
-  }
-  .t-cert-row .t-cert-name {
-    grid-column: 1 / -1;
-  }
-}

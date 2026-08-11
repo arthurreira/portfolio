@@ -44,3 +44,6 @@ npm-debug.log*
 # Security scan artifacts — run locally, never commit
 snyk-results.json
 snyk-code-results.json
+
+# Local agent instructions — CLAUDE.md is the one that ships
+AGENTS.md
