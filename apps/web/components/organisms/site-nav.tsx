@@ -47,7 +47,10 @@ export function SiteNav() {
           {isProjectDetail ? (
             <NavLink href="/projects" className="inline-flex items-center gap-2">
               <ArrowLeftIcon weight="bold" className="size-4" />
-              {tProject("back")}
+              {/* sr-only rather than hidden: below sm the arrow stands alone
+                  visually, but the label stays in the accessibility tree, so
+                  the link never degrades to an unnamed icon. */}
+              <span className="sr-only sm:not-sr-only">{tProject("back")}</span>
             </NavLink>
           ) : (
             NAV_LINKS.map(({ href, label }) => (
