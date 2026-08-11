@@ -15,6 +15,7 @@ import {
   TooltipProvider,
   TooltipTrigger,
 } from "@arthurreira/ui/components/tooltip"
+import { Separator } from "@arthurreira/ui/client"
 import { PillGroup } from "@/components/molecules/pill-group"
 import { useCircleReveal } from "@/components/molecules/circle-reveal"
 import { FlagFill, FlagPillFill } from "@/components/atoms/flag-icons"
@@ -209,7 +210,7 @@ export function SiteSwitchers() {
           </TooltipContent>
         </Tooltip>
 
-        <span className="h-3 w-px bg-border" />
+        <Separator orientation="vertical" decorative={false} className="h-3" />
 
         <Tooltip>
           <TooltipTrigger asChild>
@@ -222,7 +223,7 @@ export function SiteSwitchers() {
           </TooltipContent>
         </Tooltip>
 
-        <span className="h-3 w-px bg-border" />
+        <Separator orientation="vertical" decorative={false} className="h-3" />
 
         <Tooltip>
           <TooltipTrigger asChild>

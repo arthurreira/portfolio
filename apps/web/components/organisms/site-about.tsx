@@ -1,6 +1,8 @@
 import { getTranslations, getLocale } from "next-intl/server"
 import { about } from "@arthurreira/content"
 import { ScrambleText } from "@/components/molecules/scramble-text"
+import { RotatingWord } from "@/components/molecules/rotating-word"
+import { SEGMENT_STAGGER_S } from "@/lib/motion"
 import { MdxContent } from "@/components/molecules/mdx-content"
 import { SiteCertifications } from "@/components/organisms/site-certifications"
 
@@ -22,15 +24,24 @@ export async function SiteAbout() {
   return (
     <section className="mx-auto max-w-page px-gutter pt-16">
       <h1 className="text-display">
-        <ScrambleText text="Arthur" className="text-foreground" />{" "}
-        <ScrambleText
-          text="Ferreira Miranda."
-          delay={0.12}
-          className="text-primary"
-        />
+        <span className="block">
+          <ScrambleText text="Arthur" className="text-foreground" />
+        </span>
+        <span className="block">
+          <ScrambleText
+            text="Ferreira Miranda."
+            delay={SEGMENT_STAGGER_S}
+            className="text-primary"
+          />
+        </span>
       </h1>
 
-      <p className="text-lead mb-6 text-muted-foreground">{t("roleLine")}</p>
+      <p className="text-lead mb-6 text-muted-foreground">
+        {t("roleLead")}{" "}
+        <span className="text-foreground">
+          <RotatingWord words={t.raw("specialisms") as string[]} />
+        </span>
+      </p>
 
       {aboutContent && (
         <div className="typeset typeset-notes">

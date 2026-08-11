@@ -35,7 +35,13 @@
   },
   "about": {
     "title": "About",
-    "roleLine": "Software Engineer · Cloud & DevSecOps",
+    "roleLead": "Software Engineer ·",
+    "specialisms": [
+      "Cloud",
+      "DevSecOps",
+      "RAG & AI",
+      "Terraform"
+    ],
     "originLabel": "From",
     "originValue": "Brazil → Finland",
     "yearsLabel": "In Finland",
