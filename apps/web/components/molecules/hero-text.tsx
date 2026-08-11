@@ -3,7 +3,8 @@
 import type { ReactNode } from "react"
 import { motion } from "motion/react"
 import { cn } from "@arthurreira/ui"
-import { LINE_EASE, LineReveal } from "@/components/molecules/line-reveal"
+import { LINE_EASE } from "@/components/molecules/line-reveal"
+import { ScrambleText } from "@/components/molecules/scramble-text"
 import { RotatingWord } from "@/components/molecules/rotating-word"
 
 /** Stages cycle faster than the greeting — there are eight of them. */
@@ -24,12 +25,12 @@ interface HeroTextProps {
   className?: string
 }
 
-/** Entrance stagger (s) between hero lines. */
-const LINE_STAGGER_S = 0.09
+/** Delay (s) between each segment of the heading starting to decode. */
+const SEGMENT_STAGGER_S = 0.12
 
 /**
- * Hero heading — staggered masked line entrance, and nothing else. The type
- * carries the hierarchy; the only motion is the one-time reveal on load.
+ * Hero heading — the name decodes out of noise on load, segment by segment.
+ * The type carries the hierarchy; the decode is the only entrance.
  */
 export function HeroText({
   greetings,
@@ -43,15 +44,25 @@ export function HeroText({
 }: HeroTextProps) {
   return (
     <div className={cn("flex flex-col gap-4 sm:gap-6", className)}>
-      {/* h1 gets font-bold leading-[1.1] tracking-[-0.02em] from @layer base */}
+      {/* h1 gets font-bold leading-[1.1] tracking-[-0.02em] from @layer base.
+          Each segment decodes on its own short delay, so the line resolves
+          left to right rather than all at once. The masked LineReveal is gone
+          — a slide and a decode on the same line were two entrances. */}
       <h1 className="text-display">
-        <LineReveal delay={LINE_STAGGER_S}>
-          {/* {" "} is load-bearing: JSX drops whitespace at a line break, so
-              without it the intro runs straight into the first name. */}
-          <RotatingWord words={greetings} />, {intro}{" "}
-          <span className="text-foreground">{firstName} </span>
-          <span className="text-primary">{lastName}</span>
-        </LineReveal>
+        {/* {" "} is load-bearing: JSX drops whitespace at a line break, so
+            without it the intro runs straight into the first name. */}
+        <RotatingWord words={greetings} />,{" "}
+        <ScrambleText text={intro} delay={SEGMENT_STAGGER_S} />{" "}
+        <ScrambleText
+          text={firstName}
+          delay={SEGMENT_STAGGER_S * 2}
+          className="text-foreground"
+        />{" "}
+        <ScrambleText
+          text={lastName}
+          delay={SEGMENT_STAGGER_S * 3}
+          className="text-primary"
+        />
       </h1>
 
       <motion.p

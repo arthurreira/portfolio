@@ -36,15 +36,15 @@
   },
   "about": {
     "title": "Tietoa minusta",
-    "originLabel": "Kotoisin",
-    "originValue": "Brasilia → Suomi",
-    "yearsLabel": "Suomessa",
-    "yearsValue": "10+ vuotta",
+    "originLabel": "Mistä päin mä on",
+    "originValue": "Brasiliasta",
+    "yearsLabel": "Kuinka kauan mä olen ollut Suomessa",
+    "yearsValue": "Reilut 10 vuotta",
     "roleLabel": "Rooli",
-    "roleValue": "Junior @ Nordcloud",
+    "roleValue": "Junior Software Engineer at Nordcloud, an IBM company",
     "offClockLabel": "Vapaa-aika",
     "offClockValue": "Maalivahti, miesten Kolmonen",
-    "langLabel": "Yksi juttu, jonka oon huomannut",
+    "langLabel": "Yksi hauska juttu",
     "langText": "Monikielisellä ihmisellä persoonallisuus vaihtuu huomaamatta käytettävän kielen mukana. Tämä johtuu siitä, että eri kielet kantavat mukanaan erilaisia kulttuurisia yhteyksiä ja tapoja nähdä maailmaa, esimerkiksi rakenteiden ja sanastojen kautta. Tähän vaikuttavat myös kieleen ja kulttuuriin liitetyt ominaisuudet, joita kohti puhujan persoonallisuus aina hieman siirtyy."
   },
   "certs": {
