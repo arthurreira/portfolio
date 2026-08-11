@@ -422,26 +422,18 @@ html {
    matching the nav's own horizontal padding. */
 
 /* Row 1: logo + page links */
-/* First item in the column row now that the brand is out of flow, so the
-   links begin on the page's left edge. flex:1 pushes the controls to the
-   column's right edge. */
+/* Brand on the page's left edge, links on its right, the row spanning the
+   column between them. flex:1 is what pushes them apart.
+   This also covers the project pages, where the three links are replaced by a
+   single way back — it lands on the same right edge rather than beside the
+   brand, where it read as a nav item that had lost its siblings. */
 .t-links {
   display: flex;
   align-items: center;
   gap: 1.5rem;
   flex: 1;
-  justify-content: flex-start;
-  flex-wrap: wrap;
-}
-
-/* Project pages swap the three links for a single way back, which belongs on
-   the opposite edge — sitting where the links sit, it read as a nav item that
-   had lost its siblings.
-   Two classes on purpose: the mobile block below sets justify-content on
-   .t-links, and this has to outrank it at every width, not just above it in
-   the file. */
-.t-links.t-links-end {
   justify-content: flex-end;
+  flex-wrap: wrap;
 }
 
 /* Pinned to the viewport corner against the <header>, which owns the relative
