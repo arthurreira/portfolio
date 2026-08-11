@@ -15,10 +15,12 @@ const GITHUB_URL = "https://github.com/arthurreira"
  */
 export function SiteFooter() {
   return (
-    <footer className="t-shell pt-16 pb-10">
+    <footer className="t-shell  pb-10">
       <div className="flex flex-wrap items-center justify-between gap-4 border-t border-border pt-6">
         <SiteSwitchers />
 
+      
+      </div>
         <a
           href={GITHUB_URL}
           target="_blank"
@@ -28,7 +30,6 @@ export function SiteFooter() {
         >
           <GithubLogoIcon weight="fill" className="size-5" />
         </a>
-      </div>
     </footer>
   )
 }

@@ -4,8 +4,21 @@ import { useEffect, useRef } from "react"
 import { animate, useReducedMotion } from "motion/react"
 import { LINE_EASE } from "@/lib/motion"
 
-/** Pool the unsettled characters are drawn from. */
-const GLYPHS = "ABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789/\\<>*#$%&+="
+/**
+ * Noise is drawn from the same class as the character it stands in for.
+ *
+ * A single pool of capitals and symbols made a decoding word up to 40% wider
+ * than its settled form — W and M run about 0.9em where lowercase averages
+ * 0.5em — which is enough to rewrap a heading mid-animation and shunt the page
+ * below it. Matching the class keeps the line width roughly constant, and it
+ * reads better: the shape of the word is already there before it resolves.
+ */
+const POOLS = {
+  lower: "abcdefghijklmnopqrstuvwxyz",
+  upper: "ABCDEFGHIJKLMNOPQRSTUVWXYZ",
+  digit: "0123456789",
+  symbol: "#$%&*+=<>/\\",
+} as const
 /** Seconds to decode, per character. */
 const SECONDS_PER_CHAR = 0.035
 /** Never snap through a short word, never crawl through a long one. */
@@ -19,8 +32,17 @@ interface ScrambleTextProps {
   className?: string
 }
 
-function randomGlyph(): string {
-  return GLYPHS[Math.floor(Math.random() * GLYPHS.length)] ?? "#"
+/** Accented letters count as letters — "mä", "aí", "ç" all appear here. */
+function poolFor(char: string): string {
+  if (/\p{Ll}/u.test(char)) return POOLS.lower
+  if (/\p{Lu}/u.test(char)) return POOLS.upper
+  if (/\p{Nd}/u.test(char)) return POOLS.digit
+  return POOLS.symbol
+}
+
+function randomGlyph(char: string): string {
+  const pool = poolFor(char)
+  return pool[Math.floor(Math.random() * pool.length)] ?? "#"
 }
 
 /**
@@ -33,7 +55,7 @@ function frame(text: string, settled: number): string {
   for (let i = 0; i < text.length; i++) {
     const char = text[i] as string
     if (i < settled || char === " ") out += char
-    else out += randomGlyph()
+    else out += randomGlyph(char)
   }
   return out
 }

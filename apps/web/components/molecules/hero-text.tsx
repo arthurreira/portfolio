@@ -49,20 +49,34 @@ export function HeroText({
           left to right rather than all at once. The masked LineReveal is gone
           — a slide and a decode on the same line were two entrances. */}
       <h1 className="text-display">
-        {/* {" "} is load-bearing: JSX drops whitespace at a line break, so
-            without it the intro runs straight into the first name. */}
-        <RotatingWord words={greetings} />,{" "}
-        <ScrambleText text={intro} delay={SEGMENT_STAGGER_S} />{" "}
-        <ScrambleText
-          text={firstName}
-          delay={SEGMENT_STAGGER_S * 2}
-          className="text-foreground"
-        />{" "}
-        <ScrambleText
-          text={lastName}
-          delay={SEGMENT_STAGGER_S * 3}
-          className="text-primary"
-        />
+        {/* The greeting gets its own line. Sharing one with the name put a
+            word that changes length every 2.6s ("Morjens" → "Moi", four
+            characters) on a line already close to wrapping in a 44rem
+            column — so the heading flipped between one and two lines on a
+            timer and shunted the whole page down a line each time.
+
+            Padding the greeting to a fixed width does not fix it: the comma
+            has to sit against the word, so everything after it still moves.
+            Split across two lines, neither line is near its wrap point and
+            the block height is constant.
+
+            {" "} is load-bearing: JSX drops whitespace at a line break. */}
+        <span className="block">
+          <RotatingWord words={greetings} />,{" "}
+          <ScrambleText text={intro} delay={SEGMENT_STAGGER_S} />
+        </span>
+        <span className="block">
+          <ScrambleText
+            text={firstName}
+            delay={SEGMENT_STAGGER_S * 2}
+            className="text-foreground"
+          />{" "}
+          <ScrambleText
+            text={lastName}
+            delay={SEGMENT_STAGGER_S * 3}
+            className="text-primary"
+          />
+        </span>
       </h1>
 
       <motion.p
