@@ -37,13 +37,16 @@ export function SiteProjects({
           second half — "Arthur / Ferreira Miranda.", "Let's / Talk.". This one
           is a single word, so the trailing full stop carries the accent
           instead. Works for Projects. / Projektit. / Projetos. alike. */}
-      <h1 className="text-display mb-2">
-        <ScrambleText text={body} className="text-foreground" />
-        {punctuation && <span className="text-primary">{punctuation}</span>}
-      </h1>
-      <p className="section-label mb-8">
-        {projects.length} {countSuffix}
-      </p>
+      <div className="flex flex-row justify-between items-baseline gap-4">
+        <h1 className="text-display mb-2">
+          <ScrambleText text={body} className="text-foreground" />
+          {punctuation && <span className="text-primary">{punctuation}</span>}
+        </h1>
+        <p className="section-label mb-8">
+          <span className="text-primary">{projects.length}</span> {countSuffix}
+        </p>
+      </div>
+
 
       <ProjectList projects={projects} paginate />
     </div>

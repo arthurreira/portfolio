@@ -2,14 +2,13 @@
 
 import type { ReactNode } from "react"
 import Image from "next/image"
-import { Link } from "@/i18n/routing"
 import { useTranslations } from "next-intl"
 import { Badge } from "@arthurreira/ui"
 import type { ProjectStatus, ProjectRole } from "@arthurreira/content/types"
 import { LabeledRow } from "@/components/molecules/labeled-row"
 import { ScrambleText } from "@/components/molecules/scramble-text"
 import { MdxContent } from "@/components/molecules/mdx-content"
-import { ArrowLeftIcon, ArrowRightIcon } from "@phosphor-icons/react"
+import { ArrowRightIcon } from "@phosphor-icons/react"
 
 export interface SiteProjectDetailProps {
   title: string
@@ -165,15 +164,6 @@ export function SiteProjectDetail({
           <MdxContent code={content} variant="typeset" />
         </div>
 
-        <div className="mt-16 border-t border-border pt-8">
-          <Link
-            href="/projects"
-            className="inline-flex items-center gap-2 text-base text-foreground no-underline transition-colors hover:text-primary"
-          >
-            <ArrowLeftIcon weight="bold" className="size-4" />
-            {t("back")}
-          </Link>
-        </div>
       </div>
     </div>
   )

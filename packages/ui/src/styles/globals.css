@@ -7,58 +7,66 @@
 
 /* Typeset preset for long-form rendered markdown. Fonts come from the Next
    font variables declared on <html> in apps/web. */
-.typeset-notes {
-  --typeset-font-body: var(--font-ui);
-  --typeset-font-heading: var(--font-ui);
-  --typeset-font-mono: var(--font-mono);
-  /* 18px/1.9 was sized for prose running the full width of a 1600px canvas.
-     In a 44rem column it reads as oversized, and at that size --measure never
-     bites because 65ch is wider than the column. 16px puts the measure back
-     in charge of the line length. */
-  --typeset-size: 16px;
-  --typeset-leading: 1.7;
-  /* Space between blocks. 1.6em put a paragraph break close to a full blank
-     line, which on a 400-word project page added several screens of nothing
-     to scroll past. */
-  --typeset-flow: 1.15em;
-}
-
-/* Typeset multiplies its size by 1.125 below 48rem, so the token has to be
-   stepped down to land mobile on the same 16px rather than 18px. */
-@media (max-width: 48rem) {
+/* Layered on purpose. Written as plain CSS these rules sat outside every
+   cascade layer, and unlayered CSS beats anything in a layer regardless of
+   specificity — including Tailwind's utilities, which live in @layer
+   utilities. That is why an `mt-16` on a .t-detail-meta was silently
+   discarded. Inside @layer components a utility on the element wins, so
+   these are defaults rather than overrides. */
+@layer components {
   .typeset-notes {
-    --typeset-size: 14.2px;
+    --typeset-font-body: var(--font-ui);
+    --typeset-font-heading: var(--font-ui);
+    --typeset-font-mono: var(--font-mono);
+    /* 18px/1.9 was sized for prose running the full width of a 1600px canvas.
+       In a 44rem column it reads as oversized, and at that size --measure never
+       bites because 65ch is wider than the column. 16px puts the measure back
+       in charge of the line length. */
+    --typeset-size: 16px;
     --typeset-leading: 1.7;
-    --typeset-flow: 1.5em;
+    /* Space between blocks. 1.6em put a paragraph break close to a full blank
+       line, which on a 400-word project page added several screens of nothing
+       to scroll past. */
+    --typeset-flow: 1.15em;
   }
-}
 
-/* Finnish compounds run long — verkkoanalytiikka-alustan is 25 characters —
-   and on a narrow screen a single one of them can own a whole line, leaving
-   a badly ragged right edge. The <html> lang attribute is already correct,
-   so the browser can hyphenate them properly. */
-.typeset-notes {
-  hyphens: auto;
-  /* Without limits the browser will break after two letters — "Si-vuston" —
-     which costs more readability than the ragged edge it fixes. */
-  hyphenate-limit-chars: 8 4 4;
-  /* The prose used to run the full shell width — about 130 characters per
-     line on a wide screen. The page-max cap does not help here: it stops the
-     layout growing, not the paragraph. */
-  max-width: var(--measure);
-}
+  /* Typeset multiplies its size by 1.125 below 48rem, so the token has to be
+     stepped down to land mobile on the same 16px rather than 18px. */
+  @media (max-width: 48rem) {
+    .typeset-notes {
+      --typeset-size: 14.2px;
+      --typeset-leading: 1.7;
+      --typeset-flow: 1.5em;
+    }
+  }
 
-/* Same idea in the chat panel, at a size that fits 384px. Separate preset
-   because the notes size (18px) overflows the bubble.
-   Body stays mono: the whole site renders in mono, and switching the chat to
-   Geist made it the one surface that did not match. */
-.typeset-chat {
-  --typeset-font-body: var(--font-ui);
-  --typeset-font-heading: var(--font-ui);
-  --typeset-font-mono: var(--font-mono);
-  --typeset-size: 14px;
-  --typeset-leading: 1.65;
-  --typeset-flow: 1em;
+  /* Finnish compounds run long — verkkoanalytiikka-alustan is 25 characters —
+     and on a narrow screen a single one of them can own a whole line, leaving
+     a badly ragged right edge. The <html> lang attribute is already correct,
+     so the browser can hyphenate them properly. */
+  .typeset-notes {
+    hyphens: auto;
+    /* Without limits the browser will break after two letters — "Si-vuston" —
+       which costs more readability than the ragged edge it fixes. */
+    hyphenate-limit-chars: 8 4 4;
+    /* The prose used to run the full shell width — about 130 characters per
+       line on a wide screen. The page-max cap does not help here: it stops the
+       layout growing, not the paragraph. */
+    max-width: var(--measure);
+  }
+
+  /* Same idea in the chat panel, at a size that fits 384px. Separate preset
+     because the notes size (18px) overflows the bubble.
+     Body stays mono: the whole site renders in mono, and switching the chat to
+     Geist made it the one surface that did not match. */
+  .typeset-chat {
+    --typeset-font-body: var(--font-ui);
+    --typeset-font-heading: var(--font-ui);
+    --typeset-font-mono: var(--font-mono);
+    --typeset-size: 14px;
+    --typeset-leading: 1.65;
+    --typeset-flow: 1em;
+  }
 }
 
 @custom-variant dark (&:is(.dark *));
@@ -289,11 +297,19 @@ html {
 }
 
 /* Shell: one centred column, same gutter on both sides. */
-.t-shell {
-  max-width: var(--page-max);
-  margin-inline: auto;
-  padding-left: var(--gutter);
-  padding-right: var(--gutter);
+/* Layered on purpose. Written as plain CSS these rules sat outside every
+   cascade layer, and unlayered CSS beats anything in a layer regardless of
+   specificity — including Tailwind's utilities, which live in @layer
+   utilities. That is why an `mt-16` on a .t-detail-meta was silently
+   discarded. Inside @layer components a utility on the element wins, so
+   these are defaults rather than overrides. */
+@layer components {
+  .t-shell {
+    max-width: var(--page-max);
+    margin-inline: auto;
+    padding-left: var(--gutter);
+    padding-right: var(--gutter);
+  }
 }
 
 /* ── Fallback = Brasil · Dark (no ThemeProvider — data-flag+data-mode owns all) */
@@ -404,55 +420,63 @@ html {
 
 /* The nav row shares the page column, so it starts on exactly the same left
    edge as the hero and every section heading below it. */
-.t-nav {
-  max-width: var(--page-max);
-  margin-inline: auto;
-  position: relative;
-  display: flex;
-  align-items: center;
-  flex-wrap: wrap;
-  padding-top: 1.25rem;
-  padding-bottom: 1.25rem;
-  padding-left: var(--gutter);
-  padding-right: var(--gutter);
-  gap: 0.75rem 1.5rem;
-}
+/* Layered on purpose. Written as plain CSS these rules sat outside every
+   cascade layer, and unlayered CSS beats anything in a layer regardless of
+   specificity — including Tailwind's utilities, which live in @layer
+   utilities. That is why an `mt-16` on a .t-detail-meta was silently
+   discarded. Inside @layer components a utility on the element wins, so
+   these are defaults rather than overrides. */
+@layer components {
+  .t-nav {
+    max-width: var(--page-max);
+    margin-inline: auto;
+    position: relative;
+    display: flex;
+    align-items: center;
+    flex-wrap: wrap;
+    padding-top: 1.25rem;
+    padding-bottom: 1.25rem;
+    padding-left: var(--gutter);
+    padding-right: var(--gutter);
+    gap: 0.75rem 1.5rem;
+  }
 
-/* Hairline under the nav — spans the content width only (inset from edges),
-   matching the nav's own horizontal padding. */
+  /* Hairline under the nav — spans the content width only (inset from edges),
+     matching the nav's own horizontal padding. */
 
-/* Row 1: logo + page links */
-/* Brand on the page's left edge, links on its right, the row spanning the
-   column between them. flex:1 is what pushes them apart.
-   This also covers the project pages, where the three links are replaced by a
-   single way back — it lands on the same right edge rather than beside the
-   brand, where it read as a nav item that had lost its siblings. */
-.t-links {
-  display: flex;
-  align-items: center;
-  gap: 1.5rem;
-  flex: 1;
-  justify-content: flex-end;
-  flex-wrap: wrap;
-}
+  /* Row 1: logo + page links */
+  /* Brand on the page's left edge, links on its right, the row spanning the
+     column between them. flex:1 is what pushes them apart.
+     This also covers the project pages, where the three links are replaced by a
+     single way back — it lands on the same right edge rather than beside the
+     brand, where it read as a nav item that had lost its siblings. */
+  .t-links {
+    display: flex;
+    align-items: center;
+    gap: 1.5rem;
+    flex: 1;
+    justify-content: flex-end;
+    flex-wrap: wrap;
+  }
 
-/* Pinned to the viewport corner against the <header>, which owns the relative
-   context — .t-nav is deliberately static so this escapes the centred column
-   rather than being trapped by it. Goes back in flow on a phone, where the
-   column fills the screen and there is no corner to escape to. */
-/* Back in the row, ahead of the links. It was pinned to the viewport corner
-   while the links held the column's left edge; with only three links there is
-   room for both, and one row reads as one thing rather than two. The row as a
-   whole still starts on the page's left edge — the brand just leads it. */
-.t-brand {
-  margin-right: 2rem;
-}
+  /* Pinned to the viewport corner against the <header>, which owns the relative
+     context — .t-nav is deliberately static so this escapes the centred column
+     rather than being trapped by it. Goes back in flow on a phone, where the
+     column fills the screen and there is no corner to escape to. */
+  /* Back in the row, ahead of the links. It was pinned to the viewport corner
+     while the links held the column's left edge; with only three links there is
+     room for both, and one row reads as one thing rather than two. The row as a
+     whole still starts on the page's left edge — the brand just leads it. */
+  .t-brand {
+    margin-right: 2rem;
+  }
 
-/* Row 2: theme switcher + language (stays on same row desktop, drops on mobile) */
-.t-controls {
-  display: flex;
-  align-items: center;
-  gap: 0.75rem;
+  /* Row 2: theme switcher + language (stays on same row desktop, drops on mobile) */
+  .t-controls {
+    display: flex;
+    align-items: center;
+    gap: 0.75rem;
+  }
 }
 
 
@@ -474,15 +498,23 @@ html {
    this rule is unlayered while Tailwind's utilities live in @layer
    utilities — unlayered always wins, so an `mt-16` on the element was
    silently discarded. Spacing belongs to the caller. */
-.t-detail-meta {
-  display: grid;
-  grid-template-columns: minmax(0, 1fr);
-  gap: 1.25rem 2rem;
-}
-
-@media (min-width: 40rem) {
+/* Layered on purpose. Written as plain CSS these rules sat outside every
+   cascade layer, and unlayered CSS beats anything in a layer regardless of
+   specificity — including Tailwind's utilities, which live in @layer
+   utilities. That is why an `mt-16` on a .t-detail-meta was silently
+   discarded. Inside @layer components a utility on the element wins, so
+   these are defaults rather than overrides. */
+@layer components {
   .t-detail-meta {
-    grid-template-columns: repeat(2, minmax(0, 1fr));
+    display: grid;
+    grid-template-columns: minmax(0, 1fr);
+    gap: 1.25rem 2rem;
+  }
+
+  @media (min-width: 40rem) {
+    .t-detail-meta {
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+    }
   }
 }
 
@@ -492,44 +524,54 @@ html {
    860px while components used Tailwind's own scale, so the layout changed
    in stages and never looked settled between them.
 ──────────────────────────────────────────────────────────────────────── */
-@media (max-width: 64rem) {
-  body {
-    overflow-x: hidden;
-  }
+/* Layered on purpose. Written as plain CSS these rules sat outside every
+   cascade layer, and unlayered CSS beats anything in a layer regardless of
+   specificity — including Tailwind's utilities, which live in @layer
+   utilities. That is why an `mt-16` on a .t-detail-meta was silently
+   discarded. Inside @layer components a utility on the element wins, so
+   these are defaults rather than overrides. */
+@layer components {
+  @media (max-width: 64rem) {
+    body {
+      overflow-x: hidden;
+    }
 
-  /* Nav: row 1 = brand + controls, row 2 = links. All three on one row
-     squeezed the links until the list wrapped mid-way and stranded
-     "Ota yhteyttä" on a line of its own. */
-  .t-nav {
-    padding: 0.875rem var(--gutter);
-    gap: 0.5rem 1rem;
-  }
-  /* Stays at every width. It was hidden on a phone when three links shared
-     the row; an inner page now carries one back link, so there is room, and
-     the brand is the only route home. */
-  .t-brand {
-    margin-right: 1rem;
-  }
-  /* Both rows start on the column's left edge, the same edge as the page
-     content. `flex: 0 0 100%` rather than `flex-basis: 100%` — the shorthand
-     has to come last or it resets the basis back to auto, which is what put
-     the links and the controls on one drifting row. */
-  /* No forced row of its own. That was there to fill the space left by the
-     hidden brand; now the row wraps only when it actually has to, so an inner
-     page keeps its brand and back link on one line and only the home page's
-     three links drop below on a narrow screen. */
-  .t-links {
-    gap: 0.75rem 1.25rem !important;
-  }
-  .t-controls {
-    order: 2;
-    flex: 0 0 100%;
-    justify-content: flex-start;
-    gap: 0.5rem;
-  }
-  /* Keep the thin | separators visible between groups */
-  .t-controls > span {
-    display: inline-block;
+    /* Nav: row 1 = brand + controls, row 2 = links. All three on one row
+       squeezed the links until the list wrapped mid-way and stranded
+       "Ota yhteyttä" on a line of its own. */
+    .t-nav {
+      padding: 0.875rem var(--gutter);
+      gap: 0.5rem 1rem;
+    }
+    /* Stays at every width. It was hidden on a phone when three links shared
+       the row; an inner page now carries one back link, so there is room, and
+       the brand is the only route home. */
+    .t-brand {
+      margin-right: 1rem;
+    }
+    /* Both rows start on the column's left edge, the same edge as the page
+       content. `flex: 0 0 100%` rather than `flex-basis: 100%` — the shorthand
+       has to come last or it resets the basis back to auto, which is what put
+       the links and the controls on one drifting row. */
+    /* No forced row of its own. That was there to fill the space left by the
+       hidden brand; now the row wraps only when it actually has to, so an inner
+       page keeps its brand and back link on one line and only the home page's
+       three links drop below on a narrow screen. */
+    .t-links {
+      gap: 0.75rem 1.25rem !important;
+    }
+    /* order and flex-basis lived here from when the switchers were in the nav,
+       as row 2 under the brand. They are in the footer now, where `order: 2`
+       was reordering them past the GitHub link — which is why the icon moved
+       to the left below this width — and `flex: 0 0 100%` had them claim the
+       whole footer row. Only the tighter gap was ever about being narrow. */
+    .t-controls {
+      gap: 0.5rem;
+    }
+    /* Keep the thin | separators visible between groups */
+    .t-controls > span {
+      display: inline-block;
+    }
   }
 }
 
