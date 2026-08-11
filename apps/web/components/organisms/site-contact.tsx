@@ -3,6 +3,8 @@
 import { useTranslations } from "next-intl"
 import { ContactLink } from "@/components/atoms/contact-link"
 import { ScrambleText } from "@/components/molecules/scramble-text"
+import { RotatingWord } from "@/components/molecules/rotating-word"
+import { SEGMENT_STAGGER_S } from "@/lib/motion"
 
 const EMAIL = "arthur.ferreiramiran@gmail.com"
 
@@ -26,16 +28,23 @@ export function SiteContact() {
   return (
     <div className="mx-auto max-w-page px-gutter pt-16 pb-24">
       <h1 className="text-display mb-4">
-        <ScrambleText text={t("heading1")} className="text-foreground" />{" "}
-        <ScrambleText
-          text={t("heading2")}
-          delay={0.12}
-          className="text-primary"
-        />
+        <span className="block">
+          <ScrambleText text={t("heading1")} className="text-foreground" />
+        </span>
+        <span className="block">
+          <ScrambleText
+            text={t("heading2")}
+            delay={SEGMENT_STAGGER_S}
+            className="text-primary"
+          />
+        </span>
       </h1>
 
       <p className="text-lead mb-12 max-w-measure text-muted-foreground">
-        {t("openTo")}
+        {t("openToLead")}{" "}
+        <span className="text-foreground">
+          <RotatingWord words={t.raw("openToItems") as string[]} />
+        </span>
       </p>
 
       <div>
