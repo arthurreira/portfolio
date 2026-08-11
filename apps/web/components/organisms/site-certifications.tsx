@@ -3,6 +3,8 @@ import { profile } from "@arthurreira/content"
 import { Badge } from "@arthurreira/ui"
 import { Link } from "@/i18n/routing"
 
+const year = (iso: string) => iso.slice(0, 4)
+
 /** How many recent certifications the home page shows. */
 const SUMMARY_LIMIT = 3
 
@@ -24,7 +26,7 @@ export async function SiteCertifications({
   const certs = isSummary
     ? profile.certifications
         .filter((c) => c.status === "certified")
-        .sort((a, b) => (b.earned ?? 0) - (a.earned ?? 0))
+        .sort((a, b) => (b.earned ?? "").localeCompare(a.earned ?? ""))
         .slice(0, SUMMARY_LIMIT)
     : profile.certifications
 
@@ -51,7 +53,7 @@ export async function SiteCertifications({
               {isSummary
                 ? cert.earned && (
                     <span className="w-12 shrink-0 text-right text-sm text-muted-foreground tabular-nums">
-                      {cert.earned}
+                      {year(cert.earned)}
                     </span>
                   )
                 : cert.status === "in-progress"
@@ -62,7 +64,7 @@ export async function SiteCertifications({
                     )
                   : cert.earned && (
                       <span className="shrink-0 text-sm text-muted-foreground tabular-nums">
-                        {cert.earned}
+                        {year(cert.earned)}
                         {cert.expires && `–${cert.expires}`}
                       </span>
                     )}
