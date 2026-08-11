@@ -36,6 +36,7 @@
   },
   "about": {
     "title": "Tietoa minusta",
+    "roleLine": "Ohjelmistokehittäjä · Cloud & DevSecOps",
     "originLabel": "Mistä päin mä on",
     "originValue": "Brasiliasta",
     "yearsLabel": "Kuinka kauan mä olen ollut Suomessa",

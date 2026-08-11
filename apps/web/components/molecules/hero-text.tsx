@@ -3,7 +3,7 @@
 import type { ReactNode } from "react"
 import { motion } from "motion/react"
 import { cn } from "@arthurreira/ui"
-import { LINE_EASE } from "@/components/molecules/line-reveal"
+import { LINE_EASE } from "@/lib/motion"
 import { ScrambleText } from "@/components/molecules/scramble-text"
 import { RotatingWord } from "@/components/molecules/rotating-word"
 

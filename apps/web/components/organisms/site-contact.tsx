@@ -2,7 +2,7 @@
 
 import { useTranslations } from "next-intl"
 import { ContactLink } from "@/components/atoms/contact-link"
-import { LineReveal } from "@/components/molecules/line-reveal"
+import { ScrambleText } from "@/components/molecules/scramble-text"
 
 const EMAIL = "arthur.ferreiramiran@gmail.com"
 
@@ -29,10 +29,12 @@ export function SiteContact() {
           time to the bottom of the viewport. There is a real footer under
           this now, so the page just ends where its content ends. */}
       <h1 className="text-display mb-4">
-        <LineReveal>
-          <span className="text-foreground">{t("heading1")} </span>
-          <span className="text-primary">{t("heading2")}</span>
-        </LineReveal>
+        <ScrambleText text={t("heading1")} className="text-foreground" />{" "}
+        <ScrambleText
+          text={t("heading2")}
+          delay={0.12}
+          className="text-primary"
+        />
       </h1>
 
       <p className="text-lead mb-12 max-w-measure text-muted-foreground">

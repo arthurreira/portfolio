@@ -1,7 +1,7 @@
 import { Fragment } from "react"
 import { getTranslations, getLocale } from "next-intl/server"
 import { about } from "@arthurreira/content"
-import { LineReveal } from "@/components/molecules/line-reveal"
+import { ScrambleText } from "@/components/molecules/scramble-text"
 import { MdxContent } from "@/components/molecules/mdx-content"
 import { SiteCertifications } from "@/components/organisms/site-certifications"
 
@@ -22,15 +22,19 @@ export async function SiteAbout() {
 
   return (
     <section className="t-shell pt-16 pb-24">
-      {/* One reveal, so the name sits on one line — the hero does the same.
-          Two reveals put "Arthur" and the surname on separate lines, because
-          each LineReveal is a block. */}
-      <h1 className="text-display mb-8">
-        <LineReveal>
-          <span className="text-foreground">Arthur </span>
-          <span className="text-primary">Ferreira Miranda.</span>
-        </LineReveal>
+      <h1 className="text-display">
+        <ScrambleText text="Arthur" className="text-foreground" />{" "}
+        <ScrambleText
+          text="Ferreira Miranda."
+          delay={0.12}
+          className="text-primary"
+        />
       </h1>
+
+      {/* Name over role, the way the hero puts the name over what it does.
+          Without it the page opened on a name and went straight into prose,
+          with nothing saying what the person is. */}
+      <p className="text-lead mb-10 text-muted-foreground">{t("roleLine")}</p>
 
       {aboutContent && (
         <div className="typeset typeset-notes">
@@ -45,10 +49,11 @@ export async function SiteAbout() {
           // Fragment, not a div: a <dl> may only contain <dt>/<dd> pairs, and
           // a wrapper element between them breaks that.
           <Fragment key={fact.label}>
-            <dt className="label-caps mb-1.5">{fact.label}</dt>
-            <dd className="m-0 text-base font-bold text-foreground">
-              {fact.value}
-            </dd>
+            {/* Muted sentence-case label over a normal-weight value. It was
+                amber uppercase over bold, which made a row of standing facts
+                the loudest thing on a page about a person. */}
+            <dt className="section-label mb-1">{fact.label}</dt>
+            <dd className="m-0 text-base text-foreground">{fact.value}</dd>
           </Fragment>
         ))}
       </dl>

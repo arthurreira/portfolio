@@ -2,7 +2,7 @@
 
 import { useEffect, useRef } from "react"
 import { animate, useReducedMotion } from "motion/react"
-import { LINE_EASE } from "@/components/molecules/line-reveal"
+import { LINE_EASE } from "@/lib/motion"
 
 /** Pool the unsettled characters are drawn from. */
 const GLYPHS = "ABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789/\\<>*#$%&+="

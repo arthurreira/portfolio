@@ -36,6 +36,7 @@
   },
   "about": {
     "title": "Sobre mim",
+    "roleLine": "Engenheiro de software · Cloud & DevSecOps",
     "originLabel": "De onde sou",
     "originValue": "Brasil → Finlândia",
     "yearsLabel": "Na Finlândia",

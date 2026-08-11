@@ -1,4 +1,4 @@
-import { LineReveal } from "@/components/molecules/line-reveal"
+import { ScrambleText } from "@/components/molecules/scramble-text"
 import { ProjectList } from "@/components/molecules/project-list"
 
 export interface SiteProject {
@@ -29,7 +29,7 @@ export function SiteProjects({
   return (
     <div className="t-shell pt-16 pb-24">
       <h1 className="text-display mb-2 text-foreground">
-        <LineReveal>{heading}</LineReveal>
+        <ScrambleText text={heading} />
       </h1>
       <p className="section-label mb-8">
         {projects.length} {countSuffix}

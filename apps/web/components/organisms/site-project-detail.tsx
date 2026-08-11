@@ -7,7 +7,7 @@ import { useTranslations } from "next-intl"
 import { Badge } from "@arthurreira/ui"
 import type { ProjectStatus, ProjectRole } from "@arthurreira/content/types"
 import { LabeledRow } from "@/components/molecules/labeled-row"
-import { LineReveal } from "@/components/molecules/line-reveal"
+import { ScrambleText } from "@/components/molecules/scramble-text"
 import { MdxContent } from "@/components/molecules/mdx-content"
 import { ArrowLeftIcon, ArrowRightIcon } from "@phosphor-icons/react"
 
@@ -99,7 +99,7 @@ export function SiteProjectDetail({
             its own, with the year opposite it. */}
         <div className="mb-6 flex items-baseline justify-between gap-4">
           <h1 className="text-display-sm text-foreground">
-            <LineReveal>{title}</LineReveal>
+            <ScrambleText text={title} />
           </h1>
           <p className="shrink-0 text-sm text-muted-foreground tabular-nums">
             {year}
