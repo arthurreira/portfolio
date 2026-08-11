@@ -38,10 +38,16 @@
     "title": "Tietoa minusta",
     "roleLead": "Ohjelmistokehittäjä ·",
     "specialisms": [
-      "Cloud",
+      "Pilvipalvelut",
+      "Cloud Architecture",
       "DevSecOps",
+      "Platform Engineering",
       "RAG & AI",
-      "Terraform"
+      "LLMOps & AI Agents",
+      "Infra as Code",
+      "Kubernetes & Containers",
+      "Observability",
+      "Cybersecurity"
     ],
     "originLabel": "Mistä päin olen kotoisin",
     "originValue": "Brasiliasta",
@@ -71,7 +77,14 @@
     "title": "Ota yhteyttä",
     "heading1": "Otahan",
     "heading2": "yhteyttä? :)",
-    "openTo": "Käytettävissä avoimen lähdekoodin projekteihin, freelance-töihin ja kahvikeskusteluihin.",
+    "openToLead": "Käytettävissä",
+    "openToItems": [
+      "avoimen lähdekoodin projekteihin",
+      "freelance-töihin",
+      "kahvikeskusteluihin",
+      "uusiin ideoihin",
+      "pariohjelmointiin"
+    ],
     "responseTime": "Vastaan yleensä 24 tunnin kuluessa",
     "email": "Sähköposti",
     "github": "GitHub",
