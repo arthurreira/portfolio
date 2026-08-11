@@ -14,21 +14,26 @@ education:
 certifications:
   # `earned` is the year passed. The site sorts on it to show the latest
   # first, so no year needs hardcoding anywhere in the UI.
+  # `url` is the public verification page. Without one the row renders as
+  # plain text rather than a link that goes nowhere.
   - name: Microsoft Azure Fundamentals
     code: AZ-900
     issuer: Microsoft
     status: certified
     earned: 2026
+    # url: https://learn.microsoft.com/en-us/users/<user>/credentials/<id>
   - name: AWS Certified Cloud Practitioner
     code: CLF-C02
     issuer: Amazon Web Services
     status: certified
     earned: 2026
+    # url: https://www.credly.com/badges/<badge-id>/public_url
   - name: AWS Certified AI Practitioner
     code: AIF-C01
     issuer: Amazon Web Services
     status: certified
     earned: 2026
+    # url: https://www.credly.com/badges/<badge-id>/public_url
   - name: Microsoft Azure AI Fundamentals
     code: AI-900
     issuer: Microsoft

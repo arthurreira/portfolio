@@ -66,6 +66,10 @@ export default defineConfig({
             // earned yet; the site sorts on it to show the most recent first,
             // which keeps "latest" true without a hardcoded year to update.
             earned: s.number().int().optional(),
+            // Verification page. Optional because an in-progress certification
+            // has no badge yet — without it the row renders as plain text
+            // rather than a link that goes nowhere.
+            url: s.string().url().optional(),
           })
         ),
         skills: s.array(
