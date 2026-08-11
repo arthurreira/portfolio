@@ -10,7 +10,7 @@
     "intro": "mä oon",
     "firstName": "Arthur",
     "lastName": "Ferreira.",
-    "heroSubtitle": "Työskentelen ohjelmistokehittäjänä yrityksessä <company>Nordcloudilla, an IBM company</company>.",
+    "heroSubtitle": "Työskentelen ohjelmistokehittäjänä yrityksessä <company>Nordcloud, an IBM company</company>.",
     "cultureLine": "DevSecOps on kulttuuri –",
     "devsecopsStages": [
       "Plan",
@@ -37,7 +37,7 @@
   "about": {
     "title": "Tietoa minusta",
     "roleLine": "Ohjelmistokehittäjä · Cloud & DevSecOps",
-    "originLabel": "Mistä päin mä on",
+    "originLabel": "Mistä päin olen kotoisin",
     "originValue": "Brasiliasta",
     "yearsLabel": "Kuinka kauan mä olen ollut Suomessa",
     "yearsValue": "Reilut 10 vuotta",
