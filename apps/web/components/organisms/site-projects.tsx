@@ -1,8 +1,4 @@
-import { LineReveal } from "@/components/molecules/line-reveal"
-import {
-  ProximityArea,
-  ProximityLetters,
-} from "@/components/molecules/proximity-text"
+import { ScrambleText } from "@/components/molecules/scramble-text"
 import { ProjectList } from "@/components/molecules/project-list"
 
 export interface SiteProject {
@@ -20,30 +16,36 @@ interface SiteProjectsProps {
   countSuffix?: string
 }
 
+/**
+ * The full project list. Same shell, spacing and row treatment as the home
+ * page section — the count sits under the heading as a quiet line rather than
+ * floating opposite it, which is what the home page does with its labels.
+ */
 export function SiteProjects({
   projects,
   heading = "Projects.",
   countSuffix = "projects",
 }: SiteProjectsProps) {
+  // Trailing punctuation, split off so it can take the accent. Not scrambled:
+  // decoding a single full stop is a frame of noise and nothing else.
+  const [, body = heading, punctuation = ""] =
+    heading.match(/^(.*?)([.!?…]*)$/) ?? []
+
   return (
-    <section className="relative min-h-screen overflow-hidden bg-background">
-      <div className="t-shell pt-12 pb-16">
-        <div className="flex flex-row justify-between ">
-          <ProximityArea>
-            <h1 className="mb-3 text-[clamp(3rem,11.5vw,11.5rem)] text-foreground">
-              <LineReveal>
-                <ProximityLetters text={heading} />
-              </LineReveal>
-            </h1>
-          </ProximityArea>
-          <p className="mb-12 text-base text-muted-foreground">
-            {projects.length} {countSuffix}
-          </p>
-        </div>
+    <div className="t-shell pt-16 pb-24">
+      {/* Every other heading on the site splits foreground into accent on its
+          second half — "Arthur / Ferreira Miranda.", "Let's / Talk.". This one
+          is a single word, so the trailing full stop carries the accent
+          instead. Works for Projects. / Projektit. / Projetos. alike. */}
+      <h1 className="text-display mb-2">
+        <ScrambleText text={body} className="text-foreground" />
+        {punctuation && <span className="text-primary">{punctuation}</span>}
+      </h1>
+      <p className="section-label mb-8">
+        {projects.length} {countSuffix}
+      </p>
 
-
-        <ProjectList projects={projects} />
-      </div>
-    </section>
+      <ProjectList projects={projects} paginate />
+    </div>
   )
 }

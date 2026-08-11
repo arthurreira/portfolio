@@ -2,51 +2,53 @@
 
 import { useTranslations } from "next-intl"
 import { ContactLink } from "@/components/atoms/contact-link"
-import { LineReveal } from "@/components/molecules/line-reveal"
-import {
-  ProximityArea,
-  ProximityLetters,
-} from "@/components/molecules/proximity-text"
+import { ScrambleText } from "@/components/molecules/scramble-text"
+
+const EMAIL = "arthur.ferreiramiran@gmail.com"
 
 const LINKS = [
-  { label: "arthur.ferreiramiran@gmail.com", href: "mailto:arthur.ferreiramiran@gmail.com" },
-  { label: "GitHub",   href: "https://github.com/arthurreira"          },
-  { label: "LinkedIn", href: "https://linkedin.com/in/arthurferreira00" },
-]
+  { key: "email", value: EMAIL, href: `mailto:${EMAIL}` },
+  {
+    key: "github",
+    value: "arthurreira",
+    href: "https://github.com/arthurreira",
+  },
+  {
+    key: "linkedin",
+    value: "arthurferreira00",
+    href: "https://linkedin.com/in/arthurferreira00",
+  },
+] as const
 
 export function SiteContact() {
   const t = useTranslations("contact")
 
   return (
-    <div className="t-shell flex min-h-screen flex-col justify-between bg-background pt-12">
+    <div className="t-shell pt-16 pb-24">
+      {/* Was min-h-screen with justify-between, which pinned the response
+          time to the bottom of the viewport. There is a real footer under
+          this now, so the page just ends where its content ends. */}
+      <h1 className="text-display mb-4">
+        <ScrambleText text={t("heading1")} className="text-foreground" />{" "}
+        <ScrambleText
+          text={t("heading2")}
+          delay={0.12}
+          className="text-primary"
+        />
+      </h1>
+
+      <p className="text-lead mb-12 max-w-measure text-muted-foreground">
+        {t("openTo")}
+      </p>
+
       <div>
-        {/* font-black / leading / tracking come from @layer base h1 */}
-        <ProximityArea>
-          <h1 className="mb-6 text-[clamp(3rem,11.5vw,11.5rem)]">
-            <LineReveal>
-              <span className="text-foreground">
-                <ProximityLetters text={`${t("heading1")} `} />
-              </span>
-              <span className="text-primary">
-                <ProximityLetters text={t("heading2")} tone="primary" />
-              </span>
-            </LineReveal>
-          </h1>
-        </ProximityArea>
-
-        <p className="mb-16 text-base text-muted-foreground">{t("openTo")}</p>
-
-        <div className="flex flex-col gap-1">
-          {LINKS.map(({ label, href }) => (
-            <ContactLink key={href} label={label} href={href} />
-          ))}
-        </div>
+        {LINKS.map(({ key, value, href }) => (
+          <ContactLink key={key} label={t(key)} value={value} href={href} />
+        ))}
+        <div className="border-t border-border" />
       </div>
 
-      <div className="pb-12">
-        <p className="mb-6 text-xs text-muted-foreground">{t("responseTime")}</p>
-        <div className="h-px bg-border" />
-      </div>
+      <p className="mt-6 text-sm text-muted-foreground">{t("responseTime")}</p>
     </div>
   )
 }

@@ -7,8 +7,6 @@ import { useLocale, useTranslations } from "next-intl"
 import { AnimatePresence, MotionConfig, motion } from "motion/react"
 import {
   ArrowCounterClockwiseIcon,
-  ChatsCircleIcon,
-  LockSimpleIcon,
   XIcon,
 } from "@phosphor-icons/react"
 import {
@@ -26,7 +24,6 @@ import {
   Spinner,
 } from "@arthurreira/ui"
 import {
-  ButtonGroup,
   MessageScroller,
   MessageScrollerButton,
   MessageScrollerContent,
@@ -201,7 +198,7 @@ export function SiteChat() {
               role="dialog"
               aria-label={t("title")}
               id={panelId}
-              className="flex h-[min(70svh,32rem)] w-[calc(100vw-2.5rem)] flex-col gap-0 shadow-2xl sm:w-96"
+              className="flex h-[min(70svh,32rem)] w-[calc(100vw-2.5rem)] flex-col gap-0 border shadow-sm sm:w-96"
             >
               <CardHeader className="border-b">
                 <CardTitle>{t("title")}</CardTitle>
@@ -209,11 +206,13 @@ export function SiteChat() {
                     web stores your messages; this one does not, and a visitor
                     has no way to know that unless it is stated. */}
                 <CardDescription className="flex flex-col gap-0.5 text-xs">
+                  {/* No padlock icon — the words already say it, and an icon
+                      before a line of text is the pattern this site dropped
+                      everywhere else. */}
                   <span
                     className="flex items-center gap-1.5"
                     title={t("metaPrivateHint")}
                   >
-                    <LockSimpleIcon className="size-3.5 shrink-0" aria-hidden />
                     {t("metaPrivate")}
                     <span aria-hidden>·</span>
                     {model === "claude" ? t("modelClaude") : t("modelFree")}
@@ -285,22 +284,16 @@ export function SiteChat() {
                                       small section label — the ticker and the
                                       project rows already use it. */}
                                   <p className="label-caps">{group.label}</p>
-                                  {/* Vertical ButtonGroup joins the options into
-                                      one block instead of loose pills — the
-                                      canonical shape for a stack of choices. */}
-                                  <ButtonGroup
-                                    orientation="vertical"
-                                    className="w-full"
-                                  >
+                                  {/* Border-top rows, not outlined buttons.
+                                      A bordered group inside a bordered card
+                                      read as a second card, and every other
+                                      list on this site is a row. */}
+                                  <div className="w-full">
                                     {group.items.map((question) => (
-                                      <Button
+                                      <button
                                         key={question}
-                                        variant="outline"
-                                        size="sm"
-                                        // Lighter than the card frame around
-                                        // them; matching weight makes the group
-                                        // read as a second card inside the first.
-                                        className="h-auto justify-start border-border/60 py-2 text-left whitespace-normal"
+                                        type="button"
+                                        className="w-full border-t border-border py-2 text-left text-sm text-muted-foreground transition-colors hover:text-foreground"
                                         onClick={() =>
                                           sendMessage(
                                             { text: question },
@@ -309,9 +302,9 @@ export function SiteChat() {
                                         }
                                       >
                                         {question}
-                                      </Button>
+                                      </button>
                                     ))}
-                                  </ButtonGroup>
+                                  </div>
                                 </div>
                               ))}
                             </div>
@@ -412,26 +405,22 @@ export function SiteChat() {
           )}
         </AnimatePresence>
 
-        <Button
+        {/* A plain text link, not a floating circle. The bubble was the
+            loudest thing left on the page once the rest of the chrome went;
+            as text it stays reachable from every page without competing with
+            the content for attention. */}
+        <button
           ref={triggerRef}
-          size="icon"
+          type="button"
           aria-label={isOpen ? t("close") : t("open")}
           title={isOpen ? t("close") : t("openHint")}
           aria-expanded={isOpen}
           aria-controls={isOpen ? panelId : undefined}
           onClick={() => setIsOpen((open) => !open)}
-          className="size-12 rounded-full shadow-lg"
+          className="bg-background/80 px-1 py-0.5 text-sm text-muted-foreground backdrop-blur-sm transition-colors hover:text-foreground"
         >
-          <motion.span
-            key={isOpen ? "close" : "open"}
-            initial={{ rotate: -90, opacity: 0 }}
-            animate={{ rotate: 0, opacity: 1 }}
-            transition={{ duration: 0.18 }}
-            className="flex items-center justify-center"
-          >
-            {isOpen ? <XIcon /> : <ChatsCircleIcon />}
-          </motion.span>
-        </Button>
+          {isOpen ? t("close") : t("open")}
+        </button>
       </div>
     </MotionConfig>
   )

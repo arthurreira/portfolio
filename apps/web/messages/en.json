@@ -1,23 +1,41 @@
 {
   "hero": {
-    "heading": "Hi,I'm Arthur!",
-    "greeting": "Hi, I'm",
+    "greetings": [
+      "Hi",
+      "Hey",
+      "Hello",
+      "Yo"
+    ],
+    "intro": "I'm",
     "firstName": "Arthur",
     "lastName": "Ferreira.",
-    "heroSubtitle": "Junior Software Developer · Kuopio, Finland · Cloud & Web",
-    "buttons": {
-      "contact": "Contact",
-      "projects": "Projects",
-      "about": "About me"
-    }
+    "heroSubtitle": "I work as a Software Engineer at <company>Nordcloud, an IBM Company</company>.",
+    "cultureLine": "DevSecOps is a culture —",
+    "devsecopsStages": [
+      "Plan",
+      "Code",
+      "Build",
+      "Test",
+      "Release",
+      "Deploy",
+      "Operate",
+      "Monitor"
+    ]
+  },
+  "home": {
+    "selectedLabel": "Latest projects I've been working on",
+    "allProjects": "All projects"
   },
   "projects": {
     "title": "Projects",
     "heading": "Projects.",
-    "countSuffix": "projects"
+    "countSuffix": "projects",
+    "previous": "Previous",
+    "next": "Next"
   },
   "about": {
     "title": "About",
+    "roleLine": "Software Engineer · Cloud & DevSecOps",
     "originLabel": "From",
     "originValue": "Brazil → Finland",
     "yearsLabel": "In Finland",
@@ -26,26 +44,31 @@
     "roleValue": "Junior @ Nordcloud",
     "offClockLabel": "Off the clock",
     "offClockValue": "Goalkeeper, Miesten Kolmonen",
-    "certsLabel": "Certifications",
-    "verified": "Verified",
-    "creativeLabel": "What's Your Religious Deal?",
-    "creativeTitle": "What's Your Religious Deal?",
-    "creativeText": "All of them. Evangelical? Yeah, I'm cool with that. Catholic? Sure, why not! Umbanda? Well I'll be damned... Candomblé? Love it! Oh you're a spiritist? Yeah yeah, Tuesday's session was good. Oh a Buddha showed up — you good with that? Yep, that works too. Look, the person who has no enemies — everybody loves that person. That's rule number one for any politician worth their salt. From rich to poor, from black to white, from tall to short — I shake everybody's hand exactly the same way. You know why? Because the one who shoots in every direction, hits something eventually. And when they hit — they hit good. Ah, but you're still young… I've got an insane amount of spiritual protection — through the orixá, the saint, the Buddha, the hindu gods. I don't even know from where exactly, but everybody loves me there...!",
-    "langLabel": "Language & Personality",
-    "langText": "Multilingual people shift personalities without noticing, depending on the language they're speaking. Each language carries different cultural connections and ways of seeing the world. 🙂‍↕️"
+    "langLabel": "Something I've noticed",
+    "langText": "Multilingual people shift personalities without noticing, depending on the language they're speaking. Each language carries different cultural connections and ways of seeing the world."
+  },
+  "certs": {
+    "label": "Certifications",
+    "inProgress": "In progress",
+    "seeAll": "All certifications",
+    "latestLabel": "Some of my latest certifications"
   },
   "nav": {
     "projects": "Projects",
     "about": "About",
     "contact": "Contact",
-    "backToTop": "Back to top"
+    "backToTop": "Back to top",
+    "back": "Back"
   },
   "contact": {
     "title": "Contact",
     "heading1": "Let's",
     "heading2": "Talk.",
     "openTo": "Open to open-source opportunities, freelance projects, and coffee chats.",
-    "responseTime": "Usually responds within 24 hours"
+    "responseTime": "Usually responds within 24 hours",
+    "email": "Email",
+    "github": "GitHub",
+    "linkedin": "LinkedIn"
   },
   "theme": {
     "dark": "Dark",
