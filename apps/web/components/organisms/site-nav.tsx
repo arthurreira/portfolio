@@ -40,11 +40,23 @@ export function SiteNav() {
   return (
     <header className="relative z-10 w-full bg-background">
       <div className="t-nav">
+        {/* Full wordmark from sm up, the AF monogram below it — the same mark
+            as the favicon, but set in type so it follows all four themes and
+            costs no image request. The wordmark plus a back link did not fit
+            a phone, and hiding the brand outright is not an option now that
+            inner pages carry no links: it is the only route home.
+            aria-label so the accessible name is the wordmark at every width. */}
         <NavLink
           href="/"
+          aria-label="arthurreira.dev"
           className="t-brand shrink-0 text-lg font-bold tracking-[-0.02em]"
         >
-          <RollingText text="arthurreira.dev" />
+          <span aria-hidden className="sm:hidden">
+            AF
+          </span>
+          <span aria-hidden className="hidden sm:inline">
+            <RollingText text="arthurreira.dev" />
+          </span>
         </NavLink>
 
         <nav className="t-links">

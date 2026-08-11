@@ -9,14 +9,23 @@ interface NavLinkProps {
   active?: boolean
   children: React.ReactNode
   className?: string
+  /** For links whose visible text is abbreviated at some widths. */
+  "aria-label"?: string
 }
 
 // Uses next-intl's Link so hrefs are automatically prefixed with the current locale.
 // Plain next/link with localePrefix:'always' would always navigate to the default locale.
-export function NavLink({ href, active, children, className }: NavLinkProps) {
+export function NavLink({
+  href,
+  active,
+  children,
+  className,
+  "aria-label": ariaLabel,
+}: NavLinkProps) {
   return (
     <Link
       href={href}
+      aria-label={ariaLabel}
       className={cn(
         "text-base transition-colors duration-150",
         active
