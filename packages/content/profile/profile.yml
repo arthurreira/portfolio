@@ -48,6 +48,10 @@ certifications:
 availability:
   openTo:
     - Collaboration on open-source projects
+    - Freelance projects
+    - Coffee chats
+    - New ideas
+    - Pair programming
   routeElsewhereToContact: true
 
 focus:
