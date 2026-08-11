@@ -46,5 +46,9 @@ export function RotatingWord({
 
   if (reduceMotion || words.length < 2) return <>{words[0] ?? ""}</>
 
+  // No sr-only twin. An earlier version paired the cycling word with a static
+  // one to stop assistive tech announcing a change every couple of seconds —
+  // but content changing outside an aria-live region is not announced at all,
+  // so the duplicate bought nothing and put every word into the markup twice.
   return <ScrambleText text={word} className={className} />
 }

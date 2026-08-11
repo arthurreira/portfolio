@@ -44,16 +44,22 @@ function frame(text: string, settled: number): string {
  * Motion drives the progress value so this shares the site's easing and its
  * reduced-motion handling; the character substitution is plain JS, because a
  * scramble swaps glyphs rather than interpolating a style, which is the only
- * thing an animation library can tween. GSAP's ScrambleTextPlugin does the
- * same job, but it would mean a second animation runtime for one effect.
+ * thing an animation library can tween.
  *
- * Frames are written straight to the DOM node rather than through state — at
- * 60fps a `setState` per frame would re-render the whole hero ~80 times.
+ * Renders exactly one text node. An earlier version paired the animated copy
+ * with an sr-only duplicate, which put every heading into the markup twice —
+ * visible in copy-paste, in the SSR HTML and to search engines. Instead the
+ * real text is server-rendered and the node is only hidden from assistive tech
+ * while it is actually noise.
  *
- * Re-runs whenever `text` changes, so a caller can swap the word and get the
- * decode as the transition (see RotatingWord).
+ * Frames are written straight to the DOM node: at 60fps a `setState` per frame
+ * would re-render the whole heading ~80 times.
  */
-export function ScrambleText({ text, delay = 0, className }: ScrambleTextProps) {
+export function ScrambleText({
+  text,
+  delay = 0,
+  className,
+}: ScrambleTextProps) {
   const ref = useRef<HTMLSpanElement>(null)
   const reduceMotion = useReducedMotion()
 
@@ -61,8 +67,14 @@ export function ScrambleText({ text, delay = 0, className }: ScrambleTextProps) 
     const node = ref.current
     if (!node) return
 
-    if (reduceMotion) {
+    // Always leave the node holding the real string, whatever happens next.
+    const settle = () => {
       node.textContent = text
+      node.removeAttribute("aria-hidden")
+    }
+
+    if (reduceMotion) {
+      settle()
       return
     }
 
@@ -71,6 +83,9 @@ export function ScrambleText({ text, delay = 0, className }: ScrambleTextProps) 
       MAX_DURATION_S
     )
 
+    // Hidden only while it is noise — restored the moment it reads correctly.
+    node.setAttribute("aria-hidden", "true")
+
     const controls = animate(0, text.length, {
       duration,
       delay,
@@ -78,23 +93,18 @@ export function ScrambleText({ text, delay = 0, className }: ScrambleTextProps) 
       onUpdate: (settled) => {
         node.textContent = frame(text, settled)
       },
-      // Guarantees the real string even if the last frame lands short.
-      onComplete: () => {
-        node.textContent = text
-      },
+      onComplete: settle,
     })
 
-    return () => controls.stop()
+    return () => {
+      controls.stop()
+      settle()
+    }
   }, [text, delay, reduceMotion])
 
   return (
-    <>
-      {/* The animated copy is noise for most of its life, so it is hidden from
-          assistive tech and the real string is exposed once, statically. */}
-      <span className="sr-only">{text}</span>
-      <span ref={ref} aria-hidden className={className}>
-        {text}
-      </span>
-    </>
+    <span ref={ref} className={className}>
+      {text}
+    </span>
   )
 }
