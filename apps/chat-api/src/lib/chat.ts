@@ -111,13 +111,6 @@ export const streamChat = async ({
     },
     messages: modelMessages,
     maxOutputTokens: config.maxOutputTokens,
-    onFinish: ({ providerMetadata }) => {
-      // Caching fails silently: a prompt that drops under the model's minimum
-      // simply stops being cached, with no error and no visible symptom beyond
-      // a slower, dearer reply. Logged so the regression is findable.
-      const usage = providerMetadata?.anthropic
-      console.log("chat usage", JSON.stringify(usage))
-    },
   })
 
   const probed = await probeStream(primary.stream)
