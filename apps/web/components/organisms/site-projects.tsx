@@ -26,10 +26,20 @@ export function SiteProjects({
   heading = "Projects.",
   countSuffix = "projects",
 }: SiteProjectsProps) {
+  // Trailing punctuation, split off so it can take the accent. Not scrambled:
+  // decoding a single full stop is a frame of noise and nothing else.
+  const [, body = heading, punctuation = ""] =
+    heading.match(/^(.*?)([.!?…]*)$/) ?? []
+
   return (
     <div className="t-shell pt-16 pb-24">
-      <h1 className="text-display mb-2 text-foreground">
-        <ScrambleText text={heading} />
+      {/* Every other heading on the site splits foreground into accent on its
+          second half — "Arthur / Ferreira Miranda.", "Let's / Talk.". This one
+          is a single word, so the trailing full stop carries the accent
+          instead. Works for Projects. / Projektit. / Projetos. alike. */}
+      <h1 className="text-display mb-2">
+        <ScrambleText text={body} className="text-foreground" />
+        {punctuation && <span className="text-primary">{punctuation}</span>}
       </h1>
       <p className="section-label mb-8">
         {projects.length} {countSuffix}
