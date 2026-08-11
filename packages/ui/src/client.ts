@@ -15,6 +15,8 @@ export * from './components/message-scroller'
 export * from './components/navbar'
 // Imports @phosphor-icons/react at the root, which builds an IconContext with
 // createContext — so it cannot be exported from the server-safe barrel.
+// "use client" (Radix) — belongs here, not in the server-safe barrel.
+export * from './components/separator'
 export * from './components/pagination'
 export * from './components/pageHeader'
 export * from './components/popover'
