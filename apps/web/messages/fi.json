@@ -10,7 +10,7 @@
     "intro": "mä oon",
     "firstName": "Arthur",
     "lastName": "Ferreira.",
-    "heroSubtitle": "Työskentelen ohjelmistokehittäjänä yrityksessä <company>Nordcloud, an IBM company</company>.",
+    "heroSubtitle": "Työskentelen ohjelmistoinsinöörinä yrityksessä <company>Nordcloud, an IBM company</company>.",
     "cultureLine": "DevSecOps on kulttuuri –",
     "devsecopsStages": [
       "Suunnittelu",
@@ -36,18 +36,18 @@
   },
   "about": {
     "title": "Tietoa minusta",
-    "roleLead": "Ohjelmistokehittäjä ·",
+    "roleLead": "Ohjelmistoinsinööri ·",
     "specialisms": [
       "Pilvipalvelut",
-      "Cloud Architecture",
+      "Pilviarkkitehtuuri",
       "DevSecOps",
-      "Platform Engineering",
-      "RAG & AI",
-      "LLMOps & AI Agents",
-      "Infra as Code",
-      "Kubernetes & Containers",
-      "Observability",
-      "Cybersecurity"
+      "Alustakehitys",
+      "RAG & tekoäly",
+      "LLMOps & tekoälyagentit",
+      "IaC",
+      "Kubernetes & kontit",
+      "Havainnoitavuus",
+      "Kyberturvallisuus"
     ],
     "originLabel": "Mistä päin olen kotoisin",
     "originValue": "Brasiliasta",
