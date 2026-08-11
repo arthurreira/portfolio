@@ -43,7 +43,7 @@ export function SiteNav() {
           <RollingText text="arthurreira.dev" />
         </NavLink>
 
-        <nav className="t-links">
+        <nav className={isProjectDetail ? "t-links t-links-end" : "t-links"}>
           {isProjectDetail ? (
             <NavLink href="/projects" className="inline-flex items-center gap-2">
               <ArrowLeftIcon weight="bold" className="size-4" />
