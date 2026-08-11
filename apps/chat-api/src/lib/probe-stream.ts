@@ -1,12 +1,6 @@
 import type { TextStreamPart, ToolSet } from "ai"
 
-/**
- * Part types that mean the model has genuinely started answering.
- *
- * Everything before one of these (`start`, `start-step`) is bookkeeping the SDK
- * emits before the upstream has committed to anything, so seeing them proves
- * nothing about whether the request will succeed.
- */
+/** Part types that mean the model has genuinely started answering. */
 const CONTENT_PARTS: ReadonlySet<string> = new Set([
   "text-start",
   "text-delta",
@@ -25,18 +19,6 @@ export type ProbeResult<TOOLS extends ToolSet> =
 /**
  * Reads a `streamText` stream until it either fails or starts producing an
  * answer, then hands back an equivalent stream with nothing lost.
- *
- * This exists because of an awkward property of the AI SDK: `streamText` does
- * not throw when the upstream rejects the request. It resolves immediately and
- * surfaces the failure as an `error` part *inside* the stream — by which point,
- * in the obvious implementation, we have already returned a `Response` and can
- * no longer choose a different model. Waiting for the first real content is what
- * turns "the answer already started streaming" into a decision we can still act
- * on, and it costs only the time until the first token, which we were going to
- * wait for anyway.
- *
- * The parts consumed while probing are buffered and replayed, so a caller that
- * gets `ok: true` sees exactly the stream it would have seen without the probe.
  */
 export const probeStream = async <TOOLS extends ToolSet>(
   source: ReadableStream<TextStreamPart<TOOLS>>

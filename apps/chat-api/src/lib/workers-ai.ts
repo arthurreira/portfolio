@@ -35,16 +35,13 @@ export interface WorkersAiStreamParams {
   system: string
   messages: ModelMessage[]
   maxOutputTokens: number
-  /** Repeated after the visitor's message, where a small model weights it most. */
+  /**
+   * Repeated after the visitor's message, where a small model weights it most.
+   */
   reminder?: string
 }
 
-/**
- * Yields text deltas as the model produces them.
- *
- * Workers AI streams SSE, and a chunk can span reads, so the tail of an
- * incomplete line is carried over rather than parsed and dropped.
- */
+/** Yields text deltas as the model produces them. */
 export async function* streamWorkersAiText({
   ai,
   model,
@@ -64,9 +61,7 @@ export async function* streamWorkersAiText({
           role: message.role,
           content: toPlainText(message.content),
         })),
-        // Last position, after the question. A 6k-token prompt buries its own
-        // rules for a model this size — repeating them at the very end is the
-        // only placement that measurably changed its behaviour.
+        // Last position, after the question.
         ...(reminder ? [{ role: "system", content: reminder }] : []),
       ],
     } as never

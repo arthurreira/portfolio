@@ -6,15 +6,6 @@ interface ContactLinkProps {
   href: string
 }
 
-/**
- * One contact as a border-top row: label left, address right. The same shape
- * as the project and certification rows, so every list on the site reads as
- * one system.
- *
- * It used to be 32px bold text with a chasing arrow. The arrow went from the
- * project rows for repeating what the row already said, and the same applies
- * here.
- */
 export function ContactLink({ label, value, href }: ContactLinkProps) {
   const external = !href.startsWith("mailto")
   return (

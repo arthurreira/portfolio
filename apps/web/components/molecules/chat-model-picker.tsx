@@ -9,11 +9,7 @@ import {
   SelectValue,
 } from "@arthurreira/ui/client"
 
-/**
- * The two choices the Worker's allowlist accepts. Anything else sent in the
- * request body is silently treated as "claude" server-side, so this list is a
- * UI convenience, not a security boundary.
- */
+/** The two choices the Worker's allowlist accepts. */
 export const MODEL_CHOICES = ["claude", "workers-ai"] as const
 export type ModelChoice = (typeof MODEL_CHOICES)[number]
 

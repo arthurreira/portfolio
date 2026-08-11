@@ -24,10 +24,7 @@ export function SiteContact() {
   const t = useTranslations("contact")
 
   return (
-    <div className="t-shell pt-16 pb-24">
-      {/* Was min-h-screen with justify-between, which pinned the response
-          time to the bottom of the viewport. There is a real footer under
-          this now, so the page just ends where its content ends. */}
+    <div className="mx-auto max-w-page px-gutter pt-16 pb-24">
       <h1 className="text-display mb-4">
         <ScrambleText text={t("heading1")} className="text-foreground" />{" "}
         <ScrambleText

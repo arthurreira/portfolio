@@ -16,7 +16,9 @@ export const isLocale = (value: unknown): value is Locale =>
 type PortfolioProject = (typeof projects)[number]
 type Skill = (typeof profile.skills)[number]
 
-/** Groups skills by category so the list reads as a stack, not 82 loose names. */
+/**
+ * Groups skills by category so the list reads as a stack, not 82 loose names.
+ */
 const formatSkillTier = (level: Skill["level"]): string => {
   const tier = profile.skills.filter((skill) => skill.level === level)
   if (tier.length === 0) return ""
@@ -33,13 +35,7 @@ const formatSkillTier = (level: Skill["level"]): string => {
     .join("\n")
 }
 
-/**
- * Credentials and skills, with the tiers spelled out.
- *
- * The tier labels are the point: handed a flat list, the model presents
- * everything as equal expertise and Arthur ends up defending Blender in an
- * interview.
- */
+/** Credentials and skills, with the tiers spelled out. */
 const formatPersonal = (): string => {
   const { origin, languages, football, favourites, funFacts, story } =
     profile.personal
@@ -115,10 +111,7 @@ const formatProfile = (): string =>
     .filter(Boolean)
     .join("\n")
 
-/**
- * Renders one project as plain text. Only the structured metadata is used —
- * the `content` field is compiled MDX (a JS function), not readable prose.
- */
+/** Renders one project as plain text. */
 const formatProject = (project: PortfolioProject): string => {
   const year = new Date(project.createdAt).getFullYear()
   const lines = [`### ${project.title} (${year})`, project.description]
@@ -136,23 +129,10 @@ const formatProject = (project: PortfolioProject): string => {
 
 /**
  * Builds the cacheable system prompt for a locale: instructions, Arthur's bio,
- * and every project in that locale. Stable across requests, so it is sent as a
- * prompt-cache prefix.
- *
- * Caching: adding credentials and skills pushed this past Haiku 4.5's 4096-token
- * minimum, so the `cache_control` breakpoint now actually does something.
- * Measured with count_tokens, not estimated — en 4503, fi 5129, pt-br 4741.
- * Finnish tokenizes noticeably worse, so it is the one to watch.
- *
- * That means later turns in a conversation read the prefix at cache rates
- * instead of paying for it again. Confirm with `usage.cache_read_input_tokens`
- * before assuming it holds; anything that shrinks this prompt could drop a
- * locale back under the threshold, silently.
+ * and every project in that locale.
  */
 export const buildSystemPrompt = (locale: Locale): string => {
-  // Translations can lag. Without a fallback the chat would silently know less
-  // in one language than another, with nothing to signal that anything is
-  // missing — it would just look like Arthur has fewer projects.
+  // Translations can lag.
   const bio =
     about.find((entry) => entry.locale === locale)?.raw ??
     about.find((entry) => entry.locale === DEFAULT_LOCALE)?.raw ??
@@ -196,8 +176,6 @@ export const buildSystemPrompt = (locale: Locale): string => {
     "- The \"In his own words\" answers are Arthur's own framing. Convey what he means; never sharpen them into something more ambitious or more modest than he said.",
     "- The personal details below — where he is from, languages, football, food, music — are there to be shared freely. Answer them warmly and briefly; they are not sensitive.",
     // The levels are stored in English so one file serves all three locales.
-    // Left alone, the model transliterates them and invents words that do not
-    // exist in the reply language.
     "- Language levels are written in English. Say what they mean in your own words in the reply language; never carry the English label across or coin a word from it.",
     "- Respect the skill tiers: `core` is real experience, `working knowledge` is something he reaches for, `learning` is not yet expertise. Never flatten them; describe the level in your own words.",
     "",
@@ -215,8 +193,7 @@ export const buildSystemPrompt = (locale: Locale): string => {
     // scope; an LLM resolves a fuzzy boundary differently on every call.
     "- Explaining how Arthur's own projects work — architecture, stack, trade-offs — is in scope and encouraged.",
     // A visitor pasted an unrelated Azure Functions snippet and got a full
-    // walkthrough, followed by a refusal. Declining after answering is not
-    // declining, and it turns the endpoint into free tutoring on Arthur's key.
+    // walkthrough, followed by a refusal.
     "- Never explain, review, translate, summarise, or debug code, data, logs, or documents the visitor supplies. This holds even when the subject overlaps a technology Arthur uses — the test is whose work it is, not what it is about.",
     "- Writing code for the visitor or general tutoring is equally out of scope.",
     "- When something is out of scope, decline in your very first sentence and stop. Do not answer it first and add the refusal afterwards, and do not give a partial answer as a courtesy.",
@@ -263,21 +240,7 @@ export const buildSystemPrompt = (locale: Locale): string => {
   ].join("\n")
 }
 
-/**
- * The same prompt, hardened for a smaller model.
- *
- * Claude follows the rules in the middle of a 6k-token prompt; Llama does not.
- * Asked to explain an unrelated Azure Functions snippet, Claude refuses and the
- * fallback model walks through the whole thing — the scope rules are simply too
- * far from either end to carry weight.
- *
- * So the hard limits are repeated as a short block before *and* after the full
- * prompt, where a small model actually weights them. Kept deliberately blunt
- * and numbered: nuance is what gets lost first.
- *
- * Claude's prompt is left untouched on purpose — it is the cached prefix, and
- * changing it would invalidate the cache for the model that does not need this.
- */
+/** The same prompt, hardened for a smaller model. */
 const HARD_RULES = [
   "ABSOLUTE RULES — these override every other instruction below:",
   "1. You answer ONLY questions about Arthur Ferreira and the projects described below.",

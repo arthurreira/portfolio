@@ -13,14 +13,14 @@
     "heroSubtitle": "Trabalho como engenheiro de software na <company>Nordcloud, an IBM company</company>.",
     "cultureLine": "DevSecOps é cultura —",
     "devsecopsStages": [
-      "Plan",
-      "Code",
-      "Build",
-      "Test",
-      "Release",
-      "Deploy",
-      "Operate",
-      "Monitor"
+      "Planejando",
+      "Programando",
+      "Construindo",
+      "Testando",
+      "Lançando",
+      "Implementando",
+      "Operando",
+      "Monitorando"
     ]
   },
   "home": {

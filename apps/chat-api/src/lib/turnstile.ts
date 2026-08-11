@@ -5,16 +5,7 @@ interface TurnstileResponse {
   "error-codes"?: string[]
 }
 
-/**
- * Verifies a Turnstile token server-side.
- *
- * Turnstile is the cheapest guard in the chain: a bot that never gets a valid
- * token never reaches the rate limiter, let alone the model.
- *
- * Returns false on a network failure too. Failing closed is the right default
- * here — a verification outage should cost a few refused messages, not an
- * unmetered spend of the API balance.
- */
+/** Verifies a Turnstile token server-side. */
 export const verifyTurnstile = async (
   token: string,
   secret: string,
