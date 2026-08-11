@@ -504,19 +504,21 @@ html {
     padding: 0.875rem var(--gutter);
     gap: 0.5rem 1rem;
   }
-  /* Hidden on a phone: the row is tight enough without it, and the links
-     carry the navigation there. */
+  /* Stays at every width. It was hidden on a phone when three links shared
+     the row; an inner page now carries one back link, so there is room, and
+     the brand is the only route home. */
   .t-brand {
-    display: none;
+    margin-right: 1rem;
   }
   /* Both rows start on the column's left edge, the same edge as the page
      content. `flex: 0 0 100%` rather than `flex-basis: 100%` — the shorthand
      has to come last or it resets the basis back to auto, which is what put
      the links and the controls on one drifting row. */
+  /* No forced row of its own. That was there to fill the space left by the
+     hidden brand; now the row wraps only when it actually has to, so an inner
+     page keeps its brand and back link on one line and only the home page's
+     three links drop below on a narrow screen. */
   .t-links {
-    order: 1;
-    flex: 0 0 100%;
-    justify-content: flex-start;
     gap: 0.75rem 1.25rem !important;
   }
   .t-controls {

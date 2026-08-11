@@ -10,7 +10,7 @@
     "intro": "eu sou",
     "firstName": "Arthur",
     "lastName": "Ferreira.",
-    "heroSubtitle": "Trabalho como engenheiro de software na <company>Nordcloud, uma empresa IBM</company>.",
+    "heroSubtitle": "Trabalho como engenheiro de software na <company>Nordcloud, an IBM company</company>.",
     "cultureLine": "DevSecOps é cultura —",
     "devsecopsStages": [
       "Plan",
@@ -58,7 +58,8 @@
     "projects": "Projetos",
     "about": "Sobre",
     "contact": "Contato",
-    "backToTop": "Voltar ao topo"
+    "backToTop": "Voltar ao topo",
+    "back": "Voltar"
   },
   "contact": {
     "title": "Contato",

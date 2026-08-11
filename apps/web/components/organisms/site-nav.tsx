@@ -14,15 +14,16 @@ const PROJECT_DETAIL = /^\/projects\/.+/
  * here too and now sit in the footer — they are global controls rather than
  * navigation, and they were the densest thing in the top bar.
  *
- * On a project page the links are replaced by a single way back. A detail
- * page is a reading page: the site index competing with the article is the
- * thing you least need while reading it.
+ * Only the home page carries the link list. Every inner page is a reading
+ * page, so it swaps the list for a single way back: to /projects from a
+ * project, to / from anywhere else.
  */
 export function SiteNav() {
   const intlPathname = useIntlPathname()
   const t = useTranslations("nav")
   const tProject = useTranslations("project")
 
+  const isHome = intlPathname === "/"
   const isProjectDetail = PROJECT_DETAIL.test(intlPathname)
 
   const NAV_LINKS = [
@@ -31,11 +32,15 @@ export function SiteNav() {
     { href: "/contact", label: t("contact") },
   ]
 
+  // A project belongs to the list it came from; everything else belongs to
+  // the home page.
+  const back = isProjectDetail
+    ? { href: "/projects" as const, label: tProject("back") }
+    : { href: "/" as const, label: t("back") }
+
   return (
     <header className="relative z-10 w-full bg-background">
       <div className="t-nav">
-        {/* Logo — lifted out of the row into the viewport corner by .t-brand,
-            so the links below can start on the page's own left edge. */}
         <NavLink
           href="/"
           className="t-brand shrink-0 text-lg font-bold tracking-[-0.02em]"
@@ -44,15 +49,7 @@ export function SiteNav() {
         </NavLink>
 
         <nav className="t-links">
-          {isProjectDetail ? (
-            <NavLink href="/projects" className="inline-flex items-center gap-2">
-              <ArrowLeftIcon weight="bold" className="size-4" />
-              {/* sr-only rather than hidden: below sm the arrow stands alone
-                  visually, but the label stays in the accessibility tree, so
-                  the link never degrades to an unnamed icon. */}
-              <span className="sr-only sm:not-sr-only">{tProject("back")}</span>
-            </NavLink>
-          ) : (
+          {isHome ? (
             NAV_LINKS.map(({ href, label }) => (
               <NavLink
                 key={href}
@@ -62,6 +59,14 @@ export function SiteNav() {
                 {label}
               </NavLink>
             ))
+          ) : (
+            <NavLink href={back.href} className="inline-flex items-center gap-2">
+              <ArrowLeftIcon weight="bold" className="size-4" />
+              {/* sr-only rather than hidden: below sm the arrow stands alone
+                  visually, but the label stays in the accessibility tree, so
+                  the link never degrades to an unnamed icon. */}
+              <span className="sr-only sm:not-sr-only">{back.label}</span>
+            </NavLink>
           )}
         </nav>
       </div>

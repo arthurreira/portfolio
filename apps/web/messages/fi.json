@@ -58,7 +58,8 @@
     "projects": "Projektit",
     "about": "Tietoa",
     "contact": "Ota yhteyttä",
-    "backToTop": "Takaisin ylös"
+    "backToTop": "Takaisin ylös",
+    "back": "Takaisin"
   },
   "contact": {
     "title": "Ota yhteyttä",

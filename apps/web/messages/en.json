@@ -57,7 +57,8 @@
     "projects": "Projects",
     "about": "About",
     "contact": "Contact",
-    "backToTop": "Back to top"
+    "backToTop": "Back to top",
+    "back": "Back"
   },
   "contact": {
     "title": "Contact",
