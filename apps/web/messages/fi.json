@@ -13,14 +13,14 @@
     "heroSubtitle": "Työskentelen ohjelmistokehittäjänä yrityksessä <company>Nordcloud, an IBM company</company>.",
     "cultureLine": "DevSecOps on kulttuuri –",
     "devsecopsStages": [
-      "Plan",
-      "Code",
-      "Build",
-      "Test",
-      "Release",
-      "Deploy",
-      "Operate",
-      "Monitor"
+      "Suunnittelu",
+      "Koodaus",
+      "Buildaus",
+      "Testaus",
+      "Julkaisu",
+      "Käyttöönotto",
+      "Ylläpito",
+      "Monitorointi"
     ]
   },
   "home": {
@@ -36,7 +36,7 @@
   },
   "about": {
     "title": "Tietoa minusta",
-    "roleLine": "Software engineer",
+    "roleLine": "Ohjelmistokehittäjä",
     "originLabel": "Mistä päin olen kotoisin",
     "originValue": "Brasiliasta",
     "yearsLabel": "Kauanko Suomessa",

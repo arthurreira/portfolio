@@ -15,13 +15,13 @@ const PROJECT_DETAIL = /^\/projects\/.+/
  * navigation, and they were the densest thing in the top bar.
  *
  * Only the home page carries the link list. Every inner page is a reading
- * page, so it swaps the list for a single way back: to /projects from a
- * project, to / from anywhere else.
+ * page, so it swaps the list for a single way back — one word, with the
+ * destination reading as "up one level": /projects from a project, / from
+ * anywhere else.
  */
 export function SiteNav() {
   const intlPathname = useIntlPathname()
   const t = useTranslations("nav")
-  const tProject = useTranslations("project")
 
   const isHome = intlPathname === "/"
   const isProjectDetail = PROJECT_DETAIL.test(intlPathname)
@@ -32,11 +32,10 @@ export function SiteNav() {
     { href: "/contact", label: t("contact") },
   ]
 
+  // One label everywhere — the destination is contextual, the word is not.
   // A project belongs to the list it came from; everything else belongs to
   // the home page.
-  const back = isProjectDetail
-    ? { href: "/projects" as const, label: tProject("back") }
-    : { href: "/" as const, label: t("back") }
+  const backHref = isProjectDetail ? ("/projects" as const) : ("/" as const)
 
   return (
     <header className="relative z-10 w-full bg-background">
@@ -60,12 +59,12 @@ export function SiteNav() {
               </NavLink>
             ))
           ) : (
-            <NavLink href={back.href} className="inline-flex items-center gap-2">
+            <NavLink href={backHref} className="inline-flex items-center gap-2">
               <ArrowLeftIcon weight="bold" className="size-4" />
               {/* sr-only rather than hidden: below sm the arrow stands alone
                   visually, but the label stays in the accessibility tree, so
                   the link never degrades to an unnamed icon. */}
-              <span className="sr-only sm:not-sr-only">{back.label}</span>
+              <span className="sr-only sm:not-sr-only">{t("back")}</span>
             </NavLink>
           )}
         </nav>
