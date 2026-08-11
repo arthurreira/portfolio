@@ -36,7 +36,13 @@
   },
   "about": {
     "title": "Tietoa minusta",
-    "roleLine": "Ohjelmistokehittäjä",
+    "roleLead": "Ohjelmistokehittäjä ·",
+    "specialisms": [
+      "Cloud",
+      "DevSecOps",
+      "RAG & AI",
+      "Terraform"
+    ],
     "originLabel": "Mistä päin olen kotoisin",
     "originValue": "Brasiliasta",
     "yearsLabel": "Kauanko Suomessa",
