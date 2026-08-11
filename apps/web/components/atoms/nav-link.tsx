@@ -13,8 +13,10 @@ interface NavLinkProps {
   "aria-label"?: string
 }
 
-// Uses next-intl's Link so hrefs are automatically prefixed with the current locale.
-// Plain next/link with localePrefix:'always' would always navigate to the default locale.
+// Uses next-intl's Link so hrefs are automatically prefixed with the current
+// locale.
+// Plain next/link with localePrefix:'always' would always navigate to the
+// default locale.
 export function NavLink({
   href,
   active,

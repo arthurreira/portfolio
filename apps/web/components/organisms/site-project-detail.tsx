@@ -92,10 +92,6 @@ export function SiteProjectDetail({
     <div className="min-h-screen bg-background">
 
       <div className="t-shell pt-10 pb-24">
-        {/* The kicker used to read "PROJECT [03]" above the title. The number
-            was decoration, and once it goes the word only repeats what the
-            heading underneath already says — so the title carries the line on
-            its own, with the year opposite it. */}
         <div className="mb-6 flex items-baseline justify-between gap-4">
           <h1 className="text-display-sm text-foreground">
             <ScrambleText text={title} />
@@ -117,9 +113,6 @@ export function SiteProjectDetail({
           </div>
         ) : null}
 
-        {/* Meta reads as a band under the title now that the page is one
-            column — as a 240px right rail it had nowhere to go in a 44rem
-            page, and the grid's 42rem + 240px minimum could never fit. */}
         <dl className="t-detail-meta mb-10">
           {sidebarRows.map((row) => (
             <LabeledRow key={row.label} label={row.label}>
@@ -131,8 +124,6 @@ export function SiteProjectDetail({
         {/* This wrapper is load-bearing: <Image fill> and the striped
             placeholder are both absolutely positioned, so they need the
             relative box and the aspect ratio to have any size at all. */}
-        {/* 16/7 was 300px tall in a 44rem column before a word of the body.
-            21/9 keeps the panorama and gives ~60px back. */}
         <div className="relative my-8 aspect-[21/9] w-full overflow-hidden bg-muted">
           {coverImage ? (
             <Image

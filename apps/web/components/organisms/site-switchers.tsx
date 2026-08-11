@@ -20,9 +20,8 @@ import { useCircleReveal } from "@/components/molecules/circle-reveal"
 import { FlagFill, FlagPillFill } from "@/components/atoms/flag-icons"
 import { THEME_TRANSITION } from "@/lib/theme-transition"
 
-// Full-bleed flags: no padding box, dimmed and desaturated when inactive,
-// full colour when active (via aria-pressed set by PillButton). The active
-// state is the colour coming back, so it needs no border to announce itself.
+// Full-bleed flags: no padding box, dimmed and desaturated when inactive, full
+// colour when active (via aria-pressed set by PillButton).
 const FLAG_PILL_CLASS =
   "overflow-hidden p-0 opacity-60 saturate-50 transition-all hover:opacity-100 aria-pressed:opacity-100 aria-pressed:saturate-100"
 
@@ -64,12 +63,8 @@ type ViewTransitionDoc = Document & {
 }
 
 /**
- * Theme (Brasil/Suomi), mode (light/dark) and language switchers, plus the
- * `d` and `l` keyboard shortcuts.
- *
- * Lives in the footer rather than the nav: they are global controls, so they
- * have to exist on every page, but they are not navigation and they were the
- * densest thing in the top bar.
+ * Theme (Brasil/Suomi), mode (light/dark) and language switchers, plus the `d`
+ * and `l` keyboard shortcuts.
  */
 export function SiteSwitchers() {
   const router = useRouter()
@@ -163,9 +158,8 @@ export function SiteSwitchers() {
     })
   }
 
-  // Keyboard shortcuts: d toggles the mode (with the view-transition sweep),
-  // l cycles the language. Re-subscribes per render so the handlers always see
-  // current state; listeners are cheap.
+  // Keyboard shortcuts: d toggles the mode (with the view-transition sweep), l
+  // cycles the language.
   useEffect(() => {
     function onKeydown(e: KeyboardEvent) {
       if (e.metaKey || e.ctrlKey || e.altKey || e.repeat) return

@@ -22,11 +22,14 @@ interface StreamChatParams {
   apiKey: string
   config: ChatConfig
   systemPrompt: string
-  /** Same prompt hardened for the smaller model — see buildFallbackSystemPrompt. */
+  /**
+   * Same prompt hardened for the smaller model — see
+   * buildFallbackSystemPrompt.
+   */
   fallbackSystemPrompt: string
   messages: UIMessage[]
   headers?: Record<string, string>
-  /** Workers AI binding. Absent locally unless `wrangler dev --remote`. */
+  /** Workers AI binding. */
   ai?: Ai
   /** Validated visitor choice; "workers-ai" streams the free model directly. */
   model: ModelChoice
@@ -50,15 +53,8 @@ const toResponse = <TOOLS extends ToolSet>(
 
 /**
  * Streams a completion in the AI SDK UI Message Stream format, so the browser
- * can consume it with `useChat` + `DefaultChatTransport` and no custom parsing.
- *
- * Keeping the wire format standard is also what lets the shadcn AI SDK helper
- * stand in for this Worker during UI development.
- *
- * If Anthropic fails, the same request is retried against a Workers AI model and
- * the response is marked degraded. The likeliest reason for that failure is the
- * Anthropic balance running out, and a portfolio whose chat answers a little
- * less well is better than one whose chat is broken in front of a recruiter.
+ * can consume it with `useChat` + `DefaultChatTransport` and no custom
+ * parsing.
  */
 export const streamChat = async ({
   apiKey,
@@ -75,10 +71,7 @@ export const streamChat = async ({
   const recent = messages.slice(-config.maxHistoryMessages)
   const modelMessages = await convertToModelMessages(recent)
 
-  // The visitor chose the free model. Not marked degraded — that header means
-  // the primary failed, and this is a choice working as intended. If the
-  // binding is missing the choice quietly becomes the default, same as any
-  // other unhonourable value.
+  // The visitor chose the free model.
   if (model === "workers-ai" && ai) {
     return streamFallback({
       ai,
@@ -96,12 +89,6 @@ export const streamChat = async ({
     // The prompt is ~5k tokens of portfolio content, identical on every request
     // for a locale, so it is marked cacheable — the single biggest lever on both
     // reply latency and input cost here.
-    //
-    // Passed as `instructions` with a SystemModelMessage rather than a plain
-    // string: provider options given to streamText itself attach the cache
-    // breakpoint to the last message, which is the visitor's question and so
-    // differs every time. That writes a fresh cache entry per request and reads
-    // none — measurably worse than no caching at all.
     instructions: {
       role: "system",
       content: systemPrompt,
@@ -144,13 +131,7 @@ interface StreamFallbackParams {
   degraded: boolean
 }
 
-/**
- * Second attempt, on Cloudflare's own models.
- *
- * Deliberately not probed. There is nothing left to fall back to, so a failure
- * here has to reach the client as an error either way, and probing would only
- * delay it.
- */
+/** Second attempt, on Cloudflare's own models. */
 const streamFallback = ({
   ai,
   config,

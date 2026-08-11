@@ -7,12 +7,8 @@
 
 /* Typeset preset for long-form rendered markdown. Fonts come from the Next
    font variables declared on <html> in apps/web. */
-/* Layered on purpose. Written as plain CSS these rules sat outside every
-   cascade layer, and unlayered CSS beats anything in a layer regardless of
-   specificity — including Tailwind's utilities, which live in @layer
-   utilities. That is why an `mt-16` on a .t-detail-meta was silently
-   discarded. Inside @layer components a utility on the element wins, so
-   these are defaults rather than overrides. */
+/* Layered so Tailwind utilities can override these. Unlayered CSS beats
+   anything in a layer, which silently ate an mt-16 on .t-detail-meta. */
 @layer components {
   .typeset-notes {
     --typeset-font-body: var(--font-ui);
@@ -297,12 +293,8 @@ html {
 }
 
 /* Shell: one centred column, same gutter on both sides. */
-/* Layered on purpose. Written as plain CSS these rules sat outside every
-   cascade layer, and unlayered CSS beats anything in a layer regardless of
-   specificity — including Tailwind's utilities, which live in @layer
-   utilities. That is why an `mt-16` on a .t-detail-meta was silently
-   discarded. Inside @layer components a utility on the element wins, so
-   these are defaults rather than overrides. */
+/* Layered so Tailwind utilities can override these. Unlayered CSS beats
+   anything in a layer, which silently ate an mt-16 on .t-detail-meta. */
 @layer components {
   .t-shell {
     max-width: var(--page-max);
@@ -420,12 +412,8 @@ html {
 
 /* The nav row shares the page column, so it starts on exactly the same left
    edge as the hero and every section heading below it. */
-/* Layered on purpose. Written as plain CSS these rules sat outside every
-   cascade layer, and unlayered CSS beats anything in a layer regardless of
-   specificity — including Tailwind's utilities, which live in @layer
-   utilities. That is why an `mt-16` on a .t-detail-meta was silently
-   discarded. Inside @layer components a utility on the element wins, so
-   these are defaults rather than overrides. */
+/* Layered so Tailwind utilities can override these. Unlayered CSS beats
+   anything in a layer, which silently ate an mt-16 on .t-detail-meta. */
 @layer components {
   .t-nav {
     max-width: var(--page-max);
@@ -498,12 +486,8 @@ html {
    this rule is unlayered while Tailwind's utilities live in @layer
    utilities — unlayered always wins, so an `mt-16` on the element was
    silently discarded. Spacing belongs to the caller. */
-/* Layered on purpose. Written as plain CSS these rules sat outside every
-   cascade layer, and unlayered CSS beats anything in a layer regardless of
-   specificity — including Tailwind's utilities, which live in @layer
-   utilities. That is why an `mt-16` on a .t-detail-meta was silently
-   discarded. Inside @layer components a utility on the element wins, so
-   these are defaults rather than overrides. */
+/* Layered so Tailwind utilities can override these. Unlayered CSS beats
+   anything in a layer, which silently ate an mt-16 on .t-detail-meta. */
 @layer components {
   .t-detail-meta {
     display: grid;
@@ -524,12 +508,8 @@ html {
    860px while components used Tailwind's own scale, so the layout changed
    in stages and never looked settled between them.
 ──────────────────────────────────────────────────────────────────────── */
-/* Layered on purpose. Written as plain CSS these rules sat outside every
-   cascade layer, and unlayered CSS beats anything in a layer regardless of
-   specificity — including Tailwind's utilities, which live in @layer
-   utilities. That is why an `mt-16` on a .t-detail-meta was silently
-   discarded. Inside @layer components a utility on the element wins, so
-   these are defaults rather than overrides. */
+/* Layered so Tailwind utilities can override these. Unlayered CSS beats
+   anything in a layer, which silently ate an mt-16 on .t-detail-meta. */
 @layer components {
   @media (max-width: 64rem) {
     body {
@@ -560,11 +540,8 @@ html {
     .t-links {
       gap: 0.75rem 1.25rem !important;
     }
-    /* order and flex-basis lived here from when the switchers were in the nav,
-       as row 2 under the brand. They are in the footer now, where `order: 2`
-       was reordering them past the GitHub link — which is why the icon moved
-       to the left below this width — and `flex: 0 0 100%` had them claim the
-       whole footer row. Only the tighter gap was ever about being narrow. */
+  /* Only the gap is about being narrow — order/flex-basis were leftovers
+     from when the switchers were the nav's second row. */
     .t-controls {
       gap: 0.5rem;
     }

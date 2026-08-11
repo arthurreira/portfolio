@@ -14,8 +14,6 @@ import { routing } from "@/i18n/routing"
 const jetbrainsMono = JetBrains_Mono({ subsets: ['latin'], variable: '--font-mono' })
 
 // Geist drives --font-ui, which every label, subtitle and UI string reads.
-// Previously that variable was a hardcoded Helvetica/Arial system stack while
-// a second Geist was loaded and never used.
 const geist = Geist({ subsets: ["latin"], variable: "--font-geist" })
 
 
@@ -34,9 +32,7 @@ export default async function RootLayout({
   const { locale } = await params
   if (!hasLocale(routing.locales, locale)) notFound()
 
-  // Enables static rendering. Without it, next-intl reads headers() on every
-  // request, which opts the whole route tree out of static generation (a
-  // serverless invocation per request, including RSC prefetches).
+  // Enables static rendering.
   setRequestLocale(locale)
 
   const messages = await getMessages()
@@ -50,11 +46,6 @@ export default async function RootLayout({
       )}
     >
       <head>
-        {/* No-flash boot: restore the theme from localStorage before first
-            paint. Runs in <head> before <body> renders, so there is no flash.
-            Theme used to be seeded from cookies server-side, but that read
-            forced dynamic rendering for the entire site.
-            Keyboard shortcuts (d = mode, l = language) live in SiteNav. */}
         <script dangerouslySetInnerHTML={{ __html: `(function(){
             try{
               var r=document.documentElement;

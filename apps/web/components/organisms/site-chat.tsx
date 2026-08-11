@@ -62,19 +62,7 @@ const PANEL_MOTION = {
   transition: { duration: 0.22, ease: [0.23, 1, 0.32, 1] as const },
 }
 
-/**
- * The portfolio chat, as a floating card.
- *
- * Deliberately *not* a modal sheet: the question ("what did he build with X?")
- * occurs while reading a project, so the page has to stay readable and
- * clickable behind the panel. A Card gives that for free — no overlay.
- *
- * The tradeoff is that a dialog component would have handled Escape and focus
- * for us, so both are wired up by hand below.
- *
- * Nothing is persisted: messages live in `useChat` state and are gone on
- * reload, which is the whole privacy story for this feature.
- */
+/** The portfolio chat, as a floating card. */
 export function SiteChat() {
   const t = useTranslations("chat")
   const locale = useLocale()
@@ -120,9 +108,7 @@ export function SiteChat() {
 
   const isBusy = status === "submitted" || status === "streaming"
 
-  // A blank chat gives no clue what it knows about — these do. Grouped because
-  // visitors do not expect a portfolio chat to answer anything but technical
-  // questions, and the personal half is the part that needs advertising.
+  // A blank chat gives no clue what it knows about — these do.
   const suggestionGroups = [
     { label: t("suggestionsTechLabel"), items: t.raw("suggestionsTech") },
     {
@@ -179,8 +165,7 @@ export function SiteChat() {
   }, [isOpen])
 
   // On open the composer takes focus (see its autoFocus prop) so the panel is
-  // ready to type in. Here we only handle the return trip, guarded so it never
-  // steals focus on first mount.
+  // ready to type in.
   useEffect(() => {
     if (!isOpen && wasOpen.current) triggerRef.current?.focus()
     wasOpen.current = isOpen
@@ -202,13 +187,7 @@ export function SiteChat() {
             >
               <CardHeader className="border-b">
                 <CardTitle>{t("title")}</CardTitle>
-                {/* The one thing worth saying up front. Every other chat on the
-                    web stores your messages; this one does not, and a visitor
-                    has no way to know that unless it is stated. */}
                 <CardDescription className="flex flex-col gap-0.5 text-xs">
-                  {/* No padlock icon — the words already say it, and an icon
-                      before a line of text is the pattern this site dropped
-                      everywhere else. */}
                   <span
                     className="flex items-center gap-1.5"
                     title={t("metaPrivateHint")}
@@ -219,12 +198,7 @@ export function SiteChat() {
                   </span>
                   <span>{t("metaScope")}</span>
                 </CardDescription>
-                {/* CardAction is the header's dedicated slot — it drives the
-                    grid columns, which a hand-rolled flex row would override. */}
                 <CardAction className="flex items-center gap-1">
-                  {/* Nothing is persisted, so "start over" is a real state here
-                      rather than housekeeping — currently only a page reload
-                      achieves it. */}
                   {messages.length > 0 && (
                     <Button
                       variant="ghost"
@@ -248,29 +222,18 @@ export function SiteChat() {
               </CardHeader>
 
               <CardContent className="min-h-0 flex-1 overflow-hidden p-0">
-                {/* No scrollAnchor here on purpose. Anchoring lifts each new
-                    turn to the top so a long answer can be read from its start
-                    — good on a full page, wrong in a 32rem panel, where it
-                    pushes the streaming reply out of sight. This panel wants
-                    the plain chat behaviour: follow the bottom edge. */}
                 <MessageScrollerProvider autoScroll>
                   <MessageScroller>
-                    {/* The site runs Lenis in root mode, which takes over wheel
-                        events for the whole document — without this the panel
-                        cannot scroll and the page behind it moves instead. */}
                     <MessageScrollerViewport data-lenis-prevent>
                       <MessageScrollerContent
                         aria-busy={isBusy}
                         className="p-4"
                       >
                         {messages.length === 0 && (
-                          // Every direct child of the content must be an Item, or
+                          // Every direct child of the content must be an Item,
+                          // or
                           // the scroller cannot measure and anchor it.
                           <MessageScrollerItem messageId="empty">
-                            {/* Deliberately not the Empty primitive: it centres
-                                its content, and everything else on this site is
-                                left-aligned. The header already names the panel,
-                                so repeating the title here would say it twice. */}
                             <div className="flex flex-col items-start gap-4">
                               <p className="text-muted-foreground text-sm text-pretty">
                                 {t("emptyDescription")}
@@ -280,14 +243,7 @@ export function SiteChat() {
                                   key={group.label}
                                   className="flex w-full flex-col gap-1.5"
                                 >
-                                  {/* label-caps is the site's own idiom for a
-                                      small section label — the ticker and the
-                                      project rows already use it. */}
                                   <p className="label-caps">{group.label}</p>
-                                  {/* Border-top rows, not outlined buttons.
-                                      A bordered group inside a bordered card
-                                      read as a second card, and every other
-                                      list on this site is a row. */}
                                   <div className="w-full">
                                     {group.items.map((question) => (
                                       <button
@@ -357,9 +313,6 @@ export function SiteChat() {
                         {error && (
                           <MessageScrollerItem messageId="error">
                             <Marker role="status">
-                              {/* A failed bot check is the one error a visitor
-                                  can actually do something about, so it says
-                                  what happened instead of "try again". */}
                               <MarkerContent>
                                 {turnstileFailed
                                   ? t("turnstileFailed")
@@ -370,10 +323,6 @@ export function SiteChat() {
                         )}
                       </MessageScrollerContent>
                     </MessageScrollerViewport>
-                    {/* Centred by default, which in a 384px panel lands the
-                        button on top of whatever line is under it. Pinned to
-                        the trailing edge instead, with a shadow so it reads as
-                        floating rather than as a hole in the text. */}
                     <MessageScrollerButton className="start-auto end-3 translate-x-0 shadow-md rtl:translate-x-0" />
                   </MessageScroller>
                 </MessageScrollerProvider>
@@ -405,10 +354,6 @@ export function SiteChat() {
           )}
         </AnimatePresence>
 
-        {/* A plain text link, not a floating circle. The bubble was the
-            loudest thing left on the page once the rest of the chrome went;
-            as text it stays reachable from every page without competing with
-            the content for attention. */}
         <button
           ref={triggerRef}
           type="button"

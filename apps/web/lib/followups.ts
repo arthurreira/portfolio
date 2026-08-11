@@ -8,14 +8,7 @@ export interface SplitAnswer {
   followups: string[]
 }
 
-/**
- * Separates the assistant's answer from the follow-up block it appends.
- *
- * The model emits suggestions inline (one request instead of two), so this has
- * to cope with the marker arriving a character at a time: a trailing fragment
- * like `<follo` must be hidden too, or the raw tag flickers on screen while the
- * reply streams.
- */
+/** Separates the assistant's answer from the follow-up block it appends. */
 export function splitFollowups(text: string): SplitAnswer {
   const start = text.indexOf(OPEN)
 

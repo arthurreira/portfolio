@@ -25,9 +25,6 @@ export function SiteContact() {
 
   return (
     <div className="t-shell pt-16 pb-24">
-      {/* Was min-h-screen with justify-between, which pinned the response
-          time to the bottom of the viewport. There is a real footer under
-          this now, so the page just ends where its content ends. */}
       <h1 className="text-display mb-4">
         <ScrambleText text={t("heading1")} className="text-foreground" />{" "}
         <ScrambleText

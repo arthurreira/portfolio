@@ -3,30 +3,16 @@ import type { UIMessage } from "ai"
 
 /**
  * Limits are sized for what they actually are: a person asking about a
- * portfolio. They are generous enough that no genuine visitor will meet them,
- * and small enough that nobody can turn the endpoint into free inference by
- * pasting a novel into it.
- *
- * Input length is the cost lever the visitor controls, so this is a spend
- * control as much as a correctness one.
+ * portfolio.
  */
 const MAX_MESSAGES = 50
 const MAX_CHARS_PER_MESSAGE = 4_000
 const MAX_TOTAL_CHARS = 24_000
 
-/**
- * Rejected before parsing rather than after. `request.json()` has to
- * materialise the whole body first, so validating the parsed object would mean
- * doing the expensive part before deciding it was too big to accept.
- */
+/** Rejected before parsing rather than after. */
 export const MAX_BODY_BYTES = 128 * 1_024
 
-/**
- * Parts are matched loosely on purpose. `useChat` sends part types this Worker
- * has no interest in, and new SDK versions add more; rejecting unknown ones
- * would break the chat on a dependency bump rather than catch an attack. Length
- * is what actually needs bounding, and that is checked wherever text appears.
- */
+/** Parts are matched loosely on purpose. */
 const partSchema = z
   .object({
     type: z.string(),
@@ -34,16 +20,7 @@ const partSchema = z
   })
   .passthrough()
 
-/**
- * `parts` may legitimately be empty.
- *
- * `useChat` creates the assistant message before anything streams into it, so a
- * request that fails or is stopped leaves an empty one in the transcript.
- * Rejecting that would make a single transient failure poison the whole
- * conversation: the empty message is resent with every following question, so
- * the chat would stay broken until the visitor reloaded. Contentless messages
- * are dropped below instead.
- */
+/** `parts` may legitimately be empty. */
 const messageSchema = z
   .object({
     id: z.string().optional(),
@@ -64,8 +41,8 @@ const requestSchema = z
 export type ModelChoice = "claude" | "workers-ai"
 
 /**
- * Anything but the exact free-model id falls back to the default silently —
- * a forged value must not select a model, and must not produce an error that
+ * Anything but the exact free-model id falls back to the default silently — a
+ * forged value must not select a model, and must not produce an error that
  * maps out the allowlist either.
  */
 const resolveModelChoice = (value: unknown): ModelChoice =>
@@ -91,13 +68,7 @@ const totalChars = (messages: z.infer<typeof requestSchema>["messages"]) =>
     0
   )
 
-/**
- * Validates a decoded request body.
- *
- * Returns a specific error per failure so the UI can eventually say something
- * more useful than "something went wrong" — a visitor who pasted too much text
- * should be told to shorten it, not left guessing.
- */
+/** Validates a decoded request body. */
 export const validateChatRequest = (payload: unknown): ValidationResult => {
   const parsed = requestSchema.safeParse(payload)
 
@@ -121,9 +92,7 @@ export const validateChatRequest = (payload: unknown): ValidationResult => {
     return { ok: false, error: "conversation_too_long" }
   }
 
-  // Drop anything with no text to contribute. Passing an empty assistant turn
-  // upstream is rejected by the model API, so leaving them in would trade a
-  // spurious 400 for a spurious 500.
+  // Drop anything with no text to contribute.
   const messages = parsed.data.messages.filter((message) =>
     message.parts.some((part) => part.text && part.text.length > 0)
   )

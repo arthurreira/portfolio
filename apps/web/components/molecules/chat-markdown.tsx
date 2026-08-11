@@ -6,17 +6,7 @@ import { useLocale } from "next-intl"
 import { StreamedWords } from "@/components/molecules/streamed-words"
 import { linkifyProjects } from "@/lib/project-links"
 
-/**
- * Renders the assistant's markdown.
- *
- * The model answers with bold, lists and links; rendered as plain text those
- * show up as literal `**` and `-`.
- *
- * Typography is not set here — the `.typeset` wrapper below owns it, so
- * headings, lists, code and tables all match the project pages. What remains
- * are the two behaviours typeset cannot provide: the per-word fade as text
- * streams in, and the internal/external split on links.
- */
+/** Renders the assistant's markdown. */
 const components: Components = {
   p: ({ children }) => (
     <p>
@@ -31,9 +21,9 @@ const components: Components = {
   ),
 
   a: ({ children, href }) =>
-    // Internal project links (inserted by linkifyProjects, already
-    // locale-prefixed) navigate in-tab; anything external stays untrusted and
-    // opens in a new tab with no opener reference.
+    // Internal project links (inserted by linkifyProjects, already locale-
+    // prefixed) navigate in-tab; anything external stays untrusted and opens in
+    // a new tab with no opener reference.
     href?.startsWith("/") ? (
       <Link href={href}>{children}</Link>
     ) : (

@@ -28,10 +28,7 @@ interface HeroTextProps {
 /** Delay (s) between each segment of the heading starting to decode. */
 const SEGMENT_STAGGER_S = 0.12
 
-/**
- * Hero heading — the name decodes out of noise on load, segment by segment.
- * The type carries the hierarchy; the decode is the only entrance.
- */
+/** Hero heading — the name decodes out of noise on load, segment by segment. */
 export function HeroText({
   greetings,
   intro,
@@ -44,23 +41,7 @@ export function HeroText({
 }: HeroTextProps) {
   return (
     <div className={cn("flex flex-col gap-4 sm:gap-6", className)}>
-      {/* h1 gets font-bold leading-[1.1] tracking-[-0.02em] from @layer base.
-          Each segment decodes on its own short delay, so the line resolves
-          left to right rather than all at once. The masked LineReveal is gone
-          — a slide and a decode on the same line were two entrances. */}
       <h1 className="text-display">
-        {/* The greeting gets its own line. Sharing one with the name put a
-            word that changes length every 2.6s ("Morjens" → "Moi", four
-            characters) on a line already close to wrapping in a 44rem
-            column — so the heading flipped between one and two lines on a
-            timer and shunted the whole page down a line each time.
-
-            Padding the greeting to a fixed width does not fix it: the comma
-            has to sit against the word, so everything after it still moves.
-            Split across two lines, neither line is near its wrap point and
-            the block height is constant.
-
-            {" "} is load-bearing: JSX drops whitespace at a line break. */}
         <span className="block">
           <RotatingWord words={greetings} />,{" "}
           <ScrambleText text={intro} delay={SEGMENT_STAGGER_S} />
@@ -88,8 +69,6 @@ export function HeroText({
         {subtitle}
       </motion.p>
 
-      {/* Smaller than the subtitle on purpose — it is a note under the role,
-          not a second claim competing with it. */}
       <motion.p
         className="text-sm text-muted-foreground"
         initial={{ opacity: 0, y: 12 }}

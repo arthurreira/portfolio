@@ -19,12 +19,7 @@ const buttonVariants = cva(
         destructive:
           "bg-destructive/10 text-destructive hover:bg-destructive/20 focus-visible:border-destructive/40 focus-visible:ring-destructive/20 dark:bg-destructive/20 dark:hover:bg-destructive/30 dark:focus-visible:ring-destructive/40",
         link: "text-primary underline-offset-4 hover:underline",
-        // Toggle pill (inactive state). Pair with size="pill".
-        // For the active state, switch to variant="default" from the parent.
-        // No border: the base class already sets `border border-transparent`,
-        // so the box keeps its size and the state reads from text colour
-        // alone. A visible outline on every toggle was more chrome than three
-        // small switchers need.
+        // Toggle pill (inactive state).
         pill: "bg-transparent text-muted-foreground hover:text-foreground",
       },
       size: {

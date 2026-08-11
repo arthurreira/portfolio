@@ -1,23 +1,17 @@
 /** Cheapest model that handles portfolio Q&A well. */
 const DEFAULT_MODEL = "claude-haiku-4-5"
 
-/**
- * Workers AI model used when Anthropic is unavailable. Runs on Cloudflare's own
- * infrastructure and bills against the Workers plan rather than the Anthropic
- * balance, which is the point: the balance running dry is the most likely
- * reason we ever need it.
- */
+/** Workers AI model used when Anthropic is unavailable. */
 const DEFAULT_FALLBACK_MODEL = "@cf/meta/llama-3.3-70b-instruct-fp8-fast"
 
 const DEFAULT_MAX_OUTPUT_TOKENS = 1024
 
-/**
- * Absolute ceiling. Config may lower `maxOutputTokens` but never raise it past
- * this, so a mistyped env var cannot quietly drain the API credit balance.
- */
+/** Absolute ceiling. */
 const MAX_OUTPUT_TOKENS_CEILING = 2048
 
-/** Trimmed history window — older turns are dropped before hitting the model. */
+/**
+ * Trimmed history window — older turns are dropped before hitting the model.
+ */
 const DEFAULT_MAX_HISTORY_MESSAGES = 20
 const MAX_HISTORY_MESSAGES_CEILING = 50
 
@@ -35,7 +29,7 @@ export interface ChatConfigEnv {
   CHAT_MAX_HISTORY_MESSAGES?: string
 }
 
-/** Parses a positive integer, clamped to `ceiling`. Falls back on anything invalid. */
+/** Parses a positive integer, clamped to `ceiling`. */
 const positiveInt = (
   raw: string | undefined,
   fallback: number,
@@ -46,12 +40,7 @@ const positiveInt = (
   return Math.min(parsed, ceiling)
 }
 
-/**
- * Resolves runtime configuration from the environment.
- *
- * These are operational knobs, not secrets — they exist so the model or the
- * cost ceiling can change without a redeploy. The only secret is the API key.
- */
+/** Resolves runtime configuration from the environment. */
 export const resolveChatConfig = (env: ChatConfigEnv): ChatConfig => ({
   model: env.CHAT_MODEL?.trim() || DEFAULT_MODEL,
   fallbackModel: env.CHAT_FALLBACK_MODEL?.trim() || DEFAULT_FALLBACK_MODEL,

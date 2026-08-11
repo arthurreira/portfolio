@@ -16,11 +16,7 @@ interface SiteProjectsProps {
   countSuffix?: string
 }
 
-/**
- * The full project list. Same shell, spacing and row treatment as the home
- * page section — the count sits under the heading as a quiet line rather than
- * floating opposite it, which is what the home page does with its labels.
- */
+/** The full project list. */
 export function SiteProjects({
   projects,
   heading = "Projects.",
@@ -33,10 +29,6 @@ export function SiteProjects({
 
   return (
     <div className="t-shell pt-16 pb-24">
-      {/* Every other heading on the site splits foreground into accent on its
-          second half — "Arthur / Ferreira Miranda.", "Let's / Talk.". This one
-          is a single word, so the trailing full stop carries the accent
-          instead. Works for Projects. / Projektit. / Projetos. alike. */}
       <div className="flex flex-row justify-between items-baseline gap-4">
         <h1 className="text-display mb-2">
           <ScrambleText text={body} className="text-foreground" />

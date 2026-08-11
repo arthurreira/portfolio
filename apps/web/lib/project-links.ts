@@ -2,9 +2,7 @@ import { projects } from "@arthurreira/content"
 
 /**
  * Turns plain-text mentions of Arthur's projects in assistant answers into
- * links to the project pages. The matching happens here, against the known
- * catalogue — the model is never asked to emit portfolio URLs, because a model
- * inventing a URL is a broken link.
+ * links to the project pages.
  */
 
 interface ProjectAlias {
@@ -17,10 +15,6 @@ interface ProjectAlias {
  * Titles match case-sensitively: the model copies them from its context with
  * exact casing, and "Infrastructure as Code" the project must not swallow
  * "infrastructure as code" the concept.
- *
- * Slugs are added as case-insensitive aliases only when hyphenated — visitors
- * and the model both write "af-analytics", but bare-word slugs like "infra"
- * and "portfolio" are ordinary vocabulary and would link half the prose.
  */
 const aliasesForLocale = (locale: string): ProjectAlias[] => {
   const translated = projects.filter((project) => project.locale === locale)
@@ -57,7 +51,7 @@ const getAliases = (locale: string): ProjectAlias[] => {
 /**
  * Segments that must never be rewritten: fenced code, inline code, anything
  * already a markdown link, and bare URLs (which the model produces and GFM
- * autolinks). Splitting on a capture group keeps them at the odd indices.
+ * autolinks).
  */
 const PROTECTED_SEGMENTS = /(```[\s\S]*?```|`[^`]*`|\[[^\]]*\]\([^)]*\)|https?:\/\/\S+)/g
 

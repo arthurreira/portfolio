@@ -4,35 +4,24 @@ import { useEffect, useRef } from "react"
 import { animate, useReducedMotion } from "motion/react"
 import { LINE_EASE } from "@/lib/motion"
 
-/**
- * Noise is drawn from the same class as the character it stands in for.
- *
- * A single pool of capitals and symbols made a decoding word up to 40% wider
- * than its settled form — W and M run about 0.9em where lowercase averages
- * 0.5em — which is enough to rewrap a heading mid-animation and shunt the page
- * below it. Matching the class keeps the line width roughly constant, and it
- * reads better: the shape of the word is already there before it resolves.
- */
+// Noise matches the class of the character it replaces.
 const POOLS = {
   lower: "abcdefghijklmnopqrstuvwxyz",
   upper: "ABCDEFGHIJKLMNOPQRSTUVWXYZ",
   digit: "0123456789",
   symbol: "#$%&*+=<>/\\",
 } as const
-/** Seconds to decode, per character. */
+
 const SECONDS_PER_CHAR = 0.035
-/** Never snap through a short word, never crawl through a long one. */
 const MIN_DURATION_S = 0.45
 const MAX_DURATION_S = 1.4
 
 interface ScrambleTextProps {
   text: string
-  /** Seconds to wait before decoding starts. */
   delay?: number
   className?: string
 }
 
-/** Accented letters count as letters — "mä", "aí", "ç" all appear here. */
 function poolFor(char: string): string {
   if (/\p{Ll}/u.test(char)) return POOLS.lower
   if (/\p{Lu}/u.test(char)) return POOLS.upper
@@ -45,11 +34,7 @@ function randomGlyph(char: string): string {
   return pool[Math.floor(Math.random() * pool.length)] ?? "#"
 }
 
-/**
- * Builds one frame: everything left of `settled` is the real text, everything
- * right of it is noise. Whitespace is never scrambled, so word boundaries hold
- * still and the line does not reflow while it decodes.
- */
+// Whitespace is never scrambled, so word boundaries hold still.
 function frame(text: string, settled: number): string {
   let out = ""
   for (let i = 0; i < text.length; i++) {
@@ -60,28 +45,8 @@ function frame(text: string, settled: number): string {
   return out
 }
 
-/**
- * Decodes text left to right — noise resolving into the real characters.
- *
- * Motion drives the progress value so this shares the site's easing and its
- * reduced-motion handling; the character substitution is plain JS, because a
- * scramble swaps glyphs rather than interpolating a style, which is the only
- * thing an animation library can tween.
- *
- * Renders exactly one text node. An earlier version paired the animated copy
- * with an sr-only duplicate, which put every heading into the markup twice —
- * visible in copy-paste, in the SSR HTML and to search engines. Instead the
- * real text is server-rendered and the node is only hidden from assistive tech
- * while it is actually noise.
- *
- * Frames are written straight to the DOM node: at 60fps a `setState` per frame
- * would re-render the whole heading ~80 times.
- */
-export function ScrambleText({
-  text,
-  delay = 0,
-  className,
-}: ScrambleTextProps) {
+/** Decodes text left to right. */
+export function ScrambleText({ text, delay = 0, className }: ScrambleTextProps) {
   const ref = useRef<HTMLSpanElement>(null)
   const reduceMotion = useReducedMotion()
 
@@ -89,7 +54,6 @@ export function ScrambleText({
     const node = ref.current
     if (!node) return
 
-    // Always leave the node holding the real string, whatever happens next.
     const settle = () => {
       node.textContent = text
       node.removeAttribute("aria-hidden")
@@ -105,13 +69,14 @@ export function ScrambleText({
       MAX_DURATION_S
     )
 
-    // Hidden only while it is noise — restored the moment it reads correctly.
     node.setAttribute("aria-hidden", "true")
 
     const controls = animate(0, text.length, {
       duration,
       delay,
       ease: LINE_EASE,
+      // Written to the node directly: a setState per frame would re-render the
+      // whole heading ~80 times.
       onUpdate: (settled) => {
         node.textContent = frame(text, settled)
       },
@@ -124,6 +89,8 @@ export function ScrambleText({
     }
   }, [text, delay, reduceMotion])
 
+  // One text node, server-rendered with the real string — an sr-only twin
+  // would put every heading into the markup twice.
   return (
     <span ref={ref} className={className}>
       {text}
