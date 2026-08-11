@@ -63,9 +63,16 @@ export default defineConfig({
             issuer: s.string(),
             status: s.enum(CERTIFICATION_STATUSES),
             // Year passed. Optional because an in-progress one has not been
-            // earned yet; the site sorts on it to show the most recent first,
-            // which keeps "latest" true without a hardcoded year to update.
-            earned: s.number().int().optional(),
+            // earned yet. Full date, not a year: three of these were issued in
+            // the same year, so a year cannot order them and "latest" on the
+            // home page would silently fall back to file order.
+            earned: s.isodate().optional(),
+            // Verification page. Optional because an in-progress certification
+            // has no badge yet — without it the row renders as plain text
+            // rather than a link that goes nowhere.
+            url: s.string().url().optional(),
+            // Year the credential lapses. Shown as a range beside `earned`.
+            expires: s.number().int().optional(),
           })
         ),
         skills: s.array(

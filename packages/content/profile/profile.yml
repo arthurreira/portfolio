@@ -14,21 +14,29 @@ education:
 certifications:
   # `earned` is the year passed. The site sorts on it to show the latest
   # first, so no year needs hardcoding anywhere in the UI.
+  # `url` is the public verification page. Without one the row renders as
+  # plain text rather than a link that goes nowhere.
   - name: Microsoft Azure Fundamentals
     code: AZ-900
     issuer: Microsoft
     status: certified
-    earned: 2026
+    earned: 2026-03-05
+    # Microsoft fundamentals credentials do not expire, so no `expires`.
+    url: "https://learn.microsoft.com/api/credentials/share/en-us/ArthurFerreiraMiranda-3837/7139E614BF36225B?sharingId=32064BEAACC390D4"
   - name: AWS Certified Cloud Practitioner
     code: CLF-C02
     issuer: Amazon Web Services
     status: certified
-    earned: 2026
+    earned: 2026-05-04
+    expires: 2029
+    url: https://www.credly.com/badges/85407006-1f0c-4d0d-af85-6bd3b30dfc02/public_url
   - name: AWS Certified AI Practitioner
     code: AIF-C01
     issuer: Amazon Web Services
     status: certified
-    earned: 2026
+    earned: 2026-07-30
+    expires: 2029
+    url: https://www.credly.com/badges/dba5e353-4dbc-4a1b-8c4a-0b9b619e8fc0/public_url
   - name: Microsoft Azure AI Fundamentals
     code: AI-900
     issuer: Microsoft
