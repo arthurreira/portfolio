@@ -117,7 +117,6 @@
   --radius-4xl: calc(var(--radius) * 2.6);
   --font-mono: var(--font-mono);
   --font-ui: var(--font-ui);
-  --color-hairline: var(--hairline);
 }
 
 :root {
@@ -238,10 +237,6 @@
   .section-label {
     @apply font-ui text-sm text-muted-foreground;
   }
-  /* 1px hairline row divider */
-  .row-divider {
-    @apply border-t border-border;
-  }
 }
 
 html {
@@ -302,7 +297,6 @@ html {
   --primary-foreground: #022619;
   --muted: rgba(242, 245, 238, 0.05);
   --border: rgba(242, 245, 238, 0.14);
-  --hairline: rgba(242, 245, 238, 0.82);
   --stripe: rgba(242, 245, 238, 0.03);
   --card: color-mix(in oklab, var(--background) 93%, var(--foreground) 7%);
   --card-foreground: var(--foreground);
@@ -322,7 +316,6 @@ html {
   --primary-foreground: #022619;
   --muted: rgba(242, 245, 238, 0.05);
   --border: rgba(242, 245, 238, 0.14);
-  --hairline: rgba(242, 245, 238, 0.82);
   --stripe: rgba(242, 245, 238, 0.03);
   --card: color-mix(in oklab, var(--background) 93%, var(--foreground) 7%);
   --card-foreground: var(--foreground);
@@ -342,7 +335,6 @@ html {
   --primary-foreground: #f4f3ee;
   --muted: rgba(10, 32, 15, 0.05);
   --border: rgba(10, 32, 15, 0.12);
-  --hairline: rgba(10, 32, 15, 0.82);
   --stripe: rgba(10, 32, 15, 0.03);
   --card: color-mix(in oklab, var(--background) 93%, var(--foreground) 7%);
   --card-foreground: var(--foreground);
@@ -363,7 +355,6 @@ html {
   --primary-foreground: #001b40;
   --muted: rgba(238, 243, 255, 0.05);
   --border: rgba(238, 243, 255, 0.13);
-  --hairline: rgba(238, 243, 255, 0.82);
   --stripe: rgba(238, 243, 255, 0.03);
   --card: color-mix(in oklab, var(--background) 93%, var(--foreground) 7%);
   --card-foreground: var(--foreground);
@@ -383,7 +374,6 @@ html {
   --primary-foreground: #f8faff;
   --muted: rgba(0, 27, 64, 0.05);
   --border: rgba(0, 27, 64, 0.12);
-  --hairline: rgba(0, 27, 64, 0.82);
   --stripe: rgba(0, 27, 64, 0.03);
   --card: color-mix(in oklab, var(--background) 93%, var(--foreground) 7%);
   --card-foreground: var(--foreground);
