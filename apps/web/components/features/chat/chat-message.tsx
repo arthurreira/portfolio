@@ -13,8 +13,8 @@ import {
 } from "@arthurreira/ui"
 import { Avatar, AvatarFallback, AvatarImage } from "@arthurreira/ui/client"
 
-import { ChatMarkdown } from "@/components/molecules/chat-markdown"
-import { splitFollowups } from "@/lib/followups"
+import { ChatMarkdown } from "@/components/features/chat/chat-markdown"
+import { splitFollowups } from "@/components/features/chat/followups"
 
 interface ChatMessageProps {
   message: UIMessage

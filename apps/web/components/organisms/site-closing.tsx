@@ -3,7 +3,7 @@
 import { useTranslations } from "next-intl"
 import { Link } from "@/i18n/routing"
 import { Button } from "@arthurreira/ui"
-import { OPEN_CHAT_EVENT } from "@/lib/chat-events"
+import { OPEN_CHAT_EVENT } from "@/components/features/chat/chat-events"
 
 /**
  * The close. The page used to end on a certification list and then the footer,

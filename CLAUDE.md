@@ -37,7 +37,21 @@ pnpm --filter @arthurreira/ui typecheck
 pnpm --filter @arthurreira/content build   # runs velite build
 ```
 
-**There is no test runner configured in this repo** — no Jest/Vitest/Playwright setup and no test files exist. Do not assume `pnpm test` works; verify changes with `pnpm typecheck`, `pnpm lint`, and `pnpm build`.
+### Testing
+
+**Vitest** runs across the workspace. Tests live next to the code they cover as `*.test.ts` / `*.test.tsx`.
+
+```bash
+pnpm test              # vitest run, all workspaces
+pnpm test:coverage     # same, with the coverage thresholds enforced
+pnpm --filter chat-api test
+```
+
+The repo went years without tests because it is a portfolio and typecheck caught most of it. That stopped being true when `apps/chat-api` started calling a **paid** LLM API: the output-token and history-window ceilings in `src/config.ts` are the difference between a normal bill and a surprising one, and nothing but a test proves config can lower them but never raise them. That is why coverage starts there.
+
+Each workspace's `vitest.config.ts` carries `coverage.thresholds` set to the level actually reached. They are **ratcheted up as coverage lands and never lowered to make a build pass** — if a change drops coverage, add the test rather than the exemption. Target is 80%.
+
+CI (`.github/workflows/ci.yml`) runs typecheck → lint → test → build on every PR into `dev` and `main`.
 
 ## Architecture
 
@@ -72,7 +86,7 @@ Internationalized with **next-intl**. Locales are `['en', 'fi', 'pt-br']` with *
 - Import navigation helpers (`Link`, `useRouter`, `redirect`) from `@/i18n/routing`, **not** from `next/link` / `next/navigation`, so locale prefixing is preserved.
 - UI strings live in `apps/web/messages/*.json` — keep all three locale files in sync when adding keys.
 - All routes are under `app/[locale]/` (`/`, `/projects`, `/projects/[slug]`, `/about`, `/contact`).
-- Components follow **atomic design**: `components/atoms`, `components/molecules`, `components/organisms`.
+- Components are **atomic design for reusable UI, feature folders for the rest**: `components/atoms`, `components/molecules`, `components/organisms` hold pieces used across the site; `components/features/<name>/` holds everything scoped to one feature, components and its own utilities alike. Atomic levels stop meaning anything once feature work lands in them — `molecules/` was collecting chat internals next to `rotating-word`. Ask "is this reusable across the site?" first; only then pick a level.
 
 ### `apps/playground`
 
@@ -82,11 +96,25 @@ Standalone Next.js sandbox for the same `@arthurreira/ui` components, adding `@d
 
 A Cloudflare Worker (Wrangler + TypeScript) that answers visitor questions about Arthur. **Stateless by design**: nothing is persisted anywhere — no database, no KV/D1/Durable Objects, no vector store. Conversations live in React state and disappear on refresh.
 
-- **Context, not RAG.** The portfolio is small enough to fit in the system prompt, assembled per locale in `src/lib/portfolio-context.ts` from `@arthurreira/content`. Note the Velite `content` field is *compiled MDX* (a JS function) and unusable as model context — the about text comes from `raw: s.raw()`, and projects are rendered from their structured metadata.
+`src/` is organised **by layer, not by feature** — there is only one feature (chat), so a feature split would be one folder plus leftovers, while layers keep their meaning when a second endpoint arrives:
+
+```
+src/
+  index.ts       routing + the chat handler's guard sequence
+  config.ts      env → ChatConfig, with the cost ceilings
+  http/          cors, headers, response envelope, request validation
+  security/      rate limiting, Turnstile
+  chat/          streaming, prompt assembly, the stream probe, Workers AI
+  test-support/  test-only helpers, excluded from coverage
+```
+
+Put a new module in the layer that describes *what it is*, not what calls it. Tests sit next to the module they cover.
+
+- **Context, not RAG.** The portfolio is small enough to fit in the system prompt, assembled per locale in `src/chat/portfolio-context.ts` from `@arthurreira/content`. Note the Velite `content` field is *compiled MDX* (a JS function) and unusable as model context — the about text comes from `raw: s.raw()`, and projects are rendered from their structured metadata.
 - **Wire format: the AI SDK UI Message Stream.** `POST /chat` returns `createUIMessageStreamResponse(toUIMessageStream(...))` from `ai`, so the browser consumes it with `useChat` + `DefaultChatTransport` and no custom parsing. (`result.toUIMessageStreamResponse()` is deprecated — use the standalone helpers.) `convertToModelMessages()` is async in `ai@7`; await it.
-- **Config vs. secret.** `ANTHROPIC_API_KEY` is the only secret (`wrangler secret put`, or `.dev.vars` locally — both gitignored). Model, output-token cap, and history window are plain env vars resolved in `src/lib/config.ts`; cost-critical values are **clamped to hardcoded ceilings**, so config can lower them but never raise them.
-- **Fallback.** If Anthropic fails, the request is retried against a Workers AI model and the response carries `x-chat-degraded: true`. This needs the probe in `src/lib/probe-stream.ts`: `streamText` does *not* throw when the upstream rejects — it resolves and surfaces the failure as an `error` part inside the stream, by which point a naive implementation has already returned a `Response`. The probe reads until the first real content, so the failure is still a decision.
-- **Do not reach for `workers-ai-provider`.** At 4.0.0 its streaming path reads both `chunk.response` and `chunk.choices[0].delta.content` and emits a delta for each; most models send both, so every token arrives twice. `src/lib/workers-ai.ts` reads one field from the binding directly instead. Deduplicating downstream is not an option — the duplicates are indistinguishable from a model legitimately emitting `"\n"` twice.
+- **Config vs. secret.** `ANTHROPIC_API_KEY` is the only secret (`wrangler secret put`, or `.dev.vars` locally — both gitignored). Model, output-token cap, and history window are plain env vars resolved in `src/config.ts`; cost-critical values are **clamped to hardcoded ceilings**, so config can lower them but never raise them.
+- **Fallback.** If Anthropic fails, the request is retried against a Workers AI model and the response carries `x-chat-degraded: true`. This needs the probe in `src/chat/probe-stream.ts`: `streamText` does *not* throw when the upstream rejects — it resolves and surfaces the failure as an `error` part inside the stream, by which point a naive implementation has already returned a `Response`. The probe reads until the first real content, so the failure is still a decision.
+- **Do not reach for `workers-ai-provider`.** At 4.0.0 its streaming path reads both `chunk.response` and `chunk.choices[0].delta.content` and emits a delta for each; most models send both, so every token arrives twice. `src/chat/workers-ai.ts` reads one field from the binding directly instead. Deduplicating downstream is not an option — the duplicates are indistinguishable from a model legitimately emitting `"\n"` twice.
 - `@ai-sdk/anthropic` needs the `nodejs_compat` compatibility flag in `wrangler.jsonc`.
 - **`wrangler dev` does not hot-reload `.dev.vars`** — restart it after changing a key, or you will keep debugging a stale value.
 
@@ -105,6 +133,19 @@ const chat = createChat()
 Use it to develop message bubbles and streaming states offline, deterministically, and **without spending API credits**. It is a development and testing tool only — production always goes through the Worker.
 
 ## Conventions
+
+### File and folder naming
+
+These are one rule each because each was violated at least once, and the mismatches are what made the tree hard to read.
+
+- **Filenames are kebab-case, everywhere, in every workspace.** `spring-box.tsx`, not `SpringBox.tsx` or `springBox.tsx`. PascalCase is for the exported React component, never the file.
+- **A file is named after what it exports.** `top-bar.tsx` exports `TopBar`. If you rename the component, rename the file.
+- **Components use named exports, not default.** Default exports let the import site invent a different name, and it did.
+- **`lib/` is pure utilities — no JSX.** A file with a component in it belongs under `components/`, whatever else it does. Client-side wrappers that render no UI of their own go in `components/providers/`.
+- **Server/client pairs use the `-server` suffix** on the server half: `site-hero-server.tsx` fetches and passes props to `site-hero.tsx`. Not `.server.tsx`, not a folder — one convention, applied everywhere.
+- **Reusable UI goes in atomic levels; feature work goes in `components/features/<name>/`.** Ask "is this used across the site?" before picking a level. A feature folder holds its own utilities too, not just its components.
+
+### Everything else
 
 - **Prettier** (`.prettierrc`): no semicolons, double quotes, 2-space tabs, `printWidth: 80`, `trailingComma: es5`. Tailwind class sorting is enabled and aware of `cn` / `cva`.
 - **Animations** use `motion` (`motion/react`) — a peer dependency of `@arthurreira/ui`.

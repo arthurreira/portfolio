@@ -3,7 +3,7 @@ import { Geist, JetBrains_Mono } from "next/font/google"
 import "@arthurreira/ui/globals.css"
 import { cn } from "@arthurreira/ui"
 import { ThemeProvider } from "@arthurreira/ui/client"
-import { TopBar } from "@/components/navBar";
+import { TopBar } from "@/components/top-bar"
 
 const fontSans = Geist({
   subsets: ["latin"],

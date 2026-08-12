@@ -5,15 +5,16 @@ import {
   createUIMessageStreamResponse,
   streamText,
   toUIMessageStream,
+  type LanguageModelUsage,
   type ModelMessage,
   type TextStreamPart,
   type ToolSet,
   type UIMessage,
 } from "ai"
 
-import type { ChatConfig } from "./config"
-import type { ModelChoice } from "./validation"
-import { DEGRADED_HEADER } from "./headers"
+import type { ChatConfig } from "../config"
+import type { ModelChoice } from "../http/validation"
+import { DEGRADED_HEADER } from "../http/headers"
 import { probeStream } from "./probe-stream"
 import { FALLBACK_REMINDER } from "./portfolio-context"
 import { streamWorkersAiText } from "./workers-ai"
@@ -50,6 +51,51 @@ const toResponse = <TOOLS extends ToolSet>(
       },
     }),
   })
+
+/**
+ * Surfaces an upstream failure as a UI message stream.
+ *
+ * The probed stream cannot be reused here: probing a failure cancels the
+ * source, which both locks it and discards what it held, so handing it back
+ * would throw rather than report anything.
+ */
+const toErrorResponse = (
+  error: unknown,
+  headers?: Record<string, string>
+): Response =>
+  createUIMessageStreamResponse({
+    headers,
+    stream: createUIMessageStream({
+      execute: () => {
+        throw error instanceof Error ? error : new Error(String(error))
+      },
+      onError: () => "upstream_failed",
+    }),
+  })
+
+/**
+ * Warns when Anthropic prompt caching did nothing.
+ *
+ * Caching fails silently — drop the system prompt under the model's minimum
+ * cacheable length and the provider just ignores `cacheControl`, with no error
+ * and no symptom beyond a slower, dearer reply. A cold cache writes without
+ * reading, which is normal, so only "neither read nor written" is a fault.
+ *
+ * Anomaly-only: a per-request log would be noise nobody reads.
+ */
+export const warnIfPromptCacheInactive = (
+  usage: LanguageModelUsage,
+  model: string
+): void => {
+  const { cacheReadTokens, cacheWriteTokens } = usage.inputTokenDetails
+
+  if (cacheReadTokens || cacheWriteTokens) return
+
+  console.warn(
+    "prompt cache inactive",
+    JSON.stringify({ model, inputTokens: usage.inputTokens })
+  )
+}
 
 /**
  * Streams a completion in the AI SDK UI Message Stream format, so the browser
@@ -98,6 +144,8 @@ export const streamChat = async ({
     },
     messages: modelMessages,
     maxOutputTokens: config.maxOutputTokens,
+    // Runs inside the stream's lifetime, so the Worker is still alive for it.
+    onEnd: ({ usage }) => warnIfPromptCacheInactive(usage, config.model),
   })
 
   const probed = await probeStream(primary.stream)
@@ -108,7 +156,7 @@ export const streamChat = async ({
   if (!ai) {
     // No binding to fall back to, so the original failure is the real answer.
     console.error("no Workers AI binding configured for fallback")
-    return toResponse(primary.stream, headers)
+    return toErrorResponse(probed.error, headers)
   }
 
   return streamFallback({

@@ -8,7 +8,7 @@ import { Separator } from "@arthurreira/ui/client"
 import { NavLink } from "@/components/atoms/nav-link"
 import { RollingText } from "@/components/atoms/rolling-text"
 import { LanguageSwitcher } from "@/components/molecules/language-switcher"
-import { CHAT_CLOSED_EVENT, OPEN_CHAT_EVENT } from "@/lib/chat-events"
+import { CHAT_CLOSED_EVENT, OPEN_CHAT_EVENT } from "@/components/features/chat/chat-events"
 
 /** /projects/<slug>, but not /projects itself. */
 const PROJECT_DETAIL = /^\/projects\/.+/

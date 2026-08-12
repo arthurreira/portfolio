@@ -25,9 +25,10 @@ export async function SiteTrust() {
   // work", and length of residency answers a different question. It lives on
   // the about page, where biography belongs.
   //
-  // Two items in a three-column grid on purpose — the Grids chapter is explicit
+  // Two items across three tracks on purpose — the Grids chapter is explicit
   // that not every module needs filling, and the empty third is where the
-  // white space comes from.
+  // white space comes from. The tracks are content-sized, not equal thirds;
+  // see the grid below.
   const stats: { value: ReactNode; label: string }[] = [
     { value: `${certified}`, label: t("trustCertsLabel") },
     {
@@ -35,11 +36,14 @@ export async function SiteTrust() {
       // taking up the one line that should be saying why to keep reading.
       label: t("trustRoleLabel"),
       value: (
+        // inline-block so the box hugs the glyphs. As a plain inline run the
+        // underline paints across a soft wrap too, which reads as the rule
+        // running past the last word.
         <a
           href={NORDCLOUD_URL}
           target="_blank"
           rel="noopener noreferrer"
-          className="underline decoration-primary underline-offset-4 transition-colors hover:text-primary"
+          className="inline-block text-balance underline decoration-primary underline-offset-4 transition-colors hover:text-primary"
         >
           {t("trustRoleValue")}
         </a>
@@ -50,7 +54,16 @@ export async function SiteTrust() {
   return (
     <section className="bleed-band py-section">
       <div className="mx-auto max-w-page px-gutter">
-        <dl className="grid grid-cols-1 gap-block sm:grid-cols-3 sm:gap-6">
+        {/* Content-sized rather than three equal thirds. Equal columns gave the
+            certification count a full ~218px to render one digit while the
+            employer name — 25 characters at display size, ~440px — was crushed
+            into the same width and broke to one word per line.
+
+            max-content is the label ("Sertifikaattia", the longest, ~108px);
+            auto lets the name take what it needs; the 1fr absorbs the rest,
+            keeping the empty third the band is built around. If the name ever
+            grows, that empty track gives way before the name wraps. */}
+        <dl className="grid grid-cols-1 gap-block sm:grid-cols-[max-content_auto_1fr] sm:gap-6">
           {stats.map((stat) => (
             <div key={stat.label}>
               <dt className="section-label">{stat.label}</dt>
