@@ -1,4 +1,4 @@
-import SpringBox from "@/components/SpringBox"
+import { SpringBox } from "@/components/spring-box"
 import Link from "next/link"
 
 const EXPERIMENTS = [

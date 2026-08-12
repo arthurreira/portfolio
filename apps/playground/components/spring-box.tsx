@@ -3,7 +3,7 @@
 import { spring } from "motion"
 import { useState } from "react"
 import { Button } from "@arthurreira/ui"
-export default function CSSGeneration() {
+export function SpringBox() {
     const [state, setState] = useState(false)
 
     return (
