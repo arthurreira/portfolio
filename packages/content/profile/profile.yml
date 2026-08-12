@@ -37,8 +37,10 @@ certifications:
     earned: 2026-07-30
     expires: 2029
     url: https://www.credly.com/badges/dba5e353-4dbc-4a1b-8c4a-0b9b619e8fc0/public_url
+  # AI-900 retired 2026-06-30; AI-901 is its replacement. The certification
+  # earned is still "Azure AI Fundamentals", so only the exam code changed.
   - name: Microsoft Azure AI Fundamentals
-    code: AI-900
+    code: AI-901
     issuer: Microsoft
     status: in-progress
 
