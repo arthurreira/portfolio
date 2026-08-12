@@ -1,24 +1,28 @@
+import { RailRow } from "@/components/atoms/rail-row"
+
 interface ContactLinkProps {
   /** Where it goes — Email, GitHub, LinkedIn. */
   label: string
-  /** The address or handle, shown right-aligned like a project's year. */
+  /** The address or handle. */
   value: string
   href: string
+  /** The email row, which leads the list. */
+  emphasis?: boolean
 }
 
-export function ContactLink({ label, value, href }: ContactLinkProps) {
-  const external = !href.startsWith("mailto")
+/**
+ * The label sits on the rail and the address on the wide axis — the reverse of
+ * a project row, because here the address is the thing being read.
+ */
+export function ContactLink({
+  label,
+  value,
+  href,
+  emphasis,
+}: ContactLinkProps) {
   return (
-    <a
-      href={href}
-      target={external ? "_blank" : undefined}
-      rel={external ? "noopener noreferrer" : undefined}
-      className="group -mx-2 flex items-baseline gap-4 border-t border-border px-4 py-3 transition-colors duration-150 hover:bg-muted"
-    >
-      <span className="flex-1 text-base text-foreground transition-all duration-200 group-hover:translate-x-1 group-hover:text-primary">
-        {label}
-      </span>
-      <span className="shrink-0 text-sm text-muted-foreground">{value}</span>
-    </a>
+    <RailRow meta={label} emphasis={emphasis} external={href}>
+      {value}
+    </RailRow>
   )
 }

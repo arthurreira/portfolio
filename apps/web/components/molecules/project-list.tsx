@@ -11,7 +11,7 @@ import {
   PaginationNext,
   PaginationPrevious,
 } from "@arthurreira/ui/client"
-import { ProjectRow } from "@/components/atoms/project-row"
+import { RailRow } from "@/components/atoms/rail-row"
 import type { SiteProject } from "@/components/organisms/site-projects"
 
 /** Rows per page once pagination kicks in. */
@@ -65,14 +65,19 @@ export function ProjectList({
   return (
     <div>
       {visible.map((project, i) => (
-        <ProjectRow
+        <RailRow
           key={project.id}
-          title={project.title}
-          year={project.year}
+          meta={project.year}
           href={`/projects/${project.slug}`}
-          featured={emphasiseFirst && page === 1 && i === 0}
-          description={project.description}
-        />
+          emphasis={emphasiseFirst && page === 1 && i === 0}
+          description={
+            emphasiseFirst && page === 1 && i === 0
+              ? project.description
+              : undefined
+          }
+        >
+          {project.title}
+        </RailRow>
       ))}
       <div className="border-t border-border" />
 
