@@ -32,10 +32,11 @@
     "previous": "Anterior",
     "next": "Próximo",
     "selectedLabel": "O que ando construindo ultimamente",
-    "archiveLabel": "Outros projetos"
+    "archiveLabel": "Outros projetos que fiz no tempo livre"
   },
   "about": {
     "title": "Sobre mim",
+    "factsLabel": "Alguns fatos sobre mim",
     "roleLead": "Engenheiro de software ·",
     "specialisms": [
       "Cloud",
