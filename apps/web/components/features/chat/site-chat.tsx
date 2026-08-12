@@ -4,7 +4,7 @@ import { useEffect, useId, useMemo, useRef, useState } from "react"
 import { useChat } from "@ai-sdk/react"
 import { DefaultChatTransport } from "ai"
 import { useLocale, useTranslations } from "next-intl"
-import { CHAT_CLOSED_EVENT, OPEN_CHAT_EVENT } from "@/lib/chat-events"
+import { CHAT_CLOSED_EVENT, OPEN_CHAT_EVENT } from "@/components/features/chat/chat-events"
 import { AnimatePresence, MotionConfig, motion } from "motion/react"
 import {
   ArrowCounterClockwiseIcon,
@@ -33,13 +33,13 @@ import {
   MessageScrollerViewport,
 } from "@arthurreira/ui/client"
 
-import { ChatComposer } from "@/components/molecules/chat-composer"
+import { ChatComposer } from "@/components/features/chat/chat-composer"
 import {
   ChatModelPicker,
   type ModelChoice,
-} from "@/components/molecules/chat-model-picker"
-import { ChatMessage } from "@/components/molecules/chat-message"
-import { ChatTurnstile } from "@/components/molecules/chat-turnstile"
+} from "@/components/features/chat/chat-model-picker"
+import { ChatMessage } from "@/components/features/chat/chat-message"
+import { ChatTurnstile } from "@/components/features/chat/chat-turnstile"
 import { useDegraded } from "@/hooks/use-degraded"
 import { useTurnstile } from "@/hooks/use-turnstile"
 
