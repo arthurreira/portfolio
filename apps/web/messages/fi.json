@@ -32,10 +32,11 @@
     "previous": "Edellinen",
     "next": "Seuraava",
     "selectedLabel": "Mitä olen viime aikoina rakentanut",
-    "archiveLabel": "Muut projektit"
+    "archiveLabel": "Muita projekteja, joita olen tehnyt vapaa-ajallani"
   },
   "about": {
     "title": "Tietoa minusta",
+    "factsLabel": "Muutama fakta minusta",
     "roleLead": "Ohjelmistoinsinööri ·",
     "specialisms": [
       "Pilvipalvelut",
