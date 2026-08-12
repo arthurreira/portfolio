@@ -16,8 +16,8 @@ const chatArgs = () => callArg<StreamChatArgs>(streamChat)
 const streamChat = vi.hoisted(() => vi.fn())
 const verifyTurnstile = vi.hoisted(() => vi.fn())
 
-vi.mock("./lib/chat", () => ({ streamChat }))
-vi.mock("./lib/turnstile", () => ({ verifyTurnstile }))
+vi.mock("./chat/chat", () => ({ streamChat }))
+vi.mock("./security/turnstile", () => ({ verifyTurnstile }))
 
 const ORIGIN = "https://arthurreira.dev"
 

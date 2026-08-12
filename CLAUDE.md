@@ -47,7 +47,7 @@ pnpm test:coverage     # same, with the coverage thresholds enforced
 pnpm --filter chat-api test
 ```
 
-The repo went years without tests because it is a portfolio and typecheck caught most of it. That stopped being true when `apps/chat-api` started calling a **paid** LLM API: the output-token and history-window ceilings in `src/lib/config.ts` are the difference between a normal bill and a surprising one, and nothing but a test proves config can lower them but never raise them. That is why coverage starts there.
+The repo went years without tests because it is a portfolio and typecheck caught most of it. That stopped being true when `apps/chat-api` started calling a **paid** LLM API: the output-token and history-window ceilings in `src/config.ts` are the difference between a normal bill and a surprising one, and nothing but a test proves config can lower them but never raise them. That is why coverage starts there.
 
 Each workspace's `vitest.config.ts` carries `coverage.thresholds` set to the level actually reached. They are **ratcheted up as coverage lands and never lowered to make a build pass** — if a change drops coverage, add the test rather than the exemption. Target is 80%.
 
@@ -96,11 +96,25 @@ Standalone Next.js sandbox for the same `@arthurreira/ui` components, adding `@d
 
 A Cloudflare Worker (Wrangler + TypeScript) that answers visitor questions about Arthur. **Stateless by design**: nothing is persisted anywhere — no database, no KV/D1/Durable Objects, no vector store. Conversations live in React state and disappear on refresh.
 
-- **Context, not RAG.** The portfolio is small enough to fit in the system prompt, assembled per locale in `src/lib/portfolio-context.ts` from `@arthurreira/content`. Note the Velite `content` field is *compiled MDX* (a JS function) and unusable as model context — the about text comes from `raw: s.raw()`, and projects are rendered from their structured metadata.
+`src/` is organised **by layer, not by feature** — there is only one feature (chat), so a feature split would be one folder plus leftovers, while layers keep their meaning when a second endpoint arrives:
+
+```
+src/
+  index.ts       routing + the chat handler's guard sequence
+  config.ts      env → ChatConfig, with the cost ceilings
+  http/          cors, headers, response envelope, request validation
+  security/      rate limiting, Turnstile
+  chat/          streaming, prompt assembly, the stream probe, Workers AI
+  test-support/  test-only helpers, excluded from coverage
+```
+
+Put a new module in the layer that describes *what it is*, not what calls it. Tests sit next to the module they cover.
+
+- **Context, not RAG.** The portfolio is small enough to fit in the system prompt, assembled per locale in `src/chat/portfolio-context.ts` from `@arthurreira/content`. Note the Velite `content` field is *compiled MDX* (a JS function) and unusable as model context — the about text comes from `raw: s.raw()`, and projects are rendered from their structured metadata.
 - **Wire format: the AI SDK UI Message Stream.** `POST /chat` returns `createUIMessageStreamResponse(toUIMessageStream(...))` from `ai`, so the browser consumes it with `useChat` + `DefaultChatTransport` and no custom parsing. (`result.toUIMessageStreamResponse()` is deprecated — use the standalone helpers.) `convertToModelMessages()` is async in `ai@7`; await it.
-- **Config vs. secret.** `ANTHROPIC_API_KEY` is the only secret (`wrangler secret put`, or `.dev.vars` locally — both gitignored). Model, output-token cap, and history window are plain env vars resolved in `src/lib/config.ts`; cost-critical values are **clamped to hardcoded ceilings**, so config can lower them but never raise them.
-- **Fallback.** If Anthropic fails, the request is retried against a Workers AI model and the response carries `x-chat-degraded: true`. This needs the probe in `src/lib/probe-stream.ts`: `streamText` does *not* throw when the upstream rejects — it resolves and surfaces the failure as an `error` part inside the stream, by which point a naive implementation has already returned a `Response`. The probe reads until the first real content, so the failure is still a decision.
-- **Do not reach for `workers-ai-provider`.** At 4.0.0 its streaming path reads both `chunk.response` and `chunk.choices[0].delta.content` and emits a delta for each; most models send both, so every token arrives twice. `src/lib/workers-ai.ts` reads one field from the binding directly instead. Deduplicating downstream is not an option — the duplicates are indistinguishable from a model legitimately emitting `"\n"` twice.
+- **Config vs. secret.** `ANTHROPIC_API_KEY` is the only secret (`wrangler secret put`, or `.dev.vars` locally — both gitignored). Model, output-token cap, and history window are plain env vars resolved in `src/config.ts`; cost-critical values are **clamped to hardcoded ceilings**, so config can lower them but never raise them.
+- **Fallback.** If Anthropic fails, the request is retried against a Workers AI model and the response carries `x-chat-degraded: true`. This needs the probe in `src/chat/probe-stream.ts`: `streamText` does *not* throw when the upstream rejects — it resolves and surfaces the failure as an `error` part inside the stream, by which point a naive implementation has already returned a `Response`. The probe reads until the first real content, so the failure is still a decision.
+- **Do not reach for `workers-ai-provider`.** At 4.0.0 its streaming path reads both `chunk.response` and `chunk.choices[0].delta.content` and emits a delta for each; most models send both, so every token arrives twice. `src/chat/workers-ai.ts` reads one field from the binding directly instead. Deduplicating downstream is not an option — the duplicates are indistinguishable from a model legitimately emitting `"\n"` twice.
 - `@ai-sdk/anthropic` needs the `nodejs_compat` compatibility flag in `wrangler.jsonc`.
 - **`wrangler dev` does not hot-reload `.dev.vars`** — restart it after changing a key, or you will keep debugging a stale value.
 

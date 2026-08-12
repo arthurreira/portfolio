@@ -11,9 +11,9 @@ import {
   type UIMessage,
 } from "ai"
 
-import type { ChatConfig } from "./config"
-import type { ModelChoice } from "./validation"
-import { DEGRADED_HEADER } from "./headers"
+import type { ChatConfig } from "../config"
+import type { ModelChoice } from "../http/validation"
+import { DEGRADED_HEADER } from "../http/headers"
 import { probeStream } from "./probe-stream"
 import { FALLBACK_REMINDER } from "./portfolio-context"
 import { streamWorkersAiText } from "./workers-ai"

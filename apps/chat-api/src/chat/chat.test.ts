@@ -1,8 +1,8 @@
 import type { TextStreamPart, ToolSet, UIMessage } from "ai"
 import { afterEach, beforeEach, describe, expect, it, vi } from "vitest"
 
-import type { ChatConfig } from "./config"
-import { DEGRADED_HEADER } from "./headers"
+import type { ChatConfig } from "../config"
+import { DEGRADED_HEADER } from "../http/headers"
 import { callArg } from "../test-support/mock-calls"
 import { streamChat } from "./chat"
 

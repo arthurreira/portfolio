@@ -1,15 +1,16 @@
-import { corsHeaders, parseAllowedOrigins } from "./lib/cors"
-import { json } from "./lib/response"
-import { streamChat } from "./lib/chat"
-import { resolveChatConfig, type ChatConfigEnv } from "./lib/config"
-import { verifyTurnstile } from "./lib/turnstile"
-import { MAX_BODY_BYTES, validateChatRequest } from "./lib/validation"
+import { corsHeaders, parseAllowedOrigins } from "./http/cors"
+import { json } from "./http/response"
+import { streamChat } from "./chat/chat"
+import { resolveChatConfig, type ChatConfigEnv } from "./config"
+import { isRateLimited, RETRY_AFTER_SECONDS } from "./security/rate-limit"
+import { verifyTurnstile } from "./security/turnstile"
+import { MAX_BODY_BYTES, validateChatRequest } from "./http/validation"
 import {
   buildFallbackSystemPrompt,
   buildSystemPrompt,
   DEFAULT_LOCALE,
   isLocale,
-} from "./lib/portfolio-context"
+} from "./chat/portfolio-context"
 
 export interface Env extends ChatConfigEnv {
   /** Set with `wrangler secret put ANTHROPIC_API_KEY`. */
@@ -72,16 +73,11 @@ const handleChat = async (
     validated.data
 
   // Guards run cheapest first.
-  if (env.CHAT_RATE_LIMIT) {
-    const key = request.headers.get("cf-connecting-ip") ?? "unknown"
-    const { success } = await env.CHAT_RATE_LIMIT.limit({ key })
-    if (!success) {
-      console.error("rejected: rate limited", key)
-      return json({ success: false, error: "rate_limited" }, 429, {
-        ...cors,
-        "retry-after": "60",
-      })
-    }
+  if (await isRateLimited(request, env.CHAT_RATE_LIMIT)) {
+    return json({ success: false, error: "rate_limited" }, 429, {
+      ...cors,
+      "retry-after": String(RETRY_AFTER_SECONDS),
+    })
   }
 
   // Refuse rather than quietly run unprotected.
