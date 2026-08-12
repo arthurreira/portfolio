@@ -63,7 +63,7 @@ export function RailRow({
   )
 
   const shell = cn(
-    "rail-row group border-t border-border py-3 transition-colors duration-150",
+    "rail-row group border-b border-border rounded-md py-3 transition-colors duration-150",
     (href || external) && "-mx-2 px-2 hover:bg-muted",
     className
   )

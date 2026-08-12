@@ -32,10 +32,11 @@
     "previous": "Previous",
     "next": "Next",
     "selectedLabel": "What I've been building lately",
-    "archiveLabel": "Everything else"
+    "archiveLabel": "Other projects I've worked on"
   },
   "about": {
     "title": "About",
+    "factsLabel": "A few facts about me",
     "roleLead": "Software Engineer ·",
     "specialisms": [
       "Cloud",
