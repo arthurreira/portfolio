@@ -11,7 +11,7 @@ import comments from "@/data/cards/comments.json";
 import likes from "@/data/cards/likes.json";
 import music from "@/data/cards/music.json";
 import anything from "@/data/cards/anything.json";
-import { SortableCardGrid } from "@/components/SortableCardGrid";
+import { SortableCardGrid } from "@/components/sortable-card-grid"
 const categories = {
   "golf-balls": golfBalls.cards,
   "team-members": teamMembers.cards,
