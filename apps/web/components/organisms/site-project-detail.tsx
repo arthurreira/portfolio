@@ -8,6 +8,7 @@ import type { ProjectStatus, ProjectRole } from "@arthurreira/content/types"
 import { LabeledRow } from "@/components/molecules/labeled-row"
 import { ScrambleText } from "@/components/molecules/scramble-text"
 import { MdxContent } from "@/components/molecules/mdx-content"
+import { Reveal } from "@/components/molecules/reveal"
 import { ArrowRightIcon } from "@phosphor-icons/react"
 
 export interface SiteProjectDetailProps {
@@ -43,13 +44,21 @@ export function SiteProjectDetail({
   }
 
   const rowValueClass = "text-base font-bold text-foreground"
-  const sidebarRows: { label: string; content: ReactNode }[] = [
+
+  // Two groups, not one flat run of five. Role and status describe the work;
+  // the links leave the page. Spacing them evenly made those read as the same
+  // kind of thing. Year is gone from here entirely — it sits in the rail beside
+  // the title now, and printing it twice was the reason this grid had five
+  // cells in the first place.
+  const facts: { label: string; content: ReactNode }[] = [
     { label: t("role"), content: <p className={rowValueClass}>{resolveRole()}</p> },
-    { label: t("year"), content: <p className={rowValueClass}>{year}</p> },
     {
       label: t("status"),
       content: <p className={rowValueClass}>{t(`statuses.${status}`)}</p>,
     },
+  ]
+
+  const links: { label: string; content: ReactNode }[] = [
     ...(url
       ? [
           {
@@ -91,9 +100,11 @@ export function SiteProjectDetail({
   return (
     <div className="min-h-screen bg-background">
 
-      <div className="mx-auto max-w-page px-gutter pt-10 pb-24">
+      <div className="mx-auto max-w-page px-gutter pt-frame pb-frame-end">
+        {/* Page edge, matching every other page title. It was text-display-sm
+            and competing with the year; the year is meta and now reads as it. */}
         <div className="mb-6 flex items-baseline justify-between gap-4">
-          <h1 className="text-display-sm text-foreground">
+          <h1 className="text-display text-foreground">
             <ScrambleText text={title} />
           </h1>
           <p className="shrink-0 text-sm text-muted-foreground tabular-nums">
@@ -113,47 +124,48 @@ export function SiteProjectDetail({
           </div>
         ) : null}
 
-        <dl className="grid grid-cols-1 gap-x-8 gap-y-5 sm:grid-cols-2 mb-10">
-          {sidebarRows.map((row) => (
+        <dl className="mb-6 grid grid-cols-1 gap-x-8 gap-y-5 sm:grid-cols-2">
+          {facts.map((row) => (
             <LabeledRow key={row.label} label={row.label}>
               {row.content}
             </LabeledRow>
           ))}
         </dl>
 
-        {/* This wrapper is load-bearing: <Image fill> and the striped
-            placeholder are both absolutely positioned, so they need the
-            relative box and the aspect ratio to have any size at all. */}
-        <div className="relative my-8 aspect-[21/9] w-full overflow-hidden bg-muted">
-          {coverImage ? (
-            <Image
-              src={coverImage}
-              alt={title}
-              fill
-              className="object-cover"
-              priority
-            />
-          ) : (
-            <>
-              <div
-                className="absolute inset-0"
-                style={{
-                  backgroundImage:
-                    "repeating-linear-gradient(-45deg, transparent, transparent 12px, var(--stripe) 12px, var(--stripe) 24px)",
-                }}
-              />
-              <div className="absolute inset-0 flex items-center justify-center">
-                <span className="text-xs tracking-[0.3em] text-muted-foreground uppercase opacity-50">
-                  {t("screenshotPlaceholder")}
-                </span>
-              </div>
-            </>
-          )}
-        </div>
+        {links.length > 0 && (
+          <dl className="mb-10 grid grid-cols-1 gap-x-8 gap-y-5 sm:grid-cols-2">
+            {links.map((row) => (
+              <LabeledRow key={row.label} label={row.label}>
+                {row.content}
+              </LabeledRow>
+            ))}
+          </dl>
+        )}
 
-        <div className="typeset typeset-notes">
-          <MdxContent code={content} variant="typeset" />
-        </div>
+        {/* No image, no box. A hatched 21:9 placeholder above the fold read as
+            an unfinished page rather than as restraint — an absent image is
+            quieter than one announcing its own absence.
+            The wrapper is load-bearing: <Image fill> is absolutely positioned,
+            so it needs the relative box and the aspect ratio to have any size. */}
+        {coverImage && (
+          <Reveal>
+            <div className="relative my-8 aspect-[21/9] w-full overflow-hidden bg-muted">
+              <Image
+                src={coverImage}
+                alt={title}
+                fill
+                className="object-cover"
+                priority
+              />
+            </div>
+          </Reveal>
+        )}
+
+        <Reveal>
+          <div className="typeset typeset-notes">
+            <MdxContent code={content} variant="typeset" />
+          </div>
+        </Reveal>
 
       </div>
     </div>

@@ -13,7 +13,13 @@ export default async function ProjectsPage({
 
   const items = projects
     .filter((p) => p.locale === locale)
-    .sort((a, b) => Number(b.featured) - Number(a.featured))
+    // Featured first, then newest — SiteProjects splits on `featured`, but the
+    // archive still wants a sensible order within itself.
+    .sort(
+      (a, b) =>
+        Number(b.featured) - Number(a.featured) ||
+        b.createdAt.localeCompare(a.createdAt)
+    )
     .map((p) => ({
       id: p.slug ?? p.title,
       title: p.title,
@@ -21,6 +27,7 @@ export default async function ProjectsPage({
       year: new Date(p.createdAt).getFullYear().toString(),
       slug: p.slug ?? "",
       locale,
+      featured: p.featured,
     }))
 
   return (
@@ -28,6 +35,8 @@ export default async function ProjectsPage({
       projects={items}
       heading={t("heading")}
       countSuffix={t("countSuffix")}
+      selectedLabel={t("selectedLabel")}
+      archiveLabel={t("archiveLabel")}
     />
   )
 }
