@@ -4,6 +4,7 @@ import { useEffect, useId, useMemo, useRef, useState } from "react"
 import { useChat } from "@ai-sdk/react"
 import { DefaultChatTransport } from "ai"
 import { useLocale, useTranslations } from "next-intl"
+import { CHAT_CLOSED_EVENT, OPEN_CHAT_EVENT } from "@/lib/chat-events"
 import { AnimatePresence, MotionConfig, motion } from "motion/react"
 import {
   ArrowCounterClockwiseIcon,
@@ -69,7 +70,6 @@ export function SiteChat() {
   const panelId = useId()
 
   const [isOpen, setIsOpen] = useState(false)
-  const triggerRef = useRef<HTMLButtonElement>(null)
   const wasOpen = useRef(false)
 
   const {
@@ -154,6 +154,14 @@ export function SiteChat() {
     return () => document.removeEventListener("keydown", onKeyDown)
   }, [])
 
+  // The closing CTA on the home page opens the panel too — the chat is the
+  // back-up conversion path, not only a widget you have to find.
+  useEffect(() => {
+    const open = () => setIsOpen(true)
+    window.addEventListener(OPEN_CHAT_EVENT, open)
+    return () => window.removeEventListener(OPEN_CHAT_EVENT, open)
+  }, [])
+
   // Escape closes the panel — a dialog primitive would have done this for us.
   useEffect(() => {
     if (!isOpen) return
@@ -165,9 +173,13 @@ export function SiteChat() {
   }, [isOpen])
 
   // On open the composer takes focus (see its autoFocus prop) so the panel is
-  // ready to type in.
+  // ready to type in. On close the panel announces it rather than restoring
+  // focus itself — the trigger is in the nav now and is not this component's
+  // to reach into.
   useEffect(() => {
-    if (!isOpen && wasOpen.current) triggerRef.current?.focus()
+    if (!isOpen && wasOpen.current) {
+      window.dispatchEvent(new Event(CHAT_CLOSED_EVENT))
+    }
     wasOpen.current = isOpen
   }, [isOpen])
 
@@ -354,18 +366,6 @@ export function SiteChat() {
           )}
         </AnimatePresence>
 
-        <button
-          ref={triggerRef}
-          type="button"
-          aria-label={isOpen ? t("close") : t("open")}
-          title={isOpen ? t("close") : t("openHint")}
-          aria-expanded={isOpen}
-          aria-controls={isOpen ? panelId : undefined}
-          onClick={() => setIsOpen((open) => !open)}
-          className="bg-background/80 px-1 py-0.5 text-sm text-muted-foreground backdrop-blur-sm transition-colors hover:text-foreground"
-        >
-          {isOpen ? t("close") : t("open")}
-        </button>
       </div>
     </MotionConfig>
   )
