@@ -52,6 +52,27 @@ const toResponse = <TOOLS extends ToolSet>(
   })
 
 /**
+ * Surfaces an upstream failure as a UI message stream.
+ *
+ * The probed stream cannot be reused here: probing a failure cancels the
+ * source, which both locks it and discards what it held, so handing it back
+ * would throw rather than report anything.
+ */
+const toErrorResponse = (
+  error: unknown,
+  headers?: Record<string, string>
+): Response =>
+  createUIMessageStreamResponse({
+    headers,
+    stream: createUIMessageStream({
+      execute: () => {
+        throw error instanceof Error ? error : new Error(String(error))
+      },
+      onError: () => "upstream_failed",
+    }),
+  })
+
+/**
  * Streams a completion in the AI SDK UI Message Stream format, so the browser
  * can consume it with `useChat` + `DefaultChatTransport` and no custom
  * parsing.
@@ -108,7 +129,7 @@ export const streamChat = async ({
   if (!ai) {
     // No binding to fall back to, so the original failure is the real answer.
     console.error("no Workers AI binding configured for fallback")
-    return toResponse(primary.stream, headers)
+    return toErrorResponse(probed.error, headers)
   }
 
   return streamFallback({
