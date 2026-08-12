@@ -78,7 +78,7 @@ export async function SiteAbout() {
         </div>
       )}
 
-      <Reveal>
+      <Reveal className="mt-section">
         <h2 className="section-label mb-block">{t("factsLabel")}</h2>
         <dl className="grid grid-cols-1 md:grid-cols-2 gap-4">
           {facts.map((fact) => (
