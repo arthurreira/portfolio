@@ -265,7 +265,7 @@
   /* Heading above a page section. Sentence case, because these now read as
      sentences ("Latest projects I've been working on") rather than tags. */
   .section-label {
-    @apply font-ui text-sm text-muted-foreground;
+    @apply font-ui text-sm text-primary;
   }
 }
 

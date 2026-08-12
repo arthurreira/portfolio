@@ -79,11 +79,13 @@ export async function SiteAbout() {
       )}
 
       <Reveal>
-        <dl className="grid grid-cols-1 gap-x-8 gap-y-5 sm:grid-cols-2 mt-6">
+        <h2 className="section-label mb-block">{t("factsLabel")}</h2>
+        <dl className="grid grid-cols-1 md:grid-cols-2 gap-4">
           {facts.map((fact) => (
-            // dt and dd are each a grid item; without a wrapper they land in
-            // adjacent cells instead of stacking.
-            <div key={fact.label}>
+            <div
+              key={fact.label}
+              className="border-b border-border p-3 rounded-md"
+            >
               <dt className="text-base text-foreground">{fact.label}</dt>
               <dd className="m-0 mt-1 text-sm text-muted-foreground">
                 {fact.value}

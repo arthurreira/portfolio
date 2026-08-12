@@ -1,7 +1,6 @@
 import { getTranslations } from "next-intl/server"
 import { profile } from "@arthurreira/content"
 import { Link } from "@/i18n/routing"
-import { RailRow } from "@/components/atoms/rail-row"
 
 const year = (iso: string) => iso.slice(0, 4)
 
@@ -37,35 +36,62 @@ export async function SiteCertifications({
       </h2>
 
       <div>
-        {certs.map((cert) => {
-          // The rail carries the year, exactly as it does for a project — the
-          // two lists now share one edge instead of each inventing its own.
-          const rail =
-            cert.status === "in-progress"
-              ? t("inProgress")
-              : cert.earned
-                ? `${year(cert.earned)}${
-                    !isSummary && cert.expires ? `–${cert.expires}` : ""
-                  }`
-                : undefined
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-4 py-3">
+          {certs.map((cert, idx) => {
+            const dateRange =
+              cert.status === "in-progress"
+                ? t("inProgress")
+                : cert.earned
+                  ? `${year(cert.earned)}${
+                      !isSummary && cert.expires ? `–${cert.expires}` : ""
+                    }`
+                  : undefined
 
-          // Hover is only earned where there is somewhere to go.
-          return (
-            <RailRow
-              key={cert.code ?? cert.name}
-              meta={rail}
-              external={cert.url}
-            >
-              {cert.name}
-              {cert.code && (
-                <span className="ml-2 text-sm text-muted-foreground">
-                  {cert.code}
-                </span>
-              )}
-            </RailRow>
-          )
-        })}
-        <div className="border-t border-border" />
+            const href = cert.url
+
+            const content = (
+              <>
+                <div className="text-base text-foreground">{cert.name}</div>
+                <div className="text-sm text-muted-foreground tabular-nums">
+                  {dateRange}
+                  {cert.code && (
+                    <>
+                      <span> · </span>
+                      {cert.code}
+                    </>
+                  )}
+                </div>
+              </>
+            )
+
+            if (href) {
+              return (
+                <a
+                  key={cert.code ?? cert.name}
+                  href={href}
+                  target={href.startsWith("http") ? "_blank" : undefined}
+                  rel={href.startsWith("http") ? "noopener noreferrer" : undefined}
+                  className="block border-b border-border p-3 rounded-md transition-colors duration-150 hover:bg-muted"
+                >
+                  <div className="flex flex-col gap-1">
+                    {content}
+                  </div>
+                </a>
+              )
+            }
+
+            return (
+              <div
+                key={cert.code ?? cert.name}
+                className="border-b border-border p-3 rounded-md"
+              >
+                <div className="flex flex-col gap-1">
+                  {content}
+                </div>
+              </div>
+            )
+          })}
+        </div>
       </div>
 
       {isSummary && (
