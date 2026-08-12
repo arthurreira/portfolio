@@ -3,7 +3,7 @@ import Markdown, { type Components } from "react-markdown"
 import remarkGfm from "remark-gfm"
 import { useLocale } from "next-intl"
 
-import { StreamedWords } from "@/components/molecules/streamed-words"
+import { StreamedWords } from "@/components/features/chat/streamed-words"
 import { linkifyProjects } from "@/lib/project-links"
 
 /** Renders the assistant's markdown. */

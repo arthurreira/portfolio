@@ -86,7 +86,7 @@ Internationalized with **next-intl**. Locales are `['en', 'fi', 'pt-br']` with *
 - Import navigation helpers (`Link`, `useRouter`, `redirect`) from `@/i18n/routing`, **not** from `next/link` / `next/navigation`, so locale prefixing is preserved.
 - UI strings live in `apps/web/messages/*.json` — keep all three locale files in sync when adding keys.
 - All routes are under `app/[locale]/` (`/`, `/projects`, `/projects/[slug]`, `/about`, `/contact`).
-- Components follow **atomic design**: `components/atoms`, `components/molecules`, `components/organisms`.
+- Components are **atomic design for reusable UI, feature folders for the rest**: `components/atoms`, `components/molecules`, `components/organisms` hold pieces used across the site; `components/features/<name>/` holds everything scoped to one feature, components and its own utilities alike. Atomic levels stop meaning anything once feature work lands in them — `molecules/` was collecting chat internals next to `rotating-word`. Ask "is this reusable across the site?" first; only then pick a level.
 
 ### `apps/playground`
 

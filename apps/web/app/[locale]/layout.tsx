@@ -7,7 +7,7 @@ import "@arthurreira/ui/globals.css"
 import { cn } from "@arthurreira/ui"
 import { SiteNav } from "@/components/organisms/site-nav"
 import { SiteFooter } from "@/components/organisms/site-footer"
-import { SiteChat } from "@/components/organisms/site-chat"
+import { SiteChat } from "@/components/features/chat/site-chat"
 import { Analytics } from "@vercel/analytics/next"
 import { routing } from "@/i18n/routing"
 
