@@ -7,15 +7,19 @@
     "dev": "turbo dev",
     "lint": "turbo lint",
     "format": "turbo format",
-    "typecheck": "turbo typecheck"
+    "typecheck": "turbo typecheck",
+    "test": "turbo test",
+    "test:coverage": "turbo test:coverage"
   },
   "devDependencies": {
     "@arthurreira/eslint-config": "workspace:*",
     "@arthurreira/typescript-config": "workspace:*",
+    "@vitest/coverage-v8": "^4.1.10",
     "prettier": "^3.8.1",
     "prettier-plugin-tailwindcss": "^0.7.2",
     "turbo": "^2.8.17",
-    "typescript": "5.9.3"
+    "typescript": "5.9.3",
+    "vitest": "^4.1.10"
   },
   "packageManager": "pnpm@9.15.9",
   "engines": {

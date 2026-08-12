@@ -37,7 +37,21 @@ pnpm --filter @arthurreira/ui typecheck
 pnpm --filter @arthurreira/content build   # runs velite build
 ```
 
-**There is no test runner configured in this repo** — no Jest/Vitest/Playwright setup and no test files exist. Do not assume `pnpm test` works; verify changes with `pnpm typecheck`, `pnpm lint`, and `pnpm build`.
+### Testing
+
+**Vitest** runs across the workspace. Tests live next to the code they cover as `*.test.ts` / `*.test.tsx`.
+
+```bash
+pnpm test              # vitest run, all workspaces
+pnpm test:coverage     # same, with the coverage thresholds enforced
+pnpm --filter chat-api test
+```
+
+The repo went years without tests because it is a portfolio and typecheck caught most of it. That stopped being true when `apps/chat-api` started calling a **paid** LLM API: the output-token and history-window ceilings in `src/lib/config.ts` are the difference between a normal bill and a surprising one, and nothing but a test proves config can lower them but never raise them. That is why coverage starts there.
+
+Each workspace's `vitest.config.ts` carries `coverage.thresholds` set to the level actually reached. They are **ratcheted up as coverage lands and never lowered to make a build pass** — if a change drops coverage, add the test rather than the exemption. Target is 80%.
+
+CI (`.github/workflows/ci.yml`) runs typecheck → lint → test → build on every PR into `dev` and `main`.
 
 ## Architecture
 
