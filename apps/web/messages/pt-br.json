@@ -1,17 +1,8 @@
 {
   "hero": {
-    "greetings": [
-      "E aí",
-      "Opa",
-      "Oi",
-      "Salve",
-      "Uai"
-    ],
-    "intro": "eu sou",
     "firstName": "Arthur",
-    "lastName": "Ferreira.",
-    "heroSubtitle": "Trabalho como engenheiro de software na <company>Nordcloud, an IBM company</company>.",
-    "cultureLine": "DevSecOps é cultura —",
+    "lastName": "Ferreira Miranda.",
+    "roleLine": "Trabalho como engenheiro de software —",
     "devsecopsStages": [
       "Planejando",
       "Programando",
@@ -25,29 +16,38 @@
   },
   "home": {
     "selectedLabel": "Últimos projetos em que estive trabalhando",
-    "allProjects": "Todos os projetos"
+    "allProjects": "Todos os projetos",
+    "trustCertsLabel": "Certificações",
+    "trustRoleLabel": "Atualmente",
+    "trustRoleValue": "Nordcloud, an IBM Company",
+    "closingHeading": "Tem algo em mente?",
+    "closingLead": "Me conta — ou pergunte antes ao assistente sobre meu trabalho.",
+    "closingCta": "Entrar em contato",
+    "closingChatCta": "Perguntar sobre meu trabalho"
   },
   "projects": {
     "title": "Projetos",
     "heading": "Projetos.",
     "countSuffix": "projetos",
     "previous": "Anterior",
-    "next": "Próximo"
+    "next": "Próximo",
+    "selectedLabel": "O que ando construindo ultimamente",
+    "archiveLabel": "Outros projetos"
   },
   "about": {
     "title": "Sobre mim",
     "roleLead": "Engenheiro de software ·",
     "specialisms": [
-    "Cloud",
-    "Arquitetura Cloud",
-    "DevSecOps",
-    "Engenharia de Plataformas",
-    "RAG & IA",
-    "LLMOps & Agentes de IA",
-    "Infra como Código",
-    "Kubernetes & Containers",
-    "Observabilidade",
-    "Segurança Cibernética"
+      "Cloud",
+      "Arquitetura Cloud",
+      "DevSecOps",
+      "Engenharia de Plataformas",
+      "RAG & IA",
+      "LLMOps & Agentes de IA",
+      "Infra como Código",
+      "Kubernetes & Containers",
+      "Observabilidade",
+      "Segurança Cibernética"
     ],
     "originLabel": "De onde sou",
     "originValue": "Brasil",
@@ -71,7 +71,8 @@
     "about": "Sobre",
     "contact": "Contato",
     "backToTop": "Voltar ao topo",
-    "back": "Voltar"
+    "back": "Voltar",
+    "ask": "Perguntar"
   },
   "contact": {
     "title": "Contato",

@@ -72,6 +72,27 @@
      so Tailwind generates max-w-page and px-gutter from them. */
   --container-page: 44rem;
   --spacing-gutter: clamp(24px, 4vw, 56px);
+
+  /* ── Vertical rhythm ──────────────────────────────────────────────────
+     Three steps, same @theme trick as the gutter: Tailwind turns these into
+     gap-block / mt-section / pt-frame etc. Section separation used to be
+     picked per component (gap-20 here, mt-12 there, mt-16 next door), so no
+     two pages broke at the same interval.
+
+     step     between
+     block    a heading and the thing it labels
+     section  one section and the next
+     frame    the top of the page frame — see --spacing-frame-end for the bottom
+
+     Do NOT name one of these `page`. max-w-* resolves against the spacing
+     namespace as well as --container-*, so a --spacing-page would shadow
+     --container-page and collapse max-w-page from 44rem to a few rem. */
+  --spacing-block: clamp(0.75rem, 1.5vw, 1.25rem);
+  --spacing-section: clamp(3.5rem, 7vw, 5.5rem);
+  --spacing-frame: clamp(3rem, 6vw, 4.5rem);
+  /* Bottom frame runs deeper than the top. With both equal the layout reads
+     as if it is sliding off the bottom of the screen. */
+  --spacing-frame-end: clamp(5rem, 10vw, 8rem);
 }
 
 @theme inline {
@@ -119,73 +140,19 @@
   --font-ui: var(--font-ui);
 }
 
+/* What is left of the shadcn defaults. Everything the flag×mode matrix below
+   sets (background, foreground, primary, muted, border, card, popover, accent,
+   input) was listed here too and never won a cascade — the matrix owns those.
+   The chart-* and sidebar-* sets had no consumer at all.
+
+   These four do still ship: Badge variant="secondary", text-destructive in the
+   chat composer, and `ring` / `--radius` across @arthurreira/ui. */
 :root {
-  --background: oklch(1 0 0);
-  --foreground: oklch(0.148 0.004 228.8);
-  --card: oklch(1 0 0);
-  --card-foreground: oklch(0.148 0.004 228.8);
-  --popover: oklch(1 0 0);
-  --popover-foreground: oklch(0.148 0.004 228.8);
-  --primary: oklch(0.852 0.199 91.936);
-  --primary-foreground: oklch(0.421 0.095 57.708);
   --secondary: oklch(0.55 0.18 265);
   --secondary-foreground: oklch(0.98 0.005 265);
-  --muted: oklch(0.963 0.002 197.1);
-  --muted-foreground: oklch(0.56 0.021 213.5);
-  --accent: oklch(0.963 0.002 197.1);
-  --accent-foreground: oklch(0.218 0.008 223.9);
   --destructive: oklch(0.577 0.245 27.325);
-  --border: oklch(0.925 0.005 214.3);
-  --input: oklch(0.925 0.005 214.3);
   --ring: oklch(0.723 0.014 214.4);
-  --chart-1: oklch(0.871 0.15 154.449);
-  --chart-2: oklch(0.723 0.219 149.579);
-  --chart-3: oklch(0.627 0.194 149.214);
-  --chart-4: oklch(0.527 0.154 150.069);
-  --chart-5: oklch(0.448 0.119 151.328);
   --radius: 0.625rem;
-  --sidebar: oklch(0.987 0.002 197.1);
-  --sidebar-foreground: oklch(0.148 0.004 228.8);
-  --sidebar-primary: oklch(0.681 0.162 75.834);
-  --sidebar-primary-foreground: oklch(0.987 0.026 102.212);
-  --sidebar-accent: oklch(0.963 0.002 197.1);
-  --sidebar-accent-foreground: oklch(0.218 0.008 223.9);
-  --sidebar-border: oklch(0.925 0.005 214.3);
-  --sidebar-ring: oklch(0.723 0.014 214.4);
-}
-
-.dark {
-  --background: oklch(0.148 0.004 228.8);
-  --foreground: oklch(0.987 0.002 197.1);
-  --card: oklch(0.218 0.008 223.9);
-  --card-foreground: oklch(0.987 0.002 197.1);
-  --popover: oklch(0.218 0.008 223.9);
-  --popover-foreground: oklch(0.987 0.002 197.1);
-  --primary: oklch(0.795 0.184 86.047);
-  --primary-foreground: oklch(0.421 0.095 57.708);
-  --secondary: oklch(0.5 0.19 265);
-  --secondary-foreground: oklch(0.98 0.005 265);
-  --muted: oklch(0.275 0.011 216.9);
-  --muted-foreground: oklch(0.723 0.014 214.4);
-  --accent: oklch(0.275 0.011 216.9);
-  --accent-foreground: oklch(0.987 0.002 197.1);
-  --destructive: oklch(0.704 0.191 22.216);
-  --border: oklch(1 0 0 / 10%);
-  --input: oklch(1 0 0 / 15%);
-  --ring: oklch(0.56 0.021 213.5);
-  --chart-1: oklch(0.871 0.15 154.449);
-  --chart-2: oklch(0.723 0.219 149.579);
-  --chart-3: oklch(0.627 0.194 149.214);
-  --chart-4: oklch(0.527 0.154 150.069);
-  --chart-5: oklch(0.448 0.119 151.328);
-  --sidebar: oklch(0.218 0.008 223.9);
-  --sidebar-foreground: oklch(0.987 0.002 197.1);
-  --sidebar-primary: oklch(0.795 0.184 86.047);
-  --sidebar-primary-foreground: oklch(0.987 0.026 102.212);
-  --sidebar-accent: oklch(0.275 0.011 216.9);
-  --sidebar-accent-foreground: oklch(0.987 0.002 197.1);
-  --sidebar-border: oklch(1 0 0 / 10%);
-  --sidebar-ring: oklch(0.56 0.021 213.5);
 }
 
 @layer base {
@@ -210,6 +177,13 @@
 }
 
 @layer components {
+  /* Home hero only. Overrides the base h1 tracking/leading: -0.02em and 1.1
+     were tuned at 40px, and at 88px both read slack. */
+  .text-hero {
+    font-size: var(--text-hero);
+    letter-spacing: -0.035em;
+    line-height: 0.95;
+  }
   /* Page display heading — pairs with the @layer base h1 weight/tracking */
   .text-display {
     font-size: var(--text-display);
@@ -225,6 +199,62 @@
   /* Caps a block of prose at a readable line length */
   .max-w-measure {
     max-width: var(--measure);
+  }
+
+  /* Dissolves an image into the page towards its bottom edge.
+     A mask, not a gradient overlay: the background is one of four (flag × mode)
+     and an overlay would need a matching copy for each. Masking makes the
+     pixels themselves transparent, so it is correct on every theme and over
+     the full-bleed band too.
+     Tune the first stop to move where the fade begins. */
+  .fade-bottom {
+    -webkit-mask-image: linear-gradient(to bottom, #000 50%, transparent 100%);
+    mask-image: linear-gradient(to bottom, #000 50%, transparent 100%);
+  }
+
+  /* One row straddling both axes. Every block that uses it shares the same
+     template, so the rail edge is continuous down the page without the page
+     itself having to be a grid — which would have meant every section
+     becoming a grid child and every existing margin being re-tuned.
+
+     DOM order is main-then-meta so that a phone, where the rail collapses,
+     reads title before year. Desktop puts them back on one row explicitly. */
+  .rail-row {
+    display: grid;
+    grid-template-columns: var(--rail) minmax(0, 1fr);
+    column-gap: var(--rail-gap);
+    align-items: baseline;
+  }
+  .rail-row > .rail-meta {
+    grid-column: 1;
+    grid-row: 1;
+    text-align: right;
+  }
+  .rail-row > .rail-main {
+    grid-column: 2;
+    grid-row: 1;
+  }
+  /* Same width the nav wraps at, so the page changes shape once, not twice. */
+  @media (max-width: 48rem) {
+    .rail-row {
+      grid-template-columns: minmax(0, 1fr);
+    }
+    .rail-row > .rail-meta,
+    .rail-row > .rail-main {
+      grid-column: 1;
+      grid-row: auto;
+      text-align: left;
+    }
+  }
+
+  /* Escapes the page column to the viewport edge. Used once per page at most
+     — it is the loud moment in the sequence, and a second one cancels the
+     first. Lives outside the max-w-page wrapper in the JSX rather than using
+     the 100vw margin trick, which fights `scrollbar-gutter: stable` on html
+     and produces a horizontal scrollbar on desktop. */
+  .bleed-band {
+    border-block: 1px solid var(--border);
+    background: var(--stripe);
   }
   /* Amber uppercase label — PROJECT [01] and other short tags. Caps with
      0.22em tracking only survives at a couple of words; anything sentence
@@ -275,6 +305,16 @@ html {
      clamp() scales continuously with the viewport, so there is no
      breakpoint where the type jumps — the vw middle term IS the
      "different size per device". Only the two ends are pinned. */
+  /* The home hero, and nothing else. Every page used to top out at
+     --text-display, so the largest element on the site was 40px and no page
+     had anything the eye landed on first. One step this far above the rest is
+     what makes the name a focal point rather than just the first line.
+
+     The ceiling is set by the column, not by taste: the content box is the
+     44rem page minus two gutters (~592px at desktop) and "Arthur Ferreira." is
+     16 characters, so past ~4rem the name wraps and the hero runs to three
+     lines instead of two. */
+  --text-hero: clamp(2rem, 7vw, 4rem); /* 32px → 64px */
   --text-display: clamp(1.75rem, 4vw, 2.5rem); /* 28px → 40px */
   /* Project titles and contact links — arbitrary content length, so a lower
      ceiling than the page display size. */
@@ -285,6 +325,18 @@ html {
   /* Reading measure. Past ~65 characters the eye loses the start of the
      next line. Narrower than the column at body size, so it still bites. */
   --measure: 65ch;
+
+  /* ── The rail ─────────────────────────────────────────────────────────
+     A second alignment axis, carved out of the page column rather than
+     added beside it — the outer footprint stays 44rem, so the nav still
+     lines up with everything below it.
+
+     Small meta (years, counts, section labels) sits right-aligned in the
+     rail; the content it belongs to starts on the wide axis. Two edges
+     instead of one, which is what stops the page reading as a single
+     centred stack. Wide enough for a four-digit year plus a short label. */
+  --rail: 4.5rem;
+  --rail-gap: 1.5rem;
 }
 
 
@@ -326,12 +378,16 @@ html {
   --accent-foreground: #f2f5ee;
 }
 
-/* Brasil · Light  — warm paper + flag green #059642 (yellow invisible on cream) */
+/* Brasil · Light  — warm paper + flag green, darkened (yellow invisible on cream) */
 :root[data-flag="brasil"][data-mode="light"] {
   --background: #f4f3ee;
   --foreground: #0a200f;
   --muted-foreground: #3b6147;
-  --primary: #059642;
+  /* Not the exact flag green. #059642 on this paper is 3.47:1 — under AA in
+     both directions, so every text-primary on the page failed, and a filled
+     button failed on its own label. Darkened to 6.0:1. The other three themes
+     keep their exact flag colour; this is the one that could not. */
+  --primary: #046b30;
   --primary-foreground: #f4f3ee;
   --muted: rgba(10, 32, 15, 0.05);
   --border: rgba(10, 32, 15, 0.12);
@@ -404,6 +460,15 @@ html {
     padding-left: var(--gutter);
     padding-right: var(--gutter);
     gap: 0.75rem 1.5rem;
+    transition: padding 200ms ease;
+  }
+
+  /* Past the first screen the bar gives height back to the content. The header
+     itself stays fully opaque — a translucent bar over 88px hero type leaves
+     the letterforms ghosting through as you scroll under it. */
+  [data-condensed="true"] .t-nav {
+    padding-top: 0.5rem;
+    padding-bottom: 0.5rem;
   }
 
   /* Hairline under the nav — spans the content width only (inset from edges),
@@ -415,13 +480,25 @@ html {
      This also covers the project pages, where the three links are replaced by a
      single way back — it lands on the same right edge rather than beside the
      brand, where it read as a nav item that had lost its siblings. */
+  /* nowrap is load-bearing. With wrap, an overfull row stacked *inside* this
+     element — links on one line, the language pills on another — and because
+     .t-nav centres its children, the brand then floated to the middle of a
+     two-line block and read as a mistake. Refusing to wrap here means an
+     overfull row breaks at .t-nav instead, dropping the whole group onto its
+     own line under the brand, which at least looks deliberate. */
   .t-links {
     display: flex;
     align-items: center;
-    gap: 1.5rem;
+    gap: 1.25rem;
     flex: 1;
     justify-content: flex-end;
-    flex-wrap: wrap;
+    flex-wrap: nowrap;
+    min-width: 0;
+  }
+  /* The row is capped at the page column, so every item has to hold its width
+     rather than compress into two lines of text. */
+  .t-links > * {
+    white-space: nowrap;
   }
 
   /* Pinned to the viewport corner against the <header>, which owns the relative
@@ -480,8 +557,12 @@ html {
        hidden brand; now the row wraps only when it actually has to, so an inner
        page keeps its brand and back link on one line and only the home page's
        three links drop below on a narrow screen. */
+    /* Below lg the row genuinely cannot hold everything on one line, so wrap
+       comes back — but as a whole-group drop under the brand, not a split
+       through the middle of the controls. */
     .t-links {
-      gap: 0.75rem 1.25rem !important;
+      flex-wrap: wrap;
+      gap: 0.75rem 1rem !important;
     }
   /* Only the gap is about being narrow — order/flex-basis were leftovers
      from when the switchers were the nav's second row. */

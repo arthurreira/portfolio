@@ -66,6 +66,7 @@ const formatPersonal = (): string => {
     "",
     "### In his own words",
     `- Why software rather than something else: ${story.whySoftware}`,
+    `- What interests him most in his work: ${story.workInterest}`,
     `- The project closest to him: ${story.closestProject}`,
     `- What he is learning right now: ${story.currentlyLearning}`,
     `- How he likes to work: ${story.workStyle}`,
