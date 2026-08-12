@@ -7,15 +7,15 @@ export default defineConfig({
     coverage: {
       provider: "v8",
       include: ["src/**/*.ts"],
-      exclude: ["src/**/*.test.ts"],
+      exclude: ["src/**/*.test.ts", "src/test-support/**"],
       reporter: ["text", "json-summary", "lcov"],
-      // Baseline measured when the harness landed. Ratcheted up as each phase
-      // of the test plan lands — never lower these to make a build pass.
+      // Ratcheted up as each phase of the test plan lands — never lower these
+      // to make a build pass.
       thresholds: {
-        lines: 4,
-        functions: 3,
-        branches: 4,
-        statements: 4,
+        lines: 98,
+        functions: 93,
+        branches: 89,
+        statements: 98,
       },
     },
   },
