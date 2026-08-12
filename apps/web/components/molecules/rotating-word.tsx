@@ -32,5 +32,29 @@ export function RotatingWord({
 
   if (reduceMotion || words.length < 2) return <>{words[0] ?? ""}</>
 
-  return <ScrambleText text={words[index] ?? ""} className={className} />
+  // Every word is rendered into the same grid cell, all but one of them
+  // invisible. A hidden element still contributes to grid track sizing, so the
+  // cell is permanently as wide as the longest word and the line never reflows
+  // when the word changes.
+  //
+  // Without this the span resized on every tick, which re-wrapped the paragraph
+  // and nudged everything below it — the "page shaking" while scrolled down.
+  // Sizing off the longest *string* would not work: character count is not
+  // width in a proportional face.
+  return (
+    <span className="inline-grid align-baseline">
+      {words.map((word) => (
+        <span
+          key={word}
+          aria-hidden
+          className="invisible col-start-1 row-start-1 whitespace-nowrap"
+        >
+          {word}
+        </span>
+      ))}
+      <span className="col-start-1 row-start-1 justify-self-start whitespace-nowrap">
+        <ScrambleText text={words[index] ?? ""} className={className} />
+      </span>
+    </span>
+  )
 }
