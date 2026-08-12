@@ -2,7 +2,7 @@ import { Geist, JetBrains_Mono } from "next/font/google"
 import { hasLocale, NextIntlClientProvider } from 'next-intl'
 import { getMessages, setRequestLocale } from 'next-intl/server'
 import { notFound } from 'next/navigation'
-import SmoothScroll from "@/lib/SmoothScroll"
+import { SmoothScroll } from "@/components/providers/smooth-scroll"
 import "@arthurreira/ui/globals.css"
 import { cn } from "@arthurreira/ui"
 import { SiteNav } from "@/components/organisms/site-nav"
