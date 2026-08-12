@@ -63,9 +63,7 @@
   },
   "certs": {
     "label": "Sertifikaatit",
-    "inProgress": "Kesken",
-    "seeAll": "Kaikki sertifikaatit",
-    "latestLabel": "Viimeisimpiä sertifikaattejani"
+    "inProgress": "Kesken"
   },
   "nav": {
     "projects": "Projektit",
