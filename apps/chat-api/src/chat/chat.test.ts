@@ -1,10 +1,10 @@
-import type { TextStreamPart, ToolSet, UIMessage } from "ai"
+import type { LanguageModelUsage, TextStreamPart, ToolSet, UIMessage } from "ai"
 import { afterEach, beforeEach, describe, expect, it, vi } from "vitest"
 
 import type { ChatConfig } from "../config"
 import { DEGRADED_HEADER } from "../http/headers"
 import { callArg } from "../test-support/mock-calls"
-import { streamChat } from "./chat"
+import { streamChat, warnIfPromptCacheInactive } from "./chat"
 
 interface StreamTextArgs {
   model: { modelId: string }
@@ -14,6 +14,7 @@ interface StreamTextArgs {
   }
   messages: { role: string; content: { type: string; text: string }[] }[]
   maxOutputTokens: number
+  onEnd: (event: { usage: LanguageModelUsage }) => void
 }
 
 interface WorkersAiArgs {
@@ -247,5 +248,71 @@ describe("streamChat visitor model choice", () => {
 
     expect(streamText).toHaveBeenCalledOnce()
     expect(streamWorkersAiText).not.toHaveBeenCalled()
+  })
+})
+
+describe("warnIfPromptCacheInactive", () => {
+  const usage = (
+    cacheReadTokens: number | undefined,
+    cacheWriteTokens: number | undefined
+  ) =>
+    ({
+      inputTokens: 5_200,
+      inputTokenDetails: { cacheReadTokens, cacheWriteTokens },
+    }) as LanguageModelUsage
+
+  const warn = () => vi.spyOn(console, "warn").mockImplementation(() => {})
+
+  it("says nothing when the cache was read", () => {
+    const spy = warn()
+
+    warnIfPromptCacheInactive(usage(5_100, 0), "claude-haiku-4-5")
+
+    expect(spy).not.toHaveBeenCalled()
+  })
+
+  // First request for a locale writes the cache without reading it.
+  it("says nothing on a cold cache that was written", () => {
+    const spy = warn()
+
+    warnIfPromptCacheInactive(usage(0, 5_100), "claude-haiku-4-5")
+
+    expect(spy).not.toHaveBeenCalled()
+  })
+
+  // The silent failure: the provider ignored cacheControl entirely.
+  it.each([
+    ["both zero", 0, 0],
+    ["both undefined", undefined, undefined],
+    ["read zero, write undefined", 0, undefined],
+  ])("warns when the cache was neither read nor written (%s)", (_l, r, w) => {
+    const spy = warn()
+
+    warnIfPromptCacheInactive(usage(r, w), "claude-haiku-4-5")
+
+    expect(spy).toHaveBeenCalledOnce()
+    expect(spy.mock.calls[0]?.[1]).toContain("claude-haiku-4-5")
+  })
+})
+
+describe("streamChat cache instrumentation", () => {
+  it("hands the model an onEnd hook to watch caching", async () => {
+    await streamChat(params())
+
+    expect(typeof streamTextArgs().onEnd).toBe("function")
+  })
+
+  it("warns through that hook when caching did nothing", async () => {
+    const spy = vi.spyOn(console, "warn").mockImplementation(() => {})
+    await streamChat(params())
+
+    streamTextArgs().onEnd({
+      usage: {
+        inputTokens: 5_200,
+        inputTokenDetails: { cacheReadTokens: 0, cacheWriteTokens: 0 },
+      } as LanguageModelUsage,
+    })
+
+    expect(spy).toHaveBeenCalledOnce()
   })
 })

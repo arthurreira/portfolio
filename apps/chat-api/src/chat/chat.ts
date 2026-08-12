@@ -5,6 +5,7 @@ import {
   createUIMessageStreamResponse,
   streamText,
   toUIMessageStream,
+  type LanguageModelUsage,
   type ModelMessage,
   type TextStreamPart,
   type ToolSet,
@@ -73,6 +74,30 @@ const toErrorResponse = (
   })
 
 /**
+ * Warns when Anthropic prompt caching did nothing.
+ *
+ * Caching fails silently — drop the system prompt under the model's minimum
+ * cacheable length and the provider just ignores `cacheControl`, with no error
+ * and no symptom beyond a slower, dearer reply. A cold cache writes without
+ * reading, which is normal, so only "neither read nor written" is a fault.
+ *
+ * Anomaly-only: a per-request log would be noise nobody reads.
+ */
+export const warnIfPromptCacheInactive = (
+  usage: LanguageModelUsage,
+  model: string
+): void => {
+  const { cacheReadTokens, cacheWriteTokens } = usage.inputTokenDetails
+
+  if (cacheReadTokens || cacheWriteTokens) return
+
+  console.warn(
+    "prompt cache inactive",
+    JSON.stringify({ model, inputTokens: usage.inputTokens })
+  )
+}
+
+/**
  * Streams a completion in the AI SDK UI Message Stream format, so the browser
  * can consume it with `useChat` + `DefaultChatTransport` and no custom
  * parsing.
@@ -119,6 +144,8 @@ export const streamChat = async ({
     },
     messages: modelMessages,
     maxOutputTokens: config.maxOutputTokens,
+    // Runs inside the stream's lifetime, so the Worker is still alive for it.
+    onEnd: ({ usage }) => warnIfPromptCacheInactive(usage, config.model),
   })
 
   const probed = await probeStream(primary.stream)
