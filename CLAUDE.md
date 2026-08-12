@@ -134,6 +134,19 @@ Use it to develop message bubbles and streaming states offline, deterministicall
 
 ## Conventions
 
+### File and folder naming
+
+These are one rule each because each was violated at least once, and the mismatches are what made the tree hard to read.
+
+- **Filenames are kebab-case, everywhere, in every workspace.** `spring-box.tsx`, not `SpringBox.tsx` or `springBox.tsx`. PascalCase is for the exported React component, never the file.
+- **A file is named after what it exports.** `top-bar.tsx` exports `TopBar`. If you rename the component, rename the file.
+- **Components use named exports, not default.** Default exports let the import site invent a different name, and it did.
+- **`lib/` is pure utilities — no JSX.** A file with a component in it belongs under `components/`, whatever else it does. Client-side wrappers that render no UI of their own go in `components/providers/`.
+- **Server/client pairs use the `-server` suffix** on the server half: `site-hero-server.tsx` fetches and passes props to `site-hero.tsx`. Not `.server.tsx`, not a folder — one convention, applied everywhere.
+- **Reusable UI goes in atomic levels; feature work goes in `components/features/<name>/`.** Ask "is this used across the site?" before picking a level. A feature folder holds its own utilities too, not just its components.
+
+### Everything else
+
 - **Prettier** (`.prettierrc`): no semicolons, double quotes, 2-space tabs, `printWidth: 80`, `trailingComma: es5`. Tailwind class sorting is enabled and aware of `cn` / `cva`.
 - **Animations** use `motion` (`motion/react`) — a peer dependency of `@arthurreira/ui`.
 - **Git workflow**: feature branch → PR into `dev` (staging, tested) → merge to `main` (production). Branch prefixes: `feat/`, `fix/`, `docs/`, `chore/`. Never PR straight to `main`.
