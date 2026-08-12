@@ -1,7 +1,7 @@
 import { getTranslations } from "next-intl/server"
 import { profile } from "@arthurreira/content"
-import { Badge } from "@arthurreira/ui"
 import { Link } from "@/i18n/routing"
+import { RailRow } from "@/components/atoms/rail-row"
 
 const year = (iso: string) => iso.slice(0, 4)
 
@@ -36,62 +36,37 @@ export async function SiteCertifications({
         {isSummary ? t("latestLabel") : t("label")}
       </h2>
 
-      <ul className="list-none p-0">
+      <div>
         {certs.map((cert) => {
-          const meta = (
-            <>
-              <span className="flex-1 text-base text-foreground transition-all duration-200 group-hover:translate-x-1 group-hover:text-primary">
-                {cert.name}
-              </span>
+          // The rail carries the year, exactly as it does for a project — the
+          // two lists now share one edge instead of each inventing its own.
+          const rail =
+            cert.status === "in-progress"
+              ? t("inProgress")
+              : cert.earned
+                ? `${year(cert.earned)}${
+                    !isSummary && cert.expires ? `–${cert.expires}` : ""
+                  }`
+                : undefined
 
+          // Hover is only earned where there is somewhere to go.
+          return (
+            <RailRow
+              key={cert.code ?? cert.name}
+              meta={rail}
+              external={cert.url}
+            >
+              {cert.name}
               {cert.code && (
-                <span className="shrink-0 text-sm text-muted-foreground tabular-nums">
+                <span className="ml-2 text-sm text-muted-foreground">
                   {cert.code}
                 </span>
               )}
-
-              {isSummary
-                ? cert.earned && (
-                    <span className="w-12 shrink-0 text-right text-sm text-muted-foreground tabular-nums">
-                      {year(cert.earned)}
-                    </span>
-                  )
-                : cert.status === "in-progress"
-                  ? (
-                      <Badge variant="secondary" className="shrink-0">
-                        {t("inProgress")}
-                      </Badge>
-                    )
-                  : cert.earned && (
-                      <span className="shrink-0 text-sm text-muted-foreground tabular-nums">
-                        {year(cert.earned)}
-                        {cert.expires && `–${cert.expires}`}
-                      </span>
-                    )}
-            </>
-          )
-
-          // Hover is only earned where there is somewhere to go. An in-progress
-          // certification has no badge yet, so its row stays plain text.
-          return (
-            <li key={cert.code ?? cert.name} className="border-t border-border">
-              {cert.url ? (
-                <a
-                  href={cert.url}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="group -mx-2 flex items-baseline gap-4 px-4 py-3 transition-colors duration-150 hover:bg-muted"
-                >
-                  {meta}
-                </a>
-              ) : (
-                <div className="flex items-baseline gap-4 px-2 py-3">{meta}</div>
-              )}
-            </li>
+            </RailRow>
           )
         })}
-      </ul>
-      <div className="border-t border-border" />
+        <div className="border-t border-border" />
+      </div>
 
       {isSummary && (
         <Link

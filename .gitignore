@@ -47,3 +47,6 @@ snyk-code-results.json
 
 # Local agent instructions — CLAUDE.md is the one that ships
 AGENTS.md
+
+# Design reference decks — local only, never commit (public repo)
+pdfs/

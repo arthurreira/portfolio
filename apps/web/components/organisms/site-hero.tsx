@@ -1,35 +1,25 @@
-import type { ReactNode } from "react"
 import { HeroText } from "@/components/molecules/hero-text"
 
 interface SiteHeroProps {
-  greetings: string[]
-  intro: string
   firstName: string
   lastName: string
-  subtitle: ReactNode
-  cultureLine: string
+  roleLine: string
   stages: string[]
 }
 
 /** Page opener. */
 export function SiteHero({
-  greetings,
-  intro,
   firstName,
   lastName,
-  subtitle,
-  cultureLine,
+  roleLine,
   stages,
 }: SiteHeroProps) {
   return (
-    <section className="pt-16">
+    <section className="pt-frame">
       <HeroText
-        greetings={greetings}
-        intro={intro}
         firstName={firstName}
         lastName={lastName}
-        subtitle={subtitle}
-        cultureLine={cultureLine}
+        roleLine={roleLine}
         stages={stages}
       />
     </section>

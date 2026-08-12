@@ -1,16 +1,8 @@
 {
   "hero": {
-    "greetings": [
-      "Hi",
-      "Hey",
-      "Hello",
-      "Yo"
-    ],
-    "intro": "I'm",
     "firstName": "Arthur",
-    "lastName": "Ferreira.",
-    "heroSubtitle": "I work as a Software Engineer at <company>Nordcloud, an IBM Company</company>.",
-    "cultureLine": "DevSecOps is a culture —",
+    "lastName": "Ferreira Miranda.",
+    "roleLine": "I work as a Software Engineer —",
     "devsecopsStages": [
       "Plan",
       "Code",
@@ -24,14 +16,23 @@
   },
   "home": {
     "selectedLabel": "Latest projects I've been working on",
-    "allProjects": "All projects"
+    "allProjects": "All projects",
+    "trustCertsLabel": "Certifications",
+    "trustRoleLabel": "Currently",
+    "trustRoleValue": "Nordcloud, an IBM Company",
+    "closingHeading": "Got something in mind?",
+    "closingLead": "Tell me about it — or ask the assistant about my work first.",
+    "closingCta": "Get in touch",
+    "closingChatCta": "Ask about my work"
   },
   "projects": {
     "title": "Projects",
     "heading": "Projects.",
     "countSuffix": "projects",
     "previous": "Previous",
-    "next": "Next"
+    "next": "Next",
+    "selectedLabel": "What I've been building lately",
+    "archiveLabel": "Everything else"
   },
   "about": {
     "title": "About",
@@ -70,7 +71,8 @@
     "about": "About",
     "contact": "Contact",
     "backToTop": "Back to top",
-    "back": "Back"
+    "back": "Back",
+    "ask": "Ask"
   },
   "contact": {
     "title": "Contact",

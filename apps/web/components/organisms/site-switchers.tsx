@@ -2,12 +2,7 @@
 
 import { useState, useEffect, useRef } from "react"
 import { flushSync } from "react-dom"
-import {
-  useRouter,
-  usePathname as useIntlPathname,
-  routing,
-} from "@/i18n/routing"
-import { useLocale, useTranslations } from "next-intl"
+import { useTranslations } from "next-intl"
 import { Sun, Moon } from "@phosphor-icons/react/ssr"
 import {
   Tooltip,
@@ -20,6 +15,7 @@ import { PillGroup } from "@/components/molecules/pill-group"
 import { useCircleReveal } from "@/components/molecules/circle-reveal"
 import { FlagFill, FlagPillFill } from "@/components/atoms/flag-icons"
 import { THEME_TRANSITION } from "@/lib/theme-transition"
+import { setAxis } from "@/lib/theme-axis"
 
 // Full-bleed flags: no padding box, dimmed and desaturated when inactive, full
 // colour when active (via aria-pressed set by PillButton).
@@ -40,37 +36,19 @@ const FLAGS = [
     className: FLAG_PILL_CLASS,
   },
 ]
-const LANGS = [
-  { key: "en", label: "EN" },
-  { key: "fi", label: "FI" },
-  { key: "pt-br", label: "PT" },
-]
-
-function setAxis(attr: string, storageKey: string, value: string) {
-  document.documentElement.setAttribute(`data-${attr}`, value)
-  try {
-    localStorage.setItem(storageKey, value)
-    // Cookie so the server can read it on next navigation (no flash).
-    // Secure only over HTTPS so local http dev still stores the cookie.
-    const secure = location.protocol === "https:" ? ";Secure" : ""
-    document.cookie = `${storageKey}=${value};path=/;max-age=31536000;SameSite=Lax${secure}`
-  } catch {
-    /* storage unavailable (private mode) — DOM attribute already applied */
-  }
-}
 
 type ViewTransitionDoc = Document & {
   startViewTransition?: (cb: () => void) => { ready: Promise<void> }
 }
 
 /**
- * Theme (Brasil/Suomi), mode (light/dark) and language switchers, plus the `d`
- * and `l` keyboard shortcuts.
+ * Theme (Brasil/Suomi) and mode (light/dark), plus the `d` shortcut.
+ *
+ * Language used to live here too. It moved to the nav: on a site whose default
+ * locale is Finnish, switching language is how a visitor gets to a page they
+ * can read, which makes it navigation rather than a preference.
  */
 export function SiteSwitchers() {
-  const router = useRouter()
-  const intlPathname = useIntlPathname()
-  const currentLocale = useLocale()
   const tTheme = useTranslations("theme")
   const tTip = useTranslations("tooltips")
 
@@ -150,17 +128,7 @@ export function SiteSwitchers() {
     })
   }
 
-  function pickLocale(locale: string) {
-    if (locale === currentLocale) return
-    // No full-screen reveal here — the pill's own active-state transition is
-    // the only animation on a language change.
-    router.push(intlPathname, {
-      locale: locale as (typeof routing.locales)[number],
-    })
-  }
-
-  // Keyboard shortcuts: d toggles the mode (with the view-transition sweep), l
-  // cycles the language.
+  // `d` toggles the mode. `l` moved to the language switcher in the nav.
   useEffect(() => {
     function onKeydown(e: KeyboardEvent) {
       if (e.metaKey || e.ctrlKey || e.altKey || e.repeat) return
@@ -168,14 +136,8 @@ export function SiteSwitchers() {
       if (el?.closest("input, textarea, select, [contenteditable='true']")) {
         return
       }
-
-      const key = e.key.toLowerCase()
-      if (key === "d") {
+      if (e.key.toLowerCase() === "d") {
         pickMode(mode === "dark" ? "light" : "dark")
-      } else if (key === "l") {
-        const idx = LANGS.findIndex((lang) => lang.key === currentLocale)
-        const next = LANGS[(idx + 1) % LANGS.length]
-        if (next) pickLocale(next.key)
       }
     }
     window.addEventListener("keydown", onKeydown)
@@ -220,23 +182,6 @@ export function SiteSwitchers() {
           </TooltipTrigger>
           <TooltipContent side="top" sideOffset={6}>
             {tTip("mode")}
-          </TooltipContent>
-        </Tooltip>
-
-        <Separator orientation="vertical" decorative={false} className="h-3" />
-
-        <Tooltip>
-          <TooltipTrigger asChild>
-            <span className="inline-flex items-center">
-              <PillGroup
-                options={LANGS}
-                active={currentLocale}
-                onPick={pickLocale}
-              />
-            </span>
-          </TooltipTrigger>
-          <TooltipContent side="top" sideOffset={6}>
-            {tTip("language")}
           </TooltipContent>
         </Tooltip>
       </TooltipProvider>

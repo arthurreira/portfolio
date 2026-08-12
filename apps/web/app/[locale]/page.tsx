@@ -2,7 +2,8 @@ import { getTranslations, setRequestLocale } from "next-intl/server"
 import { projects } from "@arthurreira/content"
 import { Link } from "@/i18n/routing"
 import { SiteHeroServer } from "@/components/organisms/site-hero-server"
-import { SiteCertifications } from "@/components/organisms/site-certifications"
+import { SiteTrust } from "@/components/organisms/site-trust"
+import { SiteClosing } from "@/components/organisms/site-closing"
 import { ProjectList } from "@/components/molecules/project-list"
 
 /** How many featured projects the home page shows before "all projects". */
@@ -32,22 +33,33 @@ export default async function Page({
       locale,
     }))
 
+  // Contained → full-bleed → contained. The band is the only thing on the site
+  // that touches the viewport edge, so the page reads as a sequence rather than
+  // one uninterrupted 44rem column.
   return (
-    <div className="mx-auto max-w-page px-gutter flex flex-col gap-20 pb-24">
-      <SiteHeroServer />
+    <>
+      <div className="mx-auto max-w-page px-gutter">
+        <SiteHeroServer />
+      </div>
 
-      <section>
-        <h2 className="section-label mb-4">{t("selectedLabel")}</h2>
-        <ProjectList projects={featured} emphasiseFirst={false} />
-        <Link
-          href="/projects"
-          className="mt-4 inline-block text-sm text-muted-foreground transition-colors hover:text-foreground"
-        >
-          {t("allProjects")} →
-        </Link>
-      </section>
+      <div className="mt-section">
+        <SiteTrust />
+      </div>
 
-      <SiteCertifications variant="summary" />
-    </div>
+      <div className="mx-auto max-w-page px-gutter pb-frame-end">
+        <section className="pt-section">
+          <h2 className="section-label mb-block">{t("selectedLabel")}</h2>
+          <ProjectList projects={featured} emphasiseFirst={false} />
+          <Link
+            href="/projects"
+            className="mt-block inline-block text-sm text-muted-foreground transition-colors hover:text-foreground"
+          >
+            {t("allProjects")} →
+          </Link>
+        </section>
+
+        <SiteClosing />
+      </div>
+    </>
   )
 }

@@ -116,6 +116,10 @@ export default defineConfig({
           // file; the chat renders it in the visitor's language.
           story: s.object({
             whySoftware: s.string(),
+            // Without this the chat had no grounded answer to "what interests
+            // him in his work" and reached for closestProject — which answers
+            // a different question — or invented one outright.
+            workInterest: s.string(),
             closestProject: s.string(),
             currentlyLearning: s.string(),
             workStyle: s.string(),

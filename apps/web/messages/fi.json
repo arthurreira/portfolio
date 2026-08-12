@@ -1,17 +1,8 @@
 {
   "hero": {
-    "greetings": [
-      "Morjens",
-      "Moi",
-      "Terve",
-      "Moikka",
-      "Hei"
-    ],
-    "intro": "mä oon",
     "firstName": "Arthur",
-    "lastName": "Ferreira.",
-    "heroSubtitle": "Työskentelen ohjelmistoinsinöörinä yrityksessä <company>Nordcloud, an IBM company</company>.",
-    "cultureLine": "DevSecOps on kulttuuri –",
+    "lastName": "Ferreira Miranda.",
+    "roleLine": "Työskentelen ohjelmistoinsinöörinä –",
     "devsecopsStages": [
       "Suunnittelu",
       "Koodaus",
@@ -25,14 +16,23 @@
   },
   "home": {
     "selectedLabel": "Viimeisimmät projektit, joiden parissa olen työskennellyt",
-    "allProjects": "Kaikki projektit"
+    "allProjects": "Kaikki projektit",
+    "trustCertsLabel": "Sertifikaattia",
+    "trustRoleLabel": "Tällä hetkellä",
+    "trustRoleValue": "Nordcloud, an IBM Company",
+    "closingHeading": "Haluaisitko sparrailla jostain tietystä aiheesta?",
+    "closingLead": "Kerro siitä — tai kysy ensin assistentilta työstäni.",
+    "closingCta": "Ota yhteyttä",
+    "closingChatCta": "Kysy työstäni"
   },
   "projects": {
     "title": "Projektit",
     "heading": "Projektit.",
     "countSuffix": "projektia",
     "previous": "Edellinen",
-    "next": "Seuraava"
+    "next": "Seuraava",
+    "selectedLabel": "Mitä olen viime aikoina rakentanut",
+    "archiveLabel": "Muut projektit"
   },
   "about": {
     "title": "Tietoa minusta",
@@ -71,7 +71,8 @@
     "about": "Tietoa",
     "contact": "Ota yhteyttä",
     "backToTop": "Takaisin ylös",
-    "back": "Takaisin"
+    "back": "Takaisin",
+    "ask": "Kysy"
   },
   "contact": {
     "title": "Ota yhteyttä",
