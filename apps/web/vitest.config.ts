@@ -10,14 +10,14 @@ export default defineConfig({
     },
   },
   test: {
-    // No jsdom: this config covers the pure logic under `i18n/` and `lib/`,
-    // none of which touches the DOM. A component test would need its own
-    // environment and is not what this is for.
+    // Node by default: the logic under `i18n/` and `lib/` never touches the
+    // DOM. A test that needs one opts in per file with a
+    // `// @vitest-environment jsdom` docblock rather than paying for it here.
     environment: "node",
     // next-intl must be processed by Vite rather than left to Node's ESM
     // loader, or the `next/navigation` alias above never applies to it.
     server: { deps: { inline: ["next-intl"] } },
-    include: ["{i18n,lib}/**/*.test.ts"],
+    include: ["{i18n,lib}/**/*.test.ts", "components/**/*.test.ts"],
     coverage: {
       provider: "v8",
       include: ["i18n/**/*.ts", "lib/**/*.ts"],
