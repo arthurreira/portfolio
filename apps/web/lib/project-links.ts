@@ -58,17 +58,30 @@ const PROTECTED_SEGMENTS = /(```[\s\S]*?```|`[^`]*`|\[[^\]]*\]\([^)]*\)|https?:\
 const escapeRegExp = (value: string): string =>
   value.replace(/[.*+?^${}()|[\]\\]/g, "\\$&")
 
+const patternCache = new Map<string, RegExp>()
+
 /**
  * The lookarounds keep a match from starting or ending inside a word, a path,
  * or a link this function inserted one alias earlier — `[` and `]` are in the
  * exclusion sets so a second alias for the same project cannot nest a link
  * inside the first one's text.
+ *
+ * Cached by casing flag *and* alias: the same text compiles to a different
+ * pattern under `caseSensitive`, so a text-only key would collide the two.
+ * Sharing an instance is safe only because the sole caller is `.replace()`,
+ * which resets `lastIndex`.
  */
-const aliasPattern = ({ alias, caseSensitive }: ProjectAlias): RegExp =>
-  new RegExp(
+const aliasPattern = ({ alias, caseSensitive }: ProjectAlias): RegExp => {
+  const key = `${caseSensitive ? "s" : "i"}:${alias}`
+  const cached = patternCache.get(key)
+  if (cached) return cached
+  const pattern = new RegExp(
     `(?<![\\w/.@[-])${escapeRegExp(alias)}(?![\\w/\\]-])`,
     caseSensitive ? "g" : "gi"
   )
+  patternCache.set(key, pattern)
+  return pattern
+}
 
 const linkifySegment = (segment: string, locale: string): string => {
   let result = segment
