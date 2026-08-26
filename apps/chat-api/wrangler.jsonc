@@ -3,8 +3,11 @@
   "name": "chat-api",
   "main": "src/index.ts",
   "compatibility_date": "2026-07-20",
-  // The AI SDK's Anthropic provider imports Node built-ins.
-  "compatibility_flags": ["nodejs_compat"],
+  // nodejs_compat: the AI SDK's Anthropic provider imports Node built-ins.
+  // enable_request_signal: without it `request.signal` exists but never fires
+  // on client disconnect, so the abort below would be wired to a dead wire.
+  // It has no "default as of" date — no compatibility_date turns it on.
+  "compatibility_flags": ["nodejs_compat", "enable_request_signal"],
   "observability": {
     "enabled": true,
   },

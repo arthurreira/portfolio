@@ -220,3 +220,34 @@ describe("streamWorkersAiText request shape", () => {
     })
   })
 })
+
+describe("streamWorkersAiText cancellation", () => {
+  it("yields nothing when the visitor is already gone", async () => {
+    const { ai } = fakeAi(sseStream([data({ response: "Arthur" })]))
+    const controller = new AbortController()
+    controller.abort()
+
+    const chunks = await collect(
+      streamWorkersAiText(params(ai, { signal: controller.signal }))
+    )
+
+    expect(chunks).toEqual([])
+  })
+
+  it("stops pulling once the visitor leaves mid-answer", async () => {
+    const { ai } = fakeAi(
+      sseStream([data({ response: "Arthur" }), data({ response: " works" })])
+    )
+    const controller = new AbortController()
+    const seen: string[] = []
+
+    for await (const chunk of streamWorkersAiText(
+      params(ai, { signal: controller.signal })
+    )) {
+      seen.push(chunk)
+      controller.abort()
+    }
+
+    expect(seen).toEqual(["Arthur"])
+  })
+})

@@ -41,6 +41,7 @@ import {
 import { ChatMessage } from "@/components/features/chat/chat-message"
 import { ChatTurnstile } from "@/components/features/chat/chat-turnstile"
 import { useDegraded } from "@/hooks/use-degraded"
+import { useStopOnUnmount } from "@/hooks/use-stop-on-unmount"
 import { useTurnstile } from "@/hooks/use-turnstile"
 
 const CHAT_API_URL =
@@ -105,6 +106,11 @@ export function SiteChat() {
 
   const { messages, sendMessage, setMessages, status, error, stop } =
     useChat({ transport })
+
+  // This panel lives in the [locale] root layout, so a language switch changes
+  // the router segment key and React destroys it — mid-stream if a reply is
+  // still arriving. Without this the request runs to completion unwatched.
+  useStopOnUnmount(stop)
 
   const isBusy = status === "submitted" || status === "streaming"
 

@@ -34,6 +34,11 @@ interface StreamChatParams {
   ai?: Ai
   /** Validated visitor choice; "workers-ai" streams the free model directly. */
   model: ModelChoice
+  /**
+   * The incoming request's signal, so a visitor who leaves mid-answer stops
+   * the upstream generation rather than only stopping us reading it.
+   */
+  signal?: AbortSignal
 }
 
 const toResponse = <TOOLS extends ToolSet>(
@@ -111,6 +116,7 @@ export const streamChat = async ({
   ai,
   model,
   fallbackSystemPrompt,
+  signal,
 }: StreamChatParams): Promise<Response> => {
   // Keep only the most recent turns: history length drives input cost, and an
   // unbounded transcript would also eventually exceed the context window.
@@ -126,6 +132,7 @@ export const streamChat = async ({
       messages: modelMessages,
       headers,
       degraded: false,
+      signal,
     })
   }
 
@@ -144,6 +151,9 @@ export const streamChat = async ({
     },
     messages: modelMessages,
     maxOutputTokens: config.maxOutputTokens,
+    // The whole point: this reaches the provider's fetch, so aborting it closes
+    // the connection to Anthropic instead of only abandoning our end of it.
+    abortSignal: signal,
     // Runs inside the stream's lifetime, so the Worker is still alive for it.
     onEnd: ({ usage }) => warnIfPromptCacheInactive(usage, config.model),
   })
@@ -166,6 +176,7 @@ export const streamChat = async ({
     messages: modelMessages,
     headers,
     degraded: true,
+    signal,
   })
 }
 
@@ -177,6 +188,7 @@ interface StreamFallbackParams {
   headers?: Record<string, string>
   /** True when this is a failure fallback rather than the visitor's choice. */
   degraded: boolean
+  signal?: AbortSignal
 }
 
 /** Second attempt, on Cloudflare's own models. */
@@ -187,6 +199,7 @@ const streamFallback = ({
   messages,
   headers,
   degraded,
+  signal,
 }: StreamFallbackParams): Response => {
   const stream = createUIMessageStream({
     execute: async ({ writer }) => {
@@ -200,6 +213,7 @@ const streamFallback = ({
         messages,
         maxOutputTokens: config.maxOutputTokens,
         reminder: FALLBACK_REMINDER,
+        signal,
       })) {
         writer.write({ type: "text-delta", id, delta })
       }

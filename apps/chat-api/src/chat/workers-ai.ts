@@ -24,9 +24,7 @@ interface WorkersAiChunk {
 const toPlainText = (content: ModelMessage["content"]): string => {
   if (typeof content === "string") return content
 
-  return content
-    .map((part) => (part.type === "text" ? part.text : ""))
-    .join("")
+  return content.map((part) => (part.type === "text" ? part.text : "")).join("")
 }
 
 export interface WorkersAiStreamParams {
@@ -39,6 +37,8 @@ export interface WorkersAiStreamParams {
    * Repeated after the visitor's message, where a small model weights it most.
    */
   reminder?: string
+  /** Stops pulling when the visitor is gone. */
+  signal?: AbortSignal
 }
 
 /** Yields text deltas as the model produces them. */
@@ -49,6 +49,7 @@ export async function* streamWorkersAiText({
   messages,
   maxOutputTokens,
   reminder,
+  signal,
 }: WorkersAiStreamParams): AsyncGenerator<string> {
   const result = await ai.run(
     model as Parameters<Ai["run"]>[0],
@@ -74,6 +75,10 @@ export async function* streamWorkersAiText({
 
   try {
     for (;;) {
+      // Checked per chunk rather than per token: the binding has no signal of
+      // its own, so this is the only place the abort can land.
+      if (signal?.aborted) break
+
       const { done, value } = await reader.read()
       if (done) break
 
