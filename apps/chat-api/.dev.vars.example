@@ -16,6 +16,7 @@ ANTHROPIC_API_KEY=sk-ant-...
 # How many recent messages are sent upstream. Default 20, hard-capped at 50.
 # CHAT_MAX_HISTORY_MESSAGES=20
 
-# Comma-separated CORS allowlist.
-# Defaults to https://arthurreira.dev, https://www.arthurreira.dev, http://localhost:3000
-# ALLOWED_ORIGINS=https://arthurreira.dev,http://localhost:3000
+# Comma-separated CORS allowlist. Required locally, not optional: wrangler.jsonc
+# pins the production origins, and `wrangler dev` inherits them unless this
+# overrides — leaving it unset means the local site gets no CORS headers.
+ALLOWED_ORIGINS=http://localhost:3000,http://127.0.0.1:3000

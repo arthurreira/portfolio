@@ -4,6 +4,10 @@
   "tasks": {
     "build": {
       "dependsOn": ["^build"],
+      // On Vercel these come from the dashboard, not from .env* — without
+      // declaring them here they stay out of the cache hash, so changing one
+      // hits the cache and reuses a bundle with the old value baked in.
+      "env": ["NEXT_PUBLIC_CHAT_API_URL", "NEXT_PUBLIC_TURNSTILE_SITE_KEY"],
       "inputs": ["$TURBO_DEFAULT$", ".env*"],
       "outputs": [".next/**", "!.next/cache/**", ".velite/**", "dist/**"]
     },
