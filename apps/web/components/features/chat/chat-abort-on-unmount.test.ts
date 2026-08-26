@@ -5,12 +5,15 @@ import { useChat } from "@ai-sdk/react"
 import { DefaultChatTransport, type UIMessage } from "ai"
 import { afterEach, beforeEach, describe, expect, it } from "vitest"
 
+import { useStopOnUnmount } from "@/hooks/use-stop-on-unmount"
+
 /**
  * Does the in-flight request survive the component that started it?
  *
  * `SiteChat` lives in the `[locale]` root layout, so a language switch changes
- * the router segment key and React destroys it mid-stream. This pins down
- * whether anything aborts the request when that happens.
+ * the router segment key and React destroys it mid-stream. The harness below
+ * mounts the same `useStopOnUnmount` the panel does, so these cover the code
+ * that ships rather than a bespoke stand-in.
  */
 
 type Captured = { signal: AbortSignal | null }
@@ -53,6 +56,7 @@ function Harness({
   transport: DefaultChatTransport<UIMessage>
 }) {
   const chat = useChat({ transport })
+  useStopOnUnmount(chat.stop)
   // Published from an effect, not during render: assigning to an outer
   // variable mid-render is the side effect the React lint rule forbids. No
   // dep array, so `api` tracks every render rather than freezing at mount.
@@ -87,9 +91,10 @@ const startStreaming = async (captured: Captured) => {
   const container = document.createElement("div")
   document.body.appendChild(container)
   const root = createRoot(container)
+  const render = () => root.render(createElement(Harness, { transport }))
 
   await act(async () => {
-    root.render(createElement(Harness, { transport }))
+    render()
   })
 
   await act(async () => {
@@ -98,7 +103,7 @@ const startStreaming = async (captured: Captured) => {
   })
 
   await waitFor(() => api?.status === "streaming", "status === streaming")
-  return root
+  return { root, render }
 }
 
 beforeEach(() => {
@@ -118,7 +123,7 @@ describe("in-flight chat request vs. unmount", () => {
   // the result of the next test would mean nothing.
   it("aborts the request when stop() is called", async () => {
     const captured: Captured = { signal: null }
-    const root = await startStreaming(captured)
+    const { root } = await startStreaming(captured)
 
     expect(captured.signal).not.toBeNull()
     expect(captured.signal!.aborted).toBe(false)
@@ -131,9 +136,9 @@ describe("in-flight chat request vs. unmount", () => {
     await act(async () => root.unmount())
   })
 
-  it("does NOT abort the request when the component unmounts", async () => {
+  it("aborts the request when the component unmounts mid-stream", async () => {
     const captured: Captured = { signal: null }
-    const root = await startStreaming(captured)
+    const { root } = await startStreaming(captured)
 
     expect(captured.signal).not.toBeNull()
     expect(captured.signal!.aborted).toBe(false)
@@ -142,13 +147,19 @@ describe("in-flight chat request vs. unmount", () => {
 
     // The unmount really happened — otherwise the assertion below proves nothing.
     expect(cleanupRan).toBe(true)
+    expect(captured.signal!.aborted).toBe(true)
+  })
 
-    // And it is not merely late: give any deferred abort 250ms to land.
-    await act(async () => {
-      await new Promise((resolve) => setTimeout(resolve, 250))
-    })
+  // Guards the shape of the cleanup, not just its presence: wiring it to
+  // anything `useChat` rebuilds per render would abort here instead.
+  it("leaves the request alone when the component merely re-renders", async () => {
+    const captured: Captured = { signal: null }
+    const { root, render } = await startStreaming(captured)
 
-    // Documents current behaviour, not desired behaviour.
+    await act(async () => render())
+    await act(async () => render())
+
     expect(captured.signal!.aborted).toBe(false)
+    await act(async () => root.unmount())
   })
 })
