@@ -14,6 +14,7 @@ interface StreamTextArgs {
   }
   messages: { role: string; content: { type: string; text: string }[] }[]
   maxOutputTokens: number
+  abortSignal?: AbortSignal
   onEnd: (event: { usage: LanguageModelUsage }) => void
 }
 
@@ -22,6 +23,7 @@ interface WorkersAiArgs {
   system: string
   maxOutputTokens: number
   reminder?: string
+  signal?: AbortSignal
 }
 
 const streamTextArgs = () => callArg<StreamTextArgs>(streamText)
@@ -92,6 +94,47 @@ beforeEach(() => {
 afterEach(() => {
   vi.clearAllMocks()
   vi.restoreAllMocks()
+})
+
+// A visitor who navigates away mid-answer should stop the meter, not just
+// stop watching it. Without the signal reaching the provider's fetch, the
+// generation — and the bill — runs to completion unread.
+describe("streamChat cancellation", () => {
+  it("hands the request signal to the model call", async () => {
+    const controller = new AbortController()
+
+    await streamChat(params({ signal: controller.signal }))
+
+    expect(streamTextArgs().abortSignal).toBe(controller.signal)
+  })
+
+  it("hands the request signal to the free model too", async () => {
+    const controller = new AbortController()
+
+    await streamChat(
+      params({ model: "workers-ai", ai: fakeAi, signal: controller.signal })
+    )
+
+    expect(workersAiArgs().signal).toBe(controller.signal)
+  })
+
+  it("hands the request signal to the fallback after a failure", async () => {
+    const controller = new AbortController()
+    streamText.mockReturnValue(
+      primaryStream([part("error", { error: new Error("upstream down") })])
+    )
+
+    await streamChat(params({ ai: fakeAi, signal: controller.signal }))
+
+    expect(workersAiArgs().signal).toBe(controller.signal)
+  })
+
+  // Nothing to abort with is a valid call, not a crash.
+  it("works without a signal", async () => {
+    await streamChat(params())
+
+    expect(streamTextArgs().abortSignal).toBeUndefined()
+  })
 })
 
 describe("streamChat cost controls", () => {

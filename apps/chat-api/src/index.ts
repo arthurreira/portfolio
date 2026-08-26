@@ -69,8 +69,12 @@ const handleChat = async (
     return json({ success: false, error: validated.error }, 400, cors)
   }
 
-  const { messages, turnstileToken, model, locale: requestedLocale } =
-    validated.data
+  const {
+    messages,
+    turnstileToken,
+    model,
+    locale: requestedLocale,
+  } = validated.data
 
   // Guards run cheapest first.
   if (await isRateLimited(request, env.CHAT_RATE_LIMIT)) {
@@ -122,6 +126,9 @@ const handleChat = async (
     headers: cors,
     ai: env.AI,
     model,
+    // Fires when the visitor navigates away or closes the tab mid-answer.
+    // Needs the enable_request_signal compatibility flag to fire at all.
+    signal: request.signal,
   })
 }
 
