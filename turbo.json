@@ -4,6 +4,16 @@
   "tasks": {
     "build": {
       "dependsOn": ["^build"],
+      // NODE_ENV is the one that has to be here: it selects the dev-only
+      // 'unsafe-eval' in each app's CSP, and Framework Inference does not
+      // cover it. The NEXT_PUBLIC_ pair is already covered by inference —
+      // listed anyway so the dependency is readable, and so the hash stays
+      // correct under --framework-inference=false.
+      "env": [
+        "NODE_ENV",
+        "NEXT_PUBLIC_CHAT_API_URL",
+        "NEXT_PUBLIC_TURNSTILE_SITE_KEY"
+      ],
       "inputs": ["$TURBO_DEFAULT$", ".env*"],
       "outputs": [".next/**", "!.next/cache/**", ".velite/**", "dist/**"]
     },
