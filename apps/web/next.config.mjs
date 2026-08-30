@@ -1,7 +1,7 @@
 /* global process */
 // The shared eslint config declares serviceworker globals, not node ones, so
 // `process` reads as undefined here without this.
-import createNextIntlPlugin from 'next-intl/plugin'
+import createNextIntlPlugin from "next-intl/plugin"
 
 const withNextIntl = createNextIntlPlugin()
 
@@ -15,6 +15,10 @@ const CHAT_API_ORIGIN = new URL(
 
 const TURNSTILE_ORIGIN = "https://challenges.cloudflare.com"
 
+// headers() applies in `next dev` too, and React uses eval there to rebuild
+// server error stacks in the browser. Production needs neither.
+const isDev = process.env.NODE_ENV !== "production"
+
 // Built from what the generated HTML actually loads, not from a template.
 // Two entries that look wrong and are not:
 //   - no Google Fonts: next/font self-hosts the woff2 under /_next/static.
@@ -24,7 +28,7 @@ const TURNSTILE_ORIGIN = "https://challenges.cloudflare.com"
 //     which is the regression this repo already fixed once.
 const csp = [
   "default-src 'self'",
-  `script-src 'self' 'unsafe-inline' ${TURNSTILE_ORIGIN}`,
+  `script-src 'self' 'unsafe-inline' ${TURNSTILE_ORIGIN}${isDev ? " 'unsafe-eval'" : ""}`,
   // Required: inline style={{...}} in mdx-content/flag-icons, plus next/font.
   "style-src 'self' 'unsafe-inline'",
   "img-src 'self' data: blob:",
@@ -59,7 +63,10 @@ const nextConfig = {
           { key: "Referrer-Policy", value: "strict-origin-when-cross-origin" },
           {
             key: "Permissions-Policy",
-            value: "camera=(), microphone=(), geolocation=(), interest-cohort=()",
+            // browsing-topics, not interest-cohort: the latter was the FLoC
+            // opt-out and is not a registered directive, so browsers drop it.
+            value:
+              "camera=(), microphone=(), geolocation=(), browsing-topics=()",
           },
           {
             key: "Strict-Transport-Security",
