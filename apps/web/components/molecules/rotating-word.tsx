@@ -3,12 +3,17 @@
 import { useEffect, useState } from "react"
 import { useReducedMotion } from "motion/react"
 import { ScrambleText } from "@/components/molecules/scramble-text"
+import { getRotationAdvanceLimit } from "@/lib/rotation"
 
 const DEFAULT_HOLD_MS = 2600
 
 interface RotatingWordProps {
   words: string[]
   holdMs?: number
+  /** Number of complete sequences to show. Omit to keep cycling. */
+  cycles?: number
+  /** Reserve the longest word's width to prevent surrounding text reflow. */
+  reserveWidth?: boolean
   className?: string
 }
 
@@ -16,21 +21,39 @@ interface RotatingWordProps {
 export function RotatingWord({
   words,
   holdMs = DEFAULT_HOLD_MS,
+  cycles,
+  reserveWidth = true,
   className,
 }: RotatingWordProps) {
   const reduceMotion = useReducedMotion()
   const [index, setIndex] = useState(0)
+  const advanceLimit = getRotationAdvanceLimit(words.length, cycles)
 
   useEffect(() => {
-    if (reduceMotion || words.length < 2) return
-    const id = setInterval(
-      () => setIndex((n) => (n + 1) % words.length),
-      holdMs
-    )
+    if (reduceMotion || words.length < 2 || advanceLimit === 0) return
+
+    let advances = 0
+    const id = setInterval(() => {
+      setIndex((current) => (current + 1) % words.length)
+      advances += 1
+
+      if (advanceLimit !== undefined && advances >= advanceLimit) {
+        clearInterval(id)
+      }
+    }, holdMs)
+
     return () => clearInterval(id)
-  }, [reduceMotion, words.length, holdMs])
+  }, [advanceLimit, reduceMotion, words.length, holdMs])
 
   if (reduceMotion || words.length < 2) return <>{words[0] ?? ""}</>
+
+  if (!reserveWidth) {
+    return (
+      <span className="inline-block align-baseline whitespace-nowrap">
+        <ScrambleText text={words[index] ?? ""} className={className} />
+      </span>
+    )
+  }
 
   // Every word is rendered into the same grid cell, all but one of them
   // invisible. A hidden element still contributes to grid track sizing, so the

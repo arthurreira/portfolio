@@ -1,30 +1,52 @@
-import { defineConfig, s } from 'velite'
-import { PROJECT_STATUSES, PROJECT_ROLES } from './src/types/project'
+import { defineConfig, s } from "velite"
+import { GLOSSARY_LOCALES, glossary, type Locale } from "./glossary"
+import { remarkGlossary } from "./plugins/remark-glossary"
+import { PROJECT_STATUSES, PROJECT_ROLES } from "./src/types/project"
 import {
   CERTIFICATION_STATUSES,
   LANGUAGE_LEVELS,
   SKILL_CATEGORIES,
   SKILL_LEVELS,
-} from './src/types/profile'
+} from "./src/types/profile"
 // `s` is extended from Zod with some custom schemas,
 // you can also import re-exported `z` from `velite` if you don't need these extension schemas.
 
+function glossaryLocaleFromFile({ path }: { path?: string }): Locale {
+  const locale = path
+    ?.split(/[\\/]/)
+    .at(-1)
+    ?.replace(/\.mdx$/, "")
+
+  if (GLOSSARY_LOCALES.includes(locale as Locale)) return locale as Locale
+
+  throw new Error(
+    `Unsupported glossary locale in MDX path: ${path ?? "unknown"}`
+  )
+}
+
 export default defineConfig({
-  root: '.',
+  root: ".",
+  mdx: {
+    remarkPlugins: [
+      [remarkGlossary, { glossary, locale: glossaryLocaleFromFile }],
+    ],
+  },
   output: {
-    data: '.velite',
-    assets: '../../apps/web/public/static',
-    base: '/static/',
+    data: ".velite",
+    assets: "../../apps/web/public/static",
+    base: "/static/",
   },
   collections: {
     projects: {
-      name: 'Project', // collection type name
-      pattern: 'projects/**/*.mdx', // content files glob pattern
-      schema: 
-      s.object({
+      name: "Project", // collection type name
+      pattern: "projects/**/*.mdx", // content files glob pattern
+      schema: s
+        .object({
           title: s.string().max(99), // Zod primitive type
           description: s.string().max(300), // Zod primitive type
-          slug: s.path().transform(path => path.split('/')[1]), // auto generate slug from file path
+          problem: s.string().optional(), // featured-project narrative context
+          outcome: s.string().optional(), // featured-project result before implementation
+          slug: s.path().transform((path) => path.split("/")[1]), // auto generate slug from file path
           createdAt: s.isodate(), // input Date-like string, output ISO Date string.
           coverImage: s.image().optional(), // local image relative to the mdx file, processed by velite
           content: s.mdx(), // transform markdown to html
@@ -32,21 +54,20 @@ export default defineConfig({
           url: s.string().url().optional(), // validate URL format, optional field
           techStack: s.array(s.string()).optional(), // array of strings, optional field
           githubRepo: s.string().optional(), // validate URL format, optional field
-          locale: s.path().transform(path => path.split('/')[2]), // enum with default value
-          status: s.enum(PROJECT_STATUSES).default('done'), // enum with default value
-          role: s.enum(PROJECT_ROLES).optional(),           // your role: solo | lead | contributor | engineer
+          locale: s.path().transform((path) => path.split("/")[2]), // enum with default value
+          status: s.enum(PROJECT_STATUSES).default("done"), // enum with default value
+          role: s.enum(PROJECT_ROLES).optional(), // your role: solo | lead | contributor | engineer
           highlight: s.string().optional(), // optional string field for project highlight or key takeaway
-
         })
         // more additional fields (computed fields)
-        .transform(data => ({ ...data, permalink: `/project/${data.slug}` }))
+        .transform((data) => ({ ...data, permalink: `/project/${data.slug}` })),
     },
     // Credentials and skills, kept out of `about` because they are structured
     // data and language-neutral: technology and certification names are proper
     // nouns, so translating them three ways would only invite drift.
     profile: {
-      name: 'Profile',
-      pattern: 'profile/*.yml',
+      name: "Profile",
+      pattern: "profile/*.yml",
       single: true,
       schema: s.object({
         education: s.array(
@@ -61,6 +82,9 @@ export default defineConfig({
             name: s.string(),
             code: s.string().optional(),
             issuer: s.string(),
+            // Free text on purpose: adding a future display category must not
+            // require a schema or exported-type migration.
+            area: s.string(),
             status: s.enum(CERTIFICATION_STATUSES),
             // Year passed. Optional because an in-progress one has not been
             // earned yet. Full date, not a year: three of these were issued in
@@ -137,16 +161,15 @@ export default defineConfig({
       }),
     },
     about: {
-      name: 'About', // collection type name
-      pattern: 'about/*.mdx', // content files glob pattern
+      name: "About", // collection type name
+      pattern: "about/*.mdx", // content files glob pattern
       schema: s.object({
-        locale: s.path().transform(path => path.split('/')[1]),
+        locale: s.path().transform((path) => path.split("/")[1]),
         content: s.mdx(),
         // Plain-text source. `content` is compiled MDX (a JS function), which is
         // unusable as LLM context — the chat Worker reads `raw` instead.
         raw: s.raw(),
-      })
+      }),
     },
-
-  }
+  },
 })

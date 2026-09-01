@@ -2,21 +2,19 @@
   "hero": {
     "firstName": "Arthur",
     "lastName": "Ferreira Miranda.",
-    "roleLine": "Trabalho como engenheiro de software —",
-    "devsecopsStages": [
-      "Planejando",
-      "Programando",
-      "Construindo",
-      "Testando",
-      "Lançando",
-      "Implementando",
-      "Operando",
-      "Monitorando"
-    ]
+    "titleLine": "Full-stack developer.",
+    "actionLead": "",
+    "actions": ["Construo", "monitoro", "opero", "conserto"],
+    "actionBeforeCompany": "serviços — na",
+    "companyLabel": "Nordcloud, an IBM Company",
+    "actionAfterCompany": ", e por conta própria também."
   },
   "home": {
     "selectedLabel": "Últimos projetos em que estive trabalhando",
     "allProjects": "Todos os projetos",
+    "aboutLabel": "Como cheguei até aqui",
+    "aboutSummary": "Desenvolvedor de aplicações brasileiro morando na Finlândia há mais de uma década.",
+    "aboutLink": "Mais sobre mim",
     "trustCertsLabel": "Certificações",
     "trustRoleLabel": "Atualmente",
     "trustRoleValue": "Nordcloud, an IBM Company",
@@ -37,7 +35,7 @@
   "about": {
     "title": "Sobre mim",
     "factsLabel": "Alguns fatos sobre mim",
-    "roleLead": "Engenheiro de software ·",
+    "roleLead": "Desenvolvedor de Software",
     "specialisms": [
       "Cloud",
       "Arquitetura Cloud",
@@ -55,7 +53,7 @@
     "yearsLabel": "Na Finlândia",
     "yearsValue": "10+ anos",
     "roleLabel": "Função",
-    "roleValue": "Engenheiro de software Junior na Nordcloud, an IBM company.",
+    "roleValue": "Desenvolvedor de Aplicações na Nordcloud, uma empresa da IBM",
     "offClockLabel": "Fora do trabalho",
     "offClockValue": "Goleiro, terceira divisão finlandesa de futebol.",
     "langLabel": "Uma coisa que eu percebi",
@@ -104,6 +102,9 @@
     "role": "Função",
     "year": "Ano",
     "status": "Status",
+    "problem": "Problema",
+    "outcome": "Resultado",
+    "techStack": "Como foi construído",
     "live": "Live",
     "source": "Código",
     "defaultRole": "Design & Desenvolvimento",
@@ -124,7 +125,11 @@
       "lead": "Desenvolvedor líder",
       "contributor": "Contribuidor",
       "engineer": "Desenvolvedor"
-    }
+    },
+    "viewMore": "Ver mais",
+    "viewLess": "Ver menos",
+    "viewAiSummary": "Ver resumo com IA",
+    "hideAiSummary": "Ocultar resumo com IA"
   },
   "chat": {
     "emptyDescription": "Trajetória, experiência, qualquer projeto — as respostas vêm deste portfolio.",
