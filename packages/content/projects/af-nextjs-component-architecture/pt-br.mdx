@@ -1,10 +1,10 @@
 ---
 title: "AF Next.js Component Architecture"
-description: "A practice project exploring atomic design principles in Next.js, using pnpm workspaces and TypeScript to build a scalable, well-structured component library."
+description: "Projeto prático sobre os princípios de atomic design no Next.js, usando pnpm workspaces e TypeScript para construir uma biblioteca de componentes escalável e bem estruturada."
 createdAt: "2026-08-12"
 featured: false
 role: "solo"
-highlight: "Monorepo component library — pnpm workspaces, atomic design hierarchy, strict TypeScript props"
+highlight: "Biblioteca de componentes em monorepo — pnpm workspaces, hierarquia de atomic design e props estritamente tipadas com TypeScript"
 techStack:
   - "Next.js"
   - "TypeScript"
@@ -16,24 +16,24 @@ status: "done"
 ---
 
 
-## What I built
+## O que construí
 
-A monorepo component library built to practice the atomic design methodology from first principles. Two workspaces: a `packages/ui` shared library where every component lives, and an `apps/playground` Next.js app used to render and test them. The hierarchy runs atoms → molecules → organisms, each layer only composing from the layer below. All component props are strictly typed with TypeScript interfaces — no implicit `any`.
+Uma biblioteca de componentes em monorepo criada para praticar a metodologia de atomic design desde os princípios básicos. São dois workspaces: a biblioteca compartilhada `packages/ui`, onde ficam todos os componentes, e o app Next.js `apps/playground`, usado para renderizá-los e testá-los. A hierarquia segue átomos → moléculas → organismos, e cada camada compõe apenas elementos da camada anterior. Todas as props são estritamente tipadas com interfaces TypeScript — sem `any` implícito.
 
-## What I learned
+## O que aprendi
 
-The main insight was that atomic design is a communication tool as much as a technical pattern. The discipline of asking "is this an atom or a molecule?" forced clearer thinking about component responsibility. The pnpm workspace setup also taught me how shared packages are resolved differently from npm packages — and why monorepos require explicit dependency declarations between workspaces rather than relying on hoisting.
+O principal aprendizado foi perceber que atomic design é tanto uma ferramenta de comunicação quanto um padrão técnico. A disciplina de perguntar “isto é um átomo ou uma molécula?” me obrigou a pensar com mais clareza sobre a responsabilidade de cada componente. A configuração dos pnpm workspaces também me ensinou que pacotes compartilhados são resolvidos de forma diferente de pacotes npm — e por que monorepos exigem dependências explícitas entre workspaces, em vez de depender de hoisting.
 
-## Highlights
+## Destaques
 
-- Atomic design hierarchy: atoms → molecules → organisms
-- Shared component library in a pnpm workspace package
-- Strict TypeScript prop typing across every component
-- Playground app for isolated component testing
+- Hierarquia de atomic design: átomos → moléculas → organismos
+- Biblioteca de componentes compartilhada em um pacote do pnpm workspace
+- Props estritamente tipadas com TypeScript em todos os componentes
+- App playground para testar componentes isoladamente
 
-## Tech Stack
+## Stack tecnológica
 
 - **Framework:** Next.js
-- **Language:** TypeScript
+- **Linguagem:** TypeScript
 - **Monorepo:** pnpm workspaces
-- **Styling:** Tailwind CSS
+- **Estilos:** Tailwind CSS

@@ -1,10 +1,10 @@
 ---
 title: "Acme Financial Dashboard"
-description: "Aplicação de painel financeiro Next.js construída para praticar Next.js 16, agora pronta para produção e totalmente funcional com deploy ao vivo, autenticação e analytics."
+description: "Aplicação de dashboard financeiro Next.js construída para praticar Next.js 16, agora pronta para produção e totalmente funcional com deploy ao vivo, autenticação e analytics."
 createdAt: "2023-03-28"
 featured: false
 role: "solo"
-highlight: "Full-stack Next.js 16 learning project — live at nextjs-dashboard.arthurreira.dev with Neon PostgreSQL + NextAuth.js v5"
+highlight: "Projeto full-stack para aprender Next.js 16 — publicado com Neon PostgreSQL e NextAuth.js v5"
 techStack:
   - "Next.js 16"
   - "TypeScript"
@@ -19,29 +19,29 @@ status: "done"
 
 
 
-## What I built
+## O que construí
 
-A full-stack financial dashboard built by following the official Next.js 16 learn course — then extended and actually deployed to production. The app manages customers and invoices for a fictional company called Acme, with a dashboard showing revenue statistics and interactive charts.
+Um dashboard financeiro full-stack criado a partir do curso oficial de Next.js 16, depois ampliado e com deploy em produção. O app gerencia clientes e faturas de uma empresa fictícia chamada Acme, com estatísticas de receita e gráficos interativos no dashboard.
 
-The stack covers the full Next.js App Router architecture: Server Components for data fetching, Client Components for interactivity, Server Actions for form submissions, and Suspense boundaries for streaming. Authentication is handled by NextAuth.js v5 with a PostgreSQL session store on Neon. The whole thing is deployed on Vercel with a custom subdomain.
+A stack cobre toda a arquitetura do Next.js App Router: Server Components para buscar dados, Client Components para interatividade, Server Actions para enviar formulários e Suspense boundaries para streaming. A autenticação usa NextAuth.js v5, com sessões armazenadas no PostgreSQL da Neon. O deploy foi feito na Vercel em um subdomínio próprio.
 
-## What I learned
+## O que aprendi
 
-The biggest insight was understanding WHEN to use Server vs Client Components — and that the default should always be Server. Data fetching without useEffect, server actions replacing API routes for forms, and streaming with Suspense were the patterns that clicked through building this. Authentication with NextAuth.js v5 (beta) was rough — the beta API changed during development and required careful reading of changelogs. Real deployment also surfaced things that local dev hides: environment variables, database seeding, and the difference between preview and production Vercel environments.
+O maior aprendizado foi entender QUANDO usar Server ou Client Components — e que Server deve ser o padrão. Buscar dados sem `useEffect`, substituir rotas de API por Server Actions nos formulários e fazer streaming com Suspense foram padrões que ficaram claros durante a construção. A autenticação com NextAuth.js v5, ainda em beta, foi trabalhosa: a API mudou durante o desenvolvimento e exigiu leitura cuidadosa dos changelogs. O deploy real também revelou aspectos que o ambiente local esconde, como variáveis de ambiente, seed do banco e a diferença entre os ambientes de preview e produção da Vercel.
 
-## Highlights
+## Destaques
 
-- Full CRUD for customers and invoices with search + pagination
-- Dashboard with revenue stats and interactive charts
-- NextAuth.js v5 authentication with PostgreSQL session store
-- Deployed to production on Vercel with a custom domain
-- Test login: `user@nextmail.com` / `123456`
+- CRUD completo de clientes e faturas, com busca e paginação
+- Dashboard com estatísticas de receita e gráficos interativos
+- Autenticação com NextAuth.js v5 e sessões no PostgreSQL
+- Deploy em produção na Vercel com domínio próprio
+- Login de teste: `user@nextmail.com` / `123456`
 
-## Tech Stack
+## Stack tecnológica
 
 - **Framework:** Next.js 16 (App Router, Server Components)
-- **Language:** TypeScript
-- **Styling:** Tailwind CSS v4
-- **Database:** PostgreSQL (Neon)
-- **Auth:** NextAuth.js v5
-- **Deployment:** Vercel
+- **Linguagem:** TypeScript
+- **Estilos:** Tailwind CSS v4
+- **Banco de dados:** PostgreSQL (Neon)
+- **Autenticação:** NextAuth.js v5
+- **Deploy:** Vercel
