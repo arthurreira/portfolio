@@ -1,0 +1,11 @@
+{
+  "slug": "chefboksi",
+  "locale": "en",
+  "summary": "A weekly meal-planning platform where users choose meals, arrange delivery, and follow nutrition, with an admin view and dietary filters. Built as a school period project on an MVC architecture.",
+  "generatedWithAi": true,
+  "disclosure": "Content generated with AI",
+  "model": "claude-opus-5",
+  "promptVersion": 2,
+  "generatedAt": "2026-08-30T15:54:17.610Z",
+  "sourceHash": "sha256:65849d9b7a5656dc230a8caddc2695fc28212873d3282390fbbf561032ce9a51"
+}

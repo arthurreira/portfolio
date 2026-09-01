@@ -1,0 +1,11 @@
+{
+  "slug": "primekg-explorer",
+  "locale": "en",
+  "summary": "Explores the PrimeKG biomedical knowledge graph in interactive 3D, letting users trace relationships between diseases, drugs and genes across more than four million nodes. The force-directed rendering makes dense biomedical connections navigable rather than tabular.",
+  "generatedWithAi": true,
+  "disclosure": "Content generated with AI",
+  "model": "claude-opus-5",
+  "promptVersion": 2,
+  "generatedAt": "2026-08-30T15:55:14.068Z",
+  "sourceHash": "sha256:171c50b822b9eb1cdae02add0e477b00c38db9a5979eee63a59decd1d5f7fce4"
+}

@@ -1,0 +1,11 @@
+{
+  "slug": "dns-tool",
+  "locale": "fi",
+  "summary": "Hakee kuuden tietuetyypin DNS-tiedot ja säilyttää hakuhistorian, jolloin eri verkkotunnusten tuloksia voi vertailla. Virheet eritellään täsmällisesti: NXDOMAIN, SERVFAIL ja aikakatkaisu erottuvat toisistaan yhden yleisen virheilmoituksen sijaan.",
+  "generatedWithAi": true,
+  "disclosure": "Tekoälyllä tuotettu sisältö",
+  "model": "claude-opus-5",
+  "promptVersion": 2,
+  "generatedAt": "2026-08-30T15:51:41.650Z",
+  "sourceHash": "sha256:a168ceb1fb792c01bbf958c035663e5b441cb90915d44209b9d2daa0492d7512"
+}

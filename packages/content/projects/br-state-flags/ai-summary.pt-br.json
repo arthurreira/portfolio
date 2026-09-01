@@ -1,0 +1,11 @@
+{
+  "slug": "br-state-flags",
+  "locale": "pt-br",
+  "summary": "Reúne as 27 bandeiras dos estados brasileiros como componentes React SVG, acompanhadas de metadados de cada estado e sem depender de nada externo. Um site de demonstração mostra todas elas em uso.",
+  "generatedWithAi": true,
+  "disclosure": "Conteúdo gerado com IA",
+  "model": "claude-opus-5",
+  "promptVersion": 2,
+  "generatedAt": "2026-08-30T15:54:12.448Z",
+  "sourceHash": "sha256:6da175b5b0b39ce96a5e3b9acdbb70d8925953586816098862dcdefbe5768a4c"
+}

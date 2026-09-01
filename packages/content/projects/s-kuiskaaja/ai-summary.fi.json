@@ -1,0 +1,11 @@
+{
+  "slug": "s-kuiskaaja",
+  "locale": "fi",
+  "summary": "Fyysinen anturirakennelma, joka mittaa lämpötilaa, ilmankosteutta ja ilmanpainetta ja tallentaa lukemat tietokantaan. Selaimessa toimiva koontinäyttö näyttää mittaukset reaaliaikaisesti.",
+  "generatedWithAi": true,
+  "disclosure": "Tekoälyllä tuotettu sisältö",
+  "model": "claude-opus-5",
+  "promptVersion": 2,
+  "generatedAt": "2026-08-30T15:55:19.343Z",
+  "sourceHash": "sha256:e8cac750809da96189c28b70afe842f709a16fde96ce611cd67079dafd645d51"
+}

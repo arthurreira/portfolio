@@ -3,15 +3,32 @@
   "type": "module",
   "version": "0.0.0",
   "private": true,
-  "devDependencies": {
-    "velite": "^0.3.1"
-  },
   "scripts": {
-  "build": "velite build",
-  "dev": "velite dev"
-    },   
-    "exports": {
-      ".": "./.velite/index.js",
-      "./types": "./src/types/project.ts"
-    }
+    "build": "velite build",
+    "dev": "velite dev",
+    "ai:summary": "node --env-file-if-exists=../../apps/web/.env.local scripts/generate-ai-summary.ts",
+    "test": "vitest run",
+    "test:coverage": "vitest run --coverage",
+    "typecheck": "tsc --noEmit"
+  },
+  "dependencies": {
+    "unist-util-visit": "^5.1.0"
+  },
+  "devDependencies": {
+    "@anthropic-ai/sdk": "^0.122.0",
+    "@mdx-js/mdx": "^3.1.1",
+    "@types/mdast": "^4.0.4",
+    "@types/node": "^25.1.0",
+    "@vitest/coverage-v8": "^4.1.10",
+    "mdast-util-mdx-jsx": "^3.2.0",
+    "typescript": "^5.9.3",
+    "unified": "^11.0.5",
+    "velite": "^0.3.1",
+    "vitest": "^4.1.10"
+  },
+  "exports": {
+    ".": "./.velite/index.js",
+    "./glossary": "./glossary.ts",
+    "./types": "./src/types/project.ts"
+  }
 }

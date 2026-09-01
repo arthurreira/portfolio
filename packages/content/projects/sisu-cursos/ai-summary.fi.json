@@ -1,0 +1,11 @@
+{
+  "slug": "sisu-cursos",
+  "locale": "fi",
+  "summary": "Verkkokoulu, jossa brasilialaiset opiskelevat suomea: kurssit, ilmoittautuminen ja maksut hoituvat samassa palvelussa. Alusta ja sisällöt ovat kaksikielisiä, suomeksi ja portugaliksi.",
+  "generatedWithAi": true,
+  "disclosure": "Tekoälyllä tuotettu sisältö",
+  "model": "claude-opus-5",
+  "promptVersion": 2,
+  "generatedAt": "2026-08-30T15:55:24.930Z",
+  "sourceHash": "sha256:70b4c8859b03d5e47e62735facfaf79c80859485bb631059907b55a18d925038"
+}

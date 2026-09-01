@@ -1,0 +1,11 @@
+{
+  "slug": "chefboksi",
+  "locale": "pt-br",
+  "summary": "Plataforma de planejamento semanal de refeições em que se escolhem os pratos, organiza-se a entrega e acompanha-se a nutrição, com painel administrativo e filtros alimentares. Desenvolvida como projeto escolar em arquitetura MVC.",
+  "generatedWithAi": true,
+  "disclosure": "Conteúdo gerado com IA",
+  "model": "claude-opus-5",
+  "promptVersion": 2,
+  "generatedAt": "2026-08-30T15:54:17.615Z",
+  "sourceHash": "sha256:ad482966bf17d89fb1e45c9d11ff55fd5d715deba4285ff0c8d41c5c004b36f3"
+}

@@ -1,0 +1,11 @@
+{
+  "slug": "honor-notes",
+  "locale": "pt-br",
+  "summary": "Aplicação de notas dividida entre frontend e uma REST API em contêiner, com edição de texto rico, tags e armazenamento persistente. Os tipos são compartilhados entre os serviços para manter o contrato consistente.",
+  "generatedWithAi": true,
+  "disclosure": "Conteúdo gerado com IA",
+  "model": "claude-opus-5",
+  "promptVersion": 2,
+  "generatedAt": "2026-08-30T15:54:30.102Z",
+  "sourceHash": "sha256:964f9b1cc68f0a6a3c9c162d4237f82485f103e75374fa80d1b14614ed5e0f15"
+}

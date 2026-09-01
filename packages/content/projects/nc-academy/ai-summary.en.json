@@ -1,0 +1,11 @@
+{
+  "slug": "nc-academy",
+  "locale": "en",
+  "summary": "A set of eight practical training modules built during the Nordcloud Academy cloud program, moving from infrastructure as code and scripting through APIs, dashboards and authentication architecture. The final module works with Northwind business metrics.",
+  "generatedWithAi": true,
+  "disclosure": "Content generated with AI",
+  "model": "claude-opus-5",
+  "promptVersion": 2,
+  "generatedAt": "2026-08-30T15:54:59.896Z",
+  "sourceHash": "sha256:a668d88848d4ce365ebe1c6c558289263bd9df07ee5e1b51bcf8d727f9fe8bb4"
+}

@@ -1,0 +1,11 @@
+{
+  "slug": "vr-trash-game",
+  "locale": "pt-br",
+  "summary": "Jogo de realidade virtual voltado à reabilitação motora, em que o jogador recolhe lixo e o arremessa em lixeiras. Os movimentos de braço treinam as habilidades motoras, com dificuldade que aumenta aos poucos. Desenvolvido como projeto escolar.",
+  "generatedWithAi": true,
+  "disclosure": "Conteúdo gerado com IA",
+  "model": "claude-opus-5",
+  "promptVersion": 2,
+  "generatedAt": "2026-08-30T15:55:42.063Z",
+  "sourceHash": "sha256:9b66271a108ea886d9ca8bf3fbbd4b4e000e40f8c17ffa9bf4b937504e460229"
+}

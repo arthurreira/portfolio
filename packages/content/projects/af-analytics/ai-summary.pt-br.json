@@ -1,0 +1,11 @@
+{
+  "slug": "af-analytics",
+  "locale": "pt-br",
+  "summary": "Responder a uma pergunta simples sobre tráfego costuma exigir juntar na mão gráficos, filtros e recortes por dispositivo ou país. Aqui cada organização tem um workspace privado onde o chat responde a partir dos próprios eventos, sem cookies nem fingerprinting, com isolamento aplicado a cada consulta.",
+  "generatedWithAi": true,
+  "disclosure": "Conteúdo gerado com IA",
+  "model": "claude-opus-5",
+  "promptVersion": 2,
+  "generatedAt": "2026-08-30T15:51:35.091Z",
+  "sourceHash": "sha256:6736d391b3dc0176d8d52c535bd09b8c17cf08d905986c7f30d1967d53b402e9"
+}

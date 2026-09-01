@@ -1,0 +1,11 @@
+{
+  "slug": "vr-pc-builder",
+  "locale": "pt-br",
+  "summary": "Jogo de realidade virtual em que o jogador monta computadores peça por peça. Na colaboração, fiquei responsável pela modelagem 3D dos componentes e pela otimização de performance, além de ajudar na interface.",
+  "generatedWithAi": true,
+  "disclosure": "Conteúdo gerado com IA",
+  "model": "claude-opus-5",
+  "promptVersion": 2,
+  "generatedAt": "2026-08-30T15:55:35.787Z",
+  "sourceHash": "sha256:4e58b37ed30d3d40d4d425845b0ed6263024ade16125764aba47dfd982b634cc"
+}

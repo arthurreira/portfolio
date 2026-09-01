@@ -1,0 +1,11 @@
+{
+  "slug": "hackathon-registration",
+  "locale": "pt-br",
+  "summary": "Um único módulo provisiona três sites estáticos — cadastro, agenda e galeria de projetos — cada um em seu próprio subdomínio, junto com repositórios, hospedagem, DNS e workflows de entrega contínua. Tudo nasce de um único apply, sem tocar na interface do GitHub.",
+  "generatedWithAi": true,
+  "disclosure": "Conteúdo gerado com IA",
+  "model": "claude-opus-5",
+  "promptVersion": 2,
+  "generatedAt": "2026-08-30T15:54:24.016Z",
+  "sourceHash": "sha256:cd99be1dbb83f60bf18d46513333bd6a94bae119891eed44a86eb5b901aa95b9"
+}

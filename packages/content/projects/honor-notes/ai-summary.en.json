@@ -1,0 +1,11 @@
+{
+  "slug": "honor-notes",
+  "locale": "en",
+  "summary": "Note-taking application split into a separate frontend and containerized REST API, with rich text editing, tagging and persistent storage. Type definitions are shared across the services to keep the two sides in agreement.",
+  "generatedWithAi": true,
+  "disclosure": "Content generated with AI",
+  "model": "claude-opus-5",
+  "promptVersion": 2,
+  "generatedAt": "2026-08-30T15:54:30.098Z",
+  "sourceHash": "sha256:fa44eb6a7663daca99cca879f4e8a1d086ee49c24ec23353622542498740c3dc"
+}

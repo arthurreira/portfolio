@@ -1,0 +1,11 @@
+{
+  "slug": "s-kuiskaaja",
+  "locale": "en",
+  "summary": "A physical sensor build that measures temperature, humidity, and air pressure indoors, logging each reading to a database. The stored measurements feed a web dashboard that shows current conditions as they arrive.",
+  "generatedWithAi": true,
+  "disclosure": "Content generated with AI",
+  "model": "claude-opus-5",
+  "promptVersion": 2,
+  "generatedAt": "2026-08-30T15:59:56.722Z",
+  "sourceHash": "sha256:831b569be1373acd6a8458ac635ddbed39b64bbc87dc4b867ee836558e234e0e"
+}

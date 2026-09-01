@@ -1,0 +1,11 @@
+{
+  "slug": "af-analytics",
+  "locale": "en",
+  "summary": "Answering a simple traffic question usually means stitching together charts, filters and device or country breakdowns by hand. Here each organization gets a private workspace where a chat replies from its own event data, without cookies or fingerprinting, and every query stays tenant-isolated.",
+  "generatedWithAi": true,
+  "disclosure": "Content generated with AI",
+  "model": "claude-opus-5",
+  "promptVersion": 2,
+  "generatedAt": "2026-08-30T15:51:35.087Z",
+  "sourceHash": "sha256:dab51924c86aab73316e2a1a60896fc0c1e27eaf3f25832d01ba2fad467daa32"
+}

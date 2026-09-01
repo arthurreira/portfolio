@@ -1,0 +1,11 @@
+{
+  "slug": "dns-tool",
+  "locale": "pt-br",
+  "summary": "Consulta seis tipos de registro DNS e guarda o histórico das buscas, permitindo comparar resultados entre domínios. As falhas são informadas de forma específica, separando NXDOMAIN, SERVFAIL e timeout em vez de um erro genérico.",
+  "generatedWithAi": true,
+  "disclosure": "Conteúdo gerado com IA",
+  "model": "claude-opus-5",
+  "promptVersion": 2,
+  "generatedAt": "2026-08-30T15:51:41.651Z",
+  "sourceHash": "sha256:6609a32bc5d5d3c2b5c6d69dbf8732946ad9c357a17f4ba4ab07d9409dcbe425"
+}

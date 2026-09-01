@@ -1,0 +1,11 @@
+{
+  "slug": "vr-pc-builder",
+  "locale": "en",
+  "summary": "A virtual reality game in which players assemble custom PCs from individual components. My part of the collaboration covered modelling the 3D computer parts, tuning rendering performance, and helping with the interface.",
+  "generatedWithAi": true,
+  "disclosure": "Content generated with AI",
+  "model": "claude-opus-5",
+  "promptVersion": 2,
+  "generatedAt": "2026-08-30T15:55:35.783Z",
+  "sourceHash": "sha256:320e457c1b5dc9154e48391c9a998ee6e98231910a635e6fad91d1d59a7e6040"
+}

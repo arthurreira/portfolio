@@ -1,0 +1,11 @@
+{
+  "slug": "af-nextjs-component-architecture",
+  "locale": "pt-br",
+  "summary": "Exercício de aplicação do atomic design a uma biblioteca de componentes, organizada como monorepo, com hierarquia clara e props estritamente tipadas. A ideia é manter a estrutura legível conforme a biblioteca cresce.",
+  "generatedWithAi": true,
+  "disclosure": "Conteúdo gerado com IA",
+  "model": "claude-opus-5",
+  "promptVersion": 2,
+  "generatedAt": "2026-08-30T15:54:01.533Z",
+  "sourceHash": "sha256:0ff414a10d3beb7ce492716850a7999700d69a9afa6bd352764a1cd8f9790ab4"
+}

@@ -1,0 +1,11 @@
+{
+  "slug": "vr-pc-builder",
+  "locale": "fi",
+  "summary": "Virtuaalitodellisuuspeli, jossa pelaaja kokoaa tietokoneen osista. Luokkakaverin kanssa tehdyssä projektissa vastasin tietokoneen osien 3D-mallinnuksesta ja pelin suorituskyvyn optimoinnista sekä avustin käyttöliittymässä.",
+  "generatedWithAi": true,
+  "disclosure": "Tekoälyllä tuotettu sisältö",
+  "model": "claude-opus-5",
+  "promptVersion": 2,
+  "generatedAt": "2026-08-30T15:55:35.786Z",
+  "sourceHash": "sha256:c616192d4ad11c82a0051a0477a5025c7c008d749a748258f17a1d2e204a0b14"
+}

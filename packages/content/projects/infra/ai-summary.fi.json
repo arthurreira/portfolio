@@ -1,0 +1,11 @@
+{
+  "slug": "infra",
+  "locale": "fi",
+  "summary": "Uudelleenkäytettävä moduuli, joka pystyttää staattisen sivuston kerralla: repo, Pages-julkaisu, alidomainin DNS ja julkaisuputki syntyvät yhdellä ajolla käsityön sijaan.",
+  "generatedWithAi": true,
+  "disclosure": "Tekoälyllä tuotettu sisältö",
+  "model": "claude-opus-5",
+  "promptVersion": 2,
+  "generatedAt": "2026-08-30T15:54:35.551Z",
+  "sourceHash": "sha256:7220c5fb1a86457619154bd30b24cb49a569d19c45708e402706332e4647ebfd"
+}

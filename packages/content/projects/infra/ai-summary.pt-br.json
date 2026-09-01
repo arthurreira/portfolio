@@ -1,0 +1,11 @@
+{
+  "slug": "infra",
+  "locale": "pt-br",
+  "summary": "Módulo reutilizável que levanta um site estático de ponta a ponta: repositório, hospedagem no Pages, DNS do subdomínio e o workflow de publicação, tudo em uma execução em vez de configuração manual.",
+  "generatedWithAi": true,
+  "disclosure": "Conteúdo gerado com IA",
+  "model": "claude-opus-5",
+  "promptVersion": 2,
+  "generatedAt": "2026-08-30T15:54:35.552Z",
+  "sourceHash": "sha256:5533fc7236944139ac7bf9b2597aa7e95c71c6fbc75f38e4ddeaa14738f01b1c"
+}
