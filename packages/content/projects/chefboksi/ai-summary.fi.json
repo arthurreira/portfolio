@@ -1,0 +1,11 @@
+{
+  "slug": "chefboksi",
+  "locale": "fi",
+  "summary": "Viikoittaisen ruokasuunnittelun alusta, jossa käyttäjä valitsee ateriat, tilaa toimituksen ja seuraa ravintoarvoja; mukana ylläpitonäkymä ja ruokavaliosuodattimet. Toteutettu koulun jaksoprojektina MVC-arkkitehtuurilla.",
+  "generatedWithAi": true,
+  "disclosure": "Tekoälyllä tuotettu sisältö",
+  "model": "claude-opus-5",
+  "promptVersion": 2,
+  "generatedAt": "2026-08-30T15:54:17.614Z",
+  "sourceHash": "sha256:47535fbfc8f6b4d8c3bb2a1fcc4479b7bc8525ac16459f158dd02e48bfc1862d"
+}

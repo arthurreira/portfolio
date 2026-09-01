@@ -1,0 +1,11 @@
+{
+  "slug": "skyart-studio",
+  "locale": "en",
+  "summary": "Client site for a Finnish art studio, presenting its artwork and services through a responsive gallery and contact forms. The layout stays clean and readable across devices, with search engine visibility taken into account.",
+  "generatedWithAi": true,
+  "disclosure": "Content generated with AI",
+  "model": "claude-opus-5",
+  "promptVersion": 2,
+  "generatedAt": "2026-08-30T15:55:30.167Z",
+  "sourceHash": "sha256:24a3be2a6868f0863642c9e8b1784255a47cc28207829aa4e3627275c9f0a5fc"
+}

@@ -1,0 +1,11 @@
+{
+  "slug": "infra",
+  "locale": "en",
+  "summary": "A reusable module that stands up a static site end to end: repository, Pages hosting, custom subdomain DNS, and the deployment workflow, all from one run instead of manual clicking.",
+  "generatedWithAi": true,
+  "disclosure": "Content generated with AI",
+  "model": "claude-opus-5",
+  "promptVersion": 2,
+  "generatedAt": "2026-08-30T15:54:35.549Z",
+  "sourceHash": "sha256:d8507269873d5783e566c7e5bf89b69ef3ca6d26c56ab2b3c3fdcd4565c71497"
+}

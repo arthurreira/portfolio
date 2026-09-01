@@ -1,0 +1,11 @@
+{
+  "slug": "af-weather",
+  "locale": "fi",
+  "summary": "Riisuttu sääsovellus, joka näyttää ajantasaisen sään suomalaisissa ja brasilialaisissa kaupungeissa, tumma tila mukaan lukien. Monorepo-rakenne pitää design-tokenit jaettuna erillisen käyttöliittymäpaketin kanssa.",
+  "generatedWithAi": true,
+  "disclosure": "Tekoälyllä tuotettu sisältö",
+  "model": "claude-opus-5",
+  "promptVersion": 2,
+  "generatedAt": "2026-08-30T15:54:06.994Z",
+  "sourceHash": "sha256:1f458cb8769416f6e26f27d9a9f7cfa3ec057214d6b3d730b46cb755061f65d8"
+}

@@ -1,0 +1,11 @@
+{
+  "slug": "sisu-cursos",
+  "locale": "en",
+  "summary": "An online school where Brazilian students learn Finnish, with course delivery, enrolment and payments handled in one place. The whole platform and its content are bilingual, in Portuguese and Finnish.",
+  "generatedWithAi": true,
+  "disclosure": "Content generated with AI",
+  "model": "claude-opus-5",
+  "promptVersion": 2,
+  "generatedAt": "2026-08-30T15:55:24.927Z",
+  "sourceHash": "sha256:7b625911027b458127af19365f4d2ca8eb742e9ececdb4eb5ad875e23a00023c"
+}

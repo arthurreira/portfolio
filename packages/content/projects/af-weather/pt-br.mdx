@@ -1,10 +1,10 @@
 ---
 title: "AF Weather"
-description: "App de clima minimalista para cidades finlandesas e brasileiras — Open-Meteo, monorepo Turborepo, design tokens compartilhados."
+description: "App de clima minimalista para cidades finlandesas e brasileiras — Open-Meteo, monorepo Turborepo, tokens de design compartilhados."
 createdAt: "2026-09-10"
 featured: false
 role: "solo"
-highlight: "Live weather app for Finnish + Brazilian cities — pnpm/Turborepo monorepo, Open-Meteo, dark mode, shared design tokens"
+highlight: "App de clima ao vivo para cidades finlandesas e brasileiras — pnpm/Turborepo, Open-Meteo, modo escuro e tokens de design compartilhados"
 techStack:
   - "Next.js 15"
   - "TypeScript"
@@ -17,28 +17,28 @@ status: "done"
 ---
 
 
-## What I built
+## O que construí
 
-A weather app showing current conditions and short-range forecasts for six cities: Helsinki, Tampere, and Oulu in Finland, and São Paulo, Fortaleza, and Curitiba in Brazil. The app uses the Open-Meteo API which is completely free and requires no API key.
+Um app de clima que mostra as condições atuais e a previsão dos próximos dias para seis cidades: Helsinki, Tampere e Oulu, na Finlândia, além de São Paulo, Fortaleza e Curitiba, no Brasil. O app usa a API Open-Meteo, que é gratuita e não exige chave de API.
 
-The project lives inside the same Turborepo monorepo as the portfolio, consuming the `@arthurreira/ui` design token package. That means the weather app's colours, typography, and spacing stay in sync with the portfolio automatically. The route architecture splits static city pages from a dynamic `/api/weather` endpoint that fetches fresh data on each request.
+O projeto fica no mesmo monorepo Turborepo do portfolio e consome o pacote de tokens de design `@arthurreira/ui`. Assim, cores, tipografia e espaçamento permanecem sincronizados automaticamente com o portfolio. A arquitetura de rotas separa páginas estáticas para cada cidade do endpoint dinâmico `/api/weather`, que busca dados atualizados a cada requisição.
 
-## What I learned
+## O que aprendi
 
-The main insight was about monorepo design token sharing: the pattern works well until you need one app to diverge from the system. Working out how to override tokens without breaking the shared package taught me where the boundaries of a shared system should live.
+O principal aprendizado veio do compartilhamento de tokens de design em um monorepo: o padrão funciona bem até que um dos apps precise se afastar do sistema. Descobrir como sobrescrever tokens sem quebrar o pacote compartilhado me ensinou onde devem ficar os limites de um sistema comum.
 
-## Highlights
+## Destaques
 
-- Live forecasts for 6 cities — Helsinki, Tampere, Oulu, São Paulo, Fortaleza, Curitiba
-- Open-Meteo API (free, no API key required)
-- Shares the @arthurreira/ui design token package with the portfolio
-- Static city pages + dynamic /api/weather endpoint
-- Dark mode toggle, live at [weather.arthurreira.dev](https://weather.arthurreira.dev)
+- Previsão ao vivo para seis cidades — Helsinki, Tampere, Oulu, São Paulo, Fortaleza e Curitiba
+- API Open-Meteo gratuita e sem chave de API
+- Pacote de tokens de design `@arthurreira/ui` compartilhado com o portfolio
+- Páginas estáticas por cidade e endpoint dinâmico `/api/weather`
+- Alternância de modo escuro, disponível em [weather.arthurreira.dev](https://weather.arthurreira.dev)
 
-## Tech Stack
+## Stack tecnológica
 
 - **Framework:** Next.js 15 (App Router)
-- **Language:** TypeScript
-- **Data:** Open-Meteo API
+- **Linguagem:** TypeScript
+- **Dados:** Open-Meteo API
 - **Monorepo:** Turborepo + pnpm workspaces
-- **Styling:** Tailwind CSS + @arthurreira/ui tokens
+- **Estilos:** Tailwind CSS + tokens do `@arthurreira/ui`

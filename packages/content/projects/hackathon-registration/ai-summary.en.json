@@ -1,0 +1,11 @@
+{
+  "slug": "hackathon-registration",
+  "locale": "en",
+  "summary": "A single reusable module provisions three static sites — registration, schedule, and project gallery — each on its own subdomain, along with their repositories, hosting, DNS records, and deployment workflows. Everything comes up from one apply, with no clicking through the GitHub interface.",
+  "generatedWithAi": true,
+  "disclosure": "Content generated with AI",
+  "model": "claude-opus-5",
+  "promptVersion": 2,
+  "generatedAt": "2026-08-30T15:54:24.011Z",
+  "sourceHash": "sha256:01053aac5b4a47c75e058ead5a669d23f08d97fedd6c8c7c888a809e7fafb75d"
+}

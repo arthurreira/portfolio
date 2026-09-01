@@ -1,0 +1,11 @@
+{
+  "slug": "kernel-monitor",
+  "locale": "fi",
+  "summary": "Kaappaa Linux-ytimen tiedostojärjestelmäkutsut ja tallentaa ne paikallisesti, jolloin yhden päivän aikana kertyneitä yli 1,6 miljoonaa tapahtumaa voi tutkia luonnollisella kielellä. Tutkinta tapahtuu kokonaan omalla koneella, joten SSH-avainten luvut ja yksityiset tiedostonimet eivät päädy pilveen.",
+  "generatedWithAi": true,
+  "disclosure": "Tekoälyllä tuotettu sisältö",
+  "model": "claude-opus-5",
+  "promptVersion": 2,
+  "generatedAt": "2026-08-30T15:54:42.532Z",
+  "sourceHash": "sha256:28ab0e804ef576650a601b9a8967aeb6794cd72bb32c9cd184fc96dc269e6d71"
+}

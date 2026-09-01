@@ -2,12 +2,40 @@
 
 import { useMemo } from 'react'
 import * as runtime from 'react/jsx-runtime'
+import { glossary } from '@arthurreira/content/glossary'
+import type { Locale } from '@arthurreira/content/glossary'
+import { GlossaryTerm as UiGlossaryTerm } from '@arthurreira/ui'
+import { useLocale } from 'next-intl'
 
 const FONT = "var(--font-ui)"
+
+function GlossaryTerm({ id, term }: { id: string; term: string }) {
+  const locale = useLocale() as Locale
+  const entry = glossary[id]
+  if (!entry) return term
+
+  const def = entry.def[locale] ?? entry.def.en
+  if (!def) return term
+
+  if (entry.mode === "link") {
+    if (!entry.href) return term
+    return (
+      <UiGlossaryTerm
+        term={term}
+        def={def}
+        mode="link"
+        href={entry.href}
+      />
+    )
+  }
+
+  return <UiGlossaryTerm term={term} def={def} mode="tooltip" />
+}
 
 /* Kept in both variants: the amber uppercase label is a signature of the site,
    and images and rules are structure rather than typography. */
 const shared = {
+  GlossaryTerm,
   h2: ({ children }: { children?: React.ReactNode }) => (
     <h2 style={{ fontFamily: FONT, fontSize: 11, letterSpacing: "0.22em", textTransform: "uppercase" as const, color: "var(--primary)", margin: 0, marginTop: "2rem", marginBottom: "0.75rem" }}>
       {children}

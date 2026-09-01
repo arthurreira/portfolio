@@ -1,0 +1,11 @@
+{
+  "slug": "sisu-cursos",
+  "locale": "pt-br",
+  "summary": "Escola online em que brasileiros estudam finlandês, reunindo os cursos, as matrículas e os pagamentos num mesmo lugar. A plataforma e o conteúdo são bilíngues, em português e finlandês.",
+  "generatedWithAi": true,
+  "disclosure": "Conteúdo gerado com IA",
+  "model": "claude-opus-5",
+  "promptVersion": 2,
+  "generatedAt": "2026-08-30T15:55:24.931Z",
+  "sourceHash": "sha256:73c3fdc9905f6018e4ad3e1f8dadac3dd5dbb89793d90dab9814d12c6b5ae5fa"
+}

@@ -48,6 +48,19 @@ export default async function Page({
 
       <div className="mx-auto max-w-page px-gutter pb-frame-end">
         <section className="pt-section">
+          <h2 className="section-label mb-block">{t("aboutLabel")}</h2>
+          <p className="text-lead max-w-measure text-foreground">
+            {t("aboutSummary")}
+          </p>
+          <Link
+            href="/about"
+            className="mt-block inline-block text-sm text-muted-foreground transition-colors hover:text-foreground"
+          >
+            {t("aboutLink")} →
+          </Link>
+        </section>
+
+        <section className="pt-section">
           <h2 className="section-label mb-block">{t("selectedLabel")}</h2>
           <ProjectList projects={featured} emphasiseFirst={false} />
           <Link

@@ -1,0 +1,11 @@
+{
+  "slug": "nc-academy",
+  "locale": "fi",
+  "summary": "Kahdeksan käytännön harjoitusmoduulia Nordcloud Academyn pilviohjelmasta: infrastruktuurin koodina kuvaamisesta ja skriptauksesta rajapintoihin, näkymiin ja tunnistautumisarkkitehtuuriin. Viimeisessä moduulissa käsitellään Northwind-liiketoimintamittareita.",
+  "generatedWithAi": true,
+  "disclosure": "Tekoälyllä tuotettu sisältö",
+  "model": "claude-opus-5",
+  "promptVersion": 2,
+  "generatedAt": "2026-08-30T15:54:59.900Z",
+  "sourceHash": "sha256:68ef4065966c6f3b140a121119671bc96355fdbe3beb09fe2e57e37c078df0d3"
+}

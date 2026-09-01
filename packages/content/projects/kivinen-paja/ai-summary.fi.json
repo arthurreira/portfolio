@@ -1,0 +1,11 @@
+{
+  "slug": "kivinen-paja",
+  "locale": "fi",
+  "summary": "Useat Claude-agentit väittelevät annetusta aiheesta samanaikaisesti, ja keskustelu striimataan selaimeen sitä mukaa kuin se etenee. Keskustelun tila säilytetään agenttien ulkopuolella, joten käynnissä olevaa paneelia voi seurata katkeamatta.",
+  "generatedWithAi": true,
+  "disclosure": "Tekoälyllä tuotettu sisältö",
+  "model": "claude-opus-5",
+  "promptVersion": 2,
+  "generatedAt": "2026-08-30T15:54:53.912Z",
+  "sourceHash": "sha256:b3bc72d1cf2e769d6eea164e8102df5d0045a08cc50a2276f5b6c47821ecabb4"
+}

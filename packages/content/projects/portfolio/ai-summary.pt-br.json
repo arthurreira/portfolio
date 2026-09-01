@@ -1,0 +1,11 @@
+{
+  "slug": "portfolio",
+  "locale": "pt-br",
+  "summary": "Site de portfolio pessoal disponível em inglês, português e finlandês, organizado como monorepo para manter conteúdo, design tokens compartilhados e a aplicação no mesmo lugar. Inclui ainda um chat de IA sem estado executado na edge.",
+  "generatedWithAi": true,
+  "disclosure": "Conteúdo gerado com IA",
+  "model": "claude-opus-5",
+  "promptVersion": 2,
+  "generatedAt": "2026-08-30T15:55:06.656Z",
+  "sourceHash": "sha256:431cbe05d1d9fe6f62a9f23272f6c662024ea79d0a3d110c41e225aa59abaac7"
+}

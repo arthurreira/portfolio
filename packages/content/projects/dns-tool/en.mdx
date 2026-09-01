@@ -1,6 +1,8 @@
 ---
 title: "Dns-tool"
-description: "Full-stack DNS lookup tool built with Next.js and AWS Lambda. Query any domain for A, AAAA, MX, TXT, CNAME, and NS records through a clean shadcn/ui interface with query history."
+description: "A fast DNS lookup experience for six record types, with query history and clear failure states for comparing results across domains."
+problem: "DNS resolution has unpredictable network latency, Lambda cold starts, and distinct failure modes that a generic error message cannot explain."
+outcome: "The live tool returns structured A, AAAA, MX, TXT, CNAME, and NS results, preserves query history, and distinguishes NXDOMAIN, SERVFAIL, and timeout errors."
 createdAt: "2026-04-25"
 featured: true
 role: "solo"
@@ -16,7 +18,6 @@ url: "https://dns.arthurreira.dev"
 status: "done"
 coverImage: "./cover.png"
 ---
-
 
 ![dns-tool screenshot](./homePageClean.png)
 

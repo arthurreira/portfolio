@@ -1,6 +1,8 @@
 ---
 title: "Kernel Monitor"
-description: "Reaaliaikainen Linux-ytimen tiedostojärjestelmän tarkkailija eBPF:n avulla. Kaappaa jokaisen syscallin Linux-koneella, tallentaa tapahtumat SQLiteen ja mahdollistaa ytimen tutkimisen luonnollisella kielellä paikallisen tekoälyn kautta. Ei pilveä, ei kuluja."
+description: "Yksityinen ja täysin paikallinen tapa tutkia yli 1,6 miljoonaa Linuxin tiedostojärjestelmätapahtumaa luonnollisella kielellä ja todellisten syscall-tietojen perusteella."
+problem: "Linux-ytimen tiedostojärjestelmätapahtumia syntyy paljon, ja ne sisältävät arkaluonteisia tietoja. Tutkiminen ei saa lähettää SSH-avainten lukuja, salasanapolkuja tai yksityisiä tiedostonimiä pilvipalveluun."
+outcome: "Kernel Monitor kaappasi yhden päivän aikana yli 1,6 miljoonaa todellista tapahtumaa. Paikallinen tekoäly tutkii prosesseja SQLiteen tallennettujen syscall-tietojen perusteella ilman API-kuluja tai koneelta poistuvaa dataa."
 createdAt: "2026-06-07"
 featured: true
 role: "solo"
@@ -42,6 +44,7 @@ Paikallinen tekoälyarkkitehtuuri oli tietoinen valinta. eBPF näkee arkaluontei
 - Live-kojelauta käytettävissä Macilta paikallisen WiFin kautta
 
 ## Teknologiat
+
 - **Ydinkerros:** eBPF BCC Python -sidosten kautta
 - **Backend:** FastAPI, SQLite, Ollama, psutil
 - **Frontend:** Next.js, TypeScript, Tailwind CSS, shadcn/ui

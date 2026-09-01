@@ -1,0 +1,11 @@
+{
+  "slug": "af-weather",
+  "locale": "pt-br",
+  "summary": "Aplicativo de clima enxuto que mostra as condições ao vivo de cidades da Finlândia e do Brasil, com modo escuro. A estrutura em monorepo mantém os tokens de design compartilhados com um pacote de interface separado.",
+  "generatedWithAi": true,
+  "disclosure": "Conteúdo gerado com IA",
+  "model": "claude-opus-5",
+  "promptVersion": 2,
+  "generatedAt": "2026-08-30T15:54:06.994Z",
+  "sourceHash": "sha256:610d3b8d4525ed8cd6d009eeed35f48d8d6a66c1432490d5c751875374ba7bf4"
+}

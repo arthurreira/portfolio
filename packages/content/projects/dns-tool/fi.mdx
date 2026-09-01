@@ -1,6 +1,8 @@
 ---
 title: "Dns-työkalu"
-description: "Full-stack DNS-hakutyökalu Next.js:llä ja AWS Lambdalla. Kysy mihin tahansa domainiin A, AAAA, MX, TXT, CNAME ja NS -tietueet shadcn/ui-käyttöliittymän kautta hakuhistorialla."
+description: "Nopea DNS-haku kuudelle tietuetyypille sekä hakuhistoria ja selkeät virhetilat eri verkkotunnusten tulosten vertailuun."
+problem: "DNS-kyselyiden verkkoviive vaihtelee, Lambda-kylmäkäynnistys hidastaa ensimmäistä hakua ja eri virhetilat vaativat täsmälliset selitykset."
+outcome: "Live-työkalu palauttaa jäsennellyt A-, AAAA-, MX-, TXT-, CNAME- ja NS-tietueet, säilyttää hakuhistorian ja erottaa NXDOMAIN-, SERVFAIL- ja aikakatkaisuvirheet toisistaan."
 createdAt: "2026-04-25"
 featured: true
 role: "solo"
@@ -16,7 +18,6 @@ url: "https://dns.arthurreira.dev"
 status: "done"
 coverImage: "./cover.png"
 ---
-
 
 ![dns-tool screenshot](./homePageClean.png)
 

@@ -1,0 +1,11 @@
+{
+  "slug": "hackathon-registration",
+  "locale": "fi",
+  "summary": "Yksi moduuli pystyttää kolme staattista sivustoa — rekisteröinnin, aikataulun ja projektigallerian — kunkin omalle alidomainilleen sekä niiden repot, julkaisut, DNS-konfiguraation ja CD-workflow't. Kaikki syntyy yhdellä ajolla ilman manuaalista klikkailua.",
+  "generatedWithAi": true,
+  "disclosure": "Tekoälyllä tuotettu sisältö",
+  "model": "claude-opus-5",
+  "promptVersion": 2,
+  "generatedAt": "2026-08-30T15:54:24.015Z",
+  "sourceHash": "sha256:6625188e0137b872d39ba8b2aea39fdb8853c071c8ffaf1a176ddbc9c2b58ee6"
+}

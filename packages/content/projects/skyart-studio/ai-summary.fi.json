@@ -1,0 +1,11 @@
+{
+  "slug": "skyart-studio",
+  "locale": "fi",
+  "summary": "Asiakastyönä toteutettu sivusto suomalaiselle taidestudiolle: teokset ja palvelut esitellään responsiivisen gallerian ja yhteydenottolomakkeiden avulla. Ulkoasu pysyy selkeänä kaikilla laitteilla, ja hakukonenäkyvyys on huomioitu.",
+  "generatedWithAi": true,
+  "disclosure": "Tekoälyllä tuotettu sisältö",
+  "model": "claude-opus-5",
+  "promptVersion": 2,
+  "generatedAt": "2026-08-30T15:55:30.171Z",
+  "sourceHash": "sha256:e4ea137190501ec9a5f5d5ae7e323d6bad6f2a5cf0fb6589b0a14318c8f18ea7"
+}
