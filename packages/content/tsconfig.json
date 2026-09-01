@@ -9,9 +9,20 @@
     "resolveJsonModule": true,
     "strict": true,
     "skipLibCheck": true,
+    "types": ["node"],
     "declaration": false,
-    "isolatedModules": true
+    "isolatedModules": true,
+    // Scripts are run directly by Node's type stripping, which needs the real
+    // file extension in the specifier.
+    "allowImportingTsExtensions": true,
+    "noEmit": true
   },
-  "include": ["velite.config.ts", "src/**/*.ts"],
+  "include": [
+    "glossary.ts",
+    "plugins/**/*.ts",
+    "scripts/**/*.ts",
+    "velite.config.ts",
+    "src/**/*.ts"
+  ],
   "exclude": ["node_modules", ".velite"]
 }
