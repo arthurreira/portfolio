@@ -1,0 +1,11 @@
+{
+  "slug": "primekg-explorer",
+  "locale": "fi",
+  "summary": "Selaa PrimeKG-aineiston biolääketieteellistä tietoverkkoa interaktiivisesti kolmiulotteisena, jolloin tauti-, lääke- ja geenisuhteita voi seurata yli neljän miljoonan solmun joukossa. Voimaohjattu asettelu tekee tiheistä kytkennöistä liikuteltavia taulukoiden sijaan.",
+  "generatedWithAi": true,
+  "disclosure": "Tekoälyllä tuotettu sisältö",
+  "model": "claude-opus-5",
+  "promptVersion": 2,
+  "generatedAt": "2026-08-30T15:55:14.072Z",
+  "sourceHash": "sha256:28712db1741944ccb217c595d807b4d6be0d95f68a1427c167b6a094ebaf7d79"
+}

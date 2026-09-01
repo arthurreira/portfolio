@@ -2,21 +2,19 @@
   "hero": {
     "firstName": "Arthur",
     "lastName": "Ferreira Miranda.",
-    "roleLine": "I work as a Software Engineer —",
-    "devsecopsStages": [
-      "Plan",
-      "Code",
-      "Build",
-      "Test",
-      "Release",
-      "Deploy",
-      "Operate",
-      "Monitor"
-    ]
+    "titleLine": "Full-stack developer.",
+    "actionLead": "I",
+    "actions": ["build", "monitor", "operate", "fix"],
+    "actionBeforeCompany": "services — at",
+    "companyLabel": "Nordcloud, an IBM Company",
+    "actionAfterCompany": ", and for myself on the side."
   },
   "home": {
     "selectedLabel": "Latest projects I've been working on",
     "allProjects": "All projects",
+    "aboutLabel": "How I got here",
+    "aboutSummary": "Brazilian application developer living in Finland for more than a decade.",
+    "aboutLink": "More about me",
     "trustCertsLabel": "Certifications",
     "trustRoleLabel": "Currently",
     "trustRoleValue": "Nordcloud, an IBM Company",
@@ -37,7 +35,7 @@
   "about": {
     "title": "About",
     "factsLabel": "A few facts about me",
-    "roleLead": "Software Engineer ·",
+    "roleLead": "Software Developer",
     "specialisms": [
       "Cloud",
       "Cloud Architecture",
@@ -55,7 +53,7 @@
     "yearsLabel": "In Finland",
     "yearsValue": "10+ years",
     "roleLabel": "Role",
-    "roleValue": "Junior Software Engineer at Nordcloud, an IBM company",
+    "roleValue": "Application Developer at Nordcloud, an IBM company",
     "offClockLabel": "Off the clock",
     "offClockValue": "Goalkeeper, third division Finnish football.",
     "langLabel": "Something I've noticed",
@@ -104,6 +102,9 @@
     "role": "Role",
     "year": "Year",
     "status": "Status",
+    "problem": "Problem",
+    "outcome": "Outcome",
+    "techStack": "How it was built",
     "live": "Live",
     "source": "Source",
     "defaultRole": "Design & Build",
@@ -124,7 +125,11 @@
       "lead": "Lead Developer",
       "contributor": "Contributor",
       "engineer": "Engineer"
-    }
+    },
+    "viewMore": "View more",
+    "viewLess": "View less",
+    "viewAiSummary": "View AI summary",
+    "hideAiSummary": "Hide AI summary"
   },
   "chat": {
     "emptyDescription": "Background, experience, any project — answers come from this portfolio.",

@@ -1,7 +1,8 @@
 ---
-
 title: "AF Analytics"
-description: "Plataforma de analytics web com IA e foco em privacidade. SaaS multi-tenant com pipeline RAG, busca semântica com pgvector e interface de chat com IA que responde perguntas sobre o tráfego do seu site em linguagem natural."
+description: "Um SaaS de analytics com foco em privacidade, no qual equipes perguntam sobre o tráfego em linguagem natural e recebem respostas baseadas nos próprios dados, sem cookies ou fingerprinting."
+problem: "Mesmo com muitos dados de tráfego, responder a uma pergunta simples ainda exige combinar manualmente gráficos, filtros e recortes por dispositivo ou país."
+outcome: "O AF Analytics oferece a cada organização um workspace privado em que o chat com IA responde usando os próprios eventos, com isolamento multi-tenant aplicado a cada consulta."
 createdAt: "2026-01-01"
 featured: true
 role: "solo"
@@ -18,7 +19,6 @@ techStack:
 githubRepo: "https://github.com/arthurreira/af-analytics"
 url: "https://analytics.arthurreira.dev"
 status: "ongoing"
-
 ---
 
 ## O que eu construí
@@ -37,19 +37,19 @@ O pipeline RAG exigiu muito mais iterações do que eu esperava. A escolha do mo
 
 ## Destaques
 
-* SDK publicado no npm como `@af/analytics`
-* Pipeline RAG com pgvector, embeddings de 768 dimensões e filtro por distância
-* Esquema multi-tenant para organizações, membros e convites
-* BetterAuth com autenticação por e-mail/senha e Google OAuth
-* Camada de borda com Cloudflare Workers para ingestão de eventos de baixa latência
-* Monorepo com Turborepo integrando FastAPI, Next.js e Cloudflare Workers
+- SDK publicado no npm como `@af/analytics`
+- Pipeline RAG com pgvector, embeddings de 768 dimensões e filtro por distância
+- Esquema multi-tenant para organizações, membros e convites
+- BetterAuth com autenticação por e-mail/senha e Google OAuth
+- Camada de borda com Cloudflare Workers para ingestão de eventos de baixa latência
+- Monorepo com Turborepo integrando FastAPI, Next.js e Cloudflare Workers
 
 ## Stack Tecnológica
 
-* **Frontend:** Next.js, TypeScript, Tailwind CSS, shadcn/ui
-* **Backend:** FastAPI, Python, Neon PostgreSQL, pgvector
-* **Edge:** Cloudflare Workers
-* **IA:** Claude Sonnet, pipeline RAG, embeddings bge-base-en-v1.5
-* **Autenticação:** BetterAuth
-* **Monorepo:** Turborepo, pnpm
-* **Deploy:** Vercel, Fly.io, Cloudflare
+- **Frontend:** Next.js, TypeScript, Tailwind CSS, shadcn/ui
+- **Backend:** FastAPI, Python, Neon PostgreSQL, pgvector
+- **Edge:** Cloudflare Workers
+- **IA:** Claude Sonnet, pipeline RAG, embeddings bge-base-en-v1.5
+- **Autenticação:** BetterAuth
+- **Monorepo:** Turborepo, pnpm
+- **Deploy:** Vercel, Fly.io, Cloudflare

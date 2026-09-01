@@ -1,0 +1,11 @@
+{
+  "slug": "kernel-monitor",
+  "locale": "pt-br",
+  "summary": "Captura as syscalls do filesystem Linux no nível do kernel e as guarda localmente, permitindo consultar em linguagem natural mais de 1,6 milhão de eventos de um único dia. Toda a investigação roda na própria máquina, sem expor leituras de chaves SSH ou nomes de arquivos privados.",
+  "generatedWithAi": true,
+  "disclosure": "Conteúdo gerado com IA",
+  "model": "claude-opus-5",
+  "promptVersion": 2,
+  "generatedAt": "2026-08-30T15:54:42.533Z",
+  "sourceHash": "sha256:3f3f66281d7259b0e4f81137edafaa22abffe06d2224592e5e3076f0e9d6d94f"
+}

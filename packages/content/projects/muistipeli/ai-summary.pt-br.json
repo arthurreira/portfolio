@@ -1,0 +1,11 @@
+{
+  "slug": "muistipeli",
+  "locale": "pt-br",
+  "summary": "Jogo de cartas no navegador em que o jogador vira e combina pares contra um cronômetro, feito como trabalho escolar e publicado no servidor Linux da instituição.",
+  "generatedWithAi": true,
+  "disclosure": "Conteúdo gerado com IA",
+  "model": "claude-opus-5",
+  "promptVersion": 2,
+  "generatedAt": "2026-08-30T15:51:46.020Z",
+  "sourceHash": "sha256:d4c4a93c098a7e5338383cd6f8aafdab2e13d3f850604e73f1bc93ef9015916d"
+}

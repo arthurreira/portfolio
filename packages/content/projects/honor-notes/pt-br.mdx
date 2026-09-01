@@ -1,10 +1,10 @@
 ---
 title: "Honor Notes"
-description: "A full-stack notes application with a Next.js frontend and a Dockerized REST API backend, featuring rich text editing, tags, and persistent storage."
+description: "Aplicação full-stack de notas com frontend em Next.js e backend REST API em Docker, incluindo edição de texto rico, tags e armazenamento persistente."
 createdAt: "2026-11-20"
 featured: false
 role: "solo"
-highlight: "Decoupled full-stack notes app — Next.js frontend + Dockerized REST API, shared TypeScript types across services"
+highlight: "App full-stack de notas desacoplado — frontend Next.js, REST API em Docker e tipos TypeScript compartilhados entre serviços"
 techStack:
   - "TypeScript"
   - "Next.js"
@@ -16,27 +16,27 @@ status: "done"
 ---
 
 
-## What I built
+## O que construí
 
-A notes app split into two independent services: a Next.js frontend and a separate Dockerized REST API backend. The separation is deliberate — the two repos share a TypeScript interface package so the API contract is type-safe on both ends. The frontend consumes the API over HTTP; the API handles all CRUD and persistence. Either service can be replaced or redeployed independently.
+Um app de notas dividido em dois serviços independentes: um frontend em Next.js e um backend REST API separado, executado em Docker. A separação é intencional — os dois repositórios compartilham um pacote de interfaces TypeScript, mantendo o contrato da API tipado nas duas pontas. O frontend consome a API por HTTP, enquanto a API cuida de todo o CRUD e da persistência. Qualquer um dos serviços pode ser substituído ou receber um novo deploy de forma independente.
 
-Features: create/read/update/delete notes, tag-based organisation, persistent storage via the API.
+Funcionalidades: criação, leitura, atualização e exclusão de notas, organização por tags e armazenamento persistente pela API.
 
-## What I learned
+## O que aprendi
 
-The main lesson was about the cost of service boundaries. With a monolith, sharing types is trivial. With two separate repos communicating over HTTP, you need to be intentional about the API contract — what shape do requests and responses have, and how do you keep both sides in sync when it changes? Managing a shared types package taught me why API versioning and clear contracts matter more than they seem in small projects.
+O principal aprendizado foi o custo das fronteiras entre serviços. Em um monólito, compartilhar tipos é simples. Com dois repositórios separados se comunicando por HTTP, o contrato da API precisa ser pensado com cuidado: qual é o formato das requisições e respostas e como manter os dois lados sincronizados quando ele muda? Gerenciar um pacote compartilhado de tipos me mostrou por que versionamento de API e contratos claros importam mais do que parecem em projetos pequenos.
 
-## Highlights
+## Destaques
 
-- Create, read, update, delete notes
-- Tag-based organisation
-- Decoupled Next.js frontend + Dockerized REST API backend
-- Shared TypeScript types across both services
-- Each service independently deployable
+- Criação, leitura, atualização e exclusão de notas
+- Organização por tags
+- Frontend Next.js desacoplado de uma REST API em Docker
+- Tipos TypeScript compartilhados entre os dois serviços
+- Cada serviço pode ser publicado independentemente
 
-## Tech Stack
+## Stack tecnológica
 
-- **Language:** TypeScript (shared types)
+- **Linguagem:** TypeScript (tipos compartilhados)
 - **Frontend:** Next.js
-- **Backend:** Dockerized REST API
-- **Transport:** HTTP
+- **Backend:** REST API em Docker
+- **Transporte:** HTTP

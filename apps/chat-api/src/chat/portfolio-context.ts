@@ -88,7 +88,7 @@ const formatProfile = (): string =>
       (cert) =>
         `- ${cert.name}${cert.code ? ` (${cert.code})` : ""}, ${cert.issuer} — ${
           cert.status === "certified" ? "certified" : "in progress"
-        }`
+        } [${cert.area}]`
     ),
     "",
     "### Availability",

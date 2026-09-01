@@ -1,0 +1,11 @@
+{
+  "slug": "vr-trash-game",
+  "locale": "en",
+  "summary": "A virtual reality game built for physical rehabilitation, where players pick up trash and throw it into bins. The arm movements involved train motor skills, and difficulty scales progressively as players improve.",
+  "generatedWithAi": true,
+  "disclosure": "Content generated with AI",
+  "model": "claude-opus-5",
+  "promptVersion": 2,
+  "generatedAt": "2026-08-30T15:55:42.058Z",
+  "sourceHash": "sha256:e1b91a62b64303b459790df849bfe30fb36ec64c0f24e60efb4479e217c8ee4d"
+}

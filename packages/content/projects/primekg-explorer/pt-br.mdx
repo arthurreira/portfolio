@@ -1,10 +1,10 @@
 ---
 title: "PrimeKG Explorer"
-description: "An interactive 3D biomedical knowledge graph explorer built on top of the PrimeKG dataset, using Neo4j for graph storage and react-force-graph-3d for WebGL visualization."
+description: "Explorador 3D interativo do grafo de conhecimento biomédico PrimeKG, com Neo4j para armazenar o grafo e react-force-graph-3d para visualização WebGL."
 createdAt: "2026-03-05"
 featured: false
 role: "solo"
-highlight: "Interactive 3D biomedical graph — 4M+ PrimeKG nodes in Neo4j, WebGL force-directed visualization, disease-drug-gene relationships"
+highlight: "Grafo biomédico 3D interativo — mais de 4 milhões de nós do PrimeKG no Neo4j e relações entre doenças, medicamentos e genes"
 techStack:
   - "TypeScript"
   - "Next.js"
@@ -16,27 +16,27 @@ status: "done"
 ---
 
 
-## What I built
+## O que construí
 
-A tool for navigating PrimeKG — a Harvard biomedical dataset linking diseases, drugs, genes, proteins, and biological pathways across 4 million+ nodes and relationships. The pipeline loads PrimeKG into a Neo4j graph database, serves it through Next.js API routes, and renders it as an interactive 3D force-directed graph using WebGL via react-force-graph-3d.
+Uma ferramenta para navegar pelo PrimeKG — um conjunto de dados biomédicos de Harvard que conecta doenças, medicamentos, genes, proteínas e vias biológicas em mais de 4 milhões de nós e relações. O pipeline carrega o PrimeKG em um banco de grafos Neo4j, expõe os dados por rotas de API do Next.js e os renderiza como um grafo 3D interativo com forças físicas, usando WebGL por meio do react-force-graph-3d.
 
-You can search by disease, drug, or gene name, filter by entity type, and click nodes to explore their relationships. Node colours are coded by entity type; edge thickness represents relationship weight.
+É possível pesquisar pelo nome de uma doença, medicamento ou gene, filtrar por tipo de entidade e clicar nos nós para explorar suas relações. A cor de cada nó indica o tipo da entidade, enquanto a espessura das arestas representa o peso da relação.
 
-## What I learned
+## O que aprendi
 
-Graph databases think differently from relational ones. A query that would require five JOINs in SQL is a two-hop traversal in Cypher. The mental model shift — "find all neighbours two hops away from this node" vs "JOIN three tables on these columns" — took time but is genuinely more natural for connected data. 3D WebGL rendering also introduced performance constraints I hadn't encountered before: a graph that looks fine at 1,000 nodes becomes unresponsive at 50,000. The solution was LOD (level-of-detail) filtering — showing only high-degree nodes at the global view and expanding detail on zoom.
+Bancos de grafos exigem uma forma de pensar diferente dos bancos relacionais. Uma consulta que precisaria de cinco JOINs em SQL vira uma travessia de dois saltos em Cypher. A mudança de modelo mental — de “junte três tabelas por estas colunas” para “encontre todos os vizinhos a dois saltos deste nó” — levou tempo, mas é mais natural para dados conectados. A renderização 3D com WebGL também trouxe limites de performance que eu ainda não tinha enfrentado: um grafo que funciona bem com 1.000 nós deixa de responder com 50.000. A solução foi filtrar por LOD (level of detail), mostrando apenas nós com muitas conexões na visão geral e adicionando detalhes conforme o zoom.
 
-## Highlights
+## Destaques
 
-- Navigates PrimeKG — 4M+ biomedical nodes and relationships
-- Loads the dataset into a Neo4j graph database
-- Real-time 3D force-directed graph (WebGL)
-- Search and filter by disease, drug, gene, or protein
-- Node colour-coding by entity type
+- Navegação por mais de 4 milhões de nós e relações biomédicas do PrimeKG
+- Conjunto de dados carregado em um banco de grafos Neo4j
+- Grafo 3D interativo em tempo real com WebGL
+- Pesquisa e filtros por doença, medicamento, gene ou proteína
+- Cores dos nós definidas pelo tipo da entidade
 
-## Tech Stack
+## Stack tecnológica
 
-- **Language:** TypeScript
-- **Database:** Neo4j (Cypher)
-- **Visualization:** react-force-graph-3d (Three.js)
+- **Linguagem:** TypeScript
+- **Banco de dados:** Neo4j (Cypher)
+- **Visualização:** react-force-graph-3d (Three.js)
 - **Framework:** Next.js

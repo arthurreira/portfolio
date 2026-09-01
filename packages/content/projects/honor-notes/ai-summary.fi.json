@@ -1,0 +1,11 @@
+{
+  "slug": "honor-notes",
+  "locale": "fi",
+  "summary": "Muistiinpanosovellus, jossa käyttöliittymä ja kontitettu REST-rajapinta on eriytetty toisistaan; mukana muotoiltu teksti, tagit ja pysyvä tallennus. Palvelut jakavat samat tyyppimäärittelyt, jolloin rajapinta pysyy yhtenäisenä.",
+  "generatedWithAi": true,
+  "disclosure": "Tekoälyllä tuotettu sisältö",
+  "model": "claude-opus-5",
+  "promptVersion": 2,
+  "generatedAt": "2026-08-30T15:54:30.102Z",
+  "sourceHash": "sha256:171ef20288b01102658846382b673b6dd97344270a3cb7e79ce8307427e71db8"
+}

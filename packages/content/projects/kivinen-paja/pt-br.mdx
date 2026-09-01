@@ -1,10 +1,10 @@
 ---
 title: "Kivinen Paja"
-description: "A real-time AI developer roundtable where multiple Anthropic Claude agents discuss topics simultaneously, powered by Pusher for live streaming and Redis for state management."
+description: "Mesa-redonda de IA em tempo real na qual vários agentes Claude da Anthropic discutem um tema, com streaming pelo Pusher e estado gerenciado no Redis."
 createdAt: "2026-01-15"
 featured: false
 role: "solo"
-highlight: "Multi-agent AI roundtable — Claude agents debate in real-time via Pusher WebSockets + Redis state"
+highlight: "Mesa-redonda multiagente — agentes Claude debatem em tempo real via Pusher WebSockets, com estado no Redis"
 techStack:
   - "TypeScript"
   - "Next.js"
@@ -17,28 +17,28 @@ status: "done"
 ---
 
 
-## What I built
+## O que construí
 
-An experimental real-time app where multiple Claude agents hold a live roundtable discussion on a submitted topic. Each agent has a distinct perspective and responds as the conversation unfolds — responses stream in via Pusher WebSocket channels so you watch the discussion develop in real time. Redis persists the conversation state and manages agent turn-taking so the discussion stays coherent across reconnects.
+Um app experimental em tempo real no qual vários agentes Claude participam de uma mesa-redonda sobre um tema enviado pelo usuário. Cada agente tem uma perspectiva diferente e responde conforme a conversa avança. As respostas chegam por streaming nos canais WebSocket do Pusher, permitindo acompanhar o debate ao vivo. O Redis persiste o estado da conversa e controla os turnos dos agentes, mantendo a discussão coerente mesmo após reconexões.
 
-"Kivinen Paja" means "Stone Forge" in Finnish — the name reflects the idea of raw ideas being shaped through heated discussion.
+“Kivinen Paja” significa “forja de pedra” em finlandês — o nome representa ideias brutas sendo moldadas por uma discussão intensa.
 
-## What I learned
+## O que aprendi
 
-Coordinating multiple concurrent LLM calls is harder than it looks. Each agent needs context of what the others have said, but sending the full conversation history on every turn becomes expensive and slow. Managing turn-taking logic in Redis (who speaks next, what's the current state) was the core engineering challenge. I also learned about Pusher channel architecture for real-time streaming — the difference between presence channels (who's connected) and private channels (secured streams) became important for managing which agent "speaks" when.
+Coordenar várias chamadas concorrentes a LLMs é mais difícil do que parece. Cada agente precisa saber o que os outros disseram, mas enviar todo o histórico a cada turno fica caro e lento. Gerenciar no Redis a lógica dos turnos — quem fala em seguida e qual é o estado atual — foi o principal desafio técnico. Também aprendi sobre a arquitetura de canais do Pusher para streaming em tempo real. A diferença entre canais de presença, que mostram quem está conectado, e canais privados, que protegem o stream, tornou-se importante para controlar quando cada agente “fala”.
 
-## Highlights
+## Destaques
 
-- Multiple Claude agents debate a topic in real time
-- Each agent holds a distinct perspective
-- Responses stream live via Pusher WebSocket channels
-- Redis manages conversation state and turn-taking
-- "Stone Forge" — ideas shaped through heated discussion
+- Vários agentes Claude debatem um tema em tempo real
+- Cada agente mantém uma perspectiva diferente
+- Respostas transmitidas ao vivo por canais WebSocket do Pusher
+- Redis gerencia o estado da conversa e a ordem dos turnos
+- “Forja de pedra” — ideias moldadas por uma discussão intensa
 
-## Tech Stack
+## Stack tecnológica
 
-- **Language:** TypeScript
+- **Linguagem:** TypeScript
 - **Framework:** Next.js
 - **AI:** Anthropic API (Claude)
-- **Realtime:** Pusher
-- **State:** Redis
+- **Tempo real:** Pusher
+- **Estado:** Redis

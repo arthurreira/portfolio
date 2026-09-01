@@ -1,0 +1,11 @@
+{
+  "slug": "acme-dashboard",
+  "locale": "en",
+  "summary": "A financial dashboard built as a hands-on way to learn a new framework version, covering invoices and customer data behind a login. It runs as a deployed, production-ready application with authentication and analytics in place.",
+  "generatedWithAi": true,
+  "disclosure": "Content generated with AI",
+  "model": "claude-opus-5",
+  "promptVersion": 2,
+  "generatedAt": "2026-08-30T15:53:55.692Z",
+  "sourceHash": "sha256:7097e2c25924b53b7bc284e8cbecba539a2d9a4f7bd52c828bab66b927f7682e"
+}

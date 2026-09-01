@@ -3,24 +3,36 @@ import { HeroText } from "@/components/molecules/hero-text"
 interface SiteHeroProps {
   firstName: string
   lastName: string
-  roleLine: string
-  stages: string[]
+  titleLine: string
+  actionLead: string
+  actions: string[]
+  actionBeforeCompany: string
+  companyLabel: string
+  actionAfterCompany: string
 }
 
 /** Page opener. */
 export function SiteHero({
   firstName,
   lastName,
-  roleLine,
-  stages,
+  titleLine,
+  actionLead,
+  actions,
+  actionBeforeCompany,
+  companyLabel,
+  actionAfterCompany,
 }: SiteHeroProps) {
   return (
     <section className="pt-frame">
       <HeroText
         firstName={firstName}
         lastName={lastName}
-        roleLine={roleLine}
-        stages={stages}
+        titleLine={titleLine}
+        actionLead={actionLead}
+        actions={actions}
+        actionBeforeCompany={actionBeforeCompany}
+        companyLabel={companyLabel}
+        actionAfterCompany={actionAfterCompany}
       />
     </section>
   )

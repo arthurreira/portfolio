@@ -1,0 +1,11 @@
+{
+  "slug": "kivinen-paja",
+  "locale": "en",
+  "summary": "Several Claude agents debate a given topic at the same time, with their exchanges streamed live to the browser as they unfold. State is kept outside the agents themselves, so a running roundtable can be followed continuously.",
+  "generatedWithAi": true,
+  "disclosure": "Content generated with AI",
+  "model": "claude-opus-5",
+  "promptVersion": 2,
+  "generatedAt": "2026-08-30T15:54:53.908Z",
+  "sourceHash": "sha256:e604a804223d1e3ede5bb37d9243a0b471dee246f4c0653b59e7384e22f21904"
+}

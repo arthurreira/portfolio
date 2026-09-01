@@ -1,0 +1,11 @@
+{
+  "slug": "portfolio",
+  "locale": "fi",
+  "summary": "Henkilökohtainen portfoliosivusto kolmella kielellä (englanti, portugali, suomi), rakennettu monorepoksi, jossa sisältö, jaetut design tokenit ja itse sovellus ovat samassa paikassa. Mukana on myös reunalla ajettava tilaton tekoälychat.",
+  "generatedWithAi": true,
+  "disclosure": "Tekoälyllä tuotettu sisältö",
+  "model": "claude-opus-5",
+  "promptVersion": 2,
+  "generatedAt": "2026-08-30T15:55:06.655Z",
+  "sourceHash": "sha256:18f8a7afc68e9888e7ac3cf242eaea1adf4dd9b85b8f44ef2bc08f5b1cd0d120"
+}

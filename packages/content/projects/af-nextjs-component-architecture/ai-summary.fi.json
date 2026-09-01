@@ -1,0 +1,11 @@
+{
+  "slug": "af-nextjs-component-architecture",
+  "locale": "fi",
+  "summary": "Harjoitus atomisen suunnittelun soveltamisesta komponenttikirjastoon: komponentit on jäsennetty selkeään hierarkiaan monorepoon ja niiden propsit on tyypitetty tiukasti. Tavoitteena on rakenne, joka pysyy hallittavana kirjaston kasvaessa.",
+  "generatedWithAi": true,
+  "disclosure": "Tekoälyllä tuotettu sisältö",
+  "model": "claude-opus-5",
+  "promptVersion": 2,
+  "generatedAt": "2026-08-30T15:54:01.532Z",
+  "sourceHash": "sha256:ad7a7245ffe6d25e19626bc6fef24e37c0ce84578c0c00a049abcdc10f6ab8f2"
+}

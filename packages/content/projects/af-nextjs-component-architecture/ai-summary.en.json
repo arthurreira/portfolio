@@ -1,0 +1,11 @@
+{
+  "slug": "af-nextjs-component-architecture",
+  "locale": "en",
+  "summary": "A practice exercise in applying atomic design to a component library, organised as a monorepo so components sit in a clear hierarchy with strictly typed props. The aim is a structure that stays readable as the library grows.",
+  "generatedWithAi": true,
+  "disclosure": "Content generated with AI",
+  "model": "claude-opus-5",
+  "promptVersion": 2,
+  "generatedAt": "2026-08-30T15:54:01.528Z",
+  "sourceHash": "sha256:71633fd212fa8fa4530a6abc96caeb2a33ed2119d1db2364a071f445e2d01d4e"
+}

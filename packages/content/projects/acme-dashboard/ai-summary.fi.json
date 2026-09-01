@@ -1,0 +1,11 @@
+{
+  "slug": "acme-dashboard",
+  "locale": "fi",
+  "summary": "Taloushallinnan koontinäyttö, joka syntyi harjoitustyönä uuteen kehysversioon tutustumiseksi. Sovellus on tuotantovalmis ja julkaistu, ja siihen kuuluvat kirjautuminen sekä analytiikka.",
+  "generatedWithAi": true,
+  "disclosure": "Tekoälyllä tuotettu sisältö",
+  "model": "claude-opus-5",
+  "promptVersion": 2,
+  "generatedAt": "2026-08-30T15:53:55.695Z",
+  "sourceHash": "sha256:3869a1ea544d0b5f62c58714bcec4053a77c1fb7fa1ccfe7e87a11e3da8e8818"
+}

@@ -1,7 +1,8 @@
 ---
-
 title: "AF Analytics"
-description: "Tietosuojaa kunnioittava tekoälypohjainen verkkoanalytiikka-alusta. Moniasiakas-SaaS, jossa on RAG-putki, pgvector-pohjainen semanttinen haku ja tekoälychat, joka vastaa sivuston liikennettä koskeviin kysymyksiin selkeällä luonnollisella kielellä."
+description: "Tietosuojaa kunnioittava analytiikka-SaaS, jossa tiimit voivat kysyä sivuston liikenteestä luonnollisella kielellä ja saada omiin tietoihinsa perustuvia vastauksia ilman evästeitä tai sormenjälkitunnistusta."
+problem: "Sivuston liikenteestä voi kerätä paljon tietoa, mutta yksinkertaiseen kysymykseen vastaaminen vaatii silti usein kaavioiden, suodattimien sekä laite- ja maatietojen manuaalista yhdistämistä."
+outcome: "AF Analytics tarjoaa jokaiselle organisaatiolle yksityisen työtilan, jossa tekoälychat vastaa kysymyksiin organisaation omien tapahtumatietojen perusteella ja jokainen kysely on rajattu oikeaan asiakkaaseen."
 createdAt: "2026-01-01"
 featured: true
 role: "solo"
@@ -18,7 +19,6 @@ techStack:
 githubRepo: "https://github.com/arthurreira/af-analytics"
 url: "https://analytics.arthurreira.dev"
 status: "ongoing"
-
 ---
 
 ## Mitä rakensin
@@ -37,19 +37,19 @@ RAG-putki vaati myös enemmän iterointia kuin odotin. Päivitys mallista `bge-s
 
 ## Kohokohdat
 
-* SDK julkaistu npm-pakettina `@af/analytics`
-* RAG-putki pgvectorilla, 768-ulotteiset embeddingit ja suodatus etäisyyskynnyksellä
-* Moniasiakasskeema organisaatioille, jäsenille ja kutsuille
-* BetterAuth sähköposti/salasana- ja Google OAuth -kirjautumisella
-* Cloudflare Workers mahdollistaa tapahtumien vastaanoton matalalla viiveellä
-* Turborepo-monorepo yhdistää FastAPI:n, Next.js:n ja Cloudflare Workersin
+- SDK julkaistu npm-pakettina `@af/analytics`
+- RAG-putki pgvectorilla, 768-ulotteiset embeddingit ja suodatus etäisyyskynnyksellä
+- Moniasiakasskeema organisaatioille, jäsenille ja kutsuille
+- BetterAuth sähköposti/salasana- ja Google OAuth -kirjautumisella
+- Cloudflare Workers mahdollistaa tapahtumien vastaanoton matalalla viiveellä
+- Turborepo-monorepo yhdistää FastAPI:n, Next.js:n ja Cloudflare Workersin
 
 ## Teknologiapino
 
-* **Frontend:** Next.js, TypeScript, Tailwind CSS, shadcn/ui
-* **Backend:** FastAPI, Python, Neon PostgreSQL, pgvector
-* **Edge:** Cloudflare Workers
-* **AI:** Claude Sonnet, RAG-putki, bge-base-en-v1.5-embeddingit
-* **Auth:** BetterAuth
-* **Monorepo:** Turborepo, pnpm
-* **Deployment:** Vercel, Fly.io, Cloudflare
+- **Frontend:** Next.js, TypeScript, Tailwind CSS, shadcn/ui
+- **Backend:** FastAPI, Python, Neon PostgreSQL, pgvector
+- **Edge:** Cloudflare Workers
+- **AI:** Claude Sonnet, RAG-putki, bge-base-en-v1.5-embeddingit
+- **Auth:** BetterAuth
+- **Monorepo:** Turborepo, pnpm
+- **Deployment:** Vercel, Fly.io, Cloudflare

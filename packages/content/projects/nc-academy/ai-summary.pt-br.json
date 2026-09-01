@@ -1,0 +1,11 @@
+{
+  "slug": "nc-academy",
+  "locale": "pt-br",
+  "summary": "Conjunto de oito módulos práticos desenvolvidos no programa de cloud da Nordcloud Academy, indo de infraestrutura como código e scripts até APIs, painéis e arquitetura de autenticação. O módulo final trata de métricas de negócio do Northwind.",
+  "generatedWithAi": true,
+  "disclosure": "Conteúdo gerado com IA",
+  "model": "claude-opus-5",
+  "promptVersion": 2,
+  "generatedAt": "2026-08-30T15:54:59.900Z",
+  "sourceHash": "sha256:6c74138d8d721778c6c4d597f27359b3c973dd58c3b8d2d64e2cb2d072da53c3"
+}

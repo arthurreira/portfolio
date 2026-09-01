@@ -1,0 +1,11 @@
+{
+  "slug": "vr-trash-game",
+  "locale": "fi",
+  "summary": "Virtuaalitodellisuuspeli motoristen taitojen kuntoutukseen: pelaaja kerää roskia ja heittää ne roskikseen. Heittoliikkeet harjoittavat käsien hallintaa, ja vaikeustaso nousee vähitellen. Toteutettu kouluprojektina.",
+  "generatedWithAi": true,
+  "disclosure": "Tekoälyllä tuotettu sisältö",
+  "model": "claude-opus-5",
+  "promptVersion": 2,
+  "generatedAt": "2026-08-30T15:55:42.062Z",
+  "sourceHash": "sha256:07923fb07b88e1d91ad445a8a457ecec1332d4a8c3267115ee87d9d6ddab03ab"
+}

@@ -1,0 +1,11 @@
+{
+  "slug": "primekg-explorer",
+  "locale": "pt-br",
+  "summary": "Permite percorrer o grafo de conhecimento biomédico PrimeKG em 3D interativo, seguindo relações entre doenças, medicamentos e genes em mais de quatro milhões de nós. O layout dirigido por forças torna navegáveis conexões densas que seriam ilegíveis em tabelas.",
+  "generatedWithAi": true,
+  "disclosure": "Conteúdo gerado com IA",
+  "model": "claude-opus-5",
+  "promptVersion": 2,
+  "generatedAt": "2026-08-30T15:55:14.072Z",
+  "sourceHash": "sha256:063ac92f0d2e69e1ff308f76ee7df4407643c3f8686fd06df0811f0f52415dd5"
+}

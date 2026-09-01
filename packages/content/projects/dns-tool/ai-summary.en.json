@@ -1,0 +1,11 @@
+{
+  "slug": "dns-tool",
+  "locale": "en",
+  "summary": "Resolves six DNS record types and keeps a history of past queries, so results can be compared across domains. Failures are reported specifically, separating NXDOMAIN, SERVFAIL, and timeouts instead of collapsing them into one generic error.",
+  "generatedWithAi": true,
+  "disclosure": "Content generated with AI",
+  "model": "claude-opus-5",
+  "promptVersion": 2,
+  "generatedAt": "2026-08-30T15:51:41.648Z",
+  "sourceHash": "sha256:d6002f6487a639251d47fd5eee93f60ec96848f5698918fb07a119a956824aa3"
+}

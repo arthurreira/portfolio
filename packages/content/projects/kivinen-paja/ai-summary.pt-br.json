@@ -1,0 +1,11 @@
+{
+  "slug": "kivinen-paja",
+  "locale": "pt-br",
+  "summary": "Vários agentes Claude discutem um mesmo tema simultaneamente, e a conversa é transmitida ao navegador conforme acontece. O estado do debate fica guardado fora dos agentes, permitindo acompanhar a mesa-redonda em andamento sem interrupção.",
+  "generatedWithAi": true,
+  "disclosure": "Conteúdo gerado com IA",
+  "model": "claude-opus-5",
+  "promptVersion": 2,
+  "generatedAt": "2026-08-30T15:54:53.912Z",
+  "sourceHash": "sha256:04f21e27eae0bd6a0d9828300e4a4ec2a45f1e85c250236a83fdf2946e5e4f9d"
+}

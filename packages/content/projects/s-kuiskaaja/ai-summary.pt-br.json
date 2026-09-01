@@ -1,0 +1,11 @@
+{
+  "slug": "s-kuiskaaja",
+  "locale": "pt-br",
+  "summary": "Montagem física de sensores que mede temperatura, umidade e pressão do ar, gravando cada leitura em banco de dados. Um painel web exibe as medições conforme elas chegam.",
+  "generatedWithAi": true,
+  "disclosure": "Conteúdo gerado com IA",
+  "model": "claude-opus-5",
+  "promptVersion": 2,
+  "generatedAt": "2026-08-30T15:55:19.343Z",
+  "sourceHash": "sha256:4ee75ff5a8ecf8339641423bae5f52bf06ab380c6f87160192e2d2d07ab893d0"
+}

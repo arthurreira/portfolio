@@ -1,0 +1,11 @@
+{
+  "slug": "af-weather",
+  "locale": "en",
+  "summary": "A pared-back weather app covering cities in Finland and Brazil, with live conditions and a dark mode. The monorepo setup keeps its design tokens shared with a separate UI package rather than duplicated.",
+  "generatedWithAi": true,
+  "disclosure": "Content generated with AI",
+  "model": "claude-opus-5",
+  "promptVersion": 2,
+  "generatedAt": "2026-08-30T15:54:06.990Z",
+  "sourceHash": "sha256:dc5fd7b5f02ffd080b97cb47d402cc0a6640fd0be893efa39eaee51f4c2725e3"
+}

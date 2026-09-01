@@ -1,0 +1,11 @@
+{
+  "slug": "skyart-studio",
+  "locale": "pt-br",
+  "summary": "Site feito para um estúdio de arte finlandês, que apresenta obras e serviços por meio de uma galeria responsiva e formulário de contato. O layout se mantém limpo em qualquer dispositivo, com atenção à visibilidade em buscadores.",
+  "generatedWithAi": true,
+  "disclosure": "Conteúdo gerado com IA",
+  "model": "claude-opus-5",
+  "promptVersion": 2,
+  "generatedAt": "2026-08-30T15:55:30.172Z",
+  "sourceHash": "sha256:20b5e3ce956d9c04f5fdad4de876a41c73034c1c614a69f8e78df1bf8c1e3aaa"
+}

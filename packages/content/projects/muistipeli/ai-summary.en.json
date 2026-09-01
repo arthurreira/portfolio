@@ -1,0 +1,11 @@
+{
+  "slug": "muistipeli",
+  "locale": "en",
+  "summary": "A browser card-matching game where players flip pairs against a timer, written as a school assignment and deployed on a university Linux server.",
+  "generatedWithAi": true,
+  "disclosure": "Content generated with AI",
+  "model": "claude-opus-5",
+  "promptVersion": 2,
+  "generatedAt": "2026-08-30T15:51:46.015Z",
+  "sourceHash": "sha256:0fa63e1565de804bf6beb75b456b64a97f41092c048a2bbe468fe437fb7d1be9"
+}

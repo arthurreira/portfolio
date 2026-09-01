@@ -1,4 +1,4 @@
-import { projects } from "@arthurreira/content"
+import { profile, projects } from "@arthurreira/content"
 import { describe, expect, it } from "vitest"
 
 import {
@@ -98,6 +98,17 @@ describe("buildSystemPrompt project coverage", () => {
     const headings = prompt.match(/^### .+ \(\d{4}\)$/gm) ?? []
 
     expect(new Set(headings).size).toBe(headings.length)
+  })
+})
+
+describe("buildSystemPrompt certification coverage", () => {
+  it("includes every certification with its area", () => {
+    const prompt = buildSystemPrompt(DEFAULT_LOCALE)
+
+    for (const certification of profile.certifications) {
+      expect(prompt).toContain(certification.name)
+      expect(prompt).toContain(`[${(certification as { area?: string }).area}]`)
+    }
   })
 })
 

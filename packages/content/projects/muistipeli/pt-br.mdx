@@ -4,7 +4,7 @@ description: "Jogo clássico de cartas como projeto escolar — HTML, CSS, JavaS
 createdAt: "2023-02-12"
 featured: false
 role: "solo"
-highlight: "School card-matching game with timer, hosted on a Linux educational server"
+highlight: "Jogo escolar de encontrar pares, com cronômetro e hospedagem em um servidor Linux educacional"
 techStack:
   - "HTML"
   - "CSS"
@@ -18,26 +18,26 @@ status: "school"
 
 [![](./Muistipelietusivu.png)](https://github.com/arthurreira/muistipeli)
 
-## What I built
+## O que construí
 
-A browser-based memory card game built as a school assignment. The player flips cards two at a time looking for matching pairs. A live timer tracks how long each game takes and a move counter records efficiency — both reset on restart. The layout is fully responsive using MDB Bootstrap's grid.
+Um jogo da memória para navegador feito como trabalho escolar. O jogador vira duas cartas por vez em busca dos pares correspondentes. Um cronômetro acompanha a duração de cada partida e um contador registra a quantidade de jogadas — os dois são zerados ao reiniciar. O layout é totalmente responsivo e usa o grid do MDB Bootstrap.
 
-The game was hosted on `linuxedu.koulutus.kynet.fi`, the school's Linux server, which meant learning basic server file structure and deployment over SSH rather than just running it locally.
+O jogo foi hospedado em `linuxedu.koulutus.kynet.fi`, o servidor Linux da escola. Isso exigiu aprender a estrutura básica de arquivos do servidor e fazer deploy por SSH, em vez de executar tudo apenas localmente.
 
-## What I learned
+## O que aprendi
 
-This was one of the first projects where I had to manage game state in vanilla JavaScript without a framework. Tracking which cards were flipped, preventing a third card from being selected before the first pair resolved, and resetting state cleanly between games all required careful thinking about execution order. Clear state management matters even in small projects.
+Este foi um dos primeiros projetos em que precisei gerenciar o estado de um jogo com JavaScript puro, sem framework. Acompanhar quais cartas estavam viradas, impedir a seleção de uma terceira antes de resolver o primeiro par e limpar o estado entre partidas exigiu atenção à ordem de execução. Mesmo em projetos pequenos, o estado precisa ser gerenciado com clareza.
 
-## Highlights
+## Destaques
 
-- Flip-and-match card pairs
-- Live timer and move counter
-- Win detection with score display
-- Responsive MDB Bootstrap grid
-- Hosted on the school Linux server
+- Mecânica de virar cartas e encontrar pares
+- Cronômetro e contador de jogadas em tempo real
+- Detecção de vitória com exibição da pontuação
+- Grid responsivo com MDB Bootstrap
+- Hospedado no servidor Linux da escola
 
-## Tech Stack
+## Stack tecnológica
 
 - **Frontend:** HTML, CSS, JavaScript (vanilla)
 - **UI:** MDB Bootstrap
-- **Hosting:** University Linux server (SSH)
+- **Hospedagem:** Servidor Linux educacional (SSH)

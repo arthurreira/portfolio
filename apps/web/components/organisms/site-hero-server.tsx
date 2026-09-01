@@ -8,8 +8,12 @@ export async function SiteHeroServer() {
     <SiteHero
       firstName={t("firstName")}
       lastName={t("lastName")}
-      roleLine={t("roleLine")}
-      stages={t.raw("devsecopsStages") as string[]}
+      titleLine={t("titleLine")}
+      actionLead={t("actionLead")}
+      actions={t.raw("actions") as string[]}
+      actionBeforeCompany={t("actionBeforeCompany")}
+      companyLabel={t("companyLabel")}
+      actionAfterCompany={t("actionAfterCompany")}
     />
   )
 }

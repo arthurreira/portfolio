@@ -1,6 +1,8 @@
 ---
 title: "Kernel Monitor"
-description: "Monitor de filesystem do kernel Linux em tempo real usando eBPF. Intercepta cada syscall em uma máquina Linux, armazena eventos no SQLite e permite investigar o kernel em português via IA local. Zero nuvem, zero custo."
+description: "Uma forma privada e sem nuvem de investigar mais de 1,6 milhão de eventos do filesystem Linux em linguagem natural, usando evidências reais de syscalls."
+problem: "A atividade do filesystem do kernel é volumosa e sensível. A investigação precisa capturar esses eventos sem enviar leituras de chaves SSH, caminhos de senhas ou nomes de arquivos privados para um modelo na nuvem."
+outcome: "O Kernel Monitor capturou mais de 1,6 milhão de eventos reais em um dia e permite que uma IA local investigue processos usando evidências de syscalls no SQLite, sem custo de API nem dados saindo da máquina."
 createdAt: "2026-06-07"
 featured: true
 role: "solo"
@@ -42,6 +44,7 @@ A arquitetura de IA local foi uma escolha deliberada. O eBPF vê dados sensívei
 - Dashboard ao vivo acessível do Mac via WiFi local
 
 ## Stack
+
 - **Camada do kernel:** eBPF via bindings Python do BCC
 - **Backend:** FastAPI, SQLite, Ollama, psutil
 - **Frontend:** Next.js, TypeScript, Tailwind CSS, shadcn/ui

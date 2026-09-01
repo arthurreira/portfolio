@@ -1,6 +1,8 @@
 ---
 title: "Kernel Monitor"
-description: "Real-time Linux kernel filesystem monitor using eBPF. Intercepts every syscall on a Linux machine, stores events in SQLite, and lets you investigate your kernel in plain English via a local AI model. Zero cloud, zero cost."
+description: "A private, zero-cloud way to investigate more than 1.6 million Linux filesystem events in plain English using real syscall evidence."
+problem: "Kernel filesystem activity is high-volume and sensitive: useful investigation requires capturing it safely without sending SSH key reads, password paths, or private filenames to a cloud model."
+outcome: "Kernel Monitor captured more than 1.6 million real events in one day and lets a local AI investigate processes from SQLite-backed syscall evidence, with no API cost or data leaving the machine."
 createdAt: "2026-06-07"
 featured: true
 role: "solo"
@@ -42,6 +44,7 @@ The local AI architecture was a deliberate choice. eBPF sees sensitive data — 
 - Live dashboard accessible from Mac over local WiFi
 
 ## Tech Stack
+
 - **Kernel layer:** eBPF via BCC Python bindings
 - **Backend:** FastAPI, SQLite, Ollama, psutil
 - **Frontend:** Next.js, TypeScript, Tailwind CSS, shadcn/ui

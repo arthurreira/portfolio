@@ -1,0 +1,11 @@
+{
+  "slug": "portfolio",
+  "locale": "en",
+  "summary": "A personal portfolio site served in English, Portuguese and Finnish, organised as a monorepo so content, shared design tokens and the app itself live side by side. It also hosts a stateless AI chat that runs at the edge.",
+  "generatedWithAi": true,
+  "disclosure": "Content generated with AI",
+  "model": "claude-opus-5",
+  "promptVersion": 2,
+  "generatedAt": "2026-08-30T15:55:06.652Z",
+  "sourceHash": "sha256:268b367ff87e5e2a6264ac98d4829c2e6735c65dbf769d5e727e4500f25c58b8"
+}

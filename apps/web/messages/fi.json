@@ -2,21 +2,19 @@
   "hero": {
     "firstName": "Arthur",
     "lastName": "Ferreira Miranda.",
-    "roleLine": "Työskentelen ohjelmistoinsinöörinä –",
-    "devsecopsStages": [
-      "Suunnittelu",
-      "Koodaus",
-      "Buildaus",
-      "Testaus",
-      "Julkaisu",
-      "Käyttöönotto",
-      "Ylläpito",
-      "Monitorointi"
-    ]
+    "titleLine": "Full-stack-kehittäjä.",
+    "actionLead": "",
+    "actions": ["Rakennan", "valvon", "ylläpidän", "korjaan"],
+    "actionBeforeCompany": "palveluita —",
+    "companyLabel": "Nordcloudilla",
+    "actionAfterCompany": ", ja myös omalla ajalla."
   },
   "home": {
     "selectedLabel": "Viimeisimmät projektit, joiden parissa olen työskennellyt",
     "allProjects": "Kaikki projektit",
+    "aboutLabel": "Miten päädyin tähän",
+    "aboutSummary": "Brasilialainen sovelluskehittäjä, asunut Suomessa reilut 10 vuotta.",
+    "aboutLink": "Lue lisää minusta",
     "trustCertsLabel": "Sertifikaattia",
     "trustRoleLabel": "Tällä hetkellä",
     "trustRoleValue": "Nordcloud, an IBM Company",
@@ -37,7 +35,7 @@
   "about": {
     "title": "Tietoa minusta",
     "factsLabel": "Muutama fakta minusta",
-    "roleLead": "Ohjelmistoinsinööri ·",
+    "roleLead": "Ohjelmistokehittäjä",
     "specialisms": [
       "Pilvipalvelut",
       "Pilviarkkitehtuuri",
@@ -55,7 +53,7 @@
     "yearsLabel": "Kauanko Suomessa",
     "yearsValue": "Reilut 10 vuotta",
     "roleLabel": "Rooli",
-    "roleValue": "Juniori Ohjelmistoinsinööri at Nordcloud, an IBM company.",
+    "roleValue": "Sovelluskehittäjä, Nordcloud, an IBM Company",
     "offClockLabel": "Vapaa-aika",
     "offClockValue": "Maalivahti, miesten Kolmonen.",
     "langLabel": "Yksi hauska juttu",
@@ -104,6 +102,9 @@
     "role": "Rooli",
     "year": "Vuosi",
     "status": "Tila",
+    "problem": "Ongelma",
+    "outcome": "Tulos",
+    "techStack": "Miten se rakennettiin",
     "live": "Live",
     "source": "Lähdekoodi",
     "defaultRole": "Suunnittelu & toteutus",
@@ -124,7 +125,11 @@
       "lead": "Pääkehittäjä",
       "contributor": "Osallistuja",
       "engineer": "Kehittäjä"
-    }
+    },
+    "viewMore": "Näytä lisää",
+    "viewLess": "Näytä vähemmän",
+    "viewAiSummary": "Näytä tekoälytiivistelmä",
+    "hideAiSummary": "Piilota tekoälytiivistelmä"
   },
   "chat": {
     "emptyDescription": "Tausta, kokemus, mikä tahansa projekti — vastaukset perustuvat tämän portfolion sisältöön.",
