@@ -4,11 +4,15 @@ import { useEffect, useRef, useState } from "react"
 import { usePathname as useIntlPathname } from "@/i18n/routing"
 import { useTranslations } from "next-intl"
 import { ArrowLeftIcon, ChatCircleIcon } from "@phosphor-icons/react"
+import { cn } from "@arthurreira/ui"
 import { Separator } from "@arthurreira/ui/client"
 import { NavLink } from "@/components/atoms/nav-link"
 import { RollingText } from "@/components/atoms/rolling-text"
 import { LanguageSwitcher } from "@/components/molecules/language-switcher"
-import { CHAT_CLOSED_EVENT, OPEN_CHAT_EVENT } from "@/components/features/chat/chat-events"
+import {
+  CHAT_CLOSED_EVENT,
+  OPEN_CHAT_EVENT,
+} from "@/components/features/chat/chat-events"
 
 /** /projects/<slug>, but not /projects itself. */
 const PROJECT_DETAIL = /^\/projects\/.+/
@@ -89,33 +93,49 @@ export function SiteNav() {
         </NavLink>
 
         <nav className="t-links">
-          {isHome ? (
-            NAV_LINKS.map(({ href, label }) => (
-              <NavLink
-                key={href}
-                href={href}
-                active={intlPathname.startsWith(href)}
-              >
-                {label}
-              </NavLink>
-            ))
-          ) : (
-            <NavLink href={backHref} className="inline-flex items-center gap-2">
+          {/* The arrow and the page links are the same slot at two widths, not
+              two features. Off home, mobile has room for one thing and it is
+              the way back; from sm up the row has room for the real links, so
+              they carry the navigation and the arrow steps aside. */}
+          {!isHome && (
+            <NavLink
+              href={backHref}
+              className="inline-flex items-center gap-2 sm:hidden"
+            >
               <ArrowLeftIcon weight="bold" className="size-4" />
               <span className="sr-only sm:not-sr-only">{t("back")}</span>
             </NavLink>
           )}
+
+          {/* Not on a project detail page: that page carries its own
+              "Back to Projects" above the title from sm up, and the full link
+              row beside it is one navigation too many. */}
+          {NAV_LINKS.map(({ href, label }) => (
+            <NavLink
+              key={href}
+              href={href}
+              active={intlPathname.startsWith(href)}
+              className={cn(
+                isProjectDetail ? "hidden" : !isHome && "hidden sm:inline-flex"
+              )}
+            >
+              {label}
+            </NavLink>
+          ))}
 
           {/* The chat used to be a floating button in the corner, competing
               with the closing CTA for the same attention. It is a way into the
               site's content, so it belongs with the other ways in. */}
           {/* A hairline, not a gap. The chat is a different kind of thing from
               the page links, and the Alignment chapter's thin vertical rule
-              says that far more quietly than more spacing would. */}
+              says that far more quietly than more spacing would.
+              It needs something on its left: on a project page from sm up
+              both the arrow and the links are gone, and the rule would lead
+              the row on its own. */}
           <Separator
             orientation="vertical"
             decorative
-            className="h-3 shrink-0"
+            className={cn("h-3 shrink-0", isProjectDetail && "sm:hidden")}
           />
 
           <button
